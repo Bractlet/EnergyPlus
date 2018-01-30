@@ -59,287 +59,216 @@ namespace EnergyPlus {
 
 namespace PlantLoopSolver {
 
-	// Data
-	// DERIVED TYPE DEFINITIONS
+    // Data
+    // DERIVED TYPE DEFINITIONS
 
-	// MODULE VARIABLE DEFINITIONS
-	extern Real64 InitialDemandToLoopSetPoint;
-	extern Real64 CurrentAlterationsToDemand;
-	extern Real64 UpdatedDemandToLoopSetPoint;
-	extern Real64 LoadToLoopSetPointThatWasntMet; // Unmet Demand
-	extern Real64 InitialDemandToLoopSetPointSAVED;
-	extern int RefrigIndex; // Index denoting refrigerant used (possibly steam)
+    // MODULE VARIABLE DEFINITIONS
+    extern Real64 InitialDemandToLoopSetPoint;
+    extern Real64 CurrentAlterationsToDemand;
+    extern Real64 UpdatedDemandToLoopSetPoint;
+    extern Real64 LoadToLoopSetPointThatWasntMet; // Unmet Demand
+    extern Real64 InitialDemandToLoopSetPointSAVED;
+    extern int RefrigIndex; // Index denoting refrigerant used (possibly steam)
 
-	// SUBROUTINE SPECIFICATIONS:
-	//PRIVATE EvaluatePumpFlowConditions
+    // SUBROUTINE SPECIFICATIONS:
+    // PRIVATE EvaluatePumpFlowConditions
 
-	// Types
+    // Types
 
-	struct Location
-	{
-		// Members
-		int LoopNum;
-		int LoopSideNum;
-		int BranchNum;
-		int CompNum;
+    struct Location
+    {
+        // Members
+        int LoopNum;
+        int LoopSideNum;
+        int BranchNum;
+        int CompNum;
 
-		// Default Constructor
-		Location() :
-			LoopNum( 0 ),
-			LoopSideNum( 0 ),
-			BranchNum( 0 ),
-			CompNum( 0 )
-		{}
+        // Default Constructor
+        Location() : LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0)
+        {
+        }
+    };
 
-	};
+    struct m_FlowControlValidator
+    {
+        // Members
+        bool Valid;          // Assume true
+        Location ErrorPoint; // Branch where the error was thrown
+        std::string Reason;  // Brief description of error
 
-	struct m_FlowControlValidator
-	{
-		// Members
-		bool Valid; // Assume true
-		Location ErrorPoint; // Branch where the error was thrown
-		std::string Reason; // Brief description of error
+        // Default Constructor
+        m_FlowControlValidator() : Valid(true)
+        {
+        }
+    };
 
-		// Default Constructor
-		m_FlowControlValidator() :
-			Valid( true )
-		{}
+    // Functions
+    void clear_state();
 
-	};
+    void PlantHalfLoopSolver(bool const FirstHVACIteration, // TRUE if First HVAC iteration of Time step
+                             int const LoopSideNum,
+                             int const LoopNum,
+                             bool &ReSimOtherSideNeeded);
 
-	// Functions
-	void
-	clear_state();
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	void
-	PlantHalfLoopSolver(
-		bool const FirstHVACIteration, // TRUE if First HVAC iteration of Time step
-		int const LoopSideNum,
-		int const LoopNum,
-		bool & ReSimOtherSideNeeded
-	);
+    //==================================================================!
+    //================= TOPOLOGY VALIDATION ROUTINE ====================!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    m_FlowControlValidator ValidateFlowControlPaths(int const LoopNum, int const LoopSideNum);
 
-	//==================================================================!
-	//================= TOPOLOGY VALIDATION ROUTINE ====================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	m_FlowControlValidator
-	ValidateFlowControlPaths(
-		int const LoopNum,
-		int const LoopSideNum
-	);
+    //==================================================================!
+    //==================== PREDICT LOOP FLOW ===========================!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    void SetupLoopFlowRequest(int const LoopNum,
+                              int const ThisSide,
+                              int const OtherSide,
+                              Real64 &LoopFlow // Once all flow requests are evaluated, this is the desired flow on this side
+                              );
 
-	//==================================================================!
-	//==================== PREDICT LOOP FLOW ===========================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	void
-	SetupLoopFlowRequest(
-		int const LoopNum,
-		int const ThisSide,
-		int const OtherSide,
-		Real64 & LoopFlow // Once all flow requests are evaluated, this is the desired flow on this side
-	);
+    //==================================================================!
+    //================== LOOPSIDE BRANCH SIMULATION ====================!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    void SimulateAllLoopSideBranches(
+        int const LoopNum, int const LoopSideNum, Real64 const ThisLoopSideFlow, bool const FirstHVACIteration, bool &LoopShutDownFlag);
 
-	//==================================================================!
-	//================== LOOPSIDE BRANCH SIMULATION ====================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	void
-	SimulateAllLoopSideBranches(
-		int const LoopNum,
-		int const LoopSideNum,
-		Real64 const ThisLoopSideFlow,
-		bool const FirstHVACIteration,
-		bool & LoopShutDownFlag
-	);
+    //==================================================================!
+    //================ SINGLE BRANCH GROUP SIMULATION ==================!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    void SimulateLoopSideBranchGroup(int const LoopNum,
+                                     int const LoopSideNum,
+                                     int const FirstBranchNum,
+                                     int const LastBranchNum,
+                                     Real64 const FlowRequest,
+                                     bool const FirstHVACIteration,
+                                     bool &LoopShutDownFlag,
+                                     bool const StartingNewLoopSidePass = false);
 
-	//==================================================================!
-	//================ SINGLE BRANCH GROUP SIMULATION ==================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	void
-	SimulateLoopSideBranchGroup(
-		int const LoopNum,
-		int const LoopSideNum,
-		int const FirstBranchNum,
-		int const LastBranchNum,
-		Real64 const FlowRequest,
-		bool const FirstHVACIteration,
-		bool & LoopShutDownFlag,
-		bool const StartingNewLoopSidePass = false
-	);
+    //==================================================================!
+    //==================== SIMULATE LOOP SIDE PUMPS ====================!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    void SimulateAllLoopSidePumps(int const LoopNum,
+                                  int const ThisSide,
+                                  Optional<Location const> SpecificPumpLocation = _,
+                                  Optional<Real64 const> SpecificPumpFlowRate = _);
 
-	//==================================================================!
-	//==================== SIMULATE LOOP SIDE PUMPS ====================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	void
-	SimulateAllLoopSidePumps(
-		int const LoopNum,
-		int const ThisSide,
-		Optional< Location const > SpecificPumpLocation = _,
-		Optional< Real64 const > SpecificPumpFlowRate = _
-	);
+    //==================================================================!
+    //============ EVALUATE LOAD REQUIRED FOR WHOLE LOOP ===============!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    Real64 CalcOtherSideDemand(int const LoopNum, int const ThisSide);
 
-	//==================================================================!
-	//============ EVALUATE LOAD REQUIRED FOR WHOLE LOOP ===============!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	Real64
-	CalcOtherSideDemand(
-		int const LoopNum,
-		int const ThisSide
-	);
+    //==================================================================!
+    //========= EVALUATE LOAD REQUIRED TO MEET LOOP SETPOINT ===========!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    Real64 EvaluateLoopSetPointLoad(
+        int const LoopNum, int const LoopSideNum, int const FirstBranchNum, int const LastBranchNum, Array1S_int LastComponentSimulated);
 
-	//==================================================================!
-	//========= EVALUATE LOAD REQUIRED TO MEET LOOP SETPOINT ===========!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	Real64
-	EvaluateLoopSetPointLoad(
-		int const LoopNum,
-		int const LoopSideNum,
-		int const FirstBranchNum,
-		int const LastBranchNum,
-		Array1S_int LastComponentSimulated
-	);
+    void UpdateAnyLoopDemandAlterations(int const LoopNum, int const LoopSideNum, int const BranchNum, int const CompNum);
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	void
-	UpdateAnyLoopDemandAlterations(
-		int const LoopNum,
-		int const LoopSideNum,
-		int const BranchNum,
-		int const CompNum
-	);
+    //==================================================================!
+    //=================== FLOW RESOLVER ROUTINE ========================!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    void ResolveParallelFlows(int const LoopNum,             // plant loop number that we are balancing flow for
+                              int const LoopSideNum,         // plant loop number that we are balancing flow for
+                              Real64 const ThisLoopSideFlow, // [kg/s]  total flow to be split
+                              bool const FirstHVACIteration  // TRUE if First HVAC iteration of Time step
+                              );
 
-	//==================================================================!
-	//=================== FLOW RESOLVER ROUTINE ========================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	void
-	ResolveParallelFlows(
-		int const LoopNum, // plant loop number that we are balancing flow for
-		int const LoopSideNum, // plant loop number that we are balancing flow for
-		Real64 const ThisLoopSideFlow, // [kg/s]  total flow to be split
-		bool const FirstHVACIteration // TRUE if First HVAC iteration of Time step
-	);
+    void PropagateResolvedFlow(int const LoopNum, int const LoopSideNum, bool const FirstHVACIteration);
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    //==================================================================!
+    //================= EVALUATING BRANCH REQUEST ======================!
+    //==================================================================!
 
-	void
-	PropagateResolvedFlow(
-		int const LoopNum,
-		int const LoopSideNum,
-		bool const FirstHVACIteration
-	);
+    Real64 DetermineBranchFlowRequest(int const LoopNum, int const LoopSideNum, int const BranchNum);
 
-	//==================================================================!
-	//================= EVALUATING BRANCH REQUEST ======================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	Real64
-	DetermineBranchFlowRequest(
-		int const LoopNum,
-		int const LoopSideNum,
-		int const BranchNum
-	);
+    void PushBranchFlowCharacteristics(int const LoopNum,
+                                       int const LoopSideNum,
+                                       int const BranchNum,
+                                       Real64 const ValueToPush,
+                                       bool const FirstHVACIteration // TRUE if First HVAC iteration of Time step
+                                       );
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    //==================================================================!
+    //================== REPORT VARIABLE UPDATE ========================!
+    //==================================================================!
 
-	void
-	PushBranchFlowCharacteristics(
-		int const LoopNum,
-		int const LoopSideNum,
-		int const BranchNum,
-		Real64 const ValueToPush,
-		bool const FirstHVACIteration // TRUE if First HVAC iteration of Time step
-	);
+    void UpdateLoopSideReportVars(int const LoopNum,
+                                  int const LoopSide,
+                                  Real64 const OtherSideDemand,   // This is the 'other side' demand, based on other side flow
+                                  Real64 const LocalRemLoopDemand // Unmet Demand after equipment has been simulated (report variable)
+                                  );
 
-	//==================================================================!
-	//================== REPORT VARIABLE UPDATE ========================!
-	//==================================================================!
+    void CalcUnmetPlantDemand(int const LoopNum, int const LoopSideNum);
 
-	void
-	UpdateLoopSideReportVars(
-		int const LoopNum,
-		int const LoopSide,
-		Real64 const OtherSideDemand, // This is the 'other side' demand, based on other side flow
-		Real64 const LocalRemLoopDemand // Unmet Demand after equipment has been simulated (report variable)
-	);
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
-	void
-	CalcUnmetPlantDemand(
-		int const LoopNum,
-		int const LoopSideNum
-	);
+    //==================================================================!
+    //================ VERIFYING LOOP EXIT NODE STATE ==================!
+    //==================================================================!
 
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    void CheckLoopExitNode(int const LoopNum,            // plant loop counter
+                           bool const FirstHVACIteration // TRUE if First HVAC iteration of Time step
+                           );
 
-	//==================================================================!
-	//================ VERIFYING LOOP EXIT NODE STATE ==================!
-	//==================================================================!
+    void AdjustPumpFlowRequestByEMSControls(
+        int const LoopNum, int const LoopSideNum, int const BranchNum, int const CompNum, Real64 &FlowToRequest);
 
-	void
-	CheckLoopExitNode(
-		int const LoopNum, // plant loop counter
-		bool const FirstHVACIteration // TRUE if First HVAC iteration of Time step
-	);
-
-	void
-	AdjustPumpFlowRequestByEMSControls(
-		int const LoopNum,
-		int const LoopSideNum,
-		int const BranchNum,
-		int const CompNum,
-		Real64 & FlowToRequest
-	);
-
-	//==================================================================!
-	//==================================================================!
-	//==================================================================!
+    //==================================================================!
+    //==================================================================!
+    //==================================================================!
 
 } // PlantLoopSolver
 

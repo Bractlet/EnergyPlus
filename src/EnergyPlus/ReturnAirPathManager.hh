@@ -55,37 +55,31 @@ namespace EnergyPlus {
 
 namespace ReturnAirPathManager {
 
-	// Data
-	//MODULE PARAMETER DEFINITIONS
-	// na
+    // Data
+    // MODULE PARAMETER DEFINITIONS
+    // na
 
-	//DERIVED TYPE DEFINITIONS
-	// na
+    // DERIVED TYPE DEFINITIONS
+    // na
 
-	//MODULE VARIABLE DECLARATIONS:
-	// na
+    // MODULE VARIABLE DECLARATIONS:
+    // na
 
-	//SUBROUTINE SPECIFICATIONS FOR MODULE ReturnAirPathManager
+    // SUBROUTINE SPECIFICATIONS FOR MODULE ReturnAirPathManager
 
-	// Functions
+    // Functions
 
-	void
-	clear_state();
+    void clear_state();
 
-	void
-	SimReturnAirPath();
+    void SimReturnAirPath();
 
-	void
-	GetReturnAirPathInput();
+    void GetReturnAirPathInput();
 
-	void
-	InitReturnAirPath( int & ReturnAirPathNum ); // unused1208
+    void InitReturnAirPath(int &ReturnAirPathNum); // unused1208
 
-	void
-	CalcReturnAirPath( int & ReturnAirPathNum );
+    void CalcReturnAirPath(int &ReturnAirPathNum);
 
-	void
-	ReportReturnAirPath( int & ReturnAirPathNum ); // unused1208
+    void ReportReturnAirPath(int &ReturnAirPathNum); // unused1208
 
 } // ReturnAirPathManager
 

@@ -55,19 +55,17 @@ namespace EnergyPlus {
 
 namespace NonZoneEquipmentManager {
 
-	// Data
-	// MODULE PARAMETER DEFINITIONS: na
-	// MODULE VARIABLE DECLARATIONS: na
+    // Data
+    // MODULE PARAMETER DEFINITIONS: na
+    // MODULE VARIABLE DECLARATIONS: na
 
-	// SUBROUTINE SPECIFICATIONS:
+    // SUBROUTINE SPECIFICATIONS:
 
-	// Functions
+    // Functions
 
-	void
-	ManageNonZoneEquipment(
-		bool const FirstHVACIteration,
-		bool & SimNonZoneEquipment // Simulation convergence flag
-	);
+    void ManageNonZoneEquipment(bool const FirstHVACIteration,
+                                bool &SimNonZoneEquipment // Simulation convergence flag
+                                );
 
 } // NonZoneEquipmentManager
 

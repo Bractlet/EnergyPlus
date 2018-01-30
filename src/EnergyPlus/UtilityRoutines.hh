@@ -57,217 +57,135 @@
 namespace EnergyPlus {
 
 namespace UtilityRoutines {
-	extern bool outputErrorHeader;
+    extern bool outputErrorHeader;
 }
 
-void
-AbortEnergyPlus();
+void AbortEnergyPlus();
 
-void
-CloseMiscOpenFiles();
+void CloseMiscOpenFiles();
 
-void
-CloseOutOpenFiles();
+void CloseOutOpenFiles();
 
-void
-EndEnergyPlus();
+void EndEnergyPlus();
 
-int
-GetNewUnitNumber();
+int GetNewUnitNumber();
 
-int
-FindUnitNumber( std::string const & FileName ); // File name to be searched.
+int FindUnitNumber(std::string const &FileName); // File name to be searched.
 
-void
-ConvertCaseToUpper(
-	std::string const & InputString, // Input string
-	std::string & OutputString // Output string (in UpperCase)
-);
+void ConvertCaseToUpper(std::string const &InputString, // Input string
+                        std::string &OutputString       // Output string (in UpperCase)
+                        );
 
-void
-ConvertCaseToLower(
-	std::string const & InputString, // Input string
-	std::string & OutputString // Output string (in LowerCase)
-);
+void ConvertCaseToLower(std::string const &InputString, // Input string
+                        std::string &OutputString       // Output string (in LowerCase)
+                        );
 
-std::string::size_type
-FindNonSpace( std::string const & String ); // String to be scanned
+std::string::size_type FindNonSpace(std::string const &String); // String to be scanned
 
-template< typename T >
-inline
-T
-pow2( T const & x )
+template <typename T> inline T pow2(T const &x)
 {
-	return x * x;
+    return x * x;
 }
 
-template< typename T >
-inline
-T
-pow3( T const & x )
+template <typename T> inline T pow3(T const &x)
 {
-	return x * x * x;
+    return x * x * x;
 }
 
-template< typename T >
-inline
-T
-pow4( T const & x )
+template <typename T> inline T pow4(T const &x)
 {
-	T y( x * x );
-	return y * y;
+    T y(x * x);
+    return y * y;
 }
 
-template< typename T >
-inline
-T
-pow5( T const & x )
+template <typename T> inline T pow5(T const &x)
 {
-	T y( x * x );
-	y *= y;
-	return y * x;
+    T y(x * x);
+    y *= y;
+    return y * x;
 }
 
-template< typename T >
-inline
-T
-pow6( T const & x )
+template <typename T> inline T pow6(T const &x)
 {
-	T y( x * x );
-	y *= y;
-	return y * y;
+    T y(x * x);
+    y *= y;
+    return y * y;
 }
 
-template< typename T >
-inline
-T
-pow7( T const & x )
+template <typename T> inline T pow7(T const &x)
 {
-	T y( x * x );
-	y *= y;
-	y *= y;
-	return y * x;
+    T y(x * x);
+    y *= y;
+    y *= y;
+    return y * x;
 }
 
-bool
-env_var_on( std::string const & env_var_str );
+bool env_var_on(std::string const &env_var_str);
 
-void
-ShowFatalError(
-	std::string const & ErrorMessage,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowFatalError(std::string const &ErrorMessage, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-ShowSevereError(
-	std::string const & ErrorMessage,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowSevereError(std::string const &ErrorMessage, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-ShowSevereMessage(
-	std::string const & ErrorMessage,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowSevereMessage(std::string const &ErrorMessage, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-ShowContinueError(
-	std::string const & Message,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowContinueError(std::string const &Message, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-ShowContinueErrorTimeStamp(
-	std::string const & Message,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowContinueErrorTimeStamp(std::string const &Message, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-ShowMessage(
-	std::string const & Message,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowMessage(std::string const &Message, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-ShowWarningError(
-	std::string const & ErrorMessage,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowWarningError(std::string const &ErrorMessage, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-ShowWarningMessage(
-	std::string const & ErrorMessage,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowWarningMessage(std::string const &ErrorMessage, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-ShowRecurringSevereErrorAtEnd(
-	std::string const & Message, // Message automatically written to "error file" at end of simulation
-	int & MsgIndex, // Recurring message index, if zero, next available index is assigned
-	Optional< Real64 const > ReportMaxOf = _, // Track and report the max of the values passed to this argument
-	Optional< Real64 const > ReportMinOf = _, // Track and report the min of the values passed to this argument
-	Optional< Real64 const > ReportSumOf = _, // Track and report the sum of the values passed to this argument
-	std::string const & ReportMaxUnits = "", // optional char string (<=15 length) of units for max value
-	std::string const & ReportMinUnits = "", // optional char string (<=15 length) of units for min value
-	std::string const & ReportSumUnits = "" // optional char string (<=15 length) of units for sum value
-);
+void ShowRecurringSevereErrorAtEnd(std::string const &Message, // Message automatically written to "error file" at end of simulation
+                                   int &MsgIndex,              // Recurring message index, if zero, next available index is assigned
+                                   Optional<Real64 const> ReportMaxOf = _, // Track and report the max of the values passed to this argument
+                                   Optional<Real64 const> ReportMinOf = _, // Track and report the min of the values passed to this argument
+                                   Optional<Real64 const> ReportSumOf = _, // Track and report the sum of the values passed to this argument
+                                   std::string const &ReportMaxUnits = "", // optional char string (<=15 length) of units for max value
+                                   std::string const &ReportMinUnits = "", // optional char string (<=15 length) of units for min value
+                                   std::string const &ReportSumUnits = ""  // optional char string (<=15 length) of units for sum value
+                                   );
 
-void
-ShowRecurringWarningErrorAtEnd(
-	std::string const & Message, // Message automatically written to "error file" at end of simulation
-	int & MsgIndex, // Recurring message index, if zero, next available index is assigned
-	Optional< Real64 const > ReportMaxOf = _, // Track and report the max of the values passed to this argument
-	Optional< Real64 const > ReportMinOf = _, // Track and report the min of the values passed to this argument
-	Optional< Real64 const > ReportSumOf = _, // Track and report the sum of the values passed to this argument
-	std::string const & ReportMaxUnits = "", // optional char string (<=15 length) of units for max value
-	std::string const & ReportMinUnits = "", // optional char string (<=15 length) of units for min value
-	std::string const & ReportSumUnits = "" // optional char string (<=15 length) of units for sum value
-);
+void ShowRecurringWarningErrorAtEnd(
+    std::string const &Message,             // Message automatically written to "error file" at end of simulation
+    int &MsgIndex,                          // Recurring message index, if zero, next available index is assigned
+    Optional<Real64 const> ReportMaxOf = _, // Track and report the max of the values passed to this argument
+    Optional<Real64 const> ReportMinOf = _, // Track and report the min of the values passed to this argument
+    Optional<Real64 const> ReportSumOf = _, // Track and report the sum of the values passed to this argument
+    std::string const &ReportMaxUnits = "", // optional char string (<=15 length) of units for max value
+    std::string const &ReportMinUnits = "", // optional char string (<=15 length) of units for min value
+    std::string const &ReportSumUnits = ""  // optional char string (<=15 length) of units for sum value
+    );
 
-void
-ShowRecurringContinueErrorAtEnd(
-	std::string const & Message, // Message automatically written to "error file" at end of simulation
-	int & MsgIndex, // Recurring message index, if zero, next available index is assigned
-	Optional< Real64 const > ReportMaxOf = _, // Track and report the max of the values passed to this argument
-	Optional< Real64 const > ReportMinOf = _, // Track and report the min of the values passed to this argument
-	Optional< Real64 const > ReportSumOf = _, // Track and report the sum of the values passed to this argument
-	std::string const & ReportMaxUnits = "", // optional char string (<=15 length) of units for max value
-	std::string const & ReportMinUnits = "", // optional char string (<=15 length) of units for min value
-	std::string const & ReportSumUnits = "" // optional char string (<=15 length) of units for sum value
-);
+void ShowRecurringContinueErrorAtEnd(
+    std::string const &Message,             // Message automatically written to "error file" at end of simulation
+    int &MsgIndex,                          // Recurring message index, if zero, next available index is assigned
+    Optional<Real64 const> ReportMaxOf = _, // Track and report the max of the values passed to this argument
+    Optional<Real64 const> ReportMinOf = _, // Track and report the min of the values passed to this argument
+    Optional<Real64 const> ReportSumOf = _, // Track and report the sum of the values passed to this argument
+    std::string const &ReportMaxUnits = "", // optional char string (<=15 length) of units for max value
+    std::string const &ReportMinUnits = "", // optional char string (<=15 length) of units for min value
+    std::string const &ReportSumUnits = ""  // optional char string (<=15 length) of units for sum value
+    );
 
-void
-StoreRecurringErrorMessage(
-	std::string const & ErrorMessage, // Message automatically written to "error file" at end of simulation
-	int & ErrorMsgIndex, // Recurring message index, if zero, next available index is assigned
-	Optional< Real64 const > ErrorReportMaxOf = _, // Track and report the max of the values passed to this argument
-	Optional< Real64 const > ErrorReportMinOf = _, // Track and report the min of the values passed to this argument
-	Optional< Real64 const > ErrorReportSumOf = _, // Track and report the sum of the values passed to this argument
-	std::string const & ErrorReportMaxUnits = "", // Units for "max" reporting
-	std::string const & ErrorReportMinUnits = "", // Units for "min" reporting
-	std::string const & ErrorReportSumUnits = "" // Units for "sum" reporting
-);
+void StoreRecurringErrorMessage(
+    std::string const &ErrorMessage,             // Message automatically written to "error file" at end of simulation
+    int &ErrorMsgIndex,                          // Recurring message index, if zero, next available index is assigned
+    Optional<Real64 const> ErrorReportMaxOf = _, // Track and report the max of the values passed to this argument
+    Optional<Real64 const> ErrorReportMinOf = _, // Track and report the min of the values passed to this argument
+    Optional<Real64 const> ErrorReportSumOf = _, // Track and report the sum of the values passed to this argument
+    std::string const &ErrorReportMaxUnits = "", // Units for "max" reporting
+    std::string const &ErrorReportMinUnits = "", // Units for "min" reporting
+    std::string const &ErrorReportSumUnits = ""  // Units for "sum" reporting
+    );
 
-void
-ShowErrorMessage(
-	std::string const & ErrorMessage,
-	Optional_int OutUnit1 = _,
-	Optional_int OutUnit2 = _
-);
+void ShowErrorMessage(std::string const &ErrorMessage, Optional_int OutUnit1 = _, Optional_int OutUnit2 = _);
 
-void
-SummarizeErrors();
+void SummarizeErrors();
 
-void
-ShowRecurringErrors();
+void ShowRecurringErrors();
 
 } // EnergyPlus
 
