@@ -101,9 +101,8 @@ namespace DataSystemVariables {
     extern std::string const TraceHVACControllerEnvVar; // To generate a trace file for
     //  each individual HVAC controller with all controller iterations
 
-    extern std::string const MinReportFrequencyEnvVar; // environment var for reporting frequency.
-    extern std::string const
-        cDisplayInputInAuditEnvVar; // environmental variable that enables the echoing of the input file into the audit file
+    extern std::string const MinReportFrequencyEnvVar;   // environment var for reporting frequency.
+    extern std::string const cDisplayInputInAuditEnvVar; // environmental variable that enables the echoing of the input file into the audit file
 
     // DERIVED TYPE DEFINITIONS
     // na
@@ -132,7 +131,7 @@ namespace DataSystemVariables {
     extern bool ReportDetailedWarmupConvergence;         // True when the detailed warmup convergence is requested
     extern bool UpdateDataDuringWarmupExternalInterface; // variable sets in the external interface.
     extern bool UseScheduledSunlitFrac;                  // when true, the external shading calculation results will be exported
-    extern bool ReportExtShadingSunlitFrac; // when true, the sunlit fraction for all surfaces are exported as a csv format output
+    extern bool ReportExtShadingSunlitFrac;              // when true, the sunlit fraction for all surfaces are exported as a csv format output
 
     // This update the value during the warmup added for FMI
     extern Real64 Elapsed_Time;             // For showing elapsed time at end of run

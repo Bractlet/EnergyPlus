@@ -265,8 +265,7 @@ namespace ThermalISO15099Calc {
                                 int &nperr,
                                 std::string &ErrorMessage);
 
-    void solarISO15099(
-        Real64 const totsol, Real64 const rtot, Array1A<Real64> const rs, int const nlayer, Array1A<Real64> const absol, Real64 &sf);
+    void solarISO15099(Real64 const totsol, Real64 const rtot, Array1A<Real64> const rs, int const nlayer, Array1A<Real64> const absol, Real64 &sf);
 
     void resist(int const nlayer,
                 Real64 const trmout,
@@ -484,8 +483,7 @@ namespace ThermalISO15099Calc {
                                Array1<Real64> const &Rf,
                                int &EP_UNUSED(nperr));
 
-    void
-    CalculateFuncResults(int const nlayer, Array2<Real64> const &a, Array1<Real64> const &b, Array1<Real64> const &x, Array1<Real64> &FRes);
+    void CalculateFuncResults(int const nlayer, Array2<Real64> const &a, Array1<Real64> const &b, Array1<Real64> const &x, Array1<Real64> &FRes);
 
 } // ThermalISO15099Calc
 

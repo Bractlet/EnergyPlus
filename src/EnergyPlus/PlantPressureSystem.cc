@@ -146,8 +146,7 @@ namespace PlantPressureSystem {
         using DataPlant::Press_NoPressure;
 
         // Exit out of any calculation routines if we don't do pressure simulation for this loop
-        if ((PlantLoop(LoopNum).PressureSimType == Press_NoPressure) &&
-            ((CallType == PressureCall_Calc) || (CallType == PressureCall_Update)))
+        if ((PlantLoop(LoopNum).PressureSimType == Press_NoPressure) && ((CallType == PressureCall_Calc) || (CallType == PressureCall_Update)))
             return;
 
         // Pass to another routine based on calling flag
@@ -228,8 +227,8 @@ namespace PlantPressureSystem {
                         loop.HasPressureComponents = true;
 
                         // Setup output variable
-                        SetupOutputVariable("Plant Branch Pressure Difference", OutputProcessor::Unit::Pa, branch.PressureDrop, "Plant",
-                                            "Average", branch.Name);
+                        SetupOutputVariable("Plant Branch Pressure Difference", OutputProcessor::Unit::Pa, branch.PressureDrop, "Plant", "Average",
+                                            branch.Name);
                     }
                 }
 
@@ -237,13 +236,13 @@ namespace PlantPressureSystem {
                 if (loop_side.HasPressureComponents) {
                     if (LoopSideNum == DemandSide) {
 
-                        SetupOutputVariable("Plant Demand Side Loop Pressure Difference", OutputProcessor::Unit::Pa, loop_side.PressureDrop,
-                                            "Plant", "Average", loop.Name);
+                        SetupOutputVariable("Plant Demand Side Loop Pressure Difference", OutputProcessor::Unit::Pa, loop_side.PressureDrop, "Plant",
+                                            "Average", loop.Name);
 
                     } else if (LoopSideNum == SupplySide) {
 
-                        SetupOutputVariable("Plant Supply Side Loop Pressure Difference", OutputProcessor::Unit::Pa, loop_side.PressureDrop,
-                                            "Plant", "Average", loop.Name);
+                        SetupOutputVariable("Plant Supply Side Loop Pressure Difference", OutputProcessor::Unit::Pa, loop_side.PressureDrop, "Plant",
+                                            "Average", loop.Name);
                     }
                 }
             }
@@ -253,8 +252,7 @@ namespace PlantPressureSystem {
 
                 // Set up loop level variables if applicable
 
-                SetupOutputVariable("Plant Loop Pressure Difference", OutputProcessor::Unit::Pa, loop.PressureDrop, "Plant", "Average",
-                                    loop.Name);
+                SetupOutputVariable("Plant Loop Pressure Difference", OutputProcessor::Unit::Pa, loop.PressureDrop, "Plant", "Average", loop.Name);
 
                 // Check for illegal configurations on this plant loop
                 for (int LoopSideNum = DemandSide; LoopSideNum <= SupplySide; ++LoopSideNum) {
@@ -628,8 +626,7 @@ namespace PlantPressureSystem {
 
                 // Only add this branch if the K value is non-zero
                 if (PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).PressureEffectiveK > 0.0) {
-                    TempVal_SumOfOneByRootK +=
-                        (1.0 / std::sqrt(PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).PressureEffectiveK));
+                    TempVal_SumOfOneByRootK += (1.0 / std::sqrt(PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).PressureEffectiveK));
                 }
             }
 
@@ -651,8 +648,7 @@ namespace PlantPressureSystem {
         PlantLoop(LoopNum).PressureEffectiveK = EffectiveLoopKValue;
     }
 
-    void
-    DistributePressureOnBranch(int const LoopNum, int const LoopSideNum, int const BranchNum, Real64 &BranchPressureDrop, bool &PumpFound)
+    void DistributePressureOnBranch(int const LoopNum, int const LoopSideNum, int const BranchNum, Real64 &BranchPressureDrop, bool &PumpFound)
     {
 
         // SUBROUTINE INFORMATION:
@@ -833,8 +829,8 @@ namespace PlantPressureSystem {
                                      int const PumpCurveNum,       // - Pump curve to use when calling the curve manager for psi = f(phi)
                                      Real64 const PumpSpeed,       // - Pump rotational speed, [rps] (revs per second)
                                      Real64 const PumpImpellerDia, // - Nominal pump impeller diameter [m]
-                                     Real64 const MinPhi, // - Minimum allowable value of phi, requested by the pump manager from curve mgr
-                                     Real64 const MaxPhi  // - Maximum allowable value of phi, requested by the pump manager from curve mgr
+                                     Real64 const MinPhi,          // - Minimum allowable value of phi, requested by the pump manager from curve mgr
+                                     Real64 const MaxPhi           // - Maximum allowable value of phi, requested by the pump manager from curve mgr
                                      )
     {
 

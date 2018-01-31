@@ -130,8 +130,8 @@ namespace HybridModel {
 
             for (int HybridModelNum = 1; HybridModelNum <= NumOfHybridModelZones; ++HybridModelNum) {
 
-                GetObjectItem(CurrentModuleObject, HybridModelNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus,
-                              lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+                GetObjectItem(CurrentModuleObject, HybridModelNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, lNumericFieldBlanks,
+                              lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
 
                 ZoneListPtr = 0;
                 ZonePtr = FindItemInList(cAlphaArgs(2), Zone);
@@ -144,8 +144,8 @@ namespace HybridModel {
                     // Zone Air Infiltration Rate and Zone Internal Thermal Mass calculations cannot be performed simultaneously
                     if (HybridModelZone(ZonePtr).InternalThermalMassCalc && HybridModelZone(ZonePtr).InfiltrationCalc) {
                         HybridModelZone(ZonePtr).InfiltrationCalc = false;
-                        ShowWarningError(CurrentModuleObject + "=\"" + HybridModelZone(ZonePtr).Name + "\" invalid " + cAlphaFieldNames(3) +
-                                         " and " + cAlphaFieldNames(4) + ".");
+                        ShowWarningError(CurrentModuleObject + "=\"" + HybridModelZone(ZonePtr).Name + "\" invalid " + cAlphaFieldNames(3) + " and " +
+                                         cAlphaFieldNames(4) + ".");
                         ShowContinueError("Field " + cAlphaFieldNames(3) + " and " + cAlphaFieldNames(4) + "\" cannot be both set to YES.");
                         ShowContinueError("Field " + cAlphaFieldNames(4) + "\" is changed to NO for the hybrid modeling simulations.");
                     }
@@ -188,8 +188,8 @@ namespace HybridModel {
                         }
                     }
                 } else {
-                    ShowSevereError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cAlphaFieldNames(2) + "=\"" +
-                                    cAlphaArgs(2) + "\" not found.");
+                    ShowSevereError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cAlphaFieldNames(2) + "=\"" + cAlphaArgs(2) +
+                                    "\" not found.");
                     ErrorsFound = true;
                 }
             }

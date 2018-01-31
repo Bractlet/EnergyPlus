@@ -289,9 +289,8 @@ namespace EconomicTariff {
 
         // Default Constructor
         EconVarType()
-            : tariffIndx(0), kindOfObj(0), index(0), values(MaxNumMonths, 0.0), isArgument(false), isAssigned(false), specific(0),
-              cntMeDependOn(0), Operator(0), firstOperand(0), lastOperand(0), activeNow(false), isEvaluated(false), isReported(false),
-              varUnitType(0)
+            : tariffIndx(0), kindOfObj(0), index(0), values(MaxNumMonths, 0.0), isArgument(false), isAssigned(false), specific(0), cntMeDependOn(0),
+              Operator(0), firstOperand(0), lastOperand(0), activeNow(false), isEvaluated(false), isReported(false), varUnitType(0)
         {
         }
     };
@@ -410,20 +409,18 @@ namespace EconomicTariff {
               seasonSchIndex(0), monthSchIndex(0), demandWindow(0), demWinTime(0.0), monthChgVal(0.0), monthChgPt(0), minMonthChgVal(0.0),
               minMonthChgPt(0), chargeSchIndex(0), baseUseSchIndex(0), buyOrSell(0), firstCategory(0), lastCategory(0), ptEnergyCharges(0),
               ptDemandCharges(0), ptServiceCharges(0), ptBasis(0), ptAdjustment(0), ptSurcharge(0), ptSubtotal(0), ptTaxes(0), ptTotal(0),
-              ptNotIncluded(0), firstNative(0), lastNative(0), nativeTotalEnergy(0), nativeTotalDemand(0), nativePeakEnergy(0),
-              nativePeakDemand(0), nativeShoulderEnergy(0), nativeShoulderDemand(0), nativeOffPeakEnergy(0), nativeOffPeakDemand(0),
-              nativeMidPeakEnergy(0), nativeMidPeakDemand(0), nativePeakExceedsOffPeak(0), nativeOffPeakExceedsPeak(0),
-              nativePeakExceedsMidPeak(0), nativeMidPeakExceedsPeak(0), nativePeakExceedsShoulder(0), nativeShoulderExceedsPeak(0),
-              nativeIsWinter(0), nativeIsNotWinter(0), nativeIsSpring(0), nativeIsNotSpring(0), nativeIsSummer(0), nativeIsNotSummer(0),
-              nativeIsAutumn(0), nativeIsNotAutumn(0), nativePeakAndShoulderEnergy(0), nativePeakAndShoulderDemand(0),
-              nativePeakAndMidPeakEnergy(0), nativePeakAndMidPeakDemand(0), nativeShoulderAndOffPeakEnergy(0),
-              nativeShoulderAndOffPeakDemand(0), nativePeakAndOffPeakEnergy(0), nativePeakAndOffPeakDemand(0), nativeRealTimePriceCosts(0),
-              nativeAboveCustomerBaseCosts(0), nativeBelowCustomerBaseCosts(0), nativeAboveCustomerBaseEnergy(0),
+              ptNotIncluded(0), firstNative(0), lastNative(0), nativeTotalEnergy(0), nativeTotalDemand(0), nativePeakEnergy(0), nativePeakDemand(0),
+              nativeShoulderEnergy(0), nativeShoulderDemand(0), nativeOffPeakEnergy(0), nativeOffPeakDemand(0), nativeMidPeakEnergy(0),
+              nativeMidPeakDemand(0), nativePeakExceedsOffPeak(0), nativeOffPeakExceedsPeak(0), nativePeakExceedsMidPeak(0),
+              nativeMidPeakExceedsPeak(0), nativePeakExceedsShoulder(0), nativeShoulderExceedsPeak(0), nativeIsWinter(0), nativeIsNotWinter(0),
+              nativeIsSpring(0), nativeIsNotSpring(0), nativeIsSummer(0), nativeIsNotSummer(0), nativeIsAutumn(0), nativeIsNotAutumn(0),
+              nativePeakAndShoulderEnergy(0), nativePeakAndShoulderDemand(0), nativePeakAndMidPeakEnergy(0), nativePeakAndMidPeakDemand(0),
+              nativeShoulderAndOffPeakEnergy(0), nativeShoulderAndOffPeakDemand(0), nativePeakAndOffPeakEnergy(0), nativePeakAndOffPeakDemand(0),
+              nativeRealTimePriceCosts(0), nativeAboveCustomerBaseCosts(0), nativeBelowCustomerBaseCosts(0), nativeAboveCustomerBaseEnergy(0),
               nativeBelowCustomerBaseEnergy(0), gatherEnergy(MaxNumMonths, countPeriod, 0.0), gatherDemand(MaxNumMonths, countPeriod, 0.0),
               collectTime(0.0), collectEnergy(0.0), RTPcost(MaxNumMonths, 0.0), RTPaboveBaseCost(MaxNumMonths, 0.0),
               RTPbelowBaseCost(MaxNumMonths, 0.0), RTPaboveBaseEnergy(MaxNumMonths, 0.0), RTPbelowBaseEnergy(MaxNumMonths, 0.0),
-              seasonForMonth(MaxNumMonths, 0), isQualified(false), ptDisqualifier(0), isSelected(false), totalAnnualCost(0.0),
-              totalAnnualEnergy(0.0)
+              seasonForMonth(MaxNumMonths, 0), isQualified(false), ptDisqualifier(0), isSelected(false), totalAnnualCost(0.0), totalAnnualEnergy(0.0)
         {
         }
     };
@@ -585,10 +582,7 @@ namespace EconomicTariff {
 
     int LookUpSeason(std::string const &nameOfSeason, std::string const &nameOfReferingObj);
 
-    int FindTariffIndex(std::string const &nameOfTariff,
-                        std::string const &nameOfReferingObj,
-                        bool &ErrorsFound,
-                        std::string const &nameOfCurObj);
+    int FindTariffIndex(std::string const &nameOfTariff, std::string const &nameOfReferingObj, bool &ErrorsFound, std::string const &nameOfCurObj);
 
     void warnIfNativeVarname(std::string const &objName, int const curTariffIndex, bool &ErrorsFound, std::string const &curobjName);
 
@@ -672,10 +666,8 @@ namespace EconomicTariff {
 
     void getMaxAndSum(int const varPointer, Real64 &sumResult, Real64 &maxResult);
 
-    void ReportEconomicVariable(std::string const &titleString,
-                                bool const includeCategory,
-                                bool const showCurrencySymbol,
-                                std::string const &forString);
+    void
+    ReportEconomicVariable(std::string const &titleString, bool const includeCategory, bool const showCurrencySymbol, std::string const &forString);
 
     void selectTariff();
 

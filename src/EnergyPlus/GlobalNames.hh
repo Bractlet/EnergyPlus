@@ -106,30 +106,18 @@ namespace GlobalNames {
     // for unit tests
     void clear_state();
 
-    void VerifyUniqueChillerName(std::string const &TypeToVerify,
-                                 std::string const &NameToVerify,
-                                 bool &ErrorFound,
-                                 std::string const &StringToDisplay);
+    void
+    VerifyUniqueChillerName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay);
 
-    void VerifyUniqueBaseboardName(std::string const &TypeToVerify,
-                                   std::string const &NameToVerify,
-                                   bool &ErrorFound,
-                                   std::string const &StringToDisplay);
+    void
+    VerifyUniqueBaseboardName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay);
 
-    void VerifyUniqueBoilerName(std::string const &TypeToVerify,
-                                std::string const &NameToVerify,
-                                bool &ErrorFound,
-                                std::string const &StringToDisplay);
+    void
+    VerifyUniqueBoilerName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay);
 
-    void VerifyUniqueCoilName(std::string const &TypeToVerify,
-                              std::string const &NameToVerify,
-                              bool &ErrorFound,
-                              std::string const &StringToDisplay);
+    void VerifyUniqueCoilName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay);
 
-    void VerifyUniqueADUName(std::string const &TypeToVerify,
-                             std::string const &NameToVerify,
-                             bool &ErrorFound,
-                             std::string const &StringToDisplay);
+    void VerifyUniqueADUName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay);
 
     // Clears the global data in GlobalNames.
     // Needed for unit tests, should not be normally called.

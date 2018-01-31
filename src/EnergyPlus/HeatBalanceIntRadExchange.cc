@@ -254,8 +254,7 @@ namespace HeatBalanceIntRadExchange {
                 e.IRfromParentZone = 0.0;
         }
 
-        for (int ZoneNum = (PartialResimulate ? ZoneToResimulate() : 1),
-                 ZoneNum_end = (PartialResimulate ? ZoneToResimulate() : NumOfZones);
+        for (int ZoneNum = (PartialResimulate ? ZoneToResimulate() : 1), ZoneNum_end = (PartialResimulate ? ZoneToResimulate() : NumOfZones);
              ZoneNum <= ZoneNum_end; ++ZoneNum) {
 
             auto const &zone(Zone(ZoneNum));
@@ -282,9 +281,9 @@ namespace HeatBalanceIntRadExchange {
 
             if (SurfIterations == 0) {
 
-                Real64 HMovInsul; // "Resistance" value of movable insulation (if present)
-                Real64 AbsInt;    // Absorptivity of movable insulation material (supercedes that of the construction if interior movable
-                                  // insulation is present)
+                Real64 HMovInsul;        // "Resistance" value of movable insulation (if present)
+                Real64 AbsInt;           // Absorptivity of movable insulation material (supercedes that of the construction if interior movable
+                                         // insulation is present)
                 bool IntMovInsulChanged; // True if the status of interior movable insulation has changed
 
                 IntShadeOrBlindStatusChanged = false;
@@ -300,8 +299,7 @@ namespace HeatBalanceIntRadExchange {
                             ShadeFlagPrev = SurfaceWindow(SurfNum).ExtIntShadePrevTS;
                             if ((ShadeFlagPrev != IntShadeOn && ShadeFlag == IntShadeOn) ||
                                 (ShadeFlagPrev != IntBlindOn && ShadeFlag == IntBlindOn) ||
-                                (ShadeFlagPrev == IntShadeOn && ShadeFlag != IntShadeOn) ||
-                                (ShadeFlagPrev == IntBlindOn && ShadeFlag != IntBlindOn))
+                                (ShadeFlagPrev == IntShadeOn && ShadeFlag != IntShadeOn) || (ShadeFlagPrev == IntBlindOn && ShadeFlag != IntBlindOn))
                                 IntShadeOrBlindStatusChanged = true;
                         } else {
                             UpdateMovableInsulationFlag(IntMovInsulChanged, SurfNum);
@@ -309,8 +307,7 @@ namespace HeatBalanceIntRadExchange {
                     }
                 }
 
-                if (IntShadeOrBlindStatusChanged || IntMovInsulChanged ||
-                    BeginEnvrnFlag) { // Calc inside surface emissivities for this time step
+                if (IntShadeOrBlindStatusChanged || IntMovInsulChanged || BeginEnvrnFlag) { // Calc inside surface emissivities for this time step
                     for (int ZoneSurfNum = 1; ZoneSurfNum <= n_zone_Surfaces; ++ZoneSurfNum) {
                         SurfNum = zone_SurfacePtr(ZoneSurfNum);
                         ConstrNum = Surface(SurfNum).Construction;
@@ -386,9 +383,8 @@ namespace HeatBalanceIntRadExchange {
                         // and emiss is used here that is a weighted combination of shade/blind and glass temp and emiss.
                     } else if (surface_window.ShadingFlag == IntShadeOn || surface_window.ShadingFlag == IntBlindOn) {
                         RecSurfTemp = surface_window.EffInsSurfTemp;
-                        RecSurfEmiss =
-                            InterpSlatAng(surface_window.SlatAngThisTS, surface_window.MovableSlats, surface_window.EffShBlindEmiss) +
-                            InterpSlatAng(surface_window.SlatAngThisTS, surface_window.MovableSlats, surface_window.EffGlassEmiss);
+                        RecSurfEmiss = InterpSlatAng(surface_window.SlatAngThisTS, surface_window.MovableSlats, surface_window.EffShBlindEmiss) +
+                                       InterpSlatAng(surface_window.SlatAngThisTS, surface_window.MovableSlats, surface_window.EffGlassEmiss);
                     } else {
                         RecSurfTemp = SurfaceTemp(RecSurfNum);
                         RecSurfEmiss = construct.InsideAbsorpThermal;
@@ -444,14 +440,12 @@ namespace HeatBalanceIntRadExchange {
                     for (size_type SendZoneSurfNum = 0; SendZoneSurfNum < s_zone_Surfaces; ++SendZoneSurfNum, ++lSR) {
                         if (RecZoneSurfNum != SendZoneSurfNum) {
 #ifdef EP_HBIRE_SEQ
-                            netLWRadToRecSurf_acc +=
-                                zone_ScriptF[lSR] * (SendSurfaceTempInKto4thPrecalc[SendZoneSurfNum] -
-                                                     RecSurfTempInKTo4th); // [ lSR ] == ( SendZoneSurfNum+1, RecZoneSurfNum+1 )
+                            netLWRadToRecSurf_acc += zone_ScriptF[lSR] * (SendSurfaceTempInKto4thPrecalc[SendZoneSurfNum] -
+                                                                          RecSurfTempInKTo4th); // [ lSR ] == ( SendZoneSurfNum+1, RecZoneSurfNum+1 )
 #else
                             SendSurfNum = zone_SurfacePtr[SendZoneSurfNum] - 1;
-                            netLWRadToRecSurf_acc +=
-                                zone_ScriptF[lSR] * (SendSurfaceTempInKto4thPrecalc[SendSurfNum] -
-                                                     RecSurfTempInKTo4th); // [ lSR ] == ( SendZoneSurfNum+1, RecZoneSurfNum+1 )
+                            netLWRadToRecSurf_acc += zone_ScriptF[lSR] * (SendSurfaceTempInKto4thPrecalc[SendSurfNum] -
+                                                                          RecSurfTempInKTo4th); // [ lSR ] == ( SendZoneSurfNum+1, RecZoneSurfNum+1 )
 #endif
                         }
                     }
@@ -640,8 +634,8 @@ namespace HeatBalanceIntRadExchange {
 
             if (NumZonesWithUserFbyS > 0) {
 
-                GetInputViewFactorsbyName(ZoneInfo(ZoneNum).Name, NumOfZoneSurfaces, ZoneInfo(ZoneNum).F, ZoneInfo(ZoneNum).SurfacePtr,
-                                          NoUserInputF, ErrorsFound); // Obtains user input view factors from input file
+                GetInputViewFactorsbyName(ZoneInfo(ZoneNum).Name, NumOfZoneSurfaces, ZoneInfo(ZoneNum).F, ZoneInfo(ZoneNum).SurfacePtr, NoUserInputF,
+                                          ErrorsFound); // Obtains user input view factors from input file
             }
 
             if (NoUserInputF) {
@@ -656,27 +650,24 @@ namespace HeatBalanceIntRadExchange {
                 SaveApproximateViewFactors = ZoneInfo(ZoneNum).F;
             }
 
-            FixViewFactors(NumOfZoneSurfaces, ZoneInfo(ZoneNum).Area, ZoneInfo(ZoneNum).F, ZoneNum, CheckValue1, CheckValue2,
-                           FinalCheckValue, NumIterations, FixedRowSum);
+            FixViewFactors(NumOfZoneSurfaces, ZoneInfo(ZoneNum).Area, ZoneInfo(ZoneNum).F, ZoneNum, CheckValue1, CheckValue2, FinalCheckValue,
+                           NumIterations, FixedRowSum);
 
             // Calculate the script F factors
-            CalcScriptF(NumOfZoneSurfaces, ZoneInfo(ZoneNum).Area, ZoneInfo(ZoneNum).F, ZoneInfo(ZoneNum).Emissivity,
-                        ZoneInfo(ZoneNum).ScriptF);
+            CalcScriptF(NumOfZoneSurfaces, ZoneInfo(ZoneNum).Area, ZoneInfo(ZoneNum).F, ZoneInfo(ZoneNum).Emissivity, ZoneInfo(ZoneNum).ScriptF);
 
             if (ViewFactorReport) { // Write to SurfInfo File
                 // Zone Surface Information Output
-                gio::write(OutputFileInits, fmtA)
-                    << "Surface View Factor - Zone Information," + ZoneInfo(ZoneNum).Name + ',' + RoundSigDigits(NumOfZoneSurfaces);
+                gio::write(OutputFileInits, fmtA) << "Surface View Factor - Zone Information," + ZoneInfo(ZoneNum).Name + ',' +
+                                                         RoundSigDigits(NumOfZoneSurfaces);
 
                 for (int SurfNum = 1; SurfNum <= NumOfZoneSurfaces; ++SurfNum) {
                     gio::write(OutputFileInits, "(A,',',A,$)")
                         << "Surface View Factor - Surface Information," + Surface(ZoneInfo(ZoneNum).SurfacePtr(SurfNum)).Name + ',' +
                                cSurfaceClass(Surface(ZoneInfo(ZoneNum).SurfacePtr(SurfNum)).Class)
-                        << RoundSigDigits(ZoneInfo(ZoneNum).Area(SurfNum), 4) + ',' +
-                               RoundSigDigits(ZoneInfo(ZoneNum).Azimuth(SurfNum), 4) + ',' +
-                               RoundSigDigits(ZoneInfo(ZoneNum).Tilt(SurfNum), 4) + ',' +
-                               RoundSigDigits(ZoneInfo(ZoneNum).Emissivity(SurfNum), 4) + ',' +
-                               RoundSigDigits(Surface(ZoneInfo(ZoneNum).SurfacePtr(SurfNum)).Sides);
+                        << RoundSigDigits(ZoneInfo(ZoneNum).Area(SurfNum), 4) + ',' + RoundSigDigits(ZoneInfo(ZoneNum).Azimuth(SurfNum), 4) + ',' +
+                               RoundSigDigits(ZoneInfo(ZoneNum).Tilt(SurfNum), 4) + ',' + RoundSigDigits(ZoneInfo(ZoneNum).Emissivity(SurfNum), 4) +
+                               ',' + RoundSigDigits(Surface(ZoneInfo(ZoneNum).SurfacePtr(SurfNum)).Sides);
                     for (Vindex = 1; Vindex <= Surface(ZoneInfo(ZoneNum).SurfacePtr(SurfNum)).Sides; ++Vindex) {
                         auto &Vertex = Surface(ZoneInfo(ZoneNum).SurfacePtr(SurfNum)).Vertex(Vindex);
                         gio::write(OutputFileInits, "(3(',',A),$)") << RoundSigDigits(Vertex.x, 4) << RoundSigDigits(Vertex.y, 4)
@@ -862,8 +853,8 @@ namespace HeatBalanceIntRadExchange {
         if (UserFZoneIndex > 0) {
             NoUserInputF = false;
 
-            GetObjectItem("ZoneProperty:UserViewFactors", UserFZoneIndex, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat,
-                          lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem("ZoneProperty:UserViewFactors", UserFZoneIndex, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, lNumericFieldBlanks,
+                          lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
 
             if (NumNums < 3 * pow_2(N)) {
                 ShowSevereError("GetInputViewFactors: " + cCurrentModuleObject + "=\"" + ZoneName + "\", not enough values.");
@@ -949,8 +940,8 @@ namespace HeatBalanceIntRadExchange {
             }
             NoUserInputF = false;
 
-            GetObjectItem("ZoneProperty:UserViewFactors:bySurfaceName", UserFZoneIndex, cAlphaArgs, NumAlphas, rNumericArgs, NumNums,
-                          IOStat, lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem("ZoneProperty:UserViewFactors:bySurfaceName", UserFZoneIndex, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat,
+                          lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
 
             if (NumNums < pow_2(N)) {
                 ShowSevereError("GetInputViewFactors: " + cCurrentModuleObject + "=\"" + ZoneName + "\", not enough values.");
@@ -1223,10 +1214,8 @@ namespace HeatBalanceIntRadExchange {
             ShowWarningError("Surfaces in Zone=\"" + Zone(ZoneNum).Name + "\" do not define an enclosure.");
             ShowContinueError("Number of surfaces <= 3, view factors are set to force reciprocity but may not fulfill completeness.");
             ShowContinueError("Reciprocity means that radiant exchange between two surfaces will match and not lead to an energy loss.");
-            ShowContinueError(
-                "Completeness means that all of the view factors between a surface and the other surfaces in a zone add up to unity.");
-            ShowContinueError(
-                "So, when there are three or less surfaces in a zone, EnergyPlus will make sure there are no losses of energy but");
+            ShowContinueError("Completeness means that all of the view factors between a surface and the other surfaces in a zone add up to unity.");
+            ShowContinueError("So, when there are three or less surfaces in a zone, EnergyPlus will make sure there are no losses of energy but");
             ShowContinueError("it will not exchange the full amount of radiation with the rest of the zone as it would if there was a "
                               "completed enclosure.");
 
@@ -1253,8 +1242,7 @@ namespace HeatBalanceIntRadExchange {
                 }
                 sumFixedF.deallocate();
                 if (MaxFixedFRowSum < 1.0) {
-                    ShowFatalError(
-                        " FixViewFactors: Three surface or less zone failing ViewFactorFix correction which should never happen.");
+                    ShowFatalError(" FixViewFactors: Three surface or less zone failing ViewFactorFix correction which should never happen.");
                 } else {
                     FixedF *= (1.0 / MaxFixedFRowSum);
                 }
@@ -1298,8 +1286,7 @@ namespace HeatBalanceIntRadExchange {
             }
 
             ConvrgNew = std::abs(sum(FixedF) - N);
-            if (std::abs(ConvrgOld - ConvrgNew) < DifferenceConvergence ||
-                ConvrgNew <= PrimaryConvergence) { //  Change in sum of Fs must be small.
+            if (std::abs(ConvrgOld - ConvrgNew) < DifferenceConvergence || ConvrgNew <= PrimaryConvergence) { //  Change in sum of Fs must be small.
                 Converged = true;
             }
             ConvrgOld = ConvrgNew;

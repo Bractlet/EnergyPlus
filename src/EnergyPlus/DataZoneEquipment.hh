@@ -205,11 +205,10 @@ namespace DataZoneEquipment {
 
         // Default Constructor
         SubSubEquipmentData()
-            : EquipIndex(0), ON(true), InletNodeNum(0), OutletNodeNum(0), NumMeteredVars(0), EnergyTransComp(0), ZoneEqToPlantPtr(0),
-              OpMode(0), Capacity(0.0), Efficiency(0.0), TotPlantSupplyElec(0.0), PlantSupplyElecEff(0.0), PeakPlantSupplyElecEff(0.0),
-              TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0), PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0),
-              PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0), TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0),
-              PeakPlantSupplyOtherEff(0.0)
+            : EquipIndex(0), ON(true), InletNodeNum(0), OutletNodeNum(0), NumMeteredVars(0), EnergyTransComp(0), ZoneEqToPlantPtr(0), OpMode(0),
+              Capacity(0.0), Efficiency(0.0), TotPlantSupplyElec(0.0), PlantSupplyElecEff(0.0), PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0),
+              PlantSupplyGasEff(0.0), PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0), PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0),
+              TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0)
         {
         }
     };
@@ -248,11 +247,10 @@ namespace DataZoneEquipment {
 
         // Default Constructor
         SubEquipmentData()
-            : Parent(false), NumSubSubEquip(0), EquipIndex(0), ON(true), InletNodeNum(0), OutletNodeNum(0), NumMeteredVars(0),
-              EnergyTransComp(0), ZoneEqToPlantPtr(0), OpMode(0), Capacity(0.0), Efficiency(0.0), TotPlantSupplyElec(0.0),
-              PlantSupplyElecEff(0.0), PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0),
-              PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0), PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0),
-              TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0)
+            : Parent(false), NumSubSubEquip(0), EquipIndex(0), ON(true), InletNodeNum(0), OutletNodeNum(0), NumMeteredVars(0), EnergyTransComp(0),
+              ZoneEqToPlantPtr(0), OpMode(0), Capacity(0.0), Efficiency(0.0), TotPlantSupplyElec(0.0), PlantSupplyElecEff(0.0),
+              PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0), PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0),
+              PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0), TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0)
         {
         }
     };
@@ -288,31 +286,31 @@ namespace DataZoneEquipment {
         int EquipListIndex;
         std::string ControlListName;
         int ZoneNode;
-        int NumInletNodes;               // number of inlet nodes
-        int NumExhaustNodes;             // number of exhaust nodes
-        int NumReturnNodes;              // number of return air nodes
-        int NumReturnFlowBasisNodes;     // number of return air flow basis nodes
-        int ReturnFlowSchedPtrNum;       // return air flow fraction schedule pointer
-        bool FlowError;                  // flow error flag
-        Array1D_int InletNode;           // zone supply air inlet nodes
-        Array1D_int InletNodeAirLoopNum; // air loop number connected to this inlet node (0 if not an airloop node)
-        Array1D_int InletNodeADUNum; // AirDistUnit connected to this inlet node (0 if not an ADU node, could be zone equip or direct air)
-        Array1D_int InletNodeSDUNum; // Single duct uncontrolled connected to this inlet node (0 if none, could be zone equip or ADU)
-        Array1D_int ExhaustNode;     // zone air exhaust nodes
-        Array1D_int ReturnNode;      // zone return air nodes (node numbers)
+        int NumInletNodes;                // number of inlet nodes
+        int NumExhaustNodes;              // number of exhaust nodes
+        int NumReturnNodes;               // number of return air nodes
+        int NumReturnFlowBasisNodes;      // number of return air flow basis nodes
+        int ReturnFlowSchedPtrNum;        // return air flow fraction schedule pointer
+        bool FlowError;                   // flow error flag
+        Array1D_int InletNode;            // zone supply air inlet nodes
+        Array1D_int InletNodeAirLoopNum;  // air loop number connected to this inlet node (0 if not an airloop node)
+        Array1D_int InletNodeADUNum;      // AirDistUnit connected to this inlet node (0 if not an ADU node, could be zone equip or direct air)
+        Array1D_int InletNodeSDUNum;      // Single duct uncontrolled connected to this inlet node (0 if none, could be zone equip or ADU)
+        Array1D_int ExhaustNode;          // zone air exhaust nodes
+        Array1D_int ReturnNode;           // zone return air nodes (node numbers)
         Array1D_int ReturnNodeAirLoopNum; // air loop number connected to this return node
         Array1D_int ReturnNodeInletNum;   // zone supply air inlet index that matched this return node (same zone, same airloop) - not the
                                           // inlet node number
         Array1D_int ReturnNodePlenumNum;  // number of the return plenum attached to this return node (zero if none)
         Array1D_int ReturnFlowBasisNode;  // return air flow basis nodes
 
-        bool ZonalSystemOnly;   // TRUE if served by a zonal system (only)
-        bool IsControlled;      // True when this is a controlled zone.
-        Real64 ZoneExh;         // zone exhaust (unbalanced+balanced) mass flow rate [kg/s]
-        Real64 ZoneExhBalanced; // balanced zone exhaust mass flow rate [kg/s]
-        Real64 PlenumMassFlow;  // zone air mass flow rate induced from plenum [kg/s]
-        Real64 ExcessZoneExh; // excess zone exhaust to be balanced by other zones (only used when !ZoneAirMassFlow.EnforceZoneMassBalance)
-                              // [kg/s]
+        bool ZonalSystemOnly;     // TRUE if served by a zonal system (only)
+        bool IsControlled;        // True when this is a controlled zone.
+        Real64 ZoneExh;           // zone exhaust (unbalanced+balanced) mass flow rate [kg/s]
+        Real64 ZoneExhBalanced;   // balanced zone exhaust mass flow rate [kg/s]
+        Real64 PlenumMassFlow;    // zone air mass flow rate induced from plenum [kg/s]
+        Real64 ExcessZoneExh;     // excess zone exhaust to be balanced by other zones (only used when !ZoneAirMassFlow.EnforceZoneMassBalance)
+                                  // [kg/s]
         Real64 TotAvailAirLoopOA; // total airloop OA available for systems serving this zone (used to apportion excess exhaust) [kg/s}
         // AirDistUnitCool and AirDistUnitHeat
         // do not correspond with the AIR DISTRIBUTION UNIT object in the zone equipment list.
@@ -374,10 +372,10 @@ namespace DataZoneEquipment {
 
         // Default Constructor
         EquipmentData()
-            : Parent(false), NumSubEquip(0), ON(true), NumInlets(0), NumOutlets(0), NumMeteredVars(0), EnergyTransComp(0),
-              ZoneEqToPlantPtr(0), TotPlantSupplyElec(0.0), PlantSupplyElecEff(0.0), PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0),
-              PlantSupplyGasEff(0.0), PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0), PlantSupplyPurchEff(0.0),
-              PeakPlantSupplyPurchEff(0.0), TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0), OpMode(0)
+            : Parent(false), NumSubEquip(0), ON(true), NumInlets(0), NumOutlets(0), NumMeteredVars(0), EnergyTransComp(0), ZoneEqToPlantPtr(0),
+              TotPlantSupplyElec(0.0), PlantSupplyElecEff(0.0), PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0),
+              PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0), PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0), TotPlantSupplyOther(0.0),
+              PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0), OpMode(0)
         {
         }
     };
@@ -401,8 +399,7 @@ namespace DataZoneEquipment {
         Array1D<EquipmentData> EquipData; // Index of energy output report data
 
         // Default Constructor
-        EquipList()
-            : LoadDistScheme(DataZoneEquipment::LoadDist::SequentialLoading), NumOfEquipTypes(0), NumAvailHeatEquip(0), NumAvailCoolEquip(0)
+        EquipList() : LoadDistScheme(DataZoneEquipment::LoadDist::SequentialLoading), NumOfEquipTypes(0), NumAvailHeatEquip(0), NumAvailCoolEquip(0)
         {
         }
 
@@ -492,8 +489,7 @@ namespace DataZoneEquipment {
 
     int GetControlledZoneIndex(std::string const &ZoneName); // Zone name to match into Controlled Zone structure
 
-    int
-    FindControlledZoneIndexFromSystemNodeNumberForZone(int const TrialZoneNodeNum); // Node number to match into Controlled Zone structure
+    int FindControlledZoneIndexFromSystemNodeNumberForZone(int const TrialZoneNodeNum); // Node number to match into Controlled Zone structure
 
     int GetSystemNodeNumberForZone(std::string const &ZoneName); // Zone name to match into Controlled Zone structure
 
@@ -506,14 +502,14 @@ namespace DataZoneEquipment {
                             std::string const &NodeName  // Return air node name to match (may be blank)
                             );
 
-    Real64 CalcDesignSpecificationOutdoorAir(
-        int const DSOAPtr,                       // Pointer to DesignSpecification:OutdoorAir object
-        int const ActualZoneNum,                 // Zone index
-        bool const UseOccSchFlag,                // Zone occupancy schedule will be used instead of using total zone occupancy
-        bool const UseMinOASchFlag,              // Use min OA schedule in DesignSpecification:OutdoorAir object
-        Optional_bool_const PerPersonNotSet = _, // when calculation should not include occupants (e.g., dual duct)
-        Optional_bool_const MaxOAVolFlowFlag = _ // TRUE when calculation uses occupancy schedule  (e.g., dual duct)
-        );
+    Real64
+    CalcDesignSpecificationOutdoorAir(int const DSOAPtr,          // Pointer to DesignSpecification:OutdoorAir object
+                                      int const ActualZoneNum,    // Zone index
+                                      bool const UseOccSchFlag,   // Zone occupancy schedule will be used instead of using total zone occupancy
+                                      bool const UseMinOASchFlag, // Use min OA schedule in DesignSpecification:OutdoorAir object
+                                      Optional_bool_const PerPersonNotSet = _, // when calculation should not include occupants (e.g., dual duct)
+                                      Optional_bool_const MaxOAVolFlowFlag = _ // TRUE when calculation uses occupancy schedule  (e.g., dual duct)
+                                      );
 
 } // DataZoneEquipment
 

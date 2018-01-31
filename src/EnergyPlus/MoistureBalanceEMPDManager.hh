@@ -76,8 +76,8 @@ namespace MoistureBalanceEMPDManager {
 
         // Default constructor
         EMPDReportVarsData()
-            : rv_surface(0.015), RH_surface_layer(0.0), RH_deep_layer(0.0), w_surface_layer(0.015), w_deep_layer(0.015),
-              mass_flux_zone(0.0), mass_flux_deep(0.0), u_surface_layer(0.0), u_deep_layer(0.0)
+            : rv_surface(0.015), RH_surface_layer(0.0), RH_deep_layer(0.0), w_surface_layer(0.015), w_deep_layer(0.015), mass_flux_zone(0.0),
+              mass_flux_deep(0.0), u_surface_layer(0.0), u_deep_layer(0.0)
         {
         }
     };

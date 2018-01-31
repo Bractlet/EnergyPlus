@@ -332,8 +332,8 @@ namespace DXFEarClipping {
                     ShowMessage(line);
                     for (j = 1; j <= nsides; ++j) {
                         //          write(line,"(' side=',i2,' (',2(f6.1,','),f6.1,')')") j,polygon(j)
-                        line = " side=" + RoundSigDigits(j) + " (" + RoundSigDigits(polygon(j).x, 1) + ',' +
-                               RoundSigDigits(polygon(j).y, 1) + ',' + RoundSigDigits(polygon(j).z, 1) + ')';
+                        line = " side=" + RoundSigDigits(j) + " (" + RoundSigDigits(polygon(j).x, 1) + ',' + RoundSigDigits(polygon(j).y, 1) + ',' +
+                               RoundSigDigits(polygon(j).z, 1) + ')';
                         ShowMessage(line);
                     }
                     gio::write(line, fmtLD) << "number of triangles found=" << ncount;
@@ -523,9 +523,7 @@ namespace DXFEarClipping {
             }
 
             if ((polygon(i).y < point.y && point.y <= polygon(ip1).y) || (point.y <= polygon(i).y && polygon(ip1).y < point.y)) {
-                if ((point.x - polygon(i).x) -
-                        (point.y - polygon(i).y) * (polygon(ip1).x - polygon(i).x) / (polygon(ip1).y - polygon(i).y) <
-                    0) {
+                if ((point.x - polygon(i).x) - (point.y - polygon(i).y) * (polygon(ip1).x - polygon(i).x) / (polygon(ip1).y - polygon(i).y) < 0) {
                     inside = !inside;
                 }
             }

@@ -410,14 +410,14 @@ namespace PlantManager {
                 PlantLoopNum = LoopNum;
                 this_loop.TypeOfLoop = Plant;
                 CurrentModuleObject = "PlantLoop";
-                GetObjectItem(CurrentModuleObject, PlantLoopNum, Alpha, NumAlphas, Num, NumNums, IOStat, lNumericFieldBlanks,
-                              lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+                GetObjectItem(CurrentModuleObject, PlantLoopNum, Alpha, NumAlphas, Num, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
+                              cAlphaFieldNames, cNumericFieldNames);
             } else {
                 CondLoopNum = LoopNum - NumPlantLoops;
                 this_loop.TypeOfLoop = Condenser;
                 CurrentModuleObject = "CondenserLoop";
-                GetObjectItem(CurrentModuleObject, CondLoopNum, Alpha, NumAlphas, Num, NumNums, IOStat, lNumericFieldBlanks, _,
-                              cAlphaFieldNames, cNumericFieldNames);
+                GetObjectItem(CurrentModuleObject, CondLoopNum, Alpha, NumAlphas, Num, NumNums, IOStat, lNumericFieldBlanks, _, cAlphaFieldNames,
+                              cNumericFieldNames);
             }
 
             IsNotOK = false;
@@ -453,8 +453,7 @@ namespace PlantManager {
                     }
                 }
             } else {
-                ShowWarningError("Input error: " + cAlphaFieldNames(2) + '=' + Alpha(2) + " entered, in " + CurrentModuleObject + '=' +
-                                 Alpha(1));
+                ShowWarningError("Input error: " + cAlphaFieldNames(2) + '=' + Alpha(2) + " entered, in " + CurrentModuleObject + '=' + Alpha(1));
                 ShowContinueError("Will default to Water.");
 
                 this_loop.FluidType = NodeType_Water;
@@ -588,8 +587,7 @@ namespace PlantManager {
                 }
                 if (!this_demand_side.InletNodeSetPt && !this_supply_side.InletNodeSetPt) {
                     ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + Alpha(1) + "\", Invalid condition.");
-                    ShowContinueError(
-                        "While using a two way common pipe there must be a setpoint in addition to the Plant Supply Outlet node.");
+                    ShowContinueError("While using a two way common pipe there must be a setpoint in addition to the Plant Supply Outlet node.");
                     ShowContinueError("Currently neither plant demand inlet nor plant supply inlet have setpoints.");
                     ShowContinueError("Select one of the two nodes and rerun the simulation.");
                     ErrorsFound = true;
@@ -666,11 +664,9 @@ namespace PlantManager {
             if (GetFirstBranchInletNodeName(this_demand_side.BranchList) != this_demand_side.NodeNameIn) {
                 ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + Alpha(1) + "\", Invalid condition.");
                 ShowContinueError("The inlet node of the first branch in the " + cAlphaFieldNames(12) + '=' +
-                                  Alpha(12)); //"Plant Demand Side Branch List"
-                ShowContinueError("is not the same as the " + cAlphaFieldNames(10) + '=' +
-                                  Alpha(10)); // "Plant Demand Side Inlet Node Name"
-                ShowContinueError("Branch List Inlet Node Name=" +
-                                  GetFirstBranchInletNodeName(this_demand_side.BranchList)); // TODO rename point
+                                  Alpha(12));                                                          //"Plant Demand Side Branch List"
+                ShowContinueError("is not the same as the " + cAlphaFieldNames(10) + '=' + Alpha(10)); // "Plant Demand Side Inlet Node Name"
+                ShowContinueError("Branch List Inlet Node Name=" + GetFirstBranchInletNodeName(this_demand_side.BranchList)); // TODO rename point
                 ShowContinueError("Branches in a BRANCH LIST must be listed in flow order: inlet branch, then parallel branches, then "
                                   "outlet branch."); // TODO rename point
                 ErrorsFound = true;
@@ -682,8 +678,7 @@ namespace PlantManager {
                 ShowContinueError("The outlet node of the last branch in the " + cAlphaFieldNames(12) + '=' + Alpha(12));
                 //"Plant Demand Side Outlet Node Name"
                 ShowContinueError("is not the same as the " + cAlphaFieldNames(11) + '=' + Alpha(11));
-                ShowContinueError("Branch List Outlet Node Name=" +
-                                  GetLastBranchOutletNodeName(this_demand_side.BranchList)); // TODO rename point
+                ShowContinueError("Branch List Outlet Node Name=" + GetLastBranchOutletNodeName(this_demand_side.BranchList)); // TODO rename point
                 // TODO rename point
                 ShowContinueError(
                     "Branches in a BRANCH LIST must be listed in flow order: inlet branch, then parallel branches, then outlet branch.");
@@ -696,8 +691,7 @@ namespace PlantManager {
                 ShowContinueError("The inlet node of the first branch in the " + cAlphaFieldNames(8) + '=' + Alpha(8));
                 //"Plant Supply Side Inlet Node Name
                 ShowContinueError("is not the same as the " + cAlphaFieldNames(6) + '=' + Alpha(6));
-                ShowContinueError("Branch List Inlet Node Name=" +
-                                  GetFirstBranchInletNodeName(this_supply_side.BranchList)); // TODO rename point
+                ShowContinueError("Branch List Inlet Node Name=" + GetFirstBranchInletNodeName(this_supply_side.BranchList)); // TODO rename point
                 // TODO rename point
                 ShowContinueError(
                     "Branches in a BRANCH LIST must be listed in flow order: inlet branch, then parallel branches, then outlet branch.");
@@ -710,8 +704,7 @@ namespace PlantManager {
                 ShowContinueError("The outlet node of the last branch in the " + cAlphaFieldNames(8) + '=' + Alpha(8));
                 //"Plant Supply Side Outlet Node Name"
                 ShowContinueError("is not the same as the " + cAlphaFieldNames(7) + '=' + Alpha(7));
-                ShowContinueError("Branch List Outlet Node Name=" +
-                                  GetLastBranchOutletNodeName(this_supply_side.BranchList)); // TODO rename point
+                ShowContinueError("Branch List Outlet Node Name=" + GetLastBranchOutletNodeName(this_supply_side.BranchList)); // TODO rename point
                 // TODO rename point
                 ShowContinueError(
                     "Branches in a BRANCH LIST must be listed in flow order: inlet branch, then parallel branches, then outlet branch.");
@@ -728,8 +721,8 @@ namespace PlantManager {
         // outside the IF statement.
         for (LoopNum = 1; LoopNum <= TotNumLoops; ++LoopNum) {
 
-            SetupOutputVariable("Plant System Cycle On Off Status", OutputProcessor::Unit::None, PlantAvailMgr(LoopNum).AvailStatus,
-                                "Plant", "Average", PlantLoop(LoopNum).Name);
+            SetupOutputVariable("Plant System Cycle On Off Status", OutputProcessor::Unit::None, PlantAvailMgr(LoopNum).AvailStatus, "Plant",
+                                "Average", PlantLoop(LoopNum).Name);
         }
     }
 
@@ -884,8 +877,8 @@ namespace PlantManager {
                     OutletNodeNumbers.dimension(TempLoop.Branch(BranchNum).TotalComponents, 0);
 
                     GetBranchData(TempLoop.Name, BranchNames(BranchNum), TempLoop.Branch(BranchNum).PressureCurveType,
-                                  TempLoop.Branch(BranchNum).PressureCurveIndex, TempLoop.Branch(BranchNum).TotalComponents, CompTypes,
-                                  CompNames, InletNodeNames, InletNodeNumbers, OutletNodeNames, OutletNodeNumbers, ErrorsFound);
+                                  TempLoop.Branch(BranchNum).PressureCurveIndex, TempLoop.Branch(BranchNum).TotalComponents, CompTypes, CompNames,
+                                  InletNodeNames, InletNodeNumbers, OutletNodeNames, OutletNodeNumbers, ErrorsFound);
 
                     TempLoop.Branch(BranchNum).Comp.allocate(TempLoop.Branch(BranchNum).TotalComponents);
 
@@ -950,8 +943,8 @@ namespace PlantManager {
                             } else {
                                 AParallelBranchHasPump = true;
                             }
-                            StoreAPumpOnCurrentTempLoop(LoopNum, LoopSideNum, BranchNum, CompNum, CompNames(CompNum),
-                                                        OutletNodeNumbers(CompNum), AParallelBranchHasPump);
+                            StoreAPumpOnCurrentTempLoop(LoopNum, LoopSideNum, BranchNum, CompNum, CompNames(CompNum), OutletNodeNumbers(CompNum),
+                                                        AParallelBranchHasPump);
                         } else if (SameString(this_comp_type, "WaterHeater:Mixed")) {
                             this_comp.TypeOf_Num = TypeOf_WtrHeaterMixed;
                             this_comp.GeneralEquipType = GenEquipTypes_WaterThermalTank;
@@ -1040,8 +1033,8 @@ namespace PlantManager {
                             this_comp.TypeOf_Num = TypeOf_GrndHtExchgSurface;
                             this_comp.GeneralEquipType = GenEquipTypes_GroundHeatExchanger;
                             this_comp.CurOpSchemeType = UncontrolledOpSchemeType;
-                            this_comp.compPtr = SurfaceGroundHeatExchanger::SurfaceGroundHeatExchangerData::factory(
-                                TypeOf_GrndHtExchgSurface, CompNames(CompNum));
+                            this_comp.compPtr =
+                                SurfaceGroundHeatExchanger::SurfaceGroundHeatExchangerData::factory(TypeOf_GrndHtExchgSurface, CompNames(CompNum));
                         } else if (SameString(this_comp_type, "GroundHeatExchanger:Pond")) {
                             this_comp.TypeOf_Num = TypeOf_GrndHtExchgPond;
                             this_comp.GeneralEquipType = GenEquipTypes_GroundHeatExchanger;
@@ -1454,10 +1447,9 @@ namespace PlantManager {
                     if (SplitNum > NumofSplitters) break;
                     OutletNodeNames.allocate(MaxNumAlphas);
                     OutletNodeNumbers.allocate(MaxNumAlphas);
-                    GetLoopSplitter(TempLoop.Name, TempLoop.ConnectList, TempLoop.Splitter(SplitNum).Name,
-                                    TempLoop.Splitter(SplitNum).Exists, TempLoop.Splitter(SplitNum).NodeNameIn,
-                                    TempLoop.Splitter(SplitNum).NodeNumIn, TempLoop.Splitter(SplitNum).TotalOutletNodes, OutletNodeNames,
-                                    OutletNodeNumbers, ErrorsFound, ConnNum, SplitNum);
+                    GetLoopSplitter(TempLoop.Name, TempLoop.ConnectList, TempLoop.Splitter(SplitNum).Name, TempLoop.Splitter(SplitNum).Exists,
+                                    TempLoop.Splitter(SplitNum).NodeNameIn, TempLoop.Splitter(SplitNum).NodeNumIn,
+                                    TempLoop.Splitter(SplitNum).TotalOutletNodes, OutletNodeNames, OutletNodeNumbers, ErrorsFound, ConnNum, SplitNum);
 
                     if (SplitNum == 1) {
                         OutletNodeNames.deallocate();
@@ -1529,8 +1521,8 @@ namespace PlantManager {
                     InletNodeNames.allocate(MaxNumAlphas);
                     InletNodeNumbers.allocate(MaxNumAlphas);
                     GetLoopMixer(TempLoop.Name, TempLoop.ConnectList, TempLoop.Mixer(MixNum).Name, TempLoop.Mixer(MixNum).Exists,
-                                 TempLoop.Mixer(MixNum).NodeNameOut, TempLoop.Mixer(MixNum).NodeNumOut,
-                                 TempLoop.Mixer(MixNum).TotalInletNodes, InletNodeNames, InletNodeNumbers, ErrorsFound, ConnNum, MixNum);
+                                 TempLoop.Mixer(MixNum).NodeNameOut, TempLoop.Mixer(MixNum).NodeNumOut, TempLoop.Mixer(MixNum).TotalInletNodes,
+                                 InletNodeNames, InletNodeNumbers, ErrorsFound, ConnNum, MixNum);
 
                     if (MixNum == 1) {
                         InletNodeNames.deallocate();
@@ -1765,8 +1757,7 @@ namespace PlantManager {
                             // Error.  May have already been flagged under General
                             if (GeneralEquipType != 0) { // if GeneralEquipmentType == 0, then already flagged
                                 ShowSevereError("GetPlantInput: PlantLoop=\"" + PlantLoop(LoopNum).Name + "\" invalid equipment type.");
-                                ShowContinueError("...on Branch=\"" + PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).Name +
-                                                  "\".");
+                                ShowContinueError("...on Branch=\"" + PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).Name + "\".");
                                 ShowContinueError("...Equipment type=\"" + this_comp.TypeOf + "\".");
                                 ShowContinueError("...Equipment name=\"" + this_comp.Name + "\".");
                                 ErrorsFound = true;
@@ -2048,26 +2039,26 @@ namespace PlantManager {
                 CurrentModuleObject = "Cond Loop";
             }
             // CurrentModuleObject='Plant/Condenser Loop'
-            SetupOutputVariable("Plant Supply Side Cooling Demand Rate", OutputProcessor::Unit::W, PlantReport(LoopNum).CoolingDemand,
+            SetupOutputVariable("Plant Supply Side Cooling Demand Rate", OutputProcessor::Unit::W, PlantReport(LoopNum).CoolingDemand, "System",
+                                "Average", PlantLoop(LoopNum).Name);
+            SetupOutputVariable("Plant Supply Side Heating Demand Rate", OutputProcessor::Unit::W, PlantReport(LoopNum).HeatingDemand, "System",
+                                "Average", PlantLoop(LoopNum).Name);
+            SetupOutputVariable("Plant Supply Side Inlet Mass Flow Rate", OutputProcessor::Unit::kg_s, PlantReport(LoopNum).InletNodeFlowrate,
                                 "System", "Average", PlantLoop(LoopNum).Name);
-            SetupOutputVariable("Plant Supply Side Heating Demand Rate", OutputProcessor::Unit::W, PlantReport(LoopNum).HeatingDemand,
-                                "System", "Average", PlantLoop(LoopNum).Name);
-            SetupOutputVariable("Plant Supply Side Inlet Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                PlantReport(LoopNum).InletNodeFlowrate, "System", "Average", PlantLoop(LoopNum).Name);
 
-            SetupOutputVariable("Plant Supply Side Inlet Temperature", OutputProcessor::Unit::C, PlantReport(LoopNum).InletNodeTemperature,
+            SetupOutputVariable("Plant Supply Side Inlet Temperature", OutputProcessor::Unit::C, PlantReport(LoopNum).InletNodeTemperature, "System",
+                                "Average", PlantLoop(LoopNum).Name);
+            SetupOutputVariable("Plant Supply Side Outlet Temperature", OutputProcessor::Unit::C, PlantReport(LoopNum).OutletNodeTemperature,
                                 "System", "Average", PlantLoop(LoopNum).Name);
-            SetupOutputVariable("Plant Supply Side Outlet Temperature", OutputProcessor::Unit::C,
-                                PlantReport(LoopNum).OutletNodeTemperature, "System", "Average", PlantLoop(LoopNum).Name);
 
-            SetupOutputVariable("Plant Supply Side Not Distributed Demand Rate", OutputProcessor::Unit::W,
-                                PlantReport(LoopNum).DemandNotDispatched, "System", "Average", PlantLoop(LoopNum).Name);
+            SetupOutputVariable("Plant Supply Side Not Distributed Demand Rate", OutputProcessor::Unit::W, PlantReport(LoopNum).DemandNotDispatched,
+                                "System", "Average", PlantLoop(LoopNum).Name);
             SetupOutputVariable("Plant Supply Side Unmet Demand Rate", OutputProcessor::Unit::W, PlantReport(LoopNum).UnmetDemand, "System",
                                 "Average", PlantLoop(LoopNum).Name);
 
             // Debug variables -- used by OSU developers
-            SetupOutputVariable("Debug Plant Loop Bypass Fraction", OutputProcessor::Unit::None, PlantReport(LoopNum).BypassFrac, "System",
-                                "Average", PlantLoop(LoopNum).Name);
+            SetupOutputVariable("Debug Plant Loop Bypass Fraction", OutputProcessor::Unit::None, PlantReport(LoopNum).BypassFrac, "System", "Average",
+                                PlantLoop(LoopNum).Name);
             //    CALL SetupOutputVariable('Debug SSInletNode Flowrate[kg/s]', &
             //           PlantReport(LoopNum)%InletNodeFlowrate,'System','Average',PlantLoop(LoopNum)%Name)
             //    CALL SetupOutputVariable('Debug SSInletNode Temperature[C]', &
@@ -2076,8 +2067,8 @@ namespace PlantManager {
             //           PlantReport(LoopNum)%OutletNodeFlowrate,'System','Average',PlantLoop(LoopNum)%Name)
             //    CALL SetupOutputVariable('Debug SSOutletNode Temperature[C]', &
             //           PlantReport(LoopNum)%OutletNodeTemperature,'System','Average',PlantLoop(LoopNum)%Name)
-            SetupOutputVariable("Debug Plant Last Simulated Loop Side", OutputProcessor::Unit::None,
-                                PlantReport(LoopNum).LastLoopSideSimulated, "System", "Average", PlantLoop(LoopNum).Name);
+            SetupOutputVariable("Debug Plant Last Simulated Loop Side", OutputProcessor::Unit::None, PlantReport(LoopNum).LastLoopSideSimulated,
+                                "System", "Average", PlantLoop(LoopNum).Name);
         }
 
         // setup more variables inside plant data structure
@@ -2085,23 +2076,17 @@ namespace PlantManager {
         if (DisplayAdvancedReportVariables) {
             for (LoopNum = 1; LoopNum <= TotNumLoops; ++LoopNum) {
                 SetupOutputVariable("Plant Demand Side Lumped Capacitance Temperature", OutputProcessor::Unit::C,
-                                    PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_TankTemp, "System", "Average",
-                                    PlantLoop(LoopNum).Name);
+                                    PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_TankTemp, "System", "Average", PlantLoop(LoopNum).Name);
                 SetupOutputVariable("Plant Supply Side Lumped Capacitance Temperature", OutputProcessor::Unit::C,
-                                    PlantLoop(LoopNum).LoopSide(SupplySide).LoopSideInlet_TankTemp, "System", "Average",
-                                    PlantLoop(LoopNum).Name);
+                                    PlantLoop(LoopNum).LoopSide(SupplySide).LoopSideInlet_TankTemp, "System", "Average", PlantLoop(LoopNum).Name);
                 SetupOutputVariable("Plant Demand Side Lumped Capacitance Heat Transport Rate", OutputProcessor::Unit::W,
-                                    PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_MdotCpDeltaT, "System", "Average",
-                                    PlantLoop(LoopNum).Name);
+                                    PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_MdotCpDeltaT, "System", "Average", PlantLoop(LoopNum).Name);
                 SetupOutputVariable("Plant Supply Side Lumped Capacitance Heat Transport Rate", OutputProcessor::Unit::W,
-                                    PlantLoop(LoopNum).LoopSide(SupplySide).LoopSideInlet_MdotCpDeltaT, "System", "Average",
-                                    PlantLoop(LoopNum).Name);
+                                    PlantLoop(LoopNum).LoopSide(SupplySide).LoopSideInlet_MdotCpDeltaT, "System", "Average", PlantLoop(LoopNum).Name);
                 SetupOutputVariable("Plant Demand Side Lumped Capacitance Heat Storage Rate", OutputProcessor::Unit::W,
-                                    PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_McpDTdt, "System", "Average",
-                                    PlantLoop(LoopNum).Name);
+                                    PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_McpDTdt, "System", "Average", PlantLoop(LoopNum).Name);
                 SetupOutputVariable("Plant Supply Side Lumped Capacitance Heat Storage Rate", OutputProcessor::Unit::W,
-                                    PlantLoop(LoopNum).LoopSide(SupplySide).LoopSideInlet_McpDTdt, "System", "Average",
-                                    PlantLoop(LoopNum).Name);
+                                    PlantLoop(LoopNum).LoopSide(SupplySide).LoopSideInlet_McpDTdt, "System", "Average", PlantLoop(LoopNum).Name);
                 SetupOutputVariable("Plant Demand Side Lumped Capacitance Excessive Storage Time", OutputProcessor::Unit::hr,
                                     PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_CapExcessStorageTimeReport, "System", "Sum",
                                     PlantLoop(LoopNum).Name);
@@ -2110,14 +2095,11 @@ namespace PlantManager {
                                     PlantLoop(LoopNum).Name);
                 for (LoopSideNum = DemandSide; LoopSideNum <= SupplySide; ++LoopSideNum) {
                     for (BranchNum = 1; BranchNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).TotalBranches; ++BranchNum) {
-                        for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).TotalComponents;
-                             ++CompNum) {
-                            if (PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).CurOpSchemeType !=
-                                DemandOpSchemeType) {
+                        for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).TotalComponents; ++CompNum) {
+                            if (PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).CurOpSchemeType != DemandOpSchemeType) {
                                 SetupOutputVariable("Plant Component Distributed Demand Rate", OutputProcessor::Unit::W,
-                                                    PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).MyLoad,
-                                                    "System", "Average",
-                                                    PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).Name);
+                                                    PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).MyLoad, "System",
+                                                    "Average", PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).Name);
                             }
                         }
                     }
@@ -2247,17 +2229,15 @@ namespace PlantManager {
                         if (!AnyEnergyManagementSystemInModel) {
                             ShowSevereError("PlantManager: No Setpoint Manager Defined for Node=" + NodeID(SensedNode) + " in PlantLoop=" +
                                             PlantLoop(LoopNum).Name);
-                            ShowContinueError(
-                                "Add Temperature Setpoint Manager with Control Variable = \"Temperature\" for this PlantLoop.");
+                            ShowContinueError("Add Temperature Setpoint Manager with Control Variable = \"Temperature\" for this PlantLoop.");
                             SetPointErrorFlag = true;
                         } else {
                             // need call to EMS to check node
                             CheckIfNodeSetPointManagedByEMS(SensedNode, iTemperatureSetPoint, SetPointErrorFlag);
                             if (SetPointErrorFlag) {
-                                ShowSevereError("PlantManager: No Setpoint Manager Defined for Node=" + NodeID(SensedNode) +
-                                                " in PlantLoop=" + PlantLoop(LoopNum).Name);
-                                ShowContinueError(
-                                    "Add Temperature Setpoint Manager with Control Variable = \"Temperature\" for this PlantLoop.");
+                                ShowSevereError("PlantManager: No Setpoint Manager Defined for Node=" + NodeID(SensedNode) + " in PlantLoop=" +
+                                                PlantLoop(LoopNum).Name);
+                                ShowContinueError("Add Temperature Setpoint Manager with Control Variable = \"Temperature\" for this PlantLoop.");
                                 ShowContinueError("Or add EMS Actuator to provide temperature setpoint at this node");
                             }
                         }
@@ -2290,8 +2270,7 @@ namespace PlantManager {
                     CurLoopNum = LoopNum;
 
                     for (BranchNum = 1; BranchNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).TotalBranches; ++BranchNum) {
-                        for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).TotalComponents;
-                             ++CompNum) {
+                        for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).TotalComponents; ++CompNum) {
                             SimPlantEquip(LoopNum, LoopSideNum, BranchNum, CompNum, FirstHVACIteration, InitLoopEquip, GetCompSizFac);
                         } //-CompNum
                     }     //-BranchNum
@@ -2417,11 +2396,9 @@ namespace PlantManager {
                                 ShowContinueError("Use a SetpointManager:Scheduled:DualSetpoint to establish appropriate setpoints");
                                 SetPointErrorFlag = true;
                             } else {
-                                CheckIfNodeSetPointManagedByEMS(PlantLoop(LoopNum).TempSetPointNodeNum, iTemperatureMaxSetPoint,
-                                                                SetPointErrorFlag);
+                                CheckIfNodeSetPointManagedByEMS(PlantLoop(LoopNum).TempSetPointNodeNum, iTemperatureMaxSetPoint, SetPointErrorFlag);
                                 if (SetPointErrorFlag) {
-                                    ShowSevereError(
-                                        "Plant Loop: missing high temperature setpoint for dual setpoint deadband demand scheme");
+                                    ShowSevereError("Plant Loop: missing high temperature setpoint for dual setpoint deadband demand scheme");
                                     ShowContinueError("Node Referenced =" + NodeID(PlantLoop(LoopNum).TempSetPointNodeNum));
                                     ShowContinueError("Use a SetpointManager:Scheduled:DualSetpoint to establish appropriate setpoints");
                                     ShowContinueError("Or add EMS Actuator for Temperature Maximum Setpoint");
@@ -2436,11 +2413,9 @@ namespace PlantManager {
                                 ShowContinueError("Use a SetpointManager:Scheduled:DualSetpoint to establish appropriate setpoints");
                                 SetPointErrorFlag = true;
                             } else {
-                                CheckIfNodeSetPointManagedByEMS(PlantLoop(LoopNum).TempSetPointNodeNum, iTemperatureMinSetPoint,
-                                                                SetPointErrorFlag);
+                                CheckIfNodeSetPointManagedByEMS(PlantLoop(LoopNum).TempSetPointNodeNum, iTemperatureMinSetPoint, SetPointErrorFlag);
                                 if (SetPointErrorFlag) {
-                                    ShowSevereError(
-                                        "Plant Loop: missing low temperature setpoint for dual setpoint deadband demand scheme");
+                                    ShowSevereError("Plant Loop: missing low temperature setpoint for dual setpoint deadband demand scheme");
                                     ShowContinueError("Node Referenced =" + NodeID(PlantLoop(LoopNum).TempSetPointNodeNum));
                                     ShowContinueError("Use a SetpointManager:Scheduled:DualSetpoint to establish appropriate setpoints");
                                     ShowContinueError("Or add EMS Actuator for Temperature Minimum Setpoint");
@@ -2458,8 +2433,7 @@ namespace PlantManager {
             for (LoopNum = 1; LoopNum <= TotNumLoops; ++LoopNum) {
                 for (LoopSideNum = DemandSide; LoopSideNum <= SupplySide; ++LoopSideNum) {
                     for (BranchNum = 1; BranchNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).TotalBranches; ++BranchNum) {
-                        for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).TotalComponents;
-                             ++CompNum) {
+                        for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).TotalComponents; ++CompNum) {
                             PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).MyLoad = 0.0;
                             PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).FreeCoolCntrlShutDown = false;
                             PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).Available = false;
@@ -2604,14 +2578,12 @@ namespace PlantManager {
                     PlantLoop(LoopNum).LoopSide(LoopSideNum).OutletNode.MassFlowRateHistory = 0.0;
 
                     if (PlantLoop(LoopNum).FluidType != NodeType_Steam) {
-                        Cp = GetSpecificHeatGlycol(PlantLoop(LoopNum).FluidName, LoopSetPointTemp, PlantLoop(LoopNum).FluidIndex,
-                                                   RoutineNameAlt);
+                        Cp = GetSpecificHeatGlycol(PlantLoop(LoopNum).FluidName, LoopSetPointTemp, PlantLoop(LoopNum).FluidIndex, RoutineNameAlt);
                         StartEnthalpy = Cp * LoopSetPointTemp;
                     }
                     // Use Min/Max flow rates to initialize loop
                     if (PlantLoop(LoopNum).FluidType == NodeType_Water) {
-                        rho =
-                            GetDensityGlycol(PlantLoop(LoopNum).FluidName, LoopSetPointTemp, PlantLoop(LoopNum).FluidIndex, RoutineNameAlt);
+                        rho = GetDensityGlycol(PlantLoop(LoopNum).FluidName, LoopSetPointTemp, PlantLoop(LoopNum).FluidIndex, RoutineNameAlt);
 
                         LoopMaxMassFlowRate = PlantLoop(LoopNum).MaxVolFlowRate * rho;
                         LoopMinMassFlowRate = PlantLoop(LoopNum).MinVolFlowRate * rho;
@@ -2621,8 +2593,7 @@ namespace PlantManager {
                         SteamTemp = 100.0;
                         SteamDensity = GetSatDensityRefrig(fluidNameSteam, SteamTemp, 1.0, PlantLoop(LoopNum).FluidIndex, RoutineName);
                         LoopMaxMassFlowRate = PlantLoop(LoopNum).MaxVolFlowRate * SteamDensity;
-                        StartEnthalpy =
-                            GetSatEnthalpyRefrig(fluidNameSteam, LoopSetPointTemp, 0.0, PlantLoop(LoopNum).FluidIndex, RoutineName);
+                        StartEnthalpy = GetSatEnthalpyRefrig(fluidNameSteam, LoopSetPointTemp, 0.0, PlantLoop(LoopNum).FluidIndex, RoutineName);
                         LoopMinMassFlowRate = PlantLoop(LoopNum).MinVolFlowRate * SteamDensity;
                     }
 
@@ -2631,8 +2602,7 @@ namespace PlantManager {
 
                     // Initial all loop nodes by initializing all component inlet and outlet nodes
                     for (BranchNum = 1; BranchNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).TotalBranches; ++BranchNum) {
-                        for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).TotalComponents;
-                             ++CompNum) {
+                        for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).TotalComponents; ++CompNum) {
                             ComponentInlet = PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).NodeNumIn;
                             ComponentOutlet = PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).Comp(CompNum).NodeNumOut;
                             BranchInlet = PlantLoop(LoopNum).LoopSide(LoopSideNum).Branch(BranchNum).NodeNumIn;
@@ -2751,10 +2721,8 @@ namespace PlantManager {
                     // Since Dual setpoint not explicitly available for demand side, we can't do the
                     // bounding check on hi/lo setpoint.  IF we did we would over-write
                     // the SensedNodeFlagValue of -999 for no dual setpoint case.
-                    PlantLoop(LoopNum).LoopSide(DemandSide).TempSetPointHi =
-                        Node(PlantLoop(LoopNum).LoopSide(DemandSide).NodeNumIn).TempSetPointHi;
-                    PlantLoop(LoopNum).LoopSide(DemandSide).TempSetPointLo =
-                        Node(PlantLoop(LoopNum).LoopSide(DemandSide).NodeNumIn).TempSetPointLo;
+                    PlantLoop(LoopNum).LoopSide(DemandSide).TempSetPointHi = Node(PlantLoop(LoopNum).LoopSide(DemandSide).NodeNumIn).TempSetPointHi;
+                    PlantLoop(LoopNum).LoopSide(DemandSide).TempSetPointLo = Node(PlantLoop(LoopNum).LoopSide(DemandSide).NodeNumIn).TempSetPointLo;
                 }
 
                 // initialize common pipe flows to zero.
@@ -2917,8 +2885,7 @@ namespace PlantManager {
                         if (PlantLoop(LoopNum).LoopSide(SideNum).Branch(BranchNum).IsBypass) { // we know there is a bypass
                             // check that there is at least one 'Active' control type in parallel with bypass branch
                             ActiveCntrlfound = false;
-                            for (ParalBranchNum2 = 1;
-                                 ParalBranchNum2 <= PlantLoop(LoopNum).LoopSide(SideNum).Splitter(SplitNum).TotalOutletNodes;
+                            for (ParalBranchNum2 = 1; ParalBranchNum2 <= PlantLoop(LoopNum).LoopSide(SideNum).Splitter(SplitNum).TotalOutletNodes;
                                  ++ParalBranchNum2) {
                                 BranchNum2 = PlantLoop(LoopNum).LoopSide(SideNum).Splitter(SplitNum).BranchNumOut(ParalBranchNum2);
                                 if (PlantLoop(LoopNum).LoopSide(SideNum).Branch(BranchNum2).ControlType == ControlType_Active) {
@@ -2929,8 +2896,7 @@ namespace PlantManager {
                                 ShowWarningError("Check control types on branches between splitter and mixer in PlantLoop=" +
                                                  PlantLoop(LoopNum).Name);
                                 ShowContinueError("Found a BYPASS branch with no ACTIVE branch in parallel with it");
-                                ShowContinueError(
-                                    "In certain (but not all) situations, this can cause problems; please verify your inputs");
+                                ShowContinueError("In certain (but not all) situations, this can cause problems; please verify your inputs");
                                 ShowContinueError("Bypass branch named: " + PlantLoop(LoopNum).LoopSide(SideNum).Branch(BranchNum).Name);
                             }
                         } // bypass present
@@ -2946,12 +2912,10 @@ namespace PlantManager {
                             // COIL:STEAM:AIRHEATING
                             // SOLAR COLLECTOR:FLAT PLATE
                             // PLANT LOAD PROFILE
-                            for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(SideNum).Branch(BranchNum).TotalComponents;
-                                 ++CompNum) {
+                            for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(SideNum).Branch(BranchNum).TotalComponents; ++CompNum) {
                                 ShouldBeACTIVE = false;
                                 {
-                                    auto const SELECT_CASE_var(
-                                        PlantLoop(LoopNum).LoopSide(SideNum).Branch(BranchNum).Comp(CompNum).TypeOf_Num);
+                                    auto const SELECT_CASE_var(PlantLoop(LoopNum).LoopSide(SideNum).Branch(BranchNum).Comp(CompNum).TypeOf_Num);
 
                                     if (SELECT_CASE_var == TypeOf_WtrHeaterMixed) {
                                         ShouldBeACTIVE = true;
@@ -3246,11 +3210,9 @@ namespace PlantManager {
                 for (BranchNum = 1; BranchNum <= PlantLoop(LoopNum).LoopSide(SupplySide).TotalBranches; ++BranchNum) {
                     BranchSizFac = 0.0;
                     PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).PumpSizFac = 1.0;
-                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumIn ==
-                        PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumIn)
+                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumIn == PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumIn)
                         continue;
-                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumOut ==
-                        PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumOut)
+                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumOut == PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumOut)
                         continue;
                     for (CompNum = 1; CompNum <= PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).TotalComponents; ++CompNum) {
                         SimPlantEquip(LoopNum, SupplySide, BranchNum, CompNum, true, InitLoopEquip, GetCompSizFac);
@@ -3278,12 +3240,10 @@ namespace PlantManager {
                 PlantSizData(PlantSizNum).PlantSizFac = PlantSizFac;
                 // might deprecate this next bit in favor of simpler storage in PlantSizData structure
                 for (BranchNum = 1; BranchNum <= PlantLoop(LoopNum).LoopSide(SupplySide).TotalBranches; ++BranchNum) {
-                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumIn ==
-                        PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumIn) {
+                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumIn == PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumIn) {
                         PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).PumpSizFac = PlantSizFac;
                     }
-                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumOut ==
-                        PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumOut) {
+                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumOut == PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumOut) {
                         PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).PumpSizFac = PlantSizFac;
                     }
                 }
@@ -3291,8 +3251,7 @@ namespace PlantManager {
             } else {
                 // fill PlantSizFac from data structure
                 for (BranchNum = 1; BranchNum <= PlantLoop(LoopNum).LoopSide(SupplySide).TotalBranches; ++BranchNum) {
-                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumIn ==
-                        PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumIn) {
+                    if (PlantLoop(LoopNum).LoopSide(SupplySide).NodeNumIn == PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).NodeNumIn) {
                         PlantSizFac = PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).PumpSizFac;
                         break;
                     }
@@ -3316,8 +3275,7 @@ namespace PlantManager {
                 // if the user puts in a large throwaway value for hard max plant loop size, they may not want this affecting anything else.
                 //  but if they put in a smaller value, then it should cap the design size, so use hard value if it is smaller than
                 //  non-coincident result
-                PlantSizData(PlantSizNum).DesVolFlowRate =
-                    std::min(PlantSizData(PlantSizNum).DesVolFlowRate, PlantLoop(LoopNum).MaxVolFlowRate);
+                PlantSizData(PlantSizNum).DesVolFlowRate = std::min(PlantSizData(PlantSizNum).DesVolFlowRate, PlantLoop(LoopNum).MaxVolFlowRate);
             }
         }
 
@@ -3384,8 +3342,7 @@ namespace PlantManager {
                     // condenser loop vs plant loop breakout needed.
                     ReportSizingOutput("PlantLoop", PlantLoop(LoopNum).Name, "Initial Plant Loop Volume [m3]", PlantLoop(LoopNum).Volume);
                 } else if (PlantLoop(LoopNum).TypeOfLoop == LoopType_Condenser) {
-                    ReportSizingOutput("CondenserLoop", PlantLoop(LoopNum).Name, "Initial Condenser Loop Volume [m3]",
-                                       PlantLoop(LoopNum).Volume);
+                    ReportSizingOutput("CondenserLoop", PlantLoop(LoopNum).Name, "Initial Condenser Loop Volume [m3]", PlantLoop(LoopNum).Volume);
                 }
             }
         }
@@ -3509,8 +3466,7 @@ namespace PlantManager {
                 }
                 if (PlantFinalSizesOkayToReport) {
                     if (PlantLoop(LoopNum).TypeOfLoop == LoopType_Plant) {
-                        ReportSizingOutput("PlantLoop", PlantLoop(LoopNum).Name, "Maximum Loop Flow Rate [m3/s]",
-                                           PlantLoop(LoopNum).MaxVolFlowRate);
+                        ReportSizingOutput("PlantLoop", PlantLoop(LoopNum).Name, "Maximum Loop Flow Rate [m3/s]", PlantLoop(LoopNum).MaxVolFlowRate);
                     } else if (PlantLoop(LoopNum).TypeOfLoop == LoopType_Condenser) {
                         ReportSizingOutput("CondenserLoop", PlantLoop(LoopNum).Name, "Maximum Loop Flow Rate [m3/s]",
                                            PlantLoop(LoopNum).MaxVolFlowRate);
@@ -3705,9 +3661,8 @@ namespace PlantManager {
 
                             if (OtherLoopSideNum == SupplySide) { // if this is a supplyside, don't push it before its own demand side
                                 OtherLoopDemandSideCallingIndex = FindLoopSideInCallingOrder(OtherLoopNum, DemandSide);
-                                if (OtherLoopDemandSideCallingIndex < HalfLoopNum) { // good to go
-                                    newCallingIndex =
-                                        min(OtherLoopDemandSideCallingIndex + 1, TotNumHalfLoops); // put it right after its demand side
+                                if (OtherLoopDemandSideCallingIndex < HalfLoopNum) {                             // good to go
+                                    newCallingIndex = min(OtherLoopDemandSideCallingIndex + 1, TotNumHalfLoops); // put it right after its demand side
                                     ShiftPlantLoopSideCallingOrder(OtherLoopCallingIndex, newCallingIndex);
                                 } else { // move both sides of other loop before this, keeping demand side in front
                                     NewOtherDemandSideCallingIndex = max(HalfLoopNum, 1);
@@ -3929,8 +3884,7 @@ namespace PlantManager {
                                 this_component.FlowCtrl = ControlType_Active;
                                 this_component.FlowPriority = LoopFlowStatus_TakesWhatGets;
                                 this_component.HowLoadServed = HowMet_ByNominalCap;
-                            } else if (SELECT_CASE_var ==
-                                       TypeOf_Chiller_Absorption) { //                =  3  ! older BLAST absorption chiller
+                            } else if (SELECT_CASE_var == TypeOf_Chiller_Absorption) { //                =  3  ! older BLAST absorption chiller
                                 this_component.FlowCtrl = ControlType_Active;
                                 if (LoopSideCtr == DemandSide) {
                                     this_component.FlowPriority = LoopFlowStatus_NeedyAndTurnsLoopOn;
@@ -4504,8 +4458,7 @@ namespace PlantManager {
 
                                 if (BypassCount > 0) {
                                     ShowSevereError("An active component is on the same branch as a pipe situated between splitter/mixer");
-                                    ShowContinueError("Occurs in Branch=" +
-                                                      PlantLoop(LoopCtr).LoopSide(LoopSideCtr).Branch(BranchCtr).Name);
+                                    ShowContinueError("Occurs in Branch=" + PlantLoop(LoopCtr).LoopSide(LoopSideCtr).Branch(BranchCtr).Name);
                                     ShowContinueError("Occurs in Plant Loop=" + PlantLoop(LoopCtr).Name);
                                     ShowContinueError("SetupBranchControlTypes: and the simulation continues");
                                     // DSU3 note not sure why this is so bad.  heat transfer pipe might be a good reason to allow this?
@@ -4522,8 +4475,7 @@ namespace PlantManager {
 
                                 if (CompCtr > 1) {
                                     ShowSevereError("A pipe used as a bypass should not be in series with another component");
-                                    ShowContinueError("Occurs in Branch = " +
-                                                      PlantLoop(LoopCtr).LoopSide(LoopSideCtr).Branch(BranchCtr).Name);
+                                    ShowContinueError("Occurs in Branch = " + PlantLoop(LoopCtr).LoopSide(LoopSideCtr).Branch(BranchCtr).Name);
                                     ShowContinueError("Occurs in PlantLoop = " + PlantLoop(LoopCtr).Name);
                                     ShowFatalError("SetupBranchControlTypes: preceding condition causes termination.");
                                 }
@@ -4609,13 +4561,11 @@ namespace PlantManager {
             // Warning if the excess storage time is more than half of the total time
             if (PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_CapExcessStorageTime >
                 PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_TotalTime / 2) {
-                ShowWarningError("Plant Loop: " + PlantLoop(LoopNum).Name +
-                                 " Demand Side is storing excess heat the majority of the time.");
+                ShowWarningError("Plant Loop: " + PlantLoop(LoopNum).Name + " Demand Side is storing excess heat the majority of the time.");
             }
             if (PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_CapExcessStorageTime >
                 PlantLoop(LoopNum).LoopSide(DemandSide).LoopSideInlet_TotalTime / 2) {
-                ShowWarningError("Plant Loop: " + PlantLoop(LoopNum).Name +
-                                 " Supply Side is storing excess heat the majority of the time.");
+                ShowWarningError("Plant Loop: " + PlantLoop(LoopNum).Name + " Supply Side is storing excess heat the majority of the time.");
             }
         }
     }

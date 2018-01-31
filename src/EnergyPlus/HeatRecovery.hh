@@ -218,20 +218,18 @@ namespace HeatRecovery {
         // Default Constructor
         HeatExchCond()
             : ExchTypeNum(0), HeatExchPerfTypeNum(0), SchedPtr(0), FlowArr(0), EconoLockOut(0), hARatio(0.0), NomSupAirVolFlow(0.0),
-              NomSupAirInTemp(0.0), NomSupAirOutTemp(0.0), NomSecAirVolFlow(0.0), NomSecAirInTemp(0.0), NomElecPower(0.0), UA0(0.0),
-              mTSup0(0.0), mTSec0(0.0), NomSupAirMassFlow(0.0), NomSecAirMassFlow(0.0), SupInletNode(0), SupOutletNode(0), SecInletNode(0),
-              SecOutletNode(0), SupInTemp(0.0), SupInHumRat(0.0), SupInEnth(0.0), SupInMassFlow(0.0), SecInTemp(0.0), SecInHumRat(0.0),
-              SecInEnth(0.0), SecInMassFlow(0.0), PerfDataIndex(0), FaceArea(0.0), UnbalancedWarningFlag(true), HeatEffectSensible100(0.0),
-              HeatEffectSensible75(0.0), HeatEffectLatent100(0.0), HeatEffectLatent75(0.0), CoolEffectSensible100(0.0),
-              CoolEffectSensible75(0.0), CoolEffectLatent100(0.0), CoolEffectLatent75(0.0), HeatExchEconoMode(0), ExchConfigNum(0),
-              ThresholdTemperature(0.0), InitialDefrostTime(0.0), RateofDefrostTimeIncrease(0.0), DefrostFraction(0.0),
-              ControlToTemperatureSetPoint(false), SupOutTemp(0.0), SupOutHumRat(0.0), SupOutEnth(0.0), SupOutMassFlow(0.0),
-              SecOutTemp(0.0), SecOutHumRat(0.0), SecOutEnth(0.0), SecOutMassFlow(0.0), SensHeatingRate(0.0), SensHeatingEnergy(0.0),
-              LatHeatingRate(0.0), LatHeatingEnergy(0.0), TotHeatingRate(0.0), TotHeatingEnergy(0.0), SensCoolingRate(0.0),
-              SensCoolingEnergy(0.0), LatCoolingRate(0.0), LatCoolingEnergy(0.0), TotCoolingRate(0.0), TotCoolingEnergy(0.0),
-              ElecUseEnergy(0.0), ElecUseRate(0.0), SensEffectiveness(0.0), LatEffectiveness(0.0), SupBypassMassFlow(0.0),
-              SecBypassMassFlow(0.0), LowFlowErrCount(0), LowFlowErrIndex(0), UnBalancedErrCount(0), UnBalancedErrIndex(0),
-              myEnvrnFlag(true)
+              NomSupAirInTemp(0.0), NomSupAirOutTemp(0.0), NomSecAirVolFlow(0.0), NomSecAirInTemp(0.0), NomElecPower(0.0), UA0(0.0), mTSup0(0.0),
+              mTSec0(0.0), NomSupAirMassFlow(0.0), NomSecAirMassFlow(0.0), SupInletNode(0), SupOutletNode(0), SecInletNode(0), SecOutletNode(0),
+              SupInTemp(0.0), SupInHumRat(0.0), SupInEnth(0.0), SupInMassFlow(0.0), SecInTemp(0.0), SecInHumRat(0.0), SecInEnth(0.0),
+              SecInMassFlow(0.0), PerfDataIndex(0), FaceArea(0.0), UnbalancedWarningFlag(true), HeatEffectSensible100(0.0), HeatEffectSensible75(0.0),
+              HeatEffectLatent100(0.0), HeatEffectLatent75(0.0), CoolEffectSensible100(0.0), CoolEffectSensible75(0.0), CoolEffectLatent100(0.0),
+              CoolEffectLatent75(0.0), HeatExchEconoMode(0), ExchConfigNum(0), ThresholdTemperature(0.0), InitialDefrostTime(0.0),
+              RateofDefrostTimeIncrease(0.0), DefrostFraction(0.0), ControlToTemperatureSetPoint(false), SupOutTemp(0.0), SupOutHumRat(0.0),
+              SupOutEnth(0.0), SupOutMassFlow(0.0), SecOutTemp(0.0), SecOutHumRat(0.0), SecOutEnth(0.0), SecOutMassFlow(0.0), SensHeatingRate(0.0),
+              SensHeatingEnergy(0.0), LatHeatingRate(0.0), LatHeatingEnergy(0.0), TotHeatingRate(0.0), TotHeatingEnergy(0.0), SensCoolingRate(0.0),
+              SensCoolingEnergy(0.0), LatCoolingRate(0.0), LatCoolingEnergy(0.0), TotCoolingRate(0.0), TotCoolingEnergy(0.0), ElecUseEnergy(0.0),
+              ElecUseRate(0.0), SensEffectiveness(0.0), LatEffectiveness(0.0), SupBypassMassFlow(0.0), SecBypassMassFlow(0.0), LowFlowErrCount(0),
+              LowFlowErrIndex(0), UnBalancedErrCount(0), UnBalancedErrIndex(0), myEnvrnFlag(true)
         {
         }
     };
@@ -458,33 +456,30 @@ namespace HeatRecovery {
 
         // Default Constructor
         BalancedDesDehumPerfData()
-            : NomSupAirVolFlow(0.0), NomProcAirFaceVel(0.0), NomElecPower(0.0), B1(0.0), B2(0.0), B3(0.0), B4(0.0), B5(0.0), B6(0.0),
-              B7(0.0), B8(0.0), T_MinRegenAirInTemp(0.0), T_MaxRegenAirInTemp(0.0), T_MinRegenAirInHumRat(0.0), T_MaxRegenAirInHumRat(0.0),
+            : NomSupAirVolFlow(0.0), NomProcAirFaceVel(0.0), NomElecPower(0.0), B1(0.0), B2(0.0), B3(0.0), B4(0.0), B5(0.0), B6(0.0), B7(0.0),
+              B8(0.0), T_MinRegenAirInTemp(0.0), T_MaxRegenAirInTemp(0.0), T_MinRegenAirInHumRat(0.0), T_MaxRegenAirInHumRat(0.0),
               T_MinProcAirInTemp(0.0), T_MaxProcAirInTemp(0.0), T_MinProcAirInHumRat(0.0), T_MaxProcAirInHumRat(0.0), T_MinFaceVel(0.0),
               T_MaxFaceVel(0.0), MinRegenAirOutTemp(0.0), MaxRegenAirOutTemp(0.0), T_MinRegenAirInRelHum(0.0), T_MaxRegenAirInRelHum(0.0),
               T_MinProcAirInRelHum(0.0), T_MaxProcAirInRelHum(0.0), C1(0.0), C2(0.0), C3(0.0), C4(0.0), C5(0.0), C6(0.0), C7(0.0), C8(0.0),
-              H_MinRegenAirInTemp(0.0), H_MaxRegenAirInTemp(0.0), H_MinRegenAirInHumRat(0.0), H_MaxRegenAirInHumRat(0.0),
-              H_MinProcAirInTemp(0.0), H_MaxProcAirInTemp(0.0), H_MinProcAirInHumRat(0.0), H_MaxProcAirInHumRat(0.0), H_MinFaceVel(0.0),
-              H_MaxFaceVel(0.0), MinRegenAirOutHumRat(0.0), MaxRegenAirOutHumRat(0.0), H_MinRegenAirInRelHum(0.0),
-              H_MaxRegenAirInRelHum(0.0), H_MinProcAirInRelHum(0.0), H_MaxProcAirInRelHum(0.0), PrintRegenInRelHumTempMess(false),
-              RegenInRelHumTempErrIndex(0), RegenInRelHumTempErrorCount(0), RegenInRelHumTempLast(0.0), PrintProcInRelHumTempMess(false),
-              ProcInRelHumTempErrIndex(0), ProcInRelHumTempErrorCount(0), ProcInRelHumTempLast(0.0), PrintRegenInRelHumHumRatMess(false),
-              RegenInRelHumHumRatErrIndex(0), RegenInRelHumHumRatErrorCount(0), RegenInRelHumHumRatLast(0.0),
-              PrintProcInRelHumHumRatMess(false), ProcInRelHumHumRatErrIndex(0), ProcInRelHumHumRatErrorCount(0),
-              ProcInRelHumHumRatLast(0.0), PrintT_RegenInTempMessage(false), PrintT_RegenInHumRatMessage(false),
-              PrintT_ProcInTempMessage(false), PrintT_ProcInHumRatMessage(false), PrintT_FaceVelMessage(false),
-              PrintRegenOutTempMessage(false), PrintRegenOutTempFailedMessage(false), PrintH_RegenInTempMessage(false),
-              PrintH_RegenInHumRatMessage(false), PrintH_ProcInTempMessage(false), PrintH_ProcInHumRatMessage(false),
-              PrintH_FaceVelMessage(false), PrintRegenOutHumRatMessage(false), PrintRegenInHumRatMessage(false),
-              PrintRegenOutHumRatFailedMess(false), RegenOutHumRatFailedErrIndex(0), RegenOutHumRatFailedErrorCount(0),
-              RegenOutHumRatFailedLast(0.0), PrintImbalancedMassFlowMess(false), ImbalancedFlowErrIndex(0), ImbalancedMassFlowErrorCount(0),
-              ABSImbalancedFlow(0.0), T_RegenInTempErrorCount(0), T_RegenInHumRatErrorCount(0), T_ProcInTempErrorCount(0),
-              T_ProcInHumRatErrorCount(0), T_FaceVelErrorCount(0), T_RegenInTempErrIndex(0), T_RegenInHumRatErrIndex(0),
-              T_ProcInTempErrIndex(0), T_ProcInHumRatErrIndex(0), T_FaceVelocityErrIndex(0), RegenOutTempErrorCount(0),
-              RegenOutTempErrIndex(0), RegenOutTempFailedErrorCount(0), RegenOutTempFailedErrIndex(0), RegenOutTempFailedLast(0.0),
-              H_RegenInTempErrorCount(0), H_RegenInHumRatErrorCount(0), H_ProcInTempErrorCount(0), H_ProcInHumRatErrorCount(0),
-              H_FaceVelErrorCount(0), H_RegenInTempErrIndex(0), H_RegenInHumRatErrIndex(0), H_ProcInTempErrIndex(0),
-              H_ProcInHumRatErrIndex(0), H_FaceVelocityErrIndex(0), RegenOutHumRatErrorCount(0), RegenOutHumRatErrIndex(0),
+              H_MinRegenAirInTemp(0.0), H_MaxRegenAirInTemp(0.0), H_MinRegenAirInHumRat(0.0), H_MaxRegenAirInHumRat(0.0), H_MinProcAirInTemp(0.0),
+              H_MaxProcAirInTemp(0.0), H_MinProcAirInHumRat(0.0), H_MaxProcAirInHumRat(0.0), H_MinFaceVel(0.0), H_MaxFaceVel(0.0),
+              MinRegenAirOutHumRat(0.0), MaxRegenAirOutHumRat(0.0), H_MinRegenAirInRelHum(0.0), H_MaxRegenAirInRelHum(0.0), H_MinProcAirInRelHum(0.0),
+              H_MaxProcAirInRelHum(0.0), PrintRegenInRelHumTempMess(false), RegenInRelHumTempErrIndex(0), RegenInRelHumTempErrorCount(0),
+              RegenInRelHumTempLast(0.0), PrintProcInRelHumTempMess(false), ProcInRelHumTempErrIndex(0), ProcInRelHumTempErrorCount(0),
+              ProcInRelHumTempLast(0.0), PrintRegenInRelHumHumRatMess(false), RegenInRelHumHumRatErrIndex(0), RegenInRelHumHumRatErrorCount(0),
+              RegenInRelHumHumRatLast(0.0), PrintProcInRelHumHumRatMess(false), ProcInRelHumHumRatErrIndex(0), ProcInRelHumHumRatErrorCount(0),
+              ProcInRelHumHumRatLast(0.0), PrintT_RegenInTempMessage(false), PrintT_RegenInHumRatMessage(false), PrintT_ProcInTempMessage(false),
+              PrintT_ProcInHumRatMessage(false), PrintT_FaceVelMessage(false), PrintRegenOutTempMessage(false), PrintRegenOutTempFailedMessage(false),
+              PrintH_RegenInTempMessage(false), PrintH_RegenInHumRatMessage(false), PrintH_ProcInTempMessage(false),
+              PrintH_ProcInHumRatMessage(false), PrintH_FaceVelMessage(false), PrintRegenOutHumRatMessage(false), PrintRegenInHumRatMessage(false),
+              PrintRegenOutHumRatFailedMess(false), RegenOutHumRatFailedErrIndex(0), RegenOutHumRatFailedErrorCount(0), RegenOutHumRatFailedLast(0.0),
+              PrintImbalancedMassFlowMess(false), ImbalancedFlowErrIndex(0), ImbalancedMassFlowErrorCount(0), ABSImbalancedFlow(0.0),
+              T_RegenInTempErrorCount(0), T_RegenInHumRatErrorCount(0), T_ProcInTempErrorCount(0), T_ProcInHumRatErrorCount(0),
+              T_FaceVelErrorCount(0), T_RegenInTempErrIndex(0), T_RegenInHumRatErrIndex(0), T_ProcInTempErrIndex(0), T_ProcInHumRatErrIndex(0),
+              T_FaceVelocityErrIndex(0), RegenOutTempErrorCount(0), RegenOutTempErrIndex(0), RegenOutTempFailedErrorCount(0),
+              RegenOutTempFailedErrIndex(0), RegenOutTempFailedLast(0.0), H_RegenInTempErrorCount(0), H_RegenInHumRatErrorCount(0),
+              H_ProcInTempErrorCount(0), H_ProcInHumRatErrorCount(0), H_FaceVelErrorCount(0), H_RegenInTempErrIndex(0), H_RegenInHumRatErrIndex(0),
+              H_ProcInTempErrIndex(0), H_ProcInHumRatErrIndex(0), H_FaceVelocityErrIndex(0), RegenOutHumRatErrorCount(0), RegenOutHumRatErrIndex(0),
               RegenInHumRatErrorCount(0), RegenInHumRatErrIndex(0), T_RegenInTempLast(0.0), T_RegenInHumRatLast(0.0), T_ProcInTempLast(0.0),
               T_ProcInHumRatLast(0.0), T_FaceVelLast(0.0), RegenOutTempLast(0.0), H_RegenInTempLast(0.0), H_RegenInHumRatLast(0.0),
               H_ProcInTempLast(0.0), H_ProcInHumRatLast(0.0), H_FaceVelLast(0.0), RegenOutHumRatLast(0.0)
@@ -560,17 +555,16 @@ namespace HeatRecovery {
                                      Optional<Real64 const> HXPartLoadRatio = _ //
                                      );
 
-    void CalcDesiccantBalancedHeatExch(
-        int const ExNum,                        // number of the current heat exchanger being simulated
-        bool const HXUnitOn,                    // flag to simulate heat exchager heat recovery
-        bool const FirstHVACIteration,          // First HVAC iteration flag
-        int const FanOpMode,                    // Supply air fan operating mode (1=cycling, 2=constant)
-        Real64 const PartLoadRatio,             // Part load ratio requested of DX compressor
-        int const CompanionCoilIndex,           // index of companion cooling coil
-        bool const RegenInletIsOANode,          // Flag to determine if regen side inlet is OANode, if so this air stream cycles
-        Optional_bool_const EconomizerFlag = _, // economizer flag pass by air loop or OA sys
-        Optional_bool_const HighHumCtrlFlag = _ // high humidity control flag passed by airloop or OA sys
-        );
+    void CalcDesiccantBalancedHeatExch(int const ExNum,               // number of the current heat exchanger being simulated
+                                       bool const HXUnitOn,           // flag to simulate heat exchager heat recovery
+                                       bool const FirstHVACIteration, // First HVAC iteration flag
+                                       int const FanOpMode,           // Supply air fan operating mode (1=cycling, 2=constant)
+                                       Real64 const PartLoadRatio,    // Part load ratio requested of DX compressor
+                                       int const CompanionCoilIndex,  // index of companion cooling coil
+                                       bool const RegenInletIsOANode, // Flag to determine if regen side inlet is OANode, if so this air stream cycles
+                                       Optional_bool_const EconomizerFlag = _, // economizer flag pass by air loop or OA sys
+                                       Optional_bool_const HighHumCtrlFlag = _ // high humidity control flag passed by airloop or OA sys
+                                       );
 
     void FrostControl(int const ExNum); // number of the current heat exchanger being simulated
 

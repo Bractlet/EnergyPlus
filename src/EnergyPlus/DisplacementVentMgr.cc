@@ -501,8 +501,7 @@ namespace DisplacementVentMgr {
             } // END DOOR
 
             // INTERNAL Hc, HA and HAT CALCULATION
-            HeightIntMass =
-                min(HeightIntMassDefault, (ZoneCeilingHeight((ZoneNum - 1) * 2 + 2) - ZoneCeilingHeight((ZoneNum - 1) * 2 + 1)));
+            HeightIntMass = min(HeightIntMassDefault, (ZoneCeilingHeight((ZoneNum - 1) * 2 + 2) - ZoneCeilingHeight((ZoneNum - 1) * 2 + 1)));
             for (Ctd = PosZ_Internal((ZoneNum - 1) * 2 + 1); Ctd <= PosZ_Internal((ZoneNum - 1) * 2 + 2); ++Ctd) {
                 SurfNum = APos_Internal(Ctd);
                 Surface(SurfNum).TAirRef = AdjacentAirTemp;
@@ -786,8 +785,8 @@ namespace DisplacementVentMgr {
         }
 
         SumMCp = MCPI(ZoneNum) + MCPV(ZoneNum) + MCPM(ZoneNum) + MCPE(ZoneNum) + MCPC(ZoneNum) + MDotCPOA(ZoneNum);
-        SumMCpT = MCPTI(ZoneNum) + MCPTV(ZoneNum) + MCPTM(ZoneNum) + MCPTE(ZoneNum) + MCPTC(ZoneNum) +
-                  MDotCPOA(ZoneNum) * Zone(ZoneNum).OutDryBulbTemp;
+        SumMCpT =
+            MCPTI(ZoneNum) + MCPTV(ZoneNum) + MCPTM(ZoneNum) + MCPTE(ZoneNum) + MCPTC(ZoneNum) + MDotCPOA(ZoneNum) * Zone(ZoneNum).OutDryBulbTemp;
         if (SimulateAirflowNetwork == AirflowNetworkControlMultizone) {
             SumMCp = AirflowNetworkExchangeData(ZoneNum).SumMCp + AirflowNetworkExchangeData(ZoneNum).SumMMCp;
             SumMCpT = AirflowNetworkExchangeData(ZoneNum).SumMCpT + AirflowNetworkExchangeData(ZoneNum).SumMMCpT;
@@ -903,13 +902,11 @@ namespace DisplacementVentMgr {
                                        Zone(ZoneNum).ZoneVolCapMultpSens *
                                        PsyRhoAirFnPbTdbW(OutBaroPress, MATFloor(ZoneNum), ZoneAirHumRat(ZoneNum)) *
                                        PsyCpAirFnWTdb(ZoneAirHumRat(ZoneNum), MATFloor(ZoneNum)) / (TimeStepSys * SecInHour);
-                AIRRATOC(ZoneNum) = Zone(ZoneNum).Volume * (HeightTransition(ZoneNum) - min(HeightTransition(ZoneNum), 0.2)) /
-                                    CeilingHeight * Zone(ZoneNum).ZoneVolCapMultpSens *
-                                    PsyRhoAirFnPbTdbW(OutBaroPress, MATOC(ZoneNum), ZoneAirHumRat(ZoneNum)) *
+                AIRRATOC(ZoneNum) = Zone(ZoneNum).Volume * (HeightTransition(ZoneNum) - min(HeightTransition(ZoneNum), 0.2)) / CeilingHeight *
+                                    Zone(ZoneNum).ZoneVolCapMultpSens * PsyRhoAirFnPbTdbW(OutBaroPress, MATOC(ZoneNum), ZoneAirHumRat(ZoneNum)) *
                                     PsyCpAirFnWTdb(ZoneAirHumRat(ZoneNum), MATOC(ZoneNum)) / (TimeStepSys * SecInHour);
                 AIRRATMX(ZoneNum) = Zone(ZoneNum).Volume * (CeilingHeight - HeightTransition(ZoneNum)) / CeilingHeight *
-                                    Zone(ZoneNum).ZoneVolCapMultpSens *
-                                    PsyRhoAirFnPbTdbW(OutBaroPress, MATMX(ZoneNum), ZoneAirHumRat(ZoneNum)) *
+                                    Zone(ZoneNum).ZoneVolCapMultpSens * PsyRhoAirFnPbTdbW(OutBaroPress, MATMX(ZoneNum), ZoneAirHumRat(ZoneNum)) *
                                     PsyCpAirFnWTdb(ZoneAirHumRat(ZoneNum), MATMX(ZoneNum)) / (TimeStepSys * SecInHour);
 
                 if (UseZoneTimeStepHistory) {
@@ -946,16 +943,14 @@ namespace DisplacementVentMgr {
                 {
                     auto const SELECT_CASE_var(ZoneAirSolutionAlgo);
                     if (SELECT_CASE_var == Use3rdOrder) {
-                        ZTFloor(ZoneNum) =
-                            calculateThirdOrderFloorTemperature(TempHistTerm, HAT_FLOOR, HA_FLOOR, MCpT_Total, MCp_Total, ZTOC(ZoneNum),
-                                                                NonAirSystemResponse(ZoneNum), ZoneMult, AirCap);
+                        ZTFloor(ZoneNum) = calculateThirdOrderFloorTemperature(TempHistTerm, HAT_FLOOR, HA_FLOOR, MCpT_Total, MCp_Total,
+                                                                               ZTOC(ZoneNum), NonAirSystemResponse(ZoneNum), ZoneMult, AirCap);
                     } else if (SELECT_CASE_var == UseAnalyticalSolution) {
                         if (TempDepCoef == 0.0) { // B=0
                             ZTFloor(ZoneNum) = Zone1Floor(ZoneNum) + TempIndCoef / AirCap;
                         } else {
-                            ZTFloor(ZoneNum) =
-                                (Zone1Floor(ZoneNum) - TempIndCoef / TempDepCoef) * std::exp(min(700.0, -TempDepCoef / AirCap)) +
-                                TempIndCoef / TempDepCoef;
+                            ZTFloor(ZoneNum) = (Zone1Floor(ZoneNum) - TempIndCoef / TempDepCoef) * std::exp(min(700.0, -TempDepCoef / AirCap)) +
+                                               TempIndCoef / TempDepCoef;
                         }
                     } else if (SELECT_CASE_var == UseEulerMethod) {
                         ZTFloor(ZoneNum) = (AirCap * Zone1Floor(ZoneNum) + TempIndCoef) / (AirCap + TempDepCoef);
@@ -968,9 +963,8 @@ namespace DisplacementVentMgr {
                 {
                     auto const SELECT_CASE_var(ZoneAirSolutionAlgo);
                     if (SELECT_CASE_var == Use3rdOrder) {
-                        ZTOC(ZoneNum) =
-                            (TempHistTerm + ConvGainsOccupiedSubzone * GainsFrac + HAT_OC + 1.6 * ZTFloor(ZoneNum) * MCp_Total) /
-                            ((11.0 / 6.0) * AirCap + HA_OC + 1.6 * MCp_Total);
+                        ZTOC(ZoneNum) = (TempHistTerm + ConvGainsOccupiedSubzone * GainsFrac + HAT_OC + 1.6 * ZTFloor(ZoneNum) * MCp_Total) /
+                                        ((11.0 / 6.0) * AirCap + HA_OC + 1.6 * MCp_Total);
                     } else if (SELECT_CASE_var == UseAnalyticalSolution) {
                         if (TempDepCoef == 0.0) { // B=0
                             ZTOC(ZoneNum) = Zone1OC(ZoneNum) + TempIndCoef / AirCap;
@@ -978,9 +972,8 @@ namespace DisplacementVentMgr {
                             if (AirCap == 0.0) {
                                 ZTOC(ZoneNum) = TempIndCoef / TempDepCoef;
                             } else {
-                                ZTOC(ZoneNum) =
-                                    (Zone1OC(ZoneNum) - TempIndCoef / TempDepCoef) * std::exp(min(700.0, -TempDepCoef / AirCap)) +
-                                    TempIndCoef / TempDepCoef;
+                                ZTOC(ZoneNum) = (Zone1OC(ZoneNum) - TempIndCoef / TempDepCoef) * std::exp(min(700.0, -TempDepCoef / AirCap)) +
+                                                TempIndCoef / TempDepCoef;
                             }
                         }
                     } else if (SELECT_CASE_var == UseEulerMethod) {
@@ -1004,9 +997,8 @@ namespace DisplacementVentMgr {
                             if (AirCap == 0.0) {
                                 ZTMX(ZoneNum) = TempIndCoef / TempDepCoef;
                             } else {
-                                ZTMX(ZoneNum) =
-                                    (Zone1MX(ZoneNum) - TempIndCoef / TempDepCoef) * std::exp(min(700.0, -TempDepCoef / AirCap)) +
-                                    TempIndCoef / TempDepCoef;
+                                ZTMX(ZoneNum) = (Zone1MX(ZoneNum) - TempIndCoef / TempDepCoef) * std::exp(min(700.0, -TempDepCoef / AirCap)) +
+                                                TempIndCoef / TempDepCoef;
                             }
                         }
                     } else if (SELECT_CASE_var == UseEulerMethod) {
@@ -1027,8 +1019,7 @@ namespace DisplacementVentMgr {
         }
 
         //=============================== M I X E D  Calculation ==============================================
-        if (ZTMX(ZoneNum) < ZTOC(ZoneNum) || MCp_Total <= 0.0 ||
-            HeightFrac * CeilingHeight < (HeightFloorSubzoneTop + ThickOccupiedSubzoneMin)) {
+        if (ZTMX(ZoneNum) < ZTOC(ZoneNum) || MCp_Total <= 0.0 || HeightFrac * CeilingHeight < (HeightFloorSubzoneTop + ThickOccupiedSubzoneMin)) {
             MIXFLAG = true;
             HeightFrac = 0.0;
             AvgTempGrad(ZoneNum) = 0.0;
@@ -1101,9 +1092,9 @@ namespace DisplacementVentMgr {
                 ShowWarningError("Displacement ventilation comfort height is in floor subzone in Zone: " + Zone(ZoneNum).Name);
                 TCMF(ZoneNum) = ZTFloor(ZoneNum);
             } else if (HeightComfort >= HeightFloorSubzoneAve && HeightComfort < HeightOccupiedSubzoneAve) {
-                TCMF(ZoneNum) = (ZTFloor(ZoneNum) * (HeightOccupiedSubzoneAve - HeightComfort) +
-                                 ZTOC(ZoneNum) * (HeightComfort - HeightFloorSubzoneAve)) /
-                                (HeightOccupiedSubzoneAve - HeightFloorSubzoneAve);
+                TCMF(ZoneNum) =
+                    (ZTFloor(ZoneNum) * (HeightOccupiedSubzoneAve - HeightComfort) + ZTOC(ZoneNum) * (HeightComfort - HeightFloorSubzoneAve)) /
+                    (HeightOccupiedSubzoneAve - HeightFloorSubzoneAve);
                 //!      TCMF(ZoneNum) = (ZTFloor(ZoneNum) * (HeightOccupiedSubzoneAve - HeightComfort) &
                 //!                    + ZTMX(ZoneNum) * (HeightComfort - HeightFloorSubzoneAve)) &
                 //!                    / (HeightOccupiedSubzoneAve - HeightFloorSubzoneAve)
@@ -1127,16 +1118,16 @@ namespace DisplacementVentMgr {
                 ShowWarningError("Displacement thermostat is in floor subzone in Zone: " + Zone(ZoneNum).Name);
                 TempTstatAir(ZoneNum) = ZTFloor(ZoneNum);
             } else if (HeightThermostat >= HeightFloorSubzoneAve && HeightThermostat < HeightOccupiedSubzoneAve) {
-                TempTstatAir(ZoneNum) = (ZTFloor(ZoneNum) * (HeightOccupiedSubzoneAve - HeightThermostat) +
-                                         ZTOC(ZoneNum) * (HeightThermostat - HeightFloorSubzoneAve)) /
-                                        (HeightOccupiedSubzoneAve - HeightFloorSubzoneAve);
+                TempTstatAir(ZoneNum) =
+                    (ZTFloor(ZoneNum) * (HeightOccupiedSubzoneAve - HeightThermostat) + ZTOC(ZoneNum) * (HeightThermostat - HeightFloorSubzoneAve)) /
+                    (HeightOccupiedSubzoneAve - HeightFloorSubzoneAve);
                 //!      TempTstatAir(ZoneNum) = (ZTFloor(ZoneNum) * (HeightOccupiedSubzoneAve - HeightThermostat) &
                 //!                    + ZTMX(ZoneNum) * (HeightThermostat - HeightFloorSubzoneAve)) &
                 //!                    / (HeightOccupiedSubzoneAve - HeightFloorSubzoneAve)
             } else if (HeightThermostat >= HeightOccupiedSubzoneAve && HeightThermostat < HeightMixedSubzoneAve) {
-                TempTstatAir(ZoneNum) = (ZTOC(ZoneNum) * (HeightMixedSubzoneAve - HeightThermostat) +
-                                         ZTMX(ZoneNum) * (HeightThermostat - HeightOccupiedSubzoneAve)) /
-                                        (HeightMixedSubzoneAve - HeightOccupiedSubzoneAve);
+                TempTstatAir(ZoneNum) =
+                    (ZTOC(ZoneNum) * (HeightMixedSubzoneAve - HeightThermostat) + ZTMX(ZoneNum) * (HeightThermostat - HeightOccupiedSubzoneAve)) /
+                    (HeightMixedSubzoneAve - HeightOccupiedSubzoneAve);
             } else if (HeightThermostat >= HeightMixedSubzoneAve && HeightThermostat <= CeilingHeight) {
                 TempTstatAir(ZoneNum) = ZTMX(ZoneNum);
             } else {

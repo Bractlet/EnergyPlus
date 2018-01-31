@@ -166,8 +166,8 @@ namespace FaultsManager {
 
         // Default Constructor
         FaultProperties()
-            : Name(""), FaultType(""), AvaiSchedule(""), SeveritySchedule(""), FaultTypeEnum(0), AvaiSchedPtr(0), SeveritySchedPtr(0),
-              Offset(0.0), Status(false)
+            : Name(""), FaultType(""), AvaiSchedule(""), SeveritySchedule(""), FaultTypeEnum(0), AvaiSchedPtr(0), SeveritySchedPtr(0), Offset(0.0),
+              Status(false)
         {
         }
 
@@ -262,8 +262,7 @@ namespace FaultsManager {
         // Default Constructor
         FaultPropertiesAirFilter()
             : FaultyAirFilterFanName(""), FaultyAirFilterFanType(""), FaultyAirFilterFanCurve(""), FaultyAirFilterPressFracSche(""),
-              FaultyAirFilterFanCurvePtr(0), FaultyAirFilterPressFracSchePtr(0), FaultyAirFilterFanPressInc(0.0),
-              FaultyAirFilterFanFlowDec(0.0)
+              FaultyAirFilterFanCurvePtr(0), FaultyAirFilterPressFracSchePtr(0), FaultyAirFilterFanPressInc(0.0), FaultyAirFilterFanFlowDec(0.0)
         {
         }
 

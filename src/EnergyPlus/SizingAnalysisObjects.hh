@@ -180,8 +180,7 @@ public:
     Real64 peakDemandReturnTemp;
     Real64 peakDemandMassFlow;
 
-    PlantCoinicidentAnalysis(
-        std::string loopName, int loopIndex, int nodeNum, Real64 density, Real64 cp, int numStepsInAvg, int sizingIndex);
+    PlantCoinicidentAnalysis(std::string loopName, int loopIndex, int nodeNum, Real64 density, Real64 cp, int numStepsInAvg, int sizingIndex);
 
     void ResolveDesignFlowRate(int const HVACSizingIterCount);
 

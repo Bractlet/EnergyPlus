@@ -572,7 +572,7 @@ public: // data public for unit test
     std::vector<std::unique_ptr<GeneratorController>> elecGenCntrlObj; // generator controller objects
     ElectricBussType bussType;                                         // is this load center powered by AC or DC generators
     Real64 thermalProd;                                                // Current thermal energy Produced from generators in load center (J)
-    Real64 thermalProdRate; // Current thermal energy production rate from generators in load center (W)
+    Real64 thermalProdRate;                                            // Current thermal energy production rate from generators in load center (W)
     bool inverterPresent;
     std::string inverterName; // hold name for verificaton and error messages
     std::unique_ptr<DCtoACInverter> inverterObj;
@@ -581,13 +581,13 @@ public: // data public for unit test
     Real64 subpanelFeedInRate; // Current AC electric power fed into main panel by load center, adjusted by inverter if any (W)
     Real64 subpanelDrawRate;   // Current AC electric power draw from main panel into load center (W)
     // storage operation terms,
-    Real64 genElectricProd;    // Current electric produced by generators in the load center, DC or AC (J)
-    Real64 genElectProdRate;   // Current electric power produced by generators in the load center, DC or AC (W)
-    Real64 storOpCVGenRate;    // power from generators (and maybe inverter) going into storage operation control volume, DC or AC ( W )
-    Real64 storOpCVDrawRate;   // power drawn from main panel into storage operation control volume after any converter, DC or AC ( W )
-    Real64 storOpCVFeedInRate; // power fed toward main panel from storage operation control volume before any inverter, DC or AC ( W )
-    Real64 storOpCVChargeRate; // power fed into storage device from storage operation control volume, before any storage losses, DC or AC (
-                               // W )
+    Real64 genElectricProd;       // Current electric produced by generators in the load center, DC or AC (J)
+    Real64 genElectProdRate;      // Current electric power produced by generators in the load center, DC or AC (W)
+    Real64 storOpCVGenRate;       // power from generators (and maybe inverter) going into storage operation control volume, DC or AC ( W )
+    Real64 storOpCVDrawRate;      // power drawn from main panel into storage operation control volume after any converter, DC or AC ( W )
+    Real64 storOpCVFeedInRate;    // power fed toward main panel from storage operation control volume before any inverter, DC or AC ( W )
+    Real64 storOpCVChargeRate;    // power fed into storage device from storage operation control volume, before any storage losses, DC or AC (
+                                  // W )
     Real64 storOpCVDischargeRate; // power drawn from storage device into storage operation control volume, after any storage losses, DC or
                                   // AC ( W )
     bool storOpIsCharging;        // true if storage operation scheme is trying to charge
@@ -639,10 +639,10 @@ private: // data
     int trackStorageOpMeterIndex_;       // points to meter being
     bool converterPresent_;
     std::string converterName_;
-    Real64 maxStorageSOCFraction_; // Fraction of storage capacity used as upper limit for controlling charging (don't overcharge the
-                                   // batteries)
-    Real64 minStorageSOCFraction_; // Fraction of storage capacity used as lower limit for controlling discharging (dont drain the batteries
-                                   // too far)
+    Real64 maxStorageSOCFraction_;           // Fraction of storage capacity used as upper limit for controlling charging (don't overcharge the
+                                             // batteries)
+    Real64 minStorageSOCFraction_;           // Fraction of storage capacity used as lower limit for controlling discharging (dont drain the batteries
+                                             // too far)
     Real64 designStorageChargePower_;        // rate of electric power drawn from grid to go into storage
     bool designStorageChargePowerWasSet_;    // true if a value was input
     Real64 designStorageDischargePower_;     // rate of electric power exported to grid by being drawn from storage
@@ -665,14 +665,14 @@ class ElectricPowerServiceManager //
 public: // Creation
     // Default Constructor
     ElectricPowerServiceManager()
-        : newEnvironmentInternalGainsFlag(true), numElecStorageDevices(0), getInputFlag_(true), newEnvironmentFlag_(true),
-          numLoadCenters_(0), numTransformers_(0), setupMeterIndexFlag_(true), elecFacilityIndex_(0), elecProducedCoGenIndex_(0),
-          elecProducedPVIndex_(0), elecProducedWTIndex_(0), elecProducedStorageIndex_(0), elecProducedPowerConversionIndex_(0),
-          name_("Whole Building"), facilityPowerInTransformerPresent_(false), numPowerOutTransformers_(0), wholeBldgRemainingLoad_(0.0),
-          electricityProd_(0.0), electProdRate_(0.0), electricityPurch_(0.0), electPurchRate_(0.0), electSurplusRate_(0.0),
-          electricitySurplus_(0.0), electricityNetRate_(0.0), electricityNet_(0.0), totalBldgElecDemand_(0.0), totalHVACElecDemand_(0.0),
-          totalElectricDemand_(0.0), elecProducedPVRate_(0.0), elecProducedWTRate_(0.0), elecProducedStorageRate_(0.0),
-          elecProducedPowerConversionRate_(0.0), elecProducedCoGenRate_(0.0)
+        : newEnvironmentInternalGainsFlag(true), numElecStorageDevices(0), getInputFlag_(true), newEnvironmentFlag_(true), numLoadCenters_(0),
+          numTransformers_(0), setupMeterIndexFlag_(true), elecFacilityIndex_(0), elecProducedCoGenIndex_(0), elecProducedPVIndex_(0),
+          elecProducedWTIndex_(0), elecProducedStorageIndex_(0), elecProducedPowerConversionIndex_(0), name_("Whole Building"),
+          facilityPowerInTransformerPresent_(false), numPowerOutTransformers_(0), wholeBldgRemainingLoad_(0.0), electricityProd_(0.0),
+          electProdRate_(0.0), electricityPurch_(0.0), electPurchRate_(0.0), electSurplusRate_(0.0), electricitySurplus_(0.0),
+          electricityNetRate_(0.0), electricityNet_(0.0), totalBldgElecDemand_(0.0), totalHVACElecDemand_(0.0), totalElectricDemand_(0.0),
+          elecProducedPVRate_(0.0), elecProducedWTRate_(0.0), elecProducedStorageRate_(0.0), elecProducedPowerConversionRate_(0.0),
+          elecProducedCoGenRate_(0.0)
     {
     }
 

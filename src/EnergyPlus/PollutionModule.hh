@@ -122,8 +122,8 @@ namespace PollutionModule {
         // Default Constructor
         ComponentProps()
             : FuelFactorType(0), Source(0.0), CO2Pollution(0.0), COPollution(0.0), CH4Pollution(0.0), NOxPollution(0.0), N2OPollution(0.0),
-              SO2Pollution(0.0), PMPollution(0.0), PM10Pollution(0.0), PM25Pollution(0.0), NH3Pollution(0.0), NMVOCPollution(0.0),
-              HgPollution(0.0), PbPollution(0.0), WaterPollution(0.0), NucHiPollution(0.0), NucLoPollution(0.0)
+              SO2Pollution(0.0), PMPollution(0.0), PM10Pollution(0.0), PM25Pollution(0.0), NH3Pollution(0.0), NMVOCPollution(0.0), HgPollution(0.0),
+              PbPollution(0.0), WaterPollution(0.0), NucHiPollution(0.0), NucLoPollution(0.0)
         {
         }
 
@@ -146,11 +146,11 @@ namespace PollutionModule {
                        Real64 const WaterPollution,
                        Real64 const NucHiPollution,
                        Real64 const NucLoPollution)
-            : FuelFactorType(FuelFactorType), Source(Source), CO2Pollution(CO2Pollution), COPollution(COPollution),
-              CH4Pollution(CH4Pollution), NOxPollution(NOxPollution), N2OPollution(N2OPollution), SO2Pollution(SO2Pollution),
-              PMPollution(PMPollution), PM10Pollution(PM10Pollution), PM25Pollution(PM25Pollution), NH3Pollution(NH3Pollution),
-              NMVOCPollution(NMVOCPollution), HgPollution(HgPollution), PbPollution(PbPollution), WaterPollution(WaterPollution),
-              NucHiPollution(NucHiPollution), NucLoPollution(NucLoPollution)
+            : FuelFactorType(FuelFactorType), Source(Source), CO2Pollution(CO2Pollution), COPollution(COPollution), CH4Pollution(CH4Pollution),
+              NOxPollution(NOxPollution), N2OPollution(N2OPollution), SO2Pollution(SO2Pollution), PMPollution(PMPollution),
+              PM10Pollution(PM10Pollution), PM25Pollution(PM25Pollution), NH3Pollution(NH3Pollution), NMVOCPollution(NMVOCPollution),
+              HgPollution(HgPollution), PbPollution(PbPollution), WaterPollution(WaterPollution), NucHiPollution(NucHiPollution),
+              NucLoPollution(NucLoPollution)
         {
         }
     };
@@ -197,10 +197,10 @@ namespace PollutionModule {
 
         // Default Constructor
         CoefficientProps()
-            : FuelFactorType(0), FuelFactorUsed(false), Source(0.0), CO2(0.0), CO(0.0), CH4(0.0), NOx(0.0), N2O(0.0), SO2(0.0), PM(0.0),
-              PM10(0.0), PM25(0.0), NH3(0.0), NMVOC(0.0), Hg(0.0), Pb(0.0), Water(0.0), NucHi(0.0), NucLo(0.0), SourceSched(0), CO2Sched(0),
-              COSched(0), CH4Sched(0), NOxSched(0), N2OSched(0), SO2Sched(0), PMSched(0), PM10Sched(0), PM25Sched(0), NH3Sched(0),
-              NMVOCSched(0), HgSched(0), PbSched(0), WaterSched(0), NucHiSched(0), NucLoSched(0)
+            : FuelFactorType(0), FuelFactorUsed(false), Source(0.0), CO2(0.0), CO(0.0), CH4(0.0), NOx(0.0), N2O(0.0), SO2(0.0), PM(0.0), PM10(0.0),
+              PM25(0.0), NH3(0.0), NMVOC(0.0), Hg(0.0), Pb(0.0), Water(0.0), NucHi(0.0), NucLo(0.0), SourceSched(0), CO2Sched(0), COSched(0),
+              CH4Sched(0), NOxSched(0), N2OSched(0), SO2Sched(0), PMSched(0), PM10Sched(0), PM25Sched(0), NH3Sched(0), NMVOCSched(0), HgSched(0),
+              PbSched(0), WaterSched(0), NucHiSched(0), NucLoSched(0)
         {
         }
 
@@ -241,12 +241,11 @@ namespace PollutionModule {
                          int const WaterSched,
                          int const NucHiSched,
                          int const NucLoSched)
-            : FuelFactorType(FuelFactorType), FuelFactorUsed(FuelFactorUsed), Source(Source), CO2(CO2), CO(CO), CH4(CH4), NOx(NOx),
-              N2O(N2O), SO2(SO2), PM(PM), PM10(PM10), PM25(PM25), NH3(NH3), NMVOC(NMVOC), Hg(Hg), Pb(Pb), Water(Water), NucHi(NucHi),
-              NucLo(NucLo), SourceSched(SourceSched), CO2Sched(CO2Sched), COSched(COSched), CH4Sched(CH4Sched), NOxSched(NOxSched),
-              N2OSched(N2OSched), SO2Sched(SO2Sched), PMSched(PMSched), PM10Sched(PM10Sched), PM25Sched(PM25Sched), NH3Sched(NH3Sched),
-              NMVOCSched(NMVOCSched), HgSched(HgSched), PbSched(PbSched), WaterSched(WaterSched), NucHiSched(NucHiSched),
-              NucLoSched(NucLoSched)
+            : FuelFactorType(FuelFactorType), FuelFactorUsed(FuelFactorUsed), Source(Source), CO2(CO2), CO(CO), CH4(CH4), NOx(NOx), N2O(N2O),
+              SO2(SO2), PM(PM), PM10(PM10), PM25(PM25), NH3(NH3), NMVOC(NMVOC), Hg(Hg), Pb(Pb), Water(Water), NucHi(NucHi), NucLo(NucLo),
+              SourceSched(SourceSched), CO2Sched(CO2Sched), COSched(COSched), CH4Sched(CH4Sched), NOxSched(NOxSched), N2OSched(N2OSched),
+              SO2Sched(SO2Sched), PMSched(PMSched), PM10Sched(PM10Sched), PM25Sched(PM25Sched), NH3Sched(NH3Sched), NMVOCSched(NMVOCSched),
+              HgSched(HgSched), PbSched(PbSched), WaterSched(WaterSched), NucHiSched(NucHiSched), NucLoSched(NucLoSched)
         {
         }
     };
@@ -297,8 +296,8 @@ namespace PollutionModule {
         // Default Constructor
         PollutionProps()
             : N2OPollutTotal(0.0), CH4PollutTotal(0.0), CO2PollutTotal(0.0), TotCarbonEquivFromN2O(0.0), TotCarbonEquivFromCH4(0.0),
-              TotCarbonEquivFromCO2(0.0), CarbonEquivN2O(0.0), CarbonEquivCH4(0.0), CarbonEquivCO2(0.0), PurchHeatEffic(0.0),
-              PurchCoolCOP(0.0), SteamConvEffic(0.0)
+              TotCarbonEquivFromCO2(0.0), CarbonEquivN2O(0.0), CarbonEquivCH4(0.0), CarbonEquivCO2(0.0), PurchHeatEffic(0.0), PurchCoolCOP(0.0),
+              SteamConvEffic(0.0)
         {
         }
 
@@ -338,13 +337,12 @@ namespace PollutionModule {
                        Real64 const PurchCoolCOP,
                        Real64 const SteamConvEffic)
             : ElecComp(ElecComp), ElecPurchComp(ElecPurchComp), ElecSurplusSoldComp(ElecSurplusSoldComp), NatGasComp(NatGasComp),
-              FuelOil1Comp(FuelOil1Comp), FuelOil2Comp(FuelOil2Comp), CoalComp(CoalComp), GasolineComp(GasolineComp),
-              PropaneComp(PropaneComp), DieselComp(DieselComp), OtherFuel1Comp(OtherFuel1Comp), OtherFuel2Comp(OtherFuel2Comp),
-              N2OPollutTotal(N2OPollutTotal), CH4PollutTotal(CH4PollutTotal), CO2PollutTotal(CO2PollutTotal),
-              TotCarbonEquivFromN2O(TotCarbonEquivFromN2O), TotCarbonEquivFromCH4(TotCarbonEquivFromCH4),
-              TotCarbonEquivFromCO2(TotCarbonEquivFromCO2), ElecCoef(ElecCoef), NatGasCoef(NatGasCoef), FuelOil1Coef(FuelOil1Coef),
-              FuelOil2Coef(FuelOil2Coef), CoalCoef(CoalCoef), GasolineCoef(GasolineCoef), PropaneCoef(PropaneCoef), DieselCoef(DieselCoef),
-              OtherFuel1Coef(OtherFuel1Coef), OtherFuel2Coef(OtherFuel2Coef), CarbonEquivN2O(CarbonEquivN2O),
+              FuelOil1Comp(FuelOil1Comp), FuelOil2Comp(FuelOil2Comp), CoalComp(CoalComp), GasolineComp(GasolineComp), PropaneComp(PropaneComp),
+              DieselComp(DieselComp), OtherFuel1Comp(OtherFuel1Comp), OtherFuel2Comp(OtherFuel2Comp), N2OPollutTotal(N2OPollutTotal),
+              CH4PollutTotal(CH4PollutTotal), CO2PollutTotal(CO2PollutTotal), TotCarbonEquivFromN2O(TotCarbonEquivFromN2O),
+              TotCarbonEquivFromCH4(TotCarbonEquivFromCH4), TotCarbonEquivFromCO2(TotCarbonEquivFromCO2), ElecCoef(ElecCoef), NatGasCoef(NatGasCoef),
+              FuelOil1Coef(FuelOil1Coef), FuelOil2Coef(FuelOil2Coef), CoalCoef(CoalCoef), GasolineCoef(GasolineCoef), PropaneCoef(PropaneCoef),
+              DieselCoef(DieselCoef), OtherFuel1Coef(OtherFuel1Coef), OtherFuel2Coef(OtherFuel2Coef), CarbonEquivN2O(CarbonEquivN2O),
               CarbonEquivCH4(CarbonEquivCH4), CarbonEquivCO2(CarbonEquivCO2), PurchHeatEffic(PurchHeatEffic), PurchCoolCOP(PurchCoolCOP),
               SteamConvEffic(SteamConvEffic)
         {
@@ -406,13 +404,12 @@ namespace PollutionModule {
 
         // Default Constructor
         FuelTypeProps()
-            : FuelTypeNames({1, PollFactorNumTypes}), Elec(0.0), NatGas(0.0), FuelOil1(0.0), FuelOil2(0.0), Coal(0.0), Gasoline(0.0),
-              Propane(0.0), Diesel(0.0), OtherFuel1(0.0), OtherFuel2(0.0), ElecPurch(0.0), ElecSold(0.0), ElecFacilityIndex(0),
-              DieselFacilityIndex(0), PurchCoolFacilityIndex(0), PurchHeatFacilityIndex(0), NatGasFacilityIndex(0),
-              GasolineFacilityIndex(0), CoalFacilityIndex(0), FuelOil1FacilityIndex(0), FuelOil2FacilityIndex(0), PropaneFacilityIndex(0),
-              OtherFuel1FacilityIndex(0), OtherFuel2FacilityIndex(0), ElecProducedFacilityIndex(0), SteamFacilityIndex(0),
-              ElecPurchasedFacilityIndex(0), ElecSurplusSoldFacilityIndex(0), ElecFacility(0.0), DieselFacility(0.0),
-              PurchCoolFacility(0.0), PurchHeatFacility(0.0), NatGasFacility(0.0), GasolineFacility(0.0), CoalFacility(0.0),
+            : FuelTypeNames({1, PollFactorNumTypes}), Elec(0.0), NatGas(0.0), FuelOil1(0.0), FuelOil2(0.0), Coal(0.0), Gasoline(0.0), Propane(0.0),
+              Diesel(0.0), OtherFuel1(0.0), OtherFuel2(0.0), ElecPurch(0.0), ElecSold(0.0), ElecFacilityIndex(0), DieselFacilityIndex(0),
+              PurchCoolFacilityIndex(0), PurchHeatFacilityIndex(0), NatGasFacilityIndex(0), GasolineFacilityIndex(0), CoalFacilityIndex(0),
+              FuelOil1FacilityIndex(0), FuelOil2FacilityIndex(0), PropaneFacilityIndex(0), OtherFuel1FacilityIndex(0), OtherFuel2FacilityIndex(0),
+              ElecProducedFacilityIndex(0), SteamFacilityIndex(0), ElecPurchasedFacilityIndex(0), ElecSurplusSoldFacilityIndex(0), ElecFacility(0.0),
+              DieselFacility(0.0), PurchCoolFacility(0.0), PurchHeatFacility(0.0), NatGasFacility(0.0), GasolineFacility(0.0), CoalFacility(0.0),
               FuelOil1Facility(0.0), FuelOil2Facility(0.0), PropaneFacility(0.0), OtherFuel1Facility(0.0), OtherFuel2Facility(0.0),
               ElecProducedFacility(0.0), SteamFacility(0.0), ElecPurchasedFacility(0.0), ElecSurplusSoldFacility(0.0)
         {

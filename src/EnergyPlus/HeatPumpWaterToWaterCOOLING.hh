@@ -145,11 +145,10 @@ namespace HeatPumpWaterToWaterCOOLING {
         GshpSpecs()
             : Available(false), ON(false), COP(0.0), NomCap(0.0), MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0),
               LoadSideVolFlowRate(0.0), LoadSideDesignMassFlow(0.0), SourceSideVolFlowRate(0.0), SourceSideDesignMassFlow(0.0),
-              SourceSideInletNodeNum(0), SourceSideOutletNodeNum(0), LoadSideInletNodeNum(0), LoadSideOutletNodeNum(0),
-              SourceSideUACoeff(0.0), LoadSideUACoeff(0.0), CompPistonDisp(0.0), CompClearanceFactor(0.0), CompSucPressDrop(0.0),
-              SuperheatTemp(0.0), PowerLosses(0.0), LossFactor(0.0), HighPressCutoff(0.0), LowPressCutoff(0.0), IsOn(false), MustRun(false),
-              SourceLoopNum(0), SourceLoopSideNum(0), SourceBranchNum(0), SourceCompNum(0), LoadLoopNum(0), LoadLoopSideNum(0),
-              LoadBranchNum(0), LoadCompNum(0), CondMassFlowIndex(0)
+              SourceSideInletNodeNum(0), SourceSideOutletNodeNum(0), LoadSideInletNodeNum(0), LoadSideOutletNodeNum(0), SourceSideUACoeff(0.0),
+              LoadSideUACoeff(0.0), CompPistonDisp(0.0), CompClearanceFactor(0.0), CompSucPressDrop(0.0), SuperheatTemp(0.0), PowerLosses(0.0),
+              LossFactor(0.0), HighPressCutoff(0.0), LowPressCutoff(0.0), IsOn(false), MustRun(false), SourceLoopNum(0), SourceLoopSideNum(0),
+              SourceBranchNum(0), SourceCompNum(0), LoadLoopNum(0), LoadLoopSideNum(0), LoadBranchNum(0), LoadCompNum(0), CondMassFlowIndex(0)
         {
         }
     };
@@ -174,8 +173,8 @@ namespace HeatPumpWaterToWaterCOOLING {
         // Default Constructor
         ReportVars()
             : Power(0.0), Energy(0.0), QLoad(0.0), QLoadEnergy(0.0), QSource(0.0), QSourceEnergy(0.0), LoadSideWaterInletTemp(0.0),
-              SourceSideWaterInletTemp(0.0), LoadSideWaterOutletTemp(0.0), SourceSideWaterOutletTemp(0.0), LoadSidemdot(0.0),
-              SourceSidemdot(0.0), Running(0)
+              SourceSideWaterInletTemp(0.0), LoadSideWaterOutletTemp(0.0), SourceSideWaterOutletTemp(0.0), LoadSidemdot(0.0), SourceSidemdot(0.0),
+              Running(0)
         {
         }
     };

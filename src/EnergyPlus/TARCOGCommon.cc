@@ -95,8 +95,7 @@ namespace TARCOGCommon {
         // Return value
         bool IsShadingLayer;
 
-        if ((layertype == VENETBLIND) || (layertype == WOVSHADE) || (layertype == PERFORATED) || (layertype == BSDF) ||
-            (layertype == DIFFSHADE)) {
+        if ((layertype == VENETBLIND) || (layertype == WOVSHADE) || (layertype == PERFORATED) || (layertype == BSDF) || (layertype == DIFFSHADE)) {
             IsShadingLayer = true;
         } else {
             IsShadingLayer = false;

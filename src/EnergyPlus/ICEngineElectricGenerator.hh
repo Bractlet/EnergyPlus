@@ -142,16 +142,15 @@ namespace ICEngineElectricGenerator {
         // Default Constructor
         ICEngineGeneratorSpecs()
             : TypeOf("Generator:InternalCombustionEngine"), CompType_Num(iGeneratorICEngine), RatedPowerOutput(0.0), ElectricCircuitNode(0),
-              MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), ElecOutputFuelRat(0.0), ElecOutputFuelCurve(0),
-              RecJacHeattoFuelRat(0.0), RecJacHeattoFuelCurve(0), RecLubeHeattoFuelRat(0.0), RecLubeHeattoFuelCurve(0),
-              TotExhausttoFuelRat(0.0), TotExhausttoFuelCurve(0), ExhaustTemp(0.0), ExhaustTempCurve(0), ErrExhaustTempIndex(0), UA(0.0),
-              UACoef(2, 0.0), MaxExhaustperPowerOutput(0.0), DesignMinExitGasTemp(0.0), FuelHeatingValue(0.0),
-              DesignHeatRecVolFlowRate(0.0), DesignHeatRecMassFlowRate(0.0), HeatRecActive(false), HeatRecInletNodeNum(0),
-              HeatRecOutletNodeNum(0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdotDesign(0.0), HeatRecMdotActual(0.0),
-              QTotalHeatRecovered(0.0), QJacketRecovered(0.0), QLubeOilRecovered(0.0), QExhaustRecovered(0.0), FuelEnergyUseRate(0.0),
-              TotalHeatEnergyRec(0.0), JacketEnergyRec(0.0), LubeOilEnergyRec(0.0), ExhaustEnergyRec(0.0), FuelEnergy(0.0), FuelMdot(0.0),
-              ExhaustStackTemp(0.0), ElecPowerGenerated(0.0), ElecEnergyGenerated(0.0), HeatRecMaxTemp(0.0), HRLoopNum(0), HRLoopSideNum(0),
-              HRBranchNum(0), HRCompNum(0)
+              MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), ElecOutputFuelRat(0.0), ElecOutputFuelCurve(0), RecJacHeattoFuelRat(0.0),
+              RecJacHeattoFuelCurve(0), RecLubeHeattoFuelRat(0.0), RecLubeHeattoFuelCurve(0), TotExhausttoFuelRat(0.0), TotExhausttoFuelCurve(0),
+              ExhaustTemp(0.0), ExhaustTempCurve(0), ErrExhaustTempIndex(0), UA(0.0), UACoef(2, 0.0), MaxExhaustperPowerOutput(0.0),
+              DesignMinExitGasTemp(0.0), FuelHeatingValue(0.0), DesignHeatRecVolFlowRate(0.0), DesignHeatRecMassFlowRate(0.0), HeatRecActive(false),
+              HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdotDesign(0.0),
+              HeatRecMdotActual(0.0), QTotalHeatRecovered(0.0), QJacketRecovered(0.0), QLubeOilRecovered(0.0), QExhaustRecovered(0.0),
+              FuelEnergyUseRate(0.0), TotalHeatEnergyRec(0.0), JacketEnergyRec(0.0), LubeOilEnergyRec(0.0), ExhaustEnergyRec(0.0), FuelEnergy(0.0),
+              FuelMdot(0.0), ExhaustStackTemp(0.0), ElecPowerGenerated(0.0), ElecEnergyGenerated(0.0), HeatRecMaxTemp(0.0), HRLoopNum(0),
+              HRLoopSideNum(0), HRBranchNum(0), HRCompNum(0)
         {
         }
     };
@@ -179,10 +178,9 @@ namespace ICEngineElectricGenerator {
 
         // Default Constructor
         ReportVars()
-            : PowerGen(0.0), EnergyGen(0.0), QJacketRecovered(0.0), QLubeOilRecovered(0.0), QExhaustRecovered(0.0),
-              QTotalHeatRecovered(0.0), TotalHeatEnergyRec(0.0), JacketEnergyRec(0.0), LubeOilEnergyRec(0.0), ExhaustEnergyRec(0.0),
-              FuelEnergy(0.0), FuelEnergyUseRate(0.0), FuelMdot(0.0), ExhaustStackTemp(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0),
-              HeatRecMdot(0.0)
+            : PowerGen(0.0), EnergyGen(0.0), QJacketRecovered(0.0), QLubeOilRecovered(0.0), QExhaustRecovered(0.0), QTotalHeatRecovered(0.0),
+              TotalHeatEnergyRec(0.0), JacketEnergyRec(0.0), LubeOilEnergyRec(0.0), ExhaustEnergyRec(0.0), FuelEnergy(0.0), FuelEnergyUseRate(0.0),
+              FuelMdot(0.0), ExhaustStackTemp(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0)
         {
         }
     };

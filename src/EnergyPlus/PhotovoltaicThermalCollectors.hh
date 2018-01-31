@@ -174,10 +174,10 @@ namespace PhotovoltaicThermalCollectors {
 
         // Default Constructor
         PVTCollectorStruct()
-            : WLoopNum(0), WLoopSideNum(0), WLoopBranchNum(0), WLoopCompNum(0), EnvrnInit(true), SizingInit(true), PVTModelType(0),
-              SurfNum(0), PVnum(0), PVfound(false), WorkingFluidType(0), PlantInletNodeNum(0), PlantOutletNodeNum(0), HVACInletNodeNum(0),
-              HVACOutletNodeNum(0), DesignVolFlowRate(0.0), DesignVolFlowRateWasAutoSized(false), MaxMassFlowRate(0.0), MassFlowRate(0.0),
-              AreaCol(0.0), BypassDamperOff(true), CoolingUseful(false), HeatingUseful(false)
+            : WLoopNum(0), WLoopSideNum(0), WLoopBranchNum(0), WLoopCompNum(0), EnvrnInit(true), SizingInit(true), PVTModelType(0), SurfNum(0),
+              PVnum(0), PVfound(false), WorkingFluidType(0), PlantInletNodeNum(0), PlantOutletNodeNum(0), HVACInletNodeNum(0), HVACOutletNodeNum(0),
+              DesignVolFlowRate(0.0), DesignVolFlowRateWasAutoSized(false), MaxMassFlowRate(0.0), MassFlowRate(0.0), AreaCol(0.0),
+              BypassDamperOff(true), CoolingUseful(false), HeatingUseful(false)
         {
         }
     };

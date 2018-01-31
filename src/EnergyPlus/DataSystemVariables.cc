@@ -133,8 +133,8 @@ namespace DataSystemVariables {
     //  each individual HVAC controller with all controller iterations
 
     std::string const MinReportFrequencyEnvVar("MINREPORTFREQUENCY"); // environment var for reporting frequency.
-    std::string const cDisplayInputInAuditEnvVar(
-        "DISPLAYINPUTINAUDIT"); // environmental variable that enables the echoing of the input file into the audit file
+    std::string const
+        cDisplayInputInAuditEnvVar("DISPLAYINPUTINAUDIT"); // environmental variable that enables the echoing of the input file into the audit file
 
     // DERIVED TYPE DEFINITIONS
     // na
@@ -162,8 +162,8 @@ namespace DataSystemVariables {
     bool ReportDuringHVACSizingSimulation(false);        // true when reporting outputs during HVAC sizing Simulation
     bool ReportDetailedWarmupConvergence(false);         // True when the detailed warmup convergence is requested
     bool UpdateDataDuringWarmupExternalInterface(false); // variable sets in the external interface.
-    bool UseScheduledSunlitFrac(false);     // when true, the sunlit fraction for all surfaces are imported from schedule inputs
-    bool ReportExtShadingSunlitFrac(false); // when true, the sunlit fraction for all surfaces are exported as a csv format output
+    bool UseScheduledSunlitFrac(false);                  // when true, the sunlit fraction for all surfaces are imported from schedule inputs
+    bool ReportExtShadingSunlitFrac(false);              // when true, the sunlit fraction for all surfaces are exported as a csv format output
     // This update the value during the warmup added for FMI
     Real64 Elapsed_Time(0.0);        // For showing elapsed time at end of run
     Real64 Time_Start(0.0);          // Call to CPU_Time for start time of simulation

@@ -142,10 +142,9 @@ namespace DataDefineEquip {
             : OutletNodeNum(0), NumComponents(0), NumControls(0), EquipType(MaxZoneAirComponents), EquipType_Num(MaxZoneAirComponents, 0),
               airTerminalPtr(nullptr), EquipName(MaxZoneAirComponents), EquipIndex(MaxZoneAirComponents, 0), AirTerminalSizingSpecIndex(0),
               TermUnitSizingNum(0), UpStreamLeakFrac(0.0), DownStreamLeakFrac(0.0), MassFlowRateUpStrLk(0.0), MassFlowRateDnStrLk(0.0),
-              MassFlowRateTU(0.0), MassFlowRateZSup(0.0), MassFlowRateSup(0.0), MassFlowRatePlenInd(0.0), MaxAvailDelta(0.0),
-              MinAvailDelta(0.0), InletNodeNum(0), InletNodeNum2(0), ZoneEqNum(0), AirLoopNum(0), LeakLoadMult(0.0), UpStreamLeak(false),
-              DownStreamLeak(false), RetPlenumNum(0), ZoneNum(0), AccountForDOAS(false), HeatRate(0.0), CoolRate(0.0), HeatGain(0.0),
-              CoolGain(0.0)
+              MassFlowRateTU(0.0), MassFlowRateZSup(0.0), MassFlowRateSup(0.0), MassFlowRatePlenInd(0.0), MaxAvailDelta(0.0), MinAvailDelta(0.0),
+              InletNodeNum(0), InletNodeNum2(0), ZoneEqNum(0), AirLoopNum(0), LeakLoadMult(0.0), UpStreamLeak(false), DownStreamLeak(false),
+              RetPlenumNum(0), ZoneNum(0), AccountForDOAS(false), HeatRate(0.0), CoolRate(0.0), HeatGain(0.0), CoolGain(0.0)
         {
         }
     };

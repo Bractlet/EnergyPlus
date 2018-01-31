@@ -75,15 +75,11 @@ AnnualFieldSet::AnnualFieldSet(std::string varName, AnnualFieldSet::AggregationK
 int AnnualFieldSet::getVariableKeyCountandTypeFromFldSt(int &typeVar, int &avgSumVar, int &stepTypeVar, OutputProcessor::Unit &unitsVar)
 {
     int numkeys;
-    GetVariableKeyCountandType(m_variMeter, numkeys, typeVar, avgSumVar, stepTypeVar,
-                               unitsVar); // call outputprocessor routine with member variable
+    GetVariableKeyCountandType(m_variMeter, numkeys, typeVar, avgSumVar, stepTypeVar, unitsVar); // call outputprocessor routine with member variable
     return numkeys;
 }
 
-void AnnualFieldSet::getVariableKeysFromFldSt(int &typeVar,
-                                              int keyCount,
-                                              std::vector<std::string> &namesOfKeys,
-                                              std::vector<int> &indexesForKeyVar)
+void AnnualFieldSet::getVariableKeysFromFldSt(int &typeVar, int keyCount, std::vector<std::string> &namesOfKeys, std::vector<int> &indexesForKeyVar)
 {
     // this hides the Objexx arrays and returns regular vectors
     Array1D_string tempNamesOfKeys;

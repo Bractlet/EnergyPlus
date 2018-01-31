@@ -257,8 +257,7 @@ namespace GroundHeatExchangers {
 
     //******************************************************************************
 
-    std::shared_ptr<GLHEResponseFactorsStruct>
-    BuildAndGetResponseFactorObjectFromArray(std::shared_ptr<GLHEVertArrayStruct> const &arrayObjectPtr)
+    std::shared_ptr<GLHEResponseFactorsStruct> BuildAndGetResponseFactorObjectFromArray(std::shared_ptr<GLHEVertArrayStruct> const &arrayObjectPtr)
     {
         // Make new response factor object and store it for later use
         std::shared_ptr<GLHEResponseFactorsStruct> thisRF(new GLHEResponseFactorsStruct);
@@ -273,8 +272,8 @@ namespace GroundHeatExchangers {
             for (int yBH = 1; yBH <= arrayObjectPtr->numBHinYDirection; ++yBH) {
                 bhCounter += 1;
                 std::shared_ptr<GLHEVertSingleStruct> thisBH(new GLHEVertSingleStruct);
-                thisBH->name = thisRF->name + " BH " + std::to_string(bhCounter) + " loc: (" + std::to_string(xLoc) + ", " +
-                               std::to_string(yLoc) + ")";
+                thisBH->name =
+                    thisRF->name + " BH " + std::to_string(bhCounter) + " loc: (" + std::to_string(xLoc) + ", " + std::to_string(yLoc) + ")";
                 thisBH->props = GetVertProps(arrayObjectPtr->props->name);
                 thisBH->xLoc = xLoc;
                 thisBH->yLoc = yLoc;
@@ -726,8 +725,7 @@ namespace GroundHeatExchangers {
         Real64 const radius_pipe_out = std::sqrt(2) * pipe.outRadius;
         Real64 const radius_pipe_in = radius_pipe_out - pipe_thickness;
         Real64 const radius_conv = radius_pipe_in - num_conv_cells * pcf_cell_thickness;
-        Real64 const radius_fluid =
-            radius_conv - (num_fluid_cells - 0.5) * pcf_cell_thickness; // accounts for half thickness of boundary cell
+        Real64 const radius_fluid = radius_conv - (num_fluid_cells - 0.5) * pcf_cell_thickness; // accounts for half thickness of boundary cell
 
         // setup grout layer geometry
         int const num_grout_cells = 27;
@@ -749,10 +747,8 @@ namespace GroundHeatExchangers {
         Real64 bh_equivalent_resistance_convection = bhResistance - bh_equivalent_resistance_tube_grout;
 
         Real64 initial_temperature = inletTemp;
-        Real64 cpFluid_init =
-            GetSpecificHeatGlycol(PlantLoop(loopNum).FluidName, initial_temperature, PlantLoop(loopNum).FluidIndex, RoutineName);
-        Real64 fluidDensity_init =
-            GetDensityGlycol(PlantLoop(loopNum).FluidName, initial_temperature, PlantLoop(loopNum).FluidIndex, RoutineName);
+        Real64 cpFluid_init = GetSpecificHeatGlycol(PlantLoop(loopNum).FluidName, initial_temperature, PlantLoop(loopNum).FluidIndex, RoutineName);
+        Real64 fluidDensity_init = GetDensityGlycol(PlantLoop(loopNum).FluidName, initial_temperature, PlantLoop(loopNum).FluidIndex, RoutineName);
 
         // initialize the fluid cells
         for (int i = 0; i < num_fluid_cells; ++i) {
@@ -1395,8 +1391,8 @@ namespace GroundHeatExchangers {
 
     //******************************************************************************
 
-    Real64 GLHESlinky::nearFieldResponseFunction(
-        int const m, int const n, int const m1, int const n1, Real64 const eta, Real64 const theta, Real64 const t)
+    Real64
+    GLHESlinky::nearFieldResponseFunction(int const m, int const n, int const m1, int const n1, Real64 const eta, Real64 const theta, Real64 const t)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR:          Matt Mitchell
@@ -1765,10 +1761,9 @@ namespace GroundHeatExchangers {
         static Real64 ToutNew(19.375);
         Real64 fluidAveTemp;
         Real64 C_1;
-        int numOfMonths;  // the number of months of simulation elapsed
-        int currentMonth; // The Month up to which the monthly blocks are superposed
-        Real64
-            sumQnMonthly; // tmp variable which holds the sum of the Temperature difference due to Aggregated heat extraction/rejection step
+        int numOfMonths;       // the number of months of simulation elapsed
+        int currentMonth;      // The Month up to which the monthly blocks are superposed
+        Real64 sumQnMonthly;   // tmp variable which holds the sum of the Temperature difference due to Aggregated heat extraction/rejection step
         Real64 sumQnHourly;    // same as above for hourly
         Real64 sumQnSubHourly; // same as above for sub-hourly( with no aggregation]
         Real64 RQMonth;
@@ -2587,20 +2582,20 @@ namespace GroundHeatExchangers {
             // Set up report variables
             for (int GLHENum = 0; GLHENum < numVerticalGLHEs; ++GLHENum) {
                 auto &thisGLHE(verticalGLHE[GLHENum]);
-                SetupOutputVariable("Ground Heat Exchanger Average Borehole Temperature", OutputProcessor::Unit::C, thisGLHE.bhTemp,
-                                    "System", "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Heat Transfer Rate", OutputProcessor::Unit::W, thisGLHE.QGLHE, "System",
+                SetupOutputVariable("Ground Heat Exchanger Average Borehole Temperature", OutputProcessor::Unit::C, thisGLHE.bhTemp, "System",
                                     "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Inlet Temperature", OutputProcessor::Unit::C, thisGLHE.inletTemp, "System",
+                SetupOutputVariable("Ground Heat Exchanger Heat Transfer Rate", OutputProcessor::Unit::W, thisGLHE.QGLHE, "System", "Average",
+                                    thisGLHE.name);
+                SetupOutputVariable("Ground Heat Exchanger Inlet Temperature", OutputProcessor::Unit::C, thisGLHE.inletTemp, "System", "Average",
+                                    thisGLHE.name);
+                SetupOutputVariable("Ground Heat Exchanger Outlet Temperature", OutputProcessor::Unit::C, thisGLHE.outletTemp, "System", "Average",
+                                    thisGLHE.name);
+                SetupOutputVariable("Ground Heat Exchanger Mass Flow Rate", OutputProcessor::Unit::kg_s, thisGLHE.massFlowRate, "System", "Average",
+                                    thisGLHE.name);
+                SetupOutputVariable("Ground Heat Exchanger Average Fluid Temperature", OutputProcessor::Unit::C, thisGLHE.aveFluidTemp, "System",
                                     "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Outlet Temperature", OutputProcessor::Unit::C, thisGLHE.outletTemp, "System",
+                SetupOutputVariable("Ground Heat Exchanger Farfield Ground Temperature", OutputProcessor::Unit::C, thisGLHE.tempGround, "System",
                                     "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Mass Flow Rate", OutputProcessor::Unit::kg_s, thisGLHE.massFlowRate, "System",
-                                    "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Average Fluid Temperature", OutputProcessor::Unit::C, thisGLHE.aveFluidTemp,
-                                    "System", "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Farfield Ground Temperature", OutputProcessor::Unit::C, thisGLHE.tempGround,
-                                    "System", "Average", thisGLHE.name);
             }
         }
 
@@ -2705,10 +2700,8 @@ namespace GroundHeatExchangers {
                     if (thisGLHE.trenchDepth - thisGLHE.coilDiameter < 0.0) {
                         // Error: part of the coil is above ground
                         ShowSevereError(DataIPShortCuts::cCurrentModuleObject + "=\"" + thisGLHE.name + "\", invalid value in field.");
-                        ShowContinueError("..." + DataIPShortCuts::cNumericFieldNames(13) + "=[" + RoundSigDigits(thisGLHE.trenchDepth, 3) +
-                                          "].");
-                        ShowContinueError("..." + DataIPShortCuts::cNumericFieldNames(10) + "=[" + RoundSigDigits(thisGLHE.coilDepth, 3) +
-                                          "].");
+                        ShowContinueError("..." + DataIPShortCuts::cNumericFieldNames(13) + "=[" + RoundSigDigits(thisGLHE.trenchDepth, 3) + "].");
+                        ShowContinueError("..." + DataIPShortCuts::cNumericFieldNames(10) + "=[" + RoundSigDigits(thisGLHE.coilDepth, 3) + "].");
                         ShowContinueError("...Average coil depth will be <=0.");
                         errorsFound = true;
 
@@ -2730,10 +2723,8 @@ namespace GroundHeatExchangers {
 
                 if (thisGLHE.pipe.thickness >= thisGLHE.pipe.outDia / 2.0) {
                     ShowSevereError(DataIPShortCuts::cCurrentModuleObject + "=\"" + thisGLHE.name + "\", invalid value in field.");
-                    ShowContinueError("..." + DataIPShortCuts::cNumericFieldNames(12) + "=[" + RoundSigDigits(thisGLHE.pipe.thickness, 3) +
-                                      "].");
-                    ShowContinueError("..." + DataIPShortCuts::cNumericFieldNames(10) + "=[" + RoundSigDigits(thisGLHE.pipe.outDia, 3) +
-                                      "].");
+                    ShowContinueError("..." + DataIPShortCuts::cNumericFieldNames(12) + "=[" + RoundSigDigits(thisGLHE.pipe.thickness, 3) + "].");
+                    ShowContinueError("..." + DataIPShortCuts::cNumericFieldNames(10) + "=[" + RoundSigDigits(thisGLHE.pipe.outDia, 3) + "].");
                     ShowContinueError("...Radius will be <=0.");
                     errorsFound = true;
                 }
@@ -2755,18 +2746,18 @@ namespace GroundHeatExchangers {
             // Set up report variables
             for (int GLHENum = 0; GLHENum < numSlinkyGLHEs; ++GLHENum) {
                 auto &thisGLHE(slinkyGLHE[GLHENum]);
-                SetupOutputVariable("Ground Heat Exchanger Average Borehole Temperature", OutputProcessor::Unit::C, thisGLHE.bhTemp,
-                                    "System", "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Heat Transfer Rate", OutputProcessor::Unit::W, thisGLHE.QGLHE, "System",
+                SetupOutputVariable("Ground Heat Exchanger Average Borehole Temperature", OutputProcessor::Unit::C, thisGLHE.bhTemp, "System",
                                     "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Inlet Temperature", OutputProcessor::Unit::C, thisGLHE.inletTemp, "System",
+                SetupOutputVariable("Ground Heat Exchanger Heat Transfer Rate", OutputProcessor::Unit::W, thisGLHE.QGLHE, "System", "Average",
+                                    thisGLHE.name);
+                SetupOutputVariable("Ground Heat Exchanger Inlet Temperature", OutputProcessor::Unit::C, thisGLHE.inletTemp, "System", "Average",
+                                    thisGLHE.name);
+                SetupOutputVariable("Ground Heat Exchanger Outlet Temperature", OutputProcessor::Unit::C, thisGLHE.outletTemp, "System", "Average",
+                                    thisGLHE.name);
+                SetupOutputVariable("Ground Heat Exchanger Mass Flow Rate", OutputProcessor::Unit::kg_s, thisGLHE.massFlowRate, "System", "Average",
+                                    thisGLHE.name);
+                SetupOutputVariable("Ground Heat Exchanger Average Fluid Temperature", OutputProcessor::Unit::C, thisGLHE.aveFluidTemp, "System",
                                     "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Outlet Temperature", OutputProcessor::Unit::C, thisGLHE.outletTemp, "System",
-                                    "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Mass Flow Rate", OutputProcessor::Unit::kg_s, thisGLHE.massFlowRate, "System",
-                                    "Average", thisGLHE.name);
-                SetupOutputVariable("Ground Heat Exchanger Average Fluid Temperature", OutputProcessor::Unit::C, thisGLHE.aveFluidTemp,
-                                    "System", "Average", thisGLHE.name);
             }
         }
     }
@@ -2852,8 +2843,7 @@ namespace GroundHeatExchangers {
         if (massFlowRate <= 0.0) {
             return 0;
         } else {
-            Real64 const cpFluid =
-                GetSpecificHeatGlycol(PlantLoop(loopNum).FluidName, inletTemp, PlantLoop(loopNum).FluidIndex, RoutineName);
+            Real64 const cpFluid = GetSpecificHeatGlycol(PlantLoop(loopNum).FluidName, inletTemp, PlantLoop(loopNum).FluidIndex, RoutineName);
             return calcBHAverageResistance() + 1 / (3 * calcBHTotalInternalResistance()) * pow_2(bhLength / (massFlowRate * cpFluid));
         }
     }
@@ -2892,8 +2882,7 @@ namespace GroundHeatExchangers {
 
         Real64 const cpFluid = GetSpecificHeatGlycol(PlantLoop(loopNum).FluidName, inletTemp, PlantLoop(loopNum).FluidIndex, RoutineName);
         Real64 const kFluid = GetConductivityGlycol(PlantLoop(loopNum).FluidName, inletTemp, PlantLoop(loopNum).FluidIndex, RoutineName);
-        Real64 const fluidViscosity =
-            GetViscosityGlycol(PlantLoop(loopNum).FluidName, inletTemp, PlantLoop(loopNum).FluidIndex, RoutineName);
+        Real64 const fluidViscosity = GetViscosityGlycol(PlantLoop(loopNum).FluidName, inletTemp, PlantLoop(loopNum).FluidIndex, RoutineName);
 
         // Smoothing fit limits
         Real64 const lower_limit = 2000;
@@ -2910,8 +2899,7 @@ namespace GroundHeatExchangers {
             Real64 const nu_low = 4.01;                   // laminar
             Real64 const f = frictionFactor(reynoldsNum); // turbulent
             Real64 const prandtlNum = (cpFluid * fluidViscosity) / (kFluid);
-            Real64 const nu_high =
-                (f / 8) * (reynoldsNum - 1000) * prandtlNum / (1 + 12.7 * std::sqrt(f / 8) * (pow(prandtlNum, 2.0 / 3.0) - 1));
+            Real64 const nu_high = (f / 8) * (reynoldsNum - 1000) * prandtlNum / (1 + 12.7 * std::sqrt(f / 8) * (pow(prandtlNum, 2.0 / 3.0) - 1));
             Real64 const sigma = 1 / (1 + std::exp(-(reynoldsNum - 3000) / 150.0)); // smoothing function
             nusseltNum = (1 - sigma) * nu_low + sigma * nu_high;
         } else {
@@ -3028,8 +3016,7 @@ namespace GroundHeatExchangers {
             Rconv = 0.0;
         } else {
             // Re=Rho*V*D/Mu
-            reynoldsNum =
-                fluidDensity * pipeInnerDia * (singleSlinkyMassFlowRate / fluidDensity / (Pi * pow_2(pipeInnerRad))) / fluidViscosity;
+            reynoldsNum = fluidDensity * pipeInnerDia * (singleSlinkyMassFlowRate / fluidDensity / (Pi * pow_2(pipeInnerRad))) / fluidViscosity;
             prandtlNum = (cpFluid * fluidViscosity) / (kFluid);
             //   Convection Resistance
             if (reynoldsNum <= 2300) {

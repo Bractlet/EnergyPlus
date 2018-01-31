@@ -91,43 +91,41 @@ namespace DataHVACGlobals {
     int const NumOfSizingTypes(33); // number of sizing types
 
     // Sizing types
-    int const CoolingAirflowSizing(1);                    // request sizing for cooling air flow rate
-    int const CoolingWaterflowSizing(2);                  // request sizing for cooling water flow rate
-    int const HeatingWaterflowSizing(3);                  // request sizing for heating coil water flow rate
-    int const CoolingWaterDesAirInletTempSizing(4);       // request sizing for cooling water coil inlet air temp
-    int const CoolingWaterDesAirInletHumRatSizing(5);     // request sizing for cooling water coil inlet air humidity ratio
-    int const CoolingWaterDesWaterInletTempSizing(6);     // request sizing for cooling water coil inlet water temp
-    int const CoolingWaterDesAirOutletTempSizing(7);      // request sizing for cooling water coil outlet air temp
-    int const CoolingWaterDesAirOutletHumRatSizing(8);    // request sizing for cooling water coil outlet air humidity ratio
-    int const CoolingWaterNumofTubesPerRowSizing(9);      // request sizing for cooling water coil number of tubes per row
-    int const HeatingWaterDesAirInletTempSizing(10);      // request sizing for heating water coil inlet air temp
-    int const HeatingWaterDesAirInletHumRatSizing(11);    // request sizing for heating water coil inlet air humidity ratio
-    int const HeatingWaterDesCoilLoadUsedForUASizing(12); // request sizing for heating water coil capacity used for UA sizing
-    int const
-        HeatingWaterDesCoilWaterVolFlowUsedForUASizing(13); // request sizing for heating water coil volume flow rate used for UA sizing
-    int const HeatingAirflowSizing(14);                     // request sizing for heating air flow rate
-    int const HeatingAirflowUASizing(15);                   // request sizing for heating air flow rate
-    int const SystemAirflowSizing(16);                      // request sizing for system air flow rate
-    int const CoolingCapacitySizing(17);                    // request sizing for cooling capacity
-    int const HeatingCapacitySizing(18);                    // request sizing for heating capacity
-    int const WaterHeatingCapacitySizing(19);               // request sizing for water-side heating capacity
-    int const WaterHeatingCoilUASizing(20);                 // request sizing for heating coil UA
-    int const SystemCapacitySizing(21);                     // request sizing for system capacity
-    int const CoolingSHRSizing(22);                         // request sizing for cooling SHR
-    int const HeatingDefrostSizing(23);                     // request sizing for heating defrost capacity
-    int const MaxHeaterOutletTempSizing(24);                // request sizing for heating coil maximum outlet temperature
-    int const AutoCalculateSizing(25);                      // identifies an autocalulate input
-    int const ZoneCoolingLoadSizing(26);                    // zone cooling sensible load (zsz file)
-    int const ZoneHeatingLoadSizing(27);                    // zome heating sensible load (zsz file)
-    int const MinSATempCoolingSizing(28);                   // minimum SA temperature in cooling
-    int const MaxSATempHeatingSizing(29);                   // maximum SA temperature in heating
-    int const ASHRAEMinSATCoolingSizing(30);                // minimum SA temperature in cooling model when using ASHRAE 90.1 SZVAV method
-    int const ASHRAEMaxSATHeatingSizing(31);                // maximum SA temperature in heating model when using ASHRAE 90.1 SZVAV method
-    int const HeatingCoilDesAirInletTempSizing(32);         // design inlet air temperature for heating coil
-    int const HeatingCoilDesAirOutletTempSizing(33);        // design outlet air temperature for heating coil
-    int const HeatingCoilDesAirInletHumRatSizing(34);       // design inlet air humidity ratio for heating coil
-    int const
-        DesiccantDehumidifierBFPerfDataFaceVelocitySizing(35); // identifies desiccant performance data face velocity autosisizing input
+    int const CoolingAirflowSizing(1);                               // request sizing for cooling air flow rate
+    int const CoolingWaterflowSizing(2);                             // request sizing for cooling water flow rate
+    int const HeatingWaterflowSizing(3);                             // request sizing for heating coil water flow rate
+    int const CoolingWaterDesAirInletTempSizing(4);                  // request sizing for cooling water coil inlet air temp
+    int const CoolingWaterDesAirInletHumRatSizing(5);                // request sizing for cooling water coil inlet air humidity ratio
+    int const CoolingWaterDesWaterInletTempSizing(6);                // request sizing for cooling water coil inlet water temp
+    int const CoolingWaterDesAirOutletTempSizing(7);                 // request sizing for cooling water coil outlet air temp
+    int const CoolingWaterDesAirOutletHumRatSizing(8);               // request sizing for cooling water coil outlet air humidity ratio
+    int const CoolingWaterNumofTubesPerRowSizing(9);                 // request sizing for cooling water coil number of tubes per row
+    int const HeatingWaterDesAirInletTempSizing(10);                 // request sizing for heating water coil inlet air temp
+    int const HeatingWaterDesAirInletHumRatSizing(11);               // request sizing for heating water coil inlet air humidity ratio
+    int const HeatingWaterDesCoilLoadUsedForUASizing(12);            // request sizing for heating water coil capacity used for UA sizing
+    int const HeatingWaterDesCoilWaterVolFlowUsedForUASizing(13);    // request sizing for heating water coil volume flow rate used for UA sizing
+    int const HeatingAirflowSizing(14);                              // request sizing for heating air flow rate
+    int const HeatingAirflowUASizing(15);                            // request sizing for heating air flow rate
+    int const SystemAirflowSizing(16);                               // request sizing for system air flow rate
+    int const CoolingCapacitySizing(17);                             // request sizing for cooling capacity
+    int const HeatingCapacitySizing(18);                             // request sizing for heating capacity
+    int const WaterHeatingCapacitySizing(19);                        // request sizing for water-side heating capacity
+    int const WaterHeatingCoilUASizing(20);                          // request sizing for heating coil UA
+    int const SystemCapacitySizing(21);                              // request sizing for system capacity
+    int const CoolingSHRSizing(22);                                  // request sizing for cooling SHR
+    int const HeatingDefrostSizing(23);                              // request sizing for heating defrost capacity
+    int const MaxHeaterOutletTempSizing(24);                         // request sizing for heating coil maximum outlet temperature
+    int const AutoCalculateSizing(25);                               // identifies an autocalulate input
+    int const ZoneCoolingLoadSizing(26);                             // zone cooling sensible load (zsz file)
+    int const ZoneHeatingLoadSizing(27);                             // zome heating sensible load (zsz file)
+    int const MinSATempCoolingSizing(28);                            // minimum SA temperature in cooling
+    int const MaxSATempHeatingSizing(29);                            // maximum SA temperature in heating
+    int const ASHRAEMinSATCoolingSizing(30);                         // minimum SA temperature in cooling model when using ASHRAE 90.1 SZVAV method
+    int const ASHRAEMaxSATHeatingSizing(31);                         // maximum SA temperature in heating model when using ASHRAE 90.1 SZVAV method
+    int const HeatingCoilDesAirInletTempSizing(32);                  // design inlet air temperature for heating coil
+    int const HeatingCoilDesAirOutletTempSizing(33);                 // design outlet air temperature for heating coil
+    int const HeatingCoilDesAirInletHumRatSizing(34);                // design inlet air humidity ratio for heating coil
+    int const DesiccantDehumidifierBFPerfDataFaceVelocitySizing(35); // identifies desiccant performance data face velocity autosisizing input
 
     // Condenser Type (using same numbering scheme as for chillers)
     int const AirCooled(1);   // Air-cooled condenser
@@ -190,10 +188,9 @@ namespace DataHVACGlobals {
     int const UnitarySys_HeatPump_WaterToAir(6);
     int const UnitarySystem_AnyCoilType(7);
     Array1D_string const cFurnaceTypes(NumUnitarySystemTypes,
-                                       {"AirLoopHVAC:Unitary:Furnace:HeatOnly", "AirLoopHVAC:Unitary:Furnace:HeatCool",
-                                        "AirLoopHVAC:UnitaryHeatOnly", "AirLoopHVAC:UnitaryHeatCool",
-                                        "AirLoopHVAC:UnitaryHeatPump:AirToAir", "AirLoopHVAC:UnitaryHeatPump:WaterToAir",
-                                        "AirLoopHVAC:UnitarySystem"});
+                                       {"AirLoopHVAC:Unitary:Furnace:HeatOnly", "AirLoopHVAC:Unitary:Furnace:HeatCool", "AirLoopHVAC:UnitaryHeatOnly",
+                                        "AirLoopHVAC:UnitaryHeatCool", "AirLoopHVAC:UnitaryHeatPump:AirToAir",
+                                        "AirLoopHVAC:UnitaryHeatPump:WaterToAir", "AirLoopHVAC:UnitarySystem"});
 
     // parameters describing coil types
     int const NumAllCoilTypes(34);
@@ -283,8 +280,8 @@ namespace DataHVACGlobals {
     // Water to Air HP Water Flow Mode
     int const WaterCycling(1);  // water flow cycles with compressor
     int const WaterConstant(2); // water flow is constant
-    int const WaterConstantOnDemand(
-        3); // water flow is constant whenever the coil is operational - this is the only method used in EP V7.2 and earlier
+    int const
+        WaterConstantOnDemand(3); // water flow is constant whenever the coil is operational - this is the only method used in EP V7.2 and earlier
 
     // parameters describing coil performance types
     int const CoilPerfDX_CoolBypassEmpirical(100);
@@ -332,8 +329,7 @@ namespace DataHVACGlobals {
     int const ATMixer_InletSide(1);
     int const ATMixer_SupplySide(2);
 
-    Array1D_string const cATMixerTypes(NumATMixerTypes,
-                                       {"AirTerminal:SingleDuct:InletSideMixer", "AirTerminal:SingleDuct:SupplySideMixer"});
+    Array1D_string const cATMixerTypes(NumATMixerTypes, {"AirTerminal:SingleDuct:InletSideMixer", "AirTerminal:SingleDuct:SupplySideMixer"});
     bool const ATMixerExists(true);
 
     // Parameters describing variable refrigerant flow terminal unit types
@@ -390,10 +386,9 @@ namespace DataHVACGlobals {
     Real64 BalancedExhMassFlow(0.0);   // balanced zone exhaust (declared as so by user)  [kg/s]
     Real64 PlenumInducedMassFlow(0.0); // secondary air mass flow rate induced from a return plenum [kg/s]
     bool TurnFansOn(false);            // If true overrides fan schedule and cycles fans on
-    bool TurnZoneFansOnlyOn(
-        false); // If true overrides zone fan schedule and cycles fans on (currently used only by parallel powered induction unit)
-    bool TurnFansOff(false);         // If True overides fan schedule and TurnFansOn and forces fans off
-    bool ZoneCompTurnFansOn(false);  // If true overrides fan schedule and cycles fans on
+    bool TurnZoneFansOnlyOn(false); // If true overrides zone fan schedule and cycles fans on (currently used only by parallel powered induction unit)
+    bool TurnFansOff(false);        // If True overides fan schedule and TurnFansOn and forces fans off
+    bool ZoneCompTurnFansOn(false); // If true overrides fan schedule and cycles fans on
     bool ZoneCompTurnFansOff(false); // If True overides fan schedule and TurnFansOn and forces fans off
     bool SetPointErrorFlag(false);   // True if any needed setpoints not set; if true, program terminates
     bool DoSetPointTest(false);      // True one time only for sensed node setpoint test

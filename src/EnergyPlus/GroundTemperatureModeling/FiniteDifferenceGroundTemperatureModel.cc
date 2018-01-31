@@ -218,10 +218,8 @@ void FiniteDiffGroundTempsModel::getWeatherData()
     bool EndHourFlag_reset = EndHourFlag;
 
     if (!WeatherFileExists) {
-        ShowContinueError(
-            "Site:GroundTemperature:Undisturbed:FiniteDifference -- using this model requires specification of a weather file.");
-        ShowContinueError(
-            "Either place in.epw in the working directory or specify a weather file on the command line using -w /path/to/weather.epw");
+        ShowContinueError("Site:GroundTemperature:Undisturbed:FiniteDifference -- using this model requires specification of a weather file.");
+        ShowContinueError("Either place in.epw in the working directory or specify a weather file on the command line using -w /path/to/weather.epw");
         ShowFatalError("Simulation halted due to input error in ground temperaure model.");
     }
 
@@ -1200,13 +1198,11 @@ void FiniteDiffGroundTempsModel::evaluateSoilRhoCp(Optional<int const> cell, Opt
     } else if (thisCell.temperature <= frzAllIce) {
         rhoCP_soil = rhoCP_soil_ice;
     } else if ((thisCell.temperature < frzAllLiq) && (thisCell.temperature > frzLiqTrans)) {
-        rhoCP_soil =
-            rhoCp_soil_liq_1 + (rhoCP_soil_transient - rhoCP_soil_liq) / (frzAllLiq - frzLiqTrans) * (frzAllLiq - thisCell.temperature);
+        rhoCP_soil = rhoCp_soil_liq_1 + (rhoCP_soil_transient - rhoCP_soil_liq) / (frzAllLiq - frzLiqTrans) * (frzAllLiq - thisCell.temperature);
     } else if ((thisCell.temperature <= frzLiqTrans) && (thisCell.temperature >= frzIceTrans)) {
         rhoCP_soil = rhoCP_soil_transient;
     } else if ((thisCell.temperature < frzIceTrans) && (thisCell.temperature > frzAllIce)) {
-        rhoCP_soil =
-            rhoCP_soil_ice + (rhoCP_soil_transient - rhoCP_soil_ice) / (frzIceTrans - frzAllIce) * (thisCell.temperature - frzAllIce);
+        rhoCP_soil = rhoCP_soil_ice + (rhoCP_soil_transient - rhoCP_soil_ice) / (frzIceTrans - frzAllIce) * (thisCell.temperature - frzAllIce);
     } else {
         assert(false); // Shouldn't get here
     }

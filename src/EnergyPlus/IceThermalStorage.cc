@@ -301,8 +301,8 @@ namespace IceThermalStorage {
             }
             if (CheckEquipName(IceStorageNum)) {
                 if (IceStorageName != IceStorageTypeMap(IceStorageNum).Name) {
-                    ShowFatalError("SimIceStorage: Invalid CompIndex passed=" + TrimSigDigits(IceStorageNum) + ", Unit name=" +
-                                   IceStorageName + ", stored Unit Name for that index=" + IceStorageTypeMap(IceStorageNum).Name);
+                    ShowFatalError("SimIceStorage: Invalid CompIndex passed=" + TrimSigDigits(IceStorageNum) + ", Unit name=" + IceStorageName +
+                                   ", stored Unit Name for that index=" + IceStorageTypeMap(IceStorageNum).Name);
                 }
                 CheckEquipName(IceStorageNum) = false;
             }
@@ -363,8 +363,8 @@ namespace IceThermalStorage {
                 }
                 DemandMdot = IceStorage(IceNum).DesignMassFlowRate;
 
-                Cp = GetSpecificHeatGlycol(PlantLoop(IceStorage(IceNum).LoopNum).FluidName, TempIn,
-                                           PlantLoop(IceStorage(IceNum).LoopNum).FluidIndex, RoutineName);
+                Cp = GetSpecificHeatGlycol(PlantLoop(IceStorage(IceNum).LoopNum).FluidName, TempIn, PlantLoop(IceStorage(IceNum).LoopNum).FluidIndex,
+                                           RoutineName);
 
                 MyLoad2 = (DemandMdot * Cp * (TempIn - TempSetPt));
                 MyLoad = MyLoad2;
@@ -546,9 +546,8 @@ namespace IceThermalStorage {
             DetIceStor(IceNum).OutletTemp = TempIn;
             DetIceStor(IceNum).TankOutletTemp = TempIn;
             mdot = 0.0;
-            SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum,
-                                 DetIceStor(IceNum).PlantLoopNum, DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum,
-                                 DetIceStor(IceNum).PlantCompNum);
+            SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum, DetIceStor(IceNum).PlantLoopNum,
+                                 DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
 
             DetIceStor(IceNum).BypassMassFlowRate = mdot;
             DetIceStor(IceNum).TankMassFlowRate = 0.0;
@@ -567,9 +566,8 @@ namespace IceThermalStorage {
                 DetIceStor(IceNum).OutletTemp = TempIn;
                 DetIceStor(IceNum).TankOutletTemp = TempIn;
                 mdot = 0.0;
-                SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum,
-                                     DetIceStor(IceNum).PlantLoopNum, DetIceStor(IceNum).PlantLoopSideNum,
-                                     DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
+                SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum, DetIceStor(IceNum).PlantLoopNum,
+                                     DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
 
                 DetIceStor(IceNum).BypassMassFlowRate = mdot;
                 DetIceStor(IceNum).TankMassFlowRate = 0.0;
@@ -578,9 +576,8 @@ namespace IceThermalStorage {
             } else {
                 // make flow request so tank will get flow
                 mdot = DetIceStor(IceNum).DesignMassFlowRate;
-                SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum,
-                                     DetIceStor(IceNum).PlantLoopNum, DetIceStor(IceNum).PlantLoopSideNum,
-                                     DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
+                SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum, DetIceStor(IceNum).PlantLoopNum,
+                                     DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
 
                 // We are in charging mode, the temperatures are low enough to charge
                 // the tank, and we have some charging left to do.
@@ -659,8 +656,7 @@ namespace IceThermalStorage {
                             ActualLoad = Qstar * DetIceStor(IceNum).NomCapacity / DetIceStor(IceNum).CurveFitTimeStep;
                             ToutNew = TempIn + (ActualLoad / (DetIceStor(IceNum).MassFlowRate * Cp));
                             // Again, the outlet temperature cannot be above the freezing temperature (factoring in the tolerance)
-                            if (ToutNew < (DetIceStor(IceNum).FreezingTemp - DeltaTofMin))
-                                ToutNew = DetIceStor(IceNum).FreezingTemp - DeltaTofMin;
+                            if (ToutNew < (DetIceStor(IceNum).FreezingTemp - DeltaTofMin)) ToutNew = DetIceStor(IceNum).FreezingTemp - DeltaTofMin;
                             ++IterNum;
 
                         } else {
@@ -712,9 +708,8 @@ namespace IceThermalStorage {
                 DetIceStor(IceNum).OutletTemp = DetIceStor(IceNum).InletTemp;
                 DetIceStor(IceNum).TankOutletTemp = DetIceStor(IceNum).InletTemp;
                 mdot = 0.0;
-                SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum,
-                                     DetIceStor(IceNum).PlantLoopNum, DetIceStor(IceNum).PlantLoopSideNum,
-                                     DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
+                SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum, DetIceStor(IceNum).PlantLoopNum,
+                                     DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
 
                 DetIceStor(IceNum).BypassMassFlowRate = mdot;
                 DetIceStor(IceNum).TankMassFlowRate = 0.0;
@@ -724,9 +719,8 @@ namespace IceThermalStorage {
 
                 // make flow request so tank will get flow
                 mdot = DetIceStor(IceNum).DesignMassFlowRate;
-                SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum,
-                                     DetIceStor(IceNum).PlantLoopNum, DetIceStor(IceNum).PlantLoopSideNum,
-                                     DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
+                SetComponentFlowRate(mdot, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum, DetIceStor(IceNum).PlantLoopNum,
+                                     DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
 
                 // We are in discharging mode, the temperatures are high enough to discharge
                 // the tank, and we have some discharging left to do.
@@ -792,8 +786,7 @@ namespace IceThermalStorage {
                             ActualLoad = Qstar * DetIceStor(IceNum).NomCapacity / DetIceStor(IceNum).CurveFitTimeStep;
                             ToutNew = TempIn - (ActualLoad / (DetIceStor(IceNum).MassFlowRate * Cp));
                             // Again, the outlet temperature cannot be below the freezing temperature (factoring in the tolerance)
-                            if (ToutNew < (DetIceStor(IceNum).FreezingTemp + DeltaTofMin))
-                                ToutNew = DetIceStor(IceNum).FreezingTemp + DeltaTofMin;
+                            if (ToutNew < (DetIceStor(IceNum).FreezingTemp + DeltaTofMin)) ToutNew = DetIceStor(IceNum).FreezingTemp + DeltaTofMin;
                             ++IterNum;
 
                         } else {
@@ -953,12 +946,12 @@ namespace IceThermalStorage {
             }
 
             // Get Plant Inlet Node Num
-            IceStorage(IceNum).PltInletNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                   NodeType_Water, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+            IceStorage(IceNum).PltInletNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
+                                                                   NodeConnectionType_Inlet, 1, ObjectIsNotParent);
 
             // Get Plant Outlet Node Num
-            IceStorage(IceNum).PltOutletNodeNum = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                    NodeType_Water, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+            IceStorage(IceNum).PltOutletNodeNum = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
+                                                                    NodeConnectionType_Outlet, 1, ObjectIsNotParent);
 
             // Test InletNode and OutletNode
             TestCompSet(cCurrentModuleObject, cAlphaArgs(1), cAlphaArgs(3), cAlphaArgs(4), "Chilled Water Nodes");
@@ -986,28 +979,28 @@ namespace IceThermalStorage {
         //********************************************
         for (IceNum = 1; IceNum <= NumIceStorages; ++IceNum) {
 
-            SetupOutputVariable("Ice Thermal Storage Requested Load", OutputProcessor::Unit::W, IceStorageReport(IceNum).MyLoad, "System",
-                                "Average", IceStorage(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Requested Load", OutputProcessor::Unit::W, IceStorageReport(IceNum).MyLoad, "System", "Average",
+                                IceStorage(IceNum).Name);
 
             // Ice fraction
-            SetupOutputVariable("Ice Thermal Storage End Fraction", OutputProcessor::Unit::None, IceStorageReport(IceNum).IceFracRemain,
-                                "Zone", "Average", IceStorage(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage End Fraction", OutputProcessor::Unit::None, IceStorageReport(IceNum).IceFracRemain, "Zone",
+                                "Average", IceStorage(IceNum).Name);
 
             // Discharge: ITS Information
-            SetupOutputVariable("Ice Thermal Storage Mass Flow Rate", OutputProcessor::Unit::kg_s, IceStorageReport(IceNum).ITSmdot,
+            SetupOutputVariable("Ice Thermal Storage Mass Flow Rate", OutputProcessor::Unit::kg_s, IceStorageReport(IceNum).ITSmdot, "System",
+                                "Average", IceStorage(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Inlet Temperature", OutputProcessor::Unit::C, IceStorageReport(IceNum).ITSInletTemp, "System",
+                                "Average", IceStorage(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Outlet Temperature", OutputProcessor::Unit::C, IceStorageReport(IceNum).ITSOutletTemp, "System",
+                                "Average", IceStorage(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Cooling Discharge Rate", OutputProcessor::Unit::W, IceStorageReport(IceNum).ITSCoolingRate,
                                 "System", "Average", IceStorage(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Inlet Temperature", OutputProcessor::Unit::C, IceStorageReport(IceNum).ITSInletTemp,
+            SetupOutputVariable("Ice Thermal Storage Cooling Discharge Energy", OutputProcessor::Unit::J, IceStorageReport(IceNum).ITSCoolingEnergy,
+                                "System", "Sum", IceStorage(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Cooling Charge Rate", OutputProcessor::Unit::W, IceStorageReport(IceNum).ITSChargingRate,
                                 "System", "Average", IceStorage(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Outlet Temperature", OutputProcessor::Unit::C, IceStorageReport(IceNum).ITSOutletTemp,
-                                "System", "Average", IceStorage(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Cooling Discharge Rate", OutputProcessor::Unit::W,
-                                IceStorageReport(IceNum).ITSCoolingRate, "System", "Average", IceStorage(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Cooling Discharge Energy", OutputProcessor::Unit::J,
-                                IceStorageReport(IceNum).ITSCoolingEnergy, "System", "Sum", IceStorage(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Cooling Charge Rate", OutputProcessor::Unit::W,
-                                IceStorageReport(IceNum).ITSChargingRate, "System", "Average", IceStorage(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Cooling Charge Energy", OutputProcessor::Unit::J,
-                                IceStorageReport(IceNum).ITSChargingEnergy, "System", "Sum", IceStorage(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Cooling Charge Energy", OutputProcessor::Unit::J, IceStorageReport(IceNum).ITSChargingEnergy,
+                                "System", "Sum", IceStorage(IceNum).Name);
 
         } // IceNum
 
@@ -1020,8 +1013,8 @@ namespace IceThermalStorage {
 
         for (IceNum = 1; IceNum <= NumDetIceStorages; ++IceNum) {
 
-            GetObjectItem(cCurrentModuleObject, IceNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, _, lAlphaFieldBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cCurrentModuleObject, IceNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, _, lAlphaFieldBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
             IsNotOK = false;
             IsBlank = false;
             VerifyName(cAlphaArgs(1), DetIceStor, IceNum - 1, IsNotOK, IsBlank, cCurrentModuleObject + " Name");
@@ -1064,12 +1057,12 @@ namespace IceThermalStorage {
             }
 
             // Get Plant Inlet Node Num
-            DetIceStor(IceNum).PlantInNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                  NodeType_Water, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+            DetIceStor(IceNum).PlantInNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
+                                                                  NodeConnectionType_Inlet, 1, ObjectIsNotParent);
 
             // Get Plant Outlet Node Num
-            DetIceStor(IceNum).PlantOutNodeNum = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                   NodeType_Water, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+            DetIceStor(IceNum).PlantOutNodeNum = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
+                                                                   NodeConnectionType_Outlet, 1, ObjectIsNotParent);
 
             // Test InletNode and OutletNode
             TestCompSet(cCurrentModuleObject, cAlphaArgs(1), cAlphaArgs(3), cAlphaArgs(4), "Chilled Water Nodes");
@@ -1089,8 +1082,8 @@ namespace IceThermalStorage {
                     DetIceStor(IceNum).DischargeCurveTypeNum = CurveCubicLinear;
                 }
             }
-            if ((DetIceStor(IceNum).DischargeCurveType != cAlphaArgs(5)) || ((DetIceStor(IceNum).DischargeCurveType != "QUADRATICLINEAR") &&
-                                                                             (DetIceStor(IceNum).DischargeCurveType != "CUBICLINEAR"))) {
+            if ((DetIceStor(IceNum).DischargeCurveType != cAlphaArgs(5)) ||
+                ((DetIceStor(IceNum).DischargeCurveType != "QUADRATICLINEAR") && (DetIceStor(IceNum).DischargeCurveType != "CUBICLINEAR"))) {
                 ShowSevereError(cCurrentModuleObject + ": Discharge curve type not valid, type=" + cAlphaArgs(5));
                 ShowContinueError("Entered in " + cCurrentModuleObject + '=' + cAlphaArgs(1));
                 ShowContinueError("Type does not match type for curve name or type does not equal QuadraticLinear or CubicLinear");
@@ -1130,8 +1123,7 @@ namespace IceThermalStorage {
             DetIceStor(IceNum).ThawProcessIndicator = cAlphaArgs(9);
             if (SameString(DetIceStor(IceNum).ThawProcessIndicator, "INSIDEMELT")) {
                 DetIceStor(IceNum).ThawProcessIndex = DetIceInsideMelt;
-            } else if ((SameString(DetIceStor(IceNum).ThawProcessIndicator, "OUTSIDEMELT")) ||
-                       (DetIceStor(IceNum).ThawProcessIndicator.empty())) {
+            } else if ((SameString(DetIceStor(IceNum).ThawProcessIndicator, "OUTSIDEMELT")) || (DetIceStor(IceNum).ThawProcessIndicator.empty())) {
                 DetIceStor(IceNum).ThawProcessIndex = DetIceOutsideMelt;
             } else {
                 ShowSevereError("Invalid thaw process indicator of " + cAlphaArgs(9) + " was entered");
@@ -1208,43 +1200,42 @@ namespace IceThermalStorage {
         //********************************************
         for (IceNum = 1; IceNum <= NumDetIceStorages; ++IceNum) {
 
-            SetupOutputVariable("Ice Thermal Storage Cooling Rate", OutputProcessor::Unit::W, DetIceStor(IceNum).CompLoad, "System",
-                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Cooling Rate", OutputProcessor::Unit::W, DetIceStor(IceNum).CompLoad, "System", "Average",
+                                DetIceStor(IceNum).Name);
 
             // Ice fraction
-            SetupOutputVariable("Ice Thermal Storage Change Fraction", OutputProcessor::Unit::None, DetIceStor(IceNum).IceFracChange,
-                                "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage End Fraction", OutputProcessor::Unit::None, DetIceStor(IceNum).IceFracRemaining,
-                                "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage On Coil Fraction", OutputProcessor::Unit::None, DetIceStor(IceNum).IceFracOnCoil,
-                                "System", "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Change Fraction", OutputProcessor::Unit::None, DetIceStor(IceNum).IceFracChange, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage End Fraction", OutputProcessor::Unit::None, DetIceStor(IceNum).IceFracRemaining, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage On Coil Fraction", OutputProcessor::Unit::None, DetIceStor(IceNum).IceFracOnCoil, "System",
+                                "Average", DetIceStor(IceNum).Name);
 
             // Discharge: ITS Information
-            SetupOutputVariable("Ice Thermal Storage Mass Flow Rate", OutputProcessor::Unit::kg_s, DetIceStor(IceNum).MassFlowRate,
+            SetupOutputVariable("Ice Thermal Storage Mass Flow Rate", OutputProcessor::Unit::kg_s, DetIceStor(IceNum).MassFlowRate, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Bypass Mass Flow Rate", OutputProcessor::Unit::kg_s, DetIceStor(IceNum).BypassMassFlowRate,
                                 "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Bypass Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                DetIceStor(IceNum).BypassMassFlowRate, "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Tank Mass Flow Rate", OutputProcessor::Unit::kg_s, DetIceStor(IceNum).TankMassFlowRate,
-                                "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Fluid Inlet Temperature", OutputProcessor::Unit::C, DetIceStor(IceNum).InletTemp,
-                                "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Blended Outlet Temperature", OutputProcessor::Unit::C, DetIceStor(IceNum).OutletTemp,
-                                "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Tank Outlet Temperature", OutputProcessor::Unit::C, DetIceStor(IceNum).TankOutletTemp,
-                                "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Cooling Discharge Rate", OutputProcessor::Unit::W, DetIceStor(IceNum).DischargingRate,
-                                "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Cooling Discharge Energy", OutputProcessor::Unit::J,
-                                DetIceStor(IceNum).DischargingEnergy, "System", "Sum", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Cooling Charge Rate", OutputProcessor::Unit::W, DetIceStor(IceNum).ChargingRate,
-                                "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Cooling Charge Energy", OutputProcessor::Unit::J, DetIceStor(IceNum).ChargingEnergy,
+            SetupOutputVariable("Ice Thermal Storage Tank Mass Flow Rate", OutputProcessor::Unit::kg_s, DetIceStor(IceNum).TankMassFlowRate, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Fluid Inlet Temperature", OutputProcessor::Unit::C, DetIceStor(IceNum).InletTemp, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Blended Outlet Temperature", OutputProcessor::Unit::C, DetIceStor(IceNum).OutletTemp, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Tank Outlet Temperature", OutputProcessor::Unit::C, DetIceStor(IceNum).TankOutletTemp, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Cooling Discharge Rate", OutputProcessor::Unit::W, DetIceStor(IceNum).DischargingRate, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Cooling Discharge Energy", OutputProcessor::Unit::J, DetIceStor(IceNum).DischargingEnergy,
                                 "System", "Sum", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Ancillary Electric Power", OutputProcessor::Unit::W,
-                                DetIceStor(IceNum).ParasiticElecRate, "System", "Average", DetIceStor(IceNum).Name);
-            SetupOutputVariable("Ice Thermal Storage Ancillary Electric Energy", OutputProcessor::Unit::J,
-                                DetIceStor(IceNum).ParasiticElecEnergy, "System", "Sum", DetIceStor(IceNum).Name, _, "ELECTRICITY", _, _,
-                                "System");
+            SetupOutputVariable("Ice Thermal Storage Cooling Charge Rate", OutputProcessor::Unit::W, DetIceStor(IceNum).ChargingRate, "System",
+                                "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Cooling Charge Energy", OutputProcessor::Unit::J, DetIceStor(IceNum).ChargingEnergy, "System",
+                                "Sum", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Ancillary Electric Power", OutputProcessor::Unit::W, DetIceStor(IceNum).ParasiticElecRate,
+                                "System", "Average", DetIceStor(IceNum).Name);
+            SetupOutputVariable("Ice Thermal Storage Ancillary Electric Energy", OutputProcessor::Unit::J, DetIceStor(IceNum).ParasiticElecEnergy,
+                                "System", "Sum", DetIceStor(IceNum).Name, _, "ELECTRICITY", _, _, "System");
 
         } // ...over detailed ice storage units
     }
@@ -1309,8 +1300,7 @@ namespace IceThermalStorage {
 
         if (MyPlantScanFlag(IceNum)) {
             ScanPlantLoopsForObject(DetIceStor(IceNum).Name, TypeOf_TS_IceDetailed, DetIceStor(IceNum).PlantLoopNum,
-                                    DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum,
-                                    DetIceStor(IceNum).PlantCompNum);
+                                    DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
 
             MyPlantScanFlag(IceNum) = false;
         }
@@ -1329,17 +1319,16 @@ namespace IceThermalStorage {
             DetIceStor(IceNum).ChargeIterErrors = 0;
             DetIceStor(IceNum).DesignMassFlowRate = PlantLoop(DetIceStor(IceNum).PlantLoopNum).MaxMassFlowRate;
             // no design flow rates for model, assume min is zero and max is plant loop's max
-            InitComponentNodes(0.0, DetIceStor(IceNum).DesignMassFlowRate, DetIceStor(IceNum).PlantInNodeNum,
-                               DetIceStor(IceNum).PlantOutNodeNum, DetIceStor(IceNum).PlantLoopNum, DetIceStor(IceNum).PlantLoopSideNum,
-                               DetIceStor(IceNum).PlantBranchNum, DetIceStor(IceNum).PlantCompNum);
+            InitComponentNodes(0.0, DetIceStor(IceNum).DesignMassFlowRate, DetIceStor(IceNum).PlantInNodeNum, DetIceStor(IceNum).PlantOutNodeNum,
+                               DetIceStor(IceNum).PlantLoopNum, DetIceStor(IceNum).PlantLoopSideNum, DetIceStor(IceNum).PlantBranchNum,
+                               DetIceStor(IceNum).PlantCompNum);
 
             if ((PlantLoop(DetIceStor(IceNum).PlantLoopNum).CommonPipeType == CommonPipe_TwoWay) &&
                 (DetIceStor(IceNum).PlantLoopSideNum == SupplySide)) {
                 // up flow priority of other components on the same branch as the Ice tank
-                for (CompNum = 1; CompNum <= PlantLoop(DetIceStor(IceNum).PlantLoopNum)
-                                                 .LoopSide(SupplySide)
-                                                 .Branch(DetIceStor(IceNum).PlantBranchNum)
-                                                 .TotalComponents;
+                for (CompNum = 1;
+                     CompNum <=
+                     PlantLoop(DetIceStor(IceNum).PlantLoopNum).LoopSide(SupplySide).Branch(DetIceStor(IceNum).PlantBranchNum).TotalComponents;
                      ++CompNum) {
                     PlantLoop(DetIceStor(IceNum).PlantLoopNum)
                         .LoopSide(SupplySide)
@@ -1427,9 +1416,8 @@ namespace IceThermalStorage {
         if (MyPlantScanFlag(IceNum)) {
             // Locate the storage on the plant loops for later usage
             errFlag = false;
-            ScanPlantLoopsForObject(IceStorage(IceNum).Name, TypeOf_TS_IceSimple, IceStorage(IceNum).LoopNum,
-                                    IceStorage(IceNum).LoopSideNum, IceStorage(IceNum).BranchNum, IceStorage(IceNum).CompNum, _, _, _, _, _,
-                                    errFlag);
+            ScanPlantLoopsForObject(IceStorage(IceNum).Name, TypeOf_TS_IceSimple, IceStorage(IceNum).LoopNum, IceStorage(IceNum).LoopSideNum,
+                                    IceStorage(IceNum).BranchNum, IceStorage(IceNum).CompNum, _, _, _, _, _, errFlag);
             if (errFlag) {
                 ShowFatalError("InitSimpleIceStorage: Program terminated due to previous condition(s).");
             }
@@ -1439,21 +1427,15 @@ namespace IceThermalStorage {
         if (BeginEnvrnFlag && MyEnvrnFlag(IceNum)) {
             IceStorage(IceNum).DesignMassFlowRate = PlantLoop(IceStorage(IceNum).LoopNum).MaxMassFlowRate;
             // no design flow rates for model, assume min is zero and max is plant loop's max
-            InitComponentNodes(0.0, IceStorage(IceNum).DesignMassFlowRate, IceStorage(IceNum).PltInletNodeNum,
-                               IceStorage(IceNum).PltOutletNodeNum, IceStorage(IceNum).LoopNum, IceStorage(IceNum).LoopSideNum,
-                               IceStorage(IceNum).BranchNum, IceStorage(IceNum).CompNum);
-            if ((PlantLoop(IceStorage(IceNum).LoopNum).CommonPipeType == CommonPipe_TwoWay) &&
-                (IceStorage(IceNum).LoopSideNum == SupplySide)) {
+            InitComponentNodes(0.0, IceStorage(IceNum).DesignMassFlowRate, IceStorage(IceNum).PltInletNodeNum, IceStorage(IceNum).PltOutletNodeNum,
+                               IceStorage(IceNum).LoopNum, IceStorage(IceNum).LoopSideNum, IceStorage(IceNum).BranchNum, IceStorage(IceNum).CompNum);
+            if ((PlantLoop(IceStorage(IceNum).LoopNum).CommonPipeType == CommonPipe_TwoWay) && (IceStorage(IceNum).LoopSideNum == SupplySide)) {
                 // up flow priority of other components on the same branch as the Ice tank
                 for (CompNum = 1;
-                     CompNum <=
-                     PlantLoop(IceStorage(IceNum).LoopNum).LoopSide(SupplySide).Branch(IceStorage(IceNum).BranchNum).TotalComponents;
+                     CompNum <= PlantLoop(IceStorage(IceNum).LoopNum).LoopSide(SupplySide).Branch(IceStorage(IceNum).BranchNum).TotalComponents;
                      ++CompNum) {
-                    PlantLoop(IceStorage(IceNum).LoopNum)
-                        .LoopSide(SupplySide)
-                        .Branch(IceStorage(IceNum).BranchNum)
-                        .Comp(CompNum)
-                        .FlowPriority = LoopFlowStatus_NeedyAndTurnsLoopOn;
+                    PlantLoop(IceStorage(IceNum).LoopNum).LoopSide(SupplySide).Branch(IceStorage(IceNum).BranchNum).Comp(CompNum).FlowPriority =
+                        LoopFlowStatus_NeedyAndTurnsLoopOn;
                 }
             }
             IceStorageReport(IceNum).MyLoad = 0.0;
@@ -1985,8 +1967,7 @@ namespace IceThermalStorage {
                 LoopNum = IceStorage(IceNum).LoopNum;
                 LoopSideNum = IceStorage(IceNum).LoopSideNum;
 
-                CpFluid =
-                    GetDensityGlycol(PlantLoop(LoopNum).FluidName, Node(InletNodeNum).Temp, PlantLoop(LoopNum).FluidIndex, RoutineName);
+                CpFluid = GetDensityGlycol(PlantLoop(LoopNum).FluidName, Node(InletNodeNum).Temp, PlantLoop(LoopNum).FluidIndex, RoutineName);
 
                 // Calculate Umyload based on MyLoad from E+
                 Umyload = -MyLoad * TimeInterval / ITSNomCap;

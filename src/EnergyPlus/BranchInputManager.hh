@@ -331,12 +331,11 @@ namespace BranchInputManager {
                                      Real64 &FoundVolFlowRate,
                                      bool &MatchedAirLoop);
 
-    void
-    FindAirPlantCondenserLoopFromBranchList(std::string const &BranchListName, // Branch List Name
-                                            std::string &LoopType,             // LoopType (if found, Plant,Condenser or Air)
-                                            std::string &LoopSupplyDemandAir,  // Supply if "Supply" or Demand if "Demand" or Air if "Air"
-                                            bool &MatchedLoop                  // true if found
-                                            );
+    void FindAirPlantCondenserLoopFromBranchList(std::string const &BranchListName, // Branch List Name
+                                                 std::string &LoopType,             // LoopType (if found, Plant,Condenser or Air)
+                                                 std::string &LoopSupplyDemandAir,  // Supply if "Supply" or Demand if "Demand" or Air if "Air"
+                                                 bool &MatchedLoop                  // true if found
+                                                 );
 
     //==================================================================================
     //   Routines that test branch integrity

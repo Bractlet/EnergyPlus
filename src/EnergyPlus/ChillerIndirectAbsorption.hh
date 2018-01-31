@@ -173,17 +173,17 @@ namespace ChillerIndirectAbsorption {
         IndirectAbsorberSpecs()
             : NomCap(0.0), NomCapWasAutoSized(false), NomPumpPower(0.0), NomPumpPowerWasAutoSized(false), EvapVolFlowRate(0.0),
               EvapVolFlowRateWasAutoSized(false), CondVolFlowRate(0.0), CondVolFlowRateWasAutoSized(false), EvapMassFlowRateMax(0.0),
-              CondMassFlowRateMax(0.0), GenMassFlowRateMax(0.0), MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0),
-              TempDesCondIn(0.0), MinCondInletTemp(0.0), MinGeneratorInletTemp(0.0), TempLowLimitEvapOut(0.0), GeneratorVolFlowRate(0.0),
+              CondMassFlowRateMax(0.0), GenMassFlowRateMax(0.0), MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), TempDesCondIn(0.0),
+              MinCondInletTemp(0.0), MinGeneratorInletTemp(0.0), TempLowLimitEvapOut(0.0), GeneratorVolFlowRate(0.0),
               GeneratorVolFlowRateWasAutoSized(false), GeneratorSubcool(0.0), LoopSubcool(0.0), GeneratorDeltaTemp(-99999.0),
-              GeneratorDeltaTempWasAutoSized(true), SizFac(0.0), EvapInletNodeNum(0), EvapOutletNodeNum(0), CondInletNodeNum(0),
-              CondOutletNodeNum(0), GeneratorInletNodeNum(0), GeneratorOutletNodeNum(0), GeneratorInputCurvePtr(0), PumpPowerCurvePtr(0),
-              CapFCondenserTempPtr(0), CapFEvaporatorTempPtr(0), CapFGeneratorTempPtr(0), HeatInputFCondTempPtr(0),
-              HeatInputFEvapTempPtr(0), ErrCount2(0), GenHeatSourceType(0), SteamFluidIndex(0), Available(false), ON(false),
-              FlowMode(FlowModeNotSet), ModulatedFlowSetToLoop(false), ModulatedFlowErrDone(false), MinCondInletTempCtr(0),
-              MinCondInletTempIndex(0), MinGenInletTempCtr(0), MinGenInletTempIndex(0), CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0),
-              CWCompNum(0), CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0), GenLoopNum(0), GenLoopSideNum(0), GenBranchNum(0),
-              GenCompNum(0), FaultyChillerSWTFlag(false), FaultyChillerSWTIndex(0), FaultyChillerSWTOffset(0.0), PossibleSubcooling(false)
+              GeneratorDeltaTempWasAutoSized(true), SizFac(0.0), EvapInletNodeNum(0), EvapOutletNodeNum(0), CondInletNodeNum(0), CondOutletNodeNum(0),
+              GeneratorInletNodeNum(0), GeneratorOutletNodeNum(0), GeneratorInputCurvePtr(0), PumpPowerCurvePtr(0), CapFCondenserTempPtr(0),
+              CapFEvaporatorTempPtr(0), CapFGeneratorTempPtr(0), HeatInputFCondTempPtr(0), HeatInputFEvapTempPtr(0), ErrCount2(0),
+              GenHeatSourceType(0), SteamFluidIndex(0), Available(false), ON(false), FlowMode(FlowModeNotSet), ModulatedFlowSetToLoop(false),
+              ModulatedFlowErrDone(false), MinCondInletTempCtr(0), MinCondInletTempIndex(0), MinGenInletTempCtr(0), MinGenInletTempIndex(0),
+              CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0), CWCompNum(0), CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0),
+              GenLoopNum(0), GenLoopSideNum(0), GenBranchNum(0), GenCompNum(0), FaultyChillerSWTFlag(false), FaultyChillerSWTIndex(0),
+              FaultyChillerSWTOffset(0.0), PossibleSubcooling(false)
         {
         }
     };
@@ -214,9 +214,9 @@ namespace ChillerIndirectAbsorption {
 
         // Default Constructor
         ReportVars()
-            : PumpingPower(0.0), QGenerator(0.0), QEvap(0.0), QCond(0.0), PumpingEnergy(0.0), GeneratorEnergy(0.0), EvapEnergy(0.0),
-              CondEnergy(0.0), CondInletTemp(0.0), EvapInletTemp(0.0), CondOutletTemp(0.0), EvapOutletTemp(0.0), Evapmdot(0.0),
-              Condmdot(0.0), Genmdot(0.0), SteamMdot(0.0), ActualCOP(0.0), ChillerPartLoadRatio(0.0), ChillerCyclingFrac(0.0), LoopLoss(0.0)
+            : PumpingPower(0.0), QGenerator(0.0), QEvap(0.0), QCond(0.0), PumpingEnergy(0.0), GeneratorEnergy(0.0), EvapEnergy(0.0), CondEnergy(0.0),
+              CondInletTemp(0.0), EvapInletTemp(0.0), CondOutletTemp(0.0), EvapOutletTemp(0.0), Evapmdot(0.0), Condmdot(0.0), Genmdot(0.0),
+              SteamMdot(0.0), ActualCOP(0.0), ChillerPartLoadRatio(0.0), ChillerCyclingFrac(0.0), LoopLoss(0.0)
         {
         }
     };

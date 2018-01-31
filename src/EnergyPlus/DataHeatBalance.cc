@@ -272,42 +272,116 @@ namespace DataHeatBalance {
     int const NumZoneIntGainDeviceTypes(53);
     Array1D_string const ZoneIntGainDeviceTypes(
         NumZoneIntGainDeviceTypes,
-        {"PEOPLE", "LIGHTS", "ELECTRICEQUIPMENT", "GASEQUIPMENT", "HOTWATEREQUIPMENT", "STEAMEQUIPMENT", "OTHEREQUIPMENT",
-         "ZONEBASEBOARD:OUTDOORTEMPERATURECONTROLLED", "ZONECONTAMINANTSOURCEANDSINK:CARBONDIOXIDE", "WATERUSE:EQUIPMENT",
-         "DAYLIGHTINGDEVICE:TUBULAR", "WATERHEATER:MIXED", "WATERHEATER:STRATIFIED", "THERMALSTORAGE:CHILLEDWATER:MIXED",
-         "THERMALSTORAGE:CHILLEDWATER:STRATIFIED", "GENERATOR:FUELCELL", "GENERATOR:MICROCHP", "ELECTRICLOADCENTER:TRANSFORMER",
-         "ELECTRICLOADCENTER:INVERTER:SIMPLE", "ELECTRICLOADCENTER:INVERTER:FUNCTIONOFPOWER", "ELECTRICLOADCENTER:INVERTER:LOOKUPTABLE",
-         "ELECTRICLOADCENTER:STORAGE:BATTERY", "ELECTRICLOADCENTER:STORAGE:SIMPLE", "PIPE:INDOOR", "REFRIGERATION:CASE",
-         "REFRIGERATION:COMPRESSORRACK", "REFRIGERATION:SYSTEM:CONDENSER:AIRCOOLED",
-         "REFRIGERATION:TRANSCRITICALSYSTEM:GASCOOLER:AIRCOOLED", "REFRIGERATION:SYSTEM:SUCTIONPIPE",
-         "REFRIGERATION:TRANSCRITICALSYSTEM:SUCTIONPIPEMT", "REFRIGERATION:TRANSCRITICALSYSTEM:SUCTIONPIPELT",
-         "REFRIGERATION:SECONDARYSYSTEM:RECEIVER", "REFRIGERATION:SECONDARYSYSTEM:PIPE", "REFRIGERATION:WALKIN", "PUMP:VARIABLESPEED",
-         "PUMP:CONSTANTSPEED", "PUMP:VARIABLESPEED:CONDENSATE", "HEADEREDPUMPS:VARIABLESPEED", "HEADEREDPUMPS:CONSTANTSPEED",
-         "ZONECONTAMINANTSOURCEANDSINK:GENERICCONTAMINANT", "PLANTCOMPONENT:USERDEFINED", "COIL:USERDEFINED",
-         "ZONEHVAC:FORCEDAIR:USERDEFINED", "AIRTERMINAL:SINGLEDUCT:USERDEFINED", "COIL:COOLING:DX:SINGLESPEED:THERMALSTORAGE",
-         "ELECTRICEQUIPMENT:ITE:AIRCOOLED", "COIL:COOLING:DX:SINGLESPEED", "COIL:HEATING:DX:SINGLESPEED", "COIL:COOLING:DX:TWOSPEED",
-         "COIL:COOLING:DX:MULTISPEED", "COIL:HEATING:DX:MULTISPEED", "ELECTRICLOADCENTER:STORAGE:CONVERTER",
+        {"PEOPLE",
+         "LIGHTS",
+         "ELECTRICEQUIPMENT",
+         "GASEQUIPMENT",
+         "HOTWATEREQUIPMENT",
+         "STEAMEQUIPMENT",
+         "OTHEREQUIPMENT",
+         "ZONEBASEBOARD:OUTDOORTEMPERATURECONTROLLED",
+         "ZONECONTAMINANTSOURCEANDSINK:CARBONDIOXIDE",
+         "WATERUSE:EQUIPMENT",
+         "DAYLIGHTINGDEVICE:TUBULAR",
+         "WATERHEATER:MIXED",
+         "WATERHEATER:STRATIFIED",
+         "THERMALSTORAGE:CHILLEDWATER:MIXED",
+         "THERMALSTORAGE:CHILLEDWATER:STRATIFIED",
+         "GENERATOR:FUELCELL",
+         "GENERATOR:MICROCHP",
+         "ELECTRICLOADCENTER:TRANSFORMER",
+         "ELECTRICLOADCENTER:INVERTER:SIMPLE",
+         "ELECTRICLOADCENTER:INVERTER:FUNCTIONOFPOWER",
+         "ELECTRICLOADCENTER:INVERTER:LOOKUPTABLE",
+         "ELECTRICLOADCENTER:STORAGE:BATTERY",
+         "ELECTRICLOADCENTER:STORAGE:SIMPLE",
+         "PIPE:INDOOR",
+         "REFRIGERATION:CASE",
+         "REFRIGERATION:COMPRESSORRACK",
+         "REFRIGERATION:SYSTEM:CONDENSER:AIRCOOLED",
+         "REFRIGERATION:TRANSCRITICALSYSTEM:GASCOOLER:AIRCOOLED",
+         "REFRIGERATION:SYSTEM:SUCTIONPIPE",
+         "REFRIGERATION:TRANSCRITICALSYSTEM:SUCTIONPIPEMT",
+         "REFRIGERATION:TRANSCRITICALSYSTEM:SUCTIONPIPELT",
+         "REFRIGERATION:SECONDARYSYSTEM:RECEIVER",
+         "REFRIGERATION:SECONDARYSYSTEM:PIPE",
+         "REFRIGERATION:WALKIN",
+         "PUMP:VARIABLESPEED",
+         "PUMP:CONSTANTSPEED",
+         "PUMP:VARIABLESPEED:CONDENSATE",
+         "HEADEREDPUMPS:VARIABLESPEED",
+         "HEADEREDPUMPS:CONSTANTSPEED",
+         "ZONECONTAMINANTSOURCEANDSINK:GENERICCONTAMINANT",
+         "PLANTCOMPONENT:USERDEFINED",
+         "COIL:USERDEFINED",
+         "ZONEHVAC:FORCEDAIR:USERDEFINED",
+         "AIRTERMINAL:SINGLEDUCT:USERDEFINED",
+         "COIL:COOLING:DX:SINGLESPEED:THERMALSTORAGE",
+         "ELECTRICEQUIPMENT:ITE:AIRCOOLED",
+         "COIL:COOLING:DX:SINGLESPEED",
+         "COIL:HEATING:DX:SINGLESPEED",
+         "COIL:COOLING:DX:TWOSPEED",
+         "COIL:COOLING:DX:MULTISPEED",
+         "COIL:HEATING:DX:MULTISPEED",
+         "ELECTRICLOADCENTER:STORAGE:CONVERTER",
          "FAN:SYSTEMMODEL"}); // 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22
                               // | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 |
                               // 44 | 45 | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53
 
     Array1D_string const ccZoneIntGainDeviceTypes(
         NumZoneIntGainDeviceTypes,
-        {"People", "Lights", "ElectricEquipment", "GasEquipment", "HotWaterEquipment", "SteamEquipment", "OtherEquipment",
-         "ZoneBaseboard:OutdoorTemperatureControlled", "ZoneContaminantSourceAndSink:CarbonDioxide", "WaterUse:Equipment",
-         "DaylightingDevice:Tubular", "WaterHeater:Mixed", "WaterHeater:Stratified", "ThermalStorage:ChilledWater:Mixed",
-         "ThermalStorage:ChilledWater:Stratified", "Generator:FuelCell", "Generator:MicroCHP", "ElectricLoadCenter:Transformer",
-         "ElectricLoadCenter:Inverter:Simple", "ElectricLoadCenter:Inverter:FunctionOfPower", "ElectricLoadCenter:Inverter:LookUpTable",
-         "ElectricLoadCenter:Storage:Battery", "ElectricLoadCenter:Storage:Simple", "Pipe:Indoor", "Refrigeration:Case",
-         "Refrigeration:CompressorRack", "Refrigeration:System:Condenser:AirCooled",
-         "Refrigeration:TranscriticalSystem:GasCooler:AirCooled", "Refrigeration:System:SuctionPipe",
-         "Refrigeration:TranscriticalSystem:SuctionPipeMT", "Refrigeration:TranscriticalSystem:SuctionPipeLT",
-         "Refrigeration:SecondarySystem:Receiver", "Refrigeration:SecondarySystem:Pipe", "Refrigeration:WalkIn", "Pump:VariableSpeed",
-         "Pump:ConstantSpeed", "Pump:VariableSpeed:Condensate", "HeaderedPumps:VariableSpeed", "HeaderedPumps:ConstantSpeed",
-         "ZoneContaminantSourceAndSink:GenericContaminant", "PlantComponent:UserDefined", "Coil:UserDefined",
-         "ZoneHVAC:ForcedAir:UserDefined", "AirTerminal:SingleDuct:UserDefined", "Coil:Cooling:DX:SingleSpeed:ThermalStorage",
-         "ElectricEquipment:ITE:AirCooled", "Coil:Cooling:DX:SingleSpeed", "Coil:Heating:DX:SingleSpeed", "Coil:Cooling:DX:TwoSpeed",
-         "Coil:Cooling:DX:MultiSpeed", "Coil:Heating:DX:MultiSpeed", "ElectricLoadCenter:Storage:Converter",
+        {"People",
+         "Lights",
+         "ElectricEquipment",
+         "GasEquipment",
+         "HotWaterEquipment",
+         "SteamEquipment",
+         "OtherEquipment",
+         "ZoneBaseboard:OutdoorTemperatureControlled",
+         "ZoneContaminantSourceAndSink:CarbonDioxide",
+         "WaterUse:Equipment",
+         "DaylightingDevice:Tubular",
+         "WaterHeater:Mixed",
+         "WaterHeater:Stratified",
+         "ThermalStorage:ChilledWater:Mixed",
+         "ThermalStorage:ChilledWater:Stratified",
+         "Generator:FuelCell",
+         "Generator:MicroCHP",
+         "ElectricLoadCenter:Transformer",
+         "ElectricLoadCenter:Inverter:Simple",
+         "ElectricLoadCenter:Inverter:FunctionOfPower",
+         "ElectricLoadCenter:Inverter:LookUpTable",
+         "ElectricLoadCenter:Storage:Battery",
+         "ElectricLoadCenter:Storage:Simple",
+         "Pipe:Indoor",
+         "Refrigeration:Case",
+         "Refrigeration:CompressorRack",
+         "Refrigeration:System:Condenser:AirCooled",
+         "Refrigeration:TranscriticalSystem:GasCooler:AirCooled",
+         "Refrigeration:System:SuctionPipe",
+         "Refrigeration:TranscriticalSystem:SuctionPipeMT",
+         "Refrigeration:TranscriticalSystem:SuctionPipeLT",
+         "Refrigeration:SecondarySystem:Receiver",
+         "Refrigeration:SecondarySystem:Pipe",
+         "Refrigeration:WalkIn",
+         "Pump:VariableSpeed",
+         "Pump:ConstantSpeed",
+         "Pump:VariableSpeed:Condensate",
+         "HeaderedPumps:VariableSpeed",
+         "HeaderedPumps:ConstantSpeed",
+         "ZoneContaminantSourceAndSink:GenericContaminant",
+         "PlantComponent:UserDefined",
+         "Coil:UserDefined",
+         "ZoneHVAC:ForcedAir:UserDefined",
+         "AirTerminal:SingleDuct:UserDefined",
+         "Coil:Cooling:DX:SingleSpeed:ThermalStorage",
+         "ElectricEquipment:ITE:AirCooled",
+         "Coil:Cooling:DX:SingleSpeed",
+         "Coil:Heating:DX:SingleSpeed",
+         "Coil:Cooling:DX:TwoSpeed",
+         "Coil:Cooling:DX:MultiSpeed",
+         "Coil:Heating:DX:MultiSpeed",
+         "ElectricLoadCenter:Storage:Converter",
          "Fan:SystemModel"}); // 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22
                               // | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 |
                               // 44 | 45 | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53
@@ -692,12 +766,10 @@ namespace DataHeatBalance {
                                                                        // reshape2 template args are work-around for VC++2013 bug
 
     //                       Air       Argon     Krypton   Xenon
-    Array1D<Real64> const
-        GasWght(10, {28.97, 39.948, 83.8, 131.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}); // Gas molecular weights for gases in a mixture
+    Array1D<Real64> const GasWght(10, {28.97, 39.948, 83.8, 131.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}); // Gas molecular weights for gases in a mixture
 
-    Array1D<Real64> const GasSpecificHeatRatio(10,
-                                               {1.4, 1.67, 1.68, 1.66, 0.0, 0.0, 0.0, 0.0, 0.0,
-                                                0.0}); // Gas specific heat ratios.  Used for gasses in low pressure
+    Array1D<Real64> const
+        GasSpecificHeatRatio(10, {1.4, 1.67, 1.68, 1.66, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}); // Gas specific heat ratios.  Used for gasses in low pressure
 
     Real64 ZeroPointerVal(0.0);
 
@@ -1275,9 +1347,8 @@ namespace DataHeatBalance {
             }
 
             if (WrongMaterialsMix) { // Illegal material for a window construction
-                ShowSevereError(
-                    "Error: Window construction=" + Construct(ConstrNum).Name +
-                    " has materials other than glass, gas, shade, screen, blind, complex shading, complex gap, or simple system.");
+                ShowSevereError("Error: Window construction=" + Construct(ConstrNum).Name +
+                                " has materials other than glass, gas, shade, screen, blind, complex shading, complex gap, or simple system.");
                 ErrorsFound = true;
                 // Do not check number of layers for BSDF type of window since that can be handled
             } else if ((TotLayers > 8) && (!Construct(ConstrNum).WindowTypeBSDF) &&
@@ -1288,8 +1359,7 @@ namespace DataHeatBalance {
 
             } else if (TotLayers == 1) {
 
-                if (Material(Construct(ConstrNum).LayerPoint(1)).Group == Shade ||
-                    Material(Construct(ConstrNum).LayerPoint(1)).Group == WindowGas ||
+                if (Material(Construct(ConstrNum).LayerPoint(1)).Group == Shade || Material(Construct(ConstrNum).LayerPoint(1)).Group == WindowGas ||
                     Material(Construct(ConstrNum).LayerPoint(1)).Group == WindowGasMixture ||
                     Material(Construct(ConstrNum).LayerPoint(1)).Group == WindowBlind ||
                     Material(Construct(ConstrNum).LayerPoint(1)).Group == Screen ||
@@ -1386,8 +1456,7 @@ namespace DataHeatBalance {
             // Consistency checks for a construction with a between-glass shade or blind
 
             if (TotShadeLayers == 1 && Material(Construct(ConstrNum).LayerPoint(1)).Group != Shade &&
-                Material(Construct(ConstrNum).LayerPoint(1)).Group != WindowBlind &&
-                Material(Construct(ConstrNum).LayerPoint(1)).Group != Screen &&
+                Material(Construct(ConstrNum).LayerPoint(1)).Group != WindowBlind && Material(Construct(ConstrNum).LayerPoint(1)).Group != Screen &&
                 Material(Construct(ConstrNum).LayerPoint(TotLayers)).Group != Shade &&
                 Material(Construct(ConstrNum).LayerPoint(TotLayers)).Group != WindowBlind &&
                 Material(Construct(ConstrNum).LayerPoint(TotLayers)).Group != ComplexWindowShade && !WrongWindowLayering) {
@@ -1457,8 +1526,7 @@ namespace DataHeatBalance {
                                 if (BlNum > 0) {
                                     if ((Material(MatGapL).Thickness + Material(MatGapR).Thickness) < Blind(BlNum).SlatWidth) {
                                         ErrorsFound = true;
-                                        ShowSevereError("CheckAndSetConstructionProperties: For window construction " +
-                                                        Construct(ConstrNum).Name);
+                                        ShowSevereError("CheckAndSetConstructionProperties: For window construction " + Construct(ConstrNum).Name);
                                         ShowContinueError("the slat width of the between-glass blind is greater than");
                                         ShowContinueError("the sum of the widths of the gas layers adjacent to the blind.");
                                     }
@@ -1478,14 +1546,12 @@ namespace DataHeatBalance {
                         if (MaterNum == 0) continue; // error -- has been caught will stop program later
                         if (Material(MaterNum).Group == WindowGlass) {
                             ErrorsFound = true;
-                            ShowSevereError("CheckAndSetConstructionProperties: Error in window construction " + Construct(ConstrNum).Name +
-                                            "--");
+                            ShowSevereError("CheckAndSetConstructionProperties: Error in window construction " + Construct(ConstrNum).Name + "--");
                             ShowContinueError("For simple window constructions, no other glazing layers are allowed.");
                         }
                         if (Material(MaterNum).Group == WindowGas) {
                             ErrorsFound = true;
-                            ShowSevereError("CheckAndSetConstructionProperties: Error in window construction " + Construct(ConstrNum).Name +
-                                            "--");
+                            ShowSevereError("CheckAndSetConstructionProperties: Error in window construction " + Construct(ConstrNum).Name + "--");
                             ShowContinueError("For simple window constructions, no other gas layers are allowed.");
                         }
                     }
@@ -1564,8 +1630,7 @@ namespace DataHeatBalance {
             // need to check EcoRoof is not non-outside layer
             for (Layer = 2; Layer <= TotLayers; ++Layer) {
                 if (Material(Construct(ConstrNum).LayerPoint(Layer)).Group == EcoRoof) {
-                    ShowSevereError("CheckAndSetConstructionProperties: Interior Layer is EcoRoof for construction " +
-                                    Construct(ConstrNum).Name);
+                    ShowSevereError("CheckAndSetConstructionProperties: Interior Layer is EcoRoof for construction " + Construct(ConstrNum).Name);
                     ShowContinueError("  Error in material " + Material(Construct(ConstrNum).LayerPoint(Layer)).Name);
                     ErrorsFound = true;
                 }
@@ -1753,8 +1818,7 @@ namespace DataHeatBalance {
             // Minimum and maximum slat angles allowed by slat geometry
             if (Blind(TotBlinds).SlatWidth > Blind(TotBlinds).SlatSeparation) {
                 MinSlatAngGeom =
-                    std::asin(Blind(TotBlinds).SlatThickness / (Blind(TotBlinds).SlatThickness + Blind(TotBlinds).SlatSeparation)) /
-                    DegToRadians;
+                    std::asin(Blind(TotBlinds).SlatThickness / (Blind(TotBlinds).SlatThickness + Blind(TotBlinds).SlatSeparation)) / DegToRadians;
             } else {
                 MinSlatAngGeom = 0.0;
             }
@@ -1772,13 +1836,12 @@ namespace DataHeatBalance {
             // Error if input slat angle not in input min/max range
 
             if (Blind(TotBlinds).MaxSlatAngle > Blind(TotBlinds).MinSlatAngle &&
-                (Blind(TotBlinds).SlatAngle < Blind(TotBlinds).MinSlatAngle ||
-                 Blind(TotBlinds).SlatAngle > Blind(TotBlinds).MaxSlatAngle)) {
+                (Blind(TotBlinds).SlatAngle < Blind(TotBlinds).MinSlatAngle || Blind(TotBlinds).SlatAngle > Blind(TotBlinds).MaxSlatAngle)) {
                 errFlag = true;
                 ShowSevereError("WindowMaterial:Blind=\"" + Blind(inBlindNumber).Name + "\", Illegal value combination.");
-                ShowContinueError("Slat Angle=[" + RoundSigDigits(Blind(TotBlinds).SlatAngle, 1) +
-                                  "] is outside of the input min/max range, min=[" + RoundSigDigits(Blind(TotBlinds).MinSlatAngle, 1) +
-                                  "], max=[" + RoundSigDigits(Blind(TotBlinds).MaxSlatAngle, 1) + "] deg.");
+                ShowContinueError("Slat Angle=[" + RoundSigDigits(Blind(TotBlinds).SlatAngle, 1) + "] is outside of the input min/max range, min=[" +
+                                  RoundSigDigits(Blind(TotBlinds).MinSlatAngle, 1) + "], max=[" + RoundSigDigits(Blind(TotBlinds).MaxSlatAngle, 1) +
+                                  "] deg.");
             }
 
             // Warning if input minimum slat angle is less than that allowed by slat geometry
@@ -1786,8 +1849,8 @@ namespace DataHeatBalance {
             if (Blind(TotBlinds).MinSlatAngle < MinSlatAngGeom) {
                 ShowWarningError("WindowMaterial:Blind=\"" + Blind(inBlindNumber).Name + "\", Illegal value combination.");
                 ShowContinueError("Minimum Slat Angle=[" + RoundSigDigits(Blind(TotBlinds).MinSlatAngle, 1) +
-                                  "] is less than the smallest allowed by slat dimensions and spacing, min=[" +
-                                  RoundSigDigits(MinSlatAngGeom, 1) + "] deg.");
+                                  "] is less than the smallest allowed by slat dimensions and spacing, min=[" + RoundSigDigits(MinSlatAngGeom, 1) +
+                                  "] deg.");
                 ShowContinueError("Minimum Slat Angle will be set to " + RoundSigDigits(MinSlatAngGeom, 1) + " deg.");
                 Blind(TotBlinds).MinSlatAngle = MinSlatAngGeom;
             }
@@ -1797,8 +1860,8 @@ namespace DataHeatBalance {
             if (Blind(TotBlinds).MaxSlatAngle > MaxSlatAngGeom) {
                 ShowWarningError("WindowMaterial:Blind=\"" + Blind(inBlindNumber).Name + "\", Illegal value combination.");
                 ShowContinueError("Maximum Slat Angle=[" + RoundSigDigits(Blind(TotBlinds).MaxSlatAngle, 1) +
-                                  "] is greater than the largest allowed by slat dimensions and spacing, [" +
-                                  RoundSigDigits(MaxSlatAngGeom, 1) + "] deg.");
+                                  "] is greater than the largest allowed by slat dimensions and spacing, [" + RoundSigDigits(MaxSlatAngGeom, 1) +
+                                  "] deg.");
                 ShowContinueError("Maximum Slat Angle will be set to " + RoundSigDigits(MaxSlatAngGeom, 1) + " deg.");
                 Blind(TotBlinds).MaxSlatAngle = MaxSlatAngGeom;
             }
@@ -1968,8 +2031,7 @@ namespace DataHeatBalance {
         }
 
         if (NormalAltitude != 0.0 && NormalAzimuth != 0.0) {
-            IncidentAngle =
-                std::acos(std::sin(NormalAltitude) / (std::tan(NormalAzimuth) * std::tan(NormalAltitude) / std::sin(NormalAzimuth)));
+            IncidentAngle = std::acos(std::sin(NormalAltitude) / (std::tan(NormalAzimuth) * std::tan(NormalAltitude) / std::sin(NormalAzimuth)));
         } else if (NormalAltitude != 0.0 && NormalAzimuth == 0.0) {
             IncidentAngle = NormalAltitude;
         } else if (NormalAltitude == 0.0 && NormalAzimuth != 0.0) {
@@ -1992,10 +2054,9 @@ namespace DataHeatBalance {
         if (Beta > Small) {
             if (std::abs(SunAltitudeToScreenNormal - PiOvr2) > Small) {
                 AlphaDblPrime = std::atan(std::tan(SunAltitudeToScreenNormal) / std::cos(SunAzimuthToScreenNormal));
-                TransYDir =
-                    1.0 -
-                    Gamma * (std::cos(AlphaDblPrime) +
-                             std::sin(AlphaDblPrime) * std::tan(SunAltitudeToScreenNormal) * std::sqrt(1.0 + pow_2(1.0 / std::tan(Beta))));
+                TransYDir = 1.0 -
+                            Gamma * (std::cos(AlphaDblPrime) +
+                                     std::sin(AlphaDblPrime) * std::tan(SunAltitudeToScreenNormal) * std::sqrt(1.0 + pow_2(1.0 / std::tan(Beta))));
                 TransYDir = max(0.0, TransYDir);
             } else {
                 TransYDir = 0.0;
@@ -2012,9 +2073,9 @@ namespace DataHeatBalance {
             if (std::cos(Epsilon) != 0.0) {
                 MuPrime = std::atan(std::tan(std::acos(COSMu)) / std::cos(Epsilon));
                 if (Eta != 0.0) {
-                    TransXDir = 1.0 -
-                                Gamma * (std::cos(MuPrime) +
-                                         std::sin(MuPrime) * std::tan(std::acos(COSMu)) * std::sqrt(1.0 + pow_2(1.0 / std::tan(Eta))));
+                    TransXDir =
+                        1.0 -
+                        Gamma * (std::cos(MuPrime) + std::sin(MuPrime) * std::tan(std::acos(COSMu)) * std::sqrt(1.0 + pow_2(1.0 / std::tan(Eta))));
                     TransXDir = max(0.0, TransXDir);
                 } else {
                     TransXDir = 0.0;
@@ -2043,10 +2104,9 @@ namespace DataHeatBalance {
             Delta = std::sqrt(pow_2(SunAzimuthToScreenNormal / DegToRadians) + pow_2(SunAltitudeToScreenNormal / DegToRadians));
 
             //   Use empirical model to determine maximum (peak) scattering
-            Tscattermax =
-                0.0229 * Gamma + 0.2971 * ReflectCyl - 0.03624 * pow_2(Gamma) + 0.04763 * pow_2(ReflectCyl) - 0.44416 * Gamma * ReflectCyl;
-            TscattermaxVis = 0.0229 * Gamma + 0.2971 * ReflectCylVis - 0.03624 * pow_2(Gamma) + 0.04763 * pow_2(ReflectCylVis) -
-                             0.44416 * Gamma * ReflectCylVis;
+            Tscattermax = 0.0229 * Gamma + 0.2971 * ReflectCyl - 0.03624 * pow_2(Gamma) + 0.04763 * pow_2(ReflectCyl) - 0.44416 * Gamma * ReflectCyl;
+            TscattermaxVis =
+                0.0229 * Gamma + 0.2971 * ReflectCylVis - 0.03624 * pow_2(Gamma) + 0.04763 * pow_2(ReflectCylVis) - 0.44416 * Gamma * ReflectCylVis;
 
             //   Vary slope of interior and exterior surface of scattering model
             ExponentInterior = -pow_2(Delta - DeltaMax) / 600.0;
@@ -2059,20 +2119,18 @@ namespace DataHeatBalance {
             if (Delta > DeltaMax) {
                 //     Apply offset for plateau and use exterior exponential function to simulate actual scattering as a function of solar
                 //     angles
-                Tscattered =
-                    0.2 * (1.0 - Gamma) * ReflectCyl * Tscattermax * (1.0 + (PeakToPlateauRatio - 1.0) * std::exp(ExponentExterior));
-                TscatteredVis = 0.2 * (1.0 - Gamma) * ReflectCylVis * TscattermaxVis *
-                                (1.0 + (PeakToPlateauRatioVis - 1.0) * std::exp(ExponentExterior));
+                Tscattered = 0.2 * (1.0 - Gamma) * ReflectCyl * Tscattermax * (1.0 + (PeakToPlateauRatio - 1.0) * std::exp(ExponentExterior));
+                TscatteredVis =
+                    0.2 * (1.0 - Gamma) * ReflectCylVis * TscattermaxVis * (1.0 + (PeakToPlateauRatioVis - 1.0) * std::exp(ExponentExterior));
                 //     Trim off offset if solar angle (delta) is greater than maximum (peak) scattering angle
                 Tscattered -= (0.2 * (1.0 - Gamma) * ReflectCyl * Tscattermax) * max(0.0, (Delta - DeltaMax) / (90.0 - DeltaMax));
                 TscatteredVis -= (0.2 * (1.0 - Gamma) * ReflectCylVis * TscattermaxVis) * max(0.0, (Delta - DeltaMax) / (90.0 - DeltaMax));
             } else {
                 //     Apply offset for plateau and use interior exponential function to simulate actual scattering as a function of solar
                 //     angles
-                Tscattered =
-                    0.2 * (1.0 - Gamma) * ReflectCyl * Tscattermax * (1.0 + (PeakToPlateauRatio - 1.0) * std::exp(ExponentInterior));
-                TscatteredVis = 0.2 * (1.0 - Gamma) * ReflectCylVis * TscattermaxVis *
-                                (1.0 + (PeakToPlateauRatioVis - 1.0) * std::exp(ExponentInterior));
+                Tscattered = 0.2 * (1.0 - Gamma) * ReflectCyl * Tscattermax * (1.0 + (PeakToPlateauRatio - 1.0) * std::exp(ExponentInterior));
+                TscatteredVis =
+                    0.2 * (1.0 - Gamma) * ReflectCylVis * TscattermaxVis * (1.0 + (PeakToPlateauRatioVis - 1.0) * std::exp(ExponentInterior));
             }
         }
         Tscattered = max(0.0, Tscattered);
@@ -2295,11 +2353,9 @@ namespace DataHeatBalance {
                 if ((SELECT_CASE_var == SurfaceClass_Wall) ||
                     (SELECT_CASE_var == SurfaceClass_Door)) { // Interior:  vertical, still air, Rcin = 0.68 ft2-F-hr/BTU
                     insideFilm = 0.1197548;
-                } else if (SELECT_CASE_var ==
-                           SurfaceClass_Floor) { // Interior:  horizontal, still air, heat flow downward, Rcin = 0.92 ft2-F-hr/BTU
+                } else if (SELECT_CASE_var == SurfaceClass_Floor) { // Interior:  horizontal, still air, heat flow downward, Rcin = 0.92 ft2-F-hr/BTU
                     insideFilm = 0.1620212;
-                } else if (SELECT_CASE_var ==
-                           SurfaceClass_Roof) { // Interior:  horizontal, still air, heat flow upward, Rcin = 0.61 ft2-F-hr/BTU
+                } else if (SELECT_CASE_var == SurfaceClass_Roof) { // Interior:  horizontal, still air, heat flow upward, Rcin = 0.61 ft2-F-hr/BTU
                     insideFilm = 0.1074271;
                 } else {
                     insideFilm = 0.0;

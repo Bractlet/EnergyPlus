@@ -231,13 +231,12 @@ namespace ReturnAirPathManager {
 
                 for (CompNum = 1; CompNum <= ReturnAirPath(PathNum).NumOfComponents; ++CompNum) {
 
-                    if ((SameString(cAlphaArgs(Counter), "AirLoopHVAC:ZoneMixer")) ||
-                        (SameString(cAlphaArgs(Counter), "AirLoopHVAC:ReturnPlenum"))) {
+                    if ((SameString(cAlphaArgs(Counter), "AirLoopHVAC:ZoneMixer")) || (SameString(cAlphaArgs(Counter), "AirLoopHVAC:ReturnPlenum"))) {
 
                         ReturnAirPath(PathNum).ComponentType(CompNum) = cAlphaArgs(Counter);
                         ReturnAirPath(PathNum).ComponentName(CompNum) = cAlphaArgs(Counter + 1);
-                        ValidateComponent(ReturnAirPath(PathNum).ComponentType(CompNum), ReturnAirPath(PathNum).ComponentName(CompNum),
-                                          IsNotOK, "AirLoopHVAC:ReturnPath");
+                        ValidateComponent(ReturnAirPath(PathNum).ComponentType(CompNum), ReturnAirPath(PathNum).ComponentName(CompNum), IsNotOK,
+                                          "AirLoopHVAC:ReturnPath");
                         if (IsNotOK) {
                             ShowContinueError("In AirLoopHVAC:ReturnPath =" + ReturnAirPath(PathNum).Name);
                             ErrorsFound = true;
@@ -320,8 +319,7 @@ namespace ReturnAirPathManager {
                                      ReturnAirPath(ReturnAirPathNum).ComponentIndex(ComponentNum));
 
                 } else {
-                    ShowSevereError("Invalid AirLoopHVAC:ReturnPath Component=" +
-                                    ReturnAirPath(ReturnAirPathNum).ComponentType(ComponentNum));
+                    ShowSevereError("Invalid AirLoopHVAC:ReturnPath Component=" + ReturnAirPath(ReturnAirPathNum).ComponentType(ComponentNum));
                     ShowContinueError("Occurs in AirLoopHVAC:ReturnPath =" + ReturnAirPath(ReturnAirPathNum).Name);
                     ShowFatalError("Preceding condition causes termination.");
                 }

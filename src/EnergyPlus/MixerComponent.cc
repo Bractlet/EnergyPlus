@@ -299,8 +299,8 @@ namespace MixerComponent {
         NumArray.dimension(NumNums, 0.0);
 
         for (MixerNum = 1; MixerNum <= NumMixers; ++MixerNum) {
-            GetObjectItem(CurrentModuleObject, MixerNum, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFields, cNumericFields);
+            GetObjectItem(CurrentModuleObject, MixerNum, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks, cAlphaFields,
+                          cNumericFields);
 
             IsNotOK = false;
             IsBlank = false;
@@ -345,9 +345,8 @@ namespace MixerComponent {
 
             for (NodeNum = 1; NodeNum <= MixerCond(MixerNum).NumInletNodes; ++NodeNum) {
 
-                MixerCond(MixerNum).InletNode(NodeNum) =
-                    GetOnlySingleNode(AlphArray(2 + NodeNum), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
-                                      NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+                MixerCond(MixerNum).InletNode(NodeNum) = GetOnlySingleNode(AlphArray(2 + NodeNum), ErrorsFound, CurrentModuleObject, AlphArray(1),
+                                                                           NodeType_Air, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
                 if (lAlphaBlanks(2 + NodeNum)) {
                     ShowSevereError(cAlphaFields(2 + NodeNum) + " is Blank, " + CurrentModuleObject + " = " + AlphArray(1));
                     ErrorsFound = true;
@@ -524,16 +523,14 @@ namespace MixerComponent {
 
             for (InletNodeNum = 1; InletNodeNum <= MixerCond(MixerNum).NumInletNodes; ++InletNodeNum) {
                 MixerCond(MixerNum).OutletPressure += MixerCond(MixerNum).InletPressure(InletNodeNum) *
-                                                      MixerCond(MixerNum).InletMassFlowRate(InletNodeNum) /
-                                                      MixerCond(MixerNum).OutletMassFlowRate;
+                                                      MixerCond(MixerNum).InletMassFlowRate(InletNodeNum) / MixerCond(MixerNum).OutletMassFlowRate;
             }
 
             // Energy balance to get outlet air enthalpy
 
             for (InletNodeNum = 1; InletNodeNum <= MixerCond(MixerNum).NumInletNodes; ++InletNodeNum) {
                 MixerCond(MixerNum).OutletEnthalpy += MixerCond(MixerNum).InletEnthalpy(InletNodeNum) *
-                                                      MixerCond(MixerNum).InletMassFlowRate(InletNodeNum) /
-                                                      MixerCond(MixerNum).OutletMassFlowRate;
+                                                      MixerCond(MixerNum).InletMassFlowRate(InletNodeNum) / MixerCond(MixerNum).OutletMassFlowRate;
             }
 
             // Use Enthalpy and humidity ratio to get outlet temperature from psych chart
@@ -550,8 +547,7 @@ namespace MixerComponent {
         }
 
         // make sure MassFlowRateMaxAvail is >= MassFlowRate
-        MixerCond(MixerNum).OutletMassFlowRateMaxAvail =
-            max(MixerCond(MixerNum).OutletMassFlowRateMaxAvail, MixerCond(MixerNum).OutletMassFlowRate);
+        MixerCond(MixerNum).OutletMassFlowRateMaxAvail = max(MixerCond(MixerNum).OutletMassFlowRateMaxAvail, MixerCond(MixerNum).OutletMassFlowRate);
     }
 
     // End Algorithm Section of the Module
@@ -631,8 +627,7 @@ namespace MixerComponent {
                 Node(OutletNode).GenContam = 0.0;
                 for (InletNodeNum = 1; InletNodeNum <= MixerCond(MixerNum).NumInletNodes; ++InletNodeNum) {
                     Node(OutletNode).GenContam += Node(MixerCond(MixerNum).InletNode(InletNodeNum)).GenContam *
-                                                  MixerCond(MixerNum).InletMassFlowRate(InletNodeNum) /
-                                                  MixerCond(MixerNum).OutletMassFlowRate;
+                                                  MixerCond(MixerNum).InletMassFlowRate(InletNodeNum) / MixerCond(MixerNum).OutletMassFlowRate;
                 }
             } else {
                 Node(OutletNode).GenContam = Node(InletNode).GenContam;

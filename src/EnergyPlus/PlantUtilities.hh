@@ -95,8 +95,8 @@ namespace PlantUtilities {
 
     bool AnyPlantSplitterMixerLacksContinuity();
 
-    void CheckPlantMixerSplitterConsistency(
-        int const LoopNum, int const LoopSideNum, int const SplitNum, int const MixNum, bool const FirstHVACIteration);
+    void
+    CheckPlantMixerSplitterConsistency(int const LoopNum, int const LoopSideNum, int const SplitNum, int const MixNum, bool const FirstHVACIteration);
 
     void CheckForRunawayPlantTemps(int const LoopNum, int const LoopSideNum);
 

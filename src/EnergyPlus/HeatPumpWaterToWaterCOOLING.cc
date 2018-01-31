@@ -197,8 +197,8 @@ namespace HeatPumpWaterToWaterCOOLING {
             }
             if (CheckEquipName(GSHPNum)) {
                 if (GSHPName != GSHP(GSHPNum).Name) {
-                    ShowFatalError("SimHPWatertoWaterCOOLING: Invalid CompIndex passed=" + TrimSigDigits(GSHPNum) + ", Unit name=" +
-                                   GSHPName + ", stored Unit Name for that index=" + GSHP(GSHPNum).Name);
+                    ShowFatalError("SimHPWatertoWaterCOOLING: Invalid CompIndex passed=" + TrimSigDigits(GSHPNum) + ", Unit name=" + GSHPName +
+                                   ", stored Unit Name for that index=" + GSHP(GSHPNum).Name);
                 }
                 CheckEquipName(GSHPNum) = false;
             }
@@ -395,20 +395,17 @@ namespace HeatPumpWaterToWaterCOOLING {
                 // CALL ShowWarningError(ModuleCompName//': Low Pressure Cut Off= 0.0 Heat Pump'//TRIM(AlphArray(1)))
             }
 
-            GSHP(GSHPNum).SourceSideInletNodeNum =
-                GetOnlySingleNode(AlphArray(2), ErrorsFound, "HeatPump:WaterToWater Cooling", AlphArray(1), NodeType_Water,
-                                  NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+            GSHP(GSHPNum).SourceSideInletNodeNum = GetOnlySingleNode(AlphArray(2), ErrorsFound, "HeatPump:WaterToWater Cooling", AlphArray(1),
+                                                                     NodeType_Water, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
 
-            GSHP(GSHPNum).SourceSideOutletNodeNum =
-                GetOnlySingleNode(AlphArray(3), ErrorsFound, "HeatPump:WaterToWater Cooling", AlphArray(1), NodeType_Water,
-                                  NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+            GSHP(GSHPNum).SourceSideOutletNodeNum = GetOnlySingleNode(AlphArray(3), ErrorsFound, "HeatPump:WaterToWater Cooling", AlphArray(1),
+                                                                      NodeType_Water, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
 
             GSHP(GSHPNum).LoadSideInletNodeNum = GetOnlySingleNode(AlphArray(4), ErrorsFound, "HeatPump:WaterToWater Cooling", AlphArray(1),
                                                                    NodeType_Water, NodeConnectionType_Inlet, 2, ObjectIsNotParent);
 
-            GSHP(GSHPNum).LoadSideOutletNodeNum =
-                GetOnlySingleNode(AlphArray(5), ErrorsFound, "HeatPump:WaterToWater Cooling", AlphArray(1), NodeType_Water,
-                                  NodeConnectionType_Outlet, 2, ObjectIsNotParent);
+            GSHP(GSHPNum).LoadSideOutletNodeNum = GetOnlySingleNode(AlphArray(5), ErrorsFound, "HeatPump:WaterToWater Cooling", AlphArray(1),
+                                                                    NodeType_Water, NodeConnectionType_Outlet, 2, ObjectIsNotParent);
 
             // Test node sets
             TestCompSet(ModuleCompNameUC, AlphArray(1), AlphArray(2), AlphArray(3), "Condenser Water Nodes");
@@ -442,18 +439,18 @@ namespace HeatPumpWaterToWaterCOOLING {
 
         // CurrentModuleObject='HeatPump:WaterToWater:ParameterEstimation:Cooling'
         for (GSHPNum = 1; GSHPNum <= NumGSHPs; ++GSHPNum) {
-            SetupOutputVariable("Water to Water Heat Pump Electric Power", OutputProcessor::Unit::W, GSHPReport(GSHPNum).Power, "System",
-                                "Average", GSHP(GSHPNum).Name);
-            SetupOutputVariable("Water to Water Heat Pump Electric Energy", OutputProcessor::Unit::J, GSHPReport(GSHPNum).Energy, "System",
-                                "Sum", GSHP(GSHPNum).Name, _, "Electricity", "Cooling", _, "Plant");
+            SetupOutputVariable("Water to Water Heat Pump Electric Power", OutputProcessor::Unit::W, GSHPReport(GSHPNum).Power, "System", "Average",
+                                GSHP(GSHPNum).Name);
+            SetupOutputVariable("Water to Water Heat Pump Electric Energy", OutputProcessor::Unit::J, GSHPReport(GSHPNum).Energy, "System", "Sum",
+                                GSHP(GSHPNum).Name, _, "Electricity", "Cooling", _, "Plant");
 
-            SetupOutputVariable("Water to Water Heat Pump Load Side Heat Transfer Rate", OutputProcessor::Unit::W,
-                                GSHPReport(GSHPNum).QLoad, "System", "Average", GSHP(GSHPNum).Name);
-            SetupOutputVariable("Water to Water Heat Pump Load Side Heat Transfer Energy", OutputProcessor::Unit::J,
-                                GSHPReport(GSHPNum).QLoadEnergy, "System", "Sum", GSHP(GSHPNum).Name);
+            SetupOutputVariable("Water to Water Heat Pump Load Side Heat Transfer Rate", OutputProcessor::Unit::W, GSHPReport(GSHPNum).QLoad,
+                                "System", "Average", GSHP(GSHPNum).Name);
+            SetupOutputVariable("Water to Water Heat Pump Load Side Heat Transfer Energy", OutputProcessor::Unit::J, GSHPReport(GSHPNum).QLoadEnergy,
+                                "System", "Sum", GSHP(GSHPNum).Name);
 
-            SetupOutputVariable("Water to Water Heat Pump Source Side Heat Transfer Rate", OutputProcessor::Unit::W,
-                                GSHPReport(GSHPNum).QSource, "System", "Average", GSHP(GSHPNum).Name);
+            SetupOutputVariable("Water to Water Heat Pump Source Side Heat Transfer Rate", OutputProcessor::Unit::W, GSHPReport(GSHPNum).QSource,
+                                "System", "Average", GSHP(GSHPNum).Name);
             SetupOutputVariable("Water to Water Heat Pump Source Side Heat Transfer Energy", OutputProcessor::Unit::J,
                                 GSHPReport(GSHPNum).QSourceEnergy, "System", "Sum", GSHP(GSHPNum).Name);
 
@@ -465,8 +462,8 @@ namespace HeatPumpWaterToWaterCOOLING {
                                 GSHPReport(GSHPNum).SourceSideWaterOutletTemp, "System", "Average", GSHP(GSHPNum).Name);
             SetupOutputVariable("Water to Water Heat Pump Source Side Inlet Temperature", OutputProcessor::Unit::C,
                                 GSHPReport(GSHPNum).SourceSideWaterInletTemp, "System", "Average", GSHP(GSHPNum).Name);
-            SetupOutputVariable("Water to Water Heat Pump Load Side Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                GSHPReport(GSHPNum).LoadSidemdot, "System", "Average", GSHP(GSHPNum).Name);
+            SetupOutputVariable("Water to Water Heat Pump Load Side Mass Flow Rate", OutputProcessor::Unit::kg_s, GSHPReport(GSHPNum).LoadSidemdot,
+                                "System", "Average", GSHP(GSHPNum).Name);
             SetupOutputVariable("Water to Water Heat Pump Source Side Mass Flow Rate", OutputProcessor::Unit::kg_s,
                                 GSHPReport(GSHPNum).SourceSidemdot, "System", "Average", GSHP(GSHPNum).Name);
 
@@ -475,14 +472,12 @@ namespace HeatPumpWaterToWaterCOOLING {
             ScanPlantLoopsForObject(GSHP(GSHPNum).Name, GSHP(GSHPNum).WWHPPlantTypeOfNum, GSHP(GSHPNum).SourceLoopNum,
                                     GSHP(GSHPNum).SourceLoopSideNum, GSHP(GSHPNum).SourceBranchNum, GSHP(GSHPNum).SourceCompNum, _, _, _,
                                     GSHP(GSHPNum).SourceSideInletNodeNum, _, errFlag);
-            ScanPlantLoopsForObject(GSHP(GSHPNum).Name, GSHP(GSHPNum).WWHPPlantTypeOfNum, GSHP(GSHPNum).LoadLoopNum,
-                                    GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum, _, _, _,
-                                    GSHP(GSHPNum).LoadSideInletNodeNum, _, errFlag);
+            ScanPlantLoopsForObject(GSHP(GSHPNum).Name, GSHP(GSHPNum).WWHPPlantTypeOfNum, GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum,
+                                    GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum, _, _, _, GSHP(GSHPNum).LoadSideInletNodeNum, _, errFlag);
 
             if (!errFlag) {
-                PlantUtilities::InterConnectTwoPlantLoopSides(GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum,
-                                                              GSHP(GSHPNum).SourceLoopNum, GSHP(GSHPNum).SourceLoopSideNum,
-                                                              GSHP(GSHPNum).WWHPPlantTypeOfNum, true);
+                PlantUtilities::InterConnectTwoPlantLoopSides(GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).SourceLoopNum,
+                                                              GSHP(GSHPNum).SourceLoopSideNum, GSHP(GSHPNum).WWHPPlantTypeOfNum, true);
             }
 
             if (errFlag) {
@@ -528,12 +523,11 @@ namespace HeatPumpWaterToWaterCOOLING {
         if (MyPlanScanFlag(GSHPNum)) {
             // Locate the heating on the plant loops for later usage
             errFlag = false;
-            ScanPlantLoopsForObject(GSHP(GSHPNum).Name, TypeOf_HPWaterPECooling, GSHP(GSHPNum).SourceLoopNum,
-                                    GSHP(GSHPNum).SourceLoopSideNum, GSHP(GSHPNum).SourceBranchNum, GSHP(GSHPNum).SourceCompNum, _, _, _,
-                                    GSHP(GSHPNum).SourceSideInletNodeNum, _, errFlag);
-            ScanPlantLoopsForObject(GSHP(GSHPNum).Name, TypeOf_HPWaterPECooling, GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum,
-                                    GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum, _, _, _, GSHP(GSHPNum).LoadSideInletNodeNum, _,
+            ScanPlantLoopsForObject(GSHP(GSHPNum).Name, TypeOf_HPWaterPECooling, GSHP(GSHPNum).SourceLoopNum, GSHP(GSHPNum).SourceLoopSideNum,
+                                    GSHP(GSHPNum).SourceBranchNum, GSHP(GSHPNum).SourceCompNum, _, _, _, GSHP(GSHPNum).SourceSideInletNodeNum, _,
                                     errFlag);
+            ScanPlantLoopsForObject(GSHP(GSHPNum).Name, TypeOf_HPWaterPECooling, GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum,
+                                    GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum, _, _, _, GSHP(GSHPNum).LoadSideInletNodeNum, _, errFlag);
             if (errFlag) {
                 ShowFatalError("InitGshp: Program terminated due to previous condition(s).");
             }
@@ -562,9 +556,8 @@ namespace HeatPumpWaterToWaterCOOLING {
                                    PlantLoop(GSHP(GSHPNum).LoadLoopNum).FluidIndex, RoutineName);
             GSHP(GSHPNum).LoadSideDesignMassFlow = GSHP(GSHPNum).LoadSideVolFlowRate * rho;
 
-            InitComponentNodes(0.0, GSHP(GSHPNum).LoadSideDesignMassFlow, GSHP(GSHPNum).LoadSideInletNodeNum,
-                               GSHP(GSHPNum).LoadSideOutletNodeNum, GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum,
-                               GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum);
+            InitComponentNodes(0.0, GSHP(GSHPNum).LoadSideDesignMassFlow, GSHP(GSHPNum).LoadSideInletNodeNum, GSHP(GSHPNum).LoadSideOutletNodeNum,
+                               GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum);
 
             rho = GetDensityGlycol(PlantLoop(GSHP(GSHPNum).SourceLoopNum).FluidName, DataGlobals::CWInitConvTemp,
                                    PlantLoop(GSHP(GSHPNum).SourceLoopNum).FluidIndex, RoutineName);
@@ -744,10 +737,10 @@ namespace HeatPumpWaterToWaterCOOLING {
             SourceSideWaterMassFlowRate = 0.0;
             SetComponentFlowRate(SourceSideWaterMassFlowRate, SourceSideInletNode, SourceSideOutletNode, GSHP(GSHPNum).SourceLoopNum,
                                  GSHP(GSHPNum).SourceLoopSideNum, GSHP(GSHPNum).SourceBranchNum, GSHP(GSHPNum).SourceCompNum);
-            PlantUtilities::PullCompInterconnectTrigger(
-                GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum,
-                GSHP(GSHPNum).CondMassFlowIndex, GSHP(GSHPNum).SourceLoopNum, GSHP(GSHPNum).LoadLoopSideNum,
-                DataPlant::CriteriaType_MassFlowRate, SourceSideWaterMassFlowRate);
+            PlantUtilities::PullCompInterconnectTrigger(GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).LoadBranchNum,
+                                                        GSHP(GSHPNum).LoadCompNum, GSHP(GSHPNum).CondMassFlowIndex, GSHP(GSHPNum).SourceLoopNum,
+                                                        GSHP(GSHPNum).LoadLoopSideNum, DataPlant::CriteriaType_MassFlowRate,
+                                                        SourceSideWaterMassFlowRate);
             // now initialize simulation variables for "heat pump off"
             QLoad = 0.0;
             QSource = 0.0;
@@ -778,10 +771,10 @@ namespace HeatPumpWaterToWaterCOOLING {
                 SourceSideWaterMassFlowRate = 0.0;
                 SetComponentFlowRate(SourceSideWaterMassFlowRate, SourceSideInletNode, SourceSideOutletNode, GSHP(GSHPNum).SourceLoopNum,
                                      GSHP(GSHPNum).SourceLoopSideNum, GSHP(GSHPNum).SourceBranchNum, GSHP(GSHPNum).SourceCompNum);
-                PlantUtilities::PullCompInterconnectTrigger(
-                    GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum,
-                    GSHP(GSHPNum).CondMassFlowIndex, GSHP(GSHPNum).SourceLoopNum, GSHP(GSHPNum).LoadLoopSideNum,
-                    DataPlant::CriteriaType_MassFlowRate, SourceSideWaterMassFlowRate);
+                PlantUtilities::PullCompInterconnectTrigger(GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).LoadBranchNum,
+                                                            GSHP(GSHPNum).LoadCompNum, GSHP(GSHPNum).CondMassFlowIndex, GSHP(GSHPNum).SourceLoopNum,
+                                                            GSHP(GSHPNum).LoadLoopSideNum, DataPlant::CriteriaType_MassFlowRate,
+                                                            SourceSideWaterMassFlowRate);
                 QLoad = 0.0;
                 QSource = 0.0;
                 Power = 0.0;
@@ -791,10 +784,10 @@ namespace HeatPumpWaterToWaterCOOLING {
                 SourceSideWaterOutletTemp = SourceSideWaterInletTemp;
                 return;
             }
-            PlantUtilities::PullCompInterconnectTrigger(
-                GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).LoadBranchNum, GSHP(GSHPNum).LoadCompNum,
-                GSHP(GSHPNum).CondMassFlowIndex, GSHP(GSHPNum).SourceLoopNum, GSHP(GSHPNum).LoadLoopSideNum,
-                DataPlant::CriteriaType_MassFlowRate, SourceSideWaterMassFlowRate);
+            PlantUtilities::PullCompInterconnectTrigger(GSHP(GSHPNum).LoadLoopNum, GSHP(GSHPNum).LoadLoopSideNum, GSHP(GSHPNum).LoadBranchNum,
+                                                        GSHP(GSHPNum).LoadCompNum, GSHP(GSHPNum).CondMassFlowIndex, GSHP(GSHPNum).SourceLoopNum,
+                                                        GSHP(GSHPNum).LoadLoopSideNum, DataPlant::CriteriaType_MassFlowRate,
+                                                        SourceSideWaterMassFlowRate);
         }
 
         //**********BEGIN THE CALCULATION**************
@@ -823,8 +816,7 @@ namespace HeatPumpWaterToWaterCOOLING {
             LoadSideRefridgTemp = LoadSideWaterInletTemp - initialQLoad / (LoadSideEffect * CpLoadSide * LoadSideWaterMassFlowRate);
 
             // Determine Source Side tempertaure
-            SourceSideRefridgTemp =
-                SourceSideWaterInletTemp + initialQSource / (SourceSideEffect * CpSourceSide * SourceSideWaterMassFlowRate);
+            SourceSideRefridgTemp = SourceSideWaterInletTemp + initialQSource / (SourceSideEffect * CpSourceSide * SourceSideWaterMassFlowRate);
 
             // Determine the evaporating and condensing pressures
             SourceSidePressure = GetSatPressureRefrig(GSHPRefrigerant, SourceSideRefridgTemp, GSHPRefrigIndex, RoutineName);
@@ -852,16 +844,16 @@ namespace HeatPumpWaterToWaterCOOLING {
 
             if (SuctionPr < LowPressCutoff) {
                 ShowSevereError(ModuleCompName + "=\"" + GSHPName + "\" Cooling Suction Pressure Less than the Design Minimum");
-                ShowContinueError("Cooling Suction Pressure=" + TrimSigDigits(SuctionPr, 2) +
-                                  " and user specified Design Minimum Pressure=" + TrimSigDigits(LowPressCutoff, 2));
+                ShowContinueError("Cooling Suction Pressure=" + TrimSigDigits(SuctionPr, 2) + " and user specified Design Minimum Pressure=" +
+                                  TrimSigDigits(LowPressCutoff, 2));
                 ShowContinueErrorTimeStamp("");
                 ShowFatalError("Preceding Conditions cause termination.");
             }
 
             if (DischargePr > HighPressCutoff) {
                 ShowSevereError(ModuleCompName + "=\"" + GSHPName + "\" Cooling Discharge Pressure greater than the Design Maximum");
-                ShowContinueError("Cooling Discharge Pressure=" + TrimSigDigits(DischargePr, 2) +
-                                  " and user specified Design Maximum Pressure=" + TrimSigDigits(HighPressCutoff, 2));
+                ShowContinueError("Cooling Discharge Pressure=" + TrimSigDigits(DischargePr, 2) + " and user specified Design Maximum Pressure=" +
+                                  TrimSigDigits(HighPressCutoff, 2));
                 ShowContinueErrorTimeStamp("");
                 ShowFatalError("Preceding Conditions cause termination.");
             }
@@ -869,8 +861,7 @@ namespace HeatPumpWaterToWaterCOOLING {
             // Determine the Source Side Outlet Enthalpy
 
             qual = 1.0;
-            LoadSideOutletEnth =
-                GetSatEnthalpyRefrig(GSHPRefrigerant, LoadSideRefridgTemp, qual, GSHPRefrigIndex, RoutineNameLoadSideRefridgTemp);
+            LoadSideOutletEnth = GetSatEnthalpyRefrig(GSHPRefrigerant, LoadSideRefridgTemp, qual, GSHPRefrigIndex, RoutineNameLoadSideRefridgTemp);
 
             qual = 0.0;
             SourceSideOutletEnth =
@@ -881,8 +872,8 @@ namespace HeatPumpWaterToWaterCOOLING {
             CompressInletTemp = LoadSideRefridgTemp + ShTemp;
 
             // Determine the enathalpy of the super heated fluid at Source Side outlet
-            SuperHeatEnth = GetSupHeatEnthalpyRefrig(GSHPRefrigerant, CompressInletTemp, LoadSidePressure, GSHPRefrigIndex,
-                                                     RoutineNameCompressInletTemp);
+            SuperHeatEnth =
+                GetSupHeatEnthalpyRefrig(GSHPRefrigerant, CompressInletTemp, LoadSidePressure, GSHPRefrigIndex, RoutineNameCompressInletTemp);
 
             // Determining the suction state of the fluid from inlet state involves interation
             // Method employed...
@@ -899,8 +890,7 @@ namespace HeatPumpWaterToWaterCOOLING {
             while (true) {
                 CompSuctionTemp = 0.5 * (T110 + T111);
 
-                CompSuctionEnth =
-                    GetSupHeatEnthalpyRefrig(GSHPRefrigerant, CompSuctionTemp, SuctionPr, GSHPRefrigIndex, RoutineNameCompSuctionTemp);
+                CompSuctionEnth = GetSupHeatEnthalpyRefrig(GSHPRefrigerant, CompSuctionTemp, SuctionPr, GSHPRefrigIndex, RoutineNameCompSuctionTemp);
 
                 if (std::abs(CompSuctionEnth - SuperHeatEnth) / SuperHeatEnth < 0.0001) {
                     goto LOOP_exit;
@@ -915,10 +905,8 @@ namespace HeatPumpWaterToWaterCOOLING {
         LOOP_exit:;
 
             // Determine the Mass flow rate of refrigerant
-            CompSuctionDensity =
-                GetSupHeatDensityRefrig(GSHPRefrigerant, CompSuctionTemp, SuctionPr, GSHPRefrigIndex, RoutineNameCompSuctionTemp);
-            MassRef =
-                PistonDisp * CompSuctionDensity * (1 + ClearanceFactor - ClearanceFactor * std::pow(DischargePr / SuctionPr, 1 / gamma));
+            CompSuctionDensity = GetSupHeatDensityRefrig(GSHPRefrigerant, CompSuctionTemp, SuctionPr, GSHPRefrigIndex, RoutineNameCompSuctionTemp);
+            MassRef = PistonDisp * CompSuctionDensity * (1 + ClearanceFactor - ClearanceFactor * std::pow(DischargePr / SuctionPr, 1 / gamma));
 
             // Find the Source Side Heat Transfer
 

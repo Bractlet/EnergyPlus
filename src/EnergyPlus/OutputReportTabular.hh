@@ -508,8 +508,7 @@ namespace OutputReportTabular {
         Array1D_int IndexesForKeyVar;   // keyVarIndexes !noel
 
         // Default Constructor
-        MonthlyFieldSetInputType()
-            : aggregate(0), varUnits(OutputProcessor::Unit::None), typeOfVar(0), keyCount(0), varAvgSum(1), varStepType(1)
+        MonthlyFieldSetInputType() : aggregate(0), varUnits(OutputProcessor::Unit::None), typeOfVar(0), keyCount(0), varAvgSum(1), varStepType(1)
         {
         }
     };
@@ -546,8 +545,8 @@ namespace OutputReportTabular {
 
         // Default Constructor
         MonthlyColumnsType()
-            : varNum(0), typeOfVar(0), avgSum(0), stepType(0), units(OutputProcessor::Unit::None), aggType(0), reslt(12, 0.0),
-              duration(12, 0.0), timeStamp(12, 0), aggForStep(0.0)
+            : varNum(0), typeOfVar(0), avgSum(0), stepType(0), units(OutputProcessor::Unit::None), aggType(0), reslt(12, 0.0), duration(12, 0.0),
+              timeStamp(12, 0), aggForStep(0.0)
         {
         }
     };
@@ -622,9 +621,9 @@ namespace OutputReportTabular {
         // default constructor
         CompLoadTablesType()
             : desDayNum(0), timeStepMax(0), outsideDryBulb(0.), outsideWebBulb(0.), outsideHumRatio(0.), zoneDryBulb(0.), zoneRelHum(0.),
-              supAirTemp(0.), mixAirTemp(0.), mainFanAirFlow(0.), outsideAirFlow(0.), designPeakLoad(0.), diffDesignPeak(0.),
-              peakDesSensLoad(0.), estInstDelSensLoad(0.), diffPeakEst(0.), outsideAirRatio(0.), floorArea(0.), airflowPerFlrArea(0.),
-              airflowPerTotCap(0.), areaPerTotCap(0.), totCapPerArea(0.), chlPumpPerFlow(0.), cndPumpPerFlow(0.), numPeople(0.)
+              supAirTemp(0.), mixAirTemp(0.), mainFanAirFlow(0.), outsideAirFlow(0.), designPeakLoad(0.), diffDesignPeak(0.), peakDesSensLoad(0.),
+              estInstDelSensLoad(0.), diffPeakEst(0.), outsideAirRatio(0.), floorArea(0.), airflowPerFlrArea(0.), airflowPerTotCap(0.),
+              areaPerTotCap(0.), totCapPerArea(0.), chlPumpPerFlow(0.), cndPumpPerFlow(0.), numPeople(0.)
 
         {
         }
@@ -647,8 +646,8 @@ namespace OutputReportTabular {
 
         // default constructor
         ZompComponentAreasType()
-            : floor(0.), roof(0.), ceiling(0.), extWall(0.), intZoneWall(0.), grndCntWall(0.), extFloor(0.), intZoneFloor(0.),
-              grndCntFloor(0.), fenestration(0.), door(0.)
+            : floor(0.), roof(0.), ceiling(0.), extWall(0.), intZoneWall(0.), grndCntWall(0.), extFloor(0.), intZoneFloor(0.), grndCntFloor(0.),
+              fenestration(0.), door(0.)
         {
         }
     };
@@ -685,8 +684,7 @@ namespace OutputReportTabular {
 
     int AddMonthlyReport(std::string const &inReportName, int const inNumDigitsShown);
 
-    void
-    AddMonthlyFieldSetInput(int const inMonthReport, std::string const &inVariMeter, std::string const &inColHead, int const inAggregate);
+    void AddMonthlyFieldSetInput(int const inMonthReport, std::string const &inVariMeter, std::string const &inColHead, int const inAggregate);
 
     void InitializeTabularMonthly();
 
@@ -922,14 +920,8 @@ namespace OutputReportTabular {
     //======================================================================================================================
     //======================================================================================================================
 
-    bool isInTriangle(Real64 const qx,
-                      Real64 const qy,
-                      Real64 const x1,
-                      Real64 const y1,
-                      Real64 const x2,
-                      Real64 const y2,
-                      Real64 const x3,
-                      Real64 const y3);
+    bool isInTriangle(
+        Real64 const qx, Real64 const qy, Real64 const x1, Real64 const y1, Real64 const x2, Real64 const y2, Real64 const x3, Real64 const y3);
 
     bool isInQuadrilateral(Real64 const qx,
                            Real64 const qy,

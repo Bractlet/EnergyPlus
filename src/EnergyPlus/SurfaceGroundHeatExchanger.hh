@@ -225,24 +225,21 @@ namespace SurfaceGroundHeatExchanger {
 
         // Default Constructor
         SurfaceGroundHeatExchangerData()
-            : DesignMassFlowRate(0.0), TubeDiameter(0.0), TubeSpacing(0.0), SurfaceLength(0.0), SurfaceWidth(0.0), TopThermAbs(0.0),
-              TopSolarAbs(0.0), BtmThermAbs(0.0), LowerSurfCond(0), TubeCircuits(0), ConstructionNum(0), InletNodeNum(0), OutletNodeNum(0),
-              TopRoughness(0), BtmRoughness(0), FrozenErrIndex1(0), FrozenErrIndex2(0), ConvErrIndex1(0), ConvErrIndex2(0),
-              ConvErrIndex3(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0),
+            : DesignMassFlowRate(0.0), TubeDiameter(0.0), TubeSpacing(0.0), SurfaceLength(0.0), SurfaceWidth(0.0), TopThermAbs(0.0), TopSolarAbs(0.0),
+              BtmThermAbs(0.0), LowerSurfCond(0), TubeCircuits(0), ConstructionNum(0), InletNodeNum(0), OutletNodeNum(0), TopRoughness(0),
+              BtmRoughness(0), FrozenErrIndex1(0), FrozenErrIndex2(0), ConvErrIndex1(0), ConvErrIndex2(0), ConvErrIndex3(0), LoopNum(0),
+              LoopSideNum(0), BranchNum(0), CompNum(0),
 
-              TsrcConstCoef(0.0), TsrcVarCoef(0.0), QbtmConstCoef(0.0), QbtmVarCoef(0.0), QtopConstCoef(0.0), QtopVarCoef(0.0),
-              NumCTFTerms(0), CTFin({0, loc::MaxCTFTerms - 1}, 0.0), CTFout({0, loc::MaxCTFTerms - 1}, 0.0),
-              CTFcross({0, loc::MaxCTFTerms - 1}, 0.0), CTFflux({0, loc::MaxCTFTerms - 1}, 0.0),
-              CTFSourceIn({0, loc::MaxCTFTerms - 1}, 0.0), CTFSourceOut({0, loc::MaxCTFTerms - 1}, 0.0),
+              TsrcConstCoef(0.0), TsrcVarCoef(0.0), QbtmConstCoef(0.0), QbtmVarCoef(0.0), QtopConstCoef(0.0), QtopVarCoef(0.0), NumCTFTerms(0),
+              CTFin({0, loc::MaxCTFTerms - 1}, 0.0), CTFout({0, loc::MaxCTFTerms - 1}, 0.0), CTFcross({0, loc::MaxCTFTerms - 1}, 0.0),
+              CTFflux({0, loc::MaxCTFTerms - 1}, 0.0), CTFSourceIn({0, loc::MaxCTFTerms - 1}, 0.0), CTFSourceOut({0, loc::MaxCTFTerms - 1}, 0.0),
               CTFTSourceOut({0, loc::MaxCTFTerms - 1}, 0.0), CTFTSourceIn({0, loc::MaxCTFTerms - 1}, 0.0),
-              CTFTSourceQ({0, loc::MaxCTFTerms - 1}, 0.0), TbtmHistory({0, loc::MaxCTFTerms - 1}, 0.0),
-              TtopHistory({0, loc::MaxCTFTerms - 1}, 0.0), TsrcHistory({0, loc::MaxCTFTerms - 1}, 0.0),
-              QbtmHistory({0, loc::MaxCTFTerms - 1}, 0.0), QtopHistory({0, loc::MaxCTFTerms - 1}, 0.0),
-              QsrcHistory({0, loc::MaxCTFTerms - 1}, 0.0), QSrc(0.0), QSrcAvg(0.0), LastQSrc(0.0), LastSysTimeElapsed(0.0),
-              LastTimeStepSys(0.0),
+              CTFTSourceQ({0, loc::MaxCTFTerms - 1}, 0.0), TbtmHistory({0, loc::MaxCTFTerms - 1}, 0.0), TtopHistory({0, loc::MaxCTFTerms - 1}, 0.0),
+              TsrcHistory({0, loc::MaxCTFTerms - 1}, 0.0), QbtmHistory({0, loc::MaxCTFTerms - 1}, 0.0), QtopHistory({0, loc::MaxCTFTerms - 1}, 0.0),
+              QsrcHistory({0, loc::MaxCTFTerms - 1}, 0.0), QSrc(0.0), QSrcAvg(0.0), LastQSrc(0.0), LastSysTimeElapsed(0.0), LastTimeStepSys(0.0),
 
-              InletTemp(0.0), OutletTemp(0.0), MassFlowRate(0.0), TopSurfaceTemp(0.0), BtmSurfaceTemp(0.0), TopSurfaceFlux(0.0),
-              BtmSurfaceFlux(0.0), HeatTransferRate(0.0), SurfHeatTransferRate(0.0), Energy(0.0), SurfEnergy(0.0), SourceTemp(0.0),
+              InletTemp(0.0), OutletTemp(0.0), MassFlowRate(0.0), TopSurfaceTemp(0.0), BtmSurfaceTemp(0.0), TopSurfaceFlux(0.0), BtmSurfaceFlux(0.0),
+              HeatTransferRate(0.0), SurfHeatTransferRate(0.0), Energy(0.0), SurfEnergy(0.0), SourceTemp(0.0),
 
               MyFlag(true), InitQTF(true), MyEnvrnFlag(true), SurfaceArea(0.0)
         {

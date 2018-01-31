@@ -161,17 +161,16 @@ namespace ChillerExhaustAbsorption {
         ExhaustAbsorberSpecs()
             : Available(false), ON(false), InCoolingMode(false), InHeatingMode(false), NomCoolingCap(0.0), NomCoolingCapWasAutoSized(false),
               NomHeatCoolRatio(0.0), ThermalEnergyCoolRatio(0.0), ThermalEnergyHeatRatio(0.0), ElecCoolRatio(0.0), ElecHeatRatio(0.0),
-              ChillReturnNodeNum(0), ChillSupplyNodeNum(0), ChillSetPointErrDone(false), ChillSetPointSetToLoop(false),
-              CondReturnNodeNum(0), CondSupplyNodeNum(0), HeatReturnNodeNum(0), HeatSupplyNodeNum(0), HeatSetPointErrDone(false),
-              HeatSetPointSetToLoop(false), MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), TempDesCondReturn(0.0),
-              TempDesCHWSupply(0.0), EvapVolFlowRate(0.0), EvapVolFlowRateWasAutoSized(false), CondVolFlowRate(0.0),
-              CondVolFlowRateWasAutoSized(false), HeatVolFlowRate(0.0), HeatVolFlowRateWasAutoSized(false), SizFac(0.0), CoolCapFTCurve(0),
-              ThermalEnergyCoolFTCurve(0), ThermalEnergyCoolFPLRCurve(0), ElecCoolFTCurve(0), ElecCoolFPLRCurve(0), HeatCapFCoolCurve(0),
-              ThermalEnergyHeatFHPLRCurve(0), isEnterCondensTemp(false), isWaterCooled(false), CHWLowLimitTemp(0.0),
-              DesCondMassFlowRate(0.0), DesHeatMassFlowRate(0.0), DesEvapMassFlowRate(0.0), DeltaTempCoolErrCount(0),
-              DeltaTempHeatErrCount(0), CondErrCount(0), PossibleSubcooling(false), CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0),
-              CWCompNum(0), CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0), HWLoopNum(0), HWLoopSideNum(0), HWBranchNum(0),
-              HWCompNum(0), CompType_Num(0), ExhTempLTAbsLeavingTempIndex(0), ExhTempLTAbsLeavingHeatingTempIndex(0)
+              ChillReturnNodeNum(0), ChillSupplyNodeNum(0), ChillSetPointErrDone(false), ChillSetPointSetToLoop(false), CondReturnNodeNum(0),
+              CondSupplyNodeNum(0), HeatReturnNodeNum(0), HeatSupplyNodeNum(0), HeatSetPointErrDone(false), HeatSetPointSetToLoop(false),
+              MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), TempDesCondReturn(0.0), TempDesCHWSupply(0.0), EvapVolFlowRate(0.0),
+              EvapVolFlowRateWasAutoSized(false), CondVolFlowRate(0.0), CondVolFlowRateWasAutoSized(false), HeatVolFlowRate(0.0),
+              HeatVolFlowRateWasAutoSized(false), SizFac(0.0), CoolCapFTCurve(0), ThermalEnergyCoolFTCurve(0), ThermalEnergyCoolFPLRCurve(0),
+              ElecCoolFTCurve(0), ElecCoolFPLRCurve(0), HeatCapFCoolCurve(0), ThermalEnergyHeatFHPLRCurve(0), isEnterCondensTemp(false),
+              isWaterCooled(false), CHWLowLimitTemp(0.0), DesCondMassFlowRate(0.0), DesHeatMassFlowRate(0.0), DesEvapMassFlowRate(0.0),
+              DeltaTempCoolErrCount(0), DeltaTempHeatErrCount(0), CondErrCount(0), PossibleSubcooling(false), CWLoopNum(0), CWLoopSideNum(0),
+              CWBranchNum(0), CWCompNum(0), CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0), HWLoopNum(0), HWLoopSideNum(0),
+              HWBranchNum(0), HWCompNum(0), CompType_Num(0), ExhTempLTAbsLeavingTempIndex(0), ExhTempLTAbsLeavingHeatingTempIndex(0)
         {
         }
     };
@@ -219,14 +218,13 @@ namespace ChillerExhaustAbsorption {
 
         // Default Constructor
         ReportVars()
-            : CoolingLoad(0.0), CoolingEnergy(0.0), HeatingLoad(0.0), HeatingEnergy(0.0), TowerLoad(0.0), TowerEnergy(0.0),
-              ThermalEnergyUseRate(0.0), ThermalEnergy(0.0), CoolThermalEnergyUseRate(0.0), CoolThermalEnergy(0.0),
-              HeatThermalEnergyUseRate(0.0), HeatThermalEnergy(0.0), ElectricPower(0.0), ElectricEnergy(0.0), CoolElectricPower(0.0),
-              CoolElectricEnergy(0.0), HeatElectricPower(0.0), HeatElectricEnergy(0.0), ChillReturnTemp(0.0), ChillSupplyTemp(0.0),
-              ChillWaterFlowRate(0.0), CondReturnTemp(0.0), CondSupplyTemp(0.0), CondWaterFlowRate(0.0), HotWaterReturnTemp(0.0),
-              HotWaterSupplyTemp(0.0), HotWaterFlowRate(0.0), CoolPartLoadRatio(0.0), HeatPartLoadRatio(0.0), CoolingCapacity(0.0),
-              HeatingCapacity(0.0), FractionOfPeriodRunning(0.0), ThermalEnergyCOP(0.0), ExhaustInTemp(0.0), ExhaustInFlow(0.0),
-              ExhHeatRecPotentialHeat(0.0), ExhHeatRecPotentialCool(0.0)
+            : CoolingLoad(0.0), CoolingEnergy(0.0), HeatingLoad(0.0), HeatingEnergy(0.0), TowerLoad(0.0), TowerEnergy(0.0), ThermalEnergyUseRate(0.0),
+              ThermalEnergy(0.0), CoolThermalEnergyUseRate(0.0), CoolThermalEnergy(0.0), HeatThermalEnergyUseRate(0.0), HeatThermalEnergy(0.0),
+              ElectricPower(0.0), ElectricEnergy(0.0), CoolElectricPower(0.0), CoolElectricEnergy(0.0), HeatElectricPower(0.0),
+              HeatElectricEnergy(0.0), ChillReturnTemp(0.0), ChillSupplyTemp(0.0), ChillWaterFlowRate(0.0), CondReturnTemp(0.0), CondSupplyTemp(0.0),
+              CondWaterFlowRate(0.0), HotWaterReturnTemp(0.0), HotWaterSupplyTemp(0.0), HotWaterFlowRate(0.0), CoolPartLoadRatio(0.0),
+              HeatPartLoadRatio(0.0), CoolingCapacity(0.0), HeatingCapacity(0.0), FractionOfPeriodRunning(0.0), ThermalEnergyCOP(0.0),
+              ExhaustInTemp(0.0), ExhaustInFlow(0.0), ExhHeatRecPotentialHeat(0.0), ExhHeatRecPotentialCool(0.0)
         {
         }
     };

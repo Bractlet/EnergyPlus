@@ -423,9 +423,8 @@ namespace BranchNodeConnections {
                 IsValid = true;
             }
             if (!IsValid) {
-                ShowSevereError(
-                    "Node Connection Error, Node=\"" + NodeConnections(Loop1).NodeName +
-                    "\", Actuator node did not find a matching node of appropriate type (other than Actuator, Sensor, OutsideAir).");
+                ShowSevereError("Node Connection Error, Node=\"" + NodeConnections(Loop1).NodeName +
+                                "\", Actuator node did not find a matching node of appropriate type (other than Actuator, Sensor, OutsideAir).");
                 ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Name=" + NodeConnections(Loop1).ObjectName);
                 ++ErrorCounter;
                 ErrorsFound = true;
@@ -580,8 +579,7 @@ namespace BranchNodeConnections {
             if (!IsValid && !MatchedAtLeastOne) {
                 ShowSevereError("Node Connection Error, Node=\"" + NodeConnections(Loop1).NodeName +
                                 "\", Inlet node did not find an appropriate matching \"outlet\" node.");
-                ShowContinueError(
-                    "If this is an outdoor air inlet node, it must be listed in an OutdoorAir:Node or OutdoorAir:NodeList object.");
+                ShowContinueError("If this is an outdoor air inlet node, it must be listed in an OutdoorAir:Node or OutdoorAir:NodeList object.");
                 ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Name=" + NodeConnections(Loop1).ObjectName);
                 ++ErrorCounter;
                 //      ErrorsFound=.TRUE.
@@ -600,10 +598,8 @@ namespace BranchNodeConnections {
                 if (NodeConnections(Loop2).NodeNumber == NodeConnections(Loop1).NodeNumber) {
                     ShowSevereError("Node Connection Error, Node=\"" + NodeConnections(Loop1).NodeName +
                                     "\", The same node appears as a non-parent Inlet node more than once.");
-                    ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Name=" +
-                                      NodeConnections(Loop1).ObjectName);
-                    ShowContinueError("Reference Object=" + NodeConnections(Loop2).ObjectType + ", Name=" +
-                                      NodeConnections(Loop2).ObjectName);
+                    ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Name=" + NodeConnections(Loop1).ObjectName);
+                    ShowContinueError("Reference Object=" + NodeConnections(Loop2).ObjectType + ", Name=" + NodeConnections(Loop2).ObjectName);
                     ++ErrorCounter;
                     //        ErrorsFound=.TRUE.
                     break;
@@ -629,10 +625,8 @@ namespace BranchNodeConnections {
                     // Skip if one of the
                     ShowSevereError("Node Connection Error, Node=\"" + NodeConnections(Loop1).NodeName +
                                     "\", The same node appears as a non-parent Outlet node more than once.");
-                    ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Name=" +
-                                      NodeConnections(Loop1).ObjectName);
-                    ShowContinueError("Reference Object=" + NodeConnections(Loop2).ObjectType + ", Name=" +
-                                      NodeConnections(Loop2).ObjectName);
+                    ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Name=" + NodeConnections(Loop1).ObjectName);
+                    ShowContinueError("Reference Object=" + NodeConnections(Loop2).ObjectType + ", Name=" + NodeConnections(Loop2).ObjectName);
                     ++ErrorCounter;
                     //        ErrorsFound=.TRUE.
                     break;
@@ -654,8 +648,7 @@ namespace BranchNodeConnections {
             if (!IsValid) {
                 ShowSevereError("Node Connection Error, Node=\"" + NodeConnections(Loop1).NodeName +
                                 "\", Outdoor Air Reference did not find an appropriate \"outdoor air\" node.");
-                ShowContinueError(
-                    "This node must be listed in an OutdoorAir:Node or OutdoorAir:NodeList object in order to set its conditions.");
+                ShowContinueError("This node must be listed in an OutdoorAir:Node or OutdoorAir:NodeList object in order to set its conditions.");
                 ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Name=" + NodeConnections(Loop1).ObjectName);
                 ++ErrorCounter;
                 //      ErrorsFound=.TRUE.
@@ -744,10 +737,8 @@ namespace BranchNodeConnections {
                     if (NodeConnections(Loop2).ConnectionType == ValidConnectionTypes(NodeConnectionType_SetPoint)) continue;
                     ShowSevereError("Node Connection Error, Node Name=\"" + NodeConnections(Loop1).NodeName +
                                     "\", The same zone node appears more than once.");
-                    ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Object Name=" +
-                                      NodeConnections(Loop1).ObjectName);
-                    ShowContinueError("Reference Object=" + NodeConnections(Loop2).ObjectType + ", Object Name=" +
-                                      NodeConnections(Loop2).ObjectName);
+                    ShowContinueError("Reference Object=" + NodeConnections(Loop1).ObjectType + ", Object Name=" + NodeConnections(Loop1).ObjectName);
+                    ShowContinueError("Reference Object=" + NodeConnections(Loop2).ObjectType + ", Object Name=" + NodeConnections(Loop2).ObjectName);
                     ++ErrorCounter;
                     ErrorsFound = true;
                 }
@@ -1357,8 +1348,8 @@ namespace BranchNodeConnections {
             if (NumChildren == 0) {
                 ShowWarningError("GetChildrenData: Parent Node has no children, node=" + ComponentType + ':' + ComponentName);
             } else {
-                GetParentData(ComponentType, ComponentName, ParentInletNodeName, ParentInletNodeNum, ParentOutletNodeName,
-                              ParentOutletNodeNum, ErrInObject);
+                GetParentData(ComponentType, ComponentName, ParentInletNodeName, ParentInletNodeNum, ParentOutletNodeName, ParentOutletNodeNum,
+                              ErrInObject);
                 ChildCType.allocate(NumChildren);
                 ChildCName.allocate(NumChildren);
                 ChildInNodeName.allocate(NumChildren);
@@ -1588,8 +1579,7 @@ namespace BranchNodeConnections {
                         // belongs to a component that appears as a parent, then OK
                         Found2 = 0;
                         for (Count2 = 1; Count2 <= NumCompSets; ++Count2) {
-                            if ((CompSets(Count).CType == CompSets(Count2).ParentCType) &&
-                                (CompSets(Count).CName == CompSets(Count2).ParentCName))
+                            if ((CompSets(Count).CType == CompSets(Count2).ParentCType) && (CompSets(Count).CName == CompSets(Count2).ParentCName))
                                 Found2 = 1;
                             if ((CompTypeUC == CompSets(Count2).ParentCType) && (CompName == CompSets(Count2).ParentCName)) Found2 = 1;
                         }
@@ -1620,8 +1610,7 @@ namespace BranchNodeConnections {
                         // belongs to a component that appears as a parent, then OK
                         Found2 = 0;
                         for (Count2 = 1; Count2 <= NumCompSets; ++Count2) {
-                            if ((CompSets(Count).CType == CompSets(Count2).ParentCType) &&
-                                (CompSets(Count).CName == CompSets(Count2).ParentCName))
+                            if ((CompSets(Count).CType == CompSets(Count2).ParentCType) && (CompSets(Count).CName == CompSets(Count2).ParentCName))
                                 Found2 = 1;
                             if ((CompTypeUC == CompSets(Count2).ParentCType) && (CompName == CompSets(Count2).ParentCName)) Found2 = 1;
                         }
@@ -1804,11 +1793,9 @@ namespace BranchNodeConnections {
         for (Count = 1; Count <= NumCompSets; ++Count) {
             if ((CompTypeUC != CompSets(Count).CType) && (CompSets(Count).CType != "UNDEFINED")) continue;
             if (CompName != CompSets(Count).CName) continue;
-            if ((InletNode != CompSets(Count).InletNodeName) && (CompSets(Count).InletNodeName != "UNDEFINED") &&
-                (InletNode != "UNDEFINED"))
+            if ((InletNode != CompSets(Count).InletNodeName) && (CompSets(Count).InletNodeName != "UNDEFINED") && (InletNode != "UNDEFINED"))
                 continue;
-            if ((OutletNode != CompSets(Count).OutletNodeName) && (CompSets(Count).OutletNodeName != "UNDEFINED") &&
-                (OutletNode != "UNDEFINED"))
+            if ((OutletNode != CompSets(Count).OutletNodeName) && (CompSets(Count).OutletNodeName != "UNDEFINED") && (OutletNode != "UNDEFINED"))
                 continue;
 
             Found = Count;
@@ -1989,8 +1976,8 @@ namespace BranchNodeConnections {
 
         if (NumInList > 0) {
             for (NodeConnectIndex = 1; NodeConnectIndex <= NumInList; ++NodeConnectIndex) {
-                NodeConnectType(NodeConnectIndex) = FindItemInList(NodeConnections(ListArray(NodeConnectIndex)).ConnectionType,
-                                                                   ValidConnectionTypes, NumValidConnectionTypes);
+                NodeConnectType(NodeConnectIndex) =
+                    FindItemInList(NodeConnections(ListArray(NodeConnectIndex)).ConnectionType, ValidConnectionTypes, NumValidConnectionTypes);
             }
         } else {
             if (NodeNumber > 0) {

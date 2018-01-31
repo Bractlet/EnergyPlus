@@ -222,8 +222,8 @@ namespace GeneratorFuelSupply {
                 }
 
                 FuelSupply(FuelSupNum).NodeName = AlphArray(3);
-                FuelSupply(FuelSupNum).NodeNum = GetOnlySingleNode(AlphArray(3), ErrorsFound, cCurrentModuleObject, AlphArray(1),
-                                                                   NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+                FuelSupply(FuelSupNum).NodeNum = GetOnlySingleNode(AlphArray(3), ErrorsFound, cCurrentModuleObject, AlphArray(1), NodeType_Air,
+                                                                   NodeConnectionType_Sensor, 1, ObjectIsNotParent);
 
                 FuelSupply(FuelSupNum).SchedNum = GetScheduleIndex(AlphArray(4));
                 if ((FuelSupply(FuelSupNum).SchedNum == 0) && (FuelSupply(FuelSupNum).FuelTempMode == FuelInTempSchedule)) {
@@ -719,8 +719,7 @@ namespace GeneratorFuelSupply {
                     LHVi =
                         GasPhaseThermoChemistryData(thisGasID).StdRefMolarEnthOfForm -
                         GasPhaseThermoChemistryData(thisGasID).NumCarbons * GasPhaseThermoChemistryData(CO2dataID).StdRefMolarEnthOfForm -
-                        (GasPhaseThermoChemistryData(thisGasID).NumHydrogens / 2.0) *
-                            GasPhaseThermoChemistryData(WaterDataID).StdRefMolarEnthOfForm;
+                        (GasPhaseThermoChemistryData(thisGasID).NumHydrogens / 2.0) * GasPhaseThermoChemistryData(WaterDataID).StdRefMolarEnthOfForm;
                 }
                 LHVfuel += LHVi * FuelSupply(FuelSupplyNum).ConstitMolalFract(i);
             }
@@ -736,8 +735,7 @@ namespace GeneratorFuelSupply {
                     HHVi =
                         GasPhaseThermoChemistryData(thisGasID).StdRefMolarEnthOfForm -
                         GasPhaseThermoChemistryData(thisGasID).NumCarbons * GasPhaseThermoChemistryData(CO2dataID).StdRefMolarEnthOfForm -
-                        (GasPhaseThermoChemistryData(thisGasID).NumHydrogens / 2.0) *
-                            GasPhaseThermoChemistryData(WaterDataID).StdRefMolarEnthOfForm +
+                        (GasPhaseThermoChemistryData(thisGasID).NumHydrogens / 2.0) * GasPhaseThermoChemistryData(WaterDataID).StdRefMolarEnthOfForm +
                         (GasPhaseThermoChemistryData(thisGasID).NumHydrogens / 2.0) *
                             (GasPhaseThermoChemistryData(WaterDataID).StdRefMolarEnthOfForm + 285.8304);
                 }

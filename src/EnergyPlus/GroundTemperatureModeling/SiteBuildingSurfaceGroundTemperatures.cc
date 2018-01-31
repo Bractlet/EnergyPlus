@@ -68,8 +68,7 @@ static gio::Fmt fmtAN("(A,$)");
 //******************************************************************************
 
 // Site:GroundTemperature:BuildingSurface factory
-std::shared_ptr<SiteBuildingSurfaceGroundTemps> SiteBuildingSurfaceGroundTemps::BuildingSurfaceGTMFactory(int objectType,
-                                                                                                          std::string objectName)
+std::shared_ptr<SiteBuildingSurfaceGroundTemps> SiteBuildingSurfaceGroundTemps::BuildingSurfaceGTMFactory(int objectType, std::string objectName)
 {
     // SUBROUTINE INFORMATION:
     //       AUTHOR         Matt Mitchell

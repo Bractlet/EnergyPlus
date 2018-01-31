@@ -171,10 +171,9 @@ namespace GroundHeatExchangers {
         std::shared_ptr<GLHEVertPropsStruct> props; // Properties
         std::vector<MyCartesian>
             pointLocations_i; // Discretized point locations for when computing temperature response of other boreholes on this bh
-        std::vector<MyCartesian>
-            pointLocations_ii; // Discretized point locations for when computing temperature response of this bh on itself
-        std::vector<MyCartesian> pointLocations_j; // Discretized point locations for when other bh are computing the temperature response
-                                                   // of this bh on themselves
+        std::vector<MyCartesian> pointLocations_ii; // Discretized point locations for when computing temperature response of this bh on itself
+        std::vector<MyCartesian> pointLocations_j;  // Discretized point locations for when other bh are computing the temperature response
+                                                    // of this bh on themselves
 
         GLHEVertSingleStruct() : xLoc(0.0), yLoc(0.0), dl_i(0.0), dl_ii(0.0), dl_j(0.0)
         {
@@ -250,8 +249,7 @@ namespace GroundHeatExchangers {
         Real64 tempGround;            // The far field temperature of the ground   [°C]
         Array1D<Real64> QnMonthlyAgg; // Monthly aggregated normalized heat extraction/rejection rate [W/m]
         Array1D<Real64> QnHr;         // Hourly aggregated normalized heat extraction/rejection rate [W/m]
-        Array1D<Real64>
-            QnSubHr; // Contains the sub-hourly heat extraction/rejection rate normalized by the total active length of bore holes  [W/m]
+        Array1D<Real64> QnSubHr; // Contains the sub-hourly heat extraction/rejection rate normalized by the total active length of bore holes  [W/m]
         int prevHour;
         int AGG;               // Minimum Hourly History required
         int SubAGG;            // Minimum sub-hourly History
@@ -273,10 +271,10 @@ namespace GroundHeatExchangers {
         std::shared_ptr<BaseGroundTempsModel> groundTempModel;
 
         GLHEBase()
-            : available(false), on(false), loopNum(0), loopSideNum(0), branchNum(0), compNum(0), inletNodeNum(0), outletNodeNum(0),
-              designFlow(0.0), designMassFlow(0.0), tempGround(0.0), prevHour(1), AGG(0), SubAGG(0), bhTemp(0.0), massFlowRate(0.0),
-              outletTemp(0.0), inletTemp(0.0), aveFluidTemp(0.0), QGLHE(0.0), myFlag(true), myEnvrnFlag(true), gFunctionsExist(false),
-              lastQnSubHr(0.0), HXResistance(0.0), timeSS(0.0), timeSSFactor(0.0)
+            : available(false), on(false), loopNum(0), loopSideNum(0), branchNum(0), compNum(0), inletNodeNum(0), outletNodeNum(0), designFlow(0.0),
+              designMassFlow(0.0), tempGround(0.0), prevHour(1), AGG(0), SubAGG(0), bhTemp(0.0), massFlowRate(0.0), outletTemp(0.0), inletTemp(0.0),
+              aveFluidTemp(0.0), QGLHE(0.0), myFlag(true), myEnvrnFlag(true), gFunctionsExist(false), lastQnSubHr(0.0), HXResistance(0.0),
+              timeSS(0.0), timeSSFactor(0.0)
         {
         }
 
@@ -347,9 +345,8 @@ namespace GroundHeatExchangers {
 
         Real64 integral(MyCartesian const &point_i, std::shared_ptr<GLHEVertSingleStruct> const &bh_j, Real64 const &currTime);
 
-        Real64 doubleIntegral(std::shared_ptr<GLHEVertSingleStruct> const &bh_i,
-                              std::shared_ptr<GLHEVertSingleStruct> const &bh_j,
-                              Real64 const &currTime);
+        Real64
+        doubleIntegral(std::shared_ptr<GLHEVertSingleStruct> const &bh_i, std::shared_ptr<GLHEVertSingleStruct> const &bh_j, Real64 const &currTime);
 
         void calcShortTimestepGFunctions();
 
@@ -437,8 +434,7 @@ namespace GroundHeatExchangers {
 
         Real64 distToCenter(int const m, int const n, int const m1, int const n1);
 
-        Real64 nearFieldResponseFunction(
-            int const m, int const n, int const m1, int const n1, Real64 const eta, Real64 const theta, Real64 const t);
+        Real64 nearFieldResponseFunction(int const m, int const n, int const m1, int const n1, Real64 const eta, Real64 const theta, Real64 const t);
 
         Real64 midFieldResponseFunction(int const m, int const n, int const m1, int const n1, Real64 const t);
 
@@ -453,8 +449,7 @@ namespace GroundHeatExchangers {
 
     void GetGroundHeatExchangerInput();
 
-    std::shared_ptr<GLHEResponseFactorsStruct>
-    BuildAndGetResponseFactorObjectFromArray(std::shared_ptr<GLHEVertArrayStruct> const &arrayObjectPtr);
+    std::shared_ptr<GLHEResponseFactorsStruct> BuildAndGetResponseFactorObjectFromArray(std::shared_ptr<GLHEVertArrayStruct> const &arrayObjectPtr);
 
     std::shared_ptr<GLHEResponseFactorsStruct>
     BuildAndGetResponseFactorsObjectFromSingleBHs(std::vector<std::shared_ptr<GLHEVertSingleStruct>> const &singleBHsForRFVect);

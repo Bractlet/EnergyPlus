@@ -381,8 +381,8 @@ namespace HeatBalanceHAMTManager {
 
         HAMTitems = GetNumObjectsFound(cHAMTObject1); // MaterialProperty:HeatAndMoistureTransfer:Settings
         for (item = 1; item <= HAMTitems; ++item) {
-            GetObjectItem(cHAMTObject1, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cHAMTObject1, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
 
             matid = FindItemInList(AlphaArray(1), Material);
 
@@ -393,8 +393,7 @@ namespace HeatBalanceHAMTManager {
                 continue;
             }
             if (Material(matid).ROnly) {
-                ShowWarningError(cHAMTObject1 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) +
-                                 "\" is defined as an R-only value material.");
+                ShowWarningError(cHAMTObject1 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) + "\" is defined as an R-only value material.");
                 continue;
             }
 
@@ -404,8 +403,8 @@ namespace HeatBalanceHAMTManager {
 
         HAMTitems = GetNumObjectsFound(cHAMTObject2); // MaterialProperty:HeatAndMoistureTransfer:SorptionIsotherm
         for (item = 1; item <= HAMTitems; ++item) {
-            GetObjectItem(cHAMTObject2, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cHAMTObject2, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
 
             matid = FindItemInList(AlphaArray(1), Material);
 
@@ -416,8 +415,7 @@ namespace HeatBalanceHAMTManager {
                 continue;
             }
             if (Material(matid).ROnly) {
-                ShowWarningError(cHAMTObject2 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) +
-                                 "\" is defined as an R-only value material.");
+                ShowWarningError(cHAMTObject2 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) + "\" is defined as an R-only value material.");
                 continue;
             }
 
@@ -484,8 +482,8 @@ namespace HeatBalanceHAMTManager {
 
         HAMTitems = GetNumObjectsFound(cHAMTObject3); // MaterialProperty:HeatAndMoistureTransfer:Suction
         for (item = 1; item <= HAMTitems; ++item) {
-            GetObjectItem(cHAMTObject3, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cHAMTObject3, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
 
             matid = FindItemInList(AlphaArray(1), Material);
 
@@ -496,8 +494,7 @@ namespace HeatBalanceHAMTManager {
                 continue;
             }
             if (Material(matid).ROnly) {
-                ShowWarningError(cHAMTObject3 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) +
-                                 "\" is defined as an R-only value material.");
+                ShowWarningError(cHAMTObject3 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) + "\" is defined as an R-only value material.");
                 continue;
             }
 
@@ -518,8 +515,8 @@ namespace HeatBalanceHAMTManager {
 
         HAMTitems = GetNumObjectsFound(cHAMTObject4); // MaterialProperty:HeatAndMoistureTransfer:Redistribution
         for (item = 1; item <= HAMTitems; ++item) {
-            GetObjectItem(cHAMTObject4, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cHAMTObject4, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
 
             matid = FindItemInList(AlphaArray(1), Material);
             if (matid == 0) {
@@ -529,8 +526,7 @@ namespace HeatBalanceHAMTManager {
                 continue;
             }
             if (Material(matid).ROnly) {
-                ShowWarningError(cHAMTObject4 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) +
-                                 "\" is defined as an R-only value material.");
+                ShowWarningError(cHAMTObject4 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) + "\" is defined as an R-only value material.");
                 continue;
             }
             Numid = 1;
@@ -550,8 +546,8 @@ namespace HeatBalanceHAMTManager {
 
         HAMTitems = GetNumObjectsFound(cHAMTObject5); // MaterialProperty:HeatAndMoistureTransfer:Diffusion
         for (item = 1; item <= HAMTitems; ++item) {
-            GetObjectItem(cHAMTObject5, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cHAMTObject5, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
 
             matid = FindItemInList(AlphaArray(1), Material);
             if (matid == 0) {
@@ -561,8 +557,7 @@ namespace HeatBalanceHAMTManager {
                 continue;
             }
             if (Material(matid).ROnly) {
-                ShowWarningError(cHAMTObject5 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) +
-                                 "\" is defined as an R-only value material.");
+                ShowWarningError(cHAMTObject5 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) + "\" is defined as an R-only value material.");
                 continue;
             }
 
@@ -585,8 +580,8 @@ namespace HeatBalanceHAMTManager {
 
         HAMTitems = GetNumObjectsFound(cHAMTObject6); // MaterialProperty:HeatAndMoistureTransfer:ThermalConductivity
         for (item = 1; item <= HAMTitems; ++item) {
-            GetObjectItem(cHAMTObject6, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cHAMTObject6, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
 
             matid = FindItemInList(AlphaArray(1), Material);
             if (matid == 0) {
@@ -596,8 +591,7 @@ namespace HeatBalanceHAMTManager {
                 continue;
             }
             if (Material(matid).ROnly) {
-                ShowWarningError(cHAMTObject6 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) +
-                                 "\" is defined as an R-only value material.");
+                ShowWarningError(cHAMTObject6 + ' ' + cAlphaFieldNames(1) + "=\"" + AlphaArray(1) + "\" is defined as an R-only value material.");
                 continue;
             }
             Numid = 1;
@@ -620,8 +614,8 @@ namespace HeatBalanceHAMTManager {
         // Vapor Transfer coefficients
         HAMTitems = GetNumObjectsFound(cHAMTObject7); // SurfaceProperties:VaporCoefficients
         for (item = 1; item <= HAMTitems; ++item) {
-            GetObjectItem(cHAMTObject7, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cHAMTObject7, item, AlphaArray, NumAlphas, NumArray, NumNums, status, lNumericBlanks, lAlphaBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
 
             vtcsid = FindItemInList(AlphaArray(1), Surface);
             if (vtcsid == 0) {
@@ -776,8 +770,7 @@ namespace HeatBalanceHAMTManager {
                         Material(matid).tcdata(2) = Material(matid).Conductivity;
                     } else {
                         ShowSevereError(RoutineName + "Construction=" + Construct(conid).Name);
-                        ShowContinueError("Reference Material=\"" + Material(matid).Name +
-                                          "\" does not have required thermal conductivity data.");
+                        ShowContinueError("Reference Material=\"" + Material(matid).Name + "\" does not have required thermal conductivity data.");
                         ++errorCount;
                     }
                 }
@@ -794,8 +787,8 @@ namespace HeatBalanceHAMTManager {
                 // Check length of cell - reduce number of divisions if necessary
                 Real64 const sin_negPIOvr2 = std::sin(-Pi / 2.0);
                 while (true) {
-                    testlen = Material(matid).Thickness *
-                              ((std::sin(Pi * (-1.0 / double(Material(matid).divs)) - Pi / 2.0) / 2.0) - (sin_negPIOvr2 / 2.0));
+                    testlen =
+                        Material(matid).Thickness * ((std::sin(Pi * (-1.0 / double(Material(matid).divs)) - Pi / 2.0) / 2.0) - (sin_negPIOvr2 / 2.0));
                     if (testlen > adjdist) break;
                     --Material(matid).divs;
                     if (Material(matid).divs < 1) {
@@ -979,8 +972,7 @@ namespace HeatBalanceHAMTManager {
             surfvp(sid) = 0.0;
             SetupOutputVariable("HAMT Surface Average Water Content Ratio", OutputProcessor::Unit::kg_kg, watertot(sid), "Zone", "State",
                                 Surface(sid).Name);
-            SetupOutputVariable("HAMT Surface Inside Face Temperature", OutputProcessor::Unit::C, surftemp(sid), "Zone", "State",
-                                Surface(sid).Name);
+            SetupOutputVariable("HAMT Surface Inside Face Temperature", OutputProcessor::Unit::C, surftemp(sid), "Zone", "State", Surface(sid).Name);
             SetupOutputVariable("HAMT Surface Inside Face Relative Humidity", OutputProcessor::Unit::Perc, surfrh(sid), "Zone", "State",
                                 Surface(sid).Name);
             SetupOutputVariable("HAMT Surface Inside Face Vapor Pressure", OutputProcessor::Unit::Pa, surfvp(sid), "Zone", "State",
@@ -1004,8 +996,8 @@ namespace HeatBalanceHAMTManager {
             gio::write(OutputFileInits);
 
             for (int cellid = Extcell(sid), concell = 1; cellid <= Intcell(sid); ++cellid, ++concell) {
-                SetupOutputVariable("HAMT Surface Temperature Cell " + TrimSigDigits(concell) + "", OutputProcessor::Unit::C,
-                                    cells(cellid).temp, "Zone", "State", Surface(sid).Name);
+                SetupOutputVariable("HAMT Surface Temperature Cell " + TrimSigDigits(concell) + "", OutputProcessor::Unit::C, cells(cellid).temp,
+                                    "Zone", "State", Surface(sid).Name);
             }
             for (int cellid = Extcell(sid), concell = 1; cellid <= Intcell(sid); ++cellid, ++concell) {
                 SetupOutputVariable("HAMT Surface Water Content Cell " + TrimSigDigits(concell) + "", OutputProcessor::Unit::kg_kg,
@@ -1170,8 +1162,8 @@ namespace HeatBalanceHAMTManager {
         cells(IntConcell(sid)).htc = HConvInFD(sid);
 
         cells(Intcell(sid)).Qadds =
-            Surface(sid).Area * (QRadSWInAbs(sid) + NetLWRadToSurf(sid) + QHTRadSysSurf(sid) + QCoolingPanelSurf(sid) +
-                                 QHWBaseboardSurf(sid) + QSteamBaseboardSurf(sid) + QElecBaseboardSurf(sid) + QRadThermInAbs(sid));
+            Surface(sid).Area * (QRadSWInAbs(sid) + NetLWRadToSurf(sid) + QHTRadSysSurf(sid) + QCoolingPanelSurf(sid) + QHWBaseboardSurf(sid) +
+                                 QSteamBaseboardSurf(sid) + QElecBaseboardSurf(sid) + QRadThermInAbs(sid));
         // Check, Is this per unit area or for the whole wall.
         //    cells(Intcell(sid))%Qadds=QRadSWInAbs(sid)+NetLWRadToSurf(sid)+QHtRadSysSurf(sid)+QRadThermInAbs(sid)
 
@@ -1190,8 +1182,7 @@ namespace HeatBalanceHAMTManager {
             cells(ExtConcell(sid)).vtc = extvtc(sid);
         } else {
             if (cells(ExtConcell(sid)).rh > 0) {
-                cells(ExtConcell(sid)).vtc =
-                    HMassConvExtFD(sid) * RhoOut / (PsyPsatFnTemp(TempOutsideAirFD(sid)) * cells(ExtConcell(sid)).rh);
+                cells(ExtConcell(sid)).vtc = HMassConvExtFD(sid) * RhoOut / (PsyPsatFnTemp(TempOutsideAirFD(sid)) * cells(ExtConcell(sid)).rh);
             } else {
                 cells(ExtConcell(sid)).vtc = 10000.0;
             }
@@ -1202,8 +1193,7 @@ namespace HeatBalanceHAMTManager {
             HMassConvInFD(sid) = cells(IntConcell(sid)).vtc * PsyPsatFnTemp(MAT(Surface(sid).Zone)) * cells(IntConcell(sid)).rh / RhoIn;
         } else {
             if (cells(IntConcell(sid)).rh > 0) {
-                cells(IntConcell(sid)).vtc =
-                    HMassConvInFD(sid) * RhoIn / (PsyPsatFnTemp(MAT(Surface(sid).Zone)) * cells(IntConcell(sid)).rh);
+                cells(IntConcell(sid)).vtc = HMassConvInFD(sid) * RhoIn / (PsyPsatFnTemp(MAT(Surface(sid).Zone)) * cells(IntConcell(sid)).rh);
             } else {
                 cells(IntConcell(sid)).vtc = 10000.0;
             }
@@ -1387,8 +1377,7 @@ namespace HeatBalanceHAMTManager {
                     if (cells(adj).vtc > 0) {
                         vaporr2 = 1.0 / (cells(cid).overlap(ii) * cells(adj).vtc);
                     } else if (cells(adj).matid > 0) {
-                        vaporr2 =
-                            (cells(adj).dist(adjl) * cells(adj).mu) / (cells(cid).overlap(ii) * WVDC(cells(adj).tempp1, OutBaroPress));
+                        vaporr2 = (cells(adj).dist(adjl) * cells(adj).mu) / (cells(cid).overlap(ii) * WVDC(cells(adj).tempp1, OutBaroPress));
                     } else {
                         vaporr2 = 0.0;
                     }
@@ -1531,12 +1520,7 @@ namespace HeatBalanceHAMTManager {
         surfvp(sid) = RHtoVP(cells(Intcell(sid)).rh, cells(Intcell(sid)).temp);
     }
 
-    void interp(int const ndata,
-                Array1A<Real64> const xx,
-                Array1A<Real64> const yy,
-                Real64 const invalue,
-                Real64 &outvalue,
-                Optional<Real64> outgrad)
+    void interp(int const ndata, Array1A<Real64> const xx, Array1A<Real64> const yy, Real64 const invalue, Real64 &outvalue, Optional<Real64> outgrad)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR         Phillip Biddulph

@@ -193,8 +193,7 @@ namespace WindTurbine {
             WindTurbineNum = GeneratorIndex;
             if (WindTurbineNum > NumWindTurbines || WindTurbineNum < 1) {
                 ShowFatalError("SimWindTurbine: Invalid GeneratorIndex passed=" + TrimSigDigits(WindTurbineNum) +
-                               ", Number of Wind Turbine Generators=" + TrimSigDigits(NumWindTurbines) + ", Generator name=" +
-                               GeneratorName);
+                               ", Number of Wind Turbine Generators=" + TrimSigDigits(NumWindTurbines) + ", Generator name=" + GeneratorName);
             }
             if (GeneratorName != WindTurbineSys(WindTurbineNum).Name) {
                 ShowFatalError("SimMWindTurbine: Invalid GeneratorIndex passed=" + TrimSigDigits(WindTurbineNum) + ", Generator name=" +
@@ -333,8 +332,8 @@ namespace WindTurbine {
         // Flow
         for (WindTurbineNum = 1; WindTurbineNum <= NumWindTurbines; ++WindTurbineNum) {
 
-            GetObjectItem(CurrentModuleObject, WindTurbineNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStat, lNumericBlanks,
-                          lAlphaBlanks, cAlphaFields, cNumericFields);
+            GetObjectItem(CurrentModuleObject, WindTurbineNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStat, lNumericBlanks, lAlphaBlanks,
+                          cAlphaFields, cNumericFields);
             IsNotOK = false;
             IsBlank = false;
             VerifyName(cAlphaArgs(1), WindTurbineSys, WindTurbineNum, IsNotOK, IsBlank, CurrentModuleObject + " Name");
@@ -365,8 +364,7 @@ namespace WindTurbine {
                 } else if ((SELECT_CASE_var == "VERTICALAXISWINDTURBINE") || (SELECT_CASE_var == "VAWT")) {
                     WindTurbineSys(WindTurbineNum).RotorType = VAWT;
                 } else {
-                    ShowSevereError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cAlphaFields(3) + "=\"" + cAlphaArgs(3) +
-                                    "\".");
+                    ShowSevereError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cAlphaFields(3) + "=\"" + cAlphaArgs(3) + "\".");
                     ErrorsFound = true;
                 }
             }
@@ -380,12 +378,11 @@ namespace WindTurbine {
                     WindTurbineSys(WindTurbineNum).ControlType = FSVP;
                 } else if ((SELECT_CASE_var == "VARIABLESPEEDFIXEDPITCH") || (SELECT_CASE_var == "VSFP")) {
                     WindTurbineSys(WindTurbineNum).ControlType = VSFP;
-                } else if ((SELECT_CASE_var == "VARIABLESPEEDVARIABLEPITCH") || (SELECT_CASE_var == "VSVP") ||
-                           (SELECT_CASE_var == "NONE") || (SELECT_CASE_var == "")) {
+                } else if ((SELECT_CASE_var == "VARIABLESPEEDVARIABLEPITCH") || (SELECT_CASE_var == "VSVP") || (SELECT_CASE_var == "NONE") ||
+                           (SELECT_CASE_var == "")) {
                     WindTurbineSys(WindTurbineNum).ControlType = VSVP;
                 } else {
-                    ShowSevereError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cAlphaFields(4) + "=\"" + cAlphaArgs(4) +
-                                    "\".");
+                    ShowSevereError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cAlphaFields(4) + "=\"" + cAlphaArgs(4) + "\".");
                     ErrorsFound = true;
                 }
             }
@@ -486,13 +483,11 @@ namespace WindTurbine {
             }
 
             WindTurbineSys(WindTurbineNum).SysEfficiency = rNumericArgs(9); // Overall wind turbine system efficiency
-            if (lNumericBlanks(9) || WindTurbineSys(WindTurbineNum).SysEfficiency == 0.0 ||
-                WindTurbineSys(WindTurbineNum).SysEfficiency > 1.0) {
+            if (lNumericBlanks(9) || WindTurbineSys(WindTurbineNum).SysEfficiency == 0.0 || WindTurbineSys(WindTurbineNum).SysEfficiency > 1.0) {
                 WindTurbineSys(WindTurbineNum).SysEfficiency = SysEffDefault;
                 ShowWarningError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cNumericFields(9) + "=[" +
                                  RoundSigDigits(rNumericArgs(9), 2) + "].");
-                ShowContinueError("...The default value of " + RoundSigDigits(SysEffDefault, 3) + " for " + cNumericFields(9) +
-                                  " was assumed.");
+                ShowContinueError("...The default value of " + RoundSigDigits(SysEffDefault, 3) + " for " + cNumericFields(9) + " was assumed.");
             }
 
             WindTurbineSys(WindTurbineNum).MaxTipSpeedRatio = rNumericArgs(10); // Maximum tip speed ratio
@@ -528,8 +523,7 @@ namespace WindTurbine {
                 WindTurbineSys(WindTurbineNum).MaxPowerCoeff = DefaultPC;
                 ShowWarningError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cNumericFields(11) + "=[" +
                                  RoundSigDigits(rNumericArgs(11), 2) + "].");
-                ShowContinueError("...The default value of " + RoundSigDigits(DefaultPC, 2) + " for " + cNumericFields(11) +
-                                  " will be used.");
+                ShowContinueError("...The default value of " + RoundSigDigits(DefaultPC, 2) + " for " + cNumericFields(11) + " will be used.");
             }
 
             WindTurbineSys(WindTurbineNum).LocalAnnualAvgWS = rNumericArgs(12); // Local wind speed annually averaged
@@ -553,8 +547,7 @@ namespace WindTurbine {
                     if (lNumericBlanks(13)) {
                         ShowWarningError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cNumericFields(13) +
                                          " is necessary for accurate prediction but input is blank.");
-                        ShowContinueError("...The default value of " + RoundSigDigits(DefaultH, 2) + " for " + cNumericFields(13) +
-                                          " will be used.");
+                        ShowContinueError("...The default value of " + RoundSigDigits(DefaultH, 2) + " for " + cNumericFields(13) + " will be used.");
                     } else {
                         ShowSevereError(CurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" invalid " + cNumericFields(13) + "=[" +
                                         RoundSigDigits(rNumericArgs(13), 2) + "] must be greater than zero.");
@@ -635,34 +628,30 @@ namespace WindTurbine {
         if (ErrorsFound) ShowFatalError(CurrentModuleObject + " errors occurred in input.  Program terminates.");
 
         for (WindTurbineNum = 1; WindTurbineNum <= NumWindTurbines; ++WindTurbineNum) {
-            SetupOutputVariable("Generator Produced Electric Power", OutputProcessor::Unit::W, WindTurbineSys(WindTurbineNum).Power,
+            SetupOutputVariable("Generator Produced Electric Power", OutputProcessor::Unit::W, WindTurbineSys(WindTurbineNum).Power, "System",
+                                "Average", WindTurbineSys(WindTurbineNum).Name);
+            SetupOutputVariable("Generator Produced Electric Energy", OutputProcessor::Unit::J, WindTurbineSys(WindTurbineNum).Energy, "System",
+                                "Sum", WindTurbineSys(WindTurbineNum).Name, _, "ElectricityProduced", "WINDTURBINE", _, "Plant");
+            SetupOutputVariable("Generator Turbine Local Wind Speed", OutputProcessor::Unit::m_s, WindTurbineSys(WindTurbineNum).LocalWindSpeed,
                                 "System", "Average", WindTurbineSys(WindTurbineNum).Name);
-            SetupOutputVariable("Generator Produced Electric Energy", OutputProcessor::Unit::J, WindTurbineSys(WindTurbineNum).Energy,
-                                "System", "Sum", WindTurbineSys(WindTurbineNum).Name, _, "ElectricityProduced", "WINDTURBINE", _, "Plant");
-            SetupOutputVariable("Generator Turbine Local Wind Speed", OutputProcessor::Unit::m_s,
-                                WindTurbineSys(WindTurbineNum).LocalWindSpeed, "System", "Average", WindTurbineSys(WindTurbineNum).Name);
-            SetupOutputVariable("Generator Turbine Local Air Density", OutputProcessor::Unit::kg_m3,
-                                WindTurbineSys(WindTurbineNum).LocalAirDensity, "System", "Average", WindTurbineSys(WindTurbineNum).Name);
-            SetupOutputVariable("Generator Turbine Tip Speed Ratio", OutputProcessor::Unit::None,
-                                WindTurbineSys(WindTurbineNum).TipSpeedRatio, "System", "Average", WindTurbineSys(WindTurbineNum).Name);
+            SetupOutputVariable("Generator Turbine Local Air Density", OutputProcessor::Unit::kg_m3, WindTurbineSys(WindTurbineNum).LocalAirDensity,
+                                "System", "Average", WindTurbineSys(WindTurbineNum).Name);
+            SetupOutputVariable("Generator Turbine Tip Speed Ratio", OutputProcessor::Unit::None, WindTurbineSys(WindTurbineNum).TipSpeedRatio,
+                                "System", "Average", WindTurbineSys(WindTurbineNum).Name);
             {
                 auto const SELECT_CASE_var(WindTurbineSys(WindTurbineNum).RotorType);
                 if (SELECT_CASE_var == HAWT) {
-                    SetupOutputVariable("Generator Turbine Power Coefficient", OutputProcessor::Unit::None,
-                                        WindTurbineSys(WindTurbineNum).PowerCoeff, "System", "Average",
-                                        WindTurbineSys(WindTurbineNum).Name);
+                    SetupOutputVariable("Generator Turbine Power Coefficient", OutputProcessor::Unit::None, WindTurbineSys(WindTurbineNum).PowerCoeff,
+                                        "System", "Average", WindTurbineSys(WindTurbineNum).Name);
                 } else if (SELECT_CASE_var == VAWT) {
                     SetupOutputVariable("Generator Turbine Chordal Component Velocity", OutputProcessor::Unit::m_s,
-                                        WindTurbineSys(WindTurbineNum).ChordalVel, "System", "Average",
-                                        WindTurbineSys(WindTurbineNum).Name);
+                                        WindTurbineSys(WindTurbineNum).ChordalVel, "System", "Average", WindTurbineSys(WindTurbineNum).Name);
                     SetupOutputVariable("Generator Turbine Normal Component Velocity", OutputProcessor::Unit::m_s,
                                         WindTurbineSys(WindTurbineNum).NormalVel, "System", "Average", WindTurbineSys(WindTurbineNum).Name);
                     SetupOutputVariable("Generator Turbine Relative Flow Velocity", OutputProcessor::Unit::m_s,
-                                        WindTurbineSys(WindTurbineNum).RelFlowVel, "System", "Average",
-                                        WindTurbineSys(WindTurbineNum).Name);
-                    SetupOutputVariable("Generator Turbine Attack Angle", OutputProcessor::Unit::deg,
-                                        WindTurbineSys(WindTurbineNum).AngOfAttack, "System", "Average",
-                                        WindTurbineSys(WindTurbineNum).Name);
+                                        WindTurbineSys(WindTurbineNum).RelFlowVel, "System", "Average", WindTurbineSys(WindTurbineNum).Name);
+                    SetupOutputVariable("Generator Turbine Attack Angle", OutputProcessor::Unit::deg, WindTurbineSys(WindTurbineNum).AngOfAttack,
+                                        "System", "Average", WindTurbineSys(WindTurbineNum).Name);
                 }
             }
         }
@@ -775,18 +764,16 @@ namespace WindTurbine {
                                     }
                                 } else { // blank field
                                     if (!warningShown) {
-                                        ShowWarningError(
-                                            "InitWindTurbine: read from " + DataStringGlobals::inStatFileName +
-                                            " file shows <365 days in weather file. Annual average wind speed used will be inaccurate.");
+                                        ShowWarningError("InitWindTurbine: read from " + DataStringGlobals::inStatFileName +
+                                                         " file shows <365 days in weather file. Annual average wind speed used will be inaccurate.");
                                         lineIn.erase(0, lnPtr + 1);
                                         warningShown = true;
                                     }
                                 }
                             } else { // two tabs in succession
                                 if (!warningShown) {
-                                    ShowWarningError(
-                                        "InitWindTurbine: read from " + DataStringGlobals::inStatFileName +
-                                        " file shows <365 days in weather file. Annual average wind speed used will be inaccurate.");
+                                    ShowWarningError("InitWindTurbine: read from " + DataStringGlobals::inStatFileName +
+                                                     " file shows <365 days in weather file. Annual average wind speed used will be inaccurate.");
                                     lineIn.erase(0, lnPtr + 1);
                                     warningShown = true;
                                 }
@@ -815,8 +802,8 @@ namespace WindTurbine {
         // Factor differences between TMY wind data and local wind data once
         if (AnnualTMYWS > 0.0 && WindTurbineSys(WindTurbineNum).WSFactor == 0.0 && WindTurbineSys(WindTurbineNum).LocalAnnualAvgWS > 0) {
             // Convert the annual wind speed to the local wind speed at the height of the local station, then factor
-            LocalTMYWS = AnnualTMYWS * WeatherFileWindModCoeff *
-                         std::pow(WindTurbineSys(WindTurbineNum).HeightForLocalWS / SiteWindBLHeight, SiteWindExp);
+            LocalTMYWS =
+                AnnualTMYWS * WeatherFileWindModCoeff * std::pow(WindTurbineSys(WindTurbineNum).HeightForLocalWS / SiteWindBLHeight, SiteWindExp);
             WindTurbineSys(WindTurbineNum).WSFactor = LocalTMYWS / WindTurbineSys(WindTurbineNum).LocalAnnualAvgWS;
         }
         // Assign factor of 1.0 if no stat file or no input of local average wind speed
@@ -935,8 +922,8 @@ namespace WindTurbine {
 
         // Flow
         // Check wind conditions for system operation
-        if (GetCurrentScheduleValue(WindTurbineSys(WindTurbineNum).SchedPtr) > 0 &&
-            LocalWindSpeed > WindTurbineSys(WindTurbineNum).CutInSpeed && LocalWindSpeed < WindTurbineSys(WindTurbineNum).CutOutSpeed) {
+        if (GetCurrentScheduleValue(WindTurbineSys(WindTurbineNum).SchedPtr) > 0 && LocalWindSpeed > WindTurbineSys(WindTurbineNum).CutInSpeed &&
+            LocalWindSpeed < WindTurbineSys(WindTurbineNum).CutOutSpeed) {
 
             // System is on
             Period = 2.0 * Pi;
@@ -981,8 +968,7 @@ namespace WindTurbine {
                         PowerCoeff = MaxPowerCoeff;
                     }
                     // Maximum of rated power
-                    if (LocalWindSpeed >= WindTurbineSys(WindTurbineNum).RatedWindSpeed ||
-                        WTPower > WindTurbineSys(WindTurbineNum).RatedPower) {
+                    if (LocalWindSpeed >= WindTurbineSys(WindTurbineNum).RatedWindSpeed || WTPower > WindTurbineSys(WindTurbineNum).RatedPower) {
                         WTPower = WindTurbineSys(WindTurbineNum).RatedPower;
                         PowerCoeff = WTPower / (0.5 * LocalAirDensity * SweptArea * LocalWindSpeed_3);
                     }
@@ -1017,16 +1003,15 @@ namespace WindTurbine {
                     RelFlowVel = std::sqrt(pow_2(ChordalVel) + pow_2(NormalVel));
 
                     // Angle of attack
-                    AngOfAttack =
-                        std::atan((sin_AzimuthAng / ((RotorVel / LocalWindSpeed) / (InducedVel / LocalWindSpeed) + cos_AzimuthAng)));
+                    AngOfAttack = std::atan((sin_AzimuthAng / ((RotorVel / LocalWindSpeed) / (InducedVel / LocalWindSpeed) + cos_AzimuthAng)));
 
                     // Force coefficients
                     Real64 const sin_AngOfAttack(std::sin(AngOfAttack * DegToRadians));
                     Real64 const cos_AngOfAttack(std::cos(AngOfAttack * DegToRadians));
                     TanForceCoeff = std::abs(WindTurbineSys(WindTurbineNum).LiftCoeff * sin_AngOfAttack -
                                              WindTurbineSys(WindTurbineNum).DragCoeff * cos_AngOfAttack);
-                    NorForceCoeff = WindTurbineSys(WindTurbineNum).LiftCoeff * cos_AngOfAttack +
-                                    WindTurbineSys(WindTurbineNum).DragCoeff * sin_AngOfAttack;
+                    NorForceCoeff =
+                        WindTurbineSys(WindTurbineNum).LiftCoeff * cos_AngOfAttack + WindTurbineSys(WindTurbineNum).DragCoeff * sin_AngOfAttack;
 
                     // Net tangential and normal forces
                     Real64 const RelFlowVel_2(pow_2(RelFlowVel));

@@ -208,10 +208,8 @@ namespace ScheduleManager {
 
     int GetDayScheduleIndex(std::string &ScheduleName);
 
-    void GetScheduleValuesForDay(int const ScheduleIndex,
-                                 Array2S<Real64> DayValues,
-                                 Optional_int_const JDay = _,
-                                 Optional_int_const CurDayofWeek = _);
+    void
+    GetScheduleValuesForDay(int const ScheduleIndex, Array2S<Real64> DayValues, Optional_int_const JDay = _, Optional_int_const CurDayofWeek = _);
 
     void GetSingleDayScheduleValues(int const DayScheduleIndex, // Index of the DaySchedule for values
                                     Array2S<Real64> DayValues   // Returned set of values

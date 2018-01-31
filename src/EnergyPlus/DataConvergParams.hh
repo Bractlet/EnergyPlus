@@ -198,23 +198,19 @@ namespace DataConvergParams {
         // Default Constructor
         HVACAirLoopIterationConvergenceStruct()
             : HVACMassFlowNotConverged(3, false), HVACFlowDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
-              HVACFlowSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0),
-              HVACFlowSupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACHumRatNotConverged(3, false),
-              HVACHumDemandToSupplyTolValue(ConvergLogStackDepth, 0.0), HVACHumSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0),
-              HVACHumSupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACTempNotConverged(3, false),
-              HVACTempDemandToSupplyTolValue(ConvergLogStackDepth, 0.0), HVACTempSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0),
-              HVACTempSupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACEnergyNotConverged(3, false),
-              HVACEnergyDemandToSupplyTolValue(ConvergLogStackDepth, 0.0), HVACEnergySupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0),
-              HVACEnergySupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACEnthalpyNotConverged(3, false),
-              HVACEnthalpyDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
-              HVACEnthalpySupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0),
-              HVACEnthalpySupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACPressureNotConverged(3, false),
-              HVACPressureDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
-              HVACPressureSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0),
-              HVACPressueSupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACQualityNotConverged(3, false),
-              HVACQualityDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
-              HVACQualitSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0),
-              HVACQualitySupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0)
+              HVACFlowSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACFlowSupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0),
+              HVACHumRatNotConverged(3, false), HVACHumDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
+              HVACHumSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACHumSupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0),
+              HVACTempNotConverged(3, false), HVACTempDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
+              HVACTempSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACTempSupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0),
+              HVACEnergyNotConverged(3, false), HVACEnergyDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
+              HVACEnergySupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACEnergySupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0),
+              HVACEnthalpyNotConverged(3, false), HVACEnthalpyDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
+              HVACEnthalpySupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACEnthalpySupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0),
+              HVACPressureNotConverged(3, false), HVACPressureDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
+              HVACPressureSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACPressueSupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0),
+              HVACQualityNotConverged(3, false), HVACQualityDemandToSupplyTolValue(ConvergLogStackDepth, 0.0),
+              HVACQualitSupplyDeck1ToDemandTolValue(ConvergLogStackDepth, 0.0), HVACQualitySupplyDeck2ToDemandTolValue(ConvergLogStackDepth, 0.0)
         {
         }
     };

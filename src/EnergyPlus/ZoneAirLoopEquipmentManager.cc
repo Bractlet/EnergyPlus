@@ -209,8 +209,8 @@ namespace ZoneAirLoopEquipmentManager {
         } else {
             AirDistUnitNum = CompIndex;
             if (AirDistUnitNum > NumAirDistUnits || AirDistUnitNum < 1) {
-                ShowFatalError("ManageZoneAirLoopEquipment:  Invalid CompIndex passed=" + TrimSigDigits(AirDistUnitNum) +
-                               ", Number of Units=" + TrimSigDigits(NumAirDistUnits) + ", Entered Unit name=" + ZoneAirLoopEquipName);
+                ShowFatalError("ManageZoneAirLoopEquipment:  Invalid CompIndex passed=" + TrimSigDigits(AirDistUnitNum) + ", Number of Units=" +
+                               TrimSigDigits(NumAirDistUnits) + ", Entered Unit name=" + ZoneAirLoopEquipName);
             }
             if (ZoneAirLoopEquipName != AirDistUnit(AirDistUnitNum).Name) {
                 ShowFatalError("ManageZoneAirLoopEquipment: Invalid CompIndex passed=" + TrimSigDigits(AirDistUnitNum) + ", Unit name=" +
@@ -220,8 +220,8 @@ namespace ZoneAirLoopEquipmentManager {
         DataSizing::CurTermUnitSizingNum = AirDistUnit(AirDistUnitNum).TermUnitSizingNum;
         InitZoneAirLoopEquipment(AirDistUnitNum, ControlledZoneNum, ActualZoneNum);
 
-        SimZoneAirLoopEquipment(AirDistUnitNum, SysOutputProvided, NonAirSysOutput, LatOutputProvided, FirstHVACIteration,
-                                ControlledZoneNum, ActualZoneNum);
+        SimZoneAirLoopEquipment(AirDistUnitNum, SysOutputProvided, NonAirSysOutput, LatOutputProvided, FirstHVACIteration, ControlledZoneNum,
+                                ActualZoneNum);
 
         //  CALL RecordZoneAirLoopEquipment
 
@@ -304,8 +304,8 @@ namespace ZoneAirLoopEquipmentManager {
         if (NumAirDistUnits > 0) {
 
             for (AirDistUnitNum = 1; AirDistUnitNum <= NumAirDistUnits; ++AirDistUnitNum) {
-                GetObjectItem(CurrentModuleObject, AirDistUnitNum, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks,
-                              lAlphaBlanks, cAlphaFields, cNumericFields); //  data for one zone
+                GetObjectItem(CurrentModuleObject, AirDistUnitNum, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks,
+                              cAlphaFields, cNumericFields); //  data for one zone
 
                 IsNotOK = false;
                 IsBlank = false;
@@ -387,21 +387,17 @@ namespace ZoneAirLoopEquipmentManager {
                                           AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum));
                         ErrorsFound = true;
                     }
-                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum),
-                                      "AirTerminal:SingleDuct:ConstantVolume:Reheat")) {
+                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum), "AirTerminal:SingleDuct:ConstantVolume:Reheat")) {
                     AirDistUnit(AirDistUnitNum).EquipType_Num(AirDistCompUnitNum) = SingleDuctConstVolReheat;
                 } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum), "AirTerminal:SingleDuct:VAV:Reheat")) {
                     AirDistUnit(AirDistUnitNum).EquipType_Num(AirDistCompUnitNum) = SingleDuctVAVReheat;
                 } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum), "AirTerminal:SingleDuct:VAV:NoReheat")) {
                     AirDistUnit(AirDistUnitNum).EquipType_Num(AirDistCompUnitNum) = SingleDuctVAVNoReheat;
-                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum),
-                                      "AirTerminal:SingleDuct:VAV:HeatAndCool:Reheat")) {
+                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum), "AirTerminal:SingleDuct:VAV:HeatAndCool:Reheat")) {
                     AirDistUnit(AirDistUnitNum).EquipType_Num(AirDistCompUnitNum) = SingleDuctCBVAVReheat;
-                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum),
-                                      "AirTerminal:SingleDuct:VAV:HeatAndCool:NoReheat")) {
+                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum), "AirTerminal:SingleDuct:VAV:HeatAndCool:NoReheat")) {
                     AirDistUnit(AirDistUnitNum).EquipType_Num(AirDistCompUnitNum) = SingleDuctCBVAVNoReheat;
-                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum),
-                                      "AirTerminal:SingleDuct:SeriesPIU:Reheat")) {
+                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum), "AirTerminal:SingleDuct:SeriesPIU:Reheat")) {
                     AirDistUnit(AirDistUnitNum).EquipType_Num(AirDistCompUnitNum) = SingleDuct_SeriesPIU_Reheat;
                     if (AirDistUnit(AirDistUnitNum).UpStreamLeak || AirDistUnit(AirDistUnitNum).DownStreamLeak) {
                         ShowSevereError("Error found in " + CurrentModuleObject + " = " + AirDistUnit(AirDistUnitNum).Name);
@@ -409,8 +405,7 @@ namespace ZoneAirLoopEquipmentManager {
                                           AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum));
                         ErrorsFound = true;
                     }
-                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum),
-                                      "AirTerminal:SingleDuct:ParallelPIU:Reheat")) {
+                } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum), "AirTerminal:SingleDuct:ParallelPIU:Reheat")) {
                     AirDistUnit(AirDistUnitNum).EquipType_Num(AirDistCompUnitNum) = SingleDuct_ParallelPIU_Reheat;
                     if (AirDistUnit(AirDistUnitNum).UpStreamLeak || AirDistUnit(AirDistUnitNum).DownStreamLeak) {
                         ShowSevereError("Error found in " + CurrentModuleObject + " = " + AirDistUnit(AirDistUnitNum).Name);
@@ -448,8 +443,8 @@ namespace ZoneAirLoopEquipmentManager {
                 } else if (SameString(AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum),
                                       "AirTerminal:SingleDuct:ConstantVolume:FourPipeBeam")) {
                     AirDistUnit(AirDistUnitNum).EquipType_Num(AirDistCompUnitNum) = SingleDuctConstVolFourPipeBeam;
-                    AirDistUnit(AirDistUnitNum).airTerminalPtr = FourPipeBeam::HVACFourPipeBeam::fourPipeBeamFactory(
-                        SingleDuctConstVolFourPipeBeam, AirDistUnit(AirDistUnitNum).EquipName(1));
+                    AirDistUnit(AirDistUnitNum).airTerminalPtr =
+                        FourPipeBeam::HVACFourPipeBeam::fourPipeBeamFactory(SingleDuctConstVolFourPipeBeam, AirDistUnit(AirDistUnitNum).EquipName(1));
                     if (AirDistUnit(AirDistUnitNum).UpStreamLeak || AirDistUnit(AirDistUnitNum).DownStreamLeak) {
                         ShowSevereError("Error found in " + CurrentModuleObject + " = " + AirDistUnit(AirDistUnitNum).Name);
                         ShowContinueError("Simple duct leakage model not available for " + cAlphaFields(3) + " = " +
@@ -496,21 +491,20 @@ namespace ZoneAirLoopEquipmentManager {
                                       AirDistUnit(AirDistUnitNum).EquipName(AirDistCompUnitNum), "UNDEFINED", AlphArray(2));
                     }
                 } else {
-                    SetUpCompSets(CurrentModuleObject, AirDistUnit(AirDistUnitNum).Name,
-                                  AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum),
+                    SetUpCompSets(CurrentModuleObject, AirDistUnit(AirDistUnitNum).Name, AirDistUnit(AirDistUnitNum).EquipType(AirDistCompUnitNum),
                                   AirDistUnit(AirDistUnitNum).EquipName(AirDistCompUnitNum), "UNDEFINED", AlphArray(2));
                 }
 
             } // End of Air Dist Do Loop
             for (AirDistUnitNum = 1; AirDistUnitNum <= NumAirDistUnits; ++AirDistUnitNum) {
-                SetupOutputVariable("Zone Air Terminal Sensible Heating Energy", OutputProcessor::Unit::J,
-                                    AirDistUnit(AirDistUnitNum).HeatGain, "System", "Sum", AirDistUnit(AirDistUnitNum).Name);
-                SetupOutputVariable("Zone Air Terminal Sensible Cooling Energy", OutputProcessor::Unit::J,
-                                    AirDistUnit(AirDistUnitNum).CoolGain, "System", "Sum", AirDistUnit(AirDistUnitNum).Name);
-                SetupOutputVariable("Zone Air Terminal Sensible Heating Rate", OutputProcessor::Unit::W,
-                                    AirDistUnit(AirDistUnitNum).HeatRate, "System", "Sum", AirDistUnit(AirDistUnitNum).Name);
-                SetupOutputVariable("Zone Air Terminal Sensible Cooling Rate", OutputProcessor::Unit::W,
-                                    AirDistUnit(AirDistUnitNum).CoolRate, "System", "Sum", AirDistUnit(AirDistUnitNum).Name);
+                SetupOutputVariable("Zone Air Terminal Sensible Heating Energy", OutputProcessor::Unit::J, AirDistUnit(AirDistUnitNum).HeatGain,
+                                    "System", "Sum", AirDistUnit(AirDistUnitNum).Name);
+                SetupOutputVariable("Zone Air Terminal Sensible Cooling Energy", OutputProcessor::Unit::J, AirDistUnit(AirDistUnitNum).CoolGain,
+                                    "System", "Sum", AirDistUnit(AirDistUnitNum).Name);
+                SetupOutputVariable("Zone Air Terminal Sensible Heating Rate", OutputProcessor::Unit::W, AirDistUnit(AirDistUnitNum).HeatRate,
+                                    "System", "Sum", AirDistUnit(AirDistUnitNum).Name);
+                SetupOutputVariable("Zone Air Terminal Sensible Cooling Rate", OutputProcessor::Unit::W, AirDistUnit(AirDistUnitNum).CoolRate,
+                                    "System", "Sum", AirDistUnit(AirDistUnitNum).Name);
             }
         }
         if (ErrorsFound) {
@@ -722,16 +716,14 @@ namespace ZoneAirLoopEquipmentManager {
 
                 } else if (SELECT_CASE_var == SingleDuctConstVolCooledBeam) {
                     SimCoolBeam(AirDistUnit(AirDistUnitNum).EquipName(AirDistCompNum), FirstHVACIteration, ActualZoneNum,
-                                ZoneEquipConfig(ControlledZoneNum).ZoneNode, AirDistUnit(AirDistUnitNum).EquipIndex(AirDistCompNum),
-                                NonAirSysOutput);
+                                ZoneEquipConfig(ControlledZoneNum).ZoneNode, AirDistUnit(AirDistUnitNum).EquipIndex(AirDistCompNum), NonAirSysOutput);
 
                 } else if (SELECT_CASE_var == SingleDuctConstVolFourPipeBeam) {
                     AirDistUnit(AirDistUnitNum).airTerminalPtr->simulate(FirstHVACIteration, NonAirSysOutput);
 
                 } else if (SELECT_CASE_var == SingleDuctUserDefined) {
                     SimAirTerminalUserDefined(AirDistUnit(AirDistUnitNum).EquipName(AirDistCompNum), FirstHVACIteration, ActualZoneNum,
-                                              ZoneEquipConfig(ControlledZoneNum).ZoneNode,
-                                              AirDistUnit(AirDistUnitNum).EquipIndex(AirDistCompNum));
+                                              ZoneEquipConfig(ControlledZoneNum).ZoneNode, AirDistUnit(AirDistUnitNum).EquipIndex(AirDistCompNum));
 
                 } else if (SELECT_CASE_var == SingleDuctATMixer) {
                     GetATMixers(); // Needed here if mixer used only with unitarysystem which gets its input late
@@ -750,8 +742,7 @@ namespace ZoneAirLoopEquipmentManager {
                     Node(InNodeNum).MassFlowRateMaxAvail = MassFlowRateMaxAvail;
                     Node(InNodeNum).MassFlowRateMinAvail = MassFlowRateMinAvail;
                 }
-                if ((AirDistUnit(AirDistUnitNum).UpStreamLeak || AirDistUnit(AirDistUnitNum).DownStreamLeak) &&
-                    MassFlowRateMaxAvail > 0.0) {
+                if ((AirDistUnit(AirDistUnitNum).UpStreamLeak || AirDistUnit(AirDistUnitNum).DownStreamLeak) && MassFlowRateMaxAvail > 0.0) {
                     AirDistUnit(AirDistUnitNum).MassFlowRateTU = Node(InNodeNum).MassFlowRate;
                     AirDistUnit(AirDistUnitNum).MassFlowRateZSup =
                         AirDistUnit(AirDistUnitNum).MassFlowRateTU * (1.0 - AirDistUnit(AirDistUnitNum).DownStreamLeakFrac);
@@ -761,12 +752,10 @@ namespace ZoneAirLoopEquipmentManager {
                         AirDistUnit(AirDistUnitNum).MassFlowRateTU + AirDistUnit(AirDistUnitNum).MassFlowRateUpStrLk;
                     Node(InNodeNum).MassFlowRate = AirDistUnit(AirDistUnitNum).MassFlowRateSup;
                     Node(OutNodeNum).MassFlowRate = AirDistUnit(AirDistUnitNum).MassFlowRateZSup;
-                    Node(OutNodeNum).MassFlowRateMaxAvail =
-                        max(0.0, MassFlowRateMaxAvail - AirDistUnit(AirDistUnitNum).MassFlowRateDnStrLk -
-                                     AirDistUnit(AirDistUnitNum).MassFlowRateUpStrLk);
-                    Node(OutNodeNum).MassFlowRateMinAvail =
-                        max(0.0, MassFlowRateMinAvail - AirDistUnit(AirDistUnitNum).MassFlowRateDnStrLk -
-                                     AirDistUnit(AirDistUnitNum).MassFlowRateUpStrLk);
+                    Node(OutNodeNum).MassFlowRateMaxAvail = max(0.0, MassFlowRateMaxAvail - AirDistUnit(AirDistUnitNum).MassFlowRateDnStrLk -
+                                                                         AirDistUnit(AirDistUnitNum).MassFlowRateUpStrLk);
+                    Node(OutNodeNum).MassFlowRateMinAvail = max(0.0, MassFlowRateMinAvail - AirDistUnit(AirDistUnitNum).MassFlowRateDnStrLk -
+                                                                         AirDistUnit(AirDistUnitNum).MassFlowRateUpStrLk);
                     AirDistUnit(AirDistUnitNum).MaxAvailDelta = MassFlowRateMaxAvail - Node(OutNodeNum).MassFlowRateMaxAvail;
                     AirDistUnit(AirDistUnitNum).MinAvailDelta = MassFlowRateMinAvail - Node(OutNodeNum).MassFlowRateMinAvail;
                 } else {
@@ -790,20 +779,18 @@ namespace ZoneAirLoopEquipmentManager {
             //                  SysOutputProvided >0 Zone is heated
             SpecHumOut = Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).HumRat;
             SpecHumIn = Node(ZoneEquipConfig(ControlledZoneNum).ZoneNode).HumRat;
-            Real64 CpAirAvg =
-                PsyCpAirFnWTdb(0.5 * (SpecHumOut + SpecHumOut), 0.5 * (Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).Temp +
-                                                                       Node(ZoneEquipConfig(ControlledZoneNum).ZoneNode).Temp));
-            SysOutputProvided =
-                Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).MassFlowRate * CpAirAvg *
-                (Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).Temp - Node(ZoneEquipConfig(ControlledZoneNum).ZoneNode).Temp);
+            Real64 CpAirAvg = PsyCpAirFnWTdb(0.5 * (SpecHumOut + SpecHumOut), 0.5 * (Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).Temp +
+                                                                                     Node(ZoneEquipConfig(ControlledZoneNum).ZoneNode).Temp));
+            SysOutputProvided = Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).MassFlowRate * CpAirAvg *
+                                (Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).Temp - Node(ZoneEquipConfig(ControlledZoneNum).ZoneNode).Temp);
             // AirDistUnit( AirDistUnitNum ).HeatRate = max( 0.0, SysOutputProvided );
             // AirDistUnit( AirDistUnitNum ).CoolRate = std::abs( min( 0.0, SysOutputProvided ));
 
             // Sign convention: LatOutputProvided <0 Zone is dehumidified
             //                  LatOutputProvided >0 Zone is humidified
             // CR9155 Remove specific humidity calculations
-            LatOutputProvided = Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).MassFlowRate *
-                                (SpecHumOut - SpecHumIn); // Latent rate (kg/s), dehumid = negative
+            LatOutputProvided =
+                Node(AirDistUnit(AirDistUnitNum).OutletNodeNum).MassFlowRate * (SpecHumOut - SpecHumIn); // Latent rate (kg/s), dehumid = negative
         } else {
             SysOutputProvided = 0.0;
             LatOutputProvided = 0.0;

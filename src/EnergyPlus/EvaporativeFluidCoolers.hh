@@ -214,23 +214,21 @@ namespace EvaporativeFluidCoolers {
         EvapFluidCoolerspecs()
             : EvapFluidCoolerType_Num(0), PerformanceInputMethod_Num(0), Available(true), ON(true), DesignWaterFlowRate(0.0),
               DesignWaterFlowRateWasAutoSized(false), DesignSprayWaterFlowRate(0.0), DesWaterMassFlowRate(0.0), HighSpeedAirFlowRate(0.0),
-              HighSpeedAirFlowRateWasAutoSized(false), HighSpeedFanPower(0.0), HighSpeedFanPowerWasAutoSized(false),
-              HighSpeedEvapFluidCoolerUA(0.0), HighSpeedEvapFluidCoolerUAWasAutoSized(false), LowSpeedAirFlowRate(0.0),
-              LowSpeedAirFlowRateWasAutoSized(false), LowSpeedAirFlowRateSizingFactor(0.0), LowSpeedFanPower(0.0),
-              LowSpeedFanPowerWasAutoSized(false), LowSpeedFanPowerSizingFactor(0.0), LowSpeedEvapFluidCoolerUA(0.0),
-              LowSpeedEvapFluidCoolerUAWasAutoSized(false), LowSpeedEvapFluidCoolerUASizingFactor(0.0), DesignEnteringWaterTemp(0.0),
-              DesignEnteringAirTemp(0.0), DesignEnteringAirWetBulbTemp(0.0), EvapFluidCoolerMassFlowRateMultiplier(0.0),
+              HighSpeedAirFlowRateWasAutoSized(false), HighSpeedFanPower(0.0), HighSpeedFanPowerWasAutoSized(false), HighSpeedEvapFluidCoolerUA(0.0),
+              HighSpeedEvapFluidCoolerUAWasAutoSized(false), LowSpeedAirFlowRate(0.0), LowSpeedAirFlowRateWasAutoSized(false),
+              LowSpeedAirFlowRateSizingFactor(0.0), LowSpeedFanPower(0.0), LowSpeedFanPowerWasAutoSized(false), LowSpeedFanPowerSizingFactor(0.0),
+              LowSpeedEvapFluidCoolerUA(0.0), LowSpeedEvapFluidCoolerUAWasAutoSized(false), LowSpeedEvapFluidCoolerUASizingFactor(0.0),
+              DesignEnteringWaterTemp(0.0), DesignEnteringAirTemp(0.0), DesignEnteringAirWetBulbTemp(0.0), EvapFluidCoolerMassFlowRateMultiplier(0.0),
               HeatRejectCapNomCapSizingRatio(0.0), HighSpeedStandardDesignCapacity(0.0), LowSpeedStandardDesignCapacity(0.0),
-              LowSpeedStandardDesignCapacitySizingFactor(0.0), HighSpeedUserSpecifiedDesignCapacity(0.0),
-              LowSpeedUserSpecifiedDesignCapacity(0.0), LowSpeedUserSpecifiedDesignCapacitySizingFactor(0.0), Concentration(0.0),
-              FluidIndex(0), SizFac(0.0), WaterInletNodeNum(0), WaterOutletNodeNum(0), OutdoorAirInletNodeNum(0), BlowDownSchedulePtr(0),
-              HighMassFlowErrorCount(0), HighMassFlowErrorIndex(0), OutletWaterTempErrorCount(0), OutletWaterTempErrorIndex(0),
-              SmallWaterMassFlowErrorCount(0), SmallWaterMassFlowErrorIndex(0), WMFRLessThanMinAvailErrCount(0),
-              WMFRLessThanMinAvailErrIndex(0), WMFRGreaterThanMaxAvailErrCount(0), WMFRGreaterThanMaxAvailErrIndex(0),
-              EvapFluidCoolerAFRRFailedCount(0), EvapFluidCoolerAFRRFailedIndex(0), CapacityControl(0), BypassFraction(0.0),
-              EvapLossMode(EvapLossByMoistTheory), BlowdownMode(BlowdownByConcentration), SchedIDBlowdown(0), WaterTankID(0),
-              WaterTankDemandARRID(0), UserEvapLossFactor(0.0), DriftLossFraction(0.0), ConcentrationRatio(0.0),
-              SuppliedByWaterSystem(false), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0)
+              LowSpeedStandardDesignCapacitySizingFactor(0.0), HighSpeedUserSpecifiedDesignCapacity(0.0), LowSpeedUserSpecifiedDesignCapacity(0.0),
+              LowSpeedUserSpecifiedDesignCapacitySizingFactor(0.0), Concentration(0.0), FluidIndex(0), SizFac(0.0), WaterInletNodeNum(0),
+              WaterOutletNodeNum(0), OutdoorAirInletNodeNum(0), BlowDownSchedulePtr(0), HighMassFlowErrorCount(0), HighMassFlowErrorIndex(0),
+              OutletWaterTempErrorCount(0), OutletWaterTempErrorIndex(0), SmallWaterMassFlowErrorCount(0), SmallWaterMassFlowErrorIndex(0),
+              WMFRLessThanMinAvailErrCount(0), WMFRLessThanMinAvailErrIndex(0), WMFRGreaterThanMaxAvailErrCount(0),
+              WMFRGreaterThanMaxAvailErrIndex(0), EvapFluidCoolerAFRRFailedCount(0), EvapFluidCoolerAFRRFailedIndex(0), CapacityControl(0),
+              BypassFraction(0.0), EvapLossMode(EvapLossByMoistTheory), BlowdownMode(BlowdownByConcentration), SchedIDBlowdown(0), WaterTankID(0),
+              WaterTankDemandARRID(0), UserEvapLossFactor(0.0), DriftLossFraction(0.0), ConcentrationRatio(0.0), SuppliedByWaterSystem(false),
+              LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0)
         {
         }
     };
@@ -277,10 +275,10 @@ namespace EvaporativeFluidCoolers {
 
         // Default Constructor
         ReportVars()
-            : InletWaterTemp(0.0), OutletWaterTemp(0.0), WaterMassFlowRate(0.0), Qactual(0.0), FanPower(0.0), FanEnergy(0.0),
-              AirFlowRatio(0.0), WaterAmountUsed(0.0), EvaporationVdot(0.0), EvaporationVol(0.0), DriftVdot(0.0), DriftVol(0.0),
-              BlowdownVdot(0.0), BlowdownVol(0.0), MakeUpVdot(0.0), MakeUpVol(0.0), TankSupplyVdot(0.0), TankSupplyVol(0.0),
-              StarvedMakeUpVdot(0.0), StarvedMakeUpVol(0.0), BypassFraction(0.0)
+            : InletWaterTemp(0.0), OutletWaterTemp(0.0), WaterMassFlowRate(0.0), Qactual(0.0), FanPower(0.0), FanEnergy(0.0), AirFlowRatio(0.0),
+              WaterAmountUsed(0.0), EvaporationVdot(0.0), EvaporationVol(0.0), DriftVdot(0.0), DriftVol(0.0), BlowdownVdot(0.0), BlowdownVol(0.0),
+              MakeUpVdot(0.0), MakeUpVol(0.0), TankSupplyVdot(0.0), TankSupplyVol(0.0), StarvedMakeUpVdot(0.0), StarvedMakeUpVol(0.0),
+              BypassFraction(0.0)
         {
         }
     };
@@ -336,11 +334,8 @@ namespace EvaporativeFluidCoolers {
 
     void CalcTwoSpeedEvapFluidCooler(int &EvapFluidCoolerNum);
 
-    void SimSimpleEvapFluidCooler(int const EvapFluidCoolerNum,
-                                  Real64 const WaterMassFlowRate,
-                                  Real64 const AirFlowRate,
-                                  Real64 const UAdesign,
-                                  Real64 &OutletWaterTemp);
+    void SimSimpleEvapFluidCooler(
+        int const EvapFluidCoolerNum, Real64 const WaterMassFlowRate, Real64 const AirFlowRate, Real64 const UAdesign, Real64 &OutletWaterTemp);
 
     Real64 SimpleEvapFluidCoolerUAResidual(Real64 const UA,          // UA of evaporative fluid cooler
                                            Array1<Real64> const &Par // par(1) = design evaporative fluid cooler load [W]

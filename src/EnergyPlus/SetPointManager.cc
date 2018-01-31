@@ -179,9 +179,8 @@ namespace SetPointManager {
 
     int const NumValidCtrlTypes(9);
     Array1D_string const cValidCtrlTypes(NumValidCtrlTypes,
-                                         {"Temperature", "MaximumTemperature", "MinimumTemperature", "HumidityRatio",
-                                          "MaximumHumidityRatio", "MinimumHumidityRatio", "MassFlowRate", "MaximumMassFlowRate",
-                                          "MinimumMassFlowRate"});
+                                         {"Temperature", "MaximumTemperature", "MinimumTemperature", "HumidityRatio", "MaximumHumidityRatio",
+                                          "MinimumHumidityRatio", "MassFlowRate", "MaximumMassFlowRate", "MinimumMassFlowRate"});
 
     // following are used to reduce string comparisons related to CtrlVarType
     int const iSPMType_Scheduled(1);
@@ -794,13 +793,13 @@ namespace SetPointManager {
         MaxNumNumbers = max(MaxNumNumbers, NumNums);
         MaxNumAlphas = max(MaxNumAlphas, NumAlphas);
 
-        NumAllSetPtMgrs = NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
-                          NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
-                          NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
-                          NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
-                          NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs +
-                          NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs + NumSZOneStageCoolingSetPtMgrs +
-                          NumSZOneStageHeatingSetPtMgrs + NumReturnWaterResetChWSetPtMgrs + NumReturnWaterResetHWSetPtMgrs;
+        NumAllSetPtMgrs = NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs + NumSZClSetPtMgrs +
+                          NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs +
+                          NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs +
+                          NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs +
+                          NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs + NumGroundTempSetPtMgrs +
+                          NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs + NumSZOneStageCoolingSetPtMgrs + NumSZOneStageHeatingSetPtMgrs +
+                          NumReturnWaterResetChWSetPtMgrs + NumReturnWaterResetHWSetPtMgrs;
 
         cAlphaFieldNames.allocate(MaxNumAlphas);
         cAlphaArgs.allocate(MaxNumAlphas);
@@ -877,8 +876,8 @@ namespace SetPointManager {
             }
             SchSetPtMgr(SetPtMgrNum).CtrlNodeListName = cAlphaArgs(4);
             NodeListError = false;
-            GetNodeNums(SchSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown,
-                        cCurrentModuleObject, cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(4));
+            GetNodeNums(SchSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown, cCurrentModuleObject,
+                        cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(4));
 
             if (!NodeListError) {
                 NumNodesCtrld = NumNodes;
@@ -963,8 +962,8 @@ namespace SetPointManager {
             }
             DualSchSetPtMgr(SetPtMgrNum).CtrlNodeListName = cAlphaArgs(5);
             NodeListError = false;
-            GetNodeNums(DualSchSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown,
-                        cCurrentModuleObject, cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(5));
+            GetNodeNums(DualSchSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown, cCurrentModuleObject,
+                        cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(5));
 
             if (!NodeListError) {
                 NumNodesCtrld = NumNodes;
@@ -1035,9 +1034,8 @@ namespace SetPointManager {
             OutAirSetPtMgr(SetPtMgrNum).CtrlNodeListName = cAlphaArgs(3);
             if (OutAirSetPtMgr(SetPtMgrNum).OutHigh1 < OutAirSetPtMgr(SetPtMgrNum).OutLow1) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\", invalid setpoints.");
-                ShowContinueError("..." + cNumericFieldNames(4) + "=[" + RoundSigDigits(OutAirSetPtMgr(SetPtMgrNum).OutHigh1, 1) +
-                                  "] is less than " + cNumericFieldNames(2) + "=[" +
-                                  RoundSigDigits(OutAirSetPtMgr(SetPtMgrNum).OutLow1, 1) + "].");
+                ShowContinueError("..." + cNumericFieldNames(4) + "=[" + RoundSigDigits(OutAirSetPtMgr(SetPtMgrNum).OutHigh1, 1) + "] is less than " +
+                                  cNumericFieldNames(2) + "=[" + RoundSigDigits(OutAirSetPtMgr(SetPtMgrNum).OutLow1, 1) + "].");
             }
             // Get optional input: schedule and 2nd reset rule
             if (NumAlphas == 4 && NumNums == 8) {
@@ -1051,8 +1049,8 @@ namespace SetPointManager {
                 if (OutAirSetPtMgr(SetPtMgrNum).OutHigh2 < OutAirSetPtMgr(SetPtMgrNum).OutLow2) {
                     ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\", invalid setpoints.");
                     ShowContinueError("..." + cNumericFieldNames(8) + "=[" + RoundSigDigits(OutAirSetPtMgr(SetPtMgrNum).OutHigh2, 1) +
-                                      "] is less than " + cNumericFieldNames(6) + "=[" +
-                                      RoundSigDigits(OutAirSetPtMgr(SetPtMgrNum).OutLow2, 1) + "].");
+                                      "] is less than " + cNumericFieldNames(6) + "=[" + RoundSigDigits(OutAirSetPtMgr(SetPtMgrNum).OutLow2, 1) +
+                                      "].");
                 }
             } else {
                 OutAirSetPtMgr(SetPtMgrNum).Sched = "";
@@ -1063,8 +1061,8 @@ namespace SetPointManager {
                 OutAirSetPtMgr(SetPtMgrNum).OutHigh2 = 0.0;
             }
             NodeListError = false;
-            GetNodeNums(OutAirSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown,
-                        cCurrentModuleObject, cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(3));
+            GetNodeNums(OutAirSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown, cCurrentModuleObject,
+                        cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(3));
             if (!NodeListError) {
                 NumNodesCtrld = NumNodes;
                 OutAirSetPtMgr(SetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -1128,14 +1126,13 @@ namespace SetPointManager {
             if (SingZoneRhSetPtMgr(SetPtMgrNum).MaxSetTemp < SingZoneRhSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(SingZoneRhSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
-                                  "] is less than " + cNumericFieldNames(1) + "=[" +
-                                  RoundSigDigits(SingZoneRhSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(1) + "=[" + RoundSigDigits(SingZoneRhSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
+                                  "].");
             }
             SingZoneRhSetPtMgr(SetPtMgrNum).ZoneNodeNum = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
                                                                             NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
-            SingZoneRhSetPtMgr(SetPtMgrNum).ZoneInletNodeNum =
-                GetOnlySingleNode(cAlphaArgs(5), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air, NodeConnectionType_Sensor,
-                                  1, ObjectIsNotParent);
+            SingZoneRhSetPtMgr(SetPtMgrNum).ZoneInletNodeNum = GetOnlySingleNode(cAlphaArgs(5), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                                 NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
             NodeListError = false;
             GetNodeNums(cAlphaArgs(6), NumNodes, NodeNums, NodeListError, NodeType_Unknown, cCurrentModuleObject, cAlphaArgs(1),
                         NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(6)); // setpoint nodes
@@ -1211,14 +1208,13 @@ namespace SetPointManager {
             if (SingZoneHtSetPtMgr(SetPtMgrNum).MaxSetTemp < SingZoneHtSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(SingZoneHtSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
-                                  "] is less than " + cNumericFieldNames(1) + "=[" +
-                                  RoundSigDigits(SingZoneHtSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(1) + "=[" + RoundSigDigits(SingZoneHtSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
+                                  "].");
             }
             SingZoneHtSetPtMgr(SetPtMgrNum).ZoneNodeNum = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
                                                                             NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
-            SingZoneHtSetPtMgr(SetPtMgrNum).ZoneInletNodeNum =
-                GetOnlySingleNode(cAlphaArgs(5), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air, NodeConnectionType_Sensor,
-                                  1, ObjectIsNotParent);
+            SingZoneHtSetPtMgr(SetPtMgrNum).ZoneInletNodeNum = GetOnlySingleNode(cAlphaArgs(5), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                                 NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
             NodeListError = false;
             GetNodeNums(cAlphaArgs(6), NumNodes, NodeNums, NodeListError, NodeType_Unknown, cCurrentModuleObject, cAlphaArgs(1),
                         NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(6)); // setpoint nodes
@@ -1293,14 +1289,13 @@ namespace SetPointManager {
             if (SingZoneClSetPtMgr(SetPtMgrNum).MaxSetTemp < SingZoneClSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(SingZoneClSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
-                                  "] is less than " + cNumericFieldNames(1) + "=[" +
-                                  RoundSigDigits(SingZoneClSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(1) + "=[" + RoundSigDigits(SingZoneClSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
+                                  "].");
             }
             SingZoneClSetPtMgr(SetPtMgrNum).ZoneNodeNum = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
                                                                             NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
-            SingZoneClSetPtMgr(SetPtMgrNum).ZoneInletNodeNum =
-                GetOnlySingleNode(cAlphaArgs(5), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air, NodeConnectionType_Sensor,
-                                  1, ObjectIsNotParent);
+            SingZoneClSetPtMgr(SetPtMgrNum).ZoneInletNodeNum = GetOnlySingleNode(cAlphaArgs(5), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                                 NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
             NodeListError = false;
             GetNodeNums(cAlphaArgs(6), NumNodes, NodeNums, NodeListError, NodeType_Unknown, cCurrentModuleObject, cAlphaArgs(1),
                         NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(6)); // setpoint nodes
@@ -1383,8 +1378,8 @@ namespace SetPointManager {
             }
 
             ErrInList = false;
-            GetNodeNums(cAlphaArgs(3), NumNodes, NodeNums, ErrInList, NodeType_Air, cCurrentModuleObject, cAlphaArgs(1),
-                        NodeConnectionType_Sensor, 1, ObjectIsNotParent, _,
+            GetNodeNums(cAlphaArgs(3), NumNodes, NodeNums, ErrInList, NodeType_Air, cCurrentModuleObject, cAlphaArgs(1), NodeConnectionType_Sensor, 1,
+                        ObjectIsNotParent, _,
                         cAlphaFieldNames(3)); // nodes of zones whose humidity is being controlled
             if (ErrInList) {
                 //    CALL ShowSevereError(RoutineName//TRIM(cCurrentModuleObject)//'="'//TRIM(cAlphaArgs(1))//  &
@@ -1411,8 +1406,8 @@ namespace SetPointManager {
                 SZMinHumSetPtMgr(SetPtMgrNum).CtrlZoneNum(ZoneNum) = 0;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs;
+            AllSetPtMgrNum =
+                SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs + NumSZClSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -1466,8 +1461,8 @@ namespace SetPointManager {
             }
 
             ErrInList = false;
-            GetNodeNums(cAlphaArgs(3), NumNodes, NodeNums, ErrInList, NodeType_Air, cCurrentModuleObject, cAlphaArgs(1),
-                        NodeConnectionType_Sensor, 1, ObjectIsNotParent, _,
+            GetNodeNums(cAlphaArgs(3), NumNodes, NodeNums, ErrInList, NodeType_Air, cCurrentModuleObject, cAlphaArgs(1), NodeConnectionType_Sensor, 1,
+                        ObjectIsNotParent, _,
                         cAlphaFieldNames(3)); // nodes of zones whose humidity is being controlled
             if (ErrInList) {
                 //    CALL ShowSevereError(RoutineName//TRIM(cCurrentModuleObject)//'="'//TRIM(cAlphaArgs(1))//  &
@@ -1495,8 +1490,8 @@ namespace SetPointManager {
                 SZMaxHumSetPtMgr(SetPtMgrNum).CtrlZoneNum(ZoneNum) = 0;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -1537,10 +1532,10 @@ namespace SetPointManager {
                 ShowContinueError("..Valid value is \"Temperature\".");
                 ErrorsFound = true;
             }
-            MixedAirSetPtMgr(SetPtMgrNum).RefNode = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                      NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
-            MixedAirSetPtMgr(SetPtMgrNum).FanInNode = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                        NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+            MixedAirSetPtMgr(SetPtMgrNum).RefNode = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air,
+                                                                      NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+            MixedAirSetPtMgr(SetPtMgrNum).FanInNode = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air,
+                                                                        NodeConnectionType_Sensor, 1, ObjectIsNotParent);
             MixedAirSetPtMgr(SetPtMgrNum).FanOutNode = GetOnlySingleNode(cAlphaArgs(5), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
                                                                          NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
             NodeListError = false;
@@ -1575,16 +1570,14 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs;
 
             if (NumAlphas > 7) {
-                MixedAirSetPtMgr(SetPtMgrNum).CoolCoilInNode =
-                    GetOnlySingleNode(cAlphaArgs(7), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air,
-                                      NodeConnectionType_Sensor, 1, ObjectIsNotParent);
-                MixedAirSetPtMgr(SetPtMgrNum).CoolCoilOutNode =
-                    GetOnlySingleNode(cAlphaArgs(8), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air,
-                                      NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+                MixedAirSetPtMgr(SetPtMgrNum).CoolCoilInNode = GetOnlySingleNode(cAlphaArgs(7), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                                 NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+                MixedAirSetPtMgr(SetPtMgrNum).CoolCoilOutNode = GetOnlySingleNode(cAlphaArgs(8), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                                  NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
                 if (NumNums == 1) {
                     MixedAirSetPtMgr(SetPtMgrNum).MinCoolCoilOutTemp = rNumericArgs(1);
                 }
@@ -1636,8 +1629,7 @@ namespace SetPointManager {
                     // should not come here if idd type choice and key list is working
                     ShowSevereError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\", invalid field.");
                     ShowContinueError("..invalid " + cAlphaFieldNames(2) + "=\"" + cAlphaArgs(2) + "\".");
-                    ShowContinueError(
-                        "..Valid values are \"Temperature\",\"HumidityRatio\",\"MaximumHumidityRatio\" or \"MinimumHumidityRatio\".");
+                    ShowContinueError("..Valid values are \"Temperature\",\"HumidityRatio\",\"MaximumHumidityRatio\" or \"MinimumHumidityRatio\".");
                     ErrorsFound = true;
                 }
             }
@@ -1647,16 +1639,16 @@ namespace SetPointManager {
             if (OAPretreatSetPtMgr(SetPtMgrNum).MaxSetTemp < OAPretreatSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(OAPretreatSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
-                                  "] is less than " + cNumericFieldNames(1) + "=[" +
-                                  RoundSigDigits(OAPretreatSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(1) + "=[" + RoundSigDigits(OAPretreatSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
+                                  "].");
             }
             OAPretreatSetPtMgr(SetPtMgrNum).MinSetHumRat = rNumericArgs(3);
             OAPretreatSetPtMgr(SetPtMgrNum).MaxSetHumRat = rNumericArgs(4);
             if (OAPretreatSetPtMgr(SetPtMgrNum).MaxSetHumRat < OAPretreatSetPtMgr(SetPtMgrNum).MinSetHumRat) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(4) + "=[" + RoundSigDigits(OAPretreatSetPtMgr(SetPtMgrNum).MaxSetHumRat, 1) +
-                                  "] is less than " + cNumericFieldNames(3) + "=[" +
-                                  RoundSigDigits(OAPretreatSetPtMgr(SetPtMgrNum).MinSetHumRat, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(3) + "=[" + RoundSigDigits(OAPretreatSetPtMgr(SetPtMgrNum).MinSetHumRat, 1) +
+                                  "].");
             }
 
             // Because a zero humidity ratio setpoint is a special value indicating "off" or "no load"
@@ -1672,16 +1664,14 @@ namespace SetPointManager {
                 OAPretreatSetPtMgr(SetPtMgrNum).MaxSetHumRat = 0.00001;
             }
 
-            OAPretreatSetPtMgr(SetPtMgrNum).RefNode = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                        NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
-            OAPretreatSetPtMgr(SetPtMgrNum).MixedOutNode =
-                GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air, NodeConnectionType_Sensor,
-                                  1, ObjectIsNotParent);
+            OAPretreatSetPtMgr(SetPtMgrNum).RefNode = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air,
+                                                                        NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+            OAPretreatSetPtMgr(SetPtMgrNum).MixedOutNode = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                             NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
             OAPretreatSetPtMgr(SetPtMgrNum).OAInNode = GetOnlySingleNode(cAlphaArgs(5), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
                                                                          NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
-            OAPretreatSetPtMgr(SetPtMgrNum).ReturnInNode =
-                GetOnlySingleNode(cAlphaArgs(6), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air, NodeConnectionType_Sensor,
-                                  1, ObjectIsNotParent);
+            OAPretreatSetPtMgr(SetPtMgrNum).ReturnInNode = GetOnlySingleNode(cAlphaArgs(6), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                             NodeType_Air, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
             NodeListError = false;
             GetNodeNums(cAlphaArgs(7), NumNodes, NodeNums, NodeListError, NodeType_Air, cCurrentModuleObject, cAlphaArgs(1),
                         NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(7)); // setpoint nodes
@@ -1714,8 +1704,8 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -1762,8 +1752,8 @@ namespace SetPointManager {
             if (WarmestSetPtMgr(SetPtMgrNum).MaxSetTemp < WarmestSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(WarmestSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
-                                  "] is less than " + cNumericFieldNames(1) + "=[" +
-                                  RoundSigDigits(WarmestSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(1) + "=[" + RoundSigDigits(WarmestSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
+                                  "].");
             }
 
             {
@@ -1797,9 +1787,8 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -1846,8 +1835,8 @@ namespace SetPointManager {
             if (ColdestSetPtMgr(SetPtMgrNum).MaxSetTemp < ColdestSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(ColdestSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
-                                  "] is less than " + cNumericFieldNames(1) + "=[" +
-                                  RoundSigDigits(ColdestSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(1) + "=[" + RoundSigDigits(ColdestSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
+                                  "].");
             }
 
             {
@@ -1881,9 +1870,9 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -1929,15 +1918,15 @@ namespace SetPointManager {
             WarmestSetPtMgrTempFlow(SetPtMgrNum).MaxSetTemp = rNumericArgs(2);
             if (WarmestSetPtMgrTempFlow(SetPtMgrNum).MaxSetTemp < WarmestSetPtMgrTempFlow(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
-                ShowContinueError("..." + cNumericFieldNames(2) + "=[" +
-                                  RoundSigDigits(WarmestSetPtMgrTempFlow(SetPtMgrNum).MaxSetTemp, 1) + "] is less than " +
-                                  cNumericFieldNames(1) + "=[" + RoundSigDigits(WarmestSetPtMgrTempFlow(SetPtMgrNum).MinSetTemp, 1) + "].");
+                ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(WarmestSetPtMgrTempFlow(SetPtMgrNum).MaxSetTemp, 1) +
+                                  "] is less than " + cNumericFieldNames(1) + "=[" +
+                                  RoundSigDigits(WarmestSetPtMgrTempFlow(SetPtMgrNum).MinSetTemp, 1) + "].");
             }
             WarmestSetPtMgrTempFlow(SetPtMgrNum).MinTurndown = rNumericArgs(3);
             if (WarmestSetPtMgrTempFlow(SetPtMgrNum).MinTurndown >= 0.8) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
-                ShowContinueError("..." + cNumericFieldNames(3) + "=[" +
-                                  RoundSigDigits(WarmestSetPtMgrTempFlow(SetPtMgrNum).MinTurndown, 2) + "] is greater than 0.8;");
+                ShowContinueError("..." + cNumericFieldNames(3) + "=[" + RoundSigDigits(WarmestSetPtMgrTempFlow(SetPtMgrNum).MinTurndown, 2) +
+                                  "] is greater than 0.8;");
                 ShowContinueError("...typical values for " + cNumericFieldNames(3) + " are less than 0.8.");
             }
             {
@@ -1973,9 +1962,9 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2033,9 +2022,9 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow;
 
             RABFlowSetPtMgr(SetPtMgrNum).AllSetPtMgrIndex = AllSetPtMgrNum;
             RABFlowSetPtMgr(SetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2075,10 +2064,9 @@ namespace SetPointManager {
 
             if (MZAverageCoolingSetPtMgr(SetPtMgrNum).MaxSetTemp < MZAverageCoolingSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
-                ShowContinueError("..." + cNumericFieldNames(2) + "=[" +
-                                  RoundSigDigits(MZAverageCoolingSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) + "] is less than " +
-                                  cNumericFieldNames(1) + "=[" + RoundSigDigits(MZAverageCoolingSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
-                                  "].");
+                ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(MZAverageCoolingSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
+                                  "] is less than " + cNumericFieldNames(1) + "=[" +
+                                  RoundSigDigits(MZAverageCoolingSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
             }
 
             NodeListError = false;
@@ -2100,10 +2088,9 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2141,10 +2128,9 @@ namespace SetPointManager {
 
             if (MZAverageHeatingSetPtMgr(SetPtMgrNum).MaxSetTemp < MZAverageHeatingSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
-                ShowContinueError("..." + cNumericFieldNames(2) + "=[" +
-                                  RoundSigDigits(MZAverageHeatingSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) + "] is less than " +
-                                  cNumericFieldNames(1) + "=[" + RoundSigDigits(MZAverageHeatingSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
-                                  "].");
+                ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(MZAverageHeatingSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
+                                  "] is less than " + cNumericFieldNames(1) + "=[" +
+                                  RoundSigDigits(MZAverageHeatingSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
             }
 
             NodeListError = false;
@@ -2166,10 +2152,9 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2231,10 +2216,10 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2296,10 +2281,10 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2338,8 +2323,8 @@ namespace SetPointManager {
             if (MZMinHumSetPtMgr(SetPtMgrNum).MaxSetHum < MZMinHumSetPtMgr(SetPtMgrNum).MinSetHum) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(MZMinHumSetPtMgr(SetPtMgrNum).MaxSetHum, 3) +
-                                  "] is less than " + cNumericFieldNames(1) + "=[" +
-                                  RoundSigDigits(MZMinHumSetPtMgr(SetPtMgrNum).MinSetHum, 3) + "].");
+                                  "] is less than " + cNumericFieldNames(1) + "=[" + RoundSigDigits(MZMinHumSetPtMgr(SetPtMgrNum).MinSetHum, 3) +
+                                  "].");
             }
 
             NodeListError = false;
@@ -2361,11 +2346,10 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2404,8 +2388,8 @@ namespace SetPointManager {
             if (MZMaxHumSetPtMgr(SetPtMgrNum).MaxSetHum < MZMaxHumSetPtMgr(SetPtMgrNum).MinSetHum) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(MZMaxHumSetPtMgr(SetPtMgrNum).MaxSetHum, 3) +
-                                  "] is less than " + cNumericFieldNames(1) + "=[" +
-                                  RoundSigDigits(MZMaxHumSetPtMgr(SetPtMgrNum).MinSetHum, 3) + "].");
+                                  "] is less than " + cNumericFieldNames(1) + "=[" + RoundSigDigits(MZMaxHumSetPtMgr(SetPtMgrNum).MinSetHum, 3) +
+                                  "].");
             }
 
             NodeListError = false;
@@ -2427,11 +2411,11 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2492,8 +2476,8 @@ namespace SetPointManager {
             if (FollowOATempSetPtMgr(SetPtMgrNum).MaxSetTemp < FollowOATempSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(FollowOATempSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
-                                  "] is less than " + cNumericFieldNames(3) + "=[" +
-                                  RoundSigDigits(FollowOATempSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(3) + "=[" + RoundSigDigits(FollowOATempSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
+                                  "].");
             }
 
             NodeListError = false;
@@ -2515,11 +2499,11 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2563,9 +2547,8 @@ namespace SetPointManager {
                 ShowContinueError("..Valid values are \"Temperature\",\"MaximumTemperature\" or \"MinimumTemperature\".");
                 ErrorsFound = true;
             }
-            FollowSysNodeTempSetPtMgr(SetPtMgrNum).RefNodeNum =
-                GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown,
-                                  NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+            FollowSysNodeTempSetPtMgr(SetPtMgrNum).RefNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                                  NodeType_Unknown, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
             FollowSysNodeTempSetPtMgr(SetPtMgrNum).RefTempType = cAlphaArgs(4);
             if (SameString(FollowSysNodeTempSetPtMgr(SetPtMgrNum).RefTempType, "NodeWetBulb")) {
                 FollowSysNodeTempSetPtMgr(SetPtMgrNum).RefTypeMode = iRefTempType_WetBulb;
@@ -2583,10 +2566,9 @@ namespace SetPointManager {
             FollowSysNodeTempSetPtMgr(SetPtMgrNum).MinSetTemp = rNumericArgs(3);
             if (FollowSysNodeTempSetPtMgr(SetPtMgrNum).MaxSetTemp < FollowSysNodeTempSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
-                ShowContinueError("..." + cNumericFieldNames(2) + "=[" +
-                                  RoundSigDigits(FollowSysNodeTempSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) + "] is less than " +
-                                  cNumericFieldNames(3) + "=[" + RoundSigDigits(FollowSysNodeTempSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
-                                  "].");
+                ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(FollowSysNodeTempSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
+                                  "] is less than " + cNumericFieldNames(3) + "=[" +
+                                  RoundSigDigits(FollowSysNodeTempSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
             }
 
             NodeListError = false;
@@ -2608,11 +2590,11 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2663,8 +2645,7 @@ namespace SetPointManager {
                     if (!GroundTempObjInput) {
                         ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) +
                                          "\" requires \"Site:GroundTemperature:BuildingSurface\" in the input.");
-                        ShowContinueError("Defaults, constant throughout the year of (" + RoundSigDigits(GroundTemp, 1) +
-                                          ") will be used.");
+                        ShowContinueError("Defaults, constant throughout the year of (" + RoundSigDigits(GroundTemp, 1) + ") will be used.");
                     }
                     NoSurfaceGroundTempObjWarning = false;
                 }
@@ -2674,8 +2655,7 @@ namespace SetPointManager {
                     if (!GroundTemp_SurfaceObjInput) {
                         ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) +
                                          "\" requires \"Site:GroundTemperature:Shallow\" in the input.");
-                        ShowContinueError("Defaults, constant throughout the year of (" + RoundSigDigits(GroundTemp_Surface, 1) +
-                                          ") will be used.");
+                        ShowContinueError("Defaults, constant throughout the year of (" + RoundSigDigits(GroundTemp_Surface, 1) + ") will be used.");
                     }
                     NoShallowGroundTempObjWarning = false;
                 }
@@ -2685,8 +2665,7 @@ namespace SetPointManager {
                     if (!GroundTemp_DeepObjInput) {
                         ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) +
                                          "\" requires \"Site:GroundTemperature:Deep\" in the input.");
-                        ShowContinueError("Defaults, constant throughout the year of (" + RoundSigDigits(GroundTemp_Deep, 1) +
-                                          ") will be used.");
+                        ShowContinueError("Defaults, constant throughout the year of (" + RoundSigDigits(GroundTemp_Deep, 1) + ") will be used.");
                     }
                     NoDeepGroundTempObjWarning = false;
                 }
@@ -2696,8 +2675,7 @@ namespace SetPointManager {
                     if (!FCGroundTemps) {
                         ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) +
                                          "\" requires \"Site:GroundTemperature:FCfactorMethod\" in the input.");
-                        ShowContinueError("Defaults, constant throughout the year of (" + RoundSigDigits(GroundTempFC, 1) +
-                                          ") will be used.");
+                        ShowContinueError("Defaults, constant throughout the year of (" + RoundSigDigits(GroundTempFC, 1) + ") will be used.");
                     }
                     NoFCGroundTempObjWarning = false;
                 }
@@ -2715,8 +2693,8 @@ namespace SetPointManager {
             if (GroundTempSetPtMgr(SetPtMgrNum).MaxSetTemp < GroundTempSetPtMgr(SetPtMgrNum).MinSetTemp) {
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
                 ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(GroundTempSetPtMgr(SetPtMgrNum).MaxSetTemp, 1) +
-                                  "] is less than " + cNumericFieldNames(3) + "=[" +
-                                  RoundSigDigits(GroundTempSetPtMgr(SetPtMgrNum).MinSetTemp, 1) + "].");
+                                  "] is less than " + cNumericFieldNames(3) + "=[" + RoundSigDigits(GroundTempSetPtMgr(SetPtMgrNum).MinSetTemp, 1) +
+                                  "].");
             }
 
             NodeListError = false;
@@ -2738,12 +2716,11 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs +
-                             NumFollowSysNodeTempSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2757,11 +2734,9 @@ namespace SetPointManager {
 
         for (SetPtMgrNum = 1; SetPtMgrNum <= NumWarmestSetPtMgrsTempFlow; ++SetPtMgrNum) {
             SetupOutputVariable("Setpoint Manager Warmest Temperature Critical Zone Number", OutputProcessor::Unit::None,
-                                WarmestSetPtMgrTempFlow(SetPtMgrNum).CritZoneNum, "System", "Average",
-                                WarmestSetPtMgrTempFlow(SetPtMgrNum).Name);
+                                WarmestSetPtMgrTempFlow(SetPtMgrNum).CritZoneNum, "System", "Average", WarmestSetPtMgrTempFlow(SetPtMgrNum).Name);
             SetupOutputVariable("Setpoint Manager Warmest Temperature Turndown Flow Fraction", OutputProcessor::Unit::None,
-                                WarmestSetPtMgrTempFlow(SetPtMgrNum).Turndown, "System", "Average",
-                                WarmestSetPtMgrTempFlow(SetPtMgrNum).Name);
+                                WarmestSetPtMgrTempFlow(SetPtMgrNum).Turndown, "System", "Average", WarmestSetPtMgrTempFlow(SetPtMgrNum).Name);
         }
 
         // Input the Condenser Entering Set Point Managers
@@ -2808,8 +2783,8 @@ namespace SetPointManager {
             }
 
             NodeListError = false;
-            GetNodeNums(CondEntSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown,
-                        cCurrentModuleObject, cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(7));
+            GetNodeNums(CondEntSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown, cCurrentModuleObject,
+                        cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(7));
             if (!NodeListError) {
                 NumNodesCtrld = NumNodes;
                 CondEntSetPtMgr(SetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2825,12 +2800,12 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs +
-                             NumFollowSysNodeTempSetPtMgrs + NumGroundTempSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs +
+                             NumGroundTempSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2874,8 +2849,8 @@ namespace SetPointManager {
             IdealCondEntSetPtMgr(SetPtMgrNum).CtrlNodeListName = cAlphaArgs(3);
 
             NodeListError = false;
-            GetNodeNums(IdealCondEntSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown,
-                        cCurrentModuleObject, cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(3));
+            GetNodeNums(IdealCondEntSetPtMgr(SetPtMgrNum).CtrlNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Unknown, cCurrentModuleObject,
+                        cAlphaArgs(1), NodeConnectionType_SetPoint, 1, ObjectIsNotParent, _, cAlphaFieldNames(3));
             if (!NodeListError) {
                 NumNodesCtrld = NumNodes;
                 IdealCondEntSetPtMgr(SetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2891,12 +2866,12 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs +
-                             NumFollowSysNodeTempSetPtMgrs + NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs +
+                             NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs;
 
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
@@ -2931,10 +2906,9 @@ namespace SetPointManager {
             if (SZOneStageCoolingSetPtMgr(SetPtMgrNum).CoolingOffTemp < SZOneStageCoolingSetPtMgr(SetPtMgrNum).CoolingOnTemp) {
                 // throw warning, off must be warmer than on
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
-                ShowContinueError("..." + cNumericFieldNames(2) + "=[" +
-                                  RoundSigDigits(SZOneStageCoolingSetPtMgr(SetPtMgrNum).CoolingOffTemp, 1) + "] is less than " +
-                                  cNumericFieldNames(1) + "=[" + RoundSigDigits(SZOneStageCoolingSetPtMgr(SetPtMgrNum).CoolingOnTemp, 1) +
-                                  "].");
+                ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(SZOneStageCoolingSetPtMgr(SetPtMgrNum).CoolingOffTemp, 1) +
+                                  "] is less than " + cNumericFieldNames(1) + "=[" +
+                                  RoundSigDigits(SZOneStageCoolingSetPtMgr(SetPtMgrNum).CoolingOnTemp, 1) + "].");
             }
 
             SZOneStageCoolingSetPtMgr(SetPtMgrNum).ControlZoneName = cAlphaArgs(2);
@@ -2972,12 +2946,12 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs +
-                             NumFollowSysNodeTempSetPtMgrs + NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs +
+                             NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs;
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes = SZOneStageCoolingSetPtMgr(SetPtMgrNum).CtrlNodes;
@@ -3011,10 +2985,9 @@ namespace SetPointManager {
             if (SZOneStageHeatingSetPtMgr(SetPtMgrNum).HeatingOffTemp > SZOneStageHeatingSetPtMgr(SetPtMgrNum).HeatingOnTemp) {
                 // throw warning, off must be cooler than on
                 ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\",");
-                ShowContinueError("..." + cNumericFieldNames(2) + "=[" +
-                                  RoundSigDigits(SZOneStageHeatingSetPtMgr(SetPtMgrNum).HeatingOnTemp, 1) + "] is less than " +
-                                  cNumericFieldNames(1) + "=[" + RoundSigDigits(SZOneStageHeatingSetPtMgr(SetPtMgrNum).HeatingOffTemp, 1) +
-                                  "].");
+                ShowContinueError("..." + cNumericFieldNames(2) + "=[" + RoundSigDigits(SZOneStageHeatingSetPtMgr(SetPtMgrNum).HeatingOnTemp, 1) +
+                                  "] is less than " + cNumericFieldNames(1) + "=[" +
+                                  RoundSigDigits(SZOneStageHeatingSetPtMgr(SetPtMgrNum).HeatingOffTemp, 1) + "].");
             }
 
             SZOneStageHeatingSetPtMgr(SetPtMgrNum).ControlZoneName = cAlphaArgs(2);
@@ -3052,13 +3025,12 @@ namespace SetPointManager {
                 ErrorsFound = true;
             }
 
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs +
-                             NumFollowSysNodeTempSetPtMgrs + NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs +
-                             NumSZOneStageCoolingSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs +
+                             NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs + NumSZOneStageCoolingSetPtMgrs;
             if (!NodeListError) {
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(NumNodesCtrld);
                 AllSetPtMgr(AllSetPtMgrNum).CtrlNodes = SZOneStageHeatingSetPtMgr(SetPtMgrNum).CtrlNodes;
@@ -3091,11 +3063,11 @@ namespace SetPointManager {
             // process the sense and actuate nodes
             bool errFlag = false;
             ReturnWaterResetChWSetPtMgr(SetPtMgrNum).supplyNodeIndex =
-                GetOnlySingleNode(cAlphaArgs(2), errFlag, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown,
-                                  NodeConnectionType_SetPoint, 1, ObjectIsNotParent, cAlphaFieldNames(2)); // setpoint nodes
+                GetOnlySingleNode(cAlphaArgs(2), errFlag, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown, NodeConnectionType_SetPoint, 1,
+                                  ObjectIsNotParent, cAlphaFieldNames(2)); // setpoint nodes
             ReturnWaterResetChWSetPtMgr(SetPtMgrNum).returnNodeIndex =
-                GetOnlySingleNode(cAlphaArgs(3), errFlag, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown, NodeConnectionType_Sensor,
-                                  1, ObjectIsNotParent, cAlphaFieldNames(3)); // setpoint nodes
+                GetOnlySingleNode(cAlphaArgs(3), errFlag, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown, NodeConnectionType_Sensor, 1,
+                                  ObjectIsNotParent, cAlphaFieldNames(3)); // setpoint nodes
 
             // process the setpoint inputs
             ReturnWaterResetChWSetPtMgr(SetPtMgrNum).minimumChilledWaterSetpoint = rNumericArgs(1);
@@ -3121,13 +3093,13 @@ namespace SetPointManager {
             }
 
             // setup the "base" class
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs +
-                             NumFollowSysNodeTempSetPtMgrs + NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs +
-                             NumSZOneStageCoolingSetPtMgrs + NumSZOneStageHeatingSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs +
+                             NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs + NumSZOneStageCoolingSetPtMgrs +
+                             NumSZOneStageHeatingSetPtMgrs;
             AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(1);
             AllSetPtMgr(AllSetPtMgrNum).CtrlNodes(1) = ReturnWaterResetChWSetPtMgr(SetPtMgrNum).supplyNodeIndex;
             AllSetPtMgr(AllSetPtMgrNum).Name = ReturnWaterResetChWSetPtMgr(SetPtMgrNum).Name;
@@ -3158,11 +3130,11 @@ namespace SetPointManager {
             // process the sense and actuate nodes
             bool errFlag = false;
             ReturnWaterResetHWSetPtMgr(SetPtMgrNum).supplyNodeIndex =
-                GetOnlySingleNode(cAlphaArgs(2), errFlag, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown,
-                                  NodeConnectionType_SetPoint, 1, ObjectIsNotParent, cAlphaFieldNames(2)); // setpoint nodes
+                GetOnlySingleNode(cAlphaArgs(2), errFlag, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown, NodeConnectionType_SetPoint, 1,
+                                  ObjectIsNotParent, cAlphaFieldNames(2)); // setpoint nodes
             ReturnWaterResetHWSetPtMgr(SetPtMgrNum).returnNodeIndex =
-                GetOnlySingleNode(cAlphaArgs(3), errFlag, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown, NodeConnectionType_Sensor,
-                                  1, ObjectIsNotParent, cAlphaFieldNames(3)); // setpoint nodes
+                GetOnlySingleNode(cAlphaArgs(3), errFlag, cCurrentModuleObject, cAlphaArgs(1), NodeType_Unknown, NodeConnectionType_Sensor, 1,
+                                  ObjectIsNotParent, cAlphaFieldNames(3)); // setpoint nodes
 
             // process the setpoint inputs
             ReturnWaterResetHWSetPtMgr(SetPtMgrNum).minimumHotWaterSetpoint = rNumericArgs(1);
@@ -3188,13 +3160,13 @@ namespace SetPointManager {
             }
 
             // setup the "base" class
-            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs +
-                             NumSZHtSetPtMgrs + NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs +
-                             NumOAPretreatSetPtMgrs + NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow +
-                             NumRABFlowSetPtMgrs + NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs +
-                             NumMZAverageMaxHumSetPtMgrs + NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs +
-                             NumFollowSysNodeTempSetPtMgrs + NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs +
-                             NumSZOneStageCoolingSetPtMgrs + NumSZOneStageHeatingSetPtMgrs + NumReturnWaterResetChWSetPtMgrs;
+            AllSetPtMgrNum = SetPtMgrNum + NumSchSetPtMgrs + NumDualSchSetPtMgrs + NumOutAirSetPtMgrs + NumSZRhSetPtMgrs + NumSZHtSetPtMgrs +
+                             NumSZClSetPtMgrs + NumSZMinHumSetPtMgrs + NumSZMaxHumSetPtMgrs + NumMixedAirSetPtMgrs + NumOAPretreatSetPtMgrs +
+                             NumWarmestSetPtMgrs + NumColdestSetPtMgrs + NumWarmestSetPtMgrsTempFlow + NumRABFlowSetPtMgrs +
+                             NumMZClgAverageSetPtMgrs + NumMZHtgAverageSetPtMgrs + NumMZAverageMinHumSetPtMgrs + NumMZAverageMaxHumSetPtMgrs +
+                             NumMZMinHumSetPtMgrs + NumMZMaxHumSetPtMgrs + NumFollowOATempSetPtMgrs + NumFollowSysNodeTempSetPtMgrs +
+                             NumGroundTempSetPtMgrs + NumCondEntSetPtMgrs + NumIdealCondEntSetPtMgrs + NumSZOneStageCoolingSetPtMgrs +
+                             NumSZOneStageHeatingSetPtMgrs + NumReturnWaterResetChWSetPtMgrs;
             AllSetPtMgr(AllSetPtMgrNum).CtrlNodes.allocate(1);
             AllSetPtMgr(AllSetPtMgrNum).CtrlNodes(1) = ReturnWaterResetHWSetPtMgr(SetPtMgrNum).supplyNodeIndex;
             AllSetPtMgr(AllSetPtMgrNum).Name = ReturnWaterResetHWSetPtMgr(SetPtMgrNum).Name;
@@ -3294,8 +3266,8 @@ namespace SetPointManager {
                     if (AllSetPtMgr(SetPtMgrNum).AirLoopNum == AllSetPtMgr(TempSetPtMgrNum).AirLoopNum) {
                         ShowWarningError(cValidSPMTypes(AllSetPtMgr(SetPtMgrNum).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNum).Name + "\"");
                         ShowContinueError("...air loop name conflicts with another setpoint manager.");
-                        ShowContinueError("...conflicting setpoint manager = " + cValidSPMTypes(AllSetPtMgr(TempSetPtMgrNum).SPMType) +
-                                          " \"" + AllSetPtMgr(TempSetPtMgrNum).Name + "\"");
+                        ShowContinueError("...conflicting setpoint manager = " + cValidSPMTypes(AllSetPtMgr(TempSetPtMgrNum).SPMType) + " \"" +
+                                          AllSetPtMgr(TempSetPtMgrNum).Name + "\"");
                         ShowContinueError("...conflicting air loop name = " + AllSetPtMgr(SetPtMgrNum).AirLoopName);
                         //        ErrorsFound=.TRUE.
                     }
@@ -3305,15 +3277,12 @@ namespace SetPointManager {
 
                     for (CtrldNodeNum = 1; CtrldNodeNum <= AllSetPtMgr(SetPtMgrNum).NumCtrlNodes; ++CtrldNodeNum) {
                         for (TempCtrldNodeNum = 1; TempCtrldNodeNum <= AllSetPtMgr(TempSetPtMgrNum).NumCtrlNodes; ++TempCtrldNodeNum) {
-                            if ((AllSetPtMgr(SetPtMgrNum).CtrlNodes(CtrldNodeNum) ==
-                                 AllSetPtMgr(TempSetPtMgrNum).CtrlNodes(TempCtrldNodeNum)) &&
+                            if ((AllSetPtMgr(SetPtMgrNum).CtrlNodes(CtrldNodeNum) == AllSetPtMgr(TempSetPtMgrNum).CtrlNodes(TempCtrldNodeNum)) &&
                                 AllSetPtMgr(SetPtMgrNum).CtrlNodes(CtrldNodeNum) != 0) {
-                                ShowWarningError(cValidSPMTypes(AllSetPtMgr(SetPtMgrNum).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNum).Name +
-                                                 "\"");
+                                ShowWarningError(cValidSPMTypes(AllSetPtMgr(SetPtMgrNum).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNum).Name + "\"");
                                 ShowContinueError("...setpoint node conflicts with another setpoint manager.");
-                                ShowContinueError("...conflicting setpoint manager = " +
-                                                  cValidSPMTypes(AllSetPtMgr(TempSetPtMgrNum).SPMType) + " \"" +
-                                                  AllSetPtMgr(TempSetPtMgrNum).Name + "\"");
+                                ShowContinueError("...conflicting setpoint manager = " + cValidSPMTypes(AllSetPtMgr(TempSetPtMgrNum).SPMType) +
+                                                  " \"" + AllSetPtMgr(TempSetPtMgrNum).Name + "\"");
                                 ShowContinueError("...conflicting node name = " + NodeID(AllSetPtMgr(SetPtMgrNum).CtrlNodes(CtrldNodeNum)));
                                 ShowContinueError("...control type variable = " + cValidCtrlTypes(AllSetPtMgr(SetPtMgrNum).CtrlTypeMode));
                                 //            ErrorsFound=.TRUE.
@@ -3329,29 +3298,24 @@ namespace SetPointManager {
                     for (CtrldNodeNum = 1; CtrldNodeNum <= AllSetPtMgr(SetPtMgrNum).NumCtrlNodes; ++CtrldNodeNum) {
                         for (TempCtrldNodeNum = 1; TempCtrldNodeNum <= AllSetPtMgr(TempSetPtMgrNum).NumCtrlNodes; ++TempCtrldNodeNum) {
 
-                            if (AllSetPtMgr(SetPtMgrNum).CtrlNodes(CtrldNodeNum) !=
-                                AllSetPtMgr(TempSetPtMgrNum).CtrlNodes(TempCtrldNodeNum))
+                            if (AllSetPtMgr(SetPtMgrNum).CtrlNodes(CtrldNodeNum) != AllSetPtMgr(TempSetPtMgrNum).CtrlNodes(TempCtrldNodeNum))
                                 continue;
 
                             //         only warn if scheduled setpoint manager is setting mass flow rate on the same node used by RAB
                             if (AllSetPtMgr(SetPtMgrNum).SPMType == iSPMType_RAB || AllSetPtMgr(TempSetPtMgrNum).SPMType == iSPMType_RAB) {
-                                ShowWarningError(cValidSPMTypes(AllSetPtMgr(SetPtMgrNum).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNum).Name +
-                                                 "\"");
+                                ShowWarningError(cValidSPMTypes(AllSetPtMgr(SetPtMgrNum).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNum).Name + "\"");
                                 ShowContinueError("...setpoint node conflicts with another setpoint manager.");
-                                ShowContinueError("...conflicting setpoint manager =" +
-                                                  cValidSPMTypes(AllSetPtMgr(TempSetPtMgrNum).SPMType) + ":\"" +
+                                ShowContinueError("...conflicting setpoint manager =" + cValidSPMTypes(AllSetPtMgr(TempSetPtMgrNum).SPMType) + ":\"" +
                                                   AllSetPtMgr(TempSetPtMgrNum).Name + "\"");
                                 ShowContinueError("...conflicting node name = " + NodeID(AllSetPtMgr(SetPtMgrNum).CtrlNodes(CtrldNodeNum)));
                                 ShowContinueError("...control type variable = " + cValidCtrlTypes(AllSetPtMgr(SetPtMgrNum).CtrlTypeMode));
                                 ShowContinueError(
                                     "...return air bypass flow setpoint manager will have priority setting mass flow rate on this node.");
                             } else { // severe error for other SP manager types
-                                ShowWarningError(cValidSPMTypes(AllSetPtMgr(SetPtMgrNum).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNum).Name +
-                                                 "\"");
+                                ShowWarningError(cValidSPMTypes(AllSetPtMgr(SetPtMgrNum).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNum).Name + "\"");
                                 ShowContinueError("...setpoint node conflicts with another setpoint manager.");
-                                ShowContinueError("...conflicting setpoint manager = " +
-                                                  cValidSPMTypes(AllSetPtMgr(TempSetPtMgrNum).SPMType) + ":\"" +
-                                                  AllSetPtMgr(TempSetPtMgrNum).Name + "\"");
+                                ShowContinueError("...conflicting setpoint manager = " + cValidSPMTypes(AllSetPtMgr(TempSetPtMgrNum).SPMType) +
+                                                  ":\"" + AllSetPtMgr(TempSetPtMgrNum).Name + "\"");
                                 ShowContinueError("...conflicting node name = " + NodeID(AllSetPtMgr(SetPtMgrNum).CtrlNodes(CtrldNodeNum)));
                                 ShowContinueError("...control type variable = " + cValidCtrlTypes(AllSetPtMgr(SetPtMgrNum).CtrlTypeMode));
                                 //            ErrorsFound=.TRUE.
@@ -3497,15 +3461,13 @@ namespace SetPointManager {
                         // still need to validate...
                         if (SZMinHumSetPtMgr(SetPtMgrNum).CtrlZoneNum(SetZoneNum) == 0) { // didn't find
                             ShowSevereError(cSetPointManagerType + "=\"" + SZMinHumSetPtMgr(SetPtMgrNum).Name + "\", invalid zone");
-                            ShowContinueError("could not find Controlled Zone=" +
-                                              Zone(SZMinHumSetPtMgr(SetPtMgrNum).ZoneNum(SetZoneNum)).Name);
+                            ShowContinueError("could not find Controlled Zone=" + Zone(SZMinHumSetPtMgr(SetPtMgrNum).ZoneNum(SetZoneNum)).Name);
                             ErrorsFound = true;
                         } else {
                             // make sure humidity controlled zone
                             HstatZoneFound = false;
                             for (HStatZoneNum = 1; HStatZoneNum <= NumHumidityControlZones; ++HStatZoneNum) {
-                                if (HumidityControlZone(HStatZoneNum).ActualZoneNum != SZMinHumSetPtMgr(SetPtMgrNum).ZoneNum(SetZoneNum))
-                                    continue;
+                                if (HumidityControlZone(HStatZoneNum).ActualZoneNum != SZMinHumSetPtMgr(SetPtMgrNum).ZoneNum(SetZoneNum)) continue;
                                 HstatZoneFound = true;
                                 break;
                             }
@@ -3535,15 +3497,13 @@ namespace SetPointManager {
                         // still need to validate...
                         if (SZMaxHumSetPtMgr(SetPtMgrNum).CtrlZoneNum(SetZoneNum) == 0) { // didn't find
                             ShowSevereError(cSetPointManagerType + "=\"" + SZMaxHumSetPtMgr(SetPtMgrNum).Name + "\", invalid zone");
-                            ShowContinueError("could not find Controlled Zone=" +
-                                              Zone(SZMaxHumSetPtMgr(SetPtMgrNum).ZoneNum(SetZoneNum)).Name);
+                            ShowContinueError("could not find Controlled Zone=" + Zone(SZMaxHumSetPtMgr(SetPtMgrNum).ZoneNum(SetZoneNum)).Name);
                             ErrorsFound = true;
                         } else {
                             // make sure humidity controlled zone
                             HstatZoneFound = false;
                             for (HStatZoneNum = 1; HStatZoneNum <= NumHumidityControlZones; ++HStatZoneNum) {
-                                if (HumidityControlZone(HStatZoneNum).ActualZoneNum != SZMaxHumSetPtMgr(SetPtMgrNum).ZoneNum(SetZoneNum))
-                                    continue;
+                                if (HumidityControlZone(HStatZoneNum).ActualZoneNum != SZMaxHumSetPtMgr(SetPtMgrNum).ZoneNum(SetZoneNum)) continue;
                                 HstatZoneFound = true;
                                 break;
                             }
@@ -3579,8 +3539,7 @@ namespace SetPointManager {
                     }
                     if (ConZoneNum == 0) {
                         ShowSevereError(cSetPointManagerType + "=\"" + SingZoneRhSetPtMgr(SetPtMgrNum).Name + "\", Zone Node not found:");
-                        ShowContinueError("Node=\"" + NodeID(SingZoneRhSetPtMgr(SetPtMgrNum).ZoneNodeNum) +
-                                          "\", not found in any controlled Zone");
+                        ShowContinueError("Node=\"" + NodeID(SingZoneRhSetPtMgr(SetPtMgrNum).ZoneNodeNum) + "\", not found in any controlled Zone");
                         ErrorsFound = true;
                     } else {
                         for (int zoneInNode = 1; zoneInNode <= ZoneEquipConfig(ConZoneNum).NumInletNodes; ++zoneInNode) {
@@ -3589,8 +3548,7 @@ namespace SetPointManager {
                             }
                         }
                         if (AirLoopNum == 0) {
-                            ShowSevereError(cSetPointManagerType + "=\"" + SingZoneRhSetPtMgr(SetPtMgrNum).Name +
-                                            "\", Zone not on air loop:");
+                            ShowSevereError(cSetPointManagerType + "=\"" + SingZoneRhSetPtMgr(SetPtMgrNum).Name + "\", Zone not on air loop:");
                             ShowContinueError("Controlled Zone not on air loop, Zone=" + ZoneEquipConfig(ConZoneNum).ZoneName);
                             ErrorsFound = true;
                             continue;
@@ -3647,26 +3605,22 @@ namespace SetPointManager {
                 cSetPointManagerType = cValidSPMTypes(iSPMType_Warmest);
                 for (SetPtMgrNum = 1; SetPtMgrNum <= NumWarmestSetPtMgrs; ++SetPtMgrNum) {
                     if (NumPrimaryAirSys > 0) {
-                        AirLoopNum = FindItemInList(WarmestSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo,
-                                                    &AirLoopZoneEquipConnectData::AirLoopName);
+                        AirLoopNum =
+                            FindItemInList(WarmestSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo, &AirLoopZoneEquipConnectData::AirLoopName);
                         if (AirLoopNum == 0) {
-                            ShowSevereError(cSetPointManagerType + "=\"" + WarmestSetPtMgr(SetPtMgrNum).Name +
-                                            "\", invalid Air Loop specified:");
+                            ShowSevereError(cSetPointManagerType + "=\"" + WarmestSetPtMgr(SetPtMgrNum).Name + "\", invalid Air Loop specified:");
                             ShowContinueError("Air Loop not found =\"" + WarmestSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
                             ErrorsFound = true;
                         } else {
                             WarmestSetPtMgr(SetPtMgrNum).AirLoopNum = AirLoopNum;
                         }
                         if (AirToZoneNodeInfo(AirLoopNum).NumZonesCooled == 0) {
-                            ShowSevereError(cSetPointManagerType + "=\"" + WarmestSetPtMgr(SetPtMgrNum).Name +
-                                            "\", no zones with cooling found:");
-                            ShowContinueError("Air Loop provides no cooling, Air Loop=\"" + WarmestSetPtMgr(SetPtMgrNum).AirLoopName +
-                                              "\".");
+                            ShowSevereError(cSetPointManagerType + "=\"" + WarmestSetPtMgr(SetPtMgrNum).Name + "\", no zones with cooling found:");
+                            ShowContinueError("Air Loop provides no cooling, Air Loop=\"" + WarmestSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
                             ErrorsFound = true;
                         }
                     } else {
-                        ShowSevereError(cSetPointManagerType + "=\"" + WarmestSetPtMgr(SetPtMgrNum).Name +
-                                        "\", no AirLoopHVAC objects found:");
+                        ShowSevereError(cSetPointManagerType + "=\"" + WarmestSetPtMgr(SetPtMgrNum).Name + "\", no AirLoopHVAC objects found:");
                         ShowContinueError("Setpoint Manager needs an AirLoopHVAC to operate.");
                         ErrorsFound = true;
                     }
@@ -3676,11 +3630,10 @@ namespace SetPointManager {
                 cSetPointManagerType = cValidSPMTypes(iSPMType_Coldest);
                 for (SetPtMgrNum = 1; SetPtMgrNum <= NumColdestSetPtMgrs; ++SetPtMgrNum) {
                     if (NumPrimaryAirSys > 0) {
-                        AirLoopNum = FindItemInList(ColdestSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo,
-                                                    &AirLoopZoneEquipConnectData::AirLoopName);
+                        AirLoopNum =
+                            FindItemInList(ColdestSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo, &AirLoopZoneEquipConnectData::AirLoopName);
                         if (AirLoopNum == 0) {
-                            ShowSevereError(cSetPointManagerType + "=\"" + ColdestSetPtMgr(SetPtMgrNum).Name +
-                                            "\", invalid Air Loop specified:");
+                            ShowSevereError(cSetPointManagerType + "=\"" + ColdestSetPtMgr(SetPtMgrNum).Name + "\", invalid Air Loop specified:");
                             ShowContinueError("Air Loop not found =\"" + ColdestSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
                             ErrorsFound = true;
                         } else {
@@ -3690,14 +3643,13 @@ namespace SetPointManager {
                             if (AirToZoneNodeInfo(AirLoopNum).NumZonesCooled == 0) {
                                 ShowSevereError(cSetPointManagerType + "=\"" + ColdestSetPtMgr(SetPtMgrNum).Name +
                                                 "\", no zones with heating or cooling found:");
-                                ShowContinueError("Air Loop provides no heating or cooling, Air Loop=\"" +
-                                                  ColdestSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
+                                ShowContinueError("Air Loop provides no heating or cooling, Air Loop=\"" + ColdestSetPtMgr(SetPtMgrNum).AirLoopName +
+                                                  "\".");
                                 ErrorsFound = true;
                             }
                         }
                     } else {
-                        ShowSevereError(cSetPointManagerType + "=\"" + ColdestSetPtMgr(SetPtMgrNum).Name +
-                                        "\", no AirLoopHVAC objects found:");
+                        ShowSevereError(cSetPointManagerType + "=\"" + ColdestSetPtMgr(SetPtMgrNum).Name + "\", no AirLoopHVAC objects found:");
                         ShowContinueError("Setpoint Manager needs an AirLoopHVAC to operate.");
                         ErrorsFound = true;
                     }
@@ -3721,8 +3673,7 @@ namespace SetPointManager {
                         if (AirToZoneNodeInfo(AirLoopNum).NumZonesCooled == 0) {
                             ShowSevereError(cSetPointManagerType + "=\"" + WarmestSetPtMgrTempFlow(SetPtMgrNum).Name +
                                             "\", no zones with cooling found:");
-                            ShowContinueError("Air Loop provides no cooling, Air Loop=\"" +
-                                              WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopName + "\".");
+                            ShowContinueError("Air Loop provides no cooling, Air Loop=\"" + WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopName + "\".");
                             ErrorsFound = true;
                         }
                     } else {
@@ -3737,13 +3688,12 @@ namespace SetPointManager {
                 cSetPointManagerType = cValidSPMTypes(iSPMType_RAB);
                 for (SetPtMgrNum = 1; SetPtMgrNum <= NumRABFlowSetPtMgrs; ++SetPtMgrNum) {
                     if (NumPrimaryAirSys > 0) {
-                        AirLoopNum = FindItemInList(RABFlowSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo,
-                                                    &AirLoopZoneEquipConnectData::AirLoopName);
+                        AirLoopNum =
+                            FindItemInList(RABFlowSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo, &AirLoopZoneEquipConnectData::AirLoopName);
                         AllSetPtMgr(RABFlowSetPtMgr(SetPtMgrNum).AllSetPtMgrIndex).AirLoopNum = AirLoopNum;
                         AllSetPtMgr(RABFlowSetPtMgr(SetPtMgrNum).AllSetPtMgrIndex).AirLoopName = RABFlowSetPtMgr(SetPtMgrNum).AirLoopName;
                         if (AirLoopNum == 0) {
-                            ShowSevereError(cSetPointManagerType + "=\"" + RABFlowSetPtMgr(SetPtMgrNum).Name +
-                                            "\", invalid Air Loop specified:");
+                            ShowSevereError(cSetPointManagerType + "=\"" + RABFlowSetPtMgr(SetPtMgrNum).Name + "\", invalid Air Loop specified:");
                             ShowContinueError("Air Loop not found =\"" + RABFlowSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
                             ErrorsFound = true;
                         } else {
@@ -3758,15 +3708,13 @@ namespace SetPointManager {
                                 AllSetPtMgr(RABFlowSetPtMgr(SetPtMgrNum).AllSetPtMgrIndex).CtrlNodes(1) =
                                     RABFlowSetPtMgr(SetPtMgrNum).RABSplitOutNode;
                             } else {
-                                ShowSevereError(cSetPointManagerType + "=\"" + RABFlowSetPtMgr(SetPtMgrNum).Name +
-                                                "\", no RAB in air loop found:");
+                                ShowSevereError(cSetPointManagerType + "=\"" + RABFlowSetPtMgr(SetPtMgrNum).Name + "\", no RAB in air loop found:");
                                 ShowContinueError("Air Loop=\"" + RABFlowSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
                                 ErrorsFound = true;
                             }
                         }
                     } else {
-                        ShowSevereError(cSetPointManagerType + "=\"" + RABFlowSetPtMgr(SetPtMgrNum).Name +
-                                        "\", no AirLoopHVAC objects found:");
+                        ShowSevereError(cSetPointManagerType + "=\"" + RABFlowSetPtMgr(SetPtMgrNum).Name + "\", no AirLoopHVAC objects found:");
                         ShowContinueError("Setpoint Manager needs an AirLoopHVAC to operate.");
                         ErrorsFound = true;
                     }
@@ -3789,8 +3737,8 @@ namespace SetPointManager {
                         if (AirToZoneNodeInfo(AirLoopNum).NumZonesCooled == 0) {
                             ShowSevereError(cSetPointManagerType + "=\"" + MZAverageCoolingSetPtMgr(SetPtMgrNum).Name +
                                             "\", no zones with cooling found:");
-                            ShowContinueError("Air Loop provides no cooling, Air Loop=\"" +
-                                              MZAverageCoolingSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
+                            ShowContinueError("Air Loop provides no cooling, Air Loop=\"" + MZAverageCoolingSetPtMgr(SetPtMgrNum).AirLoopName +
+                                              "\".");
                             ErrorsFound = true;
                         }
                     } else {
@@ -3850,8 +3798,7 @@ namespace SetPointManager {
                                      ZonesCooledIndex <= AirToZoneNodeInfo(MZAverageMinHumSetPtMgr(SetPtMgrNum).AirLoopNum).NumZonesCooled;
                                      ++ZonesCooledIndex) {
                                     if (HumidityControlZone(HStatZoneNum).ActualZoneNum !=
-                                        AirToZoneNodeInfo(MZAverageMinHumSetPtMgr(SetPtMgrNum).AirLoopNum)
-                                            .CoolCtrlZoneNums(ZonesCooledIndex))
+                                        AirToZoneNodeInfo(MZAverageMinHumSetPtMgr(SetPtMgrNum).AirLoopNum).CoolCtrlZoneNums(ZonesCooledIndex))
                                         continue;
                                     HstatZoneFound = true;
                                     break;
@@ -3893,8 +3840,7 @@ namespace SetPointManager {
                                      ZonesCooledIndex <= AirToZoneNodeInfo(MZAverageMaxHumSetPtMgr(SetPtMgrNum).AirLoopNum).NumZonesCooled;
                                      ++ZonesCooledIndex) {
                                     if (HumidityControlZone(HStatZoneNum).ActualZoneNum !=
-                                        AirToZoneNodeInfo(MZAverageMaxHumSetPtMgr(SetPtMgrNum).AirLoopNum)
-                                            .CoolCtrlZoneNums(ZonesCooledIndex))
+                                        AirToZoneNodeInfo(MZAverageMaxHumSetPtMgr(SetPtMgrNum).AirLoopNum).CoolCtrlZoneNums(ZonesCooledIndex))
                                         continue;
                                     HstatZoneFound = true;
                                     break;
@@ -3920,11 +3866,10 @@ namespace SetPointManager {
                 cSetPointManagerType = cValidSPMTypes(iSPMType_MZMinHum);
                 for (SetPtMgrNum = 1; SetPtMgrNum <= NumMZMinHumSetPtMgrs; ++SetPtMgrNum) {
                     if (NumPrimaryAirSys > 0) {
-                        AirLoopNum = FindItemInList(MZMinHumSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo,
-                                                    &AirLoopZoneEquipConnectData::AirLoopName);
+                        AirLoopNum =
+                            FindItemInList(MZMinHumSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo, &AirLoopZoneEquipConnectData::AirLoopName);
                         if (AirLoopNum == 0) {
-                            ShowSevereError(cSetPointManagerType + "=\"" + MZMinHumSetPtMgr(SetPtMgrNum).Name +
-                                            "\", invalid Air Loop specified:");
+                            ShowSevereError(cSetPointManagerType + "=\"" + MZMinHumSetPtMgr(SetPtMgrNum).Name + "\", invalid Air Loop specified:");
                             ShowContinueError("Air Loop not found =\"" + MZMinHumSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
                             ErrorsFound = true;
                         } else {
@@ -3951,8 +3896,7 @@ namespace SetPointManager {
                             }
                         }
                     } else {
-                        ShowSevereError(cSetPointManagerType + "=\"" + MZMinHumSetPtMgr(SetPtMgrNum).Name +
-                                        "\", no AirLoopHVAC objects found:");
+                        ShowSevereError(cSetPointManagerType + "=\"" + MZMinHumSetPtMgr(SetPtMgrNum).Name + "\", no AirLoopHVAC objects found:");
                         ShowContinueError("Setpoint Manager needs an AirLoopHVAC to operate.");
                         ErrorsFound = true;
                     }
@@ -3962,11 +3906,10 @@ namespace SetPointManager {
                 cSetPointManagerType = cValidSPMTypes(iSPMType_MZMaxHum);
                 for (SetPtMgrNum = 1; SetPtMgrNum <= NumMZMaxHumSetPtMgrs; ++SetPtMgrNum) {
                     if (NumPrimaryAirSys > 0) {
-                        AirLoopNum = FindItemInList(MZMaxHumSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo,
-                                                    &AirLoopZoneEquipConnectData::AirLoopName);
+                        AirLoopNum =
+                            FindItemInList(MZMaxHumSetPtMgr(SetPtMgrNum).AirLoopName, AirToZoneNodeInfo, &AirLoopZoneEquipConnectData::AirLoopName);
                         if (AirLoopNum == 0) {
-                            ShowSevereError(cSetPointManagerType + "=\"" + MZMaxHumSetPtMgr(SetPtMgrNum).Name +
-                                            "\", invalid Air Loop specified:");
+                            ShowSevereError(cSetPointManagerType + "=\"" + MZMaxHumSetPtMgr(SetPtMgrNum).Name + "\", invalid Air Loop specified:");
                             ShowContinueError("Air Loop not found =\"" + MZMaxHumSetPtMgr(SetPtMgrNum).AirLoopName + "\".");
                             ErrorsFound = true;
                         } else {
@@ -3993,8 +3936,7 @@ namespace SetPointManager {
                             }
                         }
                     } else {
-                        ShowSevereError(cSetPointManagerType + "=\"" + MZMaxHumSetPtMgr(SetPtMgrNum).Name +
-                                        "\", no AirLoopHVAC objects found:");
+                        ShowSevereError(cSetPointManagerType + "=\"" + MZMaxHumSetPtMgr(SetPtMgrNum).Name + "\", no AirLoopHVAC objects found:");
                         ShowContinueError("Setpoint Manager needs an AirLoopHVAC to operate.");
                         ErrorsFound = true;
                     }
@@ -4039,10 +3981,9 @@ namespace SetPointManager {
                                                 for (BranchNumPlantSide = 1;
                                                      BranchNumPlantSide <= PlantLoop(LoopNum2).LoopSide(SupplySide).TotalBranches;
                                                      ++BranchNumPlantSide) {
-                                                    for (CompNumPlantSide = 1; CompNumPlantSide <= PlantLoop(LoopNum2)
-                                                                                                       .LoopSide(SupplySide)
-                                                                                                       .Branch(BranchNumPlantSide)
-                                                                                                       .TotalComponents;
+                                                    for (CompNumPlantSide = 1;
+                                                         CompNumPlantSide <=
+                                                         PlantLoop(LoopNum2).LoopSide(SupplySide).Branch(BranchNumPlantSide).TotalComponents;
                                                          ++CompNumPlantSide) {
                                                         if (PlantLoop(LoopNum2)
                                                                 .LoopSide(SupplySide)
@@ -4087,8 +4028,7 @@ namespace SetPointManager {
                                                             "\", invalid cooling tower found");
                                             ShowContinueError("Found Single Speed Cooling Tower, Cooling Tower=" +
                                                               PlantLoop(LoopNum).LoopSide(SupplySide).Branch(BranchNum).Comp(CompNum).Name);
-                                            ShowContinueError(
-                                                "SingleSpeed cooling towers cannot be used with this setpoint manager on each loop");
+                                            ShowContinueError("SingleSpeed cooling towers cannot be used with this setpoint manager on each loop");
                                             ErrorsFound = true;
                                         } else if (TypeOf_Num == TypeOf_CoolingTower_TwoSpd || TypeOf_Num == TypeOf_CoolingTower_VarSpd) {
                                             IdealCondEntSetPtMgr(SetPtMgrNum).CondTowerBranchNum.push_back(BranchNum);
@@ -4118,10 +4058,9 @@ namespace SetPointManager {
                                                 for (BranchNumPlantSide = 1;
                                                      BranchNumPlantSide <= PlantLoop(LoopNum2).LoopSide(SupplySide).TotalBranches;
                                                      ++BranchNumPlantSide) {
-                                                    for (CompNumPlantSide = 1; CompNumPlantSide <= PlantLoop(LoopNum2)
-                                                                                                       .LoopSide(SupplySide)
-                                                                                                       .Branch(BranchNumPlantSide)
-                                                                                                       .TotalComponents;
+                                                    for (CompNumPlantSide = 1;
+                                                         CompNumPlantSide <=
+                                                         PlantLoop(LoopNum2).LoopSide(SupplySide).Branch(BranchNumPlantSide).TotalComponents;
                                                          ++CompNumPlantSide) {
                                                         TypeOf_Num = PlantLoop(LoopNum2)
                                                                          .LoopSide(SupplySide)
@@ -4134,13 +4073,11 @@ namespace SetPointManager {
                                                             IdealCondEntSetPtMgr(SetPtMgrNum).ChillerIndexPlantSide = CompNumPlantSide;
                                                             IdealCondEntSetPtMgr(SetPtMgrNum).BranchIndexPlantSide = BranchNumPlantSide;
                                                             // Scan the pump on the chilled water loop
-                                                            for (BranchNum2 = 1;
-                                                                 BranchNum2 <= PlantLoop(LoopNum2).LoopSide(SupplySide).TotalBranches;
+                                                            for (BranchNum2 = 1; BranchNum2 <= PlantLoop(LoopNum2).LoopSide(SupplySide).TotalBranches;
                                                                  ++BranchNum2) {
-                                                                for (CompNum2 = 1; CompNum2 <= PlantLoop(LoopNum2)
-                                                                                                   .LoopSide(SupplySide)
-                                                                                                   .Branch(BranchNum2)
-                                                                                                   .TotalComponents;
+                                                                for (CompNum2 = 1;
+                                                                     CompNum2 <=
+                                                                     PlantLoop(LoopNum2).LoopSide(SupplySide).Branch(BranchNum2).TotalComponents;
                                                                      ++CompNum2) {
                                                                     TypeOf_Num = PlantLoop(LoopNum2)
                                                                                      .LoopSide(SupplySide)
@@ -4162,9 +4099,8 @@ namespace SetPointManager {
                                                 ShowSevereError(cSetPointManagerType + "=\"" + IdealCondEntSetPtMgr(SetPtMgrNum).Name +
                                                                 "\", too many chillers found");
                                                 ShowContinueError("only one chiller can be used with this setpoint manager on each loop");
-                                                ShowContinueError(
-                                                    "Found more than one chiller, chiller =" +
-                                                    PlantLoop(LoopNum).LoopSide(DemandSide).Branch(BranchNum).Comp(CompNum).Name);
+                                                ShowContinueError("Found more than one chiller, chiller =" +
+                                                                  PlantLoop(LoopNum).LoopSide(DemandSide).Branch(BranchNum).Comp(CompNum).Name);
                                                 ErrorsFound = true;
                                             }
                                             IdealCondEntSetPtMgr(SetPtMgrNum).TypeNum = TypeNum;
@@ -4402,9 +4338,8 @@ namespace SetPointManager {
                     if (WarmestSetPtMgrTempFlow(SetPtMgrNum).CtrlTypeMode == iCtrlVarType_Temp) {
                         Node(NodeNum).TempSetPoint = 20.0; // Set the temperature setpoint
                         if (WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopNum != 0) {
-                            AirLoopFlow(WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopNum).ReqSupplyFrac = 1.0; // PH 10/09/04 Set the flow
-                            AirLoopControlInfo(WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopNum).LoopFlowRateSet =
-                                true; // PH 10/09/04 Set the flag
+                            AirLoopFlow(WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopNum).ReqSupplyFrac = 1.0;           // PH 10/09/04 Set the flow
+                            AirLoopControlInfo(WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopNum).LoopFlowRateSet = true; // PH 10/09/04 Set the flag
                         }
                     }
                 }
@@ -4578,8 +4513,7 @@ namespace SetPointManager {
                 }
             }
 
-            for (SetPtMgrNum = 1; SetPtMgrNum <= NumIdealCondEntSetPtMgrs;
-                 ++SetPtMgrNum) { // Ideal Condenser entering water Set point managers
+            for (SetPtMgrNum = 1; SetPtMgrNum <= NumIdealCondEntSetPtMgrs; ++SetPtMgrNum) { // Ideal Condenser entering water Set point managers
                 for (CtrlNodeIndex = 1; CtrlNodeIndex <= IdealCondEntSetPtMgr(SetPtMgrNum).NumCtrlNodes; ++CtrlNodeIndex) {
                     NodeNum = IdealCondEntSetPtMgr(SetPtMgrNum).CtrlNodes(CtrlNodeIndex); // Get the node number
                     if (IdealCondEntSetPtMgr(SetPtMgrNum).CtrlTypeMode == iCtrlVarType_Temp) {
@@ -5008,8 +4942,7 @@ namespace SetPointManager {
             } else if (OutDryBulbTemp >= OutHighTemp) {
                 SetPt = SetTempAtOutHigh;
             } else {
-                SetPt =
-                    SetTempAtOutLow - ((OutDryBulbTemp - OutLowTemp) / (OutHighTemp - OutLowTemp)) * (SetTempAtOutLow - SetTempAtOutHigh);
+                SetPt = SetTempAtOutLow - ((OutDryBulbTemp - OutLowTemp) / (OutHighTemp - OutLowTemp)) * (SetTempAtOutLow - SetTempAtOutHigh);
             }
 
         } else {
@@ -5569,8 +5502,7 @@ namespace SetPointManager {
             RefNode = this->RefNode;
             if (Node(RefNode).TempSetPoint == SensedNodeFlagValue) {
                 if (!AnyEnergyManagementSystemInModel) {
-                    ShowSevereError("CalcMixedAirSetPoint: Missing reference temperature setpoint for Mixed Air Setpoint Manager " +
-                                    this->Name);
+                    ShowSevereError("CalcMixedAirSetPoint: Missing reference temperature setpoint for Mixed Air Setpoint Manager " + this->Name);
                     ShowContinueError("Node Referenced =" + NodeID(RefNode));
                     ShowContinueError("  use an additional Setpoint Manager with Control Variable = \"Temperature\" to establish a "
                                       "setpoint at this node.");
@@ -5579,8 +5511,7 @@ namespace SetPointManager {
                     // need call to check if this is the target of an EnergyManagementSystem:Actuator object
                     CheckIfNodeSetPointManagedByEMS(RefNode, iTemperatureSetPoint, SetPointErrorFlag);
                     if (SetPointErrorFlag) {
-                        ShowSevereError("CalcMixedAirSetPoint: Missing reference temperature setpoint for Mixed Air Setpoint Manager " +
-                                        this->Name);
+                        ShowSevereError("CalcMixedAirSetPoint: Missing reference temperature setpoint for Mixed Air Setpoint Manager " + this->Name);
                         ShowContinueError("Node Referenced =" + NodeID(RefNode));
                         ShowContinueError("  use an additional Setpoint Manager with Control Variable = \"Temperature\" to establish a "
                                           "setpoint at this node.");
@@ -5704,8 +5635,7 @@ namespace SetPointManager {
             this->MySetPointCheckFlag = false;
             if (RefNodeSetPoint == SensedNodeFlagValue) {
                 if (!AnyEnergyManagementSystemInModel) {
-                    ShowSevereError("CalcOAPretreatSetPoint: Missing reference setpoint for Outdoor Air Pretreat Setpoint Manager " +
-                                    this->Name);
+                    ShowSevereError("CalcOAPretreatSetPoint: Missing reference setpoint for Outdoor Air Pretreat Setpoint Manager " + this->Name);
                     ShowContinueError("Node Referenced =" + NodeID(RefNode));
                     ShowContinueError("use a Setpoint Manager to establish a setpoint at this node.");
                     ShowFatalError("Missing reference setpoint.");
@@ -5724,8 +5654,7 @@ namespace SetPointManager {
                         }
                     }
                     if (LocalSetPointCheckFailed) {
-                        ShowSevereError("CalcOAPretreatSetPoint: Missing reference setpoint for Outdoor Air Pretreat Setpoint Manager " +
-                                        this->Name);
+                        ShowSevereError("CalcOAPretreatSetPoint: Missing reference setpoint for Outdoor Air Pretreat Setpoint Manager " + this->Name);
                         ShowContinueError("Node Referenced =" + NodeID(RefNode));
                         ShowContinueError("use a Setpoint Manager to establish a setpoint at this node.");
                         ShowContinueError("Or use an EMS actuator to control a setpoint at this node.");
@@ -6943,42 +6872,25 @@ namespace SetPointManager {
         BranchIndexDemandSide = this->BranchIndexDemandSide;
 
         // If chiller is on
-        CurLoad =
-            std::abs(PlantLoop(LoopIndexPlantSide).LoopSide(SupplySide).Branch(BranchIndexPlantSide).Comp(ChillerIndexPlantSide).MyLoad);
+        CurLoad = std::abs(PlantLoop(LoopIndexPlantSide).LoopSide(SupplySide).Branch(BranchIndexPlantSide).Comp(ChillerIndexPlantSide).MyLoad);
         if (CurLoad > 0) {
             if (TypeNum == TypeOf_Chiller_Absorption || TypeNum == TypeOf_Chiller_CombTurbine || TypeNum == TypeOf_Chiller_Electric ||
                 TypeNum == TypeOf_Chiller_ElectricReformEIR || TypeNum == TypeOf_Chiller_EngineDriven) {
-                TempDesCondIn = PlantLoop(LoopIndexPlantSide)
-                                    .LoopSide(SupplySide)
-                                    .Branch(BranchIndexPlantSide)
-                                    .Comp(ChillerIndexPlantSide)
-                                    .TempDesCondIn;
-                DCESPMCondInletTemp = Node(PlantLoop(LoopIndexDemandSide)
-                                               .LoopSide(DemandSide)
-                                               .Branch(BranchIndexDemandSide)
-                                               .Comp(ChillerIndexDemandSide)
-                                               .NodeNumIn)
-                                          .Temp;
-                DCESPMEvapOutletTemp = Node(PlantLoop(LoopIndexPlantSide)
-                                                .LoopSide(SupplySide)
-                                                .Branch(BranchIndexPlantSide)
-                                                .Comp(ChillerIndexPlantSide)
-                                                .NodeNumOut)
-                                           .Temp;
-                TempEvapOutDesign = PlantLoop(LoopIndexPlantSide)
-                                        .LoopSide(SupplySide)
-                                        .Branch(BranchIndexPlantSide)
-                                        .Comp(ChillerIndexPlantSide)
-                                        .TempDesEvapOut;
+                TempDesCondIn =
+                    PlantLoop(LoopIndexPlantSide).LoopSide(SupplySide).Branch(BranchIndexPlantSide).Comp(ChillerIndexPlantSide).TempDesCondIn;
+                DCESPMCondInletTemp =
+                    Node(PlantLoop(LoopIndexDemandSide).LoopSide(DemandSide).Branch(BranchIndexDemandSide).Comp(ChillerIndexDemandSide).NodeNumIn)
+                        .Temp;
+                DCESPMEvapOutletTemp =
+                    Node(PlantLoop(LoopIndexPlantSide).LoopSide(SupplySide).Branch(BranchIndexPlantSide).Comp(ChillerIndexPlantSide).NodeNumOut).Temp;
+                TempEvapOutDesign =
+                    PlantLoop(LoopIndexPlantSide).LoopSide(SupplySide).Branch(BranchIndexPlantSide).Comp(ChillerIndexPlantSide).TempDesEvapOut;
                 DCESPMDesignClgCapacity_Watts =
                     PlantLoop(LoopIndexPlantSide).LoopSide(SupplySide).Branch(BranchIndexPlantSide).Comp(ChillerIndexPlantSide).MaxLoad;
                 DCESPMCurrentLoad_Watts = PlantReport(LoopIndexPlantSide).CoolingDemand;
             } else if (TypeNum == TypeOf_Chiller_Indirect_Absorption || TypeNum == TypeOf_Chiller_DFAbsorption) {
-                TempDesCondIn = PlantLoop(LoopIndexPlantSide)
-                                    .LoopSide(SupplySide)
-                                    .Branch(BranchIndexPlantSide)
-                                    .Comp(ChillerIndexPlantSide)
-                                    .TempDesCondIn;
+                TempDesCondIn =
+                    PlantLoop(LoopIndexPlantSide).LoopSide(SupplySide).Branch(BranchIndexPlantSide).Comp(ChillerIndexPlantSide).TempDesCondIn;
                 TempEvapOutDesign = 6.666;
             } else {
                 TempDesCondIn = 25.0;
@@ -7057,8 +6969,7 @@ namespace SetPointManager {
             // near full load condition; reset condenser entering setpoint to its design value
             SetPoint = DCESPMDsn_EntCondTemp + 1.0;
         } else {
-            if ((OutWetBulbTemp >= DCESPMMin_ActualWb) && (Twr_DesignWB >= DCESPMMin_DesignWB) &&
-                (DCESPMCur_MinLiftTD > this->MinimumLiftTD)) {
+            if ((OutWetBulbTemp >= DCESPMMin_ActualWb) && (Twr_DesignWB >= DCESPMMin_DesignWB) && (DCESPMCur_MinLiftTD > this->MinimumLiftTD)) {
                 // Boundaries are satified; use optimized condenser entering water temp
                 SetPoint = DCESPMOpt_CondEntTemp;
             } else {
@@ -7119,11 +7030,8 @@ namespace SetPointManager {
         if (MetersHaveBeenInitialized && RunOptCondEntTemp) {
 
             // If chiller is on
-            CurLoad = std::abs(PlantLoop(this->LoopIndexPlantSide)
-                                   .LoopSide(SupplySide)
-                                   .Branch(this->BranchIndexPlantSide)
-                                   .Comp(this->ChillerIndexPlantSide)
-                                   .MyLoad);
+            CurLoad = std::abs(
+                PlantLoop(this->LoopIndexPlantSide).LoopSide(SupplySide).Branch(this->BranchIndexPlantSide).Comp(this->ChillerIndexPlantSide).MyLoad);
 
             if (CurLoad > 0) {
 
@@ -7144,8 +7052,8 @@ namespace SetPointManager {
 
                 TotEnergy = this->calculateCurrentEnergyUsage();
 
-                this->setupSetPointAndFlags(TotEnergy, TotEnergyPre, CondWaterSetPoint, CondTempLimit, RunOptCondEntTemp,
-                                            RunSubOptCondEntTemp, RunFinalOptCondEntTemp);
+                this->setupSetPointAndFlags(TotEnergy, TotEnergyPre, CondWaterSetPoint, CondTempLimit, RunOptCondEntTemp, RunSubOptCondEntTemp,
+                                            RunFinalOptCondEntTemp);
 
             } else {
                 CondWaterSetPoint = this->MaxCondEntTemp;
@@ -7185,8 +7093,7 @@ namespace SetPointManager {
                 }
                 TotEnergyPre = TotEnergy;
                 // Set smaller set point (0.2 degC) decrease
-            } else if ((DeltaTotEnergy < 0) && (!RunSubOptCondEntTemp) && (CondWaterSetPoint > CondTempLimit) &&
-                       (!RunFinalOptCondEntTemp)) {
+            } else if ((DeltaTotEnergy < 0) && (!RunSubOptCondEntTemp) && (CondWaterSetPoint > CondTempLimit) && (!RunFinalOptCondEntTemp)) {
                 CondWaterSetPoint += 0.8;
                 RunOptCondEntTemp = true;
                 RunSubOptCondEntTemp = true;
@@ -7505,8 +7412,7 @@ namespace SetPointManager {
         Groups.allocate(NumVariables);
         Names.allocate(NumVariables);
 
-        GetMeteredVariables(TypeOfComp, NameOfComp, VarIndexes, VarTypes, IndexTypes, unitsForVar, ResourceTypes, EndUses, Groups, Names,
-                            NumFound);
+        GetMeteredVariables(TypeOfComp, NameOfComp, VarIndexes, VarTypes, IndexTypes, unitsForVar, ResourceTypes, EndUses, Groups, Names, NumFound);
         this->ChllrVarType = VarTypes(1);
         this->ChllrVarIndex = VarIndexes(1);
 
@@ -7522,8 +7428,7 @@ namespace SetPointManager {
         Groups.allocate(NumVariables);
         Names.allocate(NumVariables);
 
-        GetMeteredVariables(TypeOfComp, NameOfComp, VarIndexes, VarTypes, IndexTypes, unitsForVar, ResourceTypes, EndUses, Groups, Names,
-                            NumFound);
+        GetMeteredVariables(TypeOfComp, NameOfComp, VarIndexes, VarTypes, IndexTypes, unitsForVar, ResourceTypes, EndUses, Groups, Names, NumFound);
         this->ChlPumpVarType = VarTypes(1);
         this->ChlPumpVarIndex = VarIndexes(1);
 
@@ -7540,8 +7445,8 @@ namespace SetPointManager {
             Groups.allocate(NumVariables);
             Names.allocate(NumVariables);
 
-            GetMeteredVariables(TypeOfComp, NameOfComp, VarIndexes, VarTypes, IndexTypes, unitsForVar, ResourceTypes, EndUses, Groups,
-                                Names, NumFound);
+            GetMeteredVariables(TypeOfComp, NameOfComp, VarIndexes, VarTypes, IndexTypes, unitsForVar, ResourceTypes, EndUses, Groups, Names,
+                                NumFound);
             this->ClTowerVarType.push_back(VarTypes(1));
             this->ClTowerVarIndex.push_back(VarIndexes(1));
         }
@@ -7558,8 +7463,7 @@ namespace SetPointManager {
         Groups.allocate(NumVariables);
         Names.allocate(NumVariables);
 
-        GetMeteredVariables(TypeOfComp, NameOfComp, VarIndexes, VarTypes, IndexTypes, unitsForVar, ResourceTypes, EndUses, Groups, Names,
-                            NumFound);
+        GetMeteredVariables(TypeOfComp, NameOfComp, VarIndexes, VarTypes, IndexTypes, unitsForVar, ResourceTypes, EndUses, Groups, Names, NumFound);
         this->CndPumpVarType = VarTypes(1);
         this->CndPumpVarIndex = VarIndexes(1);
     }
@@ -7636,8 +7540,7 @@ namespace SetPointManager {
 
         for (SetPtMgrNum = 1; SetPtMgrNum <= NumSchSetPtMgrs; ++SetPtMgrNum) {
 
-            for (CtrlNodeIndex = 1; CtrlNodeIndex <= SchSetPtMgr(SetPtMgrNum).NumCtrlNodes;
-                 ++CtrlNodeIndex) { // Loop over the list of nodes wanting
+            for (CtrlNodeIndex = 1; CtrlNodeIndex <= SchSetPtMgr(SetPtMgrNum).NumCtrlNodes; ++CtrlNodeIndex) { // Loop over the list of nodes wanting
                 // setpoints from this setpoint manager
                 NodeNum = SchSetPtMgr(SetPtMgrNum).CtrlNodes(CtrlNodeIndex); // Get the node number
 
@@ -7689,10 +7592,9 @@ namespace SetPointManager {
                 NodeNum = DualSchSetPtMgr(SetPtMgrNum).CtrlNodes(CtrlNodeIndex); // Get the node number
 
                 if (DualSchSetPtMgr(SetPtMgrNum).CtrlTypeMode == iCtrlVarType_Temp) {
-                    Node(NodeNum).TempSetPointHi = DualSchSetPtMgr(SetPtMgrNum).SetPtHi; // Set the setpoint High
-                    Node(NodeNum).TempSetPointLo = DualSchSetPtMgr(SetPtMgrNum).SetPtLo; // Set the setpoint Low
-                    Node(NodeNum).TempSetPoint =
-                        (Node(NodeNum).TempSetPointHi + Node(NodeNum).TempSetPointLo) / 2.0; // average of the high and low
+                    Node(NodeNum).TempSetPointHi = DualSchSetPtMgr(SetPtMgrNum).SetPtHi;                              // Set the setpoint High
+                    Node(NodeNum).TempSetPointLo = DualSchSetPtMgr(SetPtMgrNum).SetPtLo;                              // Set the setpoint Low
+                    Node(NodeNum).TempSetPoint = (Node(NodeNum).TempSetPointHi + Node(NodeNum).TempSetPointLo) / 2.0; // average of the high and low
                 }
             }
         }
@@ -7828,7 +7730,7 @@ namespace SetPointManager {
                 if (WarmestSetPtMgrTempFlow(SetPtMgrNum).CtrlTypeMode == iCtrlVarType_Temp) {
                     Node(NodeNum).TempSetPoint = WarmestSetPtMgrTempFlow(SetPtMgrNum).SetPt; // Set the supply air temperature setpoint
                     AirLoopFlow(WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopNum).ReqSupplyFrac =
-                        WarmestSetPtMgrTempFlow(SetPtMgrNum).Turndown; // Set the supply air flow rate
+                        WarmestSetPtMgrTempFlow(SetPtMgrNum).Turndown;                                          // Set the supply air flow rate
                     AirLoopControlInfo(WarmestSetPtMgrTempFlow(SetPtMgrNum).AirLoopNum).LoopFlowRateSet = true; // PH 8/17/07
                 }
             }
@@ -8330,11 +8232,9 @@ namespace SetPointManager {
     SPMLoop_exit:;
 
         if (ResetCntrlVarType) {
-            ShowWarningError(RoutineName + cValidSPMTypes(AllSetPtMgr(SetPtMgrNumPtr).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNumPtr).Name +
-                             "\". ");
+            ShowWarningError(RoutineName + cValidSPMTypes(AllSetPtMgr(SetPtMgrNumPtr).SPMType) + "=\"" + AllSetPtMgr(SetPtMgrNumPtr).Name + "\". ");
             ShowContinueError(" ..Humidity ratio control variable type specified is = " + cValidCtrlTypes(iCtrlVarType_HumRat));
-            ShowContinueError(" ..Humidity ratio control variable type allowed with water coils is = " +
-                              cValidCtrlTypes(iCtrlVarType_MaxHumRat));
+            ShowContinueError(" ..Humidity ratio control variable type allowed with water coils is = " + cValidCtrlTypes(iCtrlVarType_MaxHumRat));
             ShowContinueError(" ..Setpointmanager control variable type is reset to = " + cValidCtrlTypes(iCtrlVarType_MaxHumRat));
             ShowContinueError(" ..Simulation continues. ");
         }
@@ -8509,12 +8409,8 @@ namespace SetPointManager {
         return HumRatCntrlType;
     }
 
-    void SetUpNewScheduledTESSetPtMgr(int const SchedPtr,
-                                      int const SchedPtrCharge,
-                                      Real64 NonChargeCHWTemp,
-                                      Real64 ChargeCHWTemp,
-                                      int const CompOpType,
-                                      int const ControlNodeNum)
+    void SetUpNewScheduledTESSetPtMgr(
+        int const SchedPtr, int const SchedPtrCharge, Real64 NonChargeCHWTemp, Real64 ChargeCHWTemp, int const CompOpType, int const ControlNodeNum)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR         Rick Strand

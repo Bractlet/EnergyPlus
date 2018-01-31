@@ -262,12 +262,12 @@ namespace WeatherManager {
     struct EnvironmentData
     {
         // Members
-        std::string Title;        // Environment name
-        std::string cKindOfEnvrn; // kind of environment
-        int KindOfEnvrn;          // Type of environment (see Parameters for KindOfSim in DataGlobals)
-        int DesignDayNum;         // index in DesignDay structure and DesignDayInput
-        int RunPeriodDesignNum;   // for WeatherFileDays, index in  RunPeriodDesign and RunPeriodDesignInput
-        int SeedEnvrnNum; // for HVAC sizing sim, new environments are copies of original environments, this is the index for original
+        std::string Title;          // Environment name
+        std::string cKindOfEnvrn;   // kind of environment
+        int KindOfEnvrn;            // Type of environment (see Parameters for KindOfSim in DataGlobals)
+        int DesignDayNum;           // index in DesignDay structure and DesignDayInput
+        int RunPeriodDesignNum;     // for WeatherFileDays, index in  RunPeriodDesign and RunPeriodDesignInput
+        int SeedEnvrnNum;           // for HVAC sizing sim, new environments are copies of original environments, this is the index for original
         int HVACSizingIterationNum; // environments for HVAC sizing simulations are associated with iteration
         int TotalDays;              // Number of days in environment
         int StartJDay;              // Day of year of first day of environment
@@ -301,11 +301,11 @@ namespace WeatherManager {
 
         // Default Constructor
         EnvironmentData()
-            : KindOfEnvrn(0), DesignDayNum(0), RunPeriodDesignNum(0), SeedEnvrnNum(0), HVACSizingIterationNum(0), TotalDays(0),
-              StartJDay(0), StartMonth(0), StartDay(0), StartYear(0), StartDate(0), EndMonth(0), EndDay(0), EndJDay(0), EndYear(0),
-              EndDate(0), DayOfWeek(0), UseDST(false), UseHolidays(false), ApplyWeekendRule(false), UseRain(true), UseSnow(true),
-              MonWeekDay(12, 0), SetWeekDays(false), NumSimYears(1), CurrentCycle(0), WP_Type1(0), CurrentYear(0), IsLeapYear(false),
-              RollDayTypeOnRepeat(true), TreatYearsAsConsecutive(true), MatchYear(false), ActualWeather(false), RawSimDays(0)
+            : KindOfEnvrn(0), DesignDayNum(0), RunPeriodDesignNum(0), SeedEnvrnNum(0), HVACSizingIterationNum(0), TotalDays(0), StartJDay(0),
+              StartMonth(0), StartDay(0), StartYear(0), StartDate(0), EndMonth(0), EndDay(0), EndJDay(0), EndYear(0), EndDate(0), DayOfWeek(0),
+              UseDST(false), UseHolidays(false), ApplyWeekendRule(false), UseRain(true), UseSnow(true), MonWeekDay(12, 0), SetWeekDays(false),
+              NumSimYears(1), CurrentCycle(0), WP_Type1(0), CurrentYear(0), IsLeapYear(false), RollDayTypeOnRepeat(true),
+              TreatYearsAsConsecutive(true), MatchYear(false), ActualWeather(false), RawSimDays(0)
         {
         }
     };
@@ -343,10 +343,10 @@ namespace WeatherManager {
 
         // Default Constructor
         DesignDayData()
-            : MaxDryBulb(0.0), DailyDBRange(0.0), HumIndValue(0.0), HumIndType(0), PressBarom(0.0), WindSpeed(0.0), WindDir(0.0),
-              SkyClear(0.0), RainInd(0), SnowInd(0), DayOfMonth(0), Month(0), DayType(0), DSTIndicator(0), SolarModel(0),
-              DBTempRangeType(0), TempRangeSchPtr(0), HumIndSchPtr(0), BeamSolarSchPtr(0), DiffuseSolarSchPtr(0), TauB(0.0), TauD(0.0),
-              DailyWBRange(0.0), PressureEntered(false), DewPointNeedsSet(false)
+            : MaxDryBulb(0.0), DailyDBRange(0.0), HumIndValue(0.0), HumIndType(0), PressBarom(0.0), WindSpeed(0.0), WindDir(0.0), SkyClear(0.0),
+              RainInd(0), SnowInd(0), DayOfMonth(0), Month(0), DayType(0), DSTIndicator(0), SolarModel(0), DBTempRangeType(0), TempRangeSchPtr(0),
+              HumIndSchPtr(0), BeamSolarSchPtr(0), DiffuseSolarSchPtr(0), TauB(0.0), TauD(0.0), DailyWBRange(0.0), PressureEntered(false),
+              DewPointNeedsSet(false)
         {
         }
     };
@@ -381,10 +381,9 @@ namespace WeatherManager {
 
         // Default Constructor
         RunPeriodData()
-            : TotalDays(0), StartMonth(1), StartDay(1), StartDate(0), StartYear(0), EndMonth(12), EndDay(31), EndDate(0), EndYear(0),
-              DayOfWeek(0), UseDST(false), UseHolidays(false), ApplyWeekendRule(false), UseRain(true), UseSnow(true), MonWeekDay(12, 0),
-              NumSimYears(1), BeginYear(0), IsLeapYear(false), RollDayTypeOnRepeat(true), TreatYearsAsConsecutive(true),
-              ActualWeather(false)
+            : TotalDays(0), StartMonth(1), StartDay(1), StartDate(0), StartYear(0), EndMonth(12), EndDay(31), EndDate(0), EndYear(0), DayOfWeek(0),
+              UseDST(false), UseHolidays(false), ApplyWeekendRule(false), UseRain(true), UseSnow(true), MonWeekDay(12, 0), NumSimYears(1),
+              BeginYear(0), IsLeapYear(false), RollDayTypeOnRepeat(true), TreatYearsAsConsecutive(true), ActualWeather(false)
         {
         }
     };
@@ -430,8 +429,7 @@ namespace WeatherManager {
 
         // Default Constructor
         SpecialDayData()
-            : DateType(0), Month(0), Day(0), WeekDay(0), CompDate(0), WthrFile(false), Duration(0), DayType(0), ActStMon(0), ActStDay(0),
-              Used(false)
+            : DateType(0), Month(0), Day(0), WeekDay(0), CompDate(0), WthrFile(false), Duration(0), DayType(0), ActStMon(0), ActStDay(0), Used(false)
         {
         }
     };
@@ -457,8 +455,8 @@ namespace WeatherManager {
 
         // Default Constructor
         DataPeriodData()
-            : NumYearsData(1), WeekDay(0), StMon(0), StDay(0), StYear(0), EnMon(0), EnDay(0), EnYear(0), NumDays(0), MonWeekDay(12, 0),
-              DataStJDay(0), DataEnJDay(0), HasYearData(false)
+            : NumYearsData(1), WeekDay(0), StMon(0), StDay(0), StYear(0), EnMon(0), EnDay(0), EnYear(0), NumDays(0), MonWeekDay(12, 0), DataStJDay(0),
+              DataEnJDay(0), HasYearData(false)
         {
         }
     };
@@ -505,8 +503,8 @@ namespace WeatherManager {
 
         // Default Constructor
         MissingData()
-            : DryBulb(0.0), DewPoint(0.0), RelHumid(0), StnPres(0.0), WindDir(0), WindSpd(0.0), TotSkyCvr(0), OpaqSkyCvr(0),
-              Visibility(0.0), Ceiling(0), PrecipWater(0), AerOptDepth(0.0), SnowDepth(0), DaysLastSnow(0), Albedo(0.0), LiquidPrecip(0.0)
+            : DryBulb(0.0), DewPoint(0.0), RelHumid(0), StnPres(0.0), WindDir(0), WindSpd(0.0), TotSkyCvr(0), OpaqSkyCvr(0), Visibility(0.0),
+              Ceiling(0), PrecipWater(0), AerOptDepth(0.0), SnowDepth(0), DaysLastSnow(0), Albedo(0.0), LiquidPrecip(0.0)
         {
         }
     };
@@ -540,9 +538,8 @@ namespace WeatherManager {
 
         // Default Constructor
         MissingDataCounts()
-            : DryBulb(0), DewPoint(0), RelHumid(0), StnPres(0), WindDir(0), WindSpd(0), DirectRad(0), DiffuseRad(0), TotSkyCvr(0),
-              OpaqSkyCvr(0), Visibility(0), Ceiling(0), PrecipWater(0), AerOptDepth(0), SnowDepth(0), DaysLastSnow(0), WeathCodes(0),
-              Albedo(0), LiquidPrecip(0)
+            : DryBulb(0), DewPoint(0), RelHumid(0), StnPres(0), WindDir(0), WindSpd(0), DirectRad(0), DiffuseRad(0), TotSkyCvr(0), OpaqSkyCvr(0),
+              Visibility(0), Ceiling(0), PrecipWater(0), AerOptDepth(0), SnowDepth(0), DaysLastSnow(0), WeathCodes(0), Albedo(0), LiquidPrecip(0)
         {
         }
     };
@@ -622,18 +619,18 @@ namespace WeatherManager {
     extern std::vector<UnderwaterBoundary> underwaterBoundaries;
 
     // Object Data
-    extern DayWeatherVariables TodayVariables; // Today's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of
-                                               // year for weather data | Year of weather data | Month of weather data | Day of month for
-                                               // weather data | Day of week for weather data | Daylight Saving Time Period indicator
-                                               // (0=no,1=yes) | Holiday indicator (0=no holiday, non-zero=holiday type) | Sine of the solar
-                                               // declination angle | Cosine of the solar declination angle | Value of the equation of time
-                                               // formula
-    extern DayWeatherVariables TomorrowVariables; // Tomorrow's daily weather variables | Derived Type for Storing Weather "Header" Data |
-                                                  // Day of year for weather data | Year of weather data | Month of weather data | Day of
-                                                  // month for weather data | Day of week for weather data | Daylight Saving Time Period
-                                                  // indicator (0=no,1=yes) | Holiday indicator (0=no holiday, non-zero=holiday type) | Sine
-                                                  // of the solar declination angle | Cosine of the solar declination angle | Value of the
-                                                  // equation of time formula
+    extern DayWeatherVariables TodayVariables;     // Today's daily weather variables | Derived Type for Storing Weather "Header" Data | Day of
+                                                   // year for weather data | Year of weather data | Month of weather data | Day of month for
+                                                   // weather data | Day of week for weather data | Daylight Saving Time Period indicator
+                                                   // (0=no,1=yes) | Holiday indicator (0=no holiday, non-zero=holiday type) | Sine of the solar
+                                                   // declination angle | Cosine of the solar declination angle | Value of the equation of time
+                                                   // formula
+    extern DayWeatherVariables TomorrowVariables;  // Tomorrow's daily weather variables | Derived Type for Storing Weather "Header" Data |
+                                                   // Day of year for weather data | Year of weather data | Month of weather data | Day of
+                                                   // month for weather data | Day of week for weather data | Daylight Saving Time Period
+                                                   // indicator (0=no,1=yes) | Holiday indicator (0=no holiday, non-zero=holiday type) | Sine
+                                                   // of the solar declination angle | Cosine of the solar declination angle | Value of the
+                                                   // equation of time formula
     extern Array1D<DayWeatherVariables> DesignDay; // Design day environments
     extern MissingData Missing; // Dry Bulb Temperature (C) | Dew Point Temperature (C) | Relative Humidity (%) | Atmospheric Pressure (Pa)
                                 // | Wind Direction (deg) | Wind Speed/Velocity (m/s) | Total Sky Cover (tenths) | Opaque Sky Cover (tenths)
@@ -670,9 +667,8 @@ namespace WeatherManager {
 
     bool CheckIfAnyUnderwaterBoundaries();
 
-    Real64 calculateWaterBoundaryConvectionCoefficient(Real64 const curWaterTemp,
-                                                       Real64 const curWaterVelocity,
-                                                       Real64 const distanceFromLeadingEdge);
+    Real64
+    calculateWaterBoundaryConvectionCoefficient(Real64 const curWaterTemp, Real64 const curWaterVelocity, Real64 const distanceFromLeadingEdge);
 
     void UpdateUnderwaterBoundaries();
 

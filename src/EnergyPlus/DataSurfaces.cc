@@ -426,10 +426,9 @@ namespace DataSurfaces {
     Array1D<Real64> WinGainFrameDividerToZoneRep;    // component of WinHeatGain to zone from frame/divider (W)
     Array1D<Real64> WinGainConvGlazShadGapToZoneRep; // component of WinHeatGain convection to zone from
     // the gap between the inner most glazing and the shade   (W)
-    Array1D<Real64> WinGainConvShadeToZoneRep; // component of WinHeatGain convect to zone from front shade (W)
-    Array1D<Real64> WinGainIRShadeToZoneRep;   // component of WinHeatGain net IR to zone from front shade (W)
-    Array1D<Real64>
-        OtherConvGainInsideFaceToZoneRep; // net imbalance of convection heat gain from equivalent Layer window inside face to zone air
+    Array1D<Real64> WinGainConvShadeToZoneRep;        // component of WinHeatGain convect to zone from front shade (W)
+    Array1D<Real64> WinGainIRShadeToZoneRep;          // component of WinHeatGain net IR to zone from front shade (W)
+    Array1D<Real64> OtherConvGainInsideFaceToZoneRep; // net imbalance of convection heat gain from equivalent Layer window inside face to zone air
 
     Array1D<Real64> WinGapConvHtFlowRep; // Convective heat flow from gap in airflow window (W)
     // REAL(r64), ALLOCATABLE, DIMENSION(:) :: OpaqSurfInsFaceCondGainRep !Equals Opaq Surf Ins Face Cond
@@ -444,10 +443,10 @@ namespace DataSurfaces {
     // if present
     Array1D<Real64> WinSysSolAbsorptance; // Effective solar absorptance of window + shading device,
     // if present
-    Array2D<Real64> SUNCOSHR(
-        24,
-        3,
-        0.0); // Hourly values of SUNCOS (solar direction cosines) //Autodesk:Init Zero-initialization added to avoid use uninitialized
+    Array2D<Real64>
+        SUNCOSHR(24,
+                 3,
+                 0.0); // Hourly values of SUNCOS (solar direction cosines) //Autodesk:Init Zero-initialization added to avoid use uninitialized
     Array2D<Real64> ReflFacBmToDiffSolObs;
     Array2D<Real64> ReflFacBmToDiffSolGnd;
     Array2D<Real64> ReflFacBmToBmSolObs;
@@ -557,19 +556,16 @@ namespace DataSurfaces {
                 slab.xl = xl;
                 slab.xu = xu;
                 assert(crossEdges.size() >= 2u);
-                std::sort(crossEdges.begin(), crossEdges.end(),
-                          [](CrossEdge const &e1, CrossEdge const &e2) -> bool // Lambda to sort by x_mid
+                std::sort(crossEdges.begin(), crossEdges.end(), [](CrossEdge const &e1, CrossEdge const &e2) -> bool // Lambda to sort by x_mid
                           {
                               return std::get<0>(e1) + std::get<1>(e1) <
-                                     std::get<0>(e2) +
-                                         std::get<1>(e2); // Sort edges by x_mid: x_bot or x_top could have repeats with shared vertex
+                                     std::get<0>(e2) + std::get<1>(e2); // Sort edges by x_mid: x_bot or x_top could have repeats with shared vertex
                           });
 #ifndef NDEBUG // Check x_bot and x_top are also sorted
                 Real64 xb(std::get<0>(crossEdges[0]));
                 Real64 xt(std::get<1>(crossEdges[0]));
-                Real64 const tol(
-                    1.0e-9 * std::max(std::abs(xl), std::abs(xu))); // EnergyPlus vertex precision is not tight so tolerance isn't either
-                for (auto const &edge : crossEdges) {               // Detect non-simple polygon with crossing edges
+                Real64 const tol(1.0e-9 * std::max(std::abs(xl), std::abs(xu))); // EnergyPlus vertex precision is not tight so tolerance isn't either
+                for (auto const &edge : crossEdges) {                            // Detect non-simple polygon with crossing edges
                     Real64 const xbe(std::get<0>(edge));
                     Real64 const xte(std::get<1>(edge));
                     assert(xb <= xbe + tol);
@@ -737,11 +733,10 @@ namespace DataSurfaces {
         using Vertices2D = ObjexxFCL::Array1D<Vertex2D>;
 
         // Select axis to project along
-        Real64 const a(std::abs(plane.x)); // Plane normal x coordinate magnitude
-        Real64 const b(std::abs(plane.y)); // Plane normal y coordinate magnitude
-        Real64 const c(std::abs(plane.z)); // Plane normal z coordinate magnitude
-        int const axis(a >= std::max(b, c) ? 0
-                                           : (b >= std::max(a, c) ? 1 : 2)); // Project along plane's normal's largest magnitude coordinate
+        Real64 const a(std::abs(plane.x));                                       // Plane normal x coordinate magnitude
+        Real64 const b(std::abs(plane.y));                                       // Plane normal y coordinate magnitude
+        Real64 const c(std::abs(plane.z));                                       // Plane normal z coordinate magnitude
+        int const axis(a >= std::max(b, c) ? 0 : (b >= std::max(a, c) ? 1 : 2)); // Project along plane's normal's largest magnitude coordinate
 
         // Set up 2D surface
         Vertices2D v2d(n);

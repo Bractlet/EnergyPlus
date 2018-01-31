@@ -146,10 +146,10 @@ namespace PondGroundHeatExchanger {
 
         // Default Constructor
         PondGroundHeatExchangerData()
-            : DesignMassFlowRate(0.0), DesignCapacity(0.0), Depth(0.0), Area(0.0), TubeInDiameter(0.0), TubeOutDiameter(0.0),
-              TubeConductivity(0.0), GrndConductivity(0.0), CircuitLength(0.0), BulkTemperature(0.0), PastBulkTemperature(0.0),
-              NumCircuits(0), InletNodeNum(0), OutletNodeNum(0), FrozenErrIndex(0), ConsecutiveFrozen(0), LoopNum(0), LoopSideNum(0),
-              BranchNum(0), CompNum(0), OneTimeFlag(true), MyFlag(true), WaterIndex(0)
+            : DesignMassFlowRate(0.0), DesignCapacity(0.0), Depth(0.0), Area(0.0), TubeInDiameter(0.0), TubeOutDiameter(0.0), TubeConductivity(0.0),
+              GrndConductivity(0.0), CircuitLength(0.0), BulkTemperature(0.0), PastBulkTemperature(0.0), NumCircuits(0), InletNodeNum(0),
+              OutletNodeNum(0), FrozenErrIndex(0), ConsecutiveFrozen(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0), OneTimeFlag(true),
+              MyFlag(true), WaterIndex(0)
         {
         }
 

@@ -212,8 +212,8 @@ namespace SystemAvailabilityManager {
 
         // Default Constructor
         DefineNightCycSysAvailManager()
-            : MgrType(0), SchedPtr(0), FanSchedPtr(0), CtrlType(0), CycRunTimeCntrlType(0), TempTolRange(1.0), CyclingTimeSteps(1),
-              AvailStatus(0), PriorAvailStatus(0), NumOfCtrlZones(0), NumOfCoolingZones(0), NumOfHeatingZones(0), NumOfHeatZnFanZones(0)
+            : MgrType(0), SchedPtr(0), FanSchedPtr(0), CtrlType(0), CycRunTimeCntrlType(0), TempTolRange(1.0), CyclingTimeSteps(1), AvailStatus(0),
+              PriorAvailStatus(0), NumOfCtrlZones(0), NumOfCoolingZones(0), NumOfHeatingZones(0), NumOfHeatZnFanZones(0)
         {
         }
     };
@@ -270,10 +270,10 @@ namespace SystemAvailabilityManager {
         DefineOptStartSysAvailManager()
             : MgrType(0), isSimulated(false), SchedPtr(0), FanSchedPtr(0), CtrlType(0), ZoneNum(0), ControlledZoneNum(0), NumOfZones(0),
               MaxOptStartTime(6.0), CtrlAlgType(0), ConstTGradCool(1.0), ConstTGradHeat(1.0), InitTGradCool(1.0), InitTGradHeat(1.0),
-              AdaptiveTGradCool(1.0), AdaptiveTGradHeat(1.0), ConstStartTime(2.0), NumPreDays(1), AvailStatus(0),
-              NumHoursBeforeOccupancy(0.0), TempDiffHi(0.0), TempDiffLo(0.0), ATGWCZoneNumLo(0), ATGWCZoneNumHi(0), CycleOnFlag(false),
-              ATGUpdateFlag1(false), ATGUpdateFlag2(false), FirstTimeATGFlag(true), OverNightStartFlag(false), OSReportVarFlag(false),
-              AdaTempGradHeat(0.0), AdaTempGradCool(0.0), ATGUpdateTime1(0.0), ATGUpdateTime2(0.0), ATGUpdateTemp1(0.0), ATGUpdateTemp2(0.0)
+              AdaptiveTGradCool(1.0), AdaptiveTGradHeat(1.0), ConstStartTime(2.0), NumPreDays(1), AvailStatus(0), NumHoursBeforeOccupancy(0.0),
+              TempDiffHi(0.0), TempDiffLo(0.0), ATGWCZoneNumLo(0), ATGWCZoneNumHi(0), CycleOnFlag(false), ATGUpdateFlag1(false),
+              ATGUpdateFlag2(false), FirstTimeATGFlag(true), OverNightStartFlag(false), OSReportVarFlag(false), AdaTempGradHeat(0.0),
+              AdaTempGradCool(0.0), ATGUpdateTime1(0.0), ATGUpdateTime2(0.0), ATGUpdateTemp1(0.0), ATGUpdateTemp2(0.0)
         {
         }
 
@@ -348,8 +348,8 @@ namespace SystemAvailabilityManager {
 
         // Default Constructor
         DefineNightVentSysAvailManager()
-            : MgrType(0), SchedPtr(0), FanSchedPtr(0), VentTempSchedPtr(0), VentDelT(0.0), VentTempLowLim(0.0), ZoneNum(0),
-              ControlledZoneNum(0), VentFlowFrac(0.0), AvailStatus(0)
+            : MgrType(0), SchedPtr(0), FanSchedPtr(0), VentTempSchedPtr(0), VentDelT(0.0), VentTempLowLim(0.0), ZoneNum(0), ControlledZoneNum(0),
+              VentFlowFrac(0.0), AvailStatus(0)
         {
         }
     };
@@ -407,13 +407,13 @@ namespace SystemAvailabilityManager {
 
         // Default Constructor
         DefineHybridVentSysAvailManager()
-            : MgrType(0), AirLoopNum(0), NodeNumOfControlledZone(0), ActualZoneNum(0), ControlledZoneNum(0), ControlModeSchedPtr(0),
-              ControlMode(0), VentilationCtrl(0), MinOutdoorTemp(-100.0), MaxOutdoorTemp(100.0), MinOutdoorEnth(0.1),
-              MaxOutdoorEnth(300000.0), MinOutdoorDewPoint(-100.0), MaxOutdoorDewPoint(100.0), MaxWindSpeed(0.0), UseRainIndicator(true),
-              MinOASchedPtr(0), DewPointNoRHErrCount(0), DewPointNoRHErrIndex(0), DewPointErrCount(0), DewPointErrIndex(0),
-              SingleHCErrCount(0), SingleHCErrIndex(0), OpeningFactorFWS(0), ANControlTypeSchedPtr(0), SimpleControlTypeSchedPtr(0),
-              VentilationPtr(0), AvailStatus(0), HybridVentMgrConnectedToAirLoop(true), SimHybridVentSysAvailMgr(false), OperativeTemp(0.0),
-              CO2(0.0), MinOperTime(0.0), MinVentTime(0.0), TimeOperDuration(0.0), TimeVentDuration(0.0), minAdaTem(0.0), maxAdaTem(0.0)
+            : MgrType(0), AirLoopNum(0), NodeNumOfControlledZone(0), ActualZoneNum(0), ControlledZoneNum(0), ControlModeSchedPtr(0), ControlMode(0),
+              VentilationCtrl(0), MinOutdoorTemp(-100.0), MaxOutdoorTemp(100.0), MinOutdoorEnth(0.1), MaxOutdoorEnth(300000.0),
+              MinOutdoorDewPoint(-100.0), MaxOutdoorDewPoint(100.0), MaxWindSpeed(0.0), UseRainIndicator(true), MinOASchedPtr(0),
+              DewPointNoRHErrCount(0), DewPointNoRHErrIndex(0), DewPointErrCount(0), DewPointErrIndex(0), SingleHCErrCount(0), SingleHCErrIndex(0),
+              OpeningFactorFWS(0), ANControlTypeSchedPtr(0), SimpleControlTypeSchedPtr(0), VentilationPtr(0), AvailStatus(0),
+              HybridVentMgrConnectedToAirLoop(true), SimHybridVentSysAvailMgr(false), OperativeTemp(0.0), CO2(0.0), MinOperTime(0.0),
+              MinVentTime(0.0), TimeOperDuration(0.0), TimeVentDuration(0.0), minAdaTem(0.0), maxAdaTem(0.0)
         {
         }
     };

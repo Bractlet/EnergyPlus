@@ -218,7 +218,7 @@ namespace ZoneTempPredictorCorrector {
                               Real64 &ZoneTempChange, // Temp change in zone air btw previous and current timestep
                               bool const ShortenTimeStepSys,
                               bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step
-                              Real64 const PriorTimeStep // the old value for timestep length is passed for possible use in interpolating
+                              Real64 const PriorTimeStep         // the old value for timestep length is passed for possible use in interpolating
                               );
 
     void GetZoneAirSetPoints();
@@ -227,7 +227,7 @@ namespace ZoneTempPredictorCorrector {
 
     void PredictSystemLoads(bool const ShortenTimeStepSys,
                             bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step
-                            Real64 const PriorTimeStep // the old value for timestep length is passed for possible use in interpolating
+                            Real64 const PriorTimeStep         // the old value for timestep length is passed for possible use in interpolating
                             );
 
     void CalcZoneAirTempSetPoints();
@@ -240,12 +240,11 @@ namespace ZoneTempPredictorCorrector {
 
     void CalcPredictedHumidityRatio(int const ZoneNum, Real64 RAFNFrac);
 
-    void
-    CorrectZoneAirTemp(Real64 &ZoneTempChange, // Temperature change in zone air between previous and current timestep
-                       bool const ShortenTimeStepSys,
-                       bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step history
-                       Real64 const PriorTimeStep         // the old value for timestep length is passed for possible use in interpolating
-                       );
+    void CorrectZoneAirTemp(Real64 &ZoneTempChange, // Temperature change in zone air between previous and current timestep
+                            bool const ShortenTimeStepSys,
+                            bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step history
+                            Real64 const PriorTimeStep         // the old value for timestep length is passed for possible use in interpolating
+                            );
 
     void PushZoneTimestepHistories();
 
@@ -280,19 +279,18 @@ namespace ZoneTempPredictorCorrector {
                       Real64 &SumSysMCpT  // Zone sum of air system MassFlowRate*Cp*T
                       );
 
-    void
-    CalcZoneComponentLoadSums(int const ZoneNum,        // Zone number
-                              Real64 const TempDepCoef, // Dependent coefficient
-                              Real64 const TempIndCoef, // Independent coefficient
-                              Real64 &SumIntGains,      // Zone sum of convective internal gains
-                              Real64 &SumHADTsurfs,     // Zone sum of Hc*Area*(Tsurf - Tz)
-                              Real64 &SumMCpDTzones,   // zone sum of MassFlowRate*cp*(TremotZone - Tz) transfer air from other zone, Mixing
-                              Real64 &SumMCpDtInfil,   // Zone sum of MassFlowRate*Cp*(Tout - Tz) transfer from outside, ventil, earth tube
-                              Real64 &SumMCpDTsystem,  // Zone sum of air system MassFlowRate*Cp*(Tsup - Tz)
-                              Real64 &SumNonAirSystem, // Zone sum of non air system convective heat gains
-                              Real64 &CzdTdt,          // Zone air energy storage term.
-                              Real64 &imBalance        // put all terms in eq. 5 on RHS , should be zero
-                              );
+    void CalcZoneComponentLoadSums(int const ZoneNum,        // Zone number
+                                   Real64 const TempDepCoef, // Dependent coefficient
+                                   Real64 const TempIndCoef, // Independent coefficient
+                                   Real64 &SumIntGains,      // Zone sum of convective internal gains
+                                   Real64 &SumHADTsurfs,     // Zone sum of Hc*Area*(Tsurf - Tz)
+                                   Real64 &SumMCpDTzones,    // zone sum of MassFlowRate*cp*(TremotZone - Tz) transfer air from other zone, Mixing
+                                   Real64 &SumMCpDtInfil,    // Zone sum of MassFlowRate*Cp*(Tout - Tz) transfer from outside, ventil, earth tube
+                                   Real64 &SumMCpDTsystem,   // Zone sum of air system MassFlowRate*Cp*(Tsup - Tz)
+                                   Real64 &SumNonAirSystem,  // Zone sum of non air system convective heat gains
+                                   Real64 &CzdTdt,           // Zone air energy storage term.
+                                   Real64 &imBalance         // put all terms in eq. 5 on RHS , should be zero
+                                   );
 
     bool VerifyThermostatInZone(std::string const &ZoneName); // Zone to verify
 

@@ -194,13 +194,12 @@ namespace PlantChillers {
         // Default Constructor
         BaseChillerSpecs()
             : CondenserType(0), NomCap(0.0), NomCapWasAutoSized(false), COP(0.0), FlowMode(FlowModeNotSet), ModulatedFlowSetToLoop(false),
-              ModulatedFlowErrDone(false), HRSPErrDone(false), EvapInletNodeNum(0), EvapOutletNodeNum(0), CondInletNodeNum(0),
-              CondOutletNodeNum(0), EvapVolFlowRate(0.0), EvapVolFlowRateWasAutoSized(false), EvapMassFlowRateMax(0.0),
-              CondVolFlowRate(0.0), CondVolFlowRateWasAutoSized(false), CondMassFlowRateMax(0.0), CWLoopNum(0), CWLoopSideNum(0),
-              CWBranchNum(0), CWCompNum(0), CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0), SizFac(0.0),
-              BasinHeaterPowerFTempDiff(0.0), BasinHeaterSetPointTemp(0.0), BasinHeaterSchedulePtr(0), ErrCount1(0), ErrCount2(0),
-              MsgDataLast(0.0), PrintMessage(false), MsgErrorCount(0), CheckEquipName(true), PossibleSubcooling(false),
-              CondMassFlowIndex(0), FaultyChillerSWTFlag(false), FaultyChillerSWTIndex(0), FaultyChillerSWTOffset(0.0),
+              ModulatedFlowErrDone(false), HRSPErrDone(false), EvapInletNodeNum(0), EvapOutletNodeNum(0), CondInletNodeNum(0), CondOutletNodeNum(0),
+              EvapVolFlowRate(0.0), EvapVolFlowRateWasAutoSized(false), EvapMassFlowRateMax(0.0), CondVolFlowRate(0.0),
+              CondVolFlowRateWasAutoSized(false), CondMassFlowRateMax(0.0), CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0), CWCompNum(0),
+              CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0), SizFac(0.0), BasinHeaterPowerFTempDiff(0.0), BasinHeaterSetPointTemp(0.0),
+              BasinHeaterSchedulePtr(0), ErrCount1(0), ErrCount2(0), MsgDataLast(0.0), PrintMessage(false), MsgErrorCount(0), CheckEquipName(true),
+              PossibleSubcooling(false), CondMassFlowIndex(0), FaultyChillerSWTFlag(false), FaultyChillerSWTIndex(0), FaultyChillerSWTOffset(0.0),
               FaultyChillerFoulingFlag(false), FaultyChillerFoulingIndex(0), FaultyChillerFoulingFactor(1.0)
         {
         }
@@ -295,10 +294,9 @@ namespace PlantChillers {
             : MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), TempDesCondIn(0.0), TempRiseCoef(0.0), TempDesEvapOut(0.0),
               CapRatCoef(3, 0.0), PowerRatCoef(3, 0.0), FullLoadCoef(3, 0.0), TempLowLimitEvapOut(0.0), ClngLoadtoFuelCurve(0),
               RecJacHeattoFuelCurve(0), RecLubeHeattoFuelCurve(0), TotExhausttoFuelCurve(0), ExhaustTemp(0.0), ExhaustTempCurve(0), UA(0.0),
-              UACoef(2, 0.0), MaxExhaustperPowerOutput(0.0), DesignMinExitGasTemp(0.0), FuelHeatingValue(0.0),
-              DesignHeatRecVolFlowRate(0.0), DesignHeatRecVolFlowRateWasAutoSized(false), DesignHeatRecMassFlowRate(0.0),
-              HeatRecActive(false), HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0), HeatRecCapacityFraction(0.0), HeatRecMaxTemp(0.0),
-              HRLoopNum(0), HRLoopSideNum(0), HRBranchNum(0), HRCompNum(0)
+              UACoef(2, 0.0), MaxExhaustperPowerOutput(0.0), DesignMinExitGasTemp(0.0), FuelHeatingValue(0.0), DesignHeatRecVolFlowRate(0.0),
+              DesignHeatRecVolFlowRateWasAutoSized(false), DesignHeatRecMassFlowRate(0.0), HeatRecActive(false), HeatRecInletNodeNum(0),
+              HeatRecOutletNodeNum(0), HeatRecCapacityFraction(0.0), HeatRecMaxTemp(0.0), HRLoopNum(0), HRLoopSideNum(0), HRBranchNum(0), HRCompNum(0)
         {
         }
     };
@@ -364,12 +362,12 @@ namespace PlantChillers {
               CapRatCoef(3, 0.0), PowerRatCoef(3, 0.0), FullLoadCoef(3, 0.0), TempLowLimitEvapOut(0.0), FuelEnergyIn(0.0),
               PLBasedFuelInputCoef(3, 0.0), TempBasedFuelInputCoef(3, 0.0), ExhaustFlow(0.0), ExhaustFlowCoef(3, 0.0), ExhaustTemp(0.0),
               PLBasedExhaustTempCoef(3, 0.0), TempBasedExhaustTempCoef(3, 0.0), HeatRecLubeEnergy(0.0), HeatRecLubeRate(0.0),
-              HeatRecLubeEnergyCoef(3, 0.0), UAtoCapRat(0.0), UAtoCapCoef(3, 0.0), GTEngineCapacity(0.0),
-              GTEngineCapacityWasAutoSized(false), MaxExhaustperGTPower(0.0), DesignSteamSatTemp(0.0), ExhaustStackTemp(0.0),
-              HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0),
-              DesignHeatRecVolFlowRate(0.0), DesignHeatRecVolFlowRateWasAutoSized(false), DesignHeatRecMassFlowRate(0.0),
-              HeatRecActive(false), FuelHeatingValue(0.0), HeatRecCapacityFraction(0.0), engineCapacityScalar(0.35), HeatRecMaxTemp(0.0),
-              HRLoopNum(0), HRLoopSideNum(0), HRBranchNum(0), HRCompNum(0)
+              HeatRecLubeEnergyCoef(3, 0.0), UAtoCapRat(0.0), UAtoCapCoef(3, 0.0), GTEngineCapacity(0.0), GTEngineCapacityWasAutoSized(false),
+              MaxExhaustperGTPower(0.0), DesignSteamSatTemp(0.0), ExhaustStackTemp(0.0), HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0),
+              HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0), DesignHeatRecVolFlowRate(0.0),
+              DesignHeatRecVolFlowRateWasAutoSized(false), DesignHeatRecMassFlowRate(0.0), HeatRecActive(false), FuelHeatingValue(0.0),
+              HeatRecCapacityFraction(0.0), engineCapacityScalar(0.35), HeatRecMaxTemp(0.0), HRLoopNum(0), HRLoopSideNum(0), HRBranchNum(0),
+              HRCompNum(0)
         {
         }
     };
@@ -425,8 +423,8 @@ namespace PlantChillers {
 
         // Default Constructor
         ElectricReportVars()
-            : ActualCOP(0.0), QHeatRecovery(0.0), EnergyHeatRecovery(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0),
-              HeatRecMassFlow(0.0), ChillerCondAvgTemp(0.0)
+            : ActualCOP(0.0), QHeatRecovery(0.0), EnergyHeatRecovery(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMassFlow(0.0),
+              ChillerCondAvgTemp(0.0)
         {
         }
     };
@@ -479,8 +477,8 @@ namespace PlantChillers {
 
         // Default Constructor
         GasTurbineReportVars()
-            : HeatRecLubeEnergy(0.0), HeatRecLubeRate(0.0), FuelEnergyUsed(0.0), FuelEnergyUsedRate(0.0), FuelMassUsed(0.0),
-              FuelMassUsedRate(0.0), ExhaustStackTemp(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0), FuelCOP(0.0)
+            : HeatRecLubeEnergy(0.0), HeatRecLubeRate(0.0), FuelEnergyUsed(0.0), FuelEnergyUsedRate(0.0), FuelMassUsed(0.0), FuelMassUsedRate(0.0),
+              ExhaustStackTemp(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0), FuelCOP(0.0)
         {
         }
     };

@@ -113,11 +113,10 @@ namespace AirflowNetworkBalanceManager {
     extern int DisSysNumOfLinks;
     extern int NumOfExtNodes;
     extern int AirflowNetworkNumOfExtSurfaces;
-    extern Real64 IncAng; // Wind incidence angle relative to facade normal (deg)
-    extern Array1D<Real64>
-        FacadeAng;         // Facade azimuth angle (for walls, angle of outward normal to facade measured clockwise from North) (deg)
-    extern int WindDirNum; // Wind direction number
-    extern Real64 WindAng; // Wind direction angle (degrees clockwise from North)
+    extern Real64 IncAng;                  // Wind incidence angle relative to facade normal (deg)
+    extern Array1D<Real64> FacadeAng;      // Facade azimuth angle (for walls, angle of outward normal to facade measured clockwise from North) (deg)
+    extern int WindDirNum;                 // Wind direction number
+    extern Real64 WindAng;                 // Wind direction angle (degrees clockwise from North)
     extern int SupplyFanInletNode;         // Supply air fan inlet node number
     extern int SupplyFanOutletNode;        // Supply air fan outlet node number
     extern int SupplyFanType;              // Supply air fan type
@@ -150,9 +149,9 @@ namespace AirflowNetworkBalanceManager {
 
         // Default Constructor
         AirflowNetworkReportVars()
-            : MeanAirTemp(0.0), OperativeTemp(0.0), InfilHeatGain(0.0), InfilHeatLoss(0.0), InfilVolume(0.0), InfilMass(0.0),
-              InfilAirChangeRate(0.0), VentilHeatLoss(0.0), VentilHeatGain(0.0), VentilVolume(0.0), VentilMass(0.0), VentilFanElec(0.0),
-              VentilAirTemp(0.0), MixVolume(0.0), MixMass(0.0)
+            : MeanAirTemp(0.0), OperativeTemp(0.0), InfilHeatGain(0.0), InfilHeatLoss(0.0), InfilVolume(0.0), InfilMass(0.0), InfilAirChangeRate(0.0),
+              VentilHeatLoss(0.0), VentilHeatGain(0.0), VentilVolume(0.0), VentilMass(0.0), VentilFanElec(0.0), VentilAirTemp(0.0), MixVolume(0.0),
+              MixMass(0.0)
         {
         }
     };
@@ -291,8 +290,7 @@ namespace AirflowNetworkBalanceManager {
                   int &OpeningProbStatus,
                   int &ClosingProbStatus); // function to perform calculations
 
-        bool openingProbability(int const ZoneNum,
-                                Real64 const TimeCloseDuration); // function to perform calculations of opening probability
+        bool openingProbability(int const ZoneNum, Real64 const TimeCloseDuration); // function to perform calculations of opening probability
 
         bool closingProbability(Real64 const TimeCloseDuration); // function to perform calculations of closing probability
     };

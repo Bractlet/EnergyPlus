@@ -118,11 +118,10 @@ namespace UserDefinedComponents {
 
         // Default Constructor
         PlantConnectionStruct()
-            : ErlInitProgramMngr(0), ErlSimProgramMngr(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0), InletNodeNum(0),
-              OutletNodeNum(0), FlowPriority(LoopFlowStatus_Unknown), HowLoadServed(HowMet_Unknown), LowOutTempLimit(0.0),
-              HiOutTempLimit(0.0), MassFlowRateRequest(0.0), MassFlowRateMin(0.0), MassFlowRateMax(0.0), DesignVolumeFlowRate(0.0),
-              MyLoad(0.0), MinLoad(0.0), MaxLoad(0.0), OptLoad(0.0), InletRho(0.0), InletCp(0.0), InletTemp(0.0), InletMassFlowRate(0.0),
-              OutletTemp(0.0)
+            : ErlInitProgramMngr(0), ErlSimProgramMngr(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0), InletNodeNum(0), OutletNodeNum(0),
+              FlowPriority(LoopFlowStatus_Unknown), HowLoadServed(HowMet_Unknown), LowOutTempLimit(0.0), HiOutTempLimit(0.0),
+              MassFlowRateRequest(0.0), MassFlowRateMin(0.0), MassFlowRateMax(0.0), DesignVolumeFlowRate(0.0), MyLoad(0.0), MinLoad(0.0),
+              MaxLoad(0.0), OptLoad(0.0), InletRho(0.0), InletCp(0.0), InletTemp(0.0), InletMassFlowRate(0.0), OutletTemp(0.0)
         {
         }
     };
@@ -184,9 +183,8 @@ namespace UserDefinedComponents {
 
         // Default Constructor
         ZoneInternalGainsStruct()
-            : DeviceHasInternalGains(false), ZoneNum(0), ConvectionGainRate(0.0), ReturnAirConvectionGainRate(0.0),
-              ThermalRadiationGainRate(0.0), LatentGainRate(0.0), ReturnAirLatentGainRate(0.0), CarbonDioxideGainRate(0.0),
-              GenericContamGainRate(0.0)
+            : DeviceHasInternalGains(false), ZoneNum(0), ConvectionGainRate(0.0), ReturnAirConvectionGainRate(0.0), ThermalRadiationGainRate(0.0),
+              LatentGainRate(0.0), ReturnAirLatentGainRate(0.0), CarbonDioxideGainRate(0.0), GenericContamGainRate(0.0)
         {
         }
     };
@@ -246,8 +244,8 @@ namespace UserDefinedComponents {
 
         // Default Constructor
         UserZoneHVACForcedAirComponentStruct()
-            : ErlSimProgramMngr(0), ErlInitProgramMngr(0), NumPlantConnections(0), RemainingOutputToHeatingSP(0.0),
-              RemainingOutputToCoolingSP(0.0), RemainingOutputReqToHumidSP(0.0), RemainingOutputReqToDehumidSP(0.0)
+            : ErlSimProgramMngr(0), ErlInitProgramMngr(0), NumPlantConnections(0), RemainingOutputToHeatingSP(0.0), RemainingOutputToCoolingSP(0.0),
+              RemainingOutputReqToHumidSP(0.0), RemainingOutputReqToDehumidSP(0.0)
         {
         }
     };
@@ -273,9 +271,8 @@ namespace UserDefinedComponents {
 
         // Default Constructor
         UserAirTerminalComponentStruct()
-            : ActualCtrlZoneNum(0), ADUNum(0), ErlSimProgramMngr(0), ErlInitProgramMngr(0), NumPlantConnections(0),
-              RemainingOutputToHeatingSP(0.0), RemainingOutputToCoolingSP(0.0), RemainingOutputReqToHumidSP(0.0),
-              RemainingOutputReqToDehumidSP(0.0)
+            : ActualCtrlZoneNum(0), ADUNum(0), ErlSimProgramMngr(0), ErlInitProgramMngr(0), NumPlantConnections(0), RemainingOutputToHeatingSP(0.0),
+              RemainingOutputToCoolingSP(0.0), RemainingOutputReqToHumidSP(0.0), RemainingOutputReqToDehumidSP(0.0)
         {
         }
     };
@@ -312,8 +309,8 @@ namespace UserDefinedComponents {
                                int &CompIndex                  // index to zone hvac unit
                                );
 
-    void SimAirTerminalUserDefined(
-        std::string const &CompName, bool const FirstHVACIteration, int const ZoneNum, int const ZoneNodeNum, int &CompIndex);
+    void
+    SimAirTerminalUserDefined(std::string const &CompName, bool const FirstHVACIteration, int const ZoneNum, int const ZoneNodeNum, int &CompIndex);
 
     void GetUserDefinedComponents();
 
@@ -335,15 +332,11 @@ namespace UserDefinedComponents {
 
     void GetUserDefinedCoilIndex(std::string const &CoilName, int &CoilIndex, bool &ErrorsFound, std::string const &CurrentModuleObject);
 
-    void GetUserDefinedCoilAirInletNode(std::string const &CoilName,
-                                        int &CoilAirInletNode,
-                                        bool &ErrorsFound,
-                                        std::string const &CurrentModuleObject);
+    void
+    GetUserDefinedCoilAirInletNode(std::string const &CoilName, int &CoilAirInletNode, bool &ErrorsFound, std::string const &CurrentModuleObject);
 
-    void GetUserDefinedCoilAirOutletNode(std::string const &CoilName,
-                                         int &CoilAirOutletNode,
-                                         bool &ErrorsFound,
-                                         std::string const &CurrentModuleObject);
+    void
+    GetUserDefinedCoilAirOutletNode(std::string const &CoilName, int &CoilAirOutletNode, bool &ErrorsFound, std::string const &CurrentModuleObject);
 
 } // UserDefinedComponents
 

@@ -172,20 +172,19 @@ namespace HeatPumpWaterToWaterSimple {
 
         // Default Constructor
         GshpSpecs()
-            : checkEquipName(true), WWHPPlantTypeOfNum(0), Available(false), ON(false), IsOn(false), MustRun(false),
-              SourceSideDesignMassFlow(0.0), LoadSideDesignMassFlow(0.0), RatedLoadVolFlowCool(0.0),
-              ratedLoadVolFlowCoolWasAutoSized(false), RatedSourceVolFlowCool(0.0), ratedSourceVolFlowCoolWasAutoSized(false),
-              RatedCapCool(0.0), ratedCapCoolWasAutoSized(false), RatedPowerCool(0.0), ratedPowerCoolWasAutoSized(false), CoolCap1(0.0),
-              CoolCap2(0.0), CoolCap3(0.0), CoolCap4(0.0), CoolCap5(0.0), CoolPower1(0.0), CoolPower2(0.0), CoolPower3(0.0),
-              CoolPower4(0.0), CoolPower5(0.0), CoolCapNegativeCounter(0), CoolCapNegativeIndex(0), CoolPowerNegativeCounter(0),
-              CoolPowerNegativeIndex(0), RatedLoadVolFlowHeat(0.0), ratedLoadVolFlowHeatWasAutoSized(false), RatedSourceVolFlowHeat(0.0),
-              ratedSourceVolFlowHeatWasAutoSized(false), RatedCapHeat(0.0), ratedCapHeatWasAutoSized(false), RatedPowerHeat(0.0),
-              ratedPowerHeatWasAutoSized(false), HeatCap1(0.0), HeatCap2(0.0), HeatCap3(0.0), HeatCap4(0.0), HeatCap5(0.0), HeatPower1(0.0),
-              HeatPower2(0.0), HeatPower3(0.0), HeatPower4(0.0), HeatPower5(0.0), LoadSideInletNodeNum(0), LoadSideOutletNodeNum(0),
-              SourceSideInletNodeNum(0), SourceSideOutletNodeNum(0), HeatCapNegativeCounter(0), HeatCapNegativeIndex(0),
-              HeatPowerNegativeCounter(0), HeatPowerNegativeIndex(0), SourceLoopNum(0), SourceLoopSideNum(0), SourceBranchNum(0),
-              SourceCompNum(0), LoadLoopNum(0), LoadLoopSideNum(0), LoadBranchNum(0), LoadCompNum(0), CondMassFlowIndex(0), refCOP(0.0),
-              sizFac(0.0), companionIndex(0), companionIdentified(false)
+            : checkEquipName(true), WWHPPlantTypeOfNum(0), Available(false), ON(false), IsOn(false), MustRun(false), SourceSideDesignMassFlow(0.0),
+              LoadSideDesignMassFlow(0.0), RatedLoadVolFlowCool(0.0), ratedLoadVolFlowCoolWasAutoSized(false), RatedSourceVolFlowCool(0.0),
+              ratedSourceVolFlowCoolWasAutoSized(false), RatedCapCool(0.0), ratedCapCoolWasAutoSized(false), RatedPowerCool(0.0),
+              ratedPowerCoolWasAutoSized(false), CoolCap1(0.0), CoolCap2(0.0), CoolCap3(0.0), CoolCap4(0.0), CoolCap5(0.0), CoolPower1(0.0),
+              CoolPower2(0.0), CoolPower3(0.0), CoolPower4(0.0), CoolPower5(0.0), CoolCapNegativeCounter(0), CoolCapNegativeIndex(0),
+              CoolPowerNegativeCounter(0), CoolPowerNegativeIndex(0), RatedLoadVolFlowHeat(0.0), ratedLoadVolFlowHeatWasAutoSized(false),
+              RatedSourceVolFlowHeat(0.0), ratedSourceVolFlowHeatWasAutoSized(false), RatedCapHeat(0.0), ratedCapHeatWasAutoSized(false),
+              RatedPowerHeat(0.0), ratedPowerHeatWasAutoSized(false), HeatCap1(0.0), HeatCap2(0.0), HeatCap3(0.0), HeatCap4(0.0), HeatCap5(0.0),
+              HeatPower1(0.0), HeatPower2(0.0), HeatPower3(0.0), HeatPower4(0.0), HeatPower5(0.0), LoadSideInletNodeNum(0), LoadSideOutletNodeNum(0),
+              SourceSideInletNodeNum(0), SourceSideOutletNodeNum(0), HeatCapNegativeCounter(0), HeatCapNegativeIndex(0), HeatPowerNegativeCounter(0),
+              HeatPowerNegativeIndex(0), SourceLoopNum(0), SourceLoopSideNum(0), SourceBranchNum(0), SourceCompNum(0), LoadLoopNum(0),
+              LoadLoopSideNum(0), LoadBranchNum(0), LoadCompNum(0), CondMassFlowIndex(0), refCOP(0.0), sizFac(0.0), companionIndex(0),
+              companionIdentified(false)
         {
         }
     };
@@ -209,8 +208,7 @@ namespace HeatPumpWaterToWaterSimple {
         // Default Constructor
         ReportVars()
             : Power(0.0), Energy(0.0), QLoad(0.0), QLoadEnergy(0.0), QSource(0.0), QSourceEnergy(0.0), LoadSideMassFlowRate(0.0),
-              LoadSideInletTemp(0.0), LoadSideOutletTemp(0.0), SourceSideMassFlowRate(0.0), SourceSideInletTemp(0.0),
-              SourceSideOutletTemp(0.0)
+              LoadSideInletTemp(0.0), LoadSideOutletTemp(0.0), SourceSideMassFlowRate(0.0), SourceSideInletTemp(0.0), SourceSideOutletTemp(0.0)
         {
         }
     };

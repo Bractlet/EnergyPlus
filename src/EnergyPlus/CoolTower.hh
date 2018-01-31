@@ -130,12 +130,12 @@ namespace CoolTower {
         // Default Constructor
         CoolTowerParams()
             : SchedPtr(0), ZonePtr(0), PumpSchedPtr(0), FlowCtrlType(0), CoolTWaterSupplyMode(WaterSupplyFromMains), CoolTWaterSupTankID(0),
-              CoolTWaterTankDemandARRID(0), TowerHeight(0.0), OutletArea(0.0), OutletVelocity(0.0), MaxAirVolFlowRate(0.0),
-              AirMassFlowRate(0.0), CoolTAirMass(0.0), MinZoneTemp(0.0), FracWaterLoss(0.0), FracFlowSched(0.0), MaxWaterFlowRate(0.0),
-              ActualWaterFlowRate(0.0), RatedPumpPower(0.0), SenHeatLoss(0.0), SenHeatPower(0.0), LatHeatLoss(0.0), LatHeatPower(0.0),
-              AirVolFlowRate(0.0), AirVolFlowRateStd(0.0), CoolTAirVol(0.0), ActualAirVolFlowRate(0.0), InletDBTemp(0.0), InletWBTemp(0.0),
-              InletHumRat(0.0), OutletTemp(0.0), OutletHumRat(0.0), CoolTWaterConsumpRate(0.0), CoolTWaterStarvMakeupRate(0.0),
-              CoolTWaterStarvMakeup(0.0), CoolTWaterConsump(0.0), PumpElecPower(0.0), PumpElecConsump(0.0)
+              CoolTWaterTankDemandARRID(0), TowerHeight(0.0), OutletArea(0.0), OutletVelocity(0.0), MaxAirVolFlowRate(0.0), AirMassFlowRate(0.0),
+              CoolTAirMass(0.0), MinZoneTemp(0.0), FracWaterLoss(0.0), FracFlowSched(0.0), MaxWaterFlowRate(0.0), ActualWaterFlowRate(0.0),
+              RatedPumpPower(0.0), SenHeatLoss(0.0), SenHeatPower(0.0), LatHeatLoss(0.0), LatHeatPower(0.0), AirVolFlowRate(0.0),
+              AirVolFlowRateStd(0.0), CoolTAirVol(0.0), ActualAirVolFlowRate(0.0), InletDBTemp(0.0), InletWBTemp(0.0), InletHumRat(0.0),
+              OutletTemp(0.0), OutletHumRat(0.0), CoolTWaterConsumpRate(0.0), CoolTWaterStarvMakeupRate(0.0), CoolTWaterStarvMakeup(0.0),
+              CoolTWaterConsump(0.0), PumpElecPower(0.0), PumpElecConsump(0.0)
         {
         }
     };

@@ -192,19 +192,18 @@ namespace HVACDXSystem {
         // Default Constructor
         DXCoolingConditions()
             : SchedPtr(0), CoolingCoilType_Num(0), CoolingCoilIndex(0), DXCoolingCoilInletNodeNum(0), DXCoolingCoilOutletNodeNum(0),
-              DXSystemControlNodeNum(0), DesiredOutletTemp(0.0), DesiredOutletHumRat(1.0), PartLoadFrac(0.0), SpeedRatio(0.0),
-              CycRatio(0.0), RunOnSensibleLoad(true), RunOnLatentLoad(false), DehumidControlType(0), DehumidificationMode(0), FanOpMode(0),
-              HXAssistedSensPLRIter(0), HXAssistedSensPLRIterIndex(0), HXAssistedSensPLRFail(0), HXAssistedSensPLRFailIndex(0),
-              HXAssistedSensPLRFail2(0), HXAssistedSensPLRFailIndex2(0), HXAssistedLatPLRIter(0), HXAssistedLatPLRIterIndex(0),
-              HXAssistedLatPLRFail(0), HXAssistedLatPLRFailIndex(0), HXAssistedCRLatPLRIter(0), HXAssistedCRLatPLRIterIndex(0),
-              HXAssistedCRLatPLRFail(0), HXAssistedCRLatPLRFailIndex(0), HXAssistedCRLatPLRFail2(0), HXAssistedCRLatPLRFailIndex2(0),
-              DXCoilSensPLRIter(0), DXCoilSensPLRIterIndex(0), DXCoilSensPLRFail(0), DXCoilSensPLRFailIndex(0), DXCoilLatPLRIter(0),
-              DXCoilLatPLRIterIndex(0), DXCoilLatPLRFail(0), DXCoilLatPLRFailIndex(0), MSpdSensPLRIter(0), MSpdSensPLRIterIndex(0),
-              MSpdCycSensPLRIter(0), MSpdCycSensPLRIterIndex(0), MSpdLatPLRIter(0), MSpdLatPLRIterIndex(0), MSpdCycLatPLRIter(0),
-              MSpdCycLatPLRIterIndex(0), MModeSensPLRIter(0), MModeSensPLRIterIndex(0), MModeLatPLRIter(0), MModeLatPLRIterIndex(0),
-              MModeLatPLRIter2(0), MModeLatPLRIterIndex2(0), OAUnitSetTemp(0.0), ISHundredPercentDOASDXCoil(false),
-              DOASDXCoolingCoilMinTout(0.0), FrostControlStatus(0), SpeedNum(0), TESOpMode(0), FaultyCoilSATFlag(false),
-              FaultyCoilSATIndex(0), FaultyCoilSATOffset(0.0)
+              DXSystemControlNodeNum(0), DesiredOutletTemp(0.0), DesiredOutletHumRat(1.0), PartLoadFrac(0.0), SpeedRatio(0.0), CycRatio(0.0),
+              RunOnSensibleLoad(true), RunOnLatentLoad(false), DehumidControlType(0), DehumidificationMode(0), FanOpMode(0), HXAssistedSensPLRIter(0),
+              HXAssistedSensPLRIterIndex(0), HXAssistedSensPLRFail(0), HXAssistedSensPLRFailIndex(0), HXAssistedSensPLRFail2(0),
+              HXAssistedSensPLRFailIndex2(0), HXAssistedLatPLRIter(0), HXAssistedLatPLRIterIndex(0), HXAssistedLatPLRFail(0),
+              HXAssistedLatPLRFailIndex(0), HXAssistedCRLatPLRIter(0), HXAssistedCRLatPLRIterIndex(0), HXAssistedCRLatPLRFail(0),
+              HXAssistedCRLatPLRFailIndex(0), HXAssistedCRLatPLRFail2(0), HXAssistedCRLatPLRFailIndex2(0), DXCoilSensPLRIter(0),
+              DXCoilSensPLRIterIndex(0), DXCoilSensPLRFail(0), DXCoilSensPLRFailIndex(0), DXCoilLatPLRIter(0), DXCoilLatPLRIterIndex(0),
+              DXCoilLatPLRFail(0), DXCoilLatPLRFailIndex(0), MSpdSensPLRIter(0), MSpdSensPLRIterIndex(0), MSpdCycSensPLRIter(0),
+              MSpdCycSensPLRIterIndex(0), MSpdLatPLRIter(0), MSpdLatPLRIterIndex(0), MSpdCycLatPLRIter(0), MSpdCycLatPLRIterIndex(0),
+              MModeSensPLRIter(0), MModeSensPLRIterIndex(0), MModeLatPLRIter(0), MModeLatPLRIterIndex(0), MModeLatPLRIter2(0),
+              MModeLatPLRIterIndex2(0), OAUnitSetTemp(0.0), ISHundredPercentDOASDXCoil(false), DOASDXCoolingCoilMinTout(0.0), FrostControlStatus(0),
+              SpeedNum(0), TESOpMode(0), FaultyCoilSATFlag(false), FaultyCoilSATIndex(0), FaultyCoilSATOffset(0.0)
         {
         }
     };

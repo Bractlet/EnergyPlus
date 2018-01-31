@@ -282,8 +282,8 @@ namespace NodeInputManager {
             if (present(IncrementFluidStream)) {
                 if (IncrementFluidStream) FluidStreamNum = NodeFluidStream + (Loop - 1);
             }
-            RegisterNodeConnection(NodeNumbers(Loop), NodeID(NodeNumbers(Loop)), NodeObjectType, NodeObjectName, ConnectionType,
-                                   FluidStreamNum, ObjectIsParent, ErrorsFound, InputFieldName);
+            RegisterNodeConnection(NodeNumbers(Loop), NodeID(NodeNumbers(Loop)), NodeObjectType, NodeObjectName, ConnectionType, FluidStreamNum,
+                                   ObjectIsParent, ErrorsFound, InputFieldName);
         }
     }
 
@@ -355,8 +355,8 @@ namespace NodeInputManager {
         }
 
         if (Try != 0) {
-            GetNodeNums(Name, NumNodes, NodeNumbers, errFlag, NodeFluidType, NodeObjectType, NodeObjectName, NodeConnectionType,
-                        NodeFluidStream, ObjectIsParent, _, InputFieldName);
+            GetNodeNums(Name, NumNodes, NodeNumbers, errFlag, NodeFluidType, NodeObjectType, NodeObjectName, NodeConnectionType, NodeFluidStream,
+                        ObjectIsParent, _, InputFieldName);
         } else {
             // only valid "error" here is when the Node List is blank
             if (!Name.empty()) {
@@ -416,8 +416,7 @@ namespace NodeInputManager {
         static gio::Fmt Format_700("('! #Nodes,<Number of Unique Nodes>')");
         static gio::Fmt Format_701("(A)");
         static gio::Fmt Format_702("('! <Node>,<NodeNumber>,<Node Name>,<Node Fluid Type>,<# Times Node Referenced After Definition>')");
-        static gio::Fmt Format_703(
-            "('! <Suspicious Node>,<NodeNumber>,<Node Name>,<Node Fluid Type>,<# Times Node Referenced After Definition>')");
+        static gio::Fmt Format_703("('! <Suspicious Node>,<NodeNumber>,<Node Name>,<Node Fluid Type>,<# Times Node Referenced After Definition>')");
         static gio::Fmt fmtLD("*");
 
         if (!NodeVarsSetup) {
@@ -427,81 +426,79 @@ namespace NodeInputManager {
                     // Setup Report variables for the Nodes for HVAC Reporting, CurrentModuleObject='Node Name'
                     SetupOutputVariable("System Node Temperature", OutputProcessor::Unit::C, Node(NumNode).Temp, "System", "Average",
                                         NodeID(NumNode));
-                    SetupOutputVariable("System Node Mass Flow Rate", OutputProcessor::Unit::kg_s, Node(NumNode).MassFlowRate, "System",
+                    SetupOutputVariable("System Node Mass Flow Rate", OutputProcessor::Unit::kg_s, Node(NumNode).MassFlowRate, "System", "Average",
+                                        NodeID(NumNode));
+                    SetupOutputVariable("System Node Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir, Node(NumNode).HumRat, "System",
                                         "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir, Node(NumNode).HumRat,
-                                        "System", "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Setpoint Temperature", OutputProcessor::Unit::C, Node(NumNode).TempSetPoint, "System",
+                    SetupOutputVariable("System Node Setpoint Temperature", OutputProcessor::Unit::C, Node(NumNode).TempSetPoint, "System", "Average",
+                                        NodeID(NumNode));
+                    SetupOutputVariable("System Node Setpoint High Temperature", OutputProcessor::Unit::C, Node(NumNode).TempSetPointHi, "System",
                                         "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Setpoint High Temperature", OutputProcessor::Unit::C, Node(NumNode).TempSetPointHi,
+                    SetupOutputVariable("System Node Setpoint Low Temperature", OutputProcessor::Unit::C, Node(NumNode).TempSetPointLo, "System",
+                                        "Average", NodeID(NumNode));
+                    SetupOutputVariable("System Node Setpoint Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir, Node(NumNode).HumRatSetPoint,
                                         "System", "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Setpoint Low Temperature", OutputProcessor::Unit::C, Node(NumNode).TempSetPointLo,
-                                        "System", "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Setpoint Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir,
-                                        Node(NumNode).HumRatSetPoint, "System", "Average", NodeID(NumNode));
                     SetupOutputVariable("System Node Setpoint Minimum Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir,
                                         Node(NumNode).HumRatMin, "System", "Average", NodeID(NumNode));
                     SetupOutputVariable("System Node Setpoint Maximum Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir,
                                         Node(NumNode).HumRatMax, "System", "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Relative Humidity", OutputProcessor::Unit::Perc, MoreNodeInfo(NumNode).RelHumidity,
-                                        "System", "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Pressure", OutputProcessor::Unit::Pa, Node(NumNode).Press, "System", "Average",
-                                        NodeID(NumNode));
+                    SetupOutputVariable("System Node Relative Humidity", OutputProcessor::Unit::Perc, MoreNodeInfo(NumNode).RelHumidity, "System",
+                                        "Average", NodeID(NumNode));
+                    SetupOutputVariable("System Node Pressure", OutputProcessor::Unit::Pa, Node(NumNode).Press, "System", "Average", NodeID(NumNode));
                     SetupOutputVariable("System Node Standard Density Volume Flow Rate", OutputProcessor::Unit::m3_s,
                                         MoreNodeInfo(NumNode).VolFlowRateStdRho, "System", "Average", NodeID(NumNode));
                     if (Node(NumNode).FluidType == NodeType_Air ||
                         Node(NumNode).FluidType == NodeType_Water) { // setup volume flow rate report for actual/current density
                         SetupOutputVariable("System Node Current Density Volume Flow Rate", OutputProcessor::Unit::m3_s,
                                             MoreNodeInfo(NumNode).VolFlowRateCrntRho, "System", "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Current Density", OutputProcessor::Unit::kg_m3, MoreNodeInfo(NumNode).Density,
-                                            "System", "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Specific Heat", OutputProcessor::Unit::J_kgK, MoreNodeInfo(NumNode).SpecificHeat,
-                                            "System", "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Current Density", OutputProcessor::Unit::kg_m3, MoreNodeInfo(NumNode).Density, "System",
+                                            "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Specific Heat", OutputProcessor::Unit::J_kgK, MoreNodeInfo(NumNode).SpecificHeat, "System",
+                                            "Average", NodeID(NumNode));
                     }
 
                     SetupOutputVariable("System Node Enthalpy", OutputProcessor::Unit::J_kg, MoreNodeInfo(NumNode).ReportEnthalpy, "System",
                                         "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Wetbulb Temperature", OutputProcessor::Unit::C, MoreNodeInfo(NumNode).WetBulbTemp,
-                                        "System", "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Dewpoint Temperature", OutputProcessor::Unit::C, MoreNodeInfo(NumNode).AirDewPointTemp,
-                                        "System", "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Wind Speed", OutputProcessor::Unit::m_s, Node(NumNode).OutAirWindSpeed, "System",
+                    SetupOutputVariable("System Node Wetbulb Temperature", OutputProcessor::Unit::C, MoreNodeInfo(NumNode).WetBulbTemp, "System",
                                         "Average", NodeID(NumNode));
-                    SetupOutputVariable("System Node Wind Direction", OutputProcessor::Unit::deg, Node(NumNode).OutAirWindDir, "System",
+                    SetupOutputVariable("System Node Dewpoint Temperature", OutputProcessor::Unit::C, MoreNodeInfo(NumNode).AirDewPointTemp, "System",
                                         "Average", NodeID(NumNode));
+                    SetupOutputVariable("System Node Wind Speed", OutputProcessor::Unit::m_s, Node(NumNode).OutAirWindSpeed, "System", "Average",
+                                        NodeID(NumNode));
+                    SetupOutputVariable("System Node Wind Direction", OutputProcessor::Unit::deg, Node(NumNode).OutAirWindDir, "System", "Average",
+                                        NodeID(NumNode));
                     SetupOutputVariable("System Node Quality", OutputProcessor::Unit::None, Node(NumNode).Quality, "System", "Average",
                                         NodeID(NumNode));
-                    SetupOutputVariable("System Node Height", OutputProcessor::Unit::m, Node(NumNode).Height, "System", "Average",
-                                        NodeID(NumNode));
+                    SetupOutputVariable("System Node Height", OutputProcessor::Unit::m, Node(NumNode).Height, "System", "Average", NodeID(NumNode));
                     if (DisplayAdvancedReportVariables) {
-                        SetupOutputVariable("System Node Minimum Temperature", OutputProcessor::Unit::C, Node(NumNode).TempMin, "System",
-                                            "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Maximum Temperature", OutputProcessor::Unit::C, Node(NumNode).TempMax, "System",
-                                            "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Minimum Limit Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                            Node(NumNode).MassFlowRateMin, "System", "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Maximum Limit Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                            Node(NumNode).MassFlowRateMax, "System", "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Minimum Temperature", OutputProcessor::Unit::C, Node(NumNode).TempMin, "System", "Average",
+                                            NodeID(NumNode));
+                        SetupOutputVariable("System Node Maximum Temperature", OutputProcessor::Unit::C, Node(NumNode).TempMax, "System", "Average",
+                                            NodeID(NumNode));
+                        SetupOutputVariable("System Node Minimum Limit Mass Flow Rate", OutputProcessor::Unit::kg_s, Node(NumNode).MassFlowRateMin,
+                                            "System", "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Maximum Limit Mass Flow Rate", OutputProcessor::Unit::kg_s, Node(NumNode).MassFlowRateMax,
+                                            "System", "Average", NodeID(NumNode));
                         SetupOutputVariable("System Node Minimum Available Mass Flow Rate", OutputProcessor::Unit::kg_s,
                                             Node(NumNode).MassFlowRateMinAvail, "System", "Average", NodeID(NumNode));
                         SetupOutputVariable("System Node Maximum Available Mass Flow Rate", OutputProcessor::Unit::kg_s,
                                             Node(NumNode).MassFlowRateMaxAvail, "System", "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Setpoint Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                            Node(NumNode).MassFlowRateSetPoint, "System", "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Requested Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                            Node(NumNode).MassFlowRateRequest, "System", "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Last Timestep Temperature", OutputProcessor::Unit::C,
-                                            Node(NumNode).TempLastTimestep, "System", "Average", NodeID(NumNode));
-                        SetupOutputVariable("System Node Last Timestep Enthalpy", OutputProcessor::Unit::J_kg,
-                                            Node(NumNode).EnthalpyLastTimestep, "System", "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Setpoint Mass Flow Rate", OutputProcessor::Unit::kg_s, Node(NumNode).MassFlowRateSetPoint,
+                                            "System", "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Requested Mass Flow Rate", OutputProcessor::Unit::kg_s, Node(NumNode).MassFlowRateRequest,
+                                            "System", "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Last Timestep Temperature", OutputProcessor::Unit::C, Node(NumNode).TempLastTimestep,
+                                            "System", "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Last Timestep Enthalpy", OutputProcessor::Unit::J_kg, Node(NumNode).EnthalpyLastTimestep,
+                                            "System", "Average", NodeID(NumNode));
                     }
                     if (Contaminant.CO2Simulation) {
-                        SetupOutputVariable("System Node CO2 Concentration", OutputProcessor::Unit::ppm, Node(NumNode).CO2, "System",
-                                            "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node CO2 Concentration", OutputProcessor::Unit::ppm, Node(NumNode).CO2, "System", "Average",
+                                            NodeID(NumNode));
                     }
                     if (Contaminant.GenericContamSimulation) {
-                        SetupOutputVariable("System Node Generic Air Contaminant Concentration", OutputProcessor::Unit::ppm,
-                                            Node(NumNode).GenContam, "System", "Average", NodeID(NumNode));
+                        SetupOutputVariable("System Node Generic Air Contaminant Concentration", OutputProcessor::Unit::ppm, Node(NumNode).GenContam,
+                                            "System", "Average", NodeID(NumNode));
                     }
                 }
             }
@@ -535,8 +532,7 @@ namespace NodeInputManager {
             // Show suspicious node names on the Branch-Node Details file
             if (Count0 > 0) {
                 gio::write(OutputFileBNDetails, Format_701) << "! ===============================================================";
-                gio::write(OutputFileBNDetails, Format_701)
-                    << "! Suspicious nodes have 0 references.  It is normal for some nodes, however.";
+                gio::write(OutputFileBNDetails, Format_701) << "! Suspicious nodes have 0 references.  It is normal for some nodes, however.";
                 gio::write(OutputFileBNDetails, Format_701) << "! Listing nodes with 0 references (culled from previous list):";
                 gio::write(OutputFileBNDetails, Format_703);
                 for (NumNode = 1; NumNode <= NumOfUniqueNodeNames; ++NumNode) {
@@ -655,8 +651,7 @@ namespace NodeInputManager {
                 NodeLists(NCount).NodeNumbers(Loop1) = AssignNodeNumber(NodeLists(NCount).NodeNames(Loop1), NodeType_Unknown, ErrorsFound);
                 if (SameString(NodeLists(NCount).NodeNames(Loop1), NodeLists(NCount).Name)) {
                     ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + cAlphas(1) + "\", invalid node name in list.");
-                    ShowContinueError("... Node " + TrimSigDigits(Loop1) + " Name=\"" + cAlphas(Loop1 + 1) +
-                                      "\", duplicates NodeList Name.");
+                    ShowContinueError("... Node " + TrimSigDigits(Loop1) + " Name=\"" + cAlphas(Loop1 + 1) + "\", duplicates NodeList Name.");
                     ErrorsFound = true;
                 }
             }
@@ -670,8 +665,8 @@ namespace NodeInputManager {
                         flagError = false;
                     }
                     ShowContinueError("...list item=" + TrimSigDigits(Loop1) + ", \"" + NodeID(NodeLists(NCount).NodeNumbers(Loop1)) +
-                                      "\", duplicate list item=" + TrimSigDigits(Loop2) + ", \"" +
-                                      NodeID(NodeLists(NCount).NodeNumbers(Loop2)) + "\".");
+                                      "\", duplicate list item=" + TrimSigDigits(Loop2) + ", \"" + NodeID(NodeLists(NCount).NodeNumbers(Loop2)) +
+                                      "\".");
                     ErrorsFound = true;
                 }
             }
@@ -761,8 +756,8 @@ namespace NodeInputManager {
                 if (NodeFluidType != NodeType_Unknown) {
                     if (Node(NumNode).FluidType != NodeFluidType && Node(NumNode).FluidType != NodeType_Unknown) {
                         ShowSevereError("Existing Fluid type for node, incorrect for request. Node=" + NodeID(NumNode));
-                        ShowContinueError("Existing Fluid type=" + ValidNodeFluidTypes(Node(NumNode).FluidType) +
-                                          ", Requested Fluid Type=" + ValidNodeFluidTypes(NodeFluidType));
+                        ShowContinueError("Existing Fluid type=" + ValidNodeFluidTypes(Node(NumNode).FluidType) + ", Requested Fluid Type=" +
+                                          ValidNodeFluidTypes(NodeFluidType));
                         ErrorsFound = true;
                     }
                 }
@@ -1096,8 +1091,7 @@ namespace NodeInputManager {
         // na
 
         if (CurCheckContextName != ContextName) {
-            ShowFatalError("End Uniqueness called for \"" + ContextName + ", but checks for \"" + CurCheckContextName +
-                           "\" was in progress.");
+            ShowFatalError("End Uniqueness called for \"" + ContextName + ", but checks for \"" + CurCheckContextName + "\" was in progress.");
         }
         if (ContextName == BlankString) {
             ShowFatalError("End Uniqueness called with Blank Context Name");
@@ -1311,12 +1305,10 @@ namespace NodeInputManager {
                     rhoStd = RhoWaterStdInit;
                     Cp = CPCW(Node(iNode).Temp);
                 } else {
-                    Cp = GetSpecificHeatGlycol(nodeFluidNames[iNode - 1], Node(iNode).Temp, Node(iNode).FluidIndex,
-                                               nodeReportingStrings[iNode - 1]);
+                    Cp = GetSpecificHeatGlycol(nodeFluidNames[iNode - 1], Node(iNode).Temp, Node(iNode).FluidIndex, nodeReportingStrings[iNode - 1]);
                     rhoStd = GetDensityGlycol(nodeFluidNames[iNode - 1], DataGlobals::InitConvTemp, Node(iNode).FluidIndex,
                                               nodeReportingStrings[iNode - 1]);
-                    rho = GetDensityGlycol(nodeFluidNames[iNode - 1], Node(iNode).Temp, Node(iNode).FluidIndex,
-                                           nodeReportingStrings[iNode - 1]);
+                    rho = GetDensityGlycol(nodeFluidNames[iNode - 1], Node(iNode).Temp, Node(iNode).FluidIndex, nodeReportingStrings[iNode - 1]);
                 }
 
                 MoreNodeInfo(iNode).VolFlowRateStdRho = Node(iNode).MassFlowRate / rhoStd;
@@ -1328,10 +1320,8 @@ namespace NodeInputManager {
                 MoreNodeInfo(iNode).RelHumidity = 100.0;
             } else if (Node(iNode).FluidType == NodeType_Steam) {
                 if (Node(iNode).Quality == 1.0) {
-                    SteamDensity =
-                        GetSatDensityRefrig(fluidNameSteam, Node(iNode).Temp, Node(iNode).Quality, Node(iNode).FluidIndex, RoutineName);
-                    EnthSteamInDry =
-                        GetSatEnthalpyRefrig(fluidNameSteam, Node(iNode).Temp, Node(iNode).Quality, Node(iNode).FluidIndex, RoutineName);
+                    SteamDensity = GetSatDensityRefrig(fluidNameSteam, Node(iNode).Temp, Node(iNode).Quality, Node(iNode).FluidIndex, RoutineName);
+                    EnthSteamInDry = GetSatEnthalpyRefrig(fluidNameSteam, Node(iNode).Temp, Node(iNode).Quality, Node(iNode).FluidIndex, RoutineName);
                     MoreNodeInfo(iNode).VolFlowRateStdRho = Node(iNode).MassFlowRate / SteamDensity;
                     MoreNodeInfo(iNode).ReportEnthalpy = EnthSteamInDry;
                     MoreNodeInfo(iNode).WetBulbTemp = 0.0;
@@ -1456,8 +1446,8 @@ namespace NodeInputManager {
             if (MarkedNode(NodeNum).IsMarked) {
                 if (NodeRef(NodeNum) == 0) {
                     ShowSevereError("Node=\"" + NodeID(NodeNum) + "\" did not find reference by another object.");
-                    ShowContinueError("Object=\"" + MarkedNode(NodeNum).ObjectType + "\", Name=\"" + MarkedNode(NodeNum).ObjectName +
-                                      "\", Field=[" + MarkedNode(NodeNum).FieldName + ']');
+                    ShowContinueError("Object=\"" + MarkedNode(NodeNum).ObjectType + "\", Name=\"" + MarkedNode(NodeNum).ObjectName + "\", Field=[" +
+                                      MarkedNode(NodeNum).FieldName + ']');
                     ErrorsFound = true;
                 }
             }

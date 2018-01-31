@@ -238,8 +238,7 @@ void AbortEnergyPlus()
                 " Severe Errors.");
     ShowMessage("EnergyPlus Sizing Error Summary. During Sizing: " + NumWarningsDuringSizing + " Warning; " + NumSevereDuringSizing +
                 " Severe Errors.");
-    ShowMessage("EnergyPlus Terminated--Fatal Error Detected. " + NumWarnings + " Warning; " + NumSevere + " Severe Errors; Elapsed Time=" +
-                Elapsed);
+    ShowMessage("EnergyPlus Terminated--Fatal Error Detected. " + NumWarnings + " Warning; " + NumSevere + " Severe Errors; Elapsed Time=" + Elapsed);
     DisplayString("EnergyPlus Run Time=" + Elapsed);
     tempfl = GetNewUnitNumber();
     {
@@ -488,8 +487,7 @@ void EndEnergyPlus()
                 " Severe Errors.");
     ShowMessage("EnergyPlus Sizing Error Summary. During Sizing: " + NumWarningsDuringSizing + " Warning; " + NumSevereDuringSizing +
                 " Severe Errors.");
-    ShowMessage("EnergyPlus Completed Successfully-- " + NumWarnings + " Warning; " + NumSevere + " Severe Errors; Elapsed Time=" +
-                Elapsed);
+    ShowMessage("EnergyPlus Completed Successfully-- " + NumWarnings + " Warning; " + NumSevere + " Severe Errors; Elapsed Time=" + Elapsed);
     DisplayString("EnergyPlus Run Time=" + Elapsed);
     tempfl = GetNewUnitNumber();
     {
@@ -501,8 +499,8 @@ void EndEnergyPlus()
     if (write_stat != 0) {
         DisplayString("EndEnergyPlus: Could not open file " + DataStringGlobals::outputEndFileName + " for output (write).");
     }
-    gio::write(tempfl, fmtA) << "EnergyPlus Completed Successfully-- " + NumWarnings + " Warning; " + NumSevere +
-                                    " Severe Errors; Elapsed Time=" + Elapsed;
+    gio::write(tempfl, fmtA) << "EnergyPlus Completed Successfully-- " + NumWarnings + " Warning; " + NumSevere + " Severe Errors; Elapsed Time=" +
+                                    Elapsed;
     gio::close(tempfl);
 #ifdef EP_Detailed_Timings
     epSummaryTimes(Time_Finish - Time_Start);
@@ -1104,8 +1102,7 @@ void ShowContinueErrorTimeStamp(std::string const &Message, Optional_int OutUnit
         }
     } else {
         ShowErrorMessage(" **   ~~~   ** " + Message);
-        ShowErrorMessage(" **   ~~~   ** " + cEnvHeader + EnvironmentName + ", at Simulation time=" + CurMnDy + ' ' +
-                             CreateSysTimeIntervalString(),
+        ShowErrorMessage(" **   ~~~   ** " + cEnvHeader + EnvironmentName + ", at Simulation time=" + CurMnDy + ' ' + CreateSysTimeIntervalString(),
                          OutUnit1, OutUnit2);
         if (sqlite) {
             sqlite->updateSQLiteErrorRecord(Message + cEnvHeader + EnvironmentName + ", at Simulation time=" + CurMnDy + ' ' +
@@ -1319,8 +1316,8 @@ void ShowRecurringSevereErrorAtEnd(std::string const &Message,         // Messag
                                ReportSumUnits);
 }
 
-void ShowRecurringWarningErrorAtEnd(std::string const &Message, // Message automatically written to "error file" at end of simulation
-                                    int &MsgIndex,              // Recurring message index, if zero, next available index is assigned
+void ShowRecurringWarningErrorAtEnd(std::string const &Message,         // Message automatically written to "error file" at end of simulation
+                                    int &MsgIndex,                      // Recurring message index, if zero, next available index is assigned
                                     Optional<Real64 const> ReportMaxOf, // Track and report the max of the values passed to this argument
                                     Optional<Real64 const> ReportMinOf, // Track and report the min of the values passed to this argument
                                     Optional<Real64 const> ReportSumOf, // Track and report the sum of the values passed to this argument
@@ -1377,8 +1374,8 @@ void ShowRecurringWarningErrorAtEnd(std::string const &Message, // Message autom
                                ReportSumUnits);
 }
 
-void ShowRecurringContinueErrorAtEnd(std::string const &Message, // Message automatically written to "error file" at end of simulation
-                                     int &MsgIndex,              // Recurring message index, if zero, next available index is assigned
+void ShowRecurringContinueErrorAtEnd(std::string const &Message,         // Message automatically written to "error file" at end of simulation
+                                     int &MsgIndex,                      // Recurring message index, if zero, next available index is assigned
                                      Optional<Real64 const> ReportMaxOf, // Track and report the max of the values passed to this argument
                                      Optional<Real64 const> ReportMinOf, // Track and report the min of the values passed to this argument
                                      Optional<Real64 const> ReportSumOf, // Track and report the sum of the values passed to this argument
@@ -1434,8 +1431,8 @@ void ShowRecurringContinueErrorAtEnd(std::string const &Message, // Message auto
                                ReportSumUnits);
 }
 
-void StoreRecurringErrorMessage(std::string const &ErrorMessage, // Message automatically written to "error file" at end of simulation
-                                int &ErrorMsgIndex,              // Recurring message index, if zero, next available index is assigned
+void StoreRecurringErrorMessage(std::string const &ErrorMessage,         // Message automatically written to "error file" at end of simulation
+                                int &ErrorMsgIndex,                      // Recurring message index, if zero, next available index is assigned
                                 Optional<Real64 const> ErrorReportMaxOf, // Track and report the max of the values passed to this argument
                                 Optional<Real64 const> ErrorReportMinOf, // Track and report the min of the values passed to this argument
                                 Optional<Real64 const> ErrorReportSumOf, // Track and report the sum of the values passed to this argument

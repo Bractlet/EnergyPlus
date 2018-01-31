@@ -145,9 +145,9 @@ void SurfaceOctreeCube::init(ObjexxFCL::Array1<Surface> &surfaces)
 bool SurfaceOctreeCube::valid() const
 {
     if (((l_.x <= c_.x) && (l_.y <= c_.y) && (l_.z <= c_.z)) && ((c_.x <= u_.x) && (c_.y <= u_.y) && (c_.z <= u_.z))) {
-        Real const tol2(std::max(std::max(ObjexxFCL::magnitude_squared(l_), ObjexxFCL::magnitude_squared(u_)) *
-                                     (4 * std::numeric_limits<Real>::epsilon()),
-                                 2 * std::numeric_limits<Real>::min()));
+        Real const tol2(
+            std::max(std::max(ObjexxFCL::magnitude_squared(l_), ObjexxFCL::magnitude_squared(u_)) * (4 * std::numeric_limits<Real>::epsilon()),
+                     2 * std::numeric_limits<Real>::min()));
         if (ObjexxFCL::distance_squared(c_, cen(l_, u_)) <= tol2) {
             Real const tol(std::max(std::sqrt(std::max(ObjexxFCL::magnitude_squared(l_), ObjexxFCL::magnitude_squared(u_))) *
                                         (4 * std::numeric_limits<Real>::epsilon()),

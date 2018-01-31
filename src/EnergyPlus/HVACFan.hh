@@ -141,15 +141,14 @@ namespace HVACFan {
 
         void set_size();
 
-        void
-        calcSimpleSystemFan(Optional<Real64 const> flowFraction, // Flow fraction for entire timestep (not used if flow ratios are present)
-                            Optional<Real64 const> pressureRise, // Pressure difference to use for DeltaPress
-                            Optional<Real64 const> flowRatio1,   // Flow ratio in operating mode 1
-                            Optional<Real64 const> runTimeFrac1, // Run time fraction in operating mode 1
-                            Optional<Real64 const> flowRatio2,   // Flow ratio in operating mode 2
-                            Optional<Real64 const> runTimeFrac2, // Run time fraction in operating mode 2
-                            Optional<Real64 const> pressureRise2 // Pressure difference to use for operating mode 2
-                            );
+        void calcSimpleSystemFan(Optional<Real64 const> flowFraction, // Flow fraction for entire timestep (not used if flow ratios are present)
+                                 Optional<Real64 const> pressureRise, // Pressure difference to use for DeltaPress
+                                 Optional<Real64 const> flowRatio1,   // Flow ratio in operating mode 1
+                                 Optional<Real64 const> runTimeFrac1, // Run time fraction in operating mode 1
+                                 Optional<Real64 const> flowRatio2,   // Flow ratio in operating mode 2
+                                 Optional<Real64 const> runTimeFrac2, // Run time fraction in operating mode 2
+                                 Optional<Real64 const> pressureRise2 // Pressure difference to use for operating mode 2
+                                 );
 
         void update() const;
 

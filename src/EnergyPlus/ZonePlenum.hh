@@ -121,9 +121,9 @@ namespace ZonePlenum {
 
         // Default Constructor
         ZoneReturnPlenumConditions()
-            : ZoneTemp(0.0), ZoneHumRat(0.0), ZoneEnthalpy(0.0), OutletTemp(0.0), OutletHumRat(0.0), OutletEnthalpy(0.0),
-              OutletPressure(0.0), ZoneNodeNum(0), ActualZoneNum(0), OutletNode(0), OutletMassFlowRate(0.0),
-              OutletMassFlowRateMaxAvail(0.0), OutletMassFlowRateMinAvail(0.0), NumInducedNodes(0), InitFlag(false), NumInletNodes(0)
+            : ZoneTemp(0.0), ZoneHumRat(0.0), ZoneEnthalpy(0.0), OutletTemp(0.0), OutletHumRat(0.0), OutletEnthalpy(0.0), OutletPressure(0.0),
+              ZoneNodeNum(0), ActualZoneNum(0), OutletNode(0), OutletMassFlowRate(0.0), OutletMassFlowRateMaxAvail(0.0),
+              OutletMassFlowRateMinAvail(0.0), NumInducedNodes(0), InitFlag(false), NumInletNodes(0)
         {
         }
     };
@@ -161,8 +161,8 @@ namespace ZonePlenum {
         // Default Constructor
         ZoneSupplyPlenumConditions()
             : ZoneTemp(0.0), ZoneHumRat(0.0), ZoneEnthalpy(0.0), InletTemp(0.0), InletHumRat(0.0), InletEnthalpy(0.0), InletPressure(0.0),
-              ZoneNodeNum(0), ActualZoneNum(0), InletNode(0), InletMassFlowRate(0.0), InletMassFlowRateMaxAvail(0.0),
-              InletMassFlowRateMinAvail(0.0), InitFlag(false), NumOutletNodes(0)
+              ZoneNodeNum(0), ActualZoneNum(0), InletNode(0), InletMassFlowRate(0.0), InletMassFlowRateMaxAvail(0.0), InletMassFlowRateMinAvail(0.0),
+              InitFlag(false), NumOutletNodes(0)
         {
         }
     };

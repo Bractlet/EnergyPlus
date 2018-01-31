@@ -325,8 +325,7 @@ namespace InputProcessor {
 
     void ValidateSection(std::string const &ProposedSection, int const LineNo);
 
-    void
-    ValidateObjectandParse(std::istream &idf_stream, std::string const &ProposedObject, std::string::size_type &CurPos, bool &EndofFile);
+    void ValidateObjectandParse(std::istream &idf_stream, std::string const &ProposedObject, std::string::size_type &CurPos, bool &EndofFile);
 
     void ValidateSectionsInput();
 
@@ -413,8 +412,7 @@ namespace InputProcessor {
         return FindItemInList(String, ListOfItems, ListOfItems.isize());
     }
 
-    template <typename A>
-    inline int FindItemInList(std::string const &String, MArray1<A, std::string> const &ListOfItems, int const NumItems)
+    template <typename A> inline int FindItemInList(std::string const &String, MArray1<A, std::string> const &ListOfItems, int const NumItems)
     {
         for (int Count = 1; Count <= NumItems; ++Count) {
             if (String == ListOfItems(Count)) return Count;
@@ -428,8 +426,8 @@ namespace InputProcessor {
     }
 
     template <typename Container,
-              class = typename std::enable_if<!std::is_same<typename Container::value_type, std::string>::value>::
-                  type> // Container needs and operator[i] and elements need Name
+              class = typename std::enable_if<
+                  !std::is_same<typename Container::value_type, std::string>::value>::type> // Container needs and operator[i] and elements need Name
     inline int
     FindItemInList(std::string const &String, Container const &ListOfItems, int const NumItems)
     {
@@ -461,8 +459,8 @@ namespace InputProcessor {
     }
 
     template <typename Container,
-              class = typename std::enable_if<!std::is_same<typename Container::value_type, std::string>::value>::
-                  type> // Container needs isize() and operator[i] and value_type
+              class = typename std::enable_if<
+                  !std::is_same<typename Container::value_type, std::string>::value>::type> // Container needs isize() and operator[i] and value_type
     inline int
     FindItemInList(std::string const &String, Container const &ListOfItems, std::string Container::value_type::*name_p)
     {
@@ -476,8 +474,7 @@ namespace InputProcessor {
         return FindItemInSortedList(String, ListOfItems, ListOfItems.isize());
     }
 
-    template <typename A>
-    inline int FindItemInSortedList(std::string const &String, MArray1<A, std::string> const &ListOfItems, int const NumItems)
+    template <typename A> inline int FindItemInSortedList(std::string const &String, MArray1<A, std::string> const &ListOfItems, int const NumItems)
     {
         int Probe(0);
         int LBnd(0);
@@ -592,8 +589,8 @@ namespace InputProcessor {
     }
 
     template <typename Container,
-              class = typename std::enable_if<!std::is_same<typename Container::value_type, std::string>::value>::
-                  type> // Container needs size() and operator[i] and value_type
+              class = typename std::enable_if<
+                  !std::is_same<typename Container::value_type, std::string>::value>::type> // Container needs size() and operator[i] and value_type
     inline int
     FindItem(std::string const &String, Container const &ListOfItems, std::string Container::value_type::*name_p, int const NumItems)
     {
@@ -606,8 +603,8 @@ namespace InputProcessor {
     }
 
     template <typename Container,
-              class = typename std::enable_if<!std::is_same<typename Container::value_type, std::string>::value>::
-                  type> // Container needs size() and operator[i] and value_type
+              class = typename std::enable_if<
+                  !std::is_same<typename Container::value_type, std::string>::value>::type> // Container needs size() and operator[i] and value_type
     inline int
     FindItem(std::string const &String, Container const &ListOfItems, std::string Container::value_type::*name_p)
     {
@@ -645,12 +642,8 @@ namespace InputProcessor {
     }
 
     template <typename InputIterator>
-    inline void VerifyName(InputIterator first,
-                           InputIterator last,
-                           std::string const &NameToVerify,
-                           bool &ErrorFound,
-                           bool &IsBlank,
-                           std::string const &StringToDisplay)
+    inline void VerifyName(
+        InputIterator first, InputIterator last, std::string const &NameToVerify, bool &ErrorFound, bool &IsBlank, std::string const &StringToDisplay)
     {
         IsBlank = false;
         ErrorFound = false;
@@ -737,8 +730,8 @@ namespace InputProcessor {
     }
 
     template <typename Container,
-              class = typename std::enable_if<!std::is_same<typename Container::value_type, std::string>::value>::
-                  type> // Container needs size() and operator[i] and value_type
+              class = typename std::enable_if<
+                  !std::is_same<typename Container::value_type, std::string>::value>::type> // Container needs size() and operator[i] and value_type
     inline void
     VerifyName(std::string const &NameToVerify,
                Container const &NamesList,

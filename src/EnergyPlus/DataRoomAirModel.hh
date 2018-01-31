@@ -373,8 +373,7 @@ namespace DataRoomAirModel {
 
         // Default Constructor
         CVFlow()
-            : FlowFlag(0), Width(0.0), Area(0.0), Fin(0.0), Uin(0.0), Vjet(0.0), Yjet(0.0), Ujet(0.0), Yrec(0.0), Urec(0.0), YQrec(0.0),
-              Qrec(0.0)
+            : FlowFlag(0), Width(0.0), Area(0.0), Fin(0.0), Uin(0.0), Vjet(0.0), Yjet(0.0), Ujet(0.0), Yrec(0.0), Urec(0.0), YQrec(0.0), Qrec(0.0)
         {
         }
     };
@@ -422,8 +421,8 @@ namespace DataRoomAirModel {
         // Default Constructor
         UFIData()
             : ZonePtr(0), ZoneEquipPtr(0), DiffusersPerZone(0.0), PowerPerPlume(0.0), DiffArea(0.0), DiffAngle(0.0), HeatSrcHeight(0.0),
-              ThermostatHeight(0.0), ComfortHeight(0.0), TempTrigger(0.0), DiffuserType(0), TransHeight(0.0), CalcTransHeight(false),
-              A_Kc(0.0), B_Kc(0.0), C_Kc(0.0), D_Kc(0.0), E_Kc(0.0)
+              ThermostatHeight(0.0), ComfortHeight(0.0), TempTrigger(0.0), DiffuserType(0), TransHeight(0.0), CalcTransHeight(false), A_Kc(0.0),
+              B_Kc(0.0), C_Kc(0.0), D_Kc(0.0), E_Kc(0.0)
         {
         }
     };
@@ -459,8 +458,8 @@ namespace DataRoomAirModel {
         // Default Constructor
         UFEData()
             : ZonePtr(0), ZoneEquipPtr(0), DiffusersPerZone(0.0), PowerPerPlume(0.0), DiffArea(0.0), DiffAngle(0.0), HeatSrcHeight(0.0),
-              ThermostatHeight(0.0), ComfortHeight(0.0), TempTrigger(0.0), DiffuserType(0), TransHeight(0.0), CalcTransHeight(false),
-              A_Kc(0.0), B_Kc(0.0), C_Kc(0.0), D_Kc(0.0), E_Kc(0.0), WinWidth(0.0), NumExtWin(0.0), ShadeDown(true)
+              ThermostatHeight(0.0), ComfortHeight(0.0), TempTrigger(0.0), DiffuserType(0), TransHeight(0.0), CalcTransHeight(false), A_Kc(0.0),
+              B_Kc(0.0), C_Kc(0.0), D_Kc(0.0), E_Kc(0.0), WinWidth(0.0), NumExtWin(0.0), ShadeDown(true)
         {
         }
     };
@@ -611,8 +610,7 @@ namespace DataRoomAirModel {
 
         // Default Constructor
         AirflowLinkagesInfoNestedStruct()
-            : AirflowNetworkLinkSimuID(0), AirflowNetworkLinkageDataID(0), AirflowNetworkLinkReportID(0), MdotIn(0.0), TempIn(0.0),
-              HumRatIn(0.0)
+            : AirflowNetworkLinkSimuID(0), AirflowNetworkLinkageDataID(0), AirflowNetworkLinkReportID(0), MdotIn(0.0), TempIn(0.0), HumRatIn(0.0)
         {
         }
     };
@@ -665,16 +663,16 @@ namespace DataRoomAirModel {
     {
         // Members
         // user variables
-        std::string Name;                   // name of the node itself
-        Real64 ZoneVolumeFraction;          // Zone volume fraction applied to this specific node
-        std::string NodeSurfListName;       // name of nodes' adjacent surface list
-        bool HasSurfacesAssigned;           // True if this node has surfaces assigned
-        Array1D<bool> SurfMask;             // Sized to num of surfs in Zone, true if surface is associated with this node
-        std::string NodeIntGainsListName;   // name of node's internal gains list
-        bool HasIntGainsAssigned;           // True if this node has internal gain assigned
-        int NumIntGains;                    // Number of internal gain objects
-        Array1D<int> IntGainsDeviceIndices; // sized to NumIntGains, index pointers to internal gains struct
-        Array1D<Real64> IntGainsFractions;  // sized to NumIntGains, gain fractions to this node
+        std::string Name;                                           // name of the node itself
+        Real64 ZoneVolumeFraction;                                  // Zone volume fraction applied to this specific node
+        std::string NodeSurfListName;                               // name of nodes' adjacent surface list
+        bool HasSurfacesAssigned;                                   // True if this node has surfaces assigned
+        Array1D<bool> SurfMask;                                     // Sized to num of surfs in Zone, true if surface is associated with this node
+        std::string NodeIntGainsListName;                           // name of node's internal gains list
+        bool HasIntGainsAssigned;                                   // True if this node has internal gain assigned
+        int NumIntGains;                                            // Number of internal gain objects
+        Array1D<int> IntGainsDeviceIndices;                         // sized to NumIntGains, index pointers to internal gains struct
+        Array1D<Real64> IntGainsFractions;                          // sized to NumIntGains, gain fractions to this node
         Array1D<RoomAirflowNetworkNodeInternalGainsStruct> IntGain; // Internal gain struct
         std::string NodeHVACListName;                               // name of node's HVAC list
         bool HasHVACAssigned;                                       // True if HVAC systems are assigned to this node
@@ -716,19 +714,19 @@ namespace DataRoomAirModel {
         Real64 RelHumidity; // node air relative humidity
 
         // sensible heat balance terms for node
-        Real64 SumIntSensibleGain; // rate of heat gain from internal sensible gains(after fraction)
-        Real64 SumHA;              // sum of Hc * Area for surfaces associated with this node(surface convection sensible gain term)
-        Real64 SumHATsurf;         // sum of Hc * Area * Temp for surfaces associated with this node for convective heat transfer
-        Real64 SumHATref;          // sum of Hc * Area * Temp for surfaces associated with this node for radiation exchange
-        Real64 SumLinkMCp;         // sum of mdor*Cp for incoming airflows for this node derived from the AirflowNetwork model
-        Real64 SumLinkMCpT; // sum of mdor*Cp*T for incoming airflows and source temperature for this node derived from the AirflowNetwork
-                            // model
-        Real64 SumSysMCp;   // sum of mdor*Cp for incoming supply airflows for this node
-        Real64 SumSysMCpT;  // sum of mdor*Cp*T for incoming supply airflows and temperature for this node
-        Real64 SumSysM;     // sum of mdot for incoming supply airflows for this node
-        Real64 SumSysMW;    // sum of mdot*W for incoming supply airflows and temperature for this node
-        Real64 NonAirSystemResponse;     // sum of convective system load
-        Real64 SysDepZoneLoadsLagged;    // sum of system lagged load
+        Real64 SumIntSensibleGain;    // rate of heat gain from internal sensible gains(after fraction)
+        Real64 SumHA;                 // sum of Hc * Area for surfaces associated with this node(surface convection sensible gain term)
+        Real64 SumHATsurf;            // sum of Hc * Area * Temp for surfaces associated with this node for convective heat transfer
+        Real64 SumHATref;             // sum of Hc * Area * Temp for surfaces associated with this node for radiation exchange
+        Real64 SumLinkMCp;            // sum of mdor*Cp for incoming airflows for this node derived from the AirflowNetwork model
+        Real64 SumLinkMCpT;           // sum of mdor*Cp*T for incoming airflows and source temperature for this node derived from the AirflowNetwork
+                                      // model
+        Real64 SumSysMCp;             // sum of mdor*Cp for incoming supply airflows for this node
+        Real64 SumSysMCpT;            // sum of mdor*Cp*T for incoming supply airflows and temperature for this node
+        Real64 SumSysM;               // sum of mdot for incoming supply airflows for this node
+        Real64 SumSysMW;              // sum of mdot*W for incoming supply airflows and temperature for this node
+        Real64 NonAirSystemResponse;  // sum of convective system load
+        Real64 SysDepZoneLoadsLagged; // sum of system lagged load
         Real64 SysDepZoneLoadsLaggedOld; // sum of system lagged load
         Real64 AirCap;                   // Air storage term for energy balalce at each node
         Real64 AirHumRat;                // Air storage term for moisture balalce at each node
@@ -738,13 +736,13 @@ namespace DataRoomAirModel {
         Real64 SumHmARa;         // SUM OF ZONE AREA*Moist CONVECTION COEFF*Rho Air
         Real64 SumHmARaW;        // SUM OF ZONE AREA*Moist CONVECTION COEFF*Rho Air* Inside Humidity Ratio
         Real64 SumLinkM;         // sum of mdor for incoming airflows for this node derived from the AirflowNetwork model
-        Real64 SumLinkMW; // sum of mdor*Cp*T for incoming airflows and source humidity ratio for this node derived from the AirflowNetwork
-                          // model
+        Real64 SumLinkMW;        // sum of mdor*Cp*T for incoming airflows and source humidity ratio for this node derived from the AirflowNetwork
+                                 // model
 
         // Default Constructor
         RoomAirflowNetworkAirNodeNestedStruct()
-            : ZoneVolumeFraction(0.0), HasSurfacesAssigned(false), HasIntGainsAssigned(false), NumIntGains(0), HasHVACAssigned(false),
-              NumHVACs(0), AirflowNetworkNodeID(0), // pointer to AirflowNetworkNodeData structure
+            : ZoneVolumeFraction(0.0), HasSurfacesAssigned(false), HasIntGainsAssigned(false), NumIntGains(0), HasHVACAssigned(false), NumHVACs(0),
+              AirflowNetworkNodeID(0),              // pointer to AirflowNetworkNodeData structure
               NumOfAirflowLinks(0), AirVolume(0.0), // air volume in control volume associated with this node(m3 / s)
               RhoAir(0.0),                          // current density of air for nodal control volume
               CpAir(0.0),                           // current heat capacity of air for nodal control volume
@@ -774,8 +772,8 @@ namespace DataRoomAirModel {
               HumRatWM2(0.0),                       // node air humidity ratio at time step t-2 used in Exact and Euler method
               RelHumidity(0.0),                     // node air relative humidity
               // sensible heat balance terms for node
-              SumIntSensibleGain(0.0), // rate of heat gain from internal sensible gains(after fraction)
-              SumHA(0.0),              // sum of Hc * Area for surfaces associated with this node(surface convection sensible gain term)
+              SumIntSensibleGain(0.0),         // rate of heat gain from internal sensible gains(after fraction)
+              SumHA(0.0),                      // sum of Hc * Area for surfaces associated with this node(surface convection sensible gain term)
               SumHATsurf(0.0), SumHATref(0.0), // sum of Hc * Area * Temp for surfaces associated with this node
               SumLinkMCp(0.0), SumLinkMCpT(0.0), SumSysMCp(0.0), SumSysMCpT(0.0), SumSysM(0.0), SumSysMW(0.0), NonAirSystemResponse(0.0),
               SysDepZoneLoadsLagged(0.0), SysDepZoneLoadsLaggedOld(0.0), AirCap(0.0), AirHumRat(0.0),

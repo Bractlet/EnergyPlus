@@ -133,8 +133,7 @@ namespace InputProcessor {
     std::string::size_type const MaxSectionNameLength(MaxNameLength); // Maximum number of characters in a Section Name
     std::string::size_type const MaxAlphaArgLength(MaxNameLength);    // Maximum number of characters in an Alpha Argument
     std::string::size_type const MaxInputLineLength(500);             // Maximum number of characters in an input line (in.idf, energy+.idd)
-    std::string::size_type const
-        MaxFieldNameLength(140); // Maximum number of characters in a field name string // Not used with std::string
+    std::string::size_type const MaxFieldNameLength(140); // Maximum number of characters in a field name string // Not used with std::string
     std::string const Blank;
     static std::string const BlankString;
     static std::string const AlphaNum("ANan"); // Valid indicators for Alpha or Numeric fields (A or N)
@@ -492,8 +491,8 @@ namespace InputProcessor {
         //   WRITE(EchoInputFile,*) ' Number of IDF "Lines"=',NumIDFRecords
         gio::write(EchoInputFile, fmtLD) << " Maximum number of Alpha IDF Args=" << MaxAlphaIDFArgsFound;
         gio::write(EchoInputFile, fmtLD) << " Maximum number of Numeric IDF Args=" << MaxNumericIDFArgsFound;
-        GetIDFRecordsStats(iNumberOfRecords, iNumberOfDefaultedFields, iTotalFieldsWithDefaults, iNumberOfAutoSizedFields,
-                           iTotalAutoSizableFields, iNumberOfAutoCalcedFields, iTotalAutoCalculatableFields);
+        GetIDFRecordsStats(iNumberOfRecords, iNumberOfDefaultedFields, iTotalFieldsWithDefaults, iNumberOfAutoSizedFields, iTotalAutoSizableFields,
+                           iNumberOfAutoCalcedFields, iTotalAutoCalculatableFields);
         gio::write(EchoInputFile, fmtLD) << " Number of IDF \"Lines\"=" << iNumberOfRecords;
         gio::write(EchoInputFile, fmtLD) << " Number of Defaulted Fields=" << iNumberOfDefaultedFields;
         gio::write(EchoInputFile, fmtLD) << " Number of Fields with Defaults=" << iTotalFieldsWithDefaults;
@@ -575,14 +574,12 @@ namespace InputProcessor {
                 if (SameString(IDFRecords(Loop).Name, "Version")) {
                     std::string::size_type const lenVer(len(MatchVersion));
                     if ((lenVer > 0) && (MatchVersion[lenVer - 1] == '0')) {
-                        Which =
-                            static_cast<int>(index(IDFRecords(Loop).Alphas(1).substr(0, lenVer - 2), MatchVersion.substr(0, lenVer - 2)));
+                        Which = static_cast<int>(index(IDFRecords(Loop).Alphas(1).substr(0, lenVer - 2), MatchVersion.substr(0, lenVer - 2)));
                     } else {
                         Which = static_cast<int>(index(IDFRecords(Loop).Alphas(1), MatchVersion));
                     }
                     if (Which != 0) {
-                        ShowContinueError("Version in IDF=\"" + IDFRecords(Loop).Alphas(1) + "\" not the same as expected=\"" +
-                                          MatchVersion + "\"");
+                        ShowContinueError("Version in IDF=\"" + IDFRecords(Loop).Alphas(1) + "\" not the same as expected=\"" + MatchVersion + "\"");
                     }
                     break;
                 }
@@ -787,16 +784,16 @@ namespace InputProcessor {
         // na
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:
-        std::string SqueezedObject;         // Input Object, Left Justified, UpperCase
-        int Count;                          // Count on arguments, loop
-        std::string::size_type Pos;         // Position scanning variable
-        bool EndofObjectDef;                // Set to true when ; has been found
-        bool errFlag;                       // Local Error condition flag, when true, object not added to Global list
-        char TargetChar;                    // Single character scanned to test for current field type (A or N)
-        bool BlankLine;                     // True when this line is "blank" (may have comment characters as first character on line)
-        static Array1D_bool AlphaOrNumeric; // Array of argument designations, True is Alpha, False is numeric, saved in ObjectDef when done
-        static Array1D_bool RequiredFields; // Array of argument required fields
-        static Array1D_bool AlphRetainCase; // Array of argument for retain case
+        std::string SqueezedObject;              // Input Object, Left Justified, UpperCase
+        int Count;                               // Count on arguments, loop
+        std::string::size_type Pos;              // Position scanning variable
+        bool EndofObjectDef;                     // Set to true when ; has been found
+        bool errFlag;                            // Local Error condition flag, when true, object not added to Global list
+        char TargetChar;                         // Single character scanned to test for current field type (A or N)
+        bool BlankLine;                          // True when this line is "blank" (may have comment characters as first character on line)
+        static Array1D_bool AlphaOrNumeric;      // Array of argument designations, True is Alpha, False is numeric, saved in ObjectDef when done
+        static Array1D_bool RequiredFields;      // Array of argument required fields
+        static Array1D_bool AlphRetainCase;      // Array of argument for retain case
         static Array1D_string AlphFieldChecks;   // Array with alpha field names
         static Array1D_string AlphFieldDefaults; // Array with alpha field defaults
         bool MinMax;                             // Set to true when MinMax field has been found by ReadInputLine
@@ -961,8 +958,8 @@ namespace InputProcessor {
                     }
 
                 } else {
-                    ReadInputLine(idd_stream, CurPos, BlankLine, EndofFile, MinMax, WhichMinMax, MinMaxString, Value, Default,
-                                  AlphDefaultString, AutoSize, AutoCalculate, RetainCaseFlag, ErrorsFoundFlag);
+                    ReadInputLine(idd_stream, CurPos, BlankLine, EndofFile, MinMax, WhichMinMax, MinMaxString, Value, Default, AlphDefaultString,
+                                  AutoSize, AutoCalculate, RetainCaseFlag, ErrorsFoundFlag);
                     if (!AlphaOrNumeric(Count)) {
                         // only record for numeric fields
                         if (MinMax) {
@@ -982,8 +979,7 @@ namespace InputProcessor {
                             NumRangeChecks(ObjectDef(NumObjectDefs).NumNumeric).DefaultChk = true;
                             NumRangeChecks(ObjectDef(NumObjectDefs).NumNumeric).Default = Value;
                             if (AlphDefaultString == "AUTOSIZE") NumRangeChecks(ObjectDef(NumObjectDefs).NumNumeric).DefAutoSize = true;
-                            if (AlphDefaultString == "AUTOCALCULATE")
-                                NumRangeChecks(ObjectDef(NumObjectDefs).NumNumeric).DefAutoCalculate = true;
+                            if (AlphDefaultString == "AUTOCALCULATE") NumRangeChecks(ObjectDef(NumObjectDefs).NumNumeric).DefAutoCalculate = true;
                         }
                         if (AutoSize) {
                             NumRangeChecks(ObjectDef(NumObjectDefs).NumNumeric).AutoSizable = true;
@@ -1058,8 +1054,8 @@ namespace InputProcessor {
         BlankLine = true;
         while (BlankLine && !EndofFile) {
             // It's a numeric object as last one...
-            ReadInputLine(idd_stream, CurPos, BlankLine, EndofFile, MinMax, WhichMinMax, MinMaxString, Value, Default, AlphDefaultString,
-                          AutoSize, AutoCalculate, RetainCaseFlag, ErrorsFoundFlag);
+            ReadInputLine(idd_stream, CurPos, BlankLine, EndofFile, MinMax, WhichMinMax, MinMaxString, Value, Default, AlphDefaultString, AutoSize,
+                          AutoCalculate, RetainCaseFlag, ErrorsFoundFlag);
             if (MinMax) {
                 NumRangeChecks(ObjectDef(NumObjectDefs).NumNumeric).MinMaxChk = true;
                 NumRangeChecks(ObjectDef(NumObjectDefs).NumNumeric).FieldNumber = Count;
@@ -1205,10 +1201,8 @@ namespace InputProcessor {
             if (ObjectDef(NumObjectDefs).NumRangeChks(Count).DefaultChk) {
                 // Check Default against MinMaxRange
                 //  Don't check when default is autosize...
-                if (ObjectDef(NumObjectDefs).NumRangeChks(Count).AutoSizable && ObjectDef(NumObjectDefs).NumRangeChks(Count).DefAutoSize)
-                    continue;
-                if (ObjectDef(NumObjectDefs).NumRangeChks(Count).AutoCalculatable &&
-                    ObjectDef(NumObjectDefs).NumRangeChks(Count).DefAutoCalculate)
+                if (ObjectDef(NumObjectDefs).NumRangeChks(Count).AutoSizable && ObjectDef(NumObjectDefs).NumRangeChks(Count).DefAutoSize) continue;
+                if (ObjectDef(NumObjectDefs).NumRangeChks(Count).AutoCalculatable && ObjectDef(NumObjectDefs).NumRangeChks(Count).DefAutoCalculate)
                     continue;
                 MinMaxError = false;
                 Value = ObjectDef(NumObjectDefs).NumRangeChks(Count).Default;
@@ -1440,8 +1434,7 @@ namespace InputProcessor {
         }
     }
 
-    void
-    ValidateObjectandParse(std::istream &idf_stream, std::string const &ProposedObject, std::string::size_type &CurPos, bool &EndofFile)
+    void ValidateObjectandParse(std::istream &idf_stream, std::string const &ProposedObject, std::string::size_type &CurPos, bool &EndofFile)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR         Linda K. Lawrie
@@ -1531,8 +1524,8 @@ namespace InputProcessor {
                     if (TFound != 0) {
                         if (RepObjects(TFound).Transitioned) {
                             if (!RepObjects(TFound).Used)
-                                ShowWarningError("IP: Objects=\"" + stripped(ProposedObject) +
-                                                 "\" are being transitioned to this object=\"" + RepObjects(TFound).NewName + "\"");
+                                ShowWarningError("IP: Objects=\"" + stripped(ProposedObject) + "\" are being transitioned to this object=\"" +
+                                                 RepObjects(TFound).NewName + "\"");
                             RepObjects(TFound).Used = true;
                             if (SortedIDD) {
                                 Found = FindItemInSortedList(SqueezedObject, ListOfObjects, NumObjectDefs);
@@ -1542,8 +1535,8 @@ namespace InputProcessor {
                             }
                         } else if (RepObjects(TFound).TransitionDefer) {
                             if (!RepObjects(TFound).Used)
-                                ShowWarningError("IP: Objects=\"" + stripped(ProposedObject) +
-                                                 "\" are being transitioned to this object=\"" + RepObjects(TFound).NewName + "\"");
+                                ShowWarningError("IP: Objects=\"" + stripped(ProposedObject) + "\" are being transitioned to this object=\"" +
+                                                 RepObjects(TFound).NewName + "\"");
                             RepObjects(TFound).Used = true;
                             if (SortedIDD) {
                                 Found = FindItemInSortedList(SqueezedObject, ListOfObjects, NumObjectDefs);
@@ -1635,8 +1628,7 @@ namespace InputProcessor {
                     TFound = FindItemInList(SqueezedObject, RepObjects, &SecretObjects::OldName);
                     if (TFound == 0) {
                         ShowWarningError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Obsolete object=" + stripped(ProposedObject) +
-                                         ", encountered.  Should be replaced with new object=" +
-                                         ObsoleteObjectsRepNames(ObjectDef(Found).ObsPtr));
+                                         ", encountered.  Should be replaced with new object=" + ObsoleteObjectsRepNames(ObjectDef(Found).ObsPtr));
                     } else if (!RepObjects(TFound).Used && RepObjects(TFound).Transitioned) {
                         ShowWarningError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Objects=\"" + stripped(ProposedObject) +
                                          "\" are being transitioned to this object=\"" + RepObjects(TFound).NewName + "\"");
@@ -1718,8 +1710,7 @@ namespace InputProcessor {
                         if (len(stripped(InputLine.substr(CurPos, Pos))) > static_cast<std::string::size_type>(MaxAlphaArgLength)) {
                             DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf, CurQPtr);
                             ShowWarningError("IP: IDF line~" + IPTrimSigDigits(NumLines) +
-                                                 " Alpha Argument length exceeds maximum, will be truncated=" +
-                                                 InputLine.substr(CurPos, Pos - 1),
+                                                 " Alpha Argument length exceeds maximum, will be truncated=" + InputLine.substr(CurPos, Pos - 1),
                                              EchoInputFile);
                             ShowContinueError("Will be processed as Alpha=" + SqueezedArg, EchoInputFile);
                         }
@@ -1730,8 +1721,7 @@ namespace InputProcessor {
                         DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf, CurQPtr);
                         ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected for Object=" + ObjectDef(Found).Name,
                                         EchoInputFile);
-                        ShowContinueError(" Maximum arguments reached for this object, trying to process ->" + SqueezedArg + "<-",
-                                          EchoInputFile);
+                        ShowContinueError(" Maximum arguments reached for this object, trying to process ->" + SqueezedArg + "<-", EchoInputFile);
                         errFlag = true;
                     } else {
                         if (NumArg == NumArgExpected && ObjectDef(Found).ExtensibleObject) {
@@ -1741,11 +1731,9 @@ namespace InputProcessor {
                         if (ObjectDef(Found).AlphaOrNumeric(NumArg)) {
                             if (NumAlpha == ObjectDef(Found).NumAlpha) {
                                 DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf, CurQPtr);
-                                ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected for Object=" +
-                                                    ObjectDef(Found).Name,
+                                ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected for Object=" + ObjectDef(Found).Name,
                                                 EchoInputFile);
-                                ShowContinueError(" Too many Alphas for this object, trying to process ->" + SqueezedArg + "<-",
-                                                  EchoInputFile);
+                                ShowContinueError(" Too many Alphas for this object, trying to process ->" + SqueezedArg + "<-", EchoInputFile);
                                 errFlag = true;
                             } else {
                                 ++NumAlpha;
@@ -1761,20 +1749,17 @@ namespace InputProcessor {
                                         LineItem.Alphas(NumAlpha) = ObjectDef(Found).AlphFieldDefs(NumAlpha);
                                     } else {
                                         if (ObjectDef(Found).NameAlpha1 && NumAlpha != 1) {
-                                            DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf,
-                                                                  CurQPtr);
+                                            DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf, CurQPtr);
                                             ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected in Object=" +
                                                                 ObjectDef(Found).Name + ", name=" + LineItem.Alphas(1),
                                                             EchoInputFile);
                                         } else {
-                                            DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf,
-                                                                  CurQPtr);
+                                            DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf, CurQPtr);
                                             ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected in Object=" +
                                                                 ObjectDef(Found).Name,
                                                             EchoInputFile);
                                         }
-                                        ShowContinueError("Field [" + ObjectDef(Found).AlphFieldChks(NumAlpha) +
-                                                              "] is required but was blank",
+                                        ShowContinueError("Field [" + ObjectDef(Found).AlphFieldChks(NumAlpha) + "] is required but was blank",
                                                           EchoInputFile);
                                         ++NumBlankReqFieldFound;
                                     }
@@ -1788,11 +1773,9 @@ namespace InputProcessor {
                         } else {
                             if (NumNumeric == ObjectDef(Found).NumNumeric) {
                                 DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf, CurQPtr);
-                                ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected for Object=" +
-                                                    ObjectDef(Found).Name,
+                                ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected for Object=" + ObjectDef(Found).Name,
                                                 EchoInputFile);
-                                ShowContinueError(" Too many Numbers for this object, trying to process ->" + SqueezedArg + "<-",
-                                                  EchoInputFile);
+                                ShowContinueError(" Too many Numbers for this object, trying to process ->" + SqueezedArg + "<-", EchoInputFile);
                                 errFlag = true;
                             } else {
                                 ++NumNumeric;
@@ -1825,15 +1808,13 @@ namespace InputProcessor {
                                     } else {                                     // blank arg does not have default
                                         if (ObjectDef(Found).ReqField(NumArg)) { // arg is required
                                             if (ObjectDef(Found).NameAlpha1) {   // object has name field - more context for error
-                                                DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf,
-                                                                      CurQPtr);
+                                                DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf, CurQPtr);
                                                 ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected in Object=" +
                                                                     ObjectDef(Found).Name + ", name=" + LineItem.Alphas(1),
                                                                 EchoInputFile);
                                                 errFlag = true;
                                             } else { // object does not have name field
-                                                DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf,
-                                                                      CurQPtr);
+                                                DumpCurrentLineBuffer(StartLine, cStartLine, cStartName, NumLines, NumConxLines, LineBuf, CurQPtr);
                                                 ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Error detected in Object=" +
                                                                     ObjectDef(Found).Name,
                                                                 EchoInputFile);
@@ -1853,8 +1834,8 @@ namespace InputProcessor {
                                         FieldString = IPTrimSigDigits(NumNumeric);
                                         FieldNameString = ObjectDef(Found).NumRangeChks(NumNumeric).FieldName;
                                         if (!FieldNameString.empty()) {
-                                            Message = "Invalid Number in Numeric Field#" + FieldString + " (" + FieldNameString +
-                                                      "), value=" + SqueezedArg;
+                                            Message =
+                                                "Invalid Number in Numeric Field#" + FieldString + " (" + FieldNameString + "), value=" + SqueezedArg;
                                         } else { // Field Name not recorded
                                             Message = "Invalid Number in Numeric Field#" + FieldString + ", value=" + SqueezedArg;
                                         }
@@ -1896,12 +1877,11 @@ namespace InputProcessor {
         if (!errFlag && !IDidntMeanIt) {
             if (NumArg < ObjectDef(Found).MinNumFields) {
                 if (ObjectDef(Found).NameAlpha1) {
-                    ShowAuditErrorMessage(" ** Warning ** ", "IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" +
-                                                                 ObjectDef(Found).Name + ", name=" + LineItem.Alphas(1) +
+                    ShowAuditErrorMessage(" ** Warning ** ", "IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Found).Name +
+                                                                 ", name=" + LineItem.Alphas(1) +
                                                                  ", entered with less than minimum number of fields.");
                 } else {
-                    ShowAuditErrorMessage(" ** Warning ** ", "IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" +
-                                                                 ObjectDef(Found).Name +
+                    ShowAuditErrorMessage(" ** Warning ** ", "IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Found).Name +
                                                                  ", entered with less than minimum number of fields.");
                 }
                 ShowAuditErrorMessage(" **   ~~~   ** ", "Attempting fill to minimum.");
@@ -1910,8 +1890,8 @@ namespace InputProcessor {
                 if (ObjectDef(Found).MinNumFields > ObjectDef(Found).NumParams) {
                     String = IPTrimSigDigits(ObjectDef(Found).MinNumFields);
                     String1 = IPTrimSigDigits(ObjectDef(Found).NumParams);
-                    ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) +
-                                    " Object \\min-fields > number of fields specified, Object=" + ObjectDef(Found).Name);
+                    ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object \\min-fields > number of fields specified, Object=" +
+                                    ObjectDef(Found).Name);
                     ShowContinueError("..\\min-fields=" + String + ", total number of fields in object definition=" + String1);
                     errFlag = true;
                 } else {
@@ -1922,13 +1902,13 @@ namespace InputProcessor {
                             ++LineItem.NumAlphas;
                             if (!ObjectDef(Found).AlphFieldDefs(LineItem.NumAlphas).empty()) {
                                 LineItem.Alphas(LineItem.NumAlphas) = ObjectDef(Found).AlphFieldDefs(LineItem.NumAlphas);
-                                ShowAuditErrorMessage(" **   Add   ** ", ObjectDef(Found).AlphFieldDefs(LineItem.NumAlphas) +
-                                                                             "   ! field=>" + ObjectDef(Found).AlphFieldChks(NumAlpha));
+                                ShowAuditErrorMessage(" **   Add   ** ", ObjectDef(Found).AlphFieldDefs(LineItem.NumAlphas) + "   ! field=>" +
+                                                                             ObjectDef(Found).AlphFieldChks(NumAlpha));
                             } else if (ObjectDef(Found).ReqField(Count)) {
                                 if (ObjectDef(Found).NameAlpha1) {
-                                    ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Found).Name +
-                                                        ", name=" + LineItem.Alphas(1) + ", Required Field=[" +
-                                                        ObjectDef(Found).AlphFieldChks(NumAlpha) + "] was blank.",
+                                    ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Found).Name + ", name=" +
+                                                        LineItem.Alphas(1) + ", Required Field=[" + ObjectDef(Found).AlphFieldChks(NumAlpha) +
+                                                        "] was blank.",
                                                     EchoInputFile);
                                 } else {
                                     ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Found).Name +
@@ -1939,8 +1919,7 @@ namespace InputProcessor {
                             } else {
                                 LineItem.Alphas(LineItem.NumAlphas).clear();
                                 LineItem.AlphBlank(LineItem.NumAlphas) = true;
-                                ShowAuditErrorMessage(" **   Add   ** ",
-                                                      "<blank field>   ! field=>" + ObjectDef(Found).AlphFieldChks(NumAlpha));
+                                ShowAuditErrorMessage(" **   Add   ** ", "<blank field>   ! field=>" + ObjectDef(Found).AlphFieldChks(NumAlpha));
                             }
                         } else {
                             ++NumNumeric;
@@ -1961,19 +1940,18 @@ namespace InputProcessor {
                                                           "autosize    ! field=>" + ObjectDef(Found).NumRangeChks(NumNumeric).FieldName);
                                 } else if (ObjectDef(Found).NumRangeChks(NumNumeric).DefAutoCalculate) {
                                     LineItem.Numbers(NumNumeric) = ObjectDef(Found).NumRangeChks(NumNumeric).AutoCalculateValue;
-                                    ShowAuditErrorMessage(" **   Add   ** ", "autocalculate    ! field=>" +
-                                                                                 ObjectDef(Found).NumRangeChks(NumNumeric).FieldName);
+                                    ShowAuditErrorMessage(" **   Add   ** ",
+                                                          "autocalculate    ! field=>" + ObjectDef(Found).NumRangeChks(NumNumeric).FieldName);
                                 }
                             } else if (ObjectDef(Found).ReqField(Count)) {
                                 if (ObjectDef(Found).NameAlpha1) {
-                                    ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Found).Name +
-                                                        ", name=" + LineItem.Alphas(1) + ", Required Field=[" +
+                                    ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Found).Name + ", name=" +
+                                                        LineItem.Alphas(1) + ", Required Field=[" +
                                                         ObjectDef(Found).NumRangeChks(NumNumeric).FieldName + "] was blank.",
                                                     EchoInputFile);
                                 } else {
                                     ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Found).Name +
-                                                        ", Required Field=[" + ObjectDef(Found).NumRangeChks(NumNumeric).FieldName +
-                                                        "] was blank.",
+                                                        ", Required Field=[" + ObjectDef(Found).NumRangeChks(NumNumeric).FieldName + "] was blank.",
                                                     EchoInputFile);
                                 }
                                 errFlag = true;
@@ -2015,8 +1993,7 @@ namespace InputProcessor {
                 for (Count = 1; Count <= LineItem.NumNumbers; ++Count) {
                     if (ObjectDef(Found).NumRangeChks(Count).MinMaxChk && !LineItem.NumBlank(Count)) {
                         InternalRangeCheck(LineItem.Numbers(Count), Count, Found, LineItem.Alphas(1),
-                                           ObjectDef(Found).NumRangeChks(Count).AutoSizable,
-                                           ObjectDef(Found).NumRangeChks(Count).AutoCalculatable);
+                                           ObjectDef(Found).NumRangeChks(Count).AutoSizable, ObjectDef(Found).NumRangeChks(Count).AutoCalculatable);
                     }
                 }
             }
@@ -2414,16 +2391,15 @@ namespace InputProcessor {
             Found = FindItemInList(UCObject, ListOfObjects, NumObjectDefs);
         }
         if (Found == 0) { //  This is more of a developer problem
-            ShowFatalError("IP: GetObjectItem: Requested object=" + UCObject +
-                           ", not found in Object Definitions -- incorrect IDD attached.");
+            ShowFatalError("IP: GetObjectItem: Requested object=" + UCObject + ", not found in Object Definitions -- incorrect IDD attached.");
         }
 
         if (ObjectDef(Found).NumAlpha > 0) {
             if (ObjectDef(Found).NumAlpha > MaxAlphas) {
                 cfld1 = IPTrimSigDigits(ObjectDef(Found).NumAlpha);
                 cfld2 = IPTrimSigDigits(MaxAlphas);
-                ShowFatalError("IP: GetObjectItem: " + Object + ", Number of ObjectDef Alpha Args [" + cfld1 +
-                               "] > Size of AlphaArg array [" + cfld2 + "].");
+                ShowFatalError("IP: GetObjectItem: " + Object + ", Number of ObjectDef Alpha Args [" + cfld1 + "] > Size of AlphaArg array [" +
+                               cfld2 + "].");
             }
             Alphas({1, ObjectDef(Found).NumAlpha}) = BlankString;
         }
@@ -2431,8 +2407,8 @@ namespace InputProcessor {
             if (ObjectDef(Found).NumNumeric > MaxNumbers) {
                 cfld1 = IPTrimSigDigits(ObjectDef(Found).NumNumeric);
                 cfld2 = IPTrimSigDigits(MaxNumbers);
-                ShowFatalError("IP: GetObjectItem: " + Object + ", Number of ObjectDef Numeric Args [" + cfld1 +
-                               "] > Size of NumericArg array [" + cfld2 + "].");
+                ShowFatalError("IP: GetObjectItem: " + Object + ", Number of ObjectDef Numeric Args [" + cfld1 + "] > Size of NumericArg array [" +
+                               cfld2 + "].");
             }
             Numbers({1, ObjectDef(Found).NumNumeric}) = 0.0;
         }
@@ -2455,11 +2431,9 @@ namespace InputProcessor {
                 if (Count == Number) {
                     IDFRecordsGotten(LoopIndex) = true; // only object level "gets" recorded
                     // Read this one
-                    GetObjectItemfromFile(LoopIndex, ObjectWord, NumAlphas, NumNumbers, AlphaArgs, NumberArgs, AlphaArgsBlank,
-                                          NumberArgsBlank);
+                    GetObjectItemfromFile(LoopIndex, ObjectWord, NumAlphas, NumNumbers, AlphaArgs, NumberArgs, AlphaArgsBlank, NumberArgsBlank);
                     if (NumAlphas > MaxAlphas || NumNumbers > MaxNumbers) {
-                        ShowFatalError("IP: GetObjectItem: Too many actual arguments for those expected on Object: " + ObjectWord,
-                                       EchoInputFile);
+                        ShowFatalError("IP: GetObjectItem: Too many actual arguments for those expected on Object: " + ObjectWord, EchoInputFile);
                     }
                     NumAlphas = min(MaxAlphas, NumAlphas);
                     NumNumbers = min(MaxNumbers, NumNumbers);
@@ -2528,8 +2502,7 @@ namespace InputProcessor {
                     ++NNfld;
                     if (!ObjectDef(Found).ReqField(LoopIndex)) {
                         Numbers(NNfld) = ObjectDef(Found).NumRangeChks(NNfld).Default;
-                        if (ObjectDef(Found).NumRangeChks(NNfld).DefAutoSize)
-                            Numbers(NNfld) = ObjectDef(Found).NumRangeChks(NNfld).AutoSizeValue;
+                        if (ObjectDef(Found).NumRangeChks(NNfld).DefAutoSize) Numbers(NNfld) = ObjectDef(Found).NumRangeChks(NNfld).AutoSizeValue;
                         if (ObjectDef(Found).NumRangeChks(NNfld).AutoCalculatable)
                             Numbers(NNfld) = ObjectDef(Found).NumRangeChks(NNfld).AutoCalculateValue;
 
@@ -2866,8 +2839,7 @@ namespace InputProcessor {
                                 if (NSpace != std::string::npos) {
                                     ExtensibleNumFields = int(ProcessNumber(number_str.substr(0, NSpace), errFlag));
                                     if (errFlag) {
-                                        ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) +
-                                                            " Illegal Number for \\extensible:<num>",
+                                        ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Illegal Number for \\extensible:<num>",
                                                         EchoInputFile);
                                     }
                                 } else {
@@ -2890,8 +2862,7 @@ namespace InputProcessor {
                             // RequiredField = true;
                             NSpace = FindNonSpace(UCInputLine.substr(11));
                             if (NSpace == std::string::npos) {
-                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Need number for \\Min-Fields",
-                                                EchoInputFile);
+                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Need number for \\Min-Fields", EchoInputFile);
                                 errFlag = true;
                                 MinimumNumberOfFields = 0;
                             } else {
@@ -2903,8 +2874,7 @@ namespace InputProcessor {
                                     MinimumNumberOfFields = int(ProcessNumber(number_str.substr(0, NSpace), errFlag));
                                 }
                                 if (errFlag) {
-                                    ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Illegal Number for \\Min-Fields",
-                                                    EchoInputFile);
+                                    ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Illegal Number for \\Min-Fields", EchoInputFile);
                                 }
                             }
                         }
@@ -2913,8 +2883,7 @@ namespace InputProcessor {
                         if (has_prefix(UCInputLine, "\\OBSOLETE")) { // Obsolete arg
                             NSpace = index(UCInputLine.substr(9), "=>");
                             if (NSpace == std::string::npos) {
-                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) +
-                                                    " Need replacement object for \\Obsolete objects",
+                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Need replacement object for \\Obsolete objects",
                                                 EchoInputFile);
                                 errFlag = true;
                             } else {
@@ -3052,8 +3021,8 @@ namespace InputProcessor {
                             AutoSizable = true;
                             ProcessMinMaxDefLine(UCInputLine, WhichMinMax, MinMaxString, Value, DefString, ErrLevel);
                             if (ErrLevel > 0) {
-                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) +
-                                                    " Error in Autosize designation -- invalid number=" + UCInputLine,
+                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Error in Autosize designation -- invalid number=" +
+                                                    UCInputLine,
                                                 EchoInputFile);
                                 errFlag = true;
                             }
@@ -3093,8 +3062,7 @@ namespace InputProcessor {
                                 if (NSpace != std::string::npos) {
                                     ExtensibleNumFields = int(ProcessNumber(number_str.substr(0, NSpace), errFlag));
                                     if (errFlag) {
-                                        ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) +
-                                                            " Illegal Number for \\extensible:<num>",
+                                        ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Illegal Number for \\extensible:<num>",
                                                         EchoInputFile);
                                     }
                                 } else {
@@ -3119,8 +3087,7 @@ namespace InputProcessor {
                             // RequiredField = true;
                             NSpace = FindNonSpace(UCInputLine.substr(11));
                             if (NSpace == std::string::npos) {
-                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Need number for \\Min-Fields",
-                                                EchoInputFile);
+                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Need number for \\Min-Fields", EchoInputFile);
                                 errFlag = true;
                                 MinimumNumberOfFields = 0;
                             } else {
@@ -3132,8 +3099,7 @@ namespace InputProcessor {
                                     MinimumNumberOfFields = int(ProcessNumber(number_str.substr(0, NSpace), errFlag));
                                 }
                                 if (errFlag) {
-                                    ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Illegal Number for \\Min-Fields",
-                                                    EchoInputFile);
+                                    ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Illegal Number for \\Min-Fields", EchoInputFile);
                                 }
                             }
                         } else if (has_prefix(UCInputLine, "\\MINIMUM") || has_prefix(UCInputLine, "\\MAXIMUM")) { // Min/Max args
@@ -3151,8 +3117,7 @@ namespace InputProcessor {
                         if (has_prefix(UCInputLine, "\\OBSOLETE")) { // Obsolete arg
                             NSpace = index(UCInputLine.substr(9), "=>");
                             if (NSpace == std::string::npos) {
-                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) +
-                                                    " Need replacement object for \\Obsolete objects",
+                                ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + " Need replacement object for \\Obsolete objects",
                                                 EchoInputFile);
                                 errFlag = true;
                             } else {
@@ -3296,8 +3261,7 @@ namespace InputProcessor {
 
         if (NumAlphaField > 0) {
             ObjectDef(ObjectNum).AlphFieldChks.redimension(ObjectDef(ObjectNum).NumAlpha + NumNewAlphas);
-            for (int Loop = ObjectDef(ObjectNum).NumAlpha + 1, Loop_end = ObjectDef(ObjectNum).NumAlpha + NumNewAlphas; Loop <= Loop_end;
-                 ++Loop) {
+            for (int Loop = ObjectDef(ObjectNum).NumAlpha + 1, Loop_end = ObjectDef(ObjectNum).NumAlpha + NumNewAlphas; Loop <= Loop_end; ++Loop) {
                 ++ObjectDef(ObjectNum).LastExtendAlpha;
                 charout = IPTrimSigDigits(ObjectDef(ObjectNum).LastExtendAlpha);
                 ObjectDef(ObjectNum).AlphFieldChks(Loop) = "Extended Alpha Field " + charout;
@@ -3318,8 +3282,8 @@ namespace InputProcessor {
 
         if (NumNumericField > 0) {
             ObjectDef(ObjectNum).NumRangeChks.redimension(ObjectDef(ObjectNum).NumNumeric + NumNewNumerics);
-            for (int Loop = ObjectDef(ObjectNum).NumNumeric + 1, Loop_end = ObjectDef(ObjectNum).NumNumeric + NumNewNumerics;
-                 Loop <= Loop_end; ++Loop) {
+            for (int Loop = ObjectDef(ObjectNum).NumNumeric + 1, Loop_end = ObjectDef(ObjectNum).NumNumeric + NumNewNumerics; Loop <= Loop_end;
+                 ++Loop) {
                 ObjectDef(ObjectNum).NumRangeChks(Loop).FieldNumber = Loop;
                 ++ObjectDef(ObjectNum).LastExtendNum;
                 charout = IPTrimSigDigits(ObjectDef(ObjectNum).LastExtendNum);
@@ -3512,8 +3476,7 @@ namespace InputProcessor {
             std::string::size_type NSpace = FindNonSpace(partLine.substr(Pos));
             if (NSpace == std::string::npos) {
                 if (WhichMinMax != 6) { // Only autosize/autocalculate can't have argument
-                    ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) +
-                                        "Min/Max/Default field cannot be blank -- must have value",
+                    ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + "Min/Max/Default field cannot be blank -- must have value",
                                     EchoInputFile);
                     ErrLevel = 2;
                 } else if (has_prefix(partLine, "\\AUTOS")) {
@@ -3543,8 +3506,7 @@ namespace InputProcessor {
                             Value = DefAutoCalculateValue;
                         }
                     } else {
-                        ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) +
-                                            "Min/Max/Default field cannot be blank -- must have value",
+                        ShowSevereError("IP: IDD Line=" + IPTrimSigDigits(NumLines) + "Min/Max/Default field cannot be blank -- must have value",
                                         EchoInputFile);
                         ErrLevel = 2;
                     }
@@ -3856,8 +3818,7 @@ namespace InputProcessor {
 
         for (std::string::size_type i = 0, e = len(InputString); i < e; ++i) {
             int const curCharVal = int(InputString[i]);
-            if ((97 <= curCharVal && curCharVal <= 122) ||
-                (224 <= curCharVal && curCharVal <= 255)) { // lowercase ASCII and accented characters
+            if ((97 <= curCharVal && curCharVal <= 122) || (224 <= curCharVal && curCharVal <= 255)) { // lowercase ASCII and accented characters
                 ResultString[i] = char(curCharVal - 32);
             }
         }
@@ -4158,8 +4119,8 @@ namespace InputProcessor {
                     gio::write(ValueString, "(F20.5)") << Value;
                     strip(ValueString);
                     if (!FieldNameString.empty()) {
-                        Message = "Out of range value Numeric Field#" + FieldString + " (" + FieldNameString + "), value=" + ValueString +
-                                  ", range={";
+                        Message =
+                            "Out of range value Numeric Field#" + FieldString + " (" + FieldNameString + "), value=" + ValueString + ", range={";
                     } else { // Field Name not recorded
                         Message = "Out of range value Numeric Field#" + FieldString + ", value=" + ValueString + ", range={";
                     }
@@ -4578,13 +4539,11 @@ namespace InputProcessor {
             iObjectDef = IDFRecords(iRecord).ObjectDefPtr;
             for (iField = 1; iField <= IDFRecords(iRecord).NumAlphas; ++iField) {
                 if (!ObjectDef(iObjectDef).AlphFieldDefs(iField).empty()) ++iTotalFieldsWithDefaults;
-                if (!ObjectDef(iObjectDef).AlphFieldDefs(iField).empty() && IDFRecords(iRecord).AlphBlank(iField))
-                    ++iNumberOfDefaultedFields;
+                if (!ObjectDef(iObjectDef).AlphFieldDefs(iField).empty() && IDFRecords(iRecord).AlphBlank(iField)) ++iNumberOfDefaultedFields;
             }
             for (iField = 1; iField <= IDFRecords(iRecord).NumNumbers; ++iField) {
                 if (ObjectDef(iObjectDef).NumRangeChks(iField).DefaultChk) ++iTotalFieldsWithDefaults;
-                if (ObjectDef(iObjectDef).NumRangeChks(iField).DefaultChk && IDFRecords(iRecord).NumBlank(iField))
-                    ++iNumberOfDefaultedFields;
+                if (ObjectDef(iObjectDef).NumRangeChks(iField).DefaultChk && IDFRecords(iRecord).NumBlank(iField)) ++iNumberOfDefaultedFields;
                 if (ObjectDef(iObjectDef).NumRangeChks(iField).AutoSizable) ++iTotalAutoSizableFields;
                 if (ObjectDef(iObjectDef).NumRangeChks(iField).AutoSizable &&
                     IDFRecords(iRecord).Numbers(iField) == ObjectDef(iObjectDef).NumRangeChks(iField).AutoSizeValue)
@@ -4984,8 +4943,7 @@ namespace InputProcessor {
         if (NumArg < ObjectDef(Which).MinNumFields) {
             if (ObjectDef(Which).NameAlpha1) {
                 ShowAuditErrorMessage(" ** Warning ** ", "IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Which).Name +
-                                                             ", name=" + LineItem.Alphas(1) +
-                                                             ", entered with less than minimum number of fields.");
+                                                             ", name=" + LineItem.Alphas(1) + ", entered with less than minimum number of fields.");
             } else {
                 ShowAuditErrorMessage(" ** Warning ** ", "IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Which).Name +
                                                              ", entered with less than minimum number of fields.");
@@ -5011,9 +4969,9 @@ namespace InputProcessor {
                                                                          ObjectDef(Which).AlphFieldChks(NumAlpha));
                         } else if (ObjectDef(Which).ReqField(Count)) {
                             if (ObjectDef(Which).NameAlpha1) {
-                                ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Which).Name +
-                                                    ", name=" + LineItem.Alphas(1) + ", Required Field=[" +
-                                                    ObjectDef(Which).AlphFieldChks(NumAlpha) + "] was blank.",
+                                ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Which).Name + ", name=" +
+                                                    LineItem.Alphas(1) + ", Required Field=[" + ObjectDef(Which).AlphFieldChks(NumAlpha) +
+                                                    "] was blank.",
                                                 EchoInputFile);
                             } else {
                                 ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Which).Name +
@@ -5024,8 +4982,7 @@ namespace InputProcessor {
                         } else {
                             LineItem.Alphas(LineItem.NumAlphas).clear();
                             LineItem.AlphBlank(LineItem.NumAlphas) = true;
-                            ShowAuditErrorMessage(" **   Add   ** ",
-                                                  "<blank field>   ! field=>" + ObjectDef(Which).AlphFieldChks(NumAlpha));
+                            ShowAuditErrorMessage(" **   Add   ** ", "<blank field>   ! field=>" + ObjectDef(Which).AlphFieldChks(NumAlpha));
                         }
                     } else {
                         ++NumNumeric;
@@ -5051,14 +5008,13 @@ namespace InputProcessor {
                             }
                         } else if (ObjectDef(Which).ReqField(Count)) {
                             if (ObjectDef(Which).NameAlpha1) {
-                                ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Which).Name +
-                                                    ", name=" + LineItem.Alphas(1) + ", Required Field=[" +
-                                                    ObjectDef(Which).NumRangeChks(NumNumeric).FieldName + "] was blank.",
+                                ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Which).Name + ", name=" +
+                                                    LineItem.Alphas(1) + ", Required Field=[" + ObjectDef(Which).NumRangeChks(NumNumeric).FieldName +
+                                                    "] was blank.",
                                                 EchoInputFile);
                             } else {
                                 ShowSevereError("IP: IDF line~" + IPTrimSigDigits(NumLines) + " Object=" + ObjectDef(Which).Name +
-                                                    ", Required Field=[" + ObjectDef(Which).NumRangeChks(NumNumeric).FieldName +
-                                                    "] was blank.",
+                                                    ", Required Field=[" + ObjectDef(Which).NumRangeChks(NumNumeric).FieldName + "] was blank.",
                                                 EchoInputFile);
                             }
                             //            errFlag=.TRUE.
@@ -5097,8 +5053,7 @@ namespace InputProcessor {
         if (LineItem.NumNumbers > 0) {
             for (Count = 1; Count <= LineItem.NumNumbers; ++Count) {
                 if (ObjectDef(Which).NumRangeChks(Count).MinMaxChk && !LineItem.NumBlank(Count)) {
-                    InternalRangeCheck(LineItem.Numbers(Count), Count, Which, LineItem.Alphas(1),
-                                       ObjectDef(Which).NumRangeChks(Count).AutoSizable,
+                    InternalRangeCheck(LineItem.Numbers(Count), Count, Which, LineItem.Alphas(1), ObjectDef(Which).NumRangeChks(Count).AutoSizable,
                                        ObjectDef(Which).NumRangeChks(Count).AutoCalculatable);
                 }
             }
@@ -5186,21 +5141,17 @@ namespace InputProcessor {
                 {
                     auto const errorType(uppercased(cAlphaArgs(2)));
                     if (errorType == "INFORMATION") {
-                        ShowMessage(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following Information message" + Multiples +
-                                    ':');
+                        ShowMessage(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following Information message" + Multiples + ':');
                     } else if (errorType == "WARNING") {
-                        ShowWarningError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following Warning condition" +
-                                         Multiples + ':');
+                        ShowWarningError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following Warning condition" + Multiples + ':');
                     } else if (errorType == "SEVERE") {
-                        ShowSevereError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following Severe condition" + Multiples +
-                                        ':');
+                        ShowSevereError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following Severe condition" + Multiples + ':');
                     } else if (errorType == "FATAL") {
-                        ShowSevereError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following Fatal condition" + Multiples +
-                                        ':');
+                        ShowSevereError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following Fatal condition" + Multiples + ':');
                         PreP_Fatal = true;
                     } else {
-                        ShowSevereError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following " + cAlphaArgs(2) +
-                                        " condition" + Multiples + ':');
+                        ShowSevereError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\" has the following " + cAlphaArgs(2) + " condition" +
+                                        Multiples + ':');
                     }
                 }
                 CountM = 3;
@@ -5399,8 +5350,7 @@ namespace InputProcessor {
         CurrentRecord = FindFirstRecord(MeterCustom);
         while (CurrentRecord != 0) {
             for (Loop = 3; Loop <= IDFRecords(CurrentRecord).NumAlphas; Loop += 2) {
-                if (Loop > IDFRecords(CurrentRecord).NumAlphas || Loop + 1 > IDFRecords(CurrentRecord).NumAlphas)
-                    continue; // error condition
+                if (Loop > IDFRecords(CurrentRecord).NumAlphas || Loop + 1 > IDFRecords(CurrentRecord).NumAlphas) continue; // error condition
                 if (!IDFRecords(CurrentRecord).AlphBlank(Loop)) {
                     AddRecordToOutputVariableStructure(IDFRecords(CurrentRecord).Alphas(Loop), IDFRecords(CurrentRecord).Alphas(Loop + 1));
                 } else {
@@ -5413,8 +5363,7 @@ namespace InputProcessor {
         CurrentRecord = FindFirstRecord(MeterCustomDecrement);
         while (CurrentRecord != 0) {
             for (Loop = 4; Loop <= IDFRecords(CurrentRecord).NumAlphas; Loop += 2) {
-                if (Loop > IDFRecords(CurrentRecord).NumAlphas || Loop + 1 > IDFRecords(CurrentRecord).NumAlphas)
-                    continue; // error condition
+                if (Loop > IDFRecords(CurrentRecord).NumAlphas || Loop + 1 > IDFRecords(CurrentRecord).NumAlphas) continue; // error condition
                 if (!IDFRecords(CurrentRecord).AlphBlank(Loop)) {
                     AddRecordToOutputVariableStructure(IDFRecords(CurrentRecord).Alphas(Loop), IDFRecords(CurrentRecord).Alphas(Loop + 1));
                 } else {
@@ -5427,8 +5376,7 @@ namespace InputProcessor {
         CurrentRecord = FindFirstRecord(MeterCustomDifference);
         while (CurrentRecord != 0) {
             for (Loop = 4; Loop <= IDFRecords(CurrentRecord).NumAlphas; Loop += 2) {
-                if (Loop > IDFRecords(CurrentRecord).NumAlphas || Loop + 1 > IDFRecords(CurrentRecord).NumAlphas)
-                    continue; // error condition
+                if (Loop > IDFRecords(CurrentRecord).NumAlphas || Loop + 1 > IDFRecords(CurrentRecord).NumAlphas) continue; // error condition
                 if (!IDFRecords(CurrentRecord).AlphBlank(Loop)) {
                     AddRecordToOutputVariableStructure(IDFRecords(CurrentRecord).Alphas(Loop), IDFRecords(CurrentRecord).Alphas(Loop + 1));
                 } else {
@@ -5488,8 +5436,7 @@ namespace InputProcessor {
         CurrentRecord = FindFirstRecord(OutputTableSummaries); // summary tables, not all add to variable structure
         while (CurrentRecord != 0) {
             for (Loop = 1; Loop <= IDFRecords(CurrentRecord).NumAlphas; ++Loop) {
-                if (IDFRecords(CurrentRecord).Alphas(Loop) == "ALLMONTHLY" ||
-                    IDFRecords(CurrentRecord).Alphas(Loop) == "ALLSUMMARYANDMONTHLY") {
+                if (IDFRecords(CurrentRecord).Alphas(Loop) == "ALLMONTHLY" || IDFRecords(CurrentRecord).Alphas(Loop) == "ALLSUMMARYANDMONTHLY") {
                     for (Loop1 = 1; Loop1 <= NumMonthlyReports; ++Loop1) {
                         AddVariablesForMonthlyReport(MonthlyNamedReports(Loop1));
                     }
@@ -5600,8 +5547,7 @@ namespace InputProcessor {
             AddRecordToOutputVariableStructure("*", "ZONE THERMAL COMFORT ASHRAE 55 SIMPLE MODEL SUMMER CLOTHES NOT COMFORTABLE TIME");
             AddRecordToOutputVariableStructure("*", "ZONE MEAN AIR TEMPERATURE");
             AddRecordToOutputVariableStructure("*", "ZONE THERMAL COMFORT ASHRAE 55 SIMPLE MODEL WINTER CLOTHES NOT COMFORTABLE TIME");
-            AddRecordToOutputVariableStructure("*",
-                                               "ZONE THERMAL COMFORT ASHRAE 55 SIMPLE MODEL SUMMER OR WINTER CLOTHES NOT COMFORTABLE TIME");
+            AddRecordToOutputVariableStructure("*", "ZONE THERMAL COMFORT ASHRAE 55 SIMPLE MODEL SUMMER OR WINTER CLOTHES NOT COMFORTABLE TIME");
 
         } else if (reportName == "UNGLAZEDTRANSPIREDSOLARCOLLECTORSUMMARYMONTHLY") {
             AddRecordToOutputVariableStructure("*", "SOLAR COLLECTOR SYSTEM EFFICIENCY");

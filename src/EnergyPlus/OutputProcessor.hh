@@ -285,9 +285,9 @@ namespace OutputProcessor {
 
         // Default Constructor
         RealVariables()
-            : Value(0.0), TSValue(0.0), EITSValue(0.0), StoreValue(0.0), NumStored(0.0), StoreType(0), Stored(false), Report(false),
-              tsStored(false), thisTSStored(false), thisTSCount(0), ReportFreq(0), MaxValue(-9999.0), maxValueDate(0), MinValue(9999.0),
-              minValueDate(0), ReportID(0), SchedPtr(0), MeterArrayPtr(0), ZoneMult(1), ZoneListMult(1)
+            : Value(0.0), TSValue(0.0), EITSValue(0.0), StoreValue(0.0), NumStored(0.0), StoreType(0), Stored(false), Report(false), tsStored(false),
+              thisTSStored(false), thisTSCount(0), ReportFreq(0), MaxValue(-9999.0), maxValueDate(0), MinValue(9999.0), minValueDate(0), ReportID(0),
+              SchedPtr(0), MeterArrayPtr(0), ZoneMult(1), ZoneListMult(1)
         {
         }
     };
@@ -318,9 +318,9 @@ namespace OutputProcessor {
 
         // Default Constructor
         IntegerVariables()
-            : Value(0.0), TSValue(0.0), EITSValue(0.0), StoreValue(0.0), NumStored(0.0), StoreType(0), Stored(false), Report(false),
-              tsStored(false), thisTSStored(false), thisTSCount(0), ReportFreq(0), MaxValue(-9999), maxValueDate(0), MinValue(9999),
-              minValueDate(0), ReportID(0), SchedPtr(0)
+            : Value(0.0), TSValue(0.0), EITSValue(0.0), StoreValue(0.0), NumStored(0.0), StoreType(0), Stored(false), Report(false), tsStored(false),
+              thisTSStored(false), thisTSCount(0), ReportFreq(0), MaxValue(-9999), maxValueDate(0), MinValue(9999), minValueDate(0), ReportID(0),
+              SchedPtr(0)
         {
         }
     };
@@ -339,8 +339,7 @@ namespace OutputProcessor {
 
         // Default Constructor
         VariableTypeForDDOutput()
-            : IndexType(0), StoreType(0), VariableType(VarType_NotFound), Next(0), ReportedOnDDFile(false),
-              units(OutputProcessor::Unit::None)
+            : IndexType(0), StoreType(0), VariableType(VarType_NotFound), Next(0), ReportedOnDDFile(false), units(OutputProcessor::Unit::None)
         {
         }
     };
@@ -499,16 +498,15 @@ namespace OutputProcessor {
 
         // Default Constructor
         MeterType()
-            : Units(OutputProcessor::Unit::None), RT_forIPUnits(0), TypeOfMeter(MeterType_Normal), SourceMeter(0), TSValue(0.0),
-              CurTSValue(0.0), RptTS(false), RptTSFO(false), TSRptNum(0), HRValue(0.0), RptHR(false), RptHRFO(false), HRMaxVal(-99999.0),
-              HRMaxValDate(0), HRMinVal(99999.0), HRMinValDate(0), HRRptNum(0), DYValue(0.0), RptDY(false), RptDYFO(false),
-              DYMaxVal(-99999.0), DYMaxValDate(0), DYMinVal(99999.0), DYMinValDate(0), DYRptNum(0), MNValue(0.0), RptMN(false),
-              RptMNFO(false), MNMaxVal(-99999.0), MNMaxValDate(0), MNMinVal(99999.0), MNMinValDate(0), MNRptNum(0), SMValue(0.0),
-              RptSM(false), RptSMFO(false), SMMaxVal(-99999.0), SMMaxValDate(0), SMMinVal(99999.0), SMMinValDate(0), SMRptNum(0),
-              LastSMValue(0.0), LastSMMaxVal(-99999.0), LastSMMaxValDate(0), LastSMMinVal(99999.0), LastSMMinValDate(0), FinYrSMValue(0.0),
-              FinYrSMMaxVal(-99999.0), FinYrSMMaxValDate(0), FinYrSMMinVal(99999.0), FinYrSMMinValDate(0), RptAccTS(false),
-              RptAccTSFO(false), RptAccHR(false), RptAccHRFO(false), RptAccDY(false), RptAccDYFO(false), RptAccMN(false), RptAccMNFO(false),
-              RptAccSM(false), RptAccSMFO(false), TSAccRptNum(0), HRAccRptNum(0), DYAccRptNum(0), MNAccRptNum(0), SMAccRptNum(0),
+            : Units(OutputProcessor::Unit::None), RT_forIPUnits(0), TypeOfMeter(MeterType_Normal), SourceMeter(0), TSValue(0.0), CurTSValue(0.0),
+              RptTS(false), RptTSFO(false), TSRptNum(0), HRValue(0.0), RptHR(false), RptHRFO(false), HRMaxVal(-99999.0), HRMaxValDate(0),
+              HRMinVal(99999.0), HRMinValDate(0), HRRptNum(0), DYValue(0.0), RptDY(false), RptDYFO(false), DYMaxVal(-99999.0), DYMaxValDate(0),
+              DYMinVal(99999.0), DYMinValDate(0), DYRptNum(0), MNValue(0.0), RptMN(false), RptMNFO(false), MNMaxVal(-99999.0), MNMaxValDate(0),
+              MNMinVal(99999.0), MNMinValDate(0), MNRptNum(0), SMValue(0.0), RptSM(false), RptSMFO(false), SMMaxVal(-99999.0), SMMaxValDate(0),
+              SMMinVal(99999.0), SMMinValDate(0), SMRptNum(0), LastSMValue(0.0), LastSMMaxVal(-99999.0), LastSMMaxValDate(0), LastSMMinVal(99999.0),
+              LastSMMinValDate(0), FinYrSMValue(0.0), FinYrSMMaxVal(-99999.0), FinYrSMMaxValDate(0), FinYrSMMinVal(99999.0), FinYrSMMinValDate(0),
+              RptAccTS(false), RptAccTSFO(false), RptAccHR(false), RptAccHRFO(false), RptAccDY(false), RptAccDYFO(false), RptAccMN(false),
+              RptAccMNFO(false), RptAccSM(false), RptAccSMFO(false), TSAccRptNum(0), HRAccRptNum(0), DYAccRptNum(0), MNAccRptNum(0), SMAccRptNum(0),
               InstMeterCacheStart(0), InstMeterCacheEnd(0)
         {
         }
@@ -709,22 +707,21 @@ namespace OutputProcessor {
 
     void AddEndUseSubcategory(std::string const &ResourceName, std::string const &EndUseName, std::string const &EndUseSubName);
 
-    void WriteTimeStampFormatData(
-        std::ostream *out_stream_p,             // Output stream pointer
-        int const reportingInterval,            // See Module Parameter Definitons for ReportEach, ReportTimeStep, ReportHourly, etc.
-        int const reportID,                     // The ID of the time stamp
-        std::string const &reportIDString,      // The ID of the time stamp
-        int const DayOfSim,                     // the number of days simulated so far
-        std::string const &DayOfSimChr,         // the number of days simulated so far
-        bool writeToSQL,                        // write to SQLite
-        Optional_int_const Month = _,           // the month of the reporting interval
-        Optional_int_const DayOfMonth = _,      // The day of the reporting interval
-        Optional_int_const Hour = _,            // The hour of the reporting interval
-        Optional<Real64 const> EndMinute = _,   // The last minute in the reporting interval
-        Optional<Real64 const> StartMinute = _, // The starting minute of the reporting interval
-        Optional_int_const DST = _,             // A flag indicating whether daylight savings time is observed
-        Optional_string_const DayType = _       // The day tied for the data (e.g., Monday)
-        );
+    void WriteTimeStampFormatData(std::ostream *out_stream_p,  // Output stream pointer
+                                  int const reportingInterval, // See Module Parameter Definitons for ReportEach, ReportTimeStep, ReportHourly, etc.
+                                  int const reportID,          // The ID of the time stamp
+                                  std::string const &reportIDString,      // The ID of the time stamp
+                                  int const DayOfSim,                     // the number of days simulated so far
+                                  std::string const &DayOfSimChr,         // the number of days simulated so far
+                                  bool writeToSQL,                        // write to SQLite
+                                  Optional_int_const Month = _,           // the month of the reporting interval
+                                  Optional_int_const DayOfMonth = _,      // The day of the reporting interval
+                                  Optional_int_const Hour = _,            // The hour of the reporting interval
+                                  Optional<Real64 const> EndMinute = _,   // The last minute in the reporting interval
+                                  Optional<Real64 const> StartMinute = _, // The starting minute of the reporting interval
+                                  Optional_int_const DST = _,             // A flag indicating whether daylight savings time is observed
+                                  Optional_string_const DayType = _       // The day tied for the data (e.g., Monday)
+                                  );
 
     void WriteReportVariableDictionaryItem(int const reportingInterval, // The reporting interval (e.g., hourly, daily)
                                            int const storeType,
@@ -748,7 +745,7 @@ namespace OutputProcessor {
                                   std::string const &meterName,      // The variable's meter name
                                   OutputProcessor::Unit const &unit, // The variables units
                                   bool const cumulativeMeterFlag,    // A flag indicating cumulative data
-                                  bool const meterFileOnlyFlag // A flag indicating whether the data is to be written to standard output
+                                  bool const meterFileOnlyFlag       // A flag indicating whether the data is to be written to standard output
                                   );
 
     void WriteRealVariableOutput(int const reportType // The report type or interval (e.g., hourly)
@@ -769,7 +766,7 @@ namespace OutputProcessor {
     void WriteCumulativeReportMeterData(int const reportID,           // The variable's report ID
                                         std::string const &creportID, // variable ID in characters
                                         Real64 const repValue,        // The variable's value
-                                        bool const meterOnlyFlag // A flag that indicates if the data should be written to standard output
+                                        bool const meterOnlyFlag      // A flag that indicates if the data should be written to standard output
                                         );
 
     void WriteReportMeterData(int const reportID,           // The variable's report ID

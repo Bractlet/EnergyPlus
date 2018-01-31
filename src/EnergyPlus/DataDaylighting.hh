@@ -216,9 +216,8 @@ namespace DataDaylighting {
         ZoneDaylightCalc()
             : DaylightMethod(0), AvailSchedNum(0), TotalDaylRefPoints(0), LightControlType(1), ViewAzimuthForGlare(0.0), MaxGlareallowed(0),
               MinPowerFraction(0.0), MinLightFraction(0.0), LightControlSteps(0), LightControlProbability(0.0), TotalExtWindows(0),
-              AveVisDiffReflect(0.0), ZonePowerReductionFactor(1.0), NumOfIntWinAdjZones(0), NumOfIntWinAdjZoneExtWins(0),
-              NumOfDayltgExtWins(0), MinIntWinSolidAng(0.0), TotInsSurfArea(0.0), FloorVisRefl(0.0), InterReflIllFrIntWins(0.0),
-              AdjZoneHasDayltgCtrl(false), MapCount(0)
+              AveVisDiffReflect(0.0), ZonePowerReductionFactor(1.0), NumOfIntWinAdjZones(0), NumOfIntWinAdjZoneExtWins(0), NumOfDayltgExtWins(0),
+              MinIntWinSolidAng(0.0), TotInsSurfArea(0.0), FloorVisRefl(0.0), InterReflIllFrIntWins(0.0), AdjZoneHasDayltgCtrl(false), MapCount(0)
         {
         }
     };

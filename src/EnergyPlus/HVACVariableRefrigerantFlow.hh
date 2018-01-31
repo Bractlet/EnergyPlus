@@ -405,63 +405,60 @@ namespace HVACVariableRefrigerantFlow {
         Real64 RateBFOUEvap;              // Outdoor Unit Evaporator Rated Bypass Factor
         Real64 RateBFOUCond;              // Outdoor Unit Condenser Rated Bypass Factor
         Real64 RefPipDiaSuc;              // diameter of refrigerant pipe (suction gas) that links the outdoor unit to the indoor units [m]
-        Real64 RefPipDiaDis;        // diameter of refrigerant pipe (discharge gas) that links the outdoor unit to the indoor units [m]
-        Real64 RefPipLen;           // length of refrigerant pipe that links the outdoor unit to the indoor units [m]
-        Real64 RefPipEquLen;        // Equivalent length of refrigerant pipe for pressure drop calculations [m]
-        Real64 RefPipHei;           // height of refrigerant pipe that links the outdoor unit to the indoor units [m]
-        Real64 RefPipInsThi;        // thickness of refrigerant pipe insulation [m]
-        Real64 RefPipInsCon;        // thermal conductivity of refrigerant pipe insulation [W/mk]
-        Real64 SH;                  // VRF outdoor unit superheating degrees [C]
-        Real64 SC;                  // VRF outdoor unit subcooling degrees [C]
-        Real64 SCHE;                // Simultaneous Cooling and Heating Efficiency [C]
-        Real64 SHLow;               // VRF outdoor unit superheating degrees lower limit [C]
-        Real64 SCLow;               // VRF outdoor unit subcooling degrees lower limit [C]
-        Real64 SHHigh;              // VRF outdoor unit superheating degrees uppler limit [C]
-        Real64 SCHigh;              // VRF outdoor unit subcooling degrees uppler limit [C]
-        Real64 VRFOperationSimPath; // simulation path indicating the VRF operation mode [--]
+        Real64 RefPipDiaDis;              // diameter of refrigerant pipe (discharge gas) that links the outdoor unit to the indoor units [m]
+        Real64 RefPipLen;                 // length of refrigerant pipe that links the outdoor unit to the indoor units [m]
+        Real64 RefPipEquLen;              // Equivalent length of refrigerant pipe for pressure drop calculations [m]
+        Real64 RefPipHei;                 // height of refrigerant pipe that links the outdoor unit to the indoor units [m]
+        Real64 RefPipInsThi;              // thickness of refrigerant pipe insulation [m]
+        Real64 RefPipInsCon;              // thermal conductivity of refrigerant pipe insulation [W/mk]
+        Real64 SH;                        // VRF outdoor unit superheating degrees [C]
+        Real64 SC;                        // VRF outdoor unit subcooling degrees [C]
+        Real64 SCHE;                      // Simultaneous Cooling and Heating Efficiency [C]
+        Real64 SHLow;                     // VRF outdoor unit superheating degrees lower limit [C]
+        Real64 SCLow;                     // VRF outdoor unit subcooling degrees lower limit [C]
+        Real64 SHHigh;                    // VRF outdoor unit superheating degrees uppler limit [C]
+        Real64 SCHigh;                    // VRF outdoor unit subcooling degrees uppler limit [C]
+        Real64 VRFOperationSimPath;       // simulation path indicating the VRF operation mode [--]
 
         // Default Constructor
         VRFCondenserEquipment()
             : VRFSystemTypeNum(0), VRFAlgorithmTypeNum(0), VRFPlantTypeOfNum(0), SourceLoopNum(0), SourceLoopSideNum(0), SourceBranchNum(0),
               SourceCompNum(0), WaterCondenserDesignMassFlow(0.0), WaterCondenserMassFlow(0.0), QCondenser(0.0), QCondEnergy(0.0),
               CondenserSideOutletTemp(0.0), SchedPtr(-1), CoolingCapacity(0.0), TotalCoolingCapacity(0.0), CoolingCombinationRatio(1.0),
-              VRFCondPLR(0.0), VRFCondRTF(0.0), VRFCondCyclingRatio(0.0), CondenserInletTemp(0.0), CoolingCOP(0.0),
-              OperatingCoolingCOP(0.0), RatedCoolingPower(0.0), HeatingCapacity(0.0), HeatingCapacitySizeRatio(1.0),
-              LockHeatingCapacity(false), TotalHeatingCapacity(0.0), HeatingCombinationRatio(1.0), HeatingCOP(0.0),
-              OperatingHeatingCOP(0.0), RatedHeatingPower(0.0), MinOATCooling(0.0), MaxOATCooling(0.0), MinOATHeating(0.0),
-              MaxOATHeating(0.0), CoolCapFT(0), CoolEIRFT(0), HeatCapFT(0), HeatEIRFT(0), CoolBoundaryCurvePtr(0), HeatBoundaryCurvePtr(0),
-              EIRCoolBoundaryCurvePtr(0), CoolEIRFPLR1(0), CoolEIRFPLR2(0), CoolCapFTHi(0), CoolEIRFTHi(0), HeatCapFTHi(0), HeatEIRFTHi(0),
-              EIRHeatBoundaryCurvePtr(0), HeatEIRFPLR1(0), HeatEIRFPLR2(0), CoolPLFFPLR(0), HeatPLFFPLR(0), HeatingPerformanceOATType(0),
-              MinPLR(0.0), MasterZonePtr(0), MasterZoneTUIndex(0), ThermostatPriority(0), SchedPriorityPtr(0), ZoneTUListPtr(0),
-              HeatRecoveryUsed(false), VertPipeLngth(0.0), PCFLengthCoolPtr(0), PCFLengthCoolPtrType(0), PCFHeightCool(0.0),
+              VRFCondPLR(0.0), VRFCondRTF(0.0), VRFCondCyclingRatio(0.0), CondenserInletTemp(0.0), CoolingCOP(0.0), OperatingCoolingCOP(0.0),
+              RatedCoolingPower(0.0), HeatingCapacity(0.0), HeatingCapacitySizeRatio(1.0), LockHeatingCapacity(false), TotalHeatingCapacity(0.0),
+              HeatingCombinationRatio(1.0), HeatingCOP(0.0), OperatingHeatingCOP(0.0), RatedHeatingPower(0.0), MinOATCooling(0.0), MaxOATCooling(0.0),
+              MinOATHeating(0.0), MaxOATHeating(0.0), CoolCapFT(0), CoolEIRFT(0), HeatCapFT(0), HeatEIRFT(0), CoolBoundaryCurvePtr(0),
+              HeatBoundaryCurvePtr(0), EIRCoolBoundaryCurvePtr(0), CoolEIRFPLR1(0), CoolEIRFPLR2(0), CoolCapFTHi(0), CoolEIRFTHi(0), HeatCapFTHi(0),
+              HeatEIRFTHi(0), EIRHeatBoundaryCurvePtr(0), HeatEIRFPLR1(0), HeatEIRFPLR2(0), CoolPLFFPLR(0), HeatPLFFPLR(0),
+              HeatingPerformanceOATType(0), MinPLR(0.0), MasterZonePtr(0), MasterZoneTUIndex(0), ThermostatPriority(0), SchedPriorityPtr(0),
+              ZoneTUListPtr(0), HeatRecoveryUsed(false), VertPipeLngth(0.0), PCFLengthCoolPtr(0), PCFLengthCoolPtrType(0), PCFHeightCool(0.0),
               EquivPipeLngthCool(0.0), PipingCorrectionCooling(1.0), PCFLengthHeatPtr(0), PCFLengthHeatPtrType(0), PCFHeightHeat(0.0),
               EquivPipeLngthHeat(0.0), PipingCorrectionHeating(1.0), CCHeaterPower(0.0), CompressorSizeRatio(0.0), NumCompressors(0),
               MaxOATCCHeater(0.0), DefrostEIRPtr(0), DefrostFraction(0.0), DefrostStrategy(0), DefrostControl(0), DefrostCapacity(0.0),
-              DefrostPower(0.0), DefrostConsumption(0.0), MaxOATDefrost(0.0), CondenserType(0), CondenserNodeNum(0),
-              SkipCondenserNodeNumCheck(false), CondenserOutletNodeNum(0), WaterCondVolFlowRate(0.0), EvapCondEffectiveness(0.0),
-              EvapCondAirVolFlowRate(0.0), EvapCondPumpPower(0.0), CoolCombRatioPTR(0), HeatCombRatioPTR(0), OperatingMode(0),
-              ElecPower(0.0), ElecCoolingPower(0.0), ElecHeatingPower(0.0), CoolElecConsumption(0.0), HeatElecConsumption(0.0),
-              CrankCaseHeaterPower(0.0), CrankCaseHeaterElecConsumption(0.0), EvapCondPumpElecPower(0.0), EvapCondPumpElecConsumption(0.0),
-              EvapWaterConsumpRate(0.0), HRMaxTempLimitIndex(0), CoolingMaxTempLimitIndex(0), HeatingMaxTempLimitIndex(0), FuelType(0),
-              SUMultiplier(0.0), TUCoolingLoad(0.0), TUHeatingLoad(0.0), SwitchedMode(false), OperatingCOP(0.0), MinOATHeatRecovery(0.0),
-              MaxOATHeatRecovery(0.0), HRCAPFTCool(0), HRCAPFTCoolConst(0.9), HRCAPFTCoolType(0), HRInitialCoolCapFrac(0.5),
-              HRCoolCapTC(0.15), HREIRFTCool(0), HREIRFTCoolConst(1.1), HREIRFTCoolType(0), HRInitialCoolEIRFrac(1.0), HRCoolEIRTC(0.0),
-              HRCAPFTHeat(0), HRCAPFTHeatConst(1.1), HRCAPFTHeatType(0), HRInitialHeatCapFrac(1.0), HRHeatCapTC(0.0), HREIRFTHeat(0),
-              HREIRFTHeatConst(1.1), HREIRFTHeatType(0), HRInitialHeatEIRFrac(1.0), HRHeatEIRTC(0.0), HRCoolingActive(false),
-              HRHeatingActive(false), ModeChange(false), HRModeChange(false), HRTimer(0.0), HRTime(0.0), EIRFTempCoolErrorIndex(0),
-              EIRFTempHeatErrorIndex(0), DefrostHeatErrorIndex(0), EvapWaterSupplyMode(WaterSupplyFromMains), EvapWaterSupTankID(0),
-              EvapWaterTankDemandARRID(0), CondensateTankID(0), CondensateTankSupplyARRID(0), CondensateVdot(0.0), CondensateVol(0.0),
-              BasinHeaterPowerFTempDiff(0.0), BasinHeaterSetPointTemp(0.0), BasinHeaterPower(0.0), BasinHeaterConsumption(0.0),
+              DefrostPower(0.0), DefrostConsumption(0.0), MaxOATDefrost(0.0), CondenserType(0), CondenserNodeNum(0), SkipCondenserNodeNumCheck(false),
+              CondenserOutletNodeNum(0), WaterCondVolFlowRate(0.0), EvapCondEffectiveness(0.0), EvapCondAirVolFlowRate(0.0), EvapCondPumpPower(0.0),
+              CoolCombRatioPTR(0), HeatCombRatioPTR(0), OperatingMode(0), ElecPower(0.0), ElecCoolingPower(0.0), ElecHeatingPower(0.0),
+              CoolElecConsumption(0.0), HeatElecConsumption(0.0), CrankCaseHeaterPower(0.0), CrankCaseHeaterElecConsumption(0.0),
+              EvapCondPumpElecPower(0.0), EvapCondPumpElecConsumption(0.0), EvapWaterConsumpRate(0.0), HRMaxTempLimitIndex(0),
+              CoolingMaxTempLimitIndex(0), HeatingMaxTempLimitIndex(0), FuelType(0), SUMultiplier(0.0), TUCoolingLoad(0.0), TUHeatingLoad(0.0),
+              SwitchedMode(false), OperatingCOP(0.0), MinOATHeatRecovery(0.0), MaxOATHeatRecovery(0.0), HRCAPFTCool(0), HRCAPFTCoolConst(0.9),
+              HRCAPFTCoolType(0), HRInitialCoolCapFrac(0.5), HRCoolCapTC(0.15), HREIRFTCool(0), HREIRFTCoolConst(1.1), HREIRFTCoolType(0),
+              HRInitialCoolEIRFrac(1.0), HRCoolEIRTC(0.0), HRCAPFTHeat(0), HRCAPFTHeatConst(1.1), HRCAPFTHeatType(0), HRInitialHeatCapFrac(1.0),
+              HRHeatCapTC(0.0), HREIRFTHeat(0), HREIRFTHeatConst(1.1), HREIRFTHeatType(0), HRInitialHeatEIRFrac(1.0), HRHeatEIRTC(0.0),
+              HRCoolingActive(false), HRHeatingActive(false), ModeChange(false), HRModeChange(false), HRTimer(0.0), HRTime(0.0),
+              EIRFTempCoolErrorIndex(0), EIRFTempHeatErrorIndex(0), DefrostHeatErrorIndex(0), EvapWaterSupplyMode(WaterSupplyFromMains),
+              EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0), CondensateTankID(0), CondensateTankSupplyARRID(0), CondensateVdot(0.0),
+              CondensateVol(0.0), BasinHeaterPowerFTempDiff(0.0), BasinHeaterSetPointTemp(0.0), BasinHeaterPower(0.0), BasinHeaterConsumption(0.0),
               BasinHeaterSchedulePtr(0), EMSOverrideHPOperatingMode(false), EMSValueForHPOperatingMode(0.0), HPOperatingModeErrorIndex(0),
-              AlgorithmIUCtrl(1), CondensingTemp(44.0), CondTempFixed(0.0), CoffEvapCap(1.0), CompActSpeed(0.0), CompMaxDeltaP(0.0),
-              C1Te(0.0), C2Te(0.0), C3Te(0.0), C1Tc(0.0), C2Tc(0.0), C3Tc(0.0), DiffOUTeTo(5), EffCompInverter(0.95), EvaporatingTemp(6.0),
-              EvapTempFixed(0.0), HROUHexRatio(0.0), IUEvaporatingTemp(6.0), IUCondensingTemp(44.0), IUEvapTempLow(4.0),
-              IUEvapTempHigh(15.0), IUCondTempLow(42.0), IUCondTempHigh(46.0), IUCondHeatRate(0.0), IUEvapHeatRate(0.0), Ncomp(0.0),
-              NcompCooling(0.0), NcompHeating(0.0), OUEvapTempLow(-30.0), OUEvapTempHigh(20.0), OUCondTempLow(30.0), OUCondTempHigh(96.0),
-              OUAirFlowRate(0.0), OUAirFlowRatePerCapcity(0.0), OUCondHeatRate(0.0), OUEvapHeatRate(0.0), OUFanPower(0.0),
-              RatedEvapCapacity(40000.0), RatedCompPower(14000.0), RatedCompPowerPerCapcity(0.35), RatedOUFanPower(0.0),
-              RatedOUFanPowerPerCapcity(0.0), RateBFOUEvap(0.45581), RateBFOUCond(0.21900), RefPipDiaSuc(0.0), RefPipDiaDis(0.0),
-              RefPipLen(0.0), RefPipEquLen(0.0), RefPipHei(0.0), RefPipInsThi(0.0), RefPipInsCon(0.0), SH(0.0), SC(0.0), SCHE(0.0),
+              AlgorithmIUCtrl(1), CondensingTemp(44.0), CondTempFixed(0.0), CoffEvapCap(1.0), CompActSpeed(0.0), CompMaxDeltaP(0.0), C1Te(0.0),
+              C2Te(0.0), C3Te(0.0), C1Tc(0.0), C2Tc(0.0), C3Tc(0.0), DiffOUTeTo(5), EffCompInverter(0.95), EvaporatingTemp(6.0), EvapTempFixed(0.0),
+              HROUHexRatio(0.0), IUEvaporatingTemp(6.0), IUCondensingTemp(44.0), IUEvapTempLow(4.0), IUEvapTempHigh(15.0), IUCondTempLow(42.0),
+              IUCondTempHigh(46.0), IUCondHeatRate(0.0), IUEvapHeatRate(0.0), Ncomp(0.0), NcompCooling(0.0), NcompHeating(0.0), OUEvapTempLow(-30.0),
+              OUEvapTempHigh(20.0), OUCondTempLow(30.0), OUCondTempHigh(96.0), OUAirFlowRate(0.0), OUAirFlowRatePerCapcity(0.0), OUCondHeatRate(0.0),
+              OUEvapHeatRate(0.0), OUFanPower(0.0), RatedEvapCapacity(40000.0), RatedCompPower(14000.0), RatedCompPowerPerCapcity(0.35),
+              RatedOUFanPower(0.0), RatedOUFanPowerPerCapcity(0.0), RateBFOUEvap(0.45581), RateBFOUCond(0.21900), RefPipDiaSuc(0.0),
+              RefPipDiaDis(0.0), RefPipLen(0.0), RefPipEquLen(0.0), RefPipHei(0.0), RefPipInsThi(0.0), RefPipInsCon(0.0), SH(0.0), SC(0.0), SCHE(0.0),
               SHLow(0.0), SCLow(0.0), SHHigh(0.0), SCHigh(0.0), VRFOperationSimPath(0.0)
         {
         }
@@ -509,24 +506,23 @@ namespace HVACVariableRefrigerantFlow {
                           Real64 const OutdoorPressure // Outdoor air pressure [Pa]
                           );
 
-        Real64
-        VRFOU_CapModFactor(Real64 const h_comp_in_real, // Enthalpy of refrigerant at the compressor inlet at real conditions [kJ/kg]
-                           Real64 const h_evap_in_real, // Enthalpy of refrigerant at the evaporator inlet at real conditions [kJ/kg]
-                           Real64 const P_evap_real,    // Evaporative pressure at real conditions [Pa]
-                           Real64 const T_comp_in_real, // Temperature of the refrigerant at the compressor inlet at real conditions [C]
-                           Real64 const T_comp_in_rate, // Temperature of the refrigerant at the compressor inlet at rated conditions [C]
-                           Real64 const T_cond_out_rate // Temperature of the refrigerant at the condensor outlet at rated conditions [C]
-                           );
+        Real64 VRFOU_CapModFactor(Real64 const h_comp_in_real, // Enthalpy of refrigerant at the compressor inlet at real conditions [kJ/kg]
+                                  Real64 const h_evap_in_real, // Enthalpy of refrigerant at the evaporator inlet at real conditions [kJ/kg]
+                                  Real64 const P_evap_real,    // Evaporative pressure at real conditions [Pa]
+                                  Real64 const T_comp_in_real, // Temperature of the refrigerant at the compressor inlet at real conditions [C]
+                                  Real64 const T_comp_in_rate, // Temperature of the refrigerant at the compressor inlet at rated conditions [C]
+                                  Real64 const T_cond_out_rate // Temperature of the refrigerant at the condensor outlet at rated conditions [C]
+                                  );
 
-        void VRFOU_TeModification(Real64 const Te_up,  // Upper bound of Te during iteration, i.e., Te before reduction [C]
-                                  Real64 const Te_low, // Lower bound of Te during iteration, i.e., the given suction temperature Te' [C]
+        void VRFOU_TeModification(Real64 const Te_up,          // Upper bound of Te during iteration, i.e., Te before reduction [C]
+                                  Real64 const Te_low,         // Lower bound of Te during iteration, i.e., the given suction temperature Te' [C]
                                   Real64 const Pipe_h_IU_in,   // Piping Loss Algorithm Parameter: enthalpy of IU at inlet [kJ/kg]
                                   Real64 const OutdoorDryBulb, // outdoor dry-bulb temperature [C]
                                   Real64 &Te_update,           // Updated Te that can generate the required Tsuction [C]
-                                  Real64 &Pe_update,  // Piping Loss Algorithm Parameter: evaporating pressure assumed for iterations [Pa]
-                                  Real64 &Pipe_m_ref, // Piping Loss Algorithm Parameter: Refrigerant mass flow rate [kg/s]
-                                  Real64 &Pipe_h_IU_out, // Piping Loss Algorithm Parameter: enthalpy of IU at outlet [kJ/kg]
-                                  Real64 &Pipe_SH_merged // Piping Loss Algorithm Parameter: Average SH after the indoor units [C]
+                                  Real64 &Pe_update,           // Piping Loss Algorithm Parameter: evaporating pressure assumed for iterations [Pa]
+                                  Real64 &Pipe_m_ref,          // Piping Loss Algorithm Parameter: Refrigerant mass flow rate [kg/s]
+                                  Real64 &Pipe_h_IU_out,       // Piping Loss Algorithm Parameter: enthalpy of IU at outlet [kJ/kg]
+                                  Real64 &Pipe_SH_merged       // Piping Loss Algorithm Parameter: Average SH after the indoor units [C]
                                   );
 
         void VRFOU_CalcCompC(Real64 TU_load,            // Indoor unit cooling load [W]
@@ -543,19 +539,19 @@ namespace HVACVariableRefrigerantFlow {
                              Real64 &Ncomp              // Compressor power [W]
                              );
 
-        void VRFOU_CalcCompH(
-            Real64 TU_load,            // Indoor unit cooling load [W]
-            Real64 T_suction,          // Compressor suction temperature Te' [C]
-            Real64 T_discharge,        // Compressor discharge temperature Tc' [C]
-            Real64 Pipe_h_out_ave,     // Average Enthalpy of the refrigerant leaving IUs [kJ/kg]
-            Real64 IUMaxCondTemp,      // VRV IU condensing temperature, max among all indoor units [C]
-            Real64 MinOutdoorUnitTe,   // The minimum temperature that Te can be at cooling mode (only used for calculating Min capacity)
-            Real64 Tfs,                // Temperature of the air at the coil surface [C]]
-            Real64 Pipe_Q,             // Piping Loss Algorithm Parameter: Heat loss [W]
-            Real64 &OUEvapHeatExtract, // Condenser heat release (cooling mode) [W]
-            Real64 &CompSpdActual,     // Actual compressor running speed [rps]
-            Real64 &Ncomp              // Compressor power [W]
-            );
+        void
+        VRFOU_CalcCompH(Real64 TU_load,            // Indoor unit cooling load [W]
+                        Real64 T_suction,          // Compressor suction temperature Te' [C]
+                        Real64 T_discharge,        // Compressor discharge temperature Tc' [C]
+                        Real64 Pipe_h_out_ave,     // Average Enthalpy of the refrigerant leaving IUs [kJ/kg]
+                        Real64 IUMaxCondTemp,      // VRV IU condensing temperature, max among all indoor units [C]
+                        Real64 MinOutdoorUnitTe,   // The minimum temperature that Te can be at cooling mode (only used for calculating Min capacity)
+                        Real64 Tfs,                // Temperature of the air at the coil surface [C]]
+                        Real64 Pipe_Q,             // Piping Loss Algorithm Parameter: Heat loss [W]
+                        Real64 &OUEvapHeatExtract, // Condenser heat release (cooling mode) [W]
+                        Real64 &CompSpdActual,     // Actual compressor running speed [rps]
+                        Real64 &Ncomp              // Compressor power [W]
+                        );
 
         void VRFHR_OU_HR_Mode(Real64 const h_IU_evap_in, // enthalpy of IU evaporator at inlet [kJ/kg]
                               Real64 const h_comp_out,   // enthalpy of refrigerant at compressor outlet [kJ/kg]
@@ -582,39 +578,37 @@ namespace HVACVariableRefrigerantFlow {
                            Real64 const T_suction,    // Compressor suction temperature Te' [C]
                            Real64 const T_discharge,  // Compressor discharge temperature Tc' [C]
                            Real64 const h_IU_evap_in, // Enthalpy of IU at inlet, for C_cap_operation calculation [kJ/kg]
-                           Real64 const h_comp_in, // Enthalpy after piping loss (compressor inlet), for C_cap_operation calculation [kJ/kg]
-                           Real64 &CompSpdActual   // Actual compressor running speed [rps]
+                           Real64 const h_comp_in,    // Enthalpy after piping loss (compressor inlet), for C_cap_operation calculation [kJ/kg]
+                           Real64 &CompSpdActual      // Actual compressor running speed [rps]
                            );
 
         void VRFOU_CompCap(int const CompSpdActual,   // Given compressor speed
                            Real64 const T_suction,    // Compressor suction temperature Te' [C]
                            Real64 const T_discharge,  // Compressor discharge temperature Tc' [C]
                            Real64 const h_IU_evap_in, // Enthalpy of IU at inlet, for C_cap_operation calculation [kJ/kg]
-                           Real64 const h_comp_in, // Enthalpy after piping loss (compressor inlet), for C_cap_operation calculation [kJ/kg]
-                           Real64 &Q_c_tot,        // Compressor evaporative capacity [W]
-                           Real64 &Ncomp           // Compressor power [W]
+                           Real64 const h_comp_in,    // Enthalpy after piping loss (compressor inlet), for C_cap_operation calculation [kJ/kg]
+                           Real64 &Q_c_tot,           // Compressor evaporative capacity [W]
+                           Real64 &Ncomp              // Compressor power [W]
                            );
 
-        void
-        VRFOU_PipeLossC(Real64 const Pipe_m_ref,     // Refrigerant mass flow rate [kg/s]
-                        Real64 const Pevap,          // VRF evaporating pressure [Pa]
-                        Real64 const Pipe_h_IU_out,  // Enthalpy of IU at outlet [kJ/kg]
-                        Real64 const Pipe_SH_merged, // Average super heating degrees after the indoor units [C]
-                        Real64 const OutdoorDryBulb, // outdoor dry-bulb temperature (C)
-                        Real64 &Pipe_Q,              // unit part load ratio
-                        Real64 &Pipe_DeltP,          // ratio of compressor ON airflow to AVERAGE airflow over timestep
-                        Real64 &Pipe_h_comp_in // Piping Loss Algorithm Parameter: Enthalpy after piping loss (compressor inlet) [kJ/kg]
-                        );
+        void VRFOU_PipeLossC(Real64 const Pipe_m_ref,     // Refrigerant mass flow rate [kg/s]
+                             Real64 const Pevap,          // VRF evaporating pressure [Pa]
+                             Real64 const Pipe_h_IU_out,  // Enthalpy of IU at outlet [kJ/kg]
+                             Real64 const Pipe_SH_merged, // Average super heating degrees after the indoor units [C]
+                             Real64 const OutdoorDryBulb, // outdoor dry-bulb temperature (C)
+                             Real64 &Pipe_Q,              // unit part load ratio
+                             Real64 &Pipe_DeltP,          // ratio of compressor ON airflow to AVERAGE airflow over timestep
+                             Real64 &Pipe_h_comp_in       // Piping Loss Algorithm Parameter: Enthalpy after piping loss (compressor inlet) [kJ/kg]
+                             );
 
-        void
-        VRFOU_PipeLossH(Real64 const Pipe_m_ref,     // Refrigerant mass flow rate [kg/s]
-                        Real64 const Pcond,          // VRF condensing pressure [Pa]
-                        Real64 const Pipe_h_IU_in,   // Enthalpy of IU at outlet [kJ/kg]
-                        Real64 const OutdoorDryBulb, // outdoor dry-bulb temperature (C)
-                        Real64 &Pipe_Q,              // unit part load ratio
-                        Real64 &Pipe_DeltP,          // ratio of compressor ON airflow to AVERAGE airflow over timestep
-                        Real64 &Pipe_h_comp_out // Piping Loss Algorithm Parameter: Enthalpy before piping loss (compressor outlet) [kJ/kg]
-                        );
+        void VRFOU_PipeLossH(Real64 const Pipe_m_ref,     // Refrigerant mass flow rate [kg/s]
+                             Real64 const Pcond,          // VRF condensing pressure [Pa]
+                             Real64 const Pipe_h_IU_in,   // Enthalpy of IU at outlet [kJ/kg]
+                             Real64 const OutdoorDryBulb, // outdoor dry-bulb temperature (C)
+                             Real64 &Pipe_Q,              // unit part load ratio
+                             Real64 &Pipe_DeltP,          // ratio of compressor ON airflow to AVERAGE airflow over timestep
+                             Real64 &Pipe_h_comp_out      // Piping Loss Algorithm Parameter: Enthalpy before piping loss (compressor outlet) [kJ/kg]
+                             );
     };
 
     struct TerminalUnitListData
@@ -734,19 +728,17 @@ namespace HVACVariableRefrigerantFlow {
             : VRFTUType_Num(0), SchedPtr(-1), VRFSysNum(0), TUListIndex(0), IndexToTUInTUList(0), ZoneNum(0), VRFTUInletNodeNum(0),
               VRFTUOutletNodeNum(0), VRFTUOAMixerOANodeNum(0), VRFTUOAMixerRelNodeNum(0), VRFTUOAMixerRetNodeNum(0), MaxCoolAirVolFlow(0.0),
               MaxHeatAirVolFlow(0.0), MaxNoCoolAirVolFlow(0.0), MaxNoHeatAirVolFlow(0.0), MaxCoolAirMassFlow(0.0), MaxHeatAirMassFlow(0.0),
-              MaxNoCoolAirMassFlow(0.0), MaxNoHeatAirMassFlow(0.0), CoolOutAirVolFlow(0.0), HeatOutAirVolFlow(0.0),
-              NoCoolHeatOutAirVolFlow(0.0), CoolOutAirMassFlow(0.0), HeatOutAirMassFlow(0.0), NoCoolHeatOutAirMassFlow(0.0),
-              MinOperatingPLR(1.0E-20), FanOpModeSchedPtr(0), FanAvailSchedPtr(0), FanIndex(0), FanPower(0.0), OpMode(0), FanPlace(0),
-              ActualFanVolFlowRate(0.0), OAMixerIndex(0), OAMixerUsed(false), CoolCoilIndex(0), HeatCoilIndex(0), DXCoolCoilType_Num(0),
-              DXHeatCoilType_Num(0), ParasiticElec(0.0), ParasiticOffElec(0.0), HeatingSpeedRatio(1.0), HeatingCapacitySizeRatio(1.0),
-              CoolingSpeedRatio(1.0), ParasiticCoolElecPower(0.0), ParasiticHeatElecPower(0.0), ParasiticElecCoolConsumption(0.0),
-              ParasiticElecHeatConsumption(0.0), CoolingCoilPresent(true), HeatingCoilPresent(true), AvailStatus(0),
-              TerminalUnitSensibleRate(0.0), TerminalUnitLatentRate(0.0), TotalCoolingRate(0.0), TotalHeatingRate(0.0),
+              MaxNoCoolAirMassFlow(0.0), MaxNoHeatAirMassFlow(0.0), CoolOutAirVolFlow(0.0), HeatOutAirVolFlow(0.0), NoCoolHeatOutAirVolFlow(0.0),
+              CoolOutAirMassFlow(0.0), HeatOutAirMassFlow(0.0), NoCoolHeatOutAirMassFlow(0.0), MinOperatingPLR(1.0E-20), FanOpModeSchedPtr(0),
+              FanAvailSchedPtr(0), FanIndex(0), FanPower(0.0), OpMode(0), FanPlace(0), ActualFanVolFlowRate(0.0), OAMixerIndex(0), OAMixerUsed(false),
+              CoolCoilIndex(0), HeatCoilIndex(0), DXCoolCoilType_Num(0), DXHeatCoilType_Num(0), ParasiticElec(0.0), ParasiticOffElec(0.0),
+              HeatingSpeedRatio(1.0), HeatingCapacitySizeRatio(1.0), CoolingSpeedRatio(1.0), ParasiticCoolElecPower(0.0), ParasiticHeatElecPower(0.0),
+              ParasiticElecCoolConsumption(0.0), ParasiticElecHeatConsumption(0.0), CoolingCoilPresent(true), HeatingCoilPresent(true),
+              AvailStatus(0), TerminalUnitSensibleRate(0.0), TerminalUnitLatentRate(0.0), TotalCoolingRate(0.0), TotalHeatingRate(0.0),
               SensibleCoolingRate(0.0), SensibleHeatingRate(0.0), LatentCoolingRate(0.0), LatentHeatingRate(0.0), TotalCoolingEnergy(0.0),
-              TotalHeatingEnergy(0.0), SensibleCoolingEnergy(0.0), SensibleHeatingEnergy(0.0), LatentCoolingEnergy(0.0),
-              LatentHeatingEnergy(0.0), EMSOverridePartLoadFrac(false), EMSValueForPartLoadFrac(0.0), IterLimitExceeded(0),
-              FirstIterfailed(0), ZonePtr(0), HVACSizingIndex(0), ATMixerExists(false), ATMixerIndex(0), ATMixerType(0), ATMixerPriNode(0),
-              ATMixerSecNode(0), ATMixerOutNode(0), firstPass(true)
+              TotalHeatingEnergy(0.0), SensibleCoolingEnergy(0.0), SensibleHeatingEnergy(0.0), LatentCoolingEnergy(0.0), LatentHeatingEnergy(0.0),
+              EMSOverridePartLoadFrac(false), EMSValueForPartLoadFrac(0.0), IterLimitExceeded(0), FirstIterfailed(0), ZonePtr(0), HVACSizingIndex(0),
+              ATMixerExists(false), ATMixerIndex(0), ATMixerType(0), ATMixerPriNode(0), ATMixerSecNode(0), ATMixerOutNode(0), firstPass(true)
         {
         }
 

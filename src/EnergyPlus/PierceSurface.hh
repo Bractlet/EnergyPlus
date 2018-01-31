@@ -268,8 +268,7 @@ void PierceSurface_polygon(DataSurfaces::SurfaceData const &surface, // Surface
     Vertex2D const h2d(axis == 0 ? hitPt.y : hitPt.x, axis == 2 ? hitPt.y : hitPt.z);                 // Hit point in 2D surface's plane
     if ((h2d.x < s2d.vl.x) || (s2d.vu.x < h2d.x) || (h2d.y < s2d.vl.y) || (s2d.vu.y < h2d.y)) return; // Misses 2D surface bounding box
     ShapeCat const shapeCat(surface.shapeCat);
-    if (shapeCat ==
-        ShapeCat::Rectangular) { // Rectangular is most common: Special case algorithm is faster but assumes these are really rectangular
+    if (shapeCat == ShapeCat::Rectangular) { // Rectangular is most common: Special case algorithm is faster but assumes these are really rectangular
         Vertex2D const v0h(h2d - s2d.vertices[0]);
         Real64 const he1(v0h.dot(s2d.edges[0]));
         if ((he1 < 0.0) || (he1 > s2d.s1)) return;

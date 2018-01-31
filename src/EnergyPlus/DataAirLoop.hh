@@ -166,18 +166,18 @@ namespace DataAirLoop {
     struct AirLoopControlData // Derived type for air control information
     {
         // Members
-        std::string OACtrlName;          // name of OA controller
-        int OACtrlNum;                   // index of OA controller
-        int OASysNum;                    // index of OA System
-        bool CyclingFan;                 // TRUE if currently the air loop supply fan is cycling
-        bool AnyContFan;                 // TRUE if at any time supply fan is continuous
-        int CycFanSchedPtr;              // index of schedule indicating whether fan is cycling or continuous in a unitary system
-        int FanOpMode;                   // 1=cycling fan cycling compressor; 2=constant fan cycling comptressor
-        bool UnitarySys;                 // TRUE if a unitary system
-        bool UnitarySysSimulating;       // set FALSE for AirloopUnitarySystem after simulating to downstream coils can size independently
-        bool Simple;                     // TRUE if system has 1 branch and 1 component
-        bool CanNotLockoutEcono;         // user input says econo lockout not allowed
-        bool CanLockoutEconoWithHeating; // user input says econo lockout with heating is allowed
+        std::string OACtrlName;               // name of OA controller
+        int OACtrlNum;                        // index of OA controller
+        int OASysNum;                         // index of OA System
+        bool CyclingFan;                      // TRUE if currently the air loop supply fan is cycling
+        bool AnyContFan;                      // TRUE if at any time supply fan is continuous
+        int CycFanSchedPtr;                   // index of schedule indicating whether fan is cycling or continuous in a unitary system
+        int FanOpMode;                        // 1=cycling fan cycling compressor; 2=constant fan cycling comptressor
+        bool UnitarySys;                      // TRUE if a unitary system
+        bool UnitarySysSimulating;            // set FALSE for AirloopUnitarySystem after simulating to downstream coils can size independently
+        bool Simple;                          // TRUE if system has 1 branch and 1 component
+        bool CanNotLockoutEcono;              // user input says econo lockout not allowed
+        bool CanLockoutEconoWithHeating;      // user input says econo lockout with heating is allowed
         bool CanLockoutEconoWithCompressor;   // user input says econo lockout with compressor is allowed
         bool ReqstEconoLockoutWithHeating;    // there is a request to lockout the economizer due to heating
         bool ReqstEconoLockoutWithCompressor; // there is a request to lockout the economizer due to compressor operation
@@ -207,12 +207,12 @@ namespace DataAirLoop {
         AirLoopControlData()
             : OACtrlNum(0), OASysNum(0), CyclingFan(false), AnyContFan(false), CycFanSchedPtr(0), FanOpMode(0), UnitarySys(false),
               UnitarySysSimulating(true), Simple(false), CanNotLockoutEcono(false), CanLockoutEconoWithHeating(false),
-              CanLockoutEconoWithCompressor(false), ReqstEconoLockoutWithHeating(false), ReqstEconoLockoutWithCompressor(false),
-              EconoActive(false), HeatRecoveryBypass(false), ResimAirLoopFlag(false), HeatRecoveryResimFlag(true),
-              HeatRecoveryResimFlag2(false), CheckHeatRecoveryBypassStatus(false), EconomizerFlowLocked(false), HighHumCtrlActive(false),
-              EconoLockout(false), LoopFlowRateSet(false), NightVent(false), AllowWarmRestartFlag(false), NewFlowRateFlag(false),
-              ConvergedFlag(false), CoolingActiveFlag(false), HeatingActiveFlag(false), OASysComponentsSimulated(false),
-              ZoneExhMassFlow(0.0), AirLoopDCVFlag(true), AirLoopPass(0)
+              CanLockoutEconoWithCompressor(false), ReqstEconoLockoutWithHeating(false), ReqstEconoLockoutWithCompressor(false), EconoActive(false),
+              HeatRecoveryBypass(false), ResimAirLoopFlag(false), HeatRecoveryResimFlag(true), HeatRecoveryResimFlag2(false),
+              CheckHeatRecoveryBypassStatus(false), EconomizerFlowLocked(false), HighHumCtrlActive(false), EconoLockout(false),
+              LoopFlowRateSet(false), NightVent(false), AllowWarmRestartFlag(false), NewFlowRateFlag(false), ConvergedFlag(false),
+              CoolingActiveFlag(false), HeatingActiveFlag(false), OASysComponentsSimulated(false), ZoneExhMassFlow(0.0), AirLoopDCVFlag(true),
+              AirLoopPass(0)
         {
         }
     };
@@ -241,9 +241,9 @@ namespace DataAirLoop {
 
         // Default Constructor
         AirLoopFlowData()
-            : DesSupply(0.0), DesReturnFrac(1.0), SysToZoneDesFlowRatio(0.0), ReqSupplyFrac(1.0), MinOutAir(0.0), MaxOutAir(0.0),
-              OAMinFrac(0.0), Previous(0.0), SupFlow(0.0), ZoneRetFlow(0.0), ZoneRetFlowRatio(1.0), SysRetFlow(0.0), RecircFlow(0.0),
-              LeakFlow(0.0), ExcessZoneExhFlow(0.0), FanPLR(0.0), OAFrac(0.0), FlowError(false)
+            : DesSupply(0.0), DesReturnFrac(1.0), SysToZoneDesFlowRatio(0.0), ReqSupplyFrac(1.0), MinOutAir(0.0), MaxOutAir(0.0), OAMinFrac(0.0),
+              Previous(0.0), SupFlow(0.0), ZoneRetFlow(0.0), ZoneRetFlowRatio(1.0), SysRetFlow(0.0), RecircFlow(0.0), LeakFlow(0.0),
+              ExcessZoneExhFlow(0.0), FanPLR(0.0), OAFrac(0.0), FlowError(false)
         {
         }
     };

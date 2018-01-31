@@ -126,9 +126,9 @@ namespace PlantHeatExchangerFluidToFluid {
 
         // Default Constructor
         PlantConnectionStruct()
-            : LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0), InletNodeNum(0), OutletNodeNum(0), MassFlowRateMin(0.0),
-              MassFlowRateMax(0.0), DesignVolumeFlowRate(0.0), DesignVolumeFlowRateWasAutoSized(false), MyLoad(0.0), MinLoad(0.0),
-              MaxLoad(0.0), OptLoad(0.0), InletTemp(0.0), InletMassFlowRate(0.0), OutletTemp(0.0)
+            : LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0), InletNodeNum(0), OutletNodeNum(0), MassFlowRateMin(0.0), MassFlowRateMax(0.0),
+              DesignVolumeFlowRate(0.0), DesignVolumeFlowRateWasAutoSized(false), MyLoad(0.0), MinLoad(0.0), MaxLoad(0.0), OptLoad(0.0),
+              InletTemp(0.0), InletMassFlowRate(0.0), OutletTemp(0.0)
         {
         }
     };
@@ -182,11 +182,10 @@ namespace PlantHeatExchangerFluidToFluid {
 
         // Default Constructor
         HeatExchangerStruct()
-            : AvailSchedNum(0), HeatExchangeModelType(0), UA(0.0), UAWasAutoSized(false), ControlMode(0), SetPointNodeNum(0),
-              TempControlTol(0.0), ControlSignalTemp(0), MinOperationTemp(-99999.0), MaxOperationTemp(99999.0), ComponentTypeOfNum(0),
-              SizingFactor(1.0), HeatTransferRate(0.0), HeatTransferEnergy(0.0), Effectiveness(0.0), OperationStatus(0.0),
-              DmdSideModulatSolvNoConvergeErrorCount(0), DmdSideModulatSolvNoConvergeErrorIndex(0), DmdSideModulatSolvFailErrorCount(0),
-              DmdSideModulatSolvFailErrorIndex(0)
+            : AvailSchedNum(0), HeatExchangeModelType(0), UA(0.0), UAWasAutoSized(false), ControlMode(0), SetPointNodeNum(0), TempControlTol(0.0),
+              ControlSignalTemp(0), MinOperationTemp(-99999.0), MaxOperationTemp(99999.0), ComponentTypeOfNum(0), SizingFactor(1.0),
+              HeatTransferRate(0.0), HeatTransferEnergy(0.0), Effectiveness(0.0), OperationStatus(0.0), DmdSideModulatSolvNoConvergeErrorCount(0),
+              DmdSideModulatSolvNoConvergeErrorIndex(0), DmdSideModulatSolvFailErrorCount(0), DmdSideModulatSolvFailErrorIndex(0)
         {
         }
     };

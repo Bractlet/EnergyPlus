@@ -253,8 +253,7 @@ namespace RootFinder {
         RootFinderData.Controls.SlopeType = SlopeType;
 
         // Load solution method
-        if (MethodType != iMethodBisection && MethodType != iMethodFalsePosition && MethodType != iMethodSecant &&
-            MethodType != iMethodBrent) {
+        if (MethodType != iMethodBisection && MethodType != iMethodFalsePosition && MethodType != iMethodSecant && MethodType != iMethodBrent) {
 
             ShowSevereError("SetupRootFinder: Invalid solution method specification. Valid choices are:");
             ShowContinueError("SetupRootFinder: iMethodBisection=" + TrimSigDigits(iMethodBisection));
@@ -420,8 +419,8 @@ namespace RootFinder {
             if (XMax == 0.0) {
                 XMinReset = XMax;
             } else {
-                ShowFatalError("InitializeRootFinder: Invalid min/max bounds XMin=" + TrimSigDigits(XMin, 6) +
-                               " must be smaller than XMax=" + TrimSigDigits(XMax, 6));
+                ShowFatalError("InitializeRootFinder: Invalid min/max bounds XMin=" + TrimSigDigits(XMin, 6) + " must be smaller than XMax=" +
+                               TrimSigDigits(XMax, 6));
             }
         }
 
@@ -2593,8 +2592,7 @@ namespace RootFinder {
                 << "Status" << ',' << "Method" << ',' << "CurrentPoint%X" << ',' << "CurrentPoint%Y" << ',' << "XCandidate" << ','
                 << "ConvergenceRate" << ',' << "MinPoint%X" << ',' << "MinPoint%Y" << ',' << "LowerPoint%X" << ',' << "LowerPoint%Y" << ','
                 << "UpperPoint%X" << ',' << "UpperPoint%Y" << ',' << "MaxPoint%X" << ',' << "MaxPoint%Y" << ',' << "History(1)%X" << ','
-                << "History(1)%Y" << ',' << "History(2)%X" << ',' << "History(2)%Y" << ',' << "History(3)%X" << ',' << "History(3)%Y"
-                << ',';
+                << "History(1)%Y" << ',' << "History(2)%X" << ',' << "History(2)%Y" << ',' << "History(3)%X" << ',' << "History(3)%Y" << ',';
         }
     }
 

@@ -226,8 +226,7 @@ namespace HighTempRadiantSystem {
         if (GetInputFlag) {
             ErrorsFoundInGet = false;
             GetHighTempRadiantSystem(ErrorsFoundInGet);
-            if (ErrorsFoundInGet)
-                ShowFatalError("GetHighTempRadiantSystem: Errors found in input.  Preceding condition(s) cause termination.");
+            if (ErrorsFoundInGet) ShowFatalError("GetHighTempRadiantSystem: Errors found in input.  Preceding condition(s) cause termination.");
             GetInputFlag = false;
         }
 
@@ -246,8 +245,8 @@ namespace HighTempRadiantSystem {
             }
             if (CheckEquipName(RadSysNum)) {
                 if (CompName != HighTempRadSys(RadSysNum).Name) {
-                    ShowFatalError("SimHighTempRadiantSystem: Invalid CompIndex passed=" + TrimSigDigits(RadSysNum) + ", Unit name=" +
-                                   CompName + ", stored Unit Name for that index=" + HighTempRadSys(RadSysNum).Name);
+                    ShowFatalError("SimHighTempRadiantSystem: Invalid CompIndex passed=" + TrimSigDigits(RadSysNum) + ", Unit name=" + CompName +
+                                   ", stored Unit Name for that index=" + HighTempRadSys(RadSysNum).Name);
                 }
                 CheckEquipName(RadSysNum) = false;
             }
@@ -319,10 +318,9 @@ namespace HighTempRadiantSystem {
         Real64 const MinThrottlingRange(0.5);  // Smallest throttling range allowed in degrees Celsius
         //  INTEGER,          PARAMETER :: MaxDistribSurfaces = 20    ! Maximum number of surfaces that a radiant heater can radiate to
         static std::string const RoutineName("GetHighTempRadiantSystem: "); // include trailing blank space
-        int const iHeatCAPMAlphaNum(4);             // get input index to High Temperature Radiant system heating capacity sizing method
-        int const iHeatDesignCapacityNumericNum(1); // get input index to High Temperature Radiant system heating capacity
-        int const iHeatCapacityPerFloorAreaNumericNum(
-            2); // get input index to High Temperature Radiant system heating capacity per floor area sizing
+        int const iHeatCAPMAlphaNum(4);                   // get input index to High Temperature Radiant system heating capacity sizing method
+        int const iHeatDesignCapacityNumericNum(1);       // get input index to High Temperature Radiant system heating capacity
+        int const iHeatCapacityPerFloorAreaNumericNum(2); // get input index to High Temperature Radiant system heating capacity per floor area sizing
         int const iHeatFracOfAutosizedCapacityNumericNum(
             3); //  get input index to High Temperature Radiant system heating capacity sizing as fraction of autozized heating capacity
 
@@ -650,8 +648,8 @@ namespace HighTempRadiantSystem {
                 ShowContinueError("This means that the fraction of radiant energy that would be lost from the high temperature radiant "
                                   "heater would be = " +
                                   TrimSigDigits(FracOfRadPotentiallyLost, 5));
-                ShowContinueError("Please check and correct this so that all radiant energy is accounted for in " + cCurrentModuleObject +
-                                  " = " + cAlphaArgs(1));
+                ShowContinueError("Please check and correct this so that all radiant energy is accounted for in " + cCurrentModuleObject + " = " +
+                                  cAlphaArgs(1));
                 ErrorsFound = true;
             }
 
@@ -660,28 +658,27 @@ namespace HighTempRadiantSystem {
         // Set up the output variables for high temperature radiant heaters
         // cCurrentModuleObject = "ZoneHVAC:HighTemperatureRadiant"
         for (Item = 1; Item <= NumOfHighTempRadSys; ++Item) {
-            SetupOutputVariable("Zone Radiant HVAC Heating Rate", OutputProcessor::Unit::W, HighTempRadSys(Item).HeatPower, "System",
-                                "Average", HighTempRadSys(Item).Name);
-            SetupOutputVariable("Zone Radiant HVAC Heating Energy", OutputProcessor::Unit::J, HighTempRadSys(Item).HeatEnergy, "System",
-                                "Sum", HighTempRadSys(Item).Name, _, "ENERGYTRANSFER", "HEATINGCOILS", _, "System");
+            SetupOutputVariable("Zone Radiant HVAC Heating Rate", OutputProcessor::Unit::W, HighTempRadSys(Item).HeatPower, "System", "Average",
+                                HighTempRadSys(Item).Name);
+            SetupOutputVariable("Zone Radiant HVAC Heating Energy", OutputProcessor::Unit::J, HighTempRadSys(Item).HeatEnergy, "System", "Sum",
+                                HighTempRadSys(Item).Name, _, "ENERGYTRANSFER", "HEATINGCOILS", _, "System");
             if (HighTempRadSys(Item).HeaterType == Gas) {
-                SetupOutputVariable("Zone Radiant HVAC Gas Rate", OutputProcessor::Unit::W, HighTempRadSys(Item).GasPower, "System",
-                                    "Average", HighTempRadSys(Item).Name);
-                SetupOutputVariable("Zone Radiant HVAC Gas Energy", OutputProcessor::Unit::J, HighTempRadSys(Item).GasEnergy, "System",
-                                    "Sum", HighTempRadSys(Item).Name, _, "Gas", "Heating", _, "System");
+                SetupOutputVariable("Zone Radiant HVAC Gas Rate", OutputProcessor::Unit::W, HighTempRadSys(Item).GasPower, "System", "Average",
+                                    HighTempRadSys(Item).Name);
+                SetupOutputVariable("Zone Radiant HVAC Gas Energy", OutputProcessor::Unit::J, HighTempRadSys(Item).GasEnergy, "System", "Sum",
+                                    HighTempRadSys(Item).Name, _, "Gas", "Heating", _, "System");
             } else if (HighTempRadSys(Item).HeaterType == Electric) {
-                SetupOutputVariable("Zone Radiant HVAC Electric Power", OutputProcessor::Unit::W, HighTempRadSys(Item).ElecPower, "System",
-                                    "Average", HighTempRadSys(Item).Name);
-                SetupOutputVariable("Zone Radiant HVAC Electric Energy", OutputProcessor::Unit::J, HighTempRadSys(Item).ElecEnergy,
-                                    "System", "Sum", HighTempRadSys(Item).Name, _, "ELECTRICITY", "Heating", _, "System");
+                SetupOutputVariable("Zone Radiant HVAC Electric Power", OutputProcessor::Unit::W, HighTempRadSys(Item).ElecPower, "System", "Average",
+                                    HighTempRadSys(Item).Name);
+                SetupOutputVariable("Zone Radiant HVAC Electric Energy", OutputProcessor::Unit::J, HighTempRadSys(Item).ElecEnergy, "System", "Sum",
+                                    HighTempRadSys(Item).Name, _, "ELECTRICITY", "Heating", _, "System");
             }
         }
     }
 
-    void InitHighTempRadiantSystem(
-        bool const FirstHVACIteration, // TRUE if 1st HVAC simulation of system timestep
-        int const RadSysNum            // Index for the low temperature radiant system under consideration within the derived types
-        )
+    void InitHighTempRadiantSystem(bool const FirstHVACIteration, // TRUE if 1st HVAC simulation of system timestep
+                                   int const RadSysNum // Index for the low temperature radiant system under consideration within the derived types
+                                   )
     {
 
         // SUBROUTINE INFORMATION:
@@ -829,8 +826,8 @@ namespace HighTempRadiantSystem {
         int SizingMethod;         // Integer representation of sizing method name (e.g., CoolingAirflowSizing, HeatingAirflowSizing,
                                   // CoolingCapacitySizing, HeatingCapacitySizing, etc.)
         bool PrintFlag;           // TRUE when sizing information is reported in the eio file
-        int CapSizingMethod(0); // capacity sizing methods (HeatingDesignCapacity, CapacityPerFloorArea, FractionOfAutosizedCoolingCapacity,
-                                // and FractionOfAutosizedHeatingCapacity )
+        int CapSizingMethod(0);   // capacity sizing methods (HeatingDesignCapacity, CapacityPerFloorArea, FractionOfAutosizedCoolingCapacity,
+                                  // and FractionOfAutosizedHeatingCapacity )
 
         IsAutoSize = false;
         MaxPowerCapacDes = 0.0;
@@ -855,9 +852,8 @@ namespace HighTempRadiantSystem {
                 if (CapSizingMethod == HeatingDesignCapacity) {
                     if (HighTempRadSys(RadSysNum).ScaledHeatingCapacity == AutoSize) {
                         CheckZoneSizing(CompType, CompName);
-                        ZoneEqSizing(CurZoneEqNum).DesHeatingLoad =
-                            FinalZoneSizing(CurZoneEqNum).NonAirSysDesHeatLoad /
-                            (HighTempRadSys(RadSysNum).FracRadiant + HighTempRadSys(RadSysNum).FracConvect);
+                        ZoneEqSizing(CurZoneEqNum).DesHeatingLoad = FinalZoneSizing(CurZoneEqNum).NonAirSysDesHeatLoad /
+                                                                    (HighTempRadSys(RadSysNum).FracRadiant + HighTempRadSys(RadSysNum).FracConvect);
                     } else {
                         ZoneEqSizing(CurZoneEqNum).DesHeatingLoad = HighTempRadSys(RadSysNum).ScaledHeatingCapacity;
                     }
@@ -865,17 +861,15 @@ namespace HighTempRadiantSystem {
                     TempSize = ZoneEqSizing(CurZoneEqNum).DesHeatingLoad;
                 } else if (CapSizingMethod == CapacityPerFloorArea) {
                     ZoneEqSizing(CurZoneEqNum).HeatingCapacity = true;
-                    ZoneEqSizing(CurZoneEqNum).DesHeatingLoad =
-                        HighTempRadSys(RadSysNum).ScaledHeatingCapacity * Zone(DataZoneNumber).FloorArea;
+                    ZoneEqSizing(CurZoneEqNum).DesHeatingLoad = HighTempRadSys(RadSysNum).ScaledHeatingCapacity * Zone(DataZoneNumber).FloorArea;
                     TempSize = ZoneEqSizing(CurZoneEqNum).DesHeatingLoad;
                     DataScalableCapSizingON = true;
                 } else if (CapSizingMethod == FractionOfAutosizedHeatingCapacity) {
                     CheckZoneSizing(CompType, CompName);
                     ZoneEqSizing(CurZoneEqNum).HeatingCapacity = true;
                     DataFracOfAutosizedHeatingCapacity = HighTempRadSys(RadSysNum).ScaledHeatingCapacity;
-                    ZoneEqSizing(CurZoneEqNum).DesHeatingLoad =
-                        FinalZoneSizing(CurZoneEqNum).NonAirSysDesHeatLoad /
-                        (HighTempRadSys(RadSysNum).FracRadiant + HighTempRadSys(RadSysNum).FracConvect);
+                    ZoneEqSizing(CurZoneEqNum).DesHeatingLoad = FinalZoneSizing(CurZoneEqNum).NonAirSysDesHeatLoad /
+                                                                (HighTempRadSys(RadSysNum).FracRadiant + HighTempRadSys(RadSysNum).FracConvect);
                     TempSize = AutoSize;
                     DataScalableCapSizingON = true;
                 } else {
@@ -1146,10 +1140,9 @@ namespace HighTempRadiantSystem {
         }
     }
 
-    void UpdateHighTempRadiantSystem(
-        int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
-        Real64 &LoadMet      // load met by the radiant system, in Watts
-        )
+    void UpdateHighTempRadiantSystem(int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
+                                     Real64 &LoadMet      // load met by the radiant system, in Watts
+                                     )
     {
 
         // SUBROUTINE INFORMATION:
@@ -1425,8 +1418,7 @@ namespace HighTempRadiantSystem {
         }
     }
 
-    void ReportHighTempRadiantSystem(
-        int const RadSysNum) // Index for the low temperature radiant system under consideration within the derived types
+    void ReportHighTempRadiantSystem(int const RadSysNum) // Index for the low temperature radiant system under consideration within the derived types
     {
 
         // SUBROUTINE INFORMATION:
@@ -1539,8 +1531,8 @@ namespace HighTempRadiantSystem {
                 if (SurfaceWindow(SurfNum).DividerArea > 0.0 && SurfaceWindow(SurfNum).ShadingFlag != IntShadeOn &&
                     SurfaceWindow(SurfNum).ShadingFlag != IntBlindOn) {
                     // Window divider contribution (only from shade or blind for window with divider and interior shade or blind)
-                    SumHATsurf += HConvIn(SurfNum) * SurfaceWindow(SurfNum).DividerArea *
-                                  (1.0 + 2.0 * SurfaceWindow(SurfNum).ProjCorrDivIn) * SurfaceWindow(SurfNum).DividerTempSurfIn;
+                    SumHATsurf += HConvIn(SurfNum) * SurfaceWindow(SurfNum).DividerArea * (1.0 + 2.0 * SurfaceWindow(SurfNum).ProjCorrDivIn) *
+                                  SurfaceWindow(SurfNum).DividerTempSurfIn;
                 }
             }
 

@@ -126,8 +126,8 @@ namespace SplitterComponent {
     // Functions
     void clear_state();
 
-    void SimAirLoopSplitter(
-        std::string const &CompName, bool const FirstHVACIteration, bool const FirstCall, bool &SplitterInletChanged, int &CompIndex);
+    void
+    SimAirLoopSplitter(std::string const &CompName, bool const FirstHVACIteration, bool const FirstCall, bool &SplitterInletChanged, int &CompIndex);
 
     //*******************************
 

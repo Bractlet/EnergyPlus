@@ -131,8 +131,8 @@ namespace DemandManager {
         // Default Constructor
         DemandManagerListData()
             : Meter(0), LimitSchedule(0), SafetyFraction(1.0), BillingSchedule(0), BillingPeriod(0.0), PeakSchedule(0), AveragingWindow(1),
-              ManagerPriority(0), MeterDemand(0.0), AverageDemand(0.0), PeakDemand(0.0), ScheduledLimit(0.0), DemandLimit(0.0),
-              AvoidedDemand(0.0), OverLimit(0.0), OverLimitDuration(0.0)
+              ManagerPriority(0), MeterDemand(0.0), AverageDemand(0.0), PeakDemand(0.0), ScheduledLimit(0.0), DemandLimit(0.0), AvoidedDemand(0.0),
+              OverLimit(0.0), OverLimitDuration(0.0)
         {
         }
     };
@@ -169,8 +169,8 @@ namespace DemandManager {
         // Default Constructor
         DemandManagerData()
             : Type(0), DemandManagerList(0), CanReduceDemand(false), AvailSchedule(0), Available(false), Activate(false), Active(false),
-              LimitControl(0), SelectionControl(0), LimitDuration(0), ElapsedTime(0), RotationDuration(0), ElapsedRotationTime(0),
-              RotatedLoadNum(0), LowerLimit(0.0), UpperLimit(0.0), NumOfLoads(0), FixedRate(0.0), ReductionRatio(0.0)
+              LimitControl(0), SelectionControl(0), LimitDuration(0), ElapsedTime(0), RotationDuration(0), ElapsedRotationTime(0), RotatedLoadNum(0),
+              LowerLimit(0.0), UpperLimit(0.0), NumOfLoads(0), FixedRate(0.0), ReductionRatio(0.0)
         {
         }
     };

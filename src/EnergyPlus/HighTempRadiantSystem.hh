@@ -129,23 +129,22 @@ namespace HighTempRadiantSystem {
         Array1D<Real64> FracDistribToSurf; // Fraction of fraction radiant incident on the surface
         // Other parameters
         // Report data
-        Real64 ElecPower;     // system electric consumption in Watts
-        Real64 ElecEnergy;    // system electric consumption in Joules
-        Real64 GasPower;      // system gas consumption in Watts
-        Real64 GasEnergy;     // system gas consumption in Joules
-        Real64 HeatPower;     // actual heating sent to zone (convective and radiative) in Watts
-        Real64 HeatEnergy;    // actual heating sent to zone (convective and radiative) in Joules
-        int HeatingCapMethod; // - Method for High Temperature Radiant heating capacity scalable sizing calculation (HeatingDesignCapacity,
-                              // CapacityPerFloorArea, FracOfAutosizedHeatingCapacity)
+        Real64 ElecPower;             // system electric consumption in Watts
+        Real64 ElecEnergy;            // system electric consumption in Joules
+        Real64 GasPower;              // system gas consumption in Watts
+        Real64 GasEnergy;             // system gas consumption in Joules
+        Real64 HeatPower;             // actual heating sent to zone (convective and radiative) in Watts
+        Real64 HeatEnergy;            // actual heating sent to zone (convective and radiative) in Joules
+        int HeatingCapMethod;         // - Method for High Temperature Radiant heating capacity scalable sizing calculation (HeatingDesignCapacity,
+                                      // CapacityPerFloorArea, FracOfAutosizedHeatingCapacity)
         Real64 ScaledHeatingCapacity; // - High Temperature Radiant scaled maximum heating capacity {W} or scalable variable for sizing in
                                       // {-}, or {W/m2}
 
         // Default Constructor
         HighTempRadiantSystemData()
-            : SchedPtr(0), ZonePtr(0), HeaterType(0), MaxPowerCapac(0.0), CombustionEffic(0.0), FracRadiant(0.0), FracLatent(0.0),
-              FracLost(0.0), FracConvect(0.0), ControlType(0), ThrottlRange(0.0), SetptSchedPtr(0), FracDistribPerson(0.0),
-              TotSurfToDistrib(0), ElecPower(0.0), ElecEnergy(0.0), GasPower(0.0), GasEnergy(0.0), HeatPower(0.0), HeatEnergy(0.0),
-              HeatingCapMethod(0), ScaledHeatingCapacity(0.0)
+            : SchedPtr(0), ZonePtr(0), HeaterType(0), MaxPowerCapac(0.0), CombustionEffic(0.0), FracRadiant(0.0), FracLatent(0.0), FracLost(0.0),
+              FracConvect(0.0), ControlType(0), ThrottlRange(0.0), SetptSchedPtr(0), FracDistribPerson(0.0), TotSurfToDistrib(0), ElecPower(0.0),
+              ElecEnergy(0.0), GasPower(0.0), GasEnergy(0.0), HeatPower(0.0), HeatEnergy(0.0), HeatingCapMethod(0), ScaledHeatingCapacity(0.0)
         {
         }
     };
@@ -175,31 +174,28 @@ namespace HighTempRadiantSystem {
 
     void GetHighTempRadiantSystem(bool &ErrorsFound); // Error flag if problems encountered on reading user input
 
-    void InitHighTempRadiantSystem(
-        bool const FirstHVACIteration, // TRUE if 1st HVAC simulation of system timestep
-        int const RadSysNum            // Index for the low temperature radiant system under consideration within the derived types
-        );
+    void InitHighTempRadiantSystem(bool const FirstHVACIteration, // TRUE if 1st HVAC simulation of system timestep
+                                   int const RadSysNum // Index for the low temperature radiant system under consideration within the derived types
+                                   );
 
     void SizeHighTempRadiantSystem(int const RadSysNum);
 
     void CalcHighTempRadiantSystem(int const RadSysNum); // name of the low temperature radiant system
 
-    void CalcHighTempRadiantSystemSP(
-        bool const FirstHVACIteration, // true if this is the first HVAC iteration at this system time step !unused1208
-        int const RadSysNum            // name of the low temperature radiant system
-        );
+    void CalcHighTempRadiantSystemSP(bool const FirstHVACIteration, // true if this is the first HVAC iteration at this system time step !unused1208
+                                     int const RadSysNum            // name of the low temperature radiant system
+                                     );
 
-    void UpdateHighTempRadiantSystem(
-        int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
-        Real64 &LoadMet      // load met by the radiant system, in Watts
-        );
+    void UpdateHighTempRadiantSystem(int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
+                                     Real64 &LoadMet      // load met by the radiant system, in Watts
+                                     );
 
     void UpdateHTRadSourceValAvg(bool &HighTempRadSysOn); // .TRUE. if the radiant system has run this zone time step
 
     void DistributeHTRadGains();
 
-    void ReportHighTempRadiantSystem(
-        int const RadSysNum); // Index for the low temperature radiant system under consideration within the derived types
+    void
+    ReportHighTempRadiantSystem(int const RadSysNum); // Index for the low temperature radiant system under consideration within the derived types
 
     Real64 SumHATsurf(int const ZoneNum); // Zone number
 

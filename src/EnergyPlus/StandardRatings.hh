@@ -154,10 +154,10 @@ namespace StandardRatings {
                          Optional<Real64 const> OpenMotorEff = _     // Open chiller motor efficiency [fraction, 0 to 1]
                          );
 
-    Real64 ReformEIRChillerCondInletTempResidual(
-        Real64 const CondenserOutletTemp, // Condenser outlet temperature (boundary condition or guess value) [C]
-        Array1<Real64> const &Par         // par(1)  = Condenser inlet temperature at AHRI Standard
-        );
+    Real64
+    ReformEIRChillerCondInletTempResidual(Real64 const CondenserOutletTemp, // Condenser outlet temperature (boundary condition or guess value) [C]
+                                          Array1<Real64> const &Par         // par(1)  = Condenser inlet temperature at AHRI Standard
+                                          );
 
     void ReportChillerIPLV(std::string const &ChillerName, // Name of Chiller for which IPLV is calculated
                            int const ChillerType,          // Type of Chiller - EIR or Reformulated EIR
@@ -193,8 +193,8 @@ namespace StandardRatings {
         Optional<Real64 const> OATempCompressorOn =
             _, // The outdoor temperature when the compressor is automatically turned //Autodesk:OPTIONAL Used without PRESENT check
         Optional_bool_const OATempCompressorOnOffBlank =
-            _, // Flag used to determine low temperature cut out factor //Autodesk:OPTIONAL Used without PRESENT check
-        Optional_int_const DefrostControl = _,   // defrost control; 1=timed, 2=on-demand //Autodesk:OPTIONAL Used without PRESENT check
+            _,                                 // Flag used to determine low temperature cut out factor //Autodesk:OPTIONAL Used without PRESENT check
+        Optional_int_const DefrostControl = _, // defrost control; 1=timed, 2=on-demand //Autodesk:OPTIONAL Used without PRESENT check
         Optional_bool_const ASHRAE127StdRprt = _ // true if user wishes to report ASHRAE 127 standard ratings
         );
 
@@ -305,23 +305,22 @@ namespace StandardRatings {
                             int const RegionNum             // Region Number for which HSPF is calculated
                             );
 
-    void ReportDXCoolCoilDataCenterApplication(std::string const &CompType,         // Type of component
-                                               std::string const &CompName,         // Name of component
-                                               int const CompTypeNum,               // TypeNum of component
-                                               Array1D<Real64> &NetCoolingCapRated, // net cooling capacity of single speed DX cooling coil
+    void ReportDXCoolCoilDataCenterApplication(std::string const &CompType,           // Type of component
+                                               std::string const &CompName,           // Name of component
+                                               int const CompTypeNum,                 // TypeNum of component
+                                               Array1D<Real64> &NetCoolingCapRated,   // net cooling capacity of single speed DX cooling coil
                                                Array1D<Real64> &TotElectricPowerRated // total electric power including supply fan
                                                );
 
-    void
-    CheckCurveLimitsForStandardRatings(std::string const &DXCoilName, // Name of DX coil for which HSPF is calculated
-                                       std::string const &DXCoilType, // Type of DX coil - heating or cooling
-                                       int const DXCoilTypeNum,       // Integer type of DX coil - heating or cooling
-                                       int const CapFTempCurveIndex,  // Index for the capacity as a function of temperature modifier curve
-                                       int const CapFFlowCurveIndex, // Index for the capacity as a function of flow fraction modifier curve
-                                       int const EIRFTempCurveIndex, // Index for the EIR as a function of temperature modifier curve
-                                       int const EIRFFlowCurveIndex, // Index for the EIR as a function of flow fraction modifier curve
-                                       int const PLFFPLRCurveIndex   // Index for the EIR vs part-load ratio curve
-                                       );
+    void CheckCurveLimitsForStandardRatings(std::string const &DXCoilName, // Name of DX coil for which HSPF is calculated
+                                            std::string const &DXCoilType, // Type of DX coil - heating or cooling
+                                            int const DXCoilTypeNum,       // Integer type of DX coil - heating or cooling
+                                            int const CapFTempCurveIndex,  // Index for the capacity as a function of temperature modifier curve
+                                            int const CapFFlowCurveIndex,  // Index for the capacity as a function of flow fraction modifier curve
+                                            int const EIRFTempCurveIndex,  // Index for the EIR as a function of temperature modifier curve
+                                            int const EIRFFlowCurveIndex,  // Index for the EIR as a function of flow fraction modifier curve
+                                            int const PLFFPLRCurveIndex    // Index for the EIR vs part-load ratio curve
+                                            );
 
 } // StandardRatings
 

@@ -243,18 +243,16 @@ namespace TARCOGArgs {
 
         if (WriteDebugOutput) {
 
-            WriteInputArguments(tout, tind, trmin, wso, iwd, wsi, dir, outir, isky, tsky, esky, fclr, VacuumPressure, VacuumMaxGapThickness,
-                                ibc, hout, hin, standard, ThermalMod, SDScalar, height, heightt, width, tilt, totsol, nlayer, LayerType,
-                                thick, scon, asol, tir, emis, Atop, Abot, Al, Ar, Ah, SlatThick, SlatWidth, SlatAngle, SlatCond,
-                                SlatSpacing, SlatCurve, nslice, LaminateA, LaminateB, sumsol, gap, vvent, tvent, presure, nmix, iprop, frct,
-                                xgcon, xgvis, xgcp, xwght);
+            WriteInputArguments(tout, tind, trmin, wso, iwd, wsi, dir, outir, isky, tsky, esky, fclr, VacuumPressure, VacuumMaxGapThickness, ibc,
+                                hout, hin, standard, ThermalMod, SDScalar, height, heightt, width, tilt, totsol, nlayer, LayerType, thick, scon, asol,
+                                tir, emis, Atop, Abot, Al, Ar, Ah, SlatThick, SlatWidth, SlatAngle, SlatCond, SlatSpacing, SlatCurve, nslice,
+                                LaminateA, LaminateB, sumsol, gap, vvent, tvent, presure, nmix, iprop, frct, xgcon, xgvis, xgcp, xwght);
 
             WriteTARCOGInputFile(VersionNumber, tout, tind, trmin, wso, iwd, wsi, dir, outir, isky, tsky, esky, fclr, VacuumPressure,
-                                 VacuumMaxGapThickness, CalcDeflection, Pa, Pini, Tini, ibc, hout, hin, standard, ThermalMod, SDScalar,
-                                 height, heightt, width, tilt, totsol, nlayer, LayerType, thick, scon, YoungsMod, PoissonsRat, asol, tir,
-                                 emis, Atop, Abot, Al, Ar, Ah, SupportPillar, PillarSpacing, PillarRadius, SlatThick, SlatWidth, SlatAngle,
-                                 SlatCond, SlatSpacing, SlatCurve, nslice, gap, GapDef, vvent, tvent, presure, nmix, iprop, frct, xgcon,
-                                 xgvis, xgcp, xwght, gama);
+                                 VacuumMaxGapThickness, CalcDeflection, Pa, Pini, Tini, ibc, hout, hin, standard, ThermalMod, SDScalar, height,
+                                 heightt, width, tilt, totsol, nlayer, LayerType, thick, scon, YoungsMod, PoissonsRat, asol, tir, emis, Atop, Abot,
+                                 Al, Ar, Ah, SupportPillar, PillarSpacing, PillarRadius, SlatThick, SlatWidth, SlatAngle, SlatCond, SlatSpacing,
+                                 SlatCurve, nslice, gap, GapDef, vvent, tvent, presure, nmix, iprop, frct, xgcon, xgvis, xgcp, xwght, gama);
 
         } // if debug=1 - write dbg output file
 
@@ -582,8 +580,7 @@ namespace TARCOGArgs {
                     // bi...the idea here is to have glass-to-glass width the same as before scaling
                     // bi...TODO: check for outdoor and indoor blinds! SCW model is only applicable to in-between SDs!!!
                     thick(i) = SlatWidth(i) * std::cos(SlatAngle(i) * Pi / 180.0);
-                    if (i > 1)
-                        gap(i - 1) += (1.0 - SDScalar) / 2.0 * thick(i); // Autodesk:BoundsViolation gap(i-1) @ i=1: Added if condition
+                    if (i > 1) gap(i - 1) += (1.0 - SDScalar) / 2.0 * thick(i); // Autodesk:BoundsViolation gap(i-1) @ i=1: Added if condition
                     gap(i) += (1.0 - SDScalar) / 2.0 * thick(i);
                     thick(i) *= SDScalar;
                     if (thick(i) < SlatThick(i)) thick(i) = SlatThick(i);

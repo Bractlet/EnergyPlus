@@ -422,8 +422,7 @@ namespace CostEstimateManager {
                     } else { // assume name is probably useful
                         thisCoil = FindItem(CostLineItem(Item).ParentObjName, DXCoil);
                         if (thisCoil == 0) {
-                            ShowWarningError("ComponentCost:LineItem: \"" + CostLineItem(Item).LineName +
-                                             "\", Coil:DX, invalid coil specified");
+                            ShowWarningError("ComponentCost:LineItem: \"" + CostLineItem(Item).LineName + "\", Coil:DX, invalid coil specified");
                             ShowContinueError("Coil Specified=\"" + CostLineItem(Item).ParentObjName +
                                               "\", calculations will not be completed for this item.");
                         }
@@ -564,9 +563,8 @@ namespace CostEstimateManager {
                                     Multipliers = Zone(ThisZoneID).Multiplier * Zone(ThisZoneID).ListMultiplier;
                                 }
                                 if (PVarray(thisPV).PVModelType != iSimplePVModel) {
-                                    ShowSevereError(
-                                        "ComponentCost:LineItem: \"" + CostLineItem(Item).LineName +
-                                        "\", Generator:Photovoltaic, only available for model type PhotovoltaicPerformance:Simple");
+                                    ShowSevereError("ComponentCost:LineItem: \"" + CostLineItem(Item).LineName +
+                                                    "\", Generator:Photovoltaic, only available for model type PhotovoltaicPerformance:Simple");
                                     ErrorsFound = true;
                                 }
                             } else {
@@ -861,8 +859,7 @@ namespace CostEstimateManager {
                         if (ThisSurfID > 0) {
                             ThisZoneID = FindItem(Surface(ThisSurfID).ZoneName, Zone);
                             if (ThisZoneID > 0) {
-                                CostLineItem(Item).Qty =
-                                    Surface(ThisSurfID).Area * Zone(ThisZoneID).Multiplier * Zone(ThisZoneID).ListMultiplier;
+                                CostLineItem(Item).Qty = Surface(ThisSurfID).Area * Zone(ThisZoneID).Multiplier * Zone(ThisZoneID).ListMultiplier;
                                 CostLineItem(Item).Units = "m2";
                                 CostLineItem(Item).ValuePer = CostLineItem(Item).PerSquareMeter;
                                 CostLineItem(Item).LineSubTotal = CostLineItem(Item).Qty * CostLineItem(Item).ValuePer;

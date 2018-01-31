@@ -237,8 +237,8 @@ namespace MoistureBalanceEMPDManager {
         for (Loop = 1; Loop <= EMPDMat; ++Loop) {
 
             // Call Input Get routine to retrieve material data
-            GetObjectItem(cCurrentModuleObject, Loop, MaterialNames, MaterialNumAlpha, MaterialProps, MaterialNumProp, IOStat,
-                          lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cCurrentModuleObject, Loop, MaterialNames, MaterialNumAlpha, MaterialProps, MaterialNumProp, IOStat, lNumericFieldBlanks,
+                          lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
 
             // Load the material derived type from the input data.
             MaterNum = FindItemInList(MaterialNames(1), Material);
@@ -324,8 +324,7 @@ namespace MoistureBalanceEMPDManager {
                     Surface(SurfNum).ExtBoundCond <= 0) { // The external layer is not exposed to zone
                     ShowSevereError("GetMoistureBalanceEMPDInput: EMPD properties are assigned to the outside layer in Construction=" +
                                     Construct(ConstrNum).Name);
-                    ShowContinueError("..Outside layer material with EMPD properties = " +
-                                      Material(Construct(ConstrNum).LayerPoint(1)).Name);
+                    ShowContinueError("..Outside layer material with EMPD properties = " + Material(Construct(ConstrNum).LayerPoint(1)).Name);
                     ShowContinueError("..A material with EMPD properties must be assigned to the inside layer of a construction.");
                     ErrorsFound = true;
                 }
@@ -333,8 +332,7 @@ namespace MoistureBalanceEMPDManager {
                     if (Material(Construct(ConstrNum).LayerPoint(Layer)).EMPDMaterialProps) {
                         ShowSevereError("GetMoistureBalanceEMPDInput: EMPD properties are assigned to a middle layer in Construction=" +
                                         Construct(ConstrNum).Name);
-                        ShowContinueError("..Middle layer material with EMPD properties = " +
-                                          Material(Construct(ConstrNum).LayerPoint(Layer)).Name);
+                        ShowContinueError("..Middle layer material with EMPD properties = " + Material(Construct(ConstrNum).LayerPoint(Layer)).Name);
                         ShowContinueError("..A material with EMPD properties must be assigned to the inside layer of a construction.");
                         ErrorsFound = true;
                     }
@@ -431,24 +429,20 @@ namespace MoistureBalanceEMPDManager {
             if (Surface(SurfNum).Class == SurfaceClass_Window) continue;
             EMPDReportVarsData &rvd = EMPDReportVars(SurfNum);
             const std::string surf_name = Surface(SurfNum).Name;
-            SetupOutputVariable("EMPD Surface Inside Face Water Vapor Density", OutputProcessor::Unit::kg_m3, rvd.rv_surface, "Zone",
+            SetupOutputVariable("EMPD Surface Inside Face Water Vapor Density", OutputProcessor::Unit::kg_m3, rvd.rv_surface, "Zone", "State",
+                                surf_name);
+            SetupOutputVariable("EMPD Surface Layer Moisture Content", OutputProcessor::Unit::kg_m3, rvd.u_surface_layer, "Zone", "State", surf_name);
+            SetupOutputVariable("EMPD Deep Layer Moisture Content", OutputProcessor::Unit::kg_m3, rvd.u_deep_layer, "Zone", "State", surf_name);
+            SetupOutputVariable("EMPD Surface Layer Equivalent Relative Humidity", OutputProcessor::Unit::Perc, rvd.RH_surface_layer, "Zone", "State",
+                                surf_name);
+            SetupOutputVariable("EMPD Deep Layer Equivalent Relative Humidity", OutputProcessor::Unit::Perc, rvd.RH_deep_layer, "Zone", "State",
+                                surf_name);
+            SetupOutputVariable("EMPD Surface Layer Equivalent Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir, rvd.w_surface_layer, "Zone",
                                 "State", surf_name);
-            SetupOutputVariable("EMPD Surface Layer Moisture Content", OutputProcessor::Unit::kg_m3, rvd.u_surface_layer, "Zone", "State",
-                                surf_name);
-            SetupOutputVariable("EMPD Deep Layer Moisture Content", OutputProcessor::Unit::kg_m3, rvd.u_deep_layer, "Zone", "State",
-                                surf_name);
-            SetupOutputVariable("EMPD Surface Layer Equivalent Relative Humidity", OutputProcessor::Unit::Perc, rvd.RH_surface_layer,
-                                "Zone", "State", surf_name);
-            SetupOutputVariable("EMPD Deep Layer Equivalent Relative Humidity", OutputProcessor::Unit::Perc, rvd.RH_deep_layer, "Zone",
+            SetupOutputVariable("EMPD Deep Layer Equivalent Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir, rvd.w_deep_layer, "Zone",
                                 "State", surf_name);
-            SetupOutputVariable("EMPD Surface Layer Equivalent Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir,
-                                rvd.w_surface_layer, "Zone", "State", surf_name);
-            SetupOutputVariable("EMPD Deep Layer Equivalent Humidity Ratio", OutputProcessor::Unit::kgWater_kgDryAir, rvd.w_deep_layer,
-                                "Zone", "State", surf_name);
-            SetupOutputVariable("EMPD Surface Moisture Flux to Zone", OutputProcessor::Unit::kg_m2s, rvd.mass_flux_zone, "Zone", "State",
-                                surf_name);
-            SetupOutputVariable("EMPD Deep Layer Moisture Flux", OutputProcessor::Unit::kg_m2s, rvd.mass_flux_deep, "Zone", "State",
-                                surf_name);
+            SetupOutputVariable("EMPD Surface Moisture Flux to Zone", OutputProcessor::Unit::kg_m2s, rvd.mass_flux_zone, "Zone", "State", surf_name);
+            SetupOutputVariable("EMPD Deep Layer Moisture Flux", OutputProcessor::Unit::kg_m2s, rvd.mass_flux_deep, "Zone", "State", surf_name);
         }
 
         if (InitEnvrnFlag) InitEnvrnFlag = false;
@@ -626,8 +620,7 @@ namespace MoistureBalanceEMPDManager {
             mass_flux_surf_deep = mass_flux_surf_deep_max;
         }
 
-        mass_flux_zone_surf_max =
-            material.EMPDSurfaceDepth * material.Density * dU_dRH * (RHZone - RH_surf_layer_old) / (TimeStepZone * 3600.0);
+        mass_flux_zone_surf_max = material.EMPDSurfaceDepth * material.Density * dU_dRH * (RHZone - RH_surf_layer_old) / (TimeStepZone * 3600.0);
         mass_flux_zone_surf = hm_surf_layer * (rho_vapor_air_in - rv_surf_layer_old);
         if (std::abs(mass_flux_zone_surf_max) < std::abs(mass_flux_zone_surf)) {
             mass_flux_zone_surf = mass_flux_zone_surf_max;
@@ -691,8 +684,7 @@ namespace MoistureBalanceEMPDManager {
         if (material.EMPDDeepDepth <= 0.0) {
             RH_deep_layer = RH_deep_layer_old;
         } else {
-            RH_deep_layer =
-                RH_deep_layer_old + TimeStepZone * 3600.0 * mass_flux_deep_layer / (material.Density * material.EMPDDeepDepth * dU_dRH);
+            RH_deep_layer = RH_deep_layer_old + TimeStepZone * 3600.0 * mass_flux_deep_layer / (material.Density * material.EMPDDeepDepth * dU_dRH);
         }
         // Convert calculated RH back to vapor density of surface and deep layers.
         rv_surf_layer = PsyRhovFnTdbRh(Taver, RH_surf_layer);
@@ -721,10 +713,10 @@ namespace MoistureBalanceEMPDManager {
         rvd.w_deep_layer = 0.622 * PV_deep_layer / (OutBaroPress - PV_deep_layer);
         rvd.mass_flux_zone = mass_flux_zone;
         rvd.mass_flux_deep = mass_flux_deep_layer;
-        rvd.u_surface_layer = material.MoistACoeff * pow(RH_surf_layer, material.MoistBCoeff) +
-                              material.MoistCCoeff * pow(RH_surf_layer, material.MoistDCoeff);
-        rvd.u_deep_layer = material.MoistACoeff * pow(RH_deep_layer, material.MoistBCoeff) +
-                           material.MoistCCoeff * pow(RH_deep_layer, material.MoistDCoeff);
+        rvd.u_surface_layer =
+            material.MoistACoeff * pow(RH_surf_layer, material.MoistBCoeff) + material.MoistCCoeff * pow(RH_surf_layer, material.MoistDCoeff);
+        rvd.u_deep_layer =
+            material.MoistACoeff * pow(RH_deep_layer, material.MoistBCoeff) + material.MoistCCoeff * pow(RH_deep_layer, material.MoistDCoeff);
     }
 
     void UpdateMoistureBalanceEMPD(int const SurfNum) // Surface number

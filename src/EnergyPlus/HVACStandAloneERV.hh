@@ -154,16 +154,15 @@ namespace HVACStandAloneERV {
 
         // Default Constructor
         StandAloneERVData()
-            : SchedPtr(0), HeatExchangerIndex(0), HeatExchangerTypeNum(0), SupplyAirInletNode(0), SupplyAirOutletNode(0),
-              SupplyAirFanIndex(0), SupplyAirFanSchPtr(0), SupplyAirFanType_Num(0), ExhaustAirInletNode(0), ExhaustAirOutletNode(0),
-              ExhaustAirFanIndex(0), ExhaustAirFanSchPtr(0), ExhaustAirFanType_Num(0), SupplyAirVolFlow(0.0), ExhaustAirVolFlow(0.0),
-              ControllerNameDefined(false), ControlledZoneNum(0), ControllerIndex(0), MaxSupAirMassFlow(0.0), MaxExhAirMassFlow(0.0),
-              HighRHOAFlowRatio(1.0), DesignSAFanVolFlowRate(0.0), DesignEAFanVolFlowRate(0.0), DesignHXVolFlowRate(0.0),
-              DesignSAFanMassFlowRate(0.0), DesignEAFanMassFlowRate(0.0), AirVolFlowPerFloorArea(0.0), AirVolFlowPerOccupant(0.0),
-              EconomizerOASchedPtr(0), FlowError(true), AvailStatus(0), ElecUseRate(0.0), ElecUseEnergy(0.0), SensCoolingEnergy(0.0),
-              SensCoolingRate(0.0), LatCoolingEnergy(0.0), LatCoolingRate(0.0), TotCoolingEnergy(0.0), TotCoolingRate(0.0),
-              SensHeatingEnergy(0.0), SensHeatingRate(0.0), LatHeatingEnergy(0.0), LatHeatingRate(0.0), TotHeatingEnergy(0.0),
-              TotHeatingRate(0.0)
+            : SchedPtr(0), HeatExchangerIndex(0), HeatExchangerTypeNum(0), SupplyAirInletNode(0), SupplyAirOutletNode(0), SupplyAirFanIndex(0),
+              SupplyAirFanSchPtr(0), SupplyAirFanType_Num(0), ExhaustAirInletNode(0), ExhaustAirOutletNode(0), ExhaustAirFanIndex(0),
+              ExhaustAirFanSchPtr(0), ExhaustAirFanType_Num(0), SupplyAirVolFlow(0.0), ExhaustAirVolFlow(0.0), ControllerNameDefined(false),
+              ControlledZoneNum(0), ControllerIndex(0), MaxSupAirMassFlow(0.0), MaxExhAirMassFlow(0.0), HighRHOAFlowRatio(1.0),
+              DesignSAFanVolFlowRate(0.0), DesignEAFanVolFlowRate(0.0), DesignHXVolFlowRate(0.0), DesignSAFanMassFlowRate(0.0),
+              DesignEAFanMassFlowRate(0.0), AirVolFlowPerFloorArea(0.0), AirVolFlowPerOccupant(0.0), EconomizerOASchedPtr(0), FlowError(true),
+              AvailStatus(0), ElecUseRate(0.0), ElecUseEnergy(0.0), SensCoolingEnergy(0.0), SensCoolingRate(0.0), LatCoolingEnergy(0.0),
+              LatCoolingRate(0.0), TotCoolingEnergy(0.0), TotCoolingRate(0.0), SensHeatingEnergy(0.0), SensHeatingRate(0.0), LatHeatingEnergy(0.0),
+              LatHeatingRate(0.0), TotHeatingEnergy(0.0), TotHeatingRate(0.0)
         {
         }
     };

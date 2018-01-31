@@ -117,9 +117,8 @@ namespace DataZoneEnergyDemands {
 
         // Default Constructor
         ZoneSystemMoistureDemand()
-            : RemainingOutputRequired(0.0), TotalOutputRequired(0.0), OutputRequiredToHumidifyingSP(0.0),
-              OutputRequiredToDehumidifyingSP(0.0), RemainingOutputReqToHumidSP(0.0), RemainingOutputReqToDehumidSP(0.0),
-              NumZoneEquipment(0)
+            : RemainingOutputRequired(0.0), TotalOutputRequired(0.0), OutputRequiredToHumidifyingSP(0.0), OutputRequiredToDehumidifyingSP(0.0),
+              RemainingOutputReqToHumidSP(0.0), RemainingOutputReqToDehumidSP(0.0), NumZoneEquipment(0)
         {
         }
     };

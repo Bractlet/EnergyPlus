@@ -141,12 +141,8 @@ namespace SimAirServingZones {
 
     void SimAirLoops(bool const FirstHVACIteration, bool &SimZoneEquipment);
 
-    void SimAirLoop(bool const FirstHVACIteration,
-                    int const AirLoopNum,
-                    int const AirLoopPass,
-                    int &AirLoopIterMax,
-                    int &AirLoopIterTot,
-                    int &AirLoopNumCalls);
+    void SimAirLoop(
+        bool const FirstHVACIteration, int const AirLoopNum, int const AirLoopPass, int &AirLoopIterMax, int &AirLoopIterTot, int &AirLoopNumCalls);
 
     void SolveAirLoopControllers(
         bool const FirstHVACIteration, int const AirLoopNum, bool &AirLoopConvergedFlag, int &IterMax, int &IterTot, int &NumCalls);

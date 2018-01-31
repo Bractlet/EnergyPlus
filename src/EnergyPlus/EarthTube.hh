@@ -119,10 +119,10 @@ namespace EarthTube {
 
         // Default Constructor
         EarthTubeData()
-            : ZonePtr(0), SchedPtr(0), DesignLevel(0.0), MinTemperature(0.0), MaxTemperature(0.0), DelTemperature(0.0), FanType(0),
-              FanPressure(0.0), FanEfficiency(0.0), FanPower(0.0), GroundTempz1z2t(0.0), InsideAirTemp(0.0), AirTemp(0.0), HumRat(0.0),
-              WetBulbTemp(0.0), r1(0.0), r2(0.0), r3(0.0), PipeLength(0.0), PipeThermCond(0.0), z(0.0), SoilThermDiff(0.0),
-              SoilThermCond(0.0), ConstantTermCoef(0.0), TemperatureTermCoef(0.0), VelocityTermCoef(0.0), VelocitySQTermCoef(0.0)
+            : ZonePtr(0), SchedPtr(0), DesignLevel(0.0), MinTemperature(0.0), MaxTemperature(0.0), DelTemperature(0.0), FanType(0), FanPressure(0.0),
+              FanEfficiency(0.0), FanPower(0.0), GroundTempz1z2t(0.0), InsideAirTemp(0.0), AirTemp(0.0), HumRat(0.0), WetBulbTemp(0.0), r1(0.0),
+              r2(0.0), r3(0.0), PipeLength(0.0), PipeThermCond(0.0), z(0.0), SoilThermDiff(0.0), SoilThermCond(0.0), ConstantTermCoef(0.0),
+              TemperatureTermCoef(0.0), VelocityTermCoef(0.0), VelocitySQTermCoef(0.0)
         {
         }
     };
@@ -149,10 +149,10 @@ namespace EarthTube {
 
         // Default Constructor
         EarthTubeZoneReportVars()
-            : EarthTubeHeatLoss(0.0), EarthTubeHeatLossRate(0.0), EarthTubeHeatGain(0.0), EarthTubeHeatGainRate(0.0),
-              EarthTubeOATreatmentPower(0.0), EarthTubeVolume(0.0), EarthTubeVolFlowRate(0.0), EarthTubeVolFlowRateStd(0.0),
-              EarthTubeMass(0.0), EarthTubeMassFlowRate(0.0), EarthTubeWaterMassFlowRate(0.0), EarthTubeFanElec(0.0),
-              EarthTubeFanElecPower(0.0), EarthTubeAirTemp(0.0), EarthTubeWetBulbTemp(0.0), EarthTubeHumRat(0.0)
+            : EarthTubeHeatLoss(0.0), EarthTubeHeatLossRate(0.0), EarthTubeHeatGain(0.0), EarthTubeHeatGainRate(0.0), EarthTubeOATreatmentPower(0.0),
+              EarthTubeVolume(0.0), EarthTubeVolFlowRate(0.0), EarthTubeVolFlowRateStd(0.0), EarthTubeMass(0.0), EarthTubeMassFlowRate(0.0),
+              EarthTubeWaterMassFlowRate(0.0), EarthTubeFanElec(0.0), EarthTubeFanElecPower(0.0), EarthTubeAirTemp(0.0), EarthTubeWetBulbTemp(0.0),
+              EarthTubeHumRat(0.0)
         {
         }
     };

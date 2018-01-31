@@ -206,15 +206,15 @@ namespace GeneratorDynamicsManager {
     void ManageGeneratorControlState(int const GeneratorType,                     // type of Generator
                                      std::string const &EP_UNUSED(GeneratorName), // user specified name of Generator
                                      int const GeneratorNum,                      // Generator number
-                                     bool const RunFlagElectCenter,     // TRUE when Generator operating per electric load center request
-                                     bool const RunFlagPlant,           // TRUE when generator operating per Plant request (always false)
-                                     Real64 const ElecLoadRequest,      // Generator Electrical power demand
-                                     Real64 const ThermalLoadRequest,   // cogenerator Thermal power demand
-                                     Real64 &ElecLoadProvided,          // power allowed
-                                     int &OperatingMode,                // operating mode
-                                     Real64 &PLRforSubtimestepStartUp,  // part load ratio for switch to normal from start up
-                                     Real64 &PLRforSubtimestepShutDown, // part load ratio for switch from cool down to other
-                                     bool const EP_UNUSED(FirstHVACIteration) // True is this is first HVAC iteration
+                                     bool const RunFlagElectCenter,               // TRUE when Generator operating per electric load center request
+                                     bool const RunFlagPlant,                     // TRUE when generator operating per Plant request (always false)
+                                     Real64 const ElecLoadRequest,                // Generator Electrical power demand
+                                     Real64 const ThermalLoadRequest,             // cogenerator Thermal power demand
+                                     Real64 &ElecLoadProvided,                    // power allowed
+                                     int &OperatingMode,                          // operating mode
+                                     Real64 &PLRforSubtimestepStartUp,            // part load ratio for switch to normal from start up
+                                     Real64 &PLRforSubtimestepShutDown,           // part load ratio for switch from cool down to other
+                                     bool const EP_UNUSED(FirstHVACIteration)     // True is this is first HVAC iteration
                                      )
     {
 
@@ -414,9 +414,8 @@ namespace GeneratorDynamicsManager {
                             PLRStartUp = true;
                             if ((MicroCHP(GeneratorNum).A42Model.Teng - MicroCHP(GeneratorNum).A42Model.TengLast) > 0.0) {
                                 // protect divide by zero or neg
-                                PLRforSubtimestepStartUp =
-                                    (MicroCHP(GeneratorNum).A42Model.Teng - GeneratorDynamics(DynaCntrlNum).TnomEngOp) /
-                                    (MicroCHP(GeneratorNum).A42Model.Teng - MicroCHP(GeneratorNum).A42Model.TengLast);
+                                PLRforSubtimestepStartUp = (MicroCHP(GeneratorNum).A42Model.Teng - GeneratorDynamics(DynaCntrlNum).TnomEngOp) /
+                                                           (MicroCHP(GeneratorNum).A42Model.Teng - MicroCHP(GeneratorNum).A42Model.TengLast);
                             } else {
                                 PLRforSubtimestepStartUp = 1.0;
                             }
@@ -469,8 +468,7 @@ namespace GeneratorDynamicsManager {
                             double(DayOfSim) + (int(CurrentTime) + (SysTimeElapsed + (CurrentTime - int(CurrentTime)))) / HoursInDay;
                         EndingFractionalDay = GeneratorDynamics(DynaCntrlNum).FractionalDayofLastStartUp +
                                               GeneratorDynamics(DynaCntrlNum).StartUpTimeDelay / HoursInDay;
-                        if ((std::abs(CurrentFractionalDay - EndingFractionalDay) < 0.000001) ||
-                            (CurrentFractionalDay > EndingFractionalDay)) {
+                        if ((std::abs(CurrentFractionalDay - EndingFractionalDay) < 0.000001) || (CurrentFractionalDay > EndingFractionalDay)) {
                             newOpMode = OpModeNormal;
                             PLRStartUp = true;
                             LastSystemTimeStepFractionalDay = CurrentFractionalDay - (TimeStepSys / HoursInDay);
@@ -489,9 +487,8 @@ namespace GeneratorDynamicsManager {
                                 PLRStartUp = true;
                                 if ((MicroCHP(GeneratorNum).A42Model.Teng - MicroCHP(GeneratorNum).A42Model.TengLast) > 0.0) {
                                     // protect divide by zero or neg
-                                    PLRforSubtimestepStartUp =
-                                        (MicroCHP(GeneratorNum).A42Model.Teng - GeneratorDynamics(DynaCntrlNum).TnomEngOp) /
-                                        (MicroCHP(GeneratorNum).A42Model.Teng - MicroCHP(GeneratorNum).A42Model.TengLast);
+                                    PLRforSubtimestepStartUp = (MicroCHP(GeneratorNum).A42Model.Teng - GeneratorDynamics(DynaCntrlNum).TnomEngOp) /
+                                                               (MicroCHP(GeneratorNum).A42Model.Teng - MicroCHP(GeneratorNum).A42Model.TengLast);
                                 } else {
                                     PLRforSubtimestepStartUp = 1.0;
                                 }
@@ -600,14 +597,13 @@ namespace GeneratorDynamicsManager {
                                 // could go to warm up or normal now
                                 PLRShutDown = true;
                                 LastSystemTimeStepFractionalDay = CurrentFractionalDay - (TimeStepSys / HoursInDay);
-                                PLRforSubtimestepShutDown =
-                                    (EndingFractionalDay - LastSystemTimeStepFractionalDay) * HoursInDay / TimeStepSys;
+                                PLRforSubtimestepShutDown = (EndingFractionalDay - LastSystemTimeStepFractionalDay) * HoursInDay / TimeStepSys;
                                 if (GeneratorDynamics(DynaCntrlNum).StartUpTimeDelay == 0.0) {
                                     newOpMode = OpModeNormal;
                                     // possible PLR on start up.
                                     PLRStartUp = true;
-                                    PLRforSubtimestepStartUp = ((CurrentFractionalDay - EndingFractionalDay) /
-                                                                (CurrentFractionalDay - LastSystemTimeStepFractionalDay));
+                                    PLRforSubtimestepStartUp =
+                                        ((CurrentFractionalDay - EndingFractionalDay) / (CurrentFractionalDay - LastSystemTimeStepFractionalDay));
 
                                 } else if (GeneratorDynamics(DynaCntrlNum).StartUpTimeDelay > 0.0) {
                                     // is remaining time enough?
@@ -615,15 +611,14 @@ namespace GeneratorDynamicsManager {
                                         newOpMode = OpModeNormal;
                                         // possible PLR on start up.
                                         PLRStartUp = true;
-                                        PLRforSubtimestepStartUp = ((CurrentFractionalDay - EndingFractionalDay) /
-                                                                    (CurrentFractionalDay - LastSystemTimeStepFractionalDay));
+                                        PLRforSubtimestepStartUp =
+                                            ((CurrentFractionalDay - EndingFractionalDay) / (CurrentFractionalDay - LastSystemTimeStepFractionalDay));
                                     } else {
                                         newOpMode = OpModeWarmUp;
                                         // generator just started so set start time
                                         GeneratorDynamics(DynaCntrlNum).FractionalDayofLastStartUp =
                                             double(DayOfSim) +
-                                            (int(CurrentTime) + (SysTimeElapsed + (CurrentTime - int(CurrentTime) - TimeStepSys))) /
-                                                HoursInDay;
+                                            (int(CurrentTime) + (SysTimeElapsed + (CurrentTime - int(CurrentTime) - TimeStepSys))) / HoursInDay;
                                     }
                                 }
                             }
@@ -639,8 +634,7 @@ namespace GeneratorDynamicsManager {
 
                             } else if (GeneratorDynamics(DynaCntrlNum).StartUpTimeDelay > 0.0) {
                                 CurrentFractionalDay =
-                                    double(DayOfSim) +
-                                    (int(CurrentTime) + (SysTimeElapsed + (CurrentTime - int(CurrentTime)))) / HoursInDay;
+                                    double(DayOfSim) + (int(CurrentTime) + (SysTimeElapsed + (CurrentTime - int(CurrentTime)))) / HoursInDay;
                                 EndingFractionalDay = GeneratorDynamics(DynaCntrlNum).FractionalDayofLastShutDown +
                                                       GeneratorDynamics(DynaCntrlNum).CoolDownDelay / HoursInDay;
                                 if ((std::abs(CurrentFractionalDay - EndingFractionalDay) < 0.000001) ||
@@ -649,8 +643,8 @@ namespace GeneratorDynamicsManager {
                                     // possible PLR on start up.
                                     PLRStartUp = true;
                                     LastSystemTimeStepFractionalDay = CurrentFractionalDay - (TimeStepSys / HoursInDay);
-                                    PLRforSubtimestepStartUp = ((CurrentFractionalDay - EndingFractionalDay) /
-                                                                (CurrentFractionalDay - LastSystemTimeStepFractionalDay));
+                                    PLRforSubtimestepStartUp =
+                                        ((CurrentFractionalDay - EndingFractionalDay) / (CurrentFractionalDay - LastSystemTimeStepFractionalDay));
                                 } else {
                                     newOpMode = OpModeWarmUp;
                                     // set start up time
@@ -693,14 +687,12 @@ namespace GeneratorDynamicsManager {
             Pel *= PLRforSubtimestepStartUp;
             // unit may have constraints from transient limits or operating ranges.
             if (Pel > GeneratorDynamics(DynaCntrlNum).PelLastTimeStep) { // powering up
-                MaxPel =
-                    GeneratorDynamics(DynaCntrlNum).PelLastTimeStep + GeneratorDynamics(DynaCntrlNum).UpTranLimit * TimeStepSys * SecInHour;
+                MaxPel = GeneratorDynamics(DynaCntrlNum).PelLastTimeStep + GeneratorDynamics(DynaCntrlNum).UpTranLimit * TimeStepSys * SecInHour;
                 if (MaxPel < Pel) {
                     Pel = MaxPel;
                 }
             } else if (Pel < GeneratorDynamics(DynaCntrlNum).PelLastTimeStep) { // powering down
-                MinPel = GeneratorDynamics(DynaCntrlNum).PelLastTimeStep -
-                         GeneratorDynamics(DynaCntrlNum).DownTranLimit * TimeStepSys * SecInHour;
+                MinPel = GeneratorDynamics(DynaCntrlNum).PelLastTimeStep - GeneratorDynamics(DynaCntrlNum).DownTranLimit * TimeStepSys * SecInHour;
                 if (Pel < MinPel) {
                     Pel = MinPel;
                 }
@@ -782,8 +774,7 @@ namespace GeneratorDynamicsManager {
                                 MicroCHP(GeneratorNum).A42Model.NormalModeTime = TimeStepSys * SecInHour;
                             } else if ((PLRforSubtimestepShutDown > 0.0) && (PLRforSubtimestepShutDown < 1.0)) {
                                 MicroCHP(GeneratorNum).A42Model.CoolDownModeTime = TimeStepSys * SecInHour * (PLRforSubtimestepShutDown);
-                                MicroCHP(GeneratorNum).A42Model.NormalModeTime =
-                                    TimeStepSys * SecInHour * (1.0 - PLRforSubtimestepShutDown);
+                                MicroCHP(GeneratorNum).A42Model.NormalModeTime = TimeStepSys * SecInHour * (1.0 - PLRforSubtimestepShutDown);
                             } else {
                                 MicroCHP(GeneratorNum).A42Model.NormalModeTime = TimeStepSys * SecInHour;
                             }
@@ -813,8 +804,8 @@ namespace GeneratorDynamicsManager {
                                  bool const EP_UNUSED(RunFlag),               // TRUE when Generator operating
                                  Real64 const FuelFlowRequest,                // Generator demand mdot kg/ s
                                  Real64 &FuelFlowProvided,                    // allowed after constraints kg/s
-                                 bool &ConstrainedIncreasingMdot, // true if request was altered because of fuel rate of change up
-                                 bool &ConstrainedDecreasingMdot  // true if request was altered because of fuel rate of change down
+                                 bool &ConstrainedIncreasingMdot,             // true if request was altered because of fuel rate of change up
+                                 bool &ConstrainedDecreasingMdot              // true if request was altered because of fuel rate of change down
                                  )
     {
 
@@ -870,16 +861,16 @@ namespace GeneratorDynamicsManager {
         }
 
         if (FuelFlowRequest > GeneratorDynamics(DynaCntrlNum).FuelMdotLastTimestep) { // fuel flow is up
-            MaxMdot = GeneratorDynamics(DynaCntrlNum).FuelMdotLastTimestep +
-                      GeneratorDynamics(DynaCntrlNum).UpTranLimitFuel * TimeStepSys * SecInHour;
+            MaxMdot =
+                GeneratorDynamics(DynaCntrlNum).FuelMdotLastTimestep + GeneratorDynamics(DynaCntrlNum).UpTranLimitFuel * TimeStepSys * SecInHour;
             if (MaxMdot < FuelFlowRequest) {
                 MdotFuel = MaxMdot;
                 ConstrainedIncreasingMdot = true;
             }
 
         } else if (FuelFlowRequest < GeneratorDynamics(DynaCntrlNum).FuelMdotLastTimestep) { // fuel flow is down
-            MinMdot = GeneratorDynamics(DynaCntrlNum).FuelMdotLastTimestep -
-                      GeneratorDynamics(DynaCntrlNum).DownTranLimitFuel * TimeStepSys * SecInHour;
+            MinMdot =
+                GeneratorDynamics(DynaCntrlNum).FuelMdotLastTimestep - GeneratorDynamics(DynaCntrlNum).DownTranLimitFuel * TimeStepSys * SecInHour;
             if (FuelFlowRequest < MinMdot) {
                 MdotFuel = MinMdot;
                 ConstrainedDecreasingMdot = true;

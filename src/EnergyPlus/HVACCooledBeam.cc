@@ -217,8 +217,8 @@ namespace HVACCooledBeam {
             }
             if (CheckEquipName(CBNum)) {
                 if (CompName != CoolBeam(CBNum).Name) {
-                    ShowFatalError("SimCoolBeam: Invalid CompIndex passed=" + TrimSigDigits(CompIndex) + ", Cool Beam Unit name=" +
-                                   CompName + ", stored Cool Beam Unit for that index=" + CoolBeam(CBNum).Name);
+                    ShowFatalError("SimCoolBeam: Invalid CompIndex passed=" + TrimSigDigits(CompIndex) + ", Cool Beam Unit name=" + CompName +
+                                   ", stored Cool Beam Unit for that index=" + CoolBeam(CBNum).Name);
                 }
                 CheckEquipName(CBNum) = false;
             }
@@ -335,8 +335,8 @@ namespace HVACCooledBeam {
         // loop over cooled beam units; get and load the input data
         for (CBIndex = 1; CBIndex <= NumCB; ++CBIndex) {
 
-            GetObjectItem(CurrentModuleObject, CBIndex, Alphas, NumAlphas, Numbers, NumNumbers, IOStatus, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFields, cNumericFields);
+            GetObjectItem(CurrentModuleObject, CBIndex, Alphas, NumAlphas, Numbers, NumNumbers, IOStatus, lNumericBlanks, lAlphaBlanks, cAlphaFields,
+                          cNumericFields);
             CBNum = CBIndex;
             IsNotOK = false;
             IsBlank = false;
@@ -364,8 +364,8 @@ namespace HVACCooledBeam {
             } else {
                 CoolBeam(CBNum).SchedPtr = GetScheduleIndex(Alphas(2)); // convert schedule name to pointer
                 if (CoolBeam(CBNum).SchedPtr == 0) {
-                    ShowSevereError(RoutineName + CurrentModuleObject + ": invalid " + cAlphaFields(2) + " entered =" + Alphas(2) +
-                                    " for " + cAlphaFields(1) + '=' + Alphas(1));
+                    ShowSevereError(RoutineName + CurrentModuleObject + ": invalid " + cAlphaFields(2) + " entered =" + Alphas(2) + " for " +
+                                    cAlphaFields(1) + '=' + Alphas(1));
                     ErrorsFound = true;
                 }
             }
@@ -402,21 +402,20 @@ namespace HVACCooledBeam {
 
             // Setup the Cooled Beam reporting variables
             // CurrentModuleObject = "AirTerminal:SingleDuct:ConstantVolume:CooledBeam"
-            SetupOutputVariable("Zone Air Terminal Beam Sensible Cooling Energy", OutputProcessor::Unit::J,
-                                CoolBeam(CBNum).BeamCoolingEnergy, "System", "Sum", CoolBeam(CBNum).Name, _, "ENERGYTRANSFER",
-                                "COOLINGCOILS", _, "System");
-            SetupOutputVariable("Zone Air Terminal Beam Chilled Water Energy", OutputProcessor::Unit::J, CoolBeam(CBNum).BeamCoolingEnergy,
-                                "System", "Sum", CoolBeam(CBNum).Name, _, "PLANTLOOPCOOLINGDEMAND", "COOLINGCOILS", _, "System");
-            SetupOutputVariable("Zone Air Terminal Beam Sensible Cooling Rate", OutputProcessor::Unit::W, CoolBeam(CBNum).BeamCoolingRate,
+            SetupOutputVariable("Zone Air Terminal Beam Sensible Cooling Energy", OutputProcessor::Unit::J, CoolBeam(CBNum).BeamCoolingEnergy,
+                                "System", "Sum", CoolBeam(CBNum).Name, _, "ENERGYTRANSFER", "COOLINGCOILS", _, "System");
+            SetupOutputVariable("Zone Air Terminal Beam Chilled Water Energy", OutputProcessor::Unit::J, CoolBeam(CBNum).BeamCoolingEnergy, "System",
+                                "Sum", CoolBeam(CBNum).Name, _, "PLANTLOOPCOOLINGDEMAND", "COOLINGCOILS", _, "System");
+            SetupOutputVariable("Zone Air Terminal Beam Sensible Cooling Rate", OutputProcessor::Unit::W, CoolBeam(CBNum).BeamCoolingRate, "System",
+                                "Average", CoolBeam(CBNum).Name);
+            SetupOutputVariable("Zone Air Terminal Supply Air Sensible Cooling Energy", OutputProcessor::Unit::J, CoolBeam(CBNum).SupAirCoolingEnergy,
+                                "System", "Sum", CoolBeam(CBNum).Name);
+            SetupOutputVariable("Zone Air Terminal Supply Air Sensible Cooling Rate", OutputProcessor::Unit::W, CoolBeam(CBNum).SupAirCoolingRate,
                                 "System", "Average", CoolBeam(CBNum).Name);
-            SetupOutputVariable("Zone Air Terminal Supply Air Sensible Cooling Energy", OutputProcessor::Unit::J,
-                                CoolBeam(CBNum).SupAirCoolingEnergy, "System", "Sum", CoolBeam(CBNum).Name);
-            SetupOutputVariable("Zone Air Terminal Supply Air Sensible Cooling Rate", OutputProcessor::Unit::W,
-                                CoolBeam(CBNum).SupAirCoolingRate, "System", "Average", CoolBeam(CBNum).Name);
-            SetupOutputVariable("Zone Air Terminal Supply Air Sensible Heating Energy", OutputProcessor::Unit::J,
-                                CoolBeam(CBNum).SupAirHeatingEnergy, "System", "Sum", CoolBeam(CBNum).Name);
-            SetupOutputVariable("Zone Air Terminal Supply Air Sensible Heating Rate", OutputProcessor::Unit::W,
-                                CoolBeam(CBNum).SupAirHeatingRate, "System", "Average", CoolBeam(CBNum).Name);
+            SetupOutputVariable("Zone Air Terminal Supply Air Sensible Heating Energy", OutputProcessor::Unit::J, CoolBeam(CBNum).SupAirHeatingEnergy,
+                                "System", "Sum", CoolBeam(CBNum).Name);
+            SetupOutputVariable("Zone Air Terminal Supply Air Sensible Heating Rate", OutputProcessor::Unit::W, CoolBeam(CBNum).SupAirHeatingRate,
+                                "System", "Average", CoolBeam(CBNum).Name);
 
             for (ADUNum = 1; ADUNum <= NumAirDistUnits; ++ADUNum) {
                 if (CoolBeam(CBNum).AirOutNode == AirDistUnit(ADUNum).OutletNodeNum) {
@@ -425,8 +424,8 @@ namespace HVACCooledBeam {
             }
             // one assumes if there isn't one assigned, it's an error?
             if (CoolBeam(CBNum).ADUNum == 0) {
-                ShowSevereError(RoutineName + "No matching Air Distribution Unit, for Unit = [" + CurrentModuleObject + ',' +
-                                CoolBeam(CBNum).Name + "].");
+                ShowSevereError(RoutineName + "No matching Air Distribution Unit, for Unit = [" + CurrentModuleObject + ',' + CoolBeam(CBNum).Name +
+                                "].");
                 ShowContinueError("...should have outlet node=" + NodeID(CoolBeam(CBNum).AirOutNode));
                 ErrorsFound = true;
             } else {
@@ -530,9 +529,8 @@ namespace HVACCooledBeam {
 
         if (PlantLoopScanFlag(CBNum) && allocated(PlantLoop)) {
             errFlag = false;
-            ScanPlantLoopsForObject(CoolBeam(CBNum).Name, TypeOf_CooledBeamAirTerminal, CoolBeam(CBNum).CWLoopNum,
-                                    CoolBeam(CBNum).CWLoopSideNum, CoolBeam(CBNum).CWBranchNum, CoolBeam(CBNum).CWCompNum, _, _, _, _, _,
-                                    errFlag);
+            ScanPlantLoopsForObject(CoolBeam(CBNum).Name, TypeOf_CooledBeamAirTerminal, CoolBeam(CBNum).CWLoopNum, CoolBeam(CBNum).CWLoopSideNum,
+                                    CoolBeam(CBNum).CWBranchNum, CoolBeam(CBNum).CWCompNum, _, _, _, _, _, errFlag);
             if (errFlag) {
                 ShowFatalError("InitCoolBeam: Program terminated for previous conditions.");
             }
@@ -680,8 +678,8 @@ namespace HVACCooledBeam {
         ErrorsFound = false;
         // find the appropriate Plant Sizing object
         if (CoolBeam(CBNum).MaxAirVolFlow == AutoSize || CoolBeam(CBNum).BeamLength == AutoSize) {
-            PltSizCoolNum = MyPlantSizingIndex("cooled beam unit", CoolBeam(CBNum).Name, CoolBeam(CBNum).CWInNode,
-                                               CoolBeam(CBNum).CWOutNode, ErrorsFound);
+            PltSizCoolNum =
+                MyPlantSizingIndex("cooled beam unit", CoolBeam(CBNum).Name, CoolBeam(CBNum).CWInNode, CoolBeam(CBNum).CWOutNode, ErrorsFound);
         }
 
         if (CoolBeam(CBNum).Kin == AutoCalculate) {
@@ -698,13 +696,12 @@ namespace HVACCooledBeam {
             if (CurTermUnitSizingNum > 0) {
 
                 CheckZoneSizing(CoolBeam(CBNum).UnitType, CoolBeam(CBNum).Name);
-                CoolBeam(CBNum).MaxAirVolFlow = max(TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolVolFlow,
-                                                    TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatVolFlow);
+                CoolBeam(CBNum).MaxAirVolFlow =
+                    max(TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolVolFlow, TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatVolFlow);
                 if (CoolBeam(CBNum).MaxAirVolFlow < SmallAirVolFlow) {
                     CoolBeam(CBNum).MaxAirVolFlow = 0.0;
                 }
-                ReportSizingOutput(CoolBeam(CBNum).UnitType, CoolBeam(CBNum).Name, "Supply Air Flow Rate [m3/s]",
-                                   CoolBeam(CBNum).MaxAirVolFlow);
+                ReportSizingOutput(CoolBeam(CBNum).UnitType, CoolBeam(CBNum).Name, "Supply Air Flow Rate [m3/s]", CoolBeam(CBNum).MaxAirVolFlow);
             }
         }
 
@@ -723,8 +720,8 @@ namespace HVACCooledBeam {
                         // DesCoolCoilInTempTU is really the primary air inlet temperature for the unit.
                         if (FinalZoneSizing(CurZoneEqNum).ZoneTempAtCoolPeak > 0.0) {
                             DesCoilLoad = FinalZoneSizing(CurZoneEqNum).DesCoolLoad -
-                                          CpAir * RhoAir * DesAirVolFlow * (FinalZoneSizing(CurZoneEqNum).ZoneTempAtCoolPeak -
-                                                                            FinalZoneSizing(CurZoneEqNum).DesCoolCoilInTempTU);
+                                          CpAir * RhoAir * DesAirVolFlow *
+                                              (FinalZoneSizing(CurZoneEqNum).ZoneTempAtCoolPeak - FinalZoneSizing(CurZoneEqNum).DesCoolCoilInTempTU);
                         } else {
                             DesCoilLoad = CpAir * RhoAir * DesAirVolFlow *
                                           (FinalZoneSizing(CurZoneEqNum).DesCoolCoilInTempTU - ZoneSizThermSetPtHi(CurZoneEqNum));
@@ -777,8 +774,8 @@ namespace HVACCooledBeam {
 
                     Cp = GetSpecificHeatGlycol(PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidName, DataGlobals::CWInitConvTemp,
                                                PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidIndex, RoutineName);
-                    DesCoilLoad = CoolBeam(CBNum).MaxCoolWaterVolFlow *
-                                  (CoolBeam(CBNum).DesOutletWaterTemp - CoolBeam(CBNum).DesInletWaterTemp) * Cp * rho;
+                    DesCoilLoad =
+                        CoolBeam(CBNum).MaxCoolWaterVolFlow * (CoolBeam(CBNum).DesOutletWaterTemp - CoolBeam(CBNum).DesInletWaterTemp) * Cp * rho;
                     if (DesCoilLoad > 0.0) {
                         DesLoadPerBeam = DesCoilLoad / NumBeams;
                         DesAirFlowPerBeam = CoolBeam(CBNum).MaxAirVolFlow / NumBeams;
@@ -1044,17 +1041,16 @@ namespace HVACCooledBeam {
         // test CWFlow against plant
         mdot = CWFlow;
 
-        SetComponentFlowRate(mdot, CoolBeam(CBNum).CWInNode, CoolBeam(CBNum).CWOutNode, CoolBeam(CBNum).CWLoopNum,
-                             CoolBeam(CBNum).CWLoopSideNum, CoolBeam(CBNum).CWBranchNum, CoolBeam(CBNum).CWCompNum);
+        SetComponentFlowRate(mdot, CoolBeam(CBNum).CWInNode, CoolBeam(CBNum).CWOutNode, CoolBeam(CBNum).CWLoopNum, CoolBeam(CBNum).CWLoopSideNum,
+                             CoolBeam(CBNum).CWBranchNum, CoolBeam(CBNum).CWCompNum);
 
         CWFlowPerBeam = mdot / CoolBeam(CBNum).NumBeams;
         TWIn = CoolBeam(CBNum).TWIn;
 
-        Cp = GetSpecificHeatGlycol(PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidName, TWIn, PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidIndex,
-                                   RoutineName);
+        Cp =
+            GetSpecificHeatGlycol(PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidName, TWIn, PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidIndex, RoutineName);
 
-        rho = GetDensityGlycol(PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidName, TWIn, PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidIndex,
-                               RoutineName);
+        rho = GetDensityGlycol(PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidName, TWIn, PlantLoop(CoolBeam(CBNum).CWLoopNum).FluidIndex, RoutineName);
 
         TWOut = TWIn + 2.0;
         ZTemp = Node(ZoneNode).Temp;
@@ -1074,8 +1070,8 @@ namespace HVACCooledBeam {
 
             WaterCoolPower = CWFlowPerBeam * Cp * (TWOut - TWIn);
             DT = max(ZTemp - 0.5 * (TWIn + TWOut), 0.0);
-            IndFlow = CoolBeam(CBNum).K1 * std::pow(DT, CoolBeam(CBNum).n) +
-                      CoolBeam(CBNum).Kin * CoolBeam(CBNum).BeamFlow / CoolBeam(CBNum).BeamLength;
+            IndFlow =
+                CoolBeam(CBNum).K1 * std::pow(DT, CoolBeam(CBNum).n) + CoolBeam(CBNum).Kin * CoolBeam(CBNum).BeamFlow / CoolBeam(CBNum).BeamLength;
             CoilFlow = (IndFlow / CoolBeam(CBNum).a0) * StdRhoAir;
             WaterVel = CWFlowPerBeam / (rho * Pi * pow_2(CoolBeam(CBNum).InDiam) / 4.0);
             if (WaterVel > MinWaterVel) {

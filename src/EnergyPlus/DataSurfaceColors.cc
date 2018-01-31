@@ -257,15 +257,14 @@ namespace DataSurfaceColors {
             cAlphas({1, NumAlphas}) = "";
             rNumerics({1, numNumbers}) = 0.0;
 
-            GetObjectItem(CurrentModuleObject, numptr, cAlphas, NumAlphas, rNumerics, numNumbers, status, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFields, cNumericFields);
+            GetObjectItem(CurrentModuleObject, numptr, cAlphas, NumAlphas, rNumerics, numNumbers, status, lNumericBlanks, lAlphaBlanks, cAlphaFields,
+                          cNumericFields);
             for (numargs = 1; numargs <= numNumbers; ++numargs) {
                 numptr = rNumerics(numargs); // set to integer
                 if (lNumericBlanks(numargs)) {
                     if (!lAlphaBlanks(numargs + 1)) {
-                        ShowWarningError("SetUpSchemeColors: " + cAlphaFields(1) + '=' + SchemeName + ", " + cAlphaFields(numargs + 1) +
-                                         '=' + cAlphas(numargs + 1) + ", " + cNumericFields(numargs) +
-                                         " was blank.  Default color retained.");
+                        ShowWarningError("SetUpSchemeColors: " + cAlphaFields(1) + '=' + SchemeName + ", " + cAlphaFields(numargs + 1) + '=' +
+                                         cAlphas(numargs + 1) + ", " + cNumericFields(numargs) + " was blank.  Default color retained.");
                     }
                     continue;
                 }

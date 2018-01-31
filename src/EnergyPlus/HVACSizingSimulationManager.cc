@@ -134,8 +134,7 @@ void HVACSizingSimulationManager::SetupSizingAnalyses()
 
     for (auto &P : plantCoincAnalyObjs) {
         // call setup log routine for each coincident plant analysis object
-        P.supplyInletNodeFlow_LogIndex =
-            sizingLogger.SetupVariableSizingLog(Node(P.supplySideInletNodeNum).MassFlowRate, P.numTimeStepsInAvg);
+        P.supplyInletNodeFlow_LogIndex = sizingLogger.SetupVariableSizingLog(Node(P.supplySideInletNodeNum).MassFlowRate, P.numTimeStepsInAvg);
         P.supplyInletNodeTemp_LogIndex = sizingLogger.SetupVariableSizingLog(Node(P.supplySideInletNodeNum).Temp, P.numTimeStepsInAvg);
         if (PlantSizData(P.plantSizingIndex).LoopType == HeatingLoop || PlantSizData(P.plantSizingIndex).LoopType == SteamLoop) {
             P.loopDemand_LogIndex = sizingLogger.SetupVariableSizingLog(PlantReport(P.plantLoopIndex).HeatingDemand, P.numTimeStepsInAvg);
@@ -166,17 +165,14 @@ void HVACSizingSimulationManager::ProcessCoincidentPlantSizeAdjustments(int cons
     for (auto &P : plantCoincAnalyObjs) {
         // step 1 find maximum flow rate on concurrent return temp and load
         P.newFoundMassFlowRateTimeStamp = sizingLogger.logObjs[P.supplyInletNodeFlow_LogIndex].GetLogVariableDataMax();
-        P.peakMdotCoincidentDemand =
-            sizingLogger.logObjs[P.loopDemand_LogIndex].GetLogVariableDataAtTimestamp(P.newFoundMassFlowRateTimeStamp);
+        P.peakMdotCoincidentDemand = sizingLogger.logObjs[P.loopDemand_LogIndex].GetLogVariableDataAtTimestamp(P.newFoundMassFlowRateTimeStamp);
         P.peakMdotCoincidentReturnTemp =
             sizingLogger.logObjs[P.supplyInletNodeTemp_LogIndex].GetLogVariableDataAtTimestamp(P.newFoundMassFlowRateTimeStamp);
 
         // step 2 find maximum load and concurrent flow and return temp
         P.NewFoundMaxDemandTimeStamp = sizingLogger.logObjs[P.loopDemand_LogIndex].GetLogVariableDataMax();
-        P.peakDemandMassFlow =
-            sizingLogger.logObjs[P.supplyInletNodeFlow_LogIndex].GetLogVariableDataAtTimestamp(P.NewFoundMaxDemandTimeStamp);
-        P.peakDemandReturnTemp =
-            sizingLogger.logObjs[P.supplyInletNodeTemp_LogIndex].GetLogVariableDataAtTimestamp(P.NewFoundMaxDemandTimeStamp);
+        P.peakDemandMassFlow = sizingLogger.logObjs[P.supplyInletNodeFlow_LogIndex].GetLogVariableDataAtTimestamp(P.NewFoundMaxDemandTimeStamp);
+        P.peakDemandReturnTemp = sizingLogger.logObjs[P.supplyInletNodeTemp_LogIndex].GetLogVariableDataAtTimestamp(P.NewFoundMaxDemandTimeStamp);
 
         P.ResolveDesignFlowRate(HVACSizingIterCount);
         if (P.anotherIterationDesired) {
@@ -269,7 +265,7 @@ void ManageHVACSizingSimulation(bool &ErrorsFound)
             hvacSizingSimulationManager->sizingLogger.SetupSizingLogsNewEnvironment();
 
             //	if (!DoDesDaySim) continue; // not sure about this, may need to force users to set this on input for this method, but maybe
-            //not
+            // not
             if (KindOfSim == ksRunPeriodWeather) continue;
             if (KindOfSim == ksDesignDay) continue;
             if (KindOfSim == ksRunPeriodDesign) continue;

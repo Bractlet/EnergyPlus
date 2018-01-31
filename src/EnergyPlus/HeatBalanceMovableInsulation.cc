@@ -117,8 +117,8 @@ namespace HeatBalanceMovableInsulation {
                 // Double check resistance and conductivity to avoid divide by zero problems
                 if ((Material(MaterialIndex).Resistance) <= 0.0) {
                     if ((Material(MaterialIndex).Conductivity) > 0.0) {
-                        Material(MaterialIndex).Resistance = Material(Surface(SurfNum).MaterialMovInsulExt).Thickness /
-                                                             Material(Surface(SurfNum).MaterialMovInsulExt).Conductivity;
+                        Material(MaterialIndex).Resistance =
+                            Material(Surface(SurfNum).MaterialMovInsulExt).Thickness / Material(Surface(SurfNum).MaterialMovInsulExt).Conductivity;
                     } else {
                         ShowFatalError("EvalOutsideMovableInsulation: No resistance or conductivity found for material " +
                                        Material(Surface(SurfNum).MaterialMovInsulExt).Name);

@@ -222,8 +222,7 @@ namespace DataSurfaceLists {
 
                 NameConflict = FindItemInList(SurfList(Item).Name, Surface);
                 if (NameConflict > 0) { // A surface list has the same name as a surface--not allowed
-                    ShowSevereError(CurrentModuleObject1 + " = " + SurfList(Item).Name +
-                                    " has the same name as a surface; this is not allowed.");
+                    ShowSevereError(CurrentModuleObject1 + " = " + SurfList(Item).Name + " has the same name as a surface; this is not allowed.");
                     ErrorsFound = true;
                 }
 
@@ -312,8 +311,7 @@ namespace DataSurfaceLists {
 
                 NameConflict = FindItemInList(SlabList(Item).Name, Surface);
                 if (NameConflict > 0) { // A surface list has the same name as a surface--not allowed
-                    ShowSevereError(CurrentModuleObject2 + " = " + SlabList(Item).Name +
-                                    " has the same name as a slab; this is not allowed.");
+                    ShowSevereError(CurrentModuleObject2 + " = " + SlabList(Item).Name + " has the same name as a slab; this is not allowed.");
                     ErrorsFound = true;
                 }
 
@@ -351,8 +349,7 @@ namespace DataSurfaceLists {
                         ErrorsFound = true;
                     }
                     for (SrfList = 1; SrfList <= NumOfSurfaceLists; ++SrfList) {
-                        NameConflict =
-                            FindItemInList(SlabList(Item).SurfName(SurfNum), SurfList(SrfList).SurfName, SurfList(SrfList).NumOfSurfaces);
+                        NameConflict = FindItemInList(SlabList(Item).SurfName(SurfNum), SurfList(SrfList).SurfName, SurfList(SrfList).NumOfSurfaces);
                         if (NameConflict > 0) { // A slab list includes a surface on a surface list--not allowed
                             ShowSevereError(CurrentModuleObject2 + "=\"" + SlabList(Item).Name + "\", invalid surface specified.");
                             ShowContinueError("Surface=\"" + SlabList(Item).SurfName(SurfNum) + "\" is also on a Surface List.");

@@ -525,18 +525,16 @@ namespace ThermalISO15099Calc {
         AchievedErrorToleranceSolar = 0.0;
         AchievedErrorTolerance_NOSD = 0.0;
 
-        PrepVariablesISO15099(nlayer, tout, tind, trmin, isky, outir, tsky, esky, fclr, gap, thick, scon, tir, emis, tilt, hin, hout, ibc,
-                              SlatThick, SlatWidth, SlatAngle, SlatCond, LayerType, ThermalMod, SDScalar, ShadeEmisRatioOut,
-                              ShadeEmisRatioIn, ShadeHcRatioOut, ShadeHcRatioIn, Keff, ShadeGapKeffConv, sc, shgc, ufactor, flux,
-                              LaminateAU, sumsolU, sol0, hint, houtt, trmout, ebsky, ebroom, Gout, Gin, rir, vfreevent, Ah, nperr,
-                              ErrorMessage);
+        PrepVariablesISO15099(nlayer, tout, tind, trmin, isky, outir, tsky, esky, fclr, gap, thick, scon, tir, emis, tilt, hin, hout, ibc, SlatThick,
+                              SlatWidth, SlatAngle, SlatCond, LayerType, ThermalMod, SDScalar, ShadeEmisRatioOut, ShadeEmisRatioIn, ShadeHcRatioOut,
+                              ShadeHcRatioIn, Keff, ShadeGapKeffConv, sc, shgc, ufactor, flux, LaminateAU, sumsolU, sol0, hint, houtt, trmout, ebsky,
+                              ebroom, Gout, Gin, rir, vfreevent, Ah, nperr, ErrorMessage);
 
         for (int i = 1; i <= nlayer; ++i) {
             EffectiveOpenness(i) = Ah(i) / (width * height);
         }
 
-        updateEffectiveMultipliers(nlayer, width, height, Atop, Abot, Al, Ar, Ah, Atop_eff, Abot_eff, Al_eff, Ar_eff, Ah_eff, LayerType,
-                                   SlatAngle);
+        updateEffectiveMultipliers(nlayer, width, height, Atop, Abot, Al, Ar, Ah, Atop_eff, Abot_eff, Al_eff, Ar_eff, Ah_eff, LayerType, SlatAngle);
 
         // No option to take hardcoded variables.  All gas coefficients are now passed from outside.
         // if (GoAhead(nperr)) call propcon90(ISO15099,mgas,xgcon,xgvis,xgcp,xgrho,xwght,nperr)
@@ -546,8 +544,8 @@ namespace ThermalISO15099Calc {
 
         // bi...Write intermediate results to output file:
         if (WriteDebugOutput) {
-            WriteModifiedArguments(InArgumentsFile, DBGD, esky, trmout, trmin, ebsky, ebroom, Gout, Gin, nlayer, LayerType, nmix, frct,
-                                   thick, scon, gap, xgcon, xgvis, xgcp, xwght);
+            WriteModifiedArguments(InArgumentsFile, DBGD, esky, trmout, trmin, ebsky, ebroom, Gout, Gin, nlayer, LayerType, nmix, frct, thick, scon,
+                                   gap, xgcon, xgvis, xgcp, xwght);
         }
 
         // cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
@@ -558,13 +556,12 @@ namespace ThermalISO15099Calc {
         if ((dir > 0.0) || (SHGCCalc == 0)) {
             // call therm1d to calculate heat flux with solar radiation
 
-            therm1d(nlayer, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, dir, ebsky, Gout, trmout, trmin, ebroom, Gin,
-                    tir, rir, emis, gap, thick, scon, tilt, asol, height, heightt, width, iprop, frct, presure, nmix, xwght, xgcon, xgvis,
-                    xgcp, gama, SupportPillar, PillarSpacing, PillarRadius, theta, q, qv, flux, hcin, hrin, hcout, hrout, hin, hout, hcgas,
-                    hrgas, ufactor, nperr, ErrorMessage, tamb, troom, ibc, Atop_eff, Abot_eff, Al_eff, Ar_eff, Ah_eff, EffectiveOpenness,
-                    vvent, tvent, LayerType, Ra, Nu, vfreevent, qcgas, qrgas, Ebf, Ebb, Rf, Rb, ShadeEmisRatioOut, ShadeEmisRatioIn,
-                    ShadeHcModifiedOut, ShadeHcModifiedIn, ThermalMod, Debug_mode, AchievedErrorToleranceSolar, NumOfIterSolar,
-                    edgeGlCorrFac);
+            therm1d(nlayer, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, dir, ebsky, Gout, trmout, trmin, ebroom, Gin, tir, rir,
+                    emis, gap, thick, scon, tilt, asol, height, heightt, width, iprop, frct, presure, nmix, xwght, xgcon, xgvis, xgcp, gama,
+                    SupportPillar, PillarSpacing, PillarRadius, theta, q, qv, flux, hcin, hrin, hcout, hrout, hin, hout, hcgas, hrgas, ufactor, nperr,
+                    ErrorMessage, tamb, troom, ibc, Atop_eff, Abot_eff, Al_eff, Ar_eff, Ah_eff, EffectiveOpenness, vvent, tvent, LayerType, Ra, Nu,
+                    vfreevent, qcgas, qrgas, Ebf, Ebb, Rf, Rb, ShadeEmisRatioOut, ShadeEmisRatioIn, ShadeHcModifiedOut, ShadeHcModifiedIn, ThermalMod,
+                    Debug_mode, AchievedErrorToleranceSolar, NumOfIterSolar, edgeGlCorrFac);
 
             NumOfIterations = NumOfIterSolar;
             // exit on error:
@@ -631,12 +628,12 @@ namespace ThermalISO15099Calc {
             hout = houtt;
 
             // call therm1d to calculate heat flux without solar radiation
-            therm1d(nlayer, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, 0.0, ebsky, Gout, trmout, trmin, ebroom, Gin,
-                    tir, rir, emis, gap, thick, scon, tilt, sol0, height, heightt, width, iprop, frct, presure, nmix, xwght, xgcon, xgvis,
-                    xgcp, gama, SupportPillar, PillarSpacing, PillarRadius, theta, q, qv, flux, hcin, hrin, hcout, hrout, hin, hout, hcgas,
-                    hrgas, ufactor, nperr, ErrorMessage, tamb, troom, ibc, Atop_eff, Abot_eff, Al_eff, Ar_eff, Ah_eff, EffectiveOpenness,
-                    vvent, tvent, LayerType, Ra, Nu, vfreevent, qcgas, qrgas, Ebf, Ebb, Rf, Rb, ShadeEmisRatioOut, ShadeEmisRatioIn,
-                    ShadeHcModifiedOut, ShadeHcModifiedIn, ThermalMod, Debug_mode, AchievedErrorTolerance, NumOfIter, edgeGlCorrFac);
+            therm1d(nlayer, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, 0.0, ebsky, Gout, trmout, trmin, ebroom, Gin, tir, rir,
+                    emis, gap, thick, scon, tilt, sol0, height, heightt, width, iprop, frct, presure, nmix, xwght, xgcon, xgvis, xgcp, gama,
+                    SupportPillar, PillarSpacing, PillarRadius, theta, q, qv, flux, hcin, hrin, hcout, hrout, hin, hout, hcgas, hrgas, ufactor, nperr,
+                    ErrorMessage, tamb, troom, ibc, Atop_eff, Abot_eff, Al_eff, Ar_eff, Ah_eff, EffectiveOpenness, vvent, tvent, LayerType, Ra, Nu,
+                    vfreevent, qcgas, qrgas, Ebf, Ebb, Rf, Rb, ShadeEmisRatioOut, ShadeEmisRatioIn, ShadeHcModifiedOut, ShadeHcModifiedIn, ThermalMod,
+                    Debug_mode, AchievedErrorTolerance, NumOfIter, edgeGlCorrFac);
 
             NumOfIterations = NumOfIter;
 
@@ -749,13 +746,12 @@ namespace ThermalISO15099Calc {
                     gio::write(InArgumentsFile, fmtLD);
                     // close(InArgumentsFile)
 
-                    WriteInputArguments(tout, tind, trmin, wso, iwd, wsi, dir, outir, isky, tsky, esky, fclr, VacuumPressure,
-                                        VacuumMaxGapThickness, ibc, hout_NOSD, hin_NOSD, ISO15099, ThermalMod, SDScalar, height, heightt,
-                                        width, tilt, totsol, nlayer_NOSD, LayerType_NOSD, thick_NOSD, scon_NOSD, asol, tir_NOSD, emis_NOSD,
-                                        Atop_NOSD, Abot_NOSD, Al_NOSD, Ar_NOSD, Ah_NOSD, SlatThick_NOSD, SlatWidth_NOSD, SlatAngle_NOSD,
-                                        SlatCond_NOSD, SlatSpacing_NOSD, SlatCurve_NOSD, nslice_NOSD, LaminateA_NOSD, LaminateB_NOSD,
-                                        sumsol_NOSD, gap_NOSD, vvent_NOSD, tvent_NOSD, presure_NOSD, nmix_NOSD, iprop_NOSD, frct_NOSD,
-                                        xgcon, xgvis, xgcp, xwght);
+                    WriteInputArguments(tout, tind, trmin, wso, iwd, wsi, dir, outir, isky, tsky, esky, fclr, VacuumPressure, VacuumMaxGapThickness,
+                                        ibc, hout_NOSD, hin_NOSD, ISO15099, ThermalMod, SDScalar, height, heightt, width, tilt, totsol, nlayer_NOSD,
+                                        LayerType_NOSD, thick_NOSD, scon_NOSD, asol, tir_NOSD, emis_NOSD, Atop_NOSD, Abot_NOSD, Al_NOSD, Ar_NOSD,
+                                        Ah_NOSD, SlatThick_NOSD, SlatWidth_NOSD, SlatAngle_NOSD, SlatCond_NOSD, SlatSpacing_NOSD, SlatCurve_NOSD,
+                                        nslice_NOSD, LaminateA_NOSD, LaminateB_NOSD, sumsol_NOSD, gap_NOSD, vvent_NOSD, tvent_NOSD, presure_NOSD,
+                                        nmix_NOSD, iprop_NOSD, frct_NOSD, xgcon, xgvis, xgcp, xwght);
 
                 } // end if UnshadedDebug = 1
 
@@ -763,15 +759,14 @@ namespace ThermalISO15099Calc {
                 //      This is "Unshaded, No solar radiation" pass
                 // cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
                 // call therm1d to calculate heat flux with solar radiation
-                therm1d(nlayer_NOSD, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, 0.0, ebsky, Gout, trmout, trmin,
-                        ebroom, Gin, tir_NOSD, rir_NOSD, emis_NOSD, gap_NOSD, thick_NOSD, scon_NOSD, tilt, sol0, height, heightt, width,
-                        iprop_NOSD, frct_NOSD, presure_NOSD, nmix_NOSD, xwght, xgcon, xgvis, xgcp, gama, SupportPillar, PillarSpacing,
-                        PillarRadius, theta_NOSD, q_NOSD, qv_NOSD, flux_NOSD, hcin_NOSD, hrin_NOSD, hcout_NOSD, hrout_NOSD, hin_NOSD,
-                        hout_NOSD, hcgas_NOSD, hrgas_NOSD, ufactor_NOSD, nperr, ErrorMessage, tamb_NOSD, troom_NOSD, ibc, Atop_NOSD,
-                        Abot_NOSD, Al_NOSD, Ar_NOSD, Ah_NOSD, EffectiveOpenness_NOSD, vvent_NOSD, tvent_NOSD, LayerType_NOSD, Ra_NOSD,
-                        Nu_NOSD, vfreevent_NOSD, qcgas_NOSD, qrgas_NOSD, Ebf_NOSD, Ebb_NOSD, Rf_NOSD, Rb_NOSD, ShadeEmisRatioOut_NOSD,
-                        ShadeEmisRatioIn_NOSD, ShadeHcModifiedOut_NOSD, ShadeHcModifiedIn_NOSD, ThermalMod, Debug_mode,
-                        AchievedErrorTolerance_NOSD, NumOfIter_NOSD, edgeGlCorrFac);
+                therm1d(nlayer_NOSD, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, 0.0, ebsky, Gout, trmout, trmin, ebroom, Gin,
+                        tir_NOSD, rir_NOSD, emis_NOSD, gap_NOSD, thick_NOSD, scon_NOSD, tilt, sol0, height, heightt, width, iprop_NOSD, frct_NOSD,
+                        presure_NOSD, nmix_NOSD, xwght, xgcon, xgvis, xgcp, gama, SupportPillar, PillarSpacing, PillarRadius, theta_NOSD, q_NOSD,
+                        qv_NOSD, flux_NOSD, hcin_NOSD, hrin_NOSD, hcout_NOSD, hrout_NOSD, hin_NOSD, hout_NOSD, hcgas_NOSD, hrgas_NOSD, ufactor_NOSD,
+                        nperr, ErrorMessage, tamb_NOSD, troom_NOSD, ibc, Atop_NOSD, Abot_NOSD, Al_NOSD, Ar_NOSD, Ah_NOSD, EffectiveOpenness_NOSD,
+                        vvent_NOSD, tvent_NOSD, LayerType_NOSD, Ra_NOSD, Nu_NOSD, vfreevent_NOSD, qcgas_NOSD, qrgas_NOSD, Ebf_NOSD, Ebb_NOSD, Rf_NOSD,
+                        Rb_NOSD, ShadeEmisRatioOut_NOSD, ShadeEmisRatioIn_NOSD, ShadeHcModifiedOut_NOSD, ShadeHcModifiedIn_NOSD, ThermalMod,
+                        Debug_mode, AchievedErrorTolerance_NOSD, NumOfIter_NOSD, edgeGlCorrFac);
 
                 NumOfIterations = NumOfIter_NOSD;
                 // exit on error
@@ -787,15 +782,15 @@ namespace ThermalISO15099Calc {
                 // bi...unshaded results:
                 if (WriteDebugOutput && (UnshadedDebug == 1)) {
                     WriteOutputArguments(OutArgumentsFile, DBGD, nlayer_NOSD, tamb, q_NOSD, qv_NOSD, qcgas_NOSD, qrgas_NOSD, theta_NOSD,
-                                         vfreevent_NOSD, vvent_NOSD, Keff_NOSD, ShadeGapKeffConv_NOSD, troom_NOSD, ufactor_NOSD, shgc_NOSD,
-                                         sc_NOSD, hflux_NOSD, shgct_NOSD, hcin_NOSD, hrin_NOSD, hcout_NOSD, hrout_NOSD, Ra_NOSD, Nu_NOSD,
-                                         LayerType_NOSD, Ebf_NOSD, Ebb_NOSD, Rf_NOSD, Rb_NOSD, ebsky, Gout, ebroom, Gin,
-                                         ShadeEmisRatioIn_NOSD, ShadeEmisRatioOut_NOSD, ShadeHcRatioIn_NOSD, ShadeHcRatioOut_NOSD,
-                                         hcin_NOSD, hcout_NOSD, hcgas_NOSD, hrgas_NOSD, AchievedErrorTolerance_NOSD,
+                                         vfreevent_NOSD, vvent_NOSD, Keff_NOSD, ShadeGapKeffConv_NOSD, troom_NOSD, ufactor_NOSD, shgc_NOSD, sc_NOSD,
+                                         hflux_NOSD, shgct_NOSD, hcin_NOSD, hrin_NOSD, hcout_NOSD, hrout_NOSD, Ra_NOSD, Nu_NOSD, LayerType_NOSD,
+                                         Ebf_NOSD, Ebb_NOSD, Rf_NOSD, Rb_NOSD, ebsky, Gout, ebroom, Gin, ShadeEmisRatioIn_NOSD,
+                                         ShadeEmisRatioOut_NOSD, ShadeHcRatioIn_NOSD, ShadeHcRatioOut_NOSD, hcin_NOSD, hcout_NOSD, hcgas_NOSD,
+                                         hrgas_NOSD, AchievedErrorTolerance_NOSD,
                                          NumOfIter_NOSD); // Autodesk:Uninit shgc_NOSD, sc_NOSD, hflux_NOSD, ShadeHcRatioIn_NOSD,
                                                           // ShadeHcRatioOut_NOSD were uninitialized
-                } // end if UnshadedDebug = 1
-            }     // end if NeedUnshadedRun...
+                }                                         // end if UnshadedDebug = 1
+            }                                             // end if NeedUnshadedRun...
 
             // bi Set T6-related quantities keff, keffc: (using non-solar pass results)
             if (nlayer > 1) {
@@ -865,10 +860,10 @@ namespace ThermalISO15099Calc {
 
         // bi...  Write results to debug output file:
         if (WriteDebugOutput) {
-            WriteOutputArguments(OutArgumentsFile, DBGD, nlayer, tamb, q, qv, qcgas, qrgas, theta, vfreevent, vvent, Keff, ShadeGapKeffConv,
-                                 troom, ufactor, shgc, sc, hflux, shgct, hcin, hrin, hcout, hrout, Ra, Nu, LayerType, Ebf, Ebb, Rf, Rb,
-                                 ebsky, Gout, ebroom, Gin, ShadeEmisRatioIn, ShadeEmisRatioOut, ShadeHcRatioIn, ShadeHcRatioOut,
-                                 HcUnshadedIn, HcUnshadedOut, hcgas, hrgas, AchievedErrorTolerance, NumOfIter);
+            WriteOutputArguments(OutArgumentsFile, DBGD, nlayer, tamb, q, qv, qcgas, qrgas, theta, vfreevent, vvent, Keff, ShadeGapKeffConv, troom,
+                                 ufactor, shgc, sc, hflux, shgct, hcin, hrin, hcout, hrout, Ra, Nu, LayerType, Ebf, Ebb, Rf, Rb, ebsky, Gout, ebroom,
+                                 Gin, ShadeEmisRatioIn, ShadeEmisRatioOut, ShadeHcRatioIn, ShadeHcRatioOut, HcUnshadedIn, HcUnshadedOut, hcgas, hrgas,
+                                 AchievedErrorTolerance, NumOfIter);
         } // if WriteDebugOutput.eq.true - writing output file
     }
 
@@ -1161,8 +1156,8 @@ namespace ThermalISO15099Calc {
 
         // first store results before iterations begin
         if (saveIterationResults) {
-            storeIterationResults(nlayer, index, theta, trmout, tamb, trmin, troom, ebsky, ebroom, hcin, hcout, hrin, hrout, hin, hout, Ebb,
-                                  Ebf, Rb, Rf, nperr);
+            storeIterationResults(nlayer, index, theta, trmout, tamb, trmin, troom, ebsky, ebroom, hcin, hcout, hrin, hrout, hin, hout, Ebb, Ebf, Rb,
+                                  Rf, nperr);
         }
 
         Tgap(1) = tout;
@@ -1204,10 +1199,9 @@ namespace ThermalISO15099Calc {
             }
 
             // evaluate convective/conductive components of gap
-            hatter(nlayer, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, ebsky, tamb, ebroom, troom, gap, height,
-                   heightt, scon, tilt, theta, Tgap, Radiation, trmout, trmin, iprop, frct, presure, nmix, wght, gcon, gvis, gcp, gama,
-                   SupportPillar, PillarSpacing, PillarRadius, hgas, hcgas, hrgas, hcin, hcout, hin, hout, index, ibc, nperr, ErrorMessage,
-                   hrin, hrout, Ra, Nu);
+            hatter(nlayer, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, ebsky, tamb, ebroom, troom, gap, height, heightt, scon,
+                   tilt, theta, Tgap, Radiation, trmout, trmin, iprop, frct, presure, nmix, wght, gcon, gvis, gcp, gama, SupportPillar, PillarSpacing,
+                   PillarRadius, hgas, hcgas, hrgas, hcin, hcout, hin, hout, index, ibc, nperr, ErrorMessage, hrin, hrout, Ra, Nu);
 
             effectiveLayerCond(nlayer, LayerType, scon, thick, iprop, frct, nmix, presure, wght, gcon, gvis, gcp, EffectiveOpenness, theta,
                                sconScaled, nperr, ErrorMessage);
@@ -1227,18 +1221,16 @@ namespace ThermalISO15099Calc {
                 // qv(i)    = 0.0d0
                 // hcv(i)   = 0.0d0
                 // end do
-                matrixQBalance(nlayer, a, b, sconScaled, hcgas, hcgapMod, asol, qv, hcv, tind, tout, Gin, Gout, theta, tir, rir, emis,
-                               edgeGlCorrFac);
+                matrixQBalance(nlayer, a, b, sconScaled, hcgas, hcgapMod, asol, qv, hcv, tind, tout, Gin, Gout, theta, tir, rir, emis, edgeGlCorrFac);
             } else {
                 // bi...There are no Venetian layers, or ThermalMod is not CSM, so carry on as usual:
-                shading(theta, gap, hgas, hcgas, hrgas, frct, iprop, presure, nmix, wght, gcon, gvis, gcp, nlayer, width, height, tilt,
-                        tout, tind, Atop, Abot, Al, Ar, Ah, vvent, tvent, LayerType, Tgap, qv, hcv, nperr, ErrorMessage, vfreevent);
+                shading(theta, gap, hgas, hcgas, hrgas, frct, iprop, presure, nmix, wght, gcon, gvis, gcp, nlayer, width, height, tilt, tout, tind,
+                        Atop, Abot, Al, Ar, Ah, vvent, tvent, LayerType, Tgap, qv, hcv, nperr, ErrorMessage, vfreevent);
 
                 // exit on error
                 if (!(GoAhead(nperr))) return;
 
-                matrixQBalance(nlayer, a, b, sconScaled, hcgas, hcgapMod, asol, qv, hcv, tind, tout, Gin, Gout, theta, tir, rir, emis,
-                               edgeGlCorrFac);
+                matrixQBalance(nlayer, a, b, sconScaled, hcgas, hcgapMod, asol, qv, hcv, tind, tout, Gin, Gout, theta, tir, rir, emis, edgeGlCorrFac);
 
             } //  end if
 
@@ -1355,8 +1347,8 @@ namespace ThermalISO15099Calc {
 
             // and store results during iterations
             if (saveIterationResults) {
-                storeIterationResults(nlayer, index + 1, theta, trmout, tamb, trmin, troom, ebsky, ebroom, hcin, hcout, hrin, hrout, hin,
-                                      hout, Ebb, Ebf, Rb, Rf, nperr);
+                storeIterationResults(nlayer, index + 1, theta, trmout, tamb, trmin, troom, ebsky, ebroom, hcin, hcout, hrin, hrout, hin, hout, Ebb,
+                                      Ebf, Rb, Rf, nperr);
             }
 
             if (!(GoAhead(nperr))) return;
@@ -1439,13 +1431,12 @@ namespace ThermalISO15099Calc {
             }
 
             // Simon: It is important to recalculate coefficients from most accurate run
-            hatter(nlayer, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, ebsky, tamb, ebroom, troom, gap, height,
-                   heightt, scon, tilt, theta, Tgap, Radiation, trmout, trmin, iprop, frct, presure, nmix, wght, gcon, gvis, gcp, gama,
-                   SupportPillar, PillarSpacing, PillarRadius, hgas, hcgas, hrgas, hcin, hcout, hin, hout, index, ibc, nperr, ErrorMessage,
-                   hrin, hrout, Ra, Nu);
+            hatter(nlayer, iwd, tout, tind, wso, wsi, VacuumPressure, VacuumMaxGapThickness, ebsky, tamb, ebroom, troom, gap, height, heightt, scon,
+                   tilt, theta, Tgap, Radiation, trmout, trmin, iprop, frct, presure, nmix, wght, gcon, gvis, gcp, gama, SupportPillar, PillarSpacing,
+                   PillarRadius, hgas, hcgas, hrgas, hcin, hcout, hin, hout, index, ibc, nperr, ErrorMessage, hrin, hrout, Ra, Nu);
 
-            shading(theta, gap, hgas, hcgas, hrgas, frct, iprop, presure, nmix, wght, gcon, gvis, gcp, nlayer, width, height, tilt, tout,
-                    tind, Atop, Abot, Al, Ar, Ah, vvent, tvent, LayerType, Tgap, qv, hcv, nperr, ErrorMessage, vfreevent);
+            shading(theta, gap, hgas, hcgas, hrgas, frct, iprop, presure, nmix, wght, gcon, gvis, gcp, nlayer, width, height, tilt, tout, tind, Atop,
+                    Abot, Al, Ar, Ah, vvent, tvent, LayerType, Tgap, qv, hcv, nperr, ErrorMessage, vfreevent);
         }
 
         if (CalcOutcome == CALC_UNKNOWN) {
@@ -1643,8 +1634,7 @@ namespace ThermalISO15099Calc {
         }
     }
 
-    void solarISO15099(
-        Real64 const totsol, Real64 const rtot, Array1A<Real64> const rs, int const nlayer, Array1A<Real64> const absol, Real64 &sf)
+    void solarISO15099(Real64 const totsol, Real64 const rtot, Array1A<Real64> const rs, int const nlayer, Array1A<Real64> const absol, Real64 &sf)
     {
         //***********************************************************************
         //   This subroutine calculates the shading coefficient for a window.
@@ -1895,8 +1885,8 @@ namespace ThermalISO15099Calc {
         // end if
         // end do
 
-        filmg(tilt, theta, Tgap, nlayer, height, gap, iprop, frct, VacuumPressure, presure, nmix, wght, gcon, gvis, gcp, gama, hcgas, Ra,
-              Nu, nperr, ErrorMessage);
+        filmg(tilt, theta, Tgap, nlayer, height, gap, iprop, frct, VacuumPressure, presure, nmix, wght, gcon, gvis, gcp, gama, hcgas, Ra, Nu, nperr,
+              ErrorMessage);
 
         if (!(GoAhead(nperr))) {
             return;
@@ -2117,8 +2107,8 @@ namespace ThermalISO15099Calc {
                 frcti(j) = frct(j, nlayer + 1);
             }
 
-            GASSES90(tmean, ipropi, frcti, presure(nlayer + 1), nmix(nlayer + 1), wght, gcon, gvis, gcp, con, visc, dens, cp, pr, ISO15099,
-                     nperr, ErrorMessage);
+            GASSES90(tmean, ipropi, frcti, presure(nlayer + 1), nmix(nlayer + 1), wght, gcon, gvis, gcp, con, visc, dens, cp, pr, ISO15099, nperr,
+                     ErrorMessage);
 
             //   Calculate grashoff number:
             //   The grashoff number is the Rayleigh Number (equation 5.29) in SPC142 divided by the Prandtl Number (prand):
@@ -2336,8 +2326,7 @@ namespace ThermalISO15099Calc {
                 // Average glass conductivity is taken as average from both glass surrounding gap
                 aveGlassConductivity = (scon(i) + scon(i + 1)) / 2;
 
-                cpa = 2.0 * aveGlassConductivity * PillarRadius(i) /
-                      (pow_2(PillarSpacing(i)) * (1.0 + 2.0 * gap(i) / (Pi * PillarRadius(i))));
+                cpa = 2.0 * aveGlassConductivity * PillarRadius(i) / (pow_2(PillarSpacing(i)) * (1.0 + 2.0 * gap(i) / (Pi * PillarRadius(i))));
 
                 // It is important to add on prevoius values caluculated for gas
                 hcgas(i + 1) += cpa;
@@ -2423,8 +2412,7 @@ namespace ThermalISO15099Calc {
                 Nu2 = 0.242 * std::pow(ra / asp, 0.272);                                            // equation 52
                 Nu1 = 1.0 + 1.7596678e-10 * std::pow(ra, 2.2984755);                                // equation 51
                 nperr = 1003;                                                                       // Rayleigh number is less than 100
-                ErrorMessage =
-                    "Rayleigh number is less than 100 in Nusselt number calculations for gaps (angle between 60 and 90 degrees).";
+                ErrorMessage = "Rayleigh number is less than 100 in Nusselt number calculations for gaps (angle between 60 and 90 degrees).";
             } else if (ra > 2.0e7) {
                 G = 0.5 / std::pow(1.0 + std::pow(ra / 3160.0, 20.6), 0.1);                         // equation 47
                 Nu1 = std::pow(1.0 + pow_7((0.0936 * std::pow(ra, 0.314)) / (1.0 + G)), 0.1428571); // equation 45
@@ -2433,8 +2421,7 @@ namespace ThermalISO15099Calc {
                 Nu2 = 0.242 * std::pow(ra / asp, 0.272);                                            // equation 52
                 Nu1 = 0.0673838 * std::pow(ra, 1.0 / 3.0);                                          // equation 49
                 nperr = 1004;                                                                       // Rayleigh number is great from 2e7
-                ErrorMessage =
-                    "Rayleigh number is greater than 2e7 in Nusselt number calculations for gaps (angle between 60 and 90 degrees).";
+                ErrorMessage = "Rayleigh number is greater than 2e7 in Nusselt number calculations for gaps (angle between 60 and 90 degrees).";
             } else if ((asp <= 5.0) || (asp >= 100.0)) {
                 G = 0.5 / std::pow(1.0 + std::pow(ra / 3160.0, 20.6), 0.1);                         // equation 47
                 Nu1 = std::pow(1.0 + pow_7((0.0936 * std::pow(ra, 0.314)) / (1.0 + G)), 0.1428571); // equation 45
@@ -2623,8 +2610,8 @@ namespace ThermalISO15099Calc {
             // calc hc_0 as hcin:
             // convective indoor film coeff:
             if (ibc(2) <= 0) {
-                filmi(tind, theta(2 * nlayer - 2), nlayer, tilt, wsi, heightt, iprop, frct, presure, nmix, wght, gcon, gvis, gcp, hc_NOSD,
-                      ibc(2), nperr, ErrorMessage);
+                filmi(tind, theta(2 * nlayer - 2), nlayer, tilt, wsi, heightt, iprop, frct, presure, nmix, wght, gcon, gvis, gcp, hc_NOSD, ibc(2),
+                      nperr, ErrorMessage);
             } else if (ibc(2) == 1) {
                 hc_NOSD = hin - hrin;
             } else if (ibc(2) == 2 && index == 1) {
@@ -2864,8 +2851,7 @@ namespace ThermalISO15099Calc {
         // close(IterationCSVFileNumber)
     }
 
-    void
-    CalculateFuncResults(int const nlayer, Array2<Real64> const &a, Array1<Real64> const &b, Array1<Real64> const &x, Array1<Real64> &FRes)
+    void CalculateFuncResults(int const nlayer, Array2<Real64> const &a, Array1<Real64> const &b, Array1<Real64> const &x, Array1<Real64> &FRes)
     {
         // calculate balance equations by using temperature solution and estimates stores error in FRes
         // REAL(r64), intent(in) :: theta(maxlay2)

@@ -292,8 +292,8 @@ namespace AirflowNetworkSolver {
             Unit11 = GetNewUnitNumber();
             gio::open(Unit11, DataStringGlobals::eplusADSFileName);
             for (i = 1; i <= NetworkNumOfNodes; ++i) {
-                gio::write(Unit11, Format_901) << i << AirflowNetworkNodeData(i).NodeTypeNum << AirflowNetworkNodeData(i).NodeHeight
-                                               << TZ(i) << PZ(i);
+                gio::write(Unit11, Format_901) << i << AirflowNetworkNodeData(i).NodeTypeNum << AirflowNetworkNodeData(i).NodeHeight << TZ(i)
+                                               << PZ(i);
             }
             gio::write(Unit11, Format_900) << 0;
             for (i = 1; i <= AirflowNetworkNumOfComps; ++i) {
@@ -323,10 +323,9 @@ namespace AirflowNetworkSolver {
             }
             gio::write(Unit11, Format_900) << 0;
             for (i = 1; i <= NetworkNumOfLinks; ++i) {
-                gio::write(Unit11, Format_910) << i << AirflowNetworkLinkageData(i).NodeNums(1)
-                                               << AirflowNetworkLinkageData(i).NodeHeights(1) << AirflowNetworkLinkageData(i).NodeNums(2)
-                                               << AirflowNetworkLinkageData(i).NodeHeights(2) << AirflowNetworkLinkageData(i).CompNum << 0
-                                               << 0;
+                gio::write(Unit11, Format_910) << i << AirflowNetworkLinkageData(i).NodeNums(1) << AirflowNetworkLinkageData(i).NodeHeights(1)
+                                               << AirflowNetworkLinkageData(i).NodeNums(2) << AirflowNetworkLinkageData(i).NodeHeights(2)
+                                               << AirflowNetworkLinkageData(i).CompNum << 0 << 0;
             }
             gio::write(Unit11, Format_900) << 0;
         }
@@ -552,9 +551,8 @@ namespace AirflowNetworkSolver {
                 PS(i) = 9.80 * (RHOZ(M) * (AirflowNetworkNodeData(n).NodeHeight - AirflowNetworkNodeData(M).NodeHeight) +
                                 AirflowNetworkLinkageData(i).NodeHeights(1) * (RHOZ(M) - RHOZ(n)));
             } else {
-                PS(i) = 4.90 *
-                        ((RHOZ(n) + RHOZ(M)) * (AirflowNetworkNodeData(n).NodeHeight - AirflowNetworkNodeData(M).NodeHeight) +
-                         (AirflowNetworkLinkageData(i).NodeHeights(1) + AirflowNetworkLinkageData(i).NodeHeights(2)) * (RHOZ(M) - RHOZ(n)));
+                PS(i) = 4.90 * ((RHOZ(n) + RHOZ(M)) * (AirflowNetworkNodeData(n).NodeHeight - AirflowNetworkNodeData(M).NodeHeight) +
+                                (AirflowNetworkLinkageData(i).NodeHeights(1) + AirflowNetworkLinkageData(i).NodeHeights(2)) * (RHOZ(M) - RHOZ(n)));
             }
         }
 
@@ -1452,8 +1450,7 @@ namespace AirflowNetworkSolver {
                 // Flow in positive direction.
                 // Laminar flow coefficient !=0
                 if (DisSysCompDuctData(CompNum).LamFriCoef >= 0.001) {
-                    A2 = DisSysCompDuctData(CompNum).LamFriCoef /
-                         (2.0 * RHOZ(n) * DisSysCompDuctData(CompNum).A * DisSysCompDuctData(CompNum).A);
+                    A2 = DisSysCompDuctData(CompNum).LamFriCoef / (2.0 * RHOZ(n) * DisSysCompDuctData(CompNum).A * DisSysCompDuctData(CompNum).A);
                     A1 = (VISCZ(n) * DisSysCompDuctData(CompNum).LamDynCoef * ld) /
                          (2.0 * RHOZ(n) * DisSysCompDuctData(CompNum).A * DisSysCompDuctData(CompNum).D);
                     A0 = -PDROP;
@@ -1489,8 +1486,7 @@ namespace AirflowNetworkSolver {
                 // Flow in negative direction.
                 // Laminar flow coefficient !=0
                 if (DisSysCompDuctData(CompNum).LamFriCoef >= 0.001) {
-                    A2 = DisSysCompDuctData(CompNum).LamFriCoef /
-                         (2.0 * RHOZ(M) * DisSysCompDuctData(CompNum).A * DisSysCompDuctData(CompNum).A);
+                    A2 = DisSysCompDuctData(CompNum).LamFriCoef / (2.0 * RHOZ(M) * DisSysCompDuctData(CompNum).A * DisSysCompDuctData(CompNum).A);
                     A1 = (VISCZ(M) * DisSysCompDuctData(CompNum).LamDynCoef * ld) /
                          (2.0 * RHOZ(M) * DisSysCompDuctData(CompNum).A * DisSysCompDuctData(CompNum).D);
                     A0 = PDROP;
@@ -1912,15 +1908,13 @@ namespace AirflowNetworkSolver {
         } else {
             PRISE = -PDROP * (DisSysCompDetFanData(CompNum).RhoAir / RHOZ(n)) / (DisSysCompDetFanData(CompNum).TranRat * AFECTL(i));
         }
-        if (LIST >= 4)
-            gio::write(Unit21, Format_901) << " fan:" << i << PDROP << PRISE << AFECTL(i) << DisSysCompDetFanData(CompNum).TranRat;
+        if (LIST >= 4) gio::write(Unit21, Format_901) << " fan:" << i << PDROP << PRISE << AFECTL(i) << DisSysCompDetFanData(CompNum).TranRat;
         if (LFLAG == 1) {
             // Initialization by linear approximation.
             F(1) = -DisSysCompDetFanData(CompNum).Qfree * AFECTL(i) * (1.0 - PRISE / DisSysCompDetFanData(CompNum).Pshut);
             DPDF = -DisSysCompDetFanData(CompNum).Pshut / DisSysCompDetFanData(CompNum).Qfree;
             if (LIST >= 4)
-                gio::write(Unit21, Format_901) << " fni:" << JA << DisSysCompDetFanData(CompNum).Qfree
-                                               << DisSysCompDetFanData(CompNum).Pshut;
+                gio::write(Unit21, Format_901) << " fni:" << JA << DisSysCompDetFanData(CompNum).Qfree << DisSysCompDetFanData(CompNum).Pshut;
         } else {
             // Solution of the fan performance curve.
             // Determine curve fit range.
@@ -3808,15 +3802,13 @@ namespace AirflowNetworkSolver {
             }
             if (AD(k) - SUMD == 0.0) {
                 ShowSevereError("AirflowNetworkSolver: L-U factorization in Subroutine FACSKY.");
-                ShowContinueError("The denominator used in L-U factorizationis equal to 0.0 at node = " + AirflowNetworkNodeData(k).Name +
-                                  '.');
+                ShowContinueError("The denominator used in L-U factorizationis equal to 0.0 at node = " + AirflowNetworkNodeData(k).Name + '.');
                 ShowContinueError(
                     "One possible cause is that this node may not be connected directly, or indirectly via airflow network connections ");
                 ShowContinueError("(e.g., AirflowNetwork:Multizone:SurfaceCrack, AirflowNetwork:Multizone:Component:SimpleOpening, etc.), "
                                   "to an external");
                 ShowContinueError("node (AirflowNetwork:MultiZone:Surface).");
-                ShowContinueError(
-                    "Please send your input file and weather file to EnergyPlus support/development team for further investigation.");
+                ShowContinueError("Please send your input file and weather file to EnergyPlus support/development team for further investigation.");
                 ShowFatalError("Preceding condition causes termination.");
             }
             AD(k) = 1.0 / (AD(k) - SUMD);
@@ -5059,9 +5051,8 @@ namespace AirflowNetworkSolver {
                         break; // Autodesk:BoundsViolation HSt(k) @ k>2
                     T = TzFrom;
                     X = XhzFrom;
-                    LClimb(G, RhoStd, HSt(k), T, X, DpF(k), Fromz, PzFrom, Pbz,
-                           RhoDrDummi); // Autodesk:BoundsViolation HSt(k) and DpF(k) @ k>2
-                    RhoStF(k) = RhoStd; // Autodesk:BoundsViolation RhoStF(k) @ k>2
+                    LClimb(G, RhoStd, HSt(k), T, X, DpF(k), Fromz, PzFrom, Pbz, RhoDrDummi); // Autodesk:BoundsViolation HSt(k) and DpF(k) @ k>2
+                    RhoStF(k) = RhoStd;                                                      // Autodesk:BoundsViolation RhoStF(k) @ k>2
                     j += 9;
                     ++k;                                       // Autodesk:Note k>2 now
                     HSt(k) = 0.0;                              // Autodesk:BoundsViolation @ k>2

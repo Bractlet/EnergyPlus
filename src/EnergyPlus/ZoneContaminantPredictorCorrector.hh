@@ -80,12 +80,11 @@ namespace ZoneContaminantPredictorCorrector {
 
     void clear_state();
 
-    void
-    ManageZoneContaminanUpdates(int const UpdateType, // Can be iGetZoneSetPoints, iPredictStep, iCorrectStep
-                                bool const ShortenTimeStepSys,
-                                bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step
-                                Real64 const PriorTimeStep // the old value for timestep length is passed for possible use in interpolating
-                                );
+    void ManageZoneContaminanUpdates(int const UpdateType, // Can be iGetZoneSetPoints, iPredictStep, iCorrectStep
+                                     bool const ShortenTimeStepSys,
+                                     bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step
+                                     Real64 const PriorTimeStep // the old value for timestep length is passed for possible use in interpolating
+                                     );
 
     void GetZoneContaminanInputs();
 
@@ -95,7 +94,7 @@ namespace ZoneContaminantPredictorCorrector {
 
     void PredictZoneContaminants(bool const ShortenTimeStepSys,
                                  bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step
-                                 Real64 const PriorTimeStep // the old value for timestep length is passed for possible use in interpolating
+                                 Real64 const PriorTimeStep         // the old value for timestep length is passed for possible use in interpolating
                                  );
 
     void PushZoneTimestepHistories();
@@ -104,11 +103,10 @@ namespace ZoneContaminantPredictorCorrector {
 
     void RevertZoneTimestepHistories();
 
-    void CorrectZoneContaminants(
-        bool const ShortenTimeStepSys,
-        bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step history
-        Real64 const PriorTimeStep         // the old value for timestep length is passed for possible use in interpolating
-        );
+    void CorrectZoneContaminants(bool const ShortenTimeStepSys,
+                                 bool const UseZoneTimeStepHistory, // if true then use zone timestep history, if false use system time step history
+                                 Real64 const PriorTimeStep         // the old value for timestep length is passed for possible use in interpolating
+                                 );
 
 } // ZoneContaminantPredictorCorrector
 

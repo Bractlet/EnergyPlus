@@ -96,8 +96,7 @@ namespace ThermalChimney {
         Array1D<Real64> EachAirInletCrossArea;
 
         // Default Constructor
-        ThermalChimneyData()
-            : RealZonePtr(0), SchedPtr(0), AbsorberWallWidth(0.0), AirOutletCrossArea(0.0), DischargeCoeff(0.0), TotZoneToDistrib(0)
+        ThermalChimneyData() : RealZonePtr(0), SchedPtr(0), AbsorberWallWidth(0.0), AirOutletCrossArea(0.0), DischargeCoeff(0.0), TotZoneToDistrib(0)
         {
         }
     };
@@ -111,8 +110,7 @@ namespace ThermalChimney {
         Real64 ThermalChimneyMass;     // Mass of Air {kg} due to ThermalChimney
 
         // Default Constructor
-        ThermChimZnReportVars()
-            : ThermalChimneyHeatLoss(0.0), ThermalChimneyHeatGain(0.0), ThermalChimneyVolume(0.0), ThermalChimneyMass(0.0)
+        ThermChimZnReportVars() : ThermalChimneyHeatLoss(0.0), ThermalChimneyHeatGain(0.0), ThermalChimneyVolume(0.0), ThermalChimneyMass(0.0)
         {
         }
     };

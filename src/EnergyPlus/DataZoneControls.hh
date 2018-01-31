@@ -135,12 +135,11 @@ namespace DataZoneControls {
         ZoneTempControls()
             : ActualZoneNum(0), CTSchedIndex(0), NumControlTypes(0), SchIndx_SingleHeatSetPoint(0), SchIndx_SingleCoolSetPoint(0),
               SchIndx_SingleHeatCoolSetPoint(0), SchIndx_DualSetPointWDeadBand(0), ManageDemand(false), HeatingResetLimit(0.0),
-              CoolingResetLimit(0.0), EMSOverrideHeatingSetPointOn(false), EMSOverrideHeatingSetPointValue(0.0),
-              EMSOverrideCoolingSetPointOn(false), EMSOverrideCoolingSetPointValue(0.0), OperativeTempControl(false),
-              OpTempCntrlModeScheduled(false), FixedRadiativeFraction(0.0), OpTempRadiativeFractionSched(0),
-              AdaptiveComfortTempControl(false), AdaptiveComfortModelTypeIndex(0), ZoneOvercoolRange(0.0), ZoneOvercoolControl(false),
-              OvercoolCntrlModeScheduled(false), ZoneOvercoolConstRange(0.0), ZoneOvercoolRangeSchedIndex(0), ZoneOvercoolControlRatio(0.0),
-              DehumidifyingSchedIndex(0)
+              CoolingResetLimit(0.0), EMSOverrideHeatingSetPointOn(false), EMSOverrideHeatingSetPointValue(0.0), EMSOverrideCoolingSetPointOn(false),
+              EMSOverrideCoolingSetPointValue(0.0), OperativeTempControl(false), OpTempCntrlModeScheduled(false), FixedRadiativeFraction(0.0),
+              OpTempRadiativeFractionSched(0), AdaptiveComfortTempControl(false), AdaptiveComfortModelTypeIndex(0), ZoneOvercoolRange(0.0),
+              ZoneOvercoolControl(false), OvercoolCntrlModeScheduled(false), ZoneOvercoolConstRange(0.0), ZoneOvercoolRangeSchedIndex(0),
+              ZoneOvercoolControlRatio(0.0), DehumidifyingSchedIndex(0)
         {
         }
     };
@@ -215,11 +214,10 @@ namespace DataZoneControls {
 
         // Default Constructor
         ZoneComfortControls()
-            : ActualZoneNum(0), ComfortSchedIndex(0), NumControlTypes(0), SchIndx_SglHeatSetPointFanger(0),
-              SchIndx_SglCoolSetPointFanger(0), SchIndx_SglHCSetPointFanger(0), SchIndx_DualSetPointFanger(0),
-              SchIndx_SglHeatSetPointPierce(0), SchIndx_SglCoolSetPointPierce(0), SchIndx_SglHCSetPointPierce(0),
-              SchIndx_DualSetPointPierce(0), SchIndx_SglHeatSetPointKSU(0), SchIndx_SglCoolSetPointKSU(0), SchIndx_SglHCSetPointKSU(0),
-              SchIndx_DualSetPointKSU(0), ManageDemand(false), HeatingResetLimit(0.0), CoolingResetLimit(0.0),
+            : ActualZoneNum(0), ComfortSchedIndex(0), NumControlTypes(0), SchIndx_SglHeatSetPointFanger(0), SchIndx_SglCoolSetPointFanger(0),
+              SchIndx_SglHCSetPointFanger(0), SchIndx_DualSetPointFanger(0), SchIndx_SglHeatSetPointPierce(0), SchIndx_SglCoolSetPointPierce(0),
+              SchIndx_SglHCSetPointPierce(0), SchIndx_DualSetPointPierce(0), SchIndx_SglHeatSetPointKSU(0), SchIndx_SglCoolSetPointKSU(0),
+              SchIndx_SglHCSetPointKSU(0), SchIndx_DualSetPointKSU(0), ManageDemand(false), HeatingResetLimit(0.0), CoolingResetLimit(0.0),
               EMSOverrideHeatingSetPointOn(false), EMSOverrideHeatingSetPointValue(0.0), EMSOverrideCoolingSetPointOn(false),
               EMSOverrideCoolingSetPointValue(0.0), TdbMaxSetPoint(50.0), TdbMinSetPoint(0.0), AverageMethodName("PEOPLE AVERGAE"),
               AverageMethodNum(0), SpecificObjectNum(0), PeopleAverageErrIndex(0), TdbMaxErrIndex(0), TdbMinErrIndex(0), TdbHCErrIndex(0),
@@ -251,8 +249,8 @@ namespace DataZoneControls {
 
         // Default Constructor
         ZoneStagedControls()
-            : ActualZoneNum(0), HSBchedIndex(0), CSBchedIndex(0), NumOfHeatStages(0), NumOfCoolStages(0), HeatThroRange(0.0),
-              CoolThroRange(0.0), HeatSetPoint(0.0), CoolSetPoint(0.0), StageErrCount(0), StageErrIndex(0)
+            : ActualZoneNum(0), HSBchedIndex(0), CSBchedIndex(0), NumOfHeatStages(0), NumOfCoolStages(0), HeatThroRange(0.0), CoolThroRange(0.0),
+              HeatSetPoint(0.0), CoolSetPoint(0.0), StageErrCount(0), StageErrIndex(0)
         {
         }
     };
@@ -270,8 +268,8 @@ namespace DataZoneControls {
 
         // Default Constructor
         TStatObject()
-            : ZoneOrZoneListPtr(0), NumOfZones(0), TempControlledZoneStartPtr(0), ComfortControlledZoneStartPtr(0),
-              StageControlledZoneStartPtr(0), ZoneListActive(false)
+            : ZoneOrZoneListPtr(0), NumOfZones(0), TempControlledZoneStartPtr(0), ComfortControlledZoneStartPtr(0), StageControlledZoneStartPtr(0),
+              ZoneListActive(false)
         {
         }
     };

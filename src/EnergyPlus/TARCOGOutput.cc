@@ -265,8 +265,7 @@ namespace TARCOGOutput {
         static gio::Fmt Format_1055("('  esky           =  ',F7.3,'    - Effective night sky emmitance')");
         static gio::Fmt Format_1060("('  fclr           =  ',F7.3,'    - Fraction of sky that is clear')");
         static gio::Fmt Format_1061("('  VacuumPressure =  ',F7.3,'    - maximum allowed gas pressure to be considered as vacuum')");
-        static gio::Fmt Format_1062(
-            "('  VacuumMaxGapThickness =  ',F7.3,'    - maximum allowed vacuum gap thickness with support pillar')");
+        static gio::Fmt Format_1062("('  VacuumMaxGapThickness =  ',F7.3,'    - maximum allowed vacuum gap thickness with support pillar')");
         static gio::Fmt Format_1063("('  ibc(1)         =  ',I3,'        - Outdoor BC switch')");
         static gio::Fmt Format_1065("('  hout           =  ',F9.5,'  - Outdoor film coeff. [W/m^2-K]')");
         static gio::Fmt Format_1066("('  ibc(2)         =  ',I3,'        - Indoor BC switch')");
@@ -340,8 +339,7 @@ namespace TARCOGOutput {
 
         gio::write(InArgumentsFile, fmtLD);
         //  write(InArgumentsFile, 10001) VersionNumber, VersionCompileDateCC
-        gio::write(InArgumentsFile, Format_1001) << DATE_TIME(1) << DATE_TIME(2) << DATE_TIME(3) << DATE_TIME(5) << DATE_TIME(6)
-                                                 << DATE_TIME(7);
+        gio::write(InArgumentsFile, Format_1001) << DATE_TIME(1) << DATE_TIME(2) << DATE_TIME(3) << DATE_TIME(5) << DATE_TIME(6) << DATE_TIME(7);
         gio::write(InArgumentsFile, fmtLD);
 
         if (winID == -1) {
@@ -816,8 +814,7 @@ namespace TARCOGOutput {
         //      position=FilePosition, form='formatted', iostat=nperr)
         date_and_time(real_CLOCK(1), real_CLOCK(2), real_CLOCK(3), DATE_TIME);
         gio::write(OutArgumentsFile, fmtLD);
-        gio::write(OutArgumentsFile, Format_2000) << DATE_TIME(1) << DATE_TIME(2) << DATE_TIME(3) << DATE_TIME(5) << DATE_TIME(6)
-                                                  << DATE_TIME(7);
+        gio::write(OutArgumentsFile, Format_2000) << DATE_TIME(1) << DATE_TIME(2) << DATE_TIME(3) << DATE_TIME(5) << DATE_TIME(6) << DATE_TIME(7);
         gio::write(OutArgumentsFile, fmtLD);
         gio::write(OutArgumentsFile, Format_2350);
         gio::write(OutArgumentsFile, fmtLD);
@@ -1029,8 +1026,7 @@ namespace TARCOGOutput {
         //      position=FilePosition, form='formatted', iostat=nperr)
         date_and_time(real_CLOCK(1), real_CLOCK(2), real_CLOCK(3), DATE_TIME);
         gio::write(OutArgumentsFile, fmtLD);
-        gio::write(OutArgumentsFile, Format_2000) << DATE_TIME(1) << DATE_TIME(2) << DATE_TIME(3) << DATE_TIME(5) << DATE_TIME(6)
-                                                  << DATE_TIME(7);
+        gio::write(OutArgumentsFile, Format_2000) << DATE_TIME(1) << DATE_TIME(2) << DATE_TIME(3) << DATE_TIME(5) << DATE_TIME(6) << DATE_TIME(7);
         gio::write(OutArgumentsFile, fmtLD);
 
         gio::write(OutArgumentsFile, fmtLD);
@@ -1186,8 +1182,7 @@ namespace TARCOGOutput {
         static gio::Fmt Format_112("('* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *')");
         static gio::Fmt Format_113("('*------------------------------------------------------------')");
         static gio::Fmt Format_200("('* General options:')");
-        static gio::Fmt Format_210(
-            "('* <nlayer, debug, standard, ThermalMod, CalcDeflection, SDScalar, VacuumPressure, VacuumMaxGapThickness>')");
+        static gio::Fmt Format_210("('* <nlayer, debug, standard, ThermalMod, CalcDeflection, SDScalar, VacuumPressure, VacuumMaxGapThickness>')");
         static gio::Fmt Format_300("('* Environmental settings:')");
         static gio::Fmt Format_310("('* <tout, tind, wso, iwd, wsi, dir, outir, isky, tsky, esky, fclr, trmin, Pa, Pini, Tini>')");
         static gio::Fmt Format_400("('* Overall IGU properties:')");
@@ -1297,8 +1292,8 @@ namespace TARCOGOutput {
         gio::write(WINCogFile, Format_300);
         gio::write(WINCogFile, Format_113);
         gio::write(WINCogFile, Format_310);
-        gio::write(WINCogFile, Format_1020) << tout << tind << wso << iwd << wsi << dir << outir << isky << tsky << esky << fclr << trmin
-                                            << Pa << Pini << Tini;
+        gio::write(WINCogFile, Format_1020) << tout << tind << wso << iwd << wsi << dir << outir << isky << tsky << esky << fclr << trmin << Pa
+                                            << Pini << Tini;
 
         // if (mgas.eq.0) then
         NumOfProvGasses = 0;
@@ -1379,8 +1374,8 @@ namespace TARCOGOutput {
             gio::write(WINCogFile, Format_113);
 
             gio::write(WINCogFile, Format_1050);
-            gio::write(WINCogFile, Format_1051) << scon(i) << asol(i) << thick(i) << emis(2 * i - 1) << emis(2 * i) << tir(2 * i - 1)
-                                                << YoungsMod(i) << PoissonsRat(i) << LayerType(i) << nslice(i);
+            gio::write(WINCogFile, Format_1051) << scon(i) << asol(i) << thick(i) << emis(2 * i - 1) << emis(2 * i) << tir(2 * i - 1) << YoungsMod(i)
+                                                << PoissonsRat(i) << LayerType(i) << nslice(i);
 
             if (IsShadingLayer(LayerType(i))) {
                 gio::write(WINCogFile, Format_1052);
@@ -1389,8 +1384,7 @@ namespace TARCOGOutput {
 
             if (LayerType(i) == VENETBLIND) {
                 gio::write(WINCogFile, Format_1054);
-                gio::write(WINCogFile, Format_1055) << SlatThick(i) << SlatWidth(i) << SlatAngle(i) << SlatCond(i) << SlatSpacing(i)
-                                                    << SlatCurve(i);
+                gio::write(WINCogFile, Format_1055) << SlatThick(i) << SlatWidth(i) << SlatAngle(i) << SlatCond(i) << SlatSpacing(i) << SlatCurve(i);
             }
 
             if (i < nlayer) {
@@ -1406,8 +1400,7 @@ namespace TARCOGOutput {
                 for (j = 1; j <= nmix(i + 1); ++j) {
                     gio::write(WINCogFile, "(F24.12,', ',$)") << frct(j, i + 1);
                 }
-                gio::write(WINCogFile, "('    ',F24.12,', ', F24.12,', ',F24.12,', ',I1)") << vvent(i + 1) << tvent(i + 1)
-                                                                                           << SupportPillar(i);
+                gio::write(WINCogFile, "('    ',F24.12,', ', F24.12,', ',F24.12,', ',I1)") << vvent(i + 1) << tvent(i + 1) << SupportPillar(i);
                 if (SupportPillar(i) == YES_SupportPillar) {
                     gio::write(WINCogFile, Format_1034);
                     gio::write(WINCogFile, Format_1035) << PillarSpacing(i) << PillarRadius(i);
@@ -1420,8 +1413,7 @@ namespace TARCOGOutput {
         gio::write(WINCogFile, Format_113);
 
         gio::write(WINCogFile, Format_810);
-        gio::write(WINCogFile, Format_1040) << ibc(2) << hin << presure(nlayer + 1) << 1 << 1 << 1.0 << vvent(nlayer + 1)
-                                            << tvent(nlayer + 1);
+        gio::write(WINCogFile, Format_1040) << ibc(2) << hin << presure(nlayer + 1) << 1 << 1 << 1.0 << vvent(nlayer + 1) << tvent(nlayer + 1);
 
         gio::write(WINCogFile, Format_113);
         gio::write(WINCogFile, Format_900);

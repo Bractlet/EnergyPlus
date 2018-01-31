@@ -174,13 +174,12 @@ namespace DataWater {
         // Default Constructor
         StorageTankDataStruct()
             : MaxCapacity(0.0), OverflowMode(0), OverflowTankID(0), OverflowTankSupplyARRID(0), ValveOnCapacity(0.0), ValveOffCapacity(0.0),
-              ControlSupplyType(0), GroundWellID(0), SupplyTankID(0), SupplyTankDemandARRID(0), BackupMainsCapacity(0.0),
-              InitialVolume(0.0), MaxInFlowRate(0.0), MaxOutFlowRate(0.0), ThermalMode(0), InitialTankTemp(20.0), TempSchedID(0),
-              AmbientTempIndicator(0), AmbientTempSchedule(0), ZoneID(0), UValue(0.0), SurfArea(0.0), InternalMassID(0),
-              ThisTimeStepVolume(0.0), LastTimeStepVolume(0.0), LastTimeStepTemp(0.0), NumWaterSupplies(0), NumWaterDemands(0),
-              VdotFromTank(0.0), VdotToTank(0.0), VdotOverflow(0.0), VolOverflow(0.0), NetVdot(0.0), Twater(0.0), TouterSkin(0.0),
-              TwaterOverflow(0.0), MainsDrawVdot(0.0), MainsDrawVol(0.0), SkinLossPower(0.0), SkinLossEnergy(0.0), SkinLossConvect(0.0),
-              SkinLossRadiat(0.0)
+              ControlSupplyType(0), GroundWellID(0), SupplyTankID(0), SupplyTankDemandARRID(0), BackupMainsCapacity(0.0), InitialVolume(0.0),
+              MaxInFlowRate(0.0), MaxOutFlowRate(0.0), ThermalMode(0), InitialTankTemp(20.0), TempSchedID(0), AmbientTempIndicator(0),
+              AmbientTempSchedule(0), ZoneID(0), UValue(0.0), SurfArea(0.0), InternalMassID(0), ThisTimeStepVolume(0.0), LastTimeStepVolume(0.0),
+              LastTimeStepTemp(0.0), NumWaterSupplies(0), NumWaterDemands(0), VdotFromTank(0.0), VdotToTank(0.0), VdotOverflow(0.0), VolOverflow(0.0),
+              NetVdot(0.0), Twater(0.0), TouterSkin(0.0), TwaterOverflow(0.0), MainsDrawVdot(0.0), MainsDrawVol(0.0), SkinLossPower(0.0),
+              SkinLossEnergy(0.0), SkinLossConvect(0.0), SkinLossRadiat(0.0)
         {
         }
     };
@@ -260,8 +259,7 @@ namespace DataWater {
         Real64 CurrentAmount;
 
         // Default Constructor
-        SiteRainFallDataStruct()
-            : ModeID(0), DesignAnnualRain(0.0), RainSchedID(0), NomAnnualRain(0.0), CurrentRate(0.0), CurrentAmount(0.0)
+        SiteRainFallDataStruct() : ModeID(0), DesignAnnualRain(0.0), RainSchedID(0), NomAnnualRain(0.0), CurrentRate(0.0), CurrentAmount(0.0)
         {
         }
     };

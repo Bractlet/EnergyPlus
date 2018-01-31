@@ -136,9 +136,8 @@ namespace ThermalComfort {
 
     namespace {
         // clear_state variables
-        bool FirstTimeFlag(true); // Flag set to make sure you get input once
-        bool
-            FirstTimeSurfaceWeightedFlag(true); // Flag set to make sure certain calcs related to surface weighted option are only done once
+        bool FirstTimeFlag(true);                // Flag set to make sure you get input once
+        bool FirstTimeSurfaceWeightedFlag(true); // Flag set to make sure certain calcs related to surface weighted option are only done once
     }
 
     // MODULE PARAMETER DEFINITIONS
@@ -422,10 +421,10 @@ namespace ThermalComfort {
 
             // CurrentModuleObject='People'
             if (People(Loop).Fanger) {
-                SetupOutputVariable("Zone Thermal Comfort Fanger Model PMV", OutputProcessor::Unit::None,
-                                    ThermalComfortData(Loop).FangerPMV, "Zone", "State", People(Loop).Name);
-                SetupOutputVariable("Zone Thermal Comfort Fanger Model PPD", OutputProcessor::Unit::Perc,
-                                    ThermalComfortData(Loop).FangerPPD, "Zone", "State", People(Loop).Name);
+                SetupOutputVariable("Zone Thermal Comfort Fanger Model PMV", OutputProcessor::Unit::None, ThermalComfortData(Loop).FangerPMV, "Zone",
+                                    "State", People(Loop).Name);
+                SetupOutputVariable("Zone Thermal Comfort Fanger Model PPD", OutputProcessor::Unit::Perc, ThermalComfortData(Loop).FangerPPD, "Zone",
+                                    "State", People(Loop).Name);
                 SetupOutputVariable("Zone Thermal Comfort Clothing Surface Temperature", OutputProcessor::Unit::C,
                                     ThermalComfortData(Loop).CloSurfTemp, "Zone", "State", People(Loop).Name);
             }
@@ -451,8 +450,8 @@ namespace ThermalComfort {
                                     ThermalComfortData(Loop).ThermalComfortMRT, "Zone", "State", People(Loop).Name);
                 SetupOutputVariable("Zone Thermal Comfort Operative Temperature", OutputProcessor::Unit::C,
                                     ThermalComfortData(Loop).ThermalComfortOpTemp, "Zone", "State", People(Loop).Name);
-                SetupOutputVariable("Zone Thermal Comfort Clothing Value", OutputProcessor::Unit::clo,
-                                    ThermalComfortData(Loop).ClothingValue, "Zone", "State", People(Loop).Name);
+                SetupOutputVariable("Zone Thermal Comfort Clothing Value", OutputProcessor::Unit::clo, ThermalComfortData(Loop).ClothingValue, "Zone",
+                                    "State", People(Loop).Name);
             }
 
             if (People(Loop).AdaptiveASH55) {
@@ -460,9 +459,8 @@ namespace ThermalComfort {
                                     ThermalComfortData(Loop).ThermalComfortAdaptiveASH5590, "Zone", "State", People(Loop).Name);
                 SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Adaptive Model 80% Acceptability Status", OutputProcessor::Unit::None,
                                     ThermalComfortData(Loop).ThermalComfortAdaptiveASH5580, "Zone", "State", People(Loop).Name);
-                SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Adaptive Model Running Average Outdoor Air Temperature",
-                                    OutputProcessor::Unit::C, ThermalComfortData(Loop).ASHRAE55RunningMeanOutdoorTemp, "Zone", "State",
-                                    People(Loop).Name);
+                SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Adaptive Model Running Average Outdoor Air Temperature", OutputProcessor::Unit::C,
+                                    ThermalComfortData(Loop).ASHRAE55RunningMeanOutdoorTemp, "Zone", "State", People(Loop).Name);
                 SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Adaptive Model Temperature", OutputProcessor::Unit::C,
                                     ThermalComfortData(Loop).TComfASH55, "Zone", "State", People(Loop).Name);
             }
@@ -474,9 +472,8 @@ namespace ThermalComfort {
                                     ThermalComfortData(Loop).ThermalComfortAdaptiveCEN15251CatII, "Zone", "State", People(Loop).Name);
                 SetupOutputVariable("Zone Thermal Comfort CEN 15251 Adaptive Model Category III Status", OutputProcessor::Unit::None,
                                     ThermalComfortData(Loop).ThermalComfortAdaptiveCEN15251CatIII, "Zone", "State", People(Loop).Name);
-                SetupOutputVariable("Zone Thermal Comfort CEN 15251 Adaptive Model Running Average Outdoor Air Temperature",
-                                    OutputProcessor::Unit::C, ThermalComfortData(Loop).CEN15251RunningMeanOutdoorTemp, "Zone", "State",
-                                    People(Loop).Name);
+                SetupOutputVariable("Zone Thermal Comfort CEN 15251 Adaptive Model Running Average Outdoor Air Temperature", OutputProcessor::Unit::C,
+                                    ThermalComfortData(Loop).CEN15251RunningMeanOutdoorTemp, "Zone", "State", People(Loop).Name);
                 SetupOutputVariable("Zone Thermal Comfort CEN 15251 Adaptive Model Temperature", OutputProcessor::Unit::C,
                                     ThermalComfortData(Loop).TComfCEN15251, "Zone", "State", People(Loop).Name);
             }
@@ -492,40 +489,38 @@ namespace ThermalComfort {
 
         // CurrentModuleObject='Zone'
         for (Loop = 1; Loop <= NumOfZones; ++Loop) {
-            SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Simple Model Summer Clothes Not Comfortable Time",
-                                OutputProcessor::Unit::hr, ThermalComfortInASH55(Loop).timeNotSummer, "Zone", "Sum", Zone(Loop).Name);
-            SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Simple Model Winter Clothes Not Comfortable Time",
-                                OutputProcessor::Unit::hr, ThermalComfortInASH55(Loop).timeNotWinter, "Zone", "Sum", Zone(Loop).Name);
+            SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Simple Model Summer Clothes Not Comfortable Time", OutputProcessor::Unit::hr,
+                                ThermalComfortInASH55(Loop).timeNotSummer, "Zone", "Sum", Zone(Loop).Name);
+            SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Simple Model Winter Clothes Not Comfortable Time", OutputProcessor::Unit::hr,
+                                ThermalComfortInASH55(Loop).timeNotWinter, "Zone", "Sum", Zone(Loop).Name);
             SetupOutputVariable("Zone Thermal Comfort ASHRAE 55 Simple Model Summer or Winter Clothes Not Comfortable Time",
                                 OutputProcessor::Unit::hr, ThermalComfortInASH55(Loop).timeNotEither, "Zone", "Sum", Zone(Loop).Name);
         }
-        SetupOutputVariable("Facility Thermal Comfort ASHRAE 55 Simple Model Summer Clothes Not Comfortable Time",
-                            OutputProcessor::Unit::hr, AnyZoneTimeNotSimpleASH55Summer, "Zone", "Sum", "Facility");
-        SetupOutputVariable("Facility Thermal Comfort ASHRAE 55 Simple Model Winter Clothes Not Comfortable Time",
-                            OutputProcessor::Unit::hr, AnyZoneTimeNotSimpleASH55Winter, "Zone", "Sum", "Facility");
+        SetupOutputVariable("Facility Thermal Comfort ASHRAE 55 Simple Model Summer Clothes Not Comfortable Time", OutputProcessor::Unit::hr,
+                            AnyZoneTimeNotSimpleASH55Summer, "Zone", "Sum", "Facility");
+        SetupOutputVariable("Facility Thermal Comfort ASHRAE 55 Simple Model Winter Clothes Not Comfortable Time", OutputProcessor::Unit::hr,
+                            AnyZoneTimeNotSimpleASH55Winter, "Zone", "Sum", "Facility");
         SetupOutputVariable("Facility Thermal Comfort ASHRAE 55 Simple Model Summer or Winter Clothes Not Comfortable Time",
                             OutputProcessor::Unit::hr, AnyZoneTimeNotSimpleASH55Either, "Zone", "Sum", "Facility");
 
         ThermalComfortSetPoint.allocate(NumOfZones);
         for (Loop = 1; Loop <= NumOfZones; ++Loop) {
-            SetupOutputVariable("Zone Heating Setpoint Not Met Time", OutputProcessor::Unit::hr, ThermalComfortSetPoint(Loop).notMetHeating,
-                                "Zone", "Sum", Zone(Loop).Name);
+            SetupOutputVariable("Zone Heating Setpoint Not Met Time", OutputProcessor::Unit::hr, ThermalComfortSetPoint(Loop).notMetHeating, "Zone",
+                                "Sum", Zone(Loop).Name);
             SetupOutputVariable("Zone Heating Setpoint Not Met While Occupied Time", OutputProcessor::Unit::hr,
                                 ThermalComfortSetPoint(Loop).notMetHeatingOccupied, "Zone", "Sum", Zone(Loop).Name);
-            SetupOutputVariable("Zone Cooling Setpoint Not Met Time", OutputProcessor::Unit::hr, ThermalComfortSetPoint(Loop).notMetCooling,
-                                "Zone", "Sum", Zone(Loop).Name);
+            SetupOutputVariable("Zone Cooling Setpoint Not Met Time", OutputProcessor::Unit::hr, ThermalComfortSetPoint(Loop).notMetCooling, "Zone",
+                                "Sum", Zone(Loop).Name);
             SetupOutputVariable("Zone Cooling Setpoint Not Met While Occupied Time", OutputProcessor::Unit::hr,
                                 ThermalComfortSetPoint(Loop).notMetCoolingOccupied, "Zone", "Sum", Zone(Loop).Name);
         }
 
-        SetupOutputVariable("Facility Heating Setpoint Not Met Time", OutputProcessor::Unit::hr, AnyZoneNotMetHeating, "Zone", "Sum",
-                            "Facility");
-        SetupOutputVariable("Facility Cooling Setpoint Not Met Time", OutputProcessor::Unit::hr, AnyZoneNotMetCooling, "Zone", "Sum",
-                            "Facility");
-        SetupOutputVariable("Facility Heating Setpoint Not Met While Occupied Time", OutputProcessor::Unit::hr,
-                            AnyZoneNotMetHeatingOccupied, "Zone", "Sum", "Facility");
-        SetupOutputVariable("Facility Cooling Setpoint Not Met While Occupied Time", OutputProcessor::Unit::hr,
-                            AnyZoneNotMetCoolingOccupied, "Zone", "Sum", "Facility");
+        SetupOutputVariable("Facility Heating Setpoint Not Met Time", OutputProcessor::Unit::hr, AnyZoneNotMetHeating, "Zone", "Sum", "Facility");
+        SetupOutputVariable("Facility Cooling Setpoint Not Met Time", OutputProcessor::Unit::hr, AnyZoneNotMetCooling, "Zone", "Sum", "Facility");
+        SetupOutputVariable("Facility Heating Setpoint Not Met While Occupied Time", OutputProcessor::Unit::hr, AnyZoneNotMetHeatingOccupied, "Zone",
+                            "Sum", "Facility");
+        SetupOutputVariable("Facility Cooling Setpoint Not Met While Occupied Time", OutputProcessor::Unit::hr, AnyZoneNotMetCoolingOccupied, "Zone",
+                            "Sum", "Facility");
 
         GetAngleFactorList();
 
@@ -1145,8 +1140,7 @@ namespace ThermalComfort {
 
             // PART II: ET*(standardization humidity/REAL(r64) CloUnit, StdAtm and Hc)
             // calculation of skin heat Loss (SkinHeatLoss)
-            SkinHeatLoss =
-                H * EffectCloThermEff * (SkinTemp - OpTemp) + SkinWetTot * LewisRat * Hc * CloPermeatEff * (SatSkinVapPress - VapPress);
+            SkinHeatLoss = H * EffectCloThermEff * (SkinTemp - OpTemp) + SkinWetTot * LewisRat * Hc * CloPermeatEff * (SatSkinVapPress - VapPress);
             // Get a low approximation for ET* and solve balance
             // equation by iteration
             ET = SkinTemp - SkinHeatLoss / (H * EffectCloThermEff);
@@ -1771,8 +1765,8 @@ namespace ThermalComfort {
                 } else if (thisAngFacList.ZonePtr != 0) { // don't look at invalid zones
                     // Found Surface, is it in same zone tagged for Angle Factor List?
                     if (thisAngFacList.ZonePtr != Surface(thisAngFacList.SurfacePtr(SurfNum)).Zone) {
-                        ShowSevereError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\", invalid - mismatch " + cAlphaFieldNames(2) +
-                                        "=\"" + cAlphaArgs(2) + "\"");
+                        ShowSevereError(cCurrentModuleObject + "=\"" + cAlphaArgs(1) + "\", invalid - mismatch " + cAlphaFieldNames(2) + "=\"" +
+                                        cAlphaArgs(2) + "\"");
                         ShowContinueError("... does not match " + cAlphaFieldNames(2) + "=\"" +
                                           Zone(Surface(AngleFactorList(Item).SurfacePtr(SurfNum)).Zone).Name + "\" for " +
                                           cAlphaFieldNames(SurfNum + 2) + "=\"" + cAlphaArgs(SurfNum + 2) + "\".");
@@ -1806,8 +1800,8 @@ namespace ThermalComfort {
             } else if (People(Item).ZonePtr != AngleFactorList(WhichAFList).ZonePtr &&
                        (People(Item).Fanger || People(Item).Pierce || People(Item).KSU)) {
                 ShowSevereError(cCurrentModuleObject + "=\"" + AngleFactorList(WhichAFList).Name + " mismatch Zone Name");
-                ShowContinueError("...Zone=\"" + AngleFactorList(WhichAFList).ZoneName + " does not match Zone=\"" +
-                                  Zone(People(Item).ZonePtr).Name + "\" in PEOPLE=\"" + People(Item).Name + "\".");
+                ShowContinueError("...Zone=\"" + AngleFactorList(WhichAFList).ZoneName + " does not match Zone=\"" + Zone(People(Item).ZonePtr).Name +
+                                  "\" in PEOPLE=\"" + People(Item).Name + "\".");
                 ErrorsFound = true;
             }
         }
@@ -1853,8 +1847,7 @@ namespace ThermalComfort {
 
         for (SurfNum = 1; SurfNum <= thisAngFacList.TotAngleFacSurfaces; ++SurfNum) {
             SurfaceTemp = TH(2, 1, thisAngFacList.SurfacePtr(SurfNum)) + KelvinConv;
-            SurfEAF = Construct(Surface(thisAngFacList.SurfacePtr(SurfNum)).Construction).InsideAbsorpThermal *
-                      thisAngFacList.AngleFactor(SurfNum);
+            SurfEAF = Construct(Surface(thisAngFacList.SurfacePtr(SurfNum)).Construction).InsideAbsorpThermal * thisAngFacList.AngleFactor(SurfNum);
             SurfTempEmissAngleFacSummed += SurfEAF * pow_4(SurfaceTemp);
             SumSurfaceEmissAngleFactor += SurfEAF;
         }
@@ -2036,10 +2029,9 @@ namespace ThermalComfort {
         if (QHTRadSysToPerson(ZoneNum) > 0.0 || QCoolingPanelToPerson(ZoneNum) > 0.0 || QHWBaseboardToPerson(ZoneNum) > 0.0 ||
             QSteamBaseboardToPerson(ZoneNum) > 0.0 || QElecBaseboardToPerson(ZoneNum) > 0.0) {
             RadTemp += KelvinConv; // Convert to Kelvin
-            RadTemp =
-                root_4(pow_4(RadTemp) + ((QHTRadSysToPerson(ZoneNum) + QCoolingPanelToPerson(ZoneNum) + QHWBaseboardToPerson(ZoneNum) +
-                                          QSteamBaseboardToPerson(ZoneNum) + QElecBaseboardToPerson(ZoneNum)) /
-                                         AreaEff / StefanBoltzmannConst));
+            RadTemp = root_4(pow_4(RadTemp) + ((QHTRadSysToPerson(ZoneNum) + QCoolingPanelToPerson(ZoneNum) + QHWBaseboardToPerson(ZoneNum) +
+                                                QSteamBaseboardToPerson(ZoneNum) + QElecBaseboardToPerson(ZoneNum)) /
+                                               AreaEff / StefanBoltzmannConst));
             RadTemp -= KelvinConv; // Convert back to Celsius
         }
 
@@ -2184,8 +2176,7 @@ namespace ThermalComfort {
             }
             // if any zones should be warning print it out
             if (showWarning) {
-                ShowWarningError("More than 4% of time (" + RoundSigDigits(allowedHours, 1) +
-                                 " hours) uncomfortable in one or more zones ");
+                ShowWarningError("More than 4% of time (" + RoundSigDigits(allowedHours, 1) + " hours) uncomfortable in one or more zones ");
                 ShowContinueError("Based on ASHRAE 55-2004 graph (Section 5.2.1.1)");
                 if (RunPeriodEnvironment) {
                     ShowContinueError("During Environment [" + EnvironmentStartEnd + "]: " + EnvironmentName);
@@ -2751,8 +2742,7 @@ namespace ThermalComfort {
 
         // SUBROUTINE PARAMETER DEFINITIONS:
         static Real64 const alpha(0.8);
-        static Array1D<Real64> const alpha_pow(
-            {pow_6(alpha), pow_5(alpha), pow_4(alpha), pow_3(alpha), pow_2(alpha), alpha, 1.0}); // alpha^(7-i)
+        static Array1D<Real64> const alpha_pow({pow_6(alpha), pow_5(alpha), pow_4(alpha), pow_3(alpha), pow_2(alpha), alpha, 1.0}); // alpha^(7-i)
         static gio::Fmt fmtA("(A)");
 
         // SUBROUTINE LOCAL VARIABLE DECLARATIONS:

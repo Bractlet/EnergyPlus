@@ -297,11 +297,11 @@ namespace DElightManagerF {
                     // Write this Zone to the DElight input file
                     // Remove any blanks from the Zone Name for ease of input to DElight
                     cNameWOBlanks = ReplaceBlanksWithUnderscores(zn.Name);
-                    gio::write(unit, Format_904) << cNameWOBlanks << zn.OriginX * M2FT << zn.OriginY * M2FT << zn.OriginZ * M2FT
-                                                 << zn.RelNorth << zn.Multiplier * zn.ListMultiplier << zn.FloorArea * M22FT2
-                                                 << zn.Volume * M32FT3 << rLightLevel / (zn.FloorArea * M22FT2 + 0.00001)
-                                                 << znDayl.MinPowerFraction << znDayl.MinLightFraction << znDayl.LightControlSteps
-                                                 << znDayl.LightControlProbability << znDayl.DElightGriddingResolution * M22FT2;
+                    gio::write(unit, Format_904) << cNameWOBlanks << zn.OriginX * M2FT << zn.OriginY * M2FT << zn.OriginZ * M2FT << zn.RelNorth
+                                                 << zn.Multiplier * zn.ListMultiplier << zn.FloorArea * M22FT2 << zn.Volume * M32FT3
+                                                 << rLightLevel / (zn.FloorArea * M22FT2 + 0.00001) << znDayl.MinPowerFraction
+                                                 << znDayl.MinLightFraction << znDayl.LightControlSteps << znDayl.LightControlProbability
+                                                 << znDayl.DElightGriddingResolution * M22FT2;
 
                     // Calc cos and sin of Zone Relative North values for later use in transforming Reference Point coordinates
                     CosZoneRelNorth = std::cos(-zn.RelNorth * DegToRadians);
@@ -350,8 +350,8 @@ namespace DElightManagerF {
 
                             // Remove any blanks from the Surface Name for ease of input to DElight
                             cNameWOBlanks = ReplaceBlanksWithUnderscores(surf.Name);
-                            gio::write(unit, Format_907) << cNameWOBlanks << surf.Azimuth << surf.Tilt
-                                                         << Construct(iconstruct).ReflectVisDiffBack << rExtVisRefl << surf.Sides;
+                            gio::write(unit, Format_907) << cNameWOBlanks << surf.Azimuth << surf.Tilt << Construct(iconstruct).ReflectVisDiffBack
+                                                         << rExtVisRefl << surf.Sides;
 
                             // Write out the vertex coordinates for each vertex
                             int const iNumVertices = surf.Sides; // Counter for surface vertices
@@ -456,8 +456,7 @@ namespace DElightManagerF {
                                                 // Write out the vertex coordinates for each vertex
                                                 int const iNumVertices = wndo2.Sides; // Counter for surface vertices
                                                 for (int ivert = 1; ivert <= iNumVertices; ++ivert) {
-                                                    gio::write(unit, Format_908) << wndo2.Vertex(ivert).x * M2FT
-                                                                                 << wndo2.Vertex(ivert).y * M2FT
+                                                    gio::write(unit, Format_908) << wndo2.Vertex(ivert).x * M2FT << wndo2.Vertex(ivert).y * M2FT
                                                                                  << wndo2.Vertex(ivert).z * M2FT;
                                                 }
                                             } //! lWndoIsDoppelganger
@@ -513,8 +512,7 @@ namespace DElightManagerF {
                                         // Remove any blanks from the CFS Name for ease of input to DElight
                                         cNameWOBlanks = ReplaceBlanksWithUnderscores(cfs.Name);
                                         int const iNumVertices = doppelgangerSurf.Sides; // Counter for surface vertices
-                                        gio::write(unit, Format_915) << cNameWOBlanks << cfs.ComplexFeneType << cfs.feneRota
-                                                                     << iNumVertices;
+                                        gio::write(unit, Format_915) << cNameWOBlanks << cfs.ComplexFeneType << cfs.feneRota << iNumVertices;
 
                                         // Write out the vertex coordinates for each vertex
                                         for (int ivert = 1; ivert <= iNumVertices; ++ivert) {
@@ -577,27 +575,21 @@ namespace DElightManagerF {
 
                                 // Validate that Reference Point coordinates are within the host Zone
                                 if (RefPt_WCS_Coord(1) < zn.MinimumX || RefPt_WCS_Coord(1) > zn.MaximumX) {
-                                    ShowWarningError("DElightInputGenerator:Reference point X Value outside Zone Min/Max X, Zone=" +
-                                                     zn.Name);
-                                    ShowSevereError("...X Reference Point= " + RoundSigDigits(RefPt_WCS_Coord(1), 2) +
-                                                    ", Zone Minimum X= " + RoundSigDigits(zn.MinimumX, 2) + ", Zone Maximum X= " +
-                                                    RoundSigDigits(zn.MaximumX, 2));
+                                    ShowWarningError("DElightInputGenerator:Reference point X Value outside Zone Min/Max X, Zone=" + zn.Name);
+                                    ShowSevereError("...X Reference Point= " + RoundSigDigits(RefPt_WCS_Coord(1), 2) + ", Zone Minimum X= " +
+                                                    RoundSigDigits(zn.MinimumX, 2) + ", Zone Maximum X= " + RoundSigDigits(zn.MaximumX, 2));
                                     ErrorsFound = true;
                                 }
                                 if (RefPt_WCS_Coord(2) < zn.MinimumY || RefPt_WCS_Coord(2) > zn.MaximumY) {
-                                    ShowWarningError("DElightInputGenerator:Reference point Y Value outside Zone Min/Max Y, Zone=" +
-                                                     zn.Name);
-                                    ShowSevereError("...Y Reference Point= " + RoundSigDigits(RefPt_WCS_Coord(2), 2) +
-                                                    ", Zone Minimum Y= " + RoundSigDigits(zn.MinimumY, 2) + ", Zone Maximum Y= " +
-                                                    RoundSigDigits(zn.MaximumY, 2));
+                                    ShowWarningError("DElightInputGenerator:Reference point Y Value outside Zone Min/Max Y, Zone=" + zn.Name);
+                                    ShowSevereError("...Y Reference Point= " + RoundSigDigits(RefPt_WCS_Coord(2), 2) + ", Zone Minimum Y= " +
+                                                    RoundSigDigits(zn.MinimumY, 2) + ", Zone Maximum Y= " + RoundSigDigits(zn.MaximumY, 2));
                                     ErrorsFound = true;
                                 }
                                 if (RefPt_WCS_Coord(3) < Zone(izone).MinimumZ || RefPt_WCS_Coord(3) > zn.MaximumZ) {
-                                    ShowWarningError("DElightInputGenerator:Reference point Z Value outside Zone Min/Max Z, Zone=" +
-                                                     zn.Name);
-                                    ShowSevereError("...Z Reference Point= " + RoundSigDigits(RefPt_WCS_Coord(3), 2) +
-                                                    ", Zone Minimum Z= " + RoundSigDigits(zn.MinimumZ, 2) + ", Zone Maximum Z= " +
-                                                    RoundSigDigits(zn.MaximumZ, 2));
+                                    ShowWarningError("DElightInputGenerator:Reference point Z Value outside Zone Min/Max Z, Zone=" + zn.Name);
+                                    ShowSevereError("...Z Reference Point= " + RoundSigDigits(RefPt_WCS_Coord(3), 2) + ", Zone Minimum Z= " +
+                                                    RoundSigDigits(zn.MinimumZ, 2) + ", Zone Maximum Z= " + RoundSigDigits(zn.MaximumZ, 2));
                                     ErrorsFound = true;
                                 }
 
@@ -606,19 +598,18 @@ namespace DElightManagerF {
                                 // Remove any blanks from the RefPt Name for ease of input to DElight
                                 cNameWOBlanks = ReplaceBlanksWithUnderscores(refPt.Name);
                                 if (refPt.indexToFracAndIllum != 0) {
-                                    gio::write(unit, Format_913)
-                                        << cNameWOBlanks << RefPt_WCS_Coord(1) * M2FT << RefPt_WCS_Coord(2) * M2FT
-                                        << RefPt_WCS_Coord(3) * M2FT << znDayl.FracZoneDaylit(refPt.indexToFracAndIllum)
-                                        << znDayl.IllumSetPoint(refPt.indexToFracAndIllum) * LUX2FC << znDayl.LightControlType;
+                                    gio::write(unit, Format_913) << cNameWOBlanks << RefPt_WCS_Coord(1) * M2FT << RefPt_WCS_Coord(2) * M2FT
+                                                                 << RefPt_WCS_Coord(3) * M2FT << znDayl.FracZoneDaylit(refPt.indexToFracAndIllum)
+                                                                 << znDayl.IllumSetPoint(refPt.indexToFracAndIllum) * LUX2FC
+                                                                 << znDayl.LightControlType;
                                     // RJH 2008-03-07: Set up DaylIllumAtRefPt for output for this DElight zone RefPt
                                     SetupOutputVariable("Daylighting Reference Point Illuminance", OutputProcessor::Unit::lux,
                                                         znDayl.DaylIllumAtRefPt(refPt.indexToFracAndIllum), "Zone", "Average", refPt.Name);
                                 } else {
                                     gio::write(unit, Format_913)
-                                        << cNameWOBlanks << RefPt_WCS_Coord(1) * M2FT << RefPt_WCS_Coord(2) * M2FT
-                                        << RefPt_WCS_Coord(3) * M2FT << 0.0 << 0.0 * LUX2FC
-                                        << znDayl
-                                               .LightControlType; // should never happen but just in case send zero fraction and illuminance
+                                        << cNameWOBlanks << RefPt_WCS_Coord(1) * M2FT << RefPt_WCS_Coord(2) * M2FT << RefPt_WCS_Coord(3) * M2FT << 0.0
+                                        << 0.0 * LUX2FC
+                                        << znDayl.LightControlType; // should never happen but just in case send zero fraction and illuminance
                                 }
                             } // Max 100 RefPt test
                         }     // RefPt in current DElight Zone test
@@ -708,8 +699,7 @@ namespace DElightManagerF {
             }
             cfs.feneRota = rNumericArgs(1);
             if (cfs.feneRota < 0. || cfs.feneRota > 360.) {
-                ShowSevereError(cCurrentModuleObject + ": " + cfs.Name + ", invalid " + cNumericFieldNames(1) +
-                                " outside of range 0 to 360.");
+                ShowSevereError(cCurrentModuleObject + ": " + cfs.Name + ", invalid " + cNumericFieldNames(1) + " outside of range 0 to 360.");
                 ErrorsFound = true;
             }
         }
@@ -757,8 +747,8 @@ namespace DElightManagerF {
         NewAspectRatio = 1.0;
 
         if (GetNumObjectsFound(CurrentModuleObject) == 1) {
-            GetObjectItem(CurrentModuleObject, 1, cAlphas, NAlphas, rNumerics, NNum, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(CurrentModuleObject, 1, cAlphas, NAlphas, rNumerics, NNum, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
             OldAspectRatio = rNumerics(1);
             NewAspectRatio = rNumerics(2);
             if (cAlphas(1) != "XY") {
@@ -827,8 +817,8 @@ namespace DElightManagerF {
                             int piErrorFlag)
     {
         auto zoneNameArr(getCharArrayFromString(cZoneName));
-        delightelecltgctrl(iNameLength, &zoneNameArr[0], dBldgLat, dHISKF, dHISUNF, dCloudFraction, dSOLCOSX, dSOLCOSY, dSOLCOSZ,
-                           &pdPowerReducFac, &piErrorFlag);
+        delightelecltgctrl(iNameLength, &zoneNameArr[0], dBldgLat, dHISKF, dHISUNF, dCloudFraction, dSOLCOSX, dSOLCOSY, dSOLCOSZ, &pdPowerReducFac,
+                           &piErrorFlag);
     }
 
     std::vector<char> getCharArrayFromString(std::string const &originalString)

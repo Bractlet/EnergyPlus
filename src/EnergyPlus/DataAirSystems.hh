@@ -122,10 +122,10 @@ namespace DataAirSystems {
         // Default Constructor
         AirLoopCompData()
             : CompType_Num(0), CompIndex(0), FlowCtrl(0), ON(true), Parent(false), NodeNumIn(0), NodeNumOut(0), MeteredVarsFound(false),
-              NumMeteredVars(0), NumSubComps(0), EnergyTransComp(0), Capacity(0.0), OpMode(0), TotPlantSupplyElec(0.0),
-              PlantSupplyElecEff(0.0), PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0),
-              PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0), PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0),
-              TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0), AirSysToPlantPtr(0)
+              NumMeteredVars(0), NumSubComps(0), EnergyTransComp(0), Capacity(0.0), OpMode(0), TotPlantSupplyElec(0.0), PlantSupplyElecEff(0.0),
+              PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0), PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0),
+              PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0), TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0),
+              PeakPlantSupplyOtherEff(0.0), AirSysToPlantPtr(0)
         {
         }
     };
@@ -238,21 +238,21 @@ namespace DataAirSystems {
         int NumOAHXs;                         // number of heat exchangers in the outside air system
         bool SizeAirloopCoil;                 // simulates air loop coils before calling controllers
         fanModelTypeEnum supFanModelTypeEnum; // indicates which type of fan model to call for supply fan, legacy or new OO
-        int SupFanNum;      // index of the supply fan in the Fan data structure when model type is structArrayLegacyFanModels
+        int SupFanNum;                        // index of the supply fan in the Fan data structure when model type is structArrayLegacyFanModels
         int supFanVecIndex; // index in fan object vector for supply fan when model type is objectVectorOOFanSystemModel, zero-based index
         fanModelTypeEnum retFanModelTypeEnum; // indicates which type of fan model to call for return fan, legacy or new OO
-        int RetFanNum;      // index of the return fan in the Fan data structure when model type is structArrayLegacyFanModels
-        int retFanVecIndex; // index in fan object vector for return fan when model type is objectVectorOOFanSystemModel, zero-based index
+        int RetFanNum;                        // index of the return fan in the Fan data structure when model type is structArrayLegacyFanModels
+        int retFanVecIndex;    // index in fan object vector for return fan when model type is objectVectorOOFanSystemModel, zero-based index
         Real64 FanDesCoolLoad; // design fan heat gain for the air loop [W]
 
         // Default Constructor
         DefinePrimaryAirSystem()
-            : DesignVolFlowRate(0.0), DesignReturnFlowFraction(1.0), NumControllers(0), NumBranches(0), NumOutletBranches(0),
-              OutletBranchNum(3, 0), NumInletBranches(0), InletBranchNum(3, 0), CentralHeatCoilExists(true), OASysExists(false),
-              isAllOA(false), OASysInletNodeNum(0), OASysOutletNodeNum(0), OAMixOAInNodeNum(0), RABExists(false), RABMixInNode(0),
-              SupMixInNode(0), MixOutNode(0), RABSplitOutNode(0), OtherSplitOutNode(0), NumOACoolCoils(0), NumOAHeatCoils(0), NumOAHXs(0),
-              SizeAirloopCoil(true), supFanModelTypeEnum(fanModelTypeNotYetSet), SupFanNum(0), supFanVecIndex(-1),
-              retFanModelTypeEnum(fanModelTypeNotYetSet), RetFanNum(0), retFanVecIndex(-1), FanDesCoolLoad(0.0)
+            : DesignVolFlowRate(0.0), DesignReturnFlowFraction(1.0), NumControllers(0), NumBranches(0), NumOutletBranches(0), OutletBranchNum(3, 0),
+              NumInletBranches(0), InletBranchNum(3, 0), CentralHeatCoilExists(true), OASysExists(false), isAllOA(false), OASysInletNodeNum(0),
+              OASysOutletNodeNum(0), OAMixOAInNodeNum(0), RABExists(false), RABMixInNode(0), SupMixInNode(0), MixOutNode(0), RABSplitOutNode(0),
+              OtherSplitOutNode(0), NumOACoolCoils(0), NumOAHeatCoils(0), NumOAHXs(0), SizeAirloopCoil(true),
+              supFanModelTypeEnum(fanModelTypeNotYetSet), SupFanNum(0), supFanVecIndex(-1), retFanModelTypeEnum(fanModelTypeNotYetSet), RetFanNum(0),
+              retFanVecIndex(-1), FanDesCoolLoad(0.0)
         {
         }
     };
@@ -285,8 +285,8 @@ namespace DataAirSystems {
 
         // Default Constructor
         ConnectZoneComp()
-            : ZoneEqListNum(0), ZoneEqCompNum(0), PlantLoopType(0), PlantLoopNum(0), PlantLoopBranch(0), PlantLoopComp(0),
-              FirstDemandSidePtr(0), LastDemandSidePtr(0)
+            : ZoneEqListNum(0), ZoneEqCompNum(0), PlantLoopType(0), PlantLoopNum(0), PlantLoopBranch(0), PlantLoopComp(0), FirstDemandSidePtr(0),
+              LastDemandSidePtr(0)
         {
         }
     };
@@ -306,8 +306,8 @@ namespace DataAirSystems {
 
         // Default Constructor
         ConnectZoneSubComp()
-            : ZoneEqListNum(0), ZoneEqCompNum(0), ZoneEqSubCompNum(0), PlantLoopType(0), PlantLoopNum(0), PlantLoopBranch(0),
-              PlantLoopComp(0), FirstDemandSidePtr(0), LastDemandSidePtr(0)
+            : ZoneEqListNum(0), ZoneEqCompNum(0), ZoneEqSubCompNum(0), PlantLoopType(0), PlantLoopNum(0), PlantLoopBranch(0), PlantLoopComp(0),
+              FirstDemandSidePtr(0), LastDemandSidePtr(0)
         {
         }
     };
@@ -328,8 +328,8 @@ namespace DataAirSystems {
 
         // Default Constructor
         ConnectZoneSubSubComp()
-            : ZoneEqListNum(0), ZoneEqCompNum(0), ZoneEqSubCompNum(0), ZoneEqSubSubCompNum(0), PlantLoopType(0), PlantLoopNum(0),
-              PlantLoopBranch(0), PlantLoopComp(0), FirstDemandSidePtr(0), LastDemandSidePtr(0)
+            : ZoneEqListNum(0), ZoneEqCompNum(0), ZoneEqSubCompNum(0), ZoneEqSubSubCompNum(0), PlantLoopType(0), PlantLoopNum(0), PlantLoopBranch(0),
+              PlantLoopComp(0), FirstDemandSidePtr(0), LastDemandSidePtr(0)
         {
         }
     };

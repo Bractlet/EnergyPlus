@@ -215,17 +215,16 @@ namespace DataGenerators {
 
         // Default Constructor
         FCPowerModuleStruct()
-            : EffMode(0), EffCurveID(0), NomEff(0.0), NomPel(0.0), NumCycles(0), CyclingDegradRat(0.0), NumRunHours(0.0),
-              OperateDegradRat(0.0), ThreshRunHours(0.0), UpTranLimit(0.0), DownTranLimit(0.0), StartUpTime(0.0), StartUpFuel(0.0),
-              StartUpElectConsum(0.0), StartUpElectProd(0.0), ShutDownTime(0.0), ShutDownFuel(0.0), ShutDownElectConsum(0.0), ANC0(0.0),
-              ANC1(0.0), SkinLossMode(0), ZoneID(0), RadiativeFract(0.0), QdotSkin(0.0), UAskin(0.0), SkinLossCurveID(0),
-              WaterSupplyCurveID(0), NdotDilutionAir(0.0), StackHeatLossToDilution(0.0), DilutionInletNode(0), DilutionExhaustNode(0),
-              PelMin(0.0), PelMax(0.0), Pel(0.0), PelLastTimeStep(0.0), Eel(0.0), QdotStackCool(0.0), FractionalDayofLastStartUp(0.0),
-              FractionalDayofLastShutDown(0.0), HasBeenOn(true), DuringShutDown(false), DuringStartUp(false), NdotFuel(0.0),
-              TotFuelInEnthalphy(0.0), NdotProdGas(0.0), ConstitMolalFract(14, 0.0), GasLibID(14, 0), TprodGasLeavingFCPM(0.0),
-              NdotAir(0.0), TotAirInEnthalphy(0.0), NdotLiqwater(0.0), TwaterInlet(0.0), WaterInEnthalpy(0.0), DilutionAirInEnthalpy(0.0),
-              DilutionAirOutEnthalpy(0.0), PelancillariesAC(0.0), TotProdGasEnthalphy(0.0), WaterOutEnthalpy(0.0), SeqSubstitIter(0),
-              RegulaFalsiIter(0)
+            : EffMode(0), EffCurveID(0), NomEff(0.0), NomPel(0.0), NumCycles(0), CyclingDegradRat(0.0), NumRunHours(0.0), OperateDegradRat(0.0),
+              ThreshRunHours(0.0), UpTranLimit(0.0), DownTranLimit(0.0), StartUpTime(0.0), StartUpFuel(0.0), StartUpElectConsum(0.0),
+              StartUpElectProd(0.0), ShutDownTime(0.0), ShutDownFuel(0.0), ShutDownElectConsum(0.0), ANC0(0.0), ANC1(0.0), SkinLossMode(0), ZoneID(0),
+              RadiativeFract(0.0), QdotSkin(0.0), UAskin(0.0), SkinLossCurveID(0), WaterSupplyCurveID(0), NdotDilutionAir(0.0),
+              StackHeatLossToDilution(0.0), DilutionInletNode(0), DilutionExhaustNode(0), PelMin(0.0), PelMax(0.0), Pel(0.0), PelLastTimeStep(0.0),
+              Eel(0.0), QdotStackCool(0.0), FractionalDayofLastStartUp(0.0), FractionalDayofLastShutDown(0.0), HasBeenOn(true), DuringShutDown(false),
+              DuringStartUp(false), NdotFuel(0.0), TotFuelInEnthalphy(0.0), NdotProdGas(0.0), ConstitMolalFract(14, 0.0), GasLibID(14, 0),
+              TprodGasLeavingFCPM(0.0), NdotAir(0.0), TotAirInEnthalphy(0.0), NdotLiqwater(0.0), TwaterInlet(0.0), WaterInEnthalpy(0.0),
+              DilutionAirInEnthalpy(0.0), DilutionAirOutEnthalpy(0.0), PelancillariesAC(0.0), TotProdGasEnthalphy(0.0), WaterOutEnthalpy(0.0),
+              SeqSubstitIter(0), RegulaFalsiIter(0)
         {
         }
     };
@@ -262,8 +261,8 @@ namespace DataGenerators {
         FCAirSupplyDataStruct()
             : SupNodeNum(0), BlowerPowerCurveID(0), BlowerHeatLossFactor(0.0), AirSupRateMode(0), Stoics(0.0), AirFuncPelCurveID(0),
               AirTempCoeff(0.0), AirFuncNdotCurveID(0), IntakeRecoveryMode(0), ConstituentMode(0), NumConstituents(0), ConstitName(14),
-              ConstitMolalFract(14, 0.0), GasLibID(14, 0), O2fraction(0.0), TairIntoBlower(0.0), TairIntoFCPM(0.0), PairCompEl(0.0),
-              QskinLoss(0.0), QintakeRecovery(0.0)
+              ConstitMolalFract(14, 0.0), GasLibID(14, 0), O2fraction(0.0), TairIntoBlower(0.0), TairIntoFCPM(0.0), PairCompEl(0.0), QskinLoss(0.0),
+              QintakeRecovery(0.0)
         {
         }
     };
@@ -303,8 +302,8 @@ namespace DataGenerators {
         // Default Constructor
         FCStackCoolerDataStruct()
             : WaterInNode(0), WaterOutNode(0), TstackNom(0.0), TstackActual(0.0), r0(0.0), r1(0.0), r2(0.0), r3(0.0), MdotStackCoolant(0.0),
-              UAs_cool(0.0), Fs_cogen(0.0), As_cogen(0.0), MdotCogenNom(0.0), hCogenNom(0.0), ns(0.0), PstackPumpEl(0.0),
-              PmpPowerLossFactor(0.0), f0(0.0), f1(0.0), f2(0.0), StackCoolerPresent(false), qs_cool(0.0), qs_air(0.0)
+              UAs_cool(0.0), Fs_cogen(0.0), As_cogen(0.0), MdotCogenNom(0.0), hCogenNom(0.0), ns(0.0), PstackPumpEl(0.0), PmpPowerLossFactor(0.0),
+              f0(0.0), f1(0.0), f2(0.0), StackCoolerPresent(false), qs_cool(0.0), qs_air(0.0)
         {
         }
     };
@@ -329,8 +328,8 @@ namespace DataGenerators {
 
         // Default Constructor
         FCWaterSupplyDataStruct()
-            : WaterTempMode(0), NodeNum(0), SchedNum(0), WaterSupRateCurveID(0), PmpPowerCurveID(0), PmpPowerLossFactor(0.0),
-              IsModeled(true), TwaterIntoCompress(0.0), TwaterIntoFCPM(0.0), PwaterCompEl(0.0), QskinLoss(0.0)
+            : WaterTempMode(0), NodeNum(0), SchedNum(0), WaterSupRateCurveID(0), PmpPowerCurveID(0), PmpPowerLossFactor(0.0), IsModeled(true),
+              TwaterIntoCompress(0.0), TwaterIntoFCPM(0.0), PwaterCompEl(0.0), QskinLoss(0.0)
         {
         }
     };
@@ -362,8 +361,8 @@ namespace DataGenerators {
         // Default Constructor
         FCAuxilHeatDataStruct()
             : ZoneID(0), UASkin(0.0), ExcessAirRAT(0.0), ANC0(0.0), ANC1(0.0), SkinLossDestination(0), MaxPowerW(0.0), MinPowerW(0.0),
-              MaxPowerkmolperSec(0.0), MinPowerkmolperSec(0.0), NumConstituents(0), TauxMix(0.0), NdotAuxMix(0.0),
-              ConstitMolalFract(14, 0.0), GasLibID(14, 0), QskinLoss(0.0), QairIntake(0.0)
+              MaxPowerkmolperSec(0.0), MinPowerkmolperSec(0.0), NumConstituents(0), TauxMix(0.0), NdotAuxMix(0.0), ConstitMolalFract(14, 0.0),
+              GasLibID(14, 0), QskinLoss(0.0), QairIntake(0.0)
         {
         }
     };
@@ -415,12 +414,11 @@ namespace DataGenerators {
 
         // Default Constructor
         FCExhaustHXDataStruct()
-            : WaterInNode(0), WaterOutNode(0), WaterVolumeFlowMax(0.0), ExhaustOutNode(0), HXmodelMode(0), HXEffect(0.0), hxs0(0.0),
-              hxs1(0.0), hxs2(0.0), hxs3(0.0), hxs4(0.0), h0gas(0.0), NdotGasRef(0.0), nCoeff(0.0), AreaGas(0.0), h0Water(0.0),
-              NdotWaterRef(0.0), mCoeff(0.0), AreaWater(0.0), Fadjust(0.0), l1Coeff(0.0), l2Coeff(0.0), CondensationThresholdTemp(0.0),
-              qHX(0.0), THXexh(0.0), WaterMassFlowRateDesign(0.0), WaterMassFlowRate(0.0), WaterInletTemp(0.0), WaterVaporFractExh(0.0),
-              CondensateRate(0.0), ConstitMolalFract(14, 0.0), GasLibID(14, 0), NdotHXleaving(0.0), WaterOutletTemp(0.0),
-              WaterOutletEnthalpy(0.0)
+            : WaterInNode(0), WaterOutNode(0), WaterVolumeFlowMax(0.0), ExhaustOutNode(0), HXmodelMode(0), HXEffect(0.0), hxs0(0.0), hxs1(0.0),
+              hxs2(0.0), hxs3(0.0), hxs4(0.0), h0gas(0.0), NdotGasRef(0.0), nCoeff(0.0), AreaGas(0.0), h0Water(0.0), NdotWaterRef(0.0), mCoeff(0.0),
+              AreaWater(0.0), Fadjust(0.0), l1Coeff(0.0), l2Coeff(0.0), CondensationThresholdTemp(0.0), qHX(0.0), THXexh(0.0),
+              WaterMassFlowRateDesign(0.0), WaterMassFlowRate(0.0), WaterInletTemp(0.0), WaterVaporFractExh(0.0), CondensateRate(0.0),
+              ConstitMolalFract(14, 0.0), GasLibID(14, 0), NdotHXleaving(0.0), WaterOutletTemp(0.0), WaterOutletEnthalpy(0.0)
         {
         }
     };
@@ -444,8 +442,7 @@ namespace DataGenerators {
 
         // Default Constructor
         BatteryDichargeDataStruct()
-            : NumInSeries(0.0), NumInParallel(0.0), NominalVoltage(0.0), LowVoltsDischarged(0.0), NumTablePairs(0), k(0.0), c(0.0),
-              qmax(0.0)
+            : NumInSeries(0.0), NumInParallel(0.0), NominalVoltage(0.0), LowVoltsDischarged(0.0), NumTablePairs(0), k(0.0), c(0.0), qmax(0.0)
         {
         }
     };
@@ -478,9 +475,8 @@ namespace DataGenerators {
         // Default Constructor
         FCElecStorageDataStruct()
             : StorageModelMode(0), StartingEnergyStored(0.0), EnergeticEfficCharge(0.0), EnergeticEfficDischarge(0.0), MaxPowerDraw(0.0),
-              MaxPowerStore(0.0), NominalVoltage(0.0), NominalEnergyCapacity(0.0), ThisTimeStepStateOfCharge(0.0),
-              LastTimeStepStateOfCharge(0.0), PelNeedFromStorage(0.0), IdesiredDischargeCurrent(0.0), PelFromStorage(0.0),
-              IfromStorage(0.0), PelIntoStorage(0.0), QairIntake(0.0)
+              MaxPowerStore(0.0), NominalVoltage(0.0), NominalEnergyCapacity(0.0), ThisTimeStepStateOfCharge(0.0), LastTimeStepStateOfCharge(0.0),
+              PelNeedFromStorage(0.0), IdesiredDischargeCurrent(0.0), PelFromStorage(0.0), IfromStorage(0.0), PelIntoStorage(0.0), QairIntake(0.0)
         {
         }
     };
@@ -583,16 +579,15 @@ namespace DataGenerators {
         FCReportDataStruct()
             : ACPowerGen(0.0), ACEnergyGen(0.0), QdotExhaust(0.0), TotalHeatEnergyRec(0.0), ExhaustEnergyRec(0.0), FuelEnergyLHV(0.0),
               FuelEnergyUseRateLHV(0.0), FuelEnergyHHV(0.0), FuelEnergyUseRateHHV(0.0), FuelRateMdot(0.0), HeatRecInletTemp(0.0),
-              HeatRecOutletTemp(0.0), HeatRecMdot(0.0), TairInlet(0.0), TairIntoFCPM(0.0), NdotAir(0.0), TotAirInEnthalphy(0.0),
-              BlowerPower(0.0), BlowerEnergy(0.0), BlowerSkinLoss(0.0), TfuelInlet(0.0), TfuelIntoFCPM(0.0), NdotFuel(0.0),
-              TotFuelInEnthalpy(0.0), FuelCompressPower(0.0), FuelCompressEnergy(0.0), FuelCompressSkinLoss(0.0), TwaterInlet(0.0),
-              TwaterIntoFCPM(0.0), NdotWater(0.0), WaterPumpPower(0.0), WaterPumpEnergy(0.0), WaterIntoFCPMEnthalpy(0.0), TprodGas(0.0),
-              EnthalProdGas(0.0), NdotProdGas(0.0), NdotProdAr(0.0), NdotProdCO2(0.0), NdotProdH2O(0.0), NdotProdN2(0.0), NdotProdO2(0.0),
-              qHX(0.0), HXenergy(0.0), THXexh(0.0), WaterVaporFractExh(0.0), CondensateRate(0.0), SeqSubstIterations(0),
-              RegulaFalsiIterations(0), ACancillariesPower(0.0), ACancillariesEnergy(0.0), PCUlosses(0.0), DCPowerGen(0.0), DCPowerEff(0.0),
-              ElectEnergyinStorage(0.0), StoredPower(0.0), StoredEnergy(0.0), DrawnPower(0.0), DrawnEnergy(0.0), SkinLossPower(0.0),
-              SkinLossEnergy(0.0), SkinLossConvect(0.0), SkinLossRadiat(0.0), ElectEfficiency(0.0), ThermalEfficiency(0.0),
-              OverallEfficiency(0.0), ExergyEfficiency(0.0)
+              HeatRecOutletTemp(0.0), HeatRecMdot(0.0), TairInlet(0.0), TairIntoFCPM(0.0), NdotAir(0.0), TotAirInEnthalphy(0.0), BlowerPower(0.0),
+              BlowerEnergy(0.0), BlowerSkinLoss(0.0), TfuelInlet(0.0), TfuelIntoFCPM(0.0), NdotFuel(0.0), TotFuelInEnthalpy(0.0),
+              FuelCompressPower(0.0), FuelCompressEnergy(0.0), FuelCompressSkinLoss(0.0), TwaterInlet(0.0), TwaterIntoFCPM(0.0), NdotWater(0.0),
+              WaterPumpPower(0.0), WaterPumpEnergy(0.0), WaterIntoFCPMEnthalpy(0.0), TprodGas(0.0), EnthalProdGas(0.0), NdotProdGas(0.0),
+              NdotProdAr(0.0), NdotProdCO2(0.0), NdotProdH2O(0.0), NdotProdN2(0.0), NdotProdO2(0.0), qHX(0.0), HXenergy(0.0), THXexh(0.0),
+              WaterVaporFractExh(0.0), CondensateRate(0.0), SeqSubstIterations(0), RegulaFalsiIterations(0), ACancillariesPower(0.0),
+              ACancillariesEnergy(0.0), PCUlosses(0.0), DCPowerGen(0.0), DCPowerEff(0.0), ElectEnergyinStorage(0.0), StoredPower(0.0),
+              StoredEnergy(0.0), DrawnPower(0.0), DrawnEnergy(0.0), SkinLossPower(0.0), SkinLossEnergy(0.0), SkinLossConvect(0.0),
+              SkinLossRadiat(0.0), ElectEfficiency(0.0), ThermalEfficiency(0.0), OverallEfficiency(0.0), ExergyEfficiency(0.0)
         {
         }
     };
@@ -711,9 +706,9 @@ namespace DataGenerators {
 
         // Default Constructor
         GasPropertyDataStruct()
-            : StdRefMolarEnthOfForm(0.0), ThermoMode(0), ShomateA(0.0), ShomateB(0.0), ShomateC(0.0), ShomateD(0.0), ShomateE(0.0),
-              ShomateF(0.0), ShomateG(0.0), ShomateH(0.0), NumCarbons(0.0), NumHydrogens(0.0), NumOxygens(0.0), MolecularWeight(0.0),
-              NASA_A1(0.0), NASA_A2(0.0), NASA_A3(0.0), NASA_A4(0.0), NASA_A5(0.0), NASA_A6(0.0), NASA_A7(0.0)
+            : StdRefMolarEnthOfForm(0.0), ThermoMode(0), ShomateA(0.0), ShomateB(0.0), ShomateC(0.0), ShomateD(0.0), ShomateE(0.0), ShomateF(0.0),
+              ShomateG(0.0), ShomateH(0.0), NumCarbons(0.0), NumHydrogens(0.0), NumOxygens(0.0), MolecularWeight(0.0), NASA_A1(0.0), NASA_A2(0.0),
+              NASA_A3(0.0), NASA_A4(0.0), NASA_A5(0.0), NASA_A6(0.0), NASA_A7(0.0)
         {
         }
     };
@@ -772,15 +767,14 @@ namespace DataGenerators {
 
         // Default Constructor
         GeneratorDynamicsManagerStruct()
-            : PelMin(0.0), PelMax(0.0), UpTranLimit(0.0), DownTranLimit(0.0), UpTranLimitFuel(0.0), DownTranLimitFuel(0.0),
-              WarmUpByTimeDelay(false), WarmUpByEngineTemp(true), StartUpTimeDelay(0.0), WarmUpDelay(0.0), StartUpFuel(0.0),
-              StartUpElectConsum(0.0), StartUpElectProd(0.0), ShutDownFuel(0.0), ShutDownElectConsum(0.0), PcoolDown(0.0),
-              CoolDownDelay(0.0), NumCyclesInit(0), NumRunHoursInit(0.0), Pstandby(0.0), MCeng(0.0), MCcw(0.0), kf(0.0), TnomEngOp(0.0),
-              kp(0.0), MandatoryFullCoolDown(false), WarmRestartOkay(true), AvailabilitySchedID(0), CurrentOpMode(OpModeOff),
-              LastOpMode(OpModeOff), FractionalDayofLastShutDown(0.0), FractionalDayofLastStartUp(0.0), HasBeenOn(false),
+            : PelMin(0.0), PelMax(0.0), UpTranLimit(0.0), DownTranLimit(0.0), UpTranLimitFuel(0.0), DownTranLimitFuel(0.0), WarmUpByTimeDelay(false),
+              WarmUpByEngineTemp(true), StartUpTimeDelay(0.0), WarmUpDelay(0.0), StartUpFuel(0.0), StartUpElectConsum(0.0), StartUpElectProd(0.0),
+              ShutDownFuel(0.0), ShutDownElectConsum(0.0), PcoolDown(0.0), CoolDownDelay(0.0), NumCyclesInit(0), NumRunHoursInit(0.0), Pstandby(0.0),
+              MCeng(0.0), MCcw(0.0), kf(0.0), TnomEngOp(0.0), kp(0.0), MandatoryFullCoolDown(false), WarmRestartOkay(true), AvailabilitySchedID(0),
+              CurrentOpMode(OpModeOff), LastOpMode(OpModeOff), FractionalDayofLastShutDown(0.0), FractionalDayofLastStartUp(0.0), HasBeenOn(false),
               DuringStartUp(false), DuringShutDown(false), FuelMdotLastTimestep(0.0), PelLastTimeStep(0.0), NumCycles(0),
-              PLRforSubtimestepStartUp(0.0), PLRforSubtimestepShutDown(0.0), ElectEffNom(0.0), ThermEffNom(0.0), QdotHXMax(0.0),
-              QdotHXMin(0.0), QdotHXOpt(0.0)
+              PLRforSubtimestepStartUp(0.0), PLRforSubtimestepShutDown(0.0), ElectEffNom(0.0), ThermEffNom(0.0), QdotHXMax(0.0), QdotHXMin(0.0),
+              QdotHXOpt(0.0)
         {
         }
     };
@@ -848,13 +842,13 @@ namespace DataGenerators {
         // Default Constructor
         MicroCHPParamsNonNormalized()
             : MaxElecPower(0.0), MinElecPower(0.0), MinWaterMdot(0.0), MaxWaterTemp(0.0), ElecEffCurveID(0), ThermalEffCurveID(0),
-              InternalFlowControl(false), PlantFlowControl(true), WaterFlowCurveID(0), AirFlowCurveID(0), DeltaPelMax(0.0),
-              DeltaFuelMdotMax(0.0), UAhx(0.0), UAskin(0.0), RadiativeFraction(0.0), MCeng(0.0), MCcw(0.0), Pstandby(0.0),
-              WarmUpByTimeDelay(false), WarmUpByEngineTemp(true), kf(0.0), TnomEngOp(0.0), kp(0.0), Rfuelwarmup(0.0), WarmUpDelay(0.0),
-              PcoolDown(0.0), CoolDownDelay(0.0), MandatoryFullCoolDown(false), WarmRestartOkay(true), TimeElapsed(0.0), OpMode(0),
-              OffModeTime(0.0), StandyByModeTime(0.0), WarmUpModeTime(0.0), NormalModeTime(0.0), CoolDownModeTime(0.0), TengLast(20.0),
-              TempCWOutLast(20.0), Pnet(0.0), ElecEff(0.0), Qgross(0.0), ThermEff(0.0), Qgenss(0.0), NdotFuel(0.0), MdotFuel(0.0),
-              Teng(20.0), TcwIn(20.0), TcwOut(20.0), MdotAir(0.0), QdotSkin(0.0), QdotConvZone(0.0), QdotRadZone(0.0)
+              InternalFlowControl(false), PlantFlowControl(true), WaterFlowCurveID(0), AirFlowCurveID(0), DeltaPelMax(0.0), DeltaFuelMdotMax(0.0),
+              UAhx(0.0), UAskin(0.0), RadiativeFraction(0.0), MCeng(0.0), MCcw(0.0), Pstandby(0.0), WarmUpByTimeDelay(false),
+              WarmUpByEngineTemp(true), kf(0.0), TnomEngOp(0.0), kp(0.0), Rfuelwarmup(0.0), WarmUpDelay(0.0), PcoolDown(0.0), CoolDownDelay(0.0),
+              MandatoryFullCoolDown(false), WarmRestartOkay(true), TimeElapsed(0.0), OpMode(0), OffModeTime(0.0), StandyByModeTime(0.0),
+              WarmUpModeTime(0.0), NormalModeTime(0.0), CoolDownModeTime(0.0), TengLast(20.0), TempCWOutLast(20.0), Pnet(0.0), ElecEff(0.0),
+              Qgross(0.0), ThermEff(0.0), Qgenss(0.0), NdotFuel(0.0), MdotFuel(0.0), Teng(20.0), TcwIn(20.0), TcwOut(20.0), MdotAir(0.0),
+              QdotSkin(0.0), QdotConvZone(0.0), QdotRadZone(0.0)
         {
         }
     };
@@ -912,13 +906,12 @@ namespace DataGenerators {
 
         // Default Constructor
         MicroCHPReportDataStruct()
-            : Mode(0), OffModeTime(0.0), StandyByModeTime(0.0), WarmUpModeTime(0.0), NormalModeTime(0.0), CoolDownModeTime(0.0),
-              ACPowerGen(0.0), ACEnergyGen(0.0), QdotGross(0.0), Qgenss(0.0), QdotHX(0.0), QdotHR(0.0), Tengine(0.0),
-              TotalHeatEnergyRec(0.0), ExhaustEnergyRec(0.0), FuelEnergyLHV(0.0), FuelEnergyUseRateLHV(0.0), FuelEnergyHHV(0.0),
-              FuelEnergyUseRateHHV(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0), TairInlet(0.0), MdotAir(0.0),
-              TfuelInlet(0.0), NdotFuel(0.0), MdotFuel(0.0), FuelCompressPower(0.0), FuelCompressEnergy(0.0), FuelCompressSkinLoss(0.0),
-              SkinLossPower(0.0), SkinLossEnergy(0.0), SkinLossConvect(0.0), SkinLossRadiat(0.0), ElectEfficiency(0.0),
-              ThermalEfficiency(0.0), OverallEfficiency(0.0)
+            : Mode(0), OffModeTime(0.0), StandyByModeTime(0.0), WarmUpModeTime(0.0), NormalModeTime(0.0), CoolDownModeTime(0.0), ACPowerGen(0.0),
+              ACEnergyGen(0.0), QdotGross(0.0), Qgenss(0.0), QdotHX(0.0), QdotHR(0.0), Tengine(0.0), TotalHeatEnergyRec(0.0), ExhaustEnergyRec(0.0),
+              FuelEnergyLHV(0.0), FuelEnergyUseRateLHV(0.0), FuelEnergyHHV(0.0), FuelEnergyUseRateHHV(0.0), HeatRecInletTemp(0.0),
+              HeatRecOutletTemp(0.0), HeatRecMdot(0.0), TairInlet(0.0), MdotAir(0.0), TfuelInlet(0.0), NdotFuel(0.0), MdotFuel(0.0),
+              FuelCompressPower(0.0), FuelCompressEnergy(0.0), FuelCompressSkinLoss(0.0), SkinLossPower(0.0), SkinLossEnergy(0.0),
+              SkinLossConvect(0.0), SkinLossRadiat(0.0), ElectEfficiency(0.0), ThermalEfficiency(0.0), OverallEfficiency(0.0)
         {
         }
     };

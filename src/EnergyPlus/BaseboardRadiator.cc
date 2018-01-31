@@ -341,8 +341,8 @@ namespace BaseboardRadiator {
             BaseboardNum = 0;
             for (ConvHWBaseboardNum = 1; ConvHWBaseboardNum <= NumConvHWBaseboards; ++ConvHWBaseboardNum) {
 
-                GetObjectItem(cCurrentModuleObject, ConvHWBaseboardNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat,
-                              lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+                GetObjectItem(cCurrentModuleObject, ConvHWBaseboardNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, lNumericFieldBlanks,
+                              lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
 
                 BaseboardParamsNumericFields(ConvHWBaseboardNum).FieldNames.allocate(NumNums);
                 BaseboardParamsNumericFields(ConvHWBaseboardNum).FieldNames = "";
@@ -350,8 +350,7 @@ namespace BaseboardRadiator {
 
                 IsNotOK = false;
                 IsBlank = false;
-                VerifyName(cAlphaArgs(1), Baseboard, &BaseboardParams::EquipID, BaseboardNum, IsNotOK, IsBlank,
-                           cCurrentModuleObject + " Name");
+                VerifyName(cAlphaArgs(1), Baseboard, &BaseboardParams::EquipID, BaseboardNum, IsNotOK, IsBlank, cCurrentModuleObject + " Name");
                 if (IsNotOK) {
                     ErrorsFound = true;
                     continue;
@@ -369,8 +368,8 @@ namespace BaseboardRadiator {
                 } else {
                     Baseboard(BaseboardNum).SchedPtr = GetScheduleIndex(cAlphaArgs(2));
                     if (Baseboard(BaseboardNum).SchedPtr == 0) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" +
-                                        cAlphaArgs(2) + " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) +
+                                        " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ErrorsFound = true;
                     }
                 }
@@ -378,9 +377,8 @@ namespace BaseboardRadiator {
                 Baseboard(BaseboardNum).WaterInletNode = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
                                                                            NodeType_Water, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
                 // get outlet node number
-                Baseboard(BaseboardNum).WaterOutletNode =
-                    GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
-                                      NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+                Baseboard(BaseboardNum).WaterOutletNode = GetOnlySingleNode(cAlphaArgs(4), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
+                                                                            NodeType_Water, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
 
                 TestCompSet(cCMO_BBRadiator_Water, cAlphaArgs(1), cAlphaArgs(3), cAlphaArgs(4), "Hot Water Nodes");
 
@@ -389,8 +387,7 @@ namespace BaseboardRadiator {
                     Baseboard(BaseboardNum).HeatingCapMethod = HeatingDesignCapacity;
                     if (!lNumericFieldBlanks(iHeatDesignCapacityNumericNum)) {
                         Baseboard(BaseboardNum).ScaledHeatingCapacity = rNumericArgs(iHeatDesignCapacityNumericNum);
-                        if (Baseboard(BaseboardNum).ScaledHeatingCapacity < 0.0 &&
-                            Baseboard(BaseboardNum).ScaledHeatingCapacity != AutoSize) {
+                        if (Baseboard(BaseboardNum).ScaledHeatingCapacity < 0.0 && Baseboard(BaseboardNum).ScaledHeatingCapacity != AutoSize) {
                             ShowSevereError(cCMO_BBRadiator_Water + " = " + Baseboard(BaseboardNum).EquipID);
                             ShowContinueError("Illegal " + cNumericFieldNames(iHeatDesignCapacityNumericNum) + " = " +
                                               TrimSigDigits(rNumericArgs(iHeatDesignCapacityNumericNum), 7));
@@ -470,26 +467,26 @@ namespace BaseboardRadiator {
             SetupOutputVariable("Baseboard Hot Water Energy", OutputProcessor::Unit::J, Baseboard(BaseboardNum).Energy, "System", "Sum",
                                 Baseboard(BaseboardNum).EquipID, _, "PLANTLOOPHEATINGDEMAND", "BASEBOARD", _, "System");
 
-            SetupOutputVariable("Baseboard Total Heating Rate", OutputProcessor::Unit::W, Baseboard(BaseboardNum).Power, "System",
-                                "Average", Baseboard(BaseboardNum).EquipID);
+            SetupOutputVariable("Baseboard Total Heating Rate", OutputProcessor::Unit::W, Baseboard(BaseboardNum).Power, "System", "Average",
+                                Baseboard(BaseboardNum).EquipID);
 
-            SetupOutputVariable("Baseboard Hot Water Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                Baseboard(BaseboardNum).WaterMassFlowRate, "System", "Average", Baseboard(BaseboardNum).EquipID);
-
-            SetupOutputVariable("Baseboard Air Mass Flow Rate", OutputProcessor::Unit::kg_s, Baseboard(BaseboardNum).AirMassFlowRate,
+            SetupOutputVariable("Baseboard Hot Water Mass Flow Rate", OutputProcessor::Unit::kg_s, Baseboard(BaseboardNum).WaterMassFlowRate,
                                 "System", "Average", Baseboard(BaseboardNum).EquipID);
+
+            SetupOutputVariable("Baseboard Air Mass Flow Rate", OutputProcessor::Unit::kg_s, Baseboard(BaseboardNum).AirMassFlowRate, "System",
+                                "Average", Baseboard(BaseboardNum).EquipID);
 
             SetupOutputVariable("Baseboard Air Inlet Temperature", OutputProcessor::Unit::C, Baseboard(BaseboardNum).AirInletTemp, "System",
                                 "Average", Baseboard(BaseboardNum).EquipID);
 
-            SetupOutputVariable("Baseboard Air Outlet Temperature", OutputProcessor::Unit::C, Baseboard(BaseboardNum).AirOutletTemp,
-                                "System", "Average", Baseboard(BaseboardNum).EquipID);
+            SetupOutputVariable("Baseboard Air Outlet Temperature", OutputProcessor::Unit::C, Baseboard(BaseboardNum).AirOutletTemp, "System",
+                                "Average", Baseboard(BaseboardNum).EquipID);
 
-            SetupOutputVariable("Baseboard Water Inlet Temperature", OutputProcessor::Unit::C, Baseboard(BaseboardNum).WaterInletTemp,
-                                "System", "Average", Baseboard(BaseboardNum).EquipID);
+            SetupOutputVariable("Baseboard Water Inlet Temperature", OutputProcessor::Unit::C, Baseboard(BaseboardNum).WaterInletTemp, "System",
+                                "Average", Baseboard(BaseboardNum).EquipID);
 
-            SetupOutputVariable("Baseboard Water Outlet Temperature", OutputProcessor::Unit::C, Baseboard(BaseboardNum).WaterOutletTemp,
-                                "System", "Average", Baseboard(BaseboardNum).EquipID);
+            SetupOutputVariable("Baseboard Water Outlet Temperature", OutputProcessor::Unit::C, Baseboard(BaseboardNum).WaterOutletTemp, "System",
+                                "Average", Baseboard(BaseboardNum).EquipID);
         }
     }
 
@@ -559,8 +556,8 @@ namespace BaseboardRadiator {
         if (SetLoopIndexFlag(BaseboardNum) && allocated(PlantLoop)) {
             errFlag = false;
             ScanPlantLoopsForObject(Baseboard(BaseboardNum).EquipID, Baseboard(BaseboardNum).EquipType, Baseboard(BaseboardNum).LoopNum,
-                                    Baseboard(BaseboardNum).LoopSideNum, Baseboard(BaseboardNum).BranchNum, Baseboard(BaseboardNum).CompNum,
-                                    _, _, _, _, _, errFlag);
+                                    Baseboard(BaseboardNum).LoopSideNum, Baseboard(BaseboardNum).BranchNum, Baseboard(BaseboardNum).CompNum, _, _, _,
+                                    _, _, errFlag);
             if (errFlag) {
                 ShowFatalError("InitBaseboard: Program terminated for previous conditions.");
             }
@@ -591,8 +588,8 @@ namespace BaseboardRadiator {
                                    PlantLoop(Baseboard(BaseboardNum).LoopNum).FluidIndex, RoutineName);
             Baseboard(BaseboardNum).WaterMassFlowRateMax = rho * Baseboard(BaseboardNum).WaterVolFlowRateMax;
             InitComponentNodes(0.0, Baseboard(BaseboardNum).WaterMassFlowRateMax, Baseboard(BaseboardNum).WaterInletNode,
-                               Baseboard(BaseboardNum).WaterOutletNode, Baseboard(BaseboardNum).LoopNum,
-                               Baseboard(BaseboardNum).LoopSideNum, Baseboard(BaseboardNum).BranchNum, Baseboard(BaseboardNum).CompNum);
+                               Baseboard(BaseboardNum).WaterOutletNode, Baseboard(BaseboardNum).LoopNum, Baseboard(BaseboardNum).LoopSideNum,
+                               Baseboard(BaseboardNum).BranchNum, Baseboard(BaseboardNum).CompNum);
             Node(WaterInletNode).Temp = 60.0;
             Cp = GetSpecificHeatGlycol(PlantLoop(Baseboard(BaseboardNum).LoopNum).FluidName, Node(WaterInletNode).Temp,
                                        PlantLoop(Baseboard(BaseboardNum).LoopNum).FluidIndex, RoutineName);
@@ -692,8 +689,7 @@ namespace BaseboardRadiator {
         int FieldNum = 1;                    // IDD numeric field number where input field description is found
         int SizingMethod;                    // Integer representation of sizing method name (HeatingCapacitySizing)
         bool PrintFlag;                      // TRUE when sizing information is reported in the eio file
-        int CapSizingMethod(
-            0); // capacity sizing methods (HeatingDesignCapacity, CapacityPerFloorArea, and FractionOfAutosizedHeatingCapacity )
+        int CapSizingMethod(0); // capacity sizing methods (HeatingDesignCapacity, CapacityPerFloorArea, and FractionOfAutosizedHeatingCapacity )
 
         // find the appropriate heating Plant Sizing object
         PltSizHeatNum = PlantLoop(Baseboard(BaseboardNum).LoopNum).PlantSizNum;
@@ -709,8 +705,8 @@ namespace BaseboardRadiator {
                 }
                 if (!FlowAutoSize && !ZoneSizingRunDone) { // Simulation should continue
                     if (Baseboard(BaseboardNum).WaterVolFlowRateMax > 0.0) {
-                        ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID,
-                                           "User-Specified Maximum Water Flow Rate [m3/s]", Baseboard(BaseboardNum).WaterVolFlowRateMax);
+                        ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID, "User-Specified Maximum Water Flow Rate [m3/s]",
+                                           Baseboard(BaseboardNum).WaterVolFlowRateMax);
                     }
                 } else {
                     CheckZoneSizing(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID);
@@ -771,23 +767,21 @@ namespace BaseboardRadiator {
 
                     if (FlowAutoSize) {
                         Baseboard(BaseboardNum).WaterVolFlowRateMax = WaterVolFlowRateMaxDes;
-                        ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID,
-                                           "Design Size Maximum Water Flow Rate [m3/s]", WaterVolFlowRateMaxDes);
+                        ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID, "Design Size Maximum Water Flow Rate [m3/s]",
+                                           WaterVolFlowRateMaxDes);
                     } else { // hard-sized with sizing data
                         if (Baseboard(BaseboardNum).WaterVolFlowRateMax > 0.0 && WaterVolFlowRateMaxDes > 0.0) {
                             WaterVolFlowRateMaxUser = Baseboard(BaseboardNum).WaterVolFlowRateMax;
-                            ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID,
-                                               "Design Size Maximum Water Flow Rate [m3/s]", WaterVolFlowRateMaxDes,
-                                               "User-Specified Maximum Water Flow Rate [m3/s]", WaterVolFlowRateMaxUser);
+                            ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID, "Design Size Maximum Water Flow Rate [m3/s]",
+                                               WaterVolFlowRateMaxDes, "User-Specified Maximum Water Flow Rate [m3/s]", WaterVolFlowRateMaxUser);
                             // Report a warning to note difference between the two
                             if (DisplayExtraWarnings) {
                                 if ((std::abs(WaterVolFlowRateMaxDes - WaterVolFlowRateMaxUser) / WaterVolFlowRateMaxUser) >
                                     AutoVsHardSizingThreshold) {
-                                    ShowMessage(
-                                        "SizeBaseboard: Potential issue with equipment sizing for ZoneHVAC:Baseboard:Convective:Water=\"" +
-                                        Baseboard(BaseboardNum).EquipID + "\".");
-                                    ShowContinueError("User-Specified Maximum Water Flow Rate of " +
-                                                      RoundSigDigits(WaterVolFlowRateMaxUser, 5) + " [m3/s]");
+                                    ShowMessage("SizeBaseboard: Potential issue with equipment sizing for ZoneHVAC:Baseboard:Convective:Water=\"" +
+                                                Baseboard(BaseboardNum).EquipID + "\".");
+                                    ShowContinueError("User-Specified Maximum Water Flow Rate of " + RoundSigDigits(WaterVolFlowRateMaxUser, 5) +
+                                                      " [m3/s]");
                                     ShowContinueError("differs from Design Size Maximum Water Flow Rate of " +
                                                       RoundSigDigits(WaterVolFlowRateMaxDes, 5) + " [m3/s]");
                                     ShowContinueError("This may, or may not, indicate mismatched component sizes.");
@@ -807,8 +801,8 @@ namespace BaseboardRadiator {
                 }
                 if (!UAAutoSize && !ZoneSizingRunDone) { // Simulation should continue
                     if (Baseboard(BaseboardNum).UA > 0.0) {
-                        ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID,
-                                           "User-Specified U-Factor Times Area Value [W/K]", Baseboard(BaseboardNum).UA);
+                        ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID, "User-Specified U-Factor Times Area Value [W/K]",
+                                           Baseboard(BaseboardNum).UA);
                     }
                 } else {
                     // CALL CheckZoneSizing(cCMO_BBRadiator_Water,Baseboard(BaseboardNum)%EquipID)
@@ -884,8 +878,7 @@ namespace BaseboardRadiator {
                             if (UAAutoSize) {
                                 ErrorsFound = true;
                             } else {
-                                ShowContinueError(
-                                    "Could not calculate design value for comparison to user value, and the simulation continues");
+                                ShowContinueError("Could not calculate design value for comparison to user value, and the simulation continues");
                                 UA = 0.0;
                             }
                         } else if (SolFla == -2) {
@@ -895,8 +888,7 @@ namespace BaseboardRadiator {
                             if (UAAutoSize) {
                                 ErrorsFound = true;
                             } else {
-                                ShowContinueError(
-                                    "Could not calculate design value for comparison to user value, and the simulation continues");
+                                ShowContinueError("Could not calculate design value for comparison to user value, and the simulation continues");
                                 UA = 0.0;
                             }
                         }
@@ -907,24 +899,20 @@ namespace BaseboardRadiator {
 
                     if (UAAutoSize) {
                         Baseboard(BaseboardNum).UA = UADes;
-                        ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID,
-                                           "Design Size U-Factor Times Area Value [W/K]", UADes);
+                        ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID, "Design Size U-Factor Times Area Value [W/K]",
+                                           UADes);
                     } else {                                 // Hard-sized with sizing data
                         Baseboard(BaseboardNum).UA = UAUser; // need to put this back as HWBaseboardUAResidual will have reset it, CR9377
                         if (UAUser > 0.0 && UADes > 0.0) {
-                            ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID,
-                                               "Design Size U-Factor Times Area Value [W/K]", UADes,
-                                               "User-Specified U-Factor Times Area Value [W/K]", UAUser);
+                            ReportSizingOutput(cCMO_BBRadiator_Water, Baseboard(BaseboardNum).EquipID, "Design Size U-Factor Times Area Value [W/K]",
+                                               UADes, "User-Specified U-Factor Times Area Value [W/K]", UAUser);
                             // Report difference between design size and hard-sized values
                             if (DisplayExtraWarnings) {
                                 if ((std::abs(UADes - UAUser) / UAUser) > AutoVsHardSizingThreshold) {
-                                    ShowMessage(
-                                        "SizeBaseboard: Potential issue with equipment sizing for ZoneHVAC:Baseboard:Convective:Water=\"" +
-                                        Baseboard(BaseboardNum).EquipID + "\".");
-                                    ShowContinueError("User-Specified U-Factor Times Area Value of " + RoundSigDigits(UAUser, 2) +
-                                                      " [W/K]");
-                                    ShowContinueError("differs from Design Size U-Factor Times Area Value of " + RoundSigDigits(UADes, 2) +
-                                                      " [W/K]");
+                                    ShowMessage("SizeBaseboard: Potential issue with equipment sizing for ZoneHVAC:Baseboard:Convective:Water=\"" +
+                                                Baseboard(BaseboardNum).EquipID + "\".");
+                                    ShowContinueError("User-Specified U-Factor Times Area Value of " + RoundSigDigits(UAUser, 2) + " [W/K]");
+                                    ShowContinueError("differs from Design Size U-Factor Times Area Value of " + RoundSigDigits(UADes, 2) + " [W/K]");
                                     ShowContinueError("This may, or may not, indicate mismatched component sizes.");
                                     ShowContinueError("Verify that the value entered is intended and is consistent with other components.");
                                 }
@@ -1297,8 +1285,7 @@ namespace BaseboardRadiator {
         if (CompIndex == 0) {
             BaseboardNum = FindItemInList(BaseboardName, Baseboard, &BaseboardParams::EquipID);
             if (BaseboardNum == 0) {
-                ShowFatalError("UpdateBaseboardPlantConnection: Invalid Unit Specified " + cCMO_BBRadiator_Water + "=\"" + BaseboardName +
-                               "\"");
+                ShowFatalError("UpdateBaseboardPlantConnection: Invalid Unit Specified " + cCMO_BBRadiator_Water + "=\"" + BaseboardName + "\"");
             }
             CompIndex = BaseboardNum;
         } else {
@@ -1309,14 +1296,12 @@ namespace BaseboardRadiator {
             }
             if (KickOffSimulation) {
                 if (BaseboardName != Baseboard(BaseboardNum).EquipID) {
-                    ShowFatalError("UpdateBaseboardPlantConnection: Invalid CompIndex passed=" + TrimSigDigits(BaseboardNum) +
-                                   ", baseboard name=" + BaseboardName + ", stored baseboard Name for that index=" +
-                                   Baseboard(BaseboardNum).EquipID);
+                    ShowFatalError("UpdateBaseboardPlantConnection: Invalid CompIndex passed=" + TrimSigDigits(BaseboardNum) + ", baseboard name=" +
+                                   BaseboardName + ", stored baseboard Name for that index=" + Baseboard(BaseboardNum).EquipID);
                 }
                 if (BaseboardTypeNum != TypeOf_Baseboard_Conv_Water) {
-                    ShowFatalError("UpdateBaseboardPlantConnection: Invalid CompIndex passed=" + TrimSigDigits(BaseboardNum) +
-                                   ", baseboard name=" + BaseboardName + ", stored baseboard Name for that index=" +
-                                   ccSimPlantEquipTypes(BaseboardTypeNum));
+                    ShowFatalError("UpdateBaseboardPlantConnection: Invalid CompIndex passed=" + TrimSigDigits(BaseboardNum) + ", baseboard name=" +
+                                   BaseboardName + ", stored baseboard Name for that index=" + ccSimPlantEquipTypes(BaseboardTypeNum));
                 }
             }
         }
@@ -1326,19 +1311,16 @@ namespace BaseboardRadiator {
         }
 
         PullCompInterconnectTrigger(Baseboard(BaseboardNum).LoopNum, Baseboard(BaseboardNum).LoopSideNum, Baseboard(BaseboardNum).BranchNum,
-                                    Baseboard(BaseboardNum).CompNum, Baseboard(BaseboardNum).BBLoadReSimIndex,
-                                    Baseboard(BaseboardNum).LoopNum, Baseboard(BaseboardNum).LoopSideNum, CriteriaType_HeatTransferRate,
-                                    Baseboard(BaseboardNum).Power);
+                                    Baseboard(BaseboardNum).CompNum, Baseboard(BaseboardNum).BBLoadReSimIndex, Baseboard(BaseboardNum).LoopNum,
+                                    Baseboard(BaseboardNum).LoopSideNum, CriteriaType_HeatTransferRate, Baseboard(BaseboardNum).Power);
 
         PullCompInterconnectTrigger(Baseboard(BaseboardNum).LoopNum, Baseboard(BaseboardNum).LoopSideNum, Baseboard(BaseboardNum).BranchNum,
-                                    Baseboard(BaseboardNum).CompNum, Baseboard(BaseboardNum).BBLoadReSimIndex,
-                                    Baseboard(BaseboardNum).LoopNum, Baseboard(BaseboardNum).LoopSideNum, CriteriaType_MassFlowRate,
-                                    Baseboard(BaseboardNum).WaterMassFlowRate);
+                                    Baseboard(BaseboardNum).CompNum, Baseboard(BaseboardNum).BBLoadReSimIndex, Baseboard(BaseboardNum).LoopNum,
+                                    Baseboard(BaseboardNum).LoopSideNum, CriteriaType_MassFlowRate, Baseboard(BaseboardNum).WaterMassFlowRate);
 
         PullCompInterconnectTrigger(Baseboard(BaseboardNum).LoopNum, Baseboard(BaseboardNum).LoopSideNum, Baseboard(BaseboardNum).BranchNum,
-                                    Baseboard(BaseboardNum).CompNum, Baseboard(BaseboardNum).BBLoadReSimIndex,
-                                    Baseboard(BaseboardNum).LoopNum, Baseboard(BaseboardNum).LoopSideNum, CriteriaType_Temperature,
-                                    Baseboard(BaseboardNum).WaterOutletTemp);
+                                    Baseboard(BaseboardNum).CompNum, Baseboard(BaseboardNum).BBLoadReSimIndex, Baseboard(BaseboardNum).LoopNum,
+                                    Baseboard(BaseboardNum).LoopSideNum, CriteriaType_Temperature, Baseboard(BaseboardNum).WaterOutletTemp);
     }
 
 } // BaseboardRadiator

@@ -176,15 +176,15 @@ namespace DataLoopNode {
         // Default Constructor
         NodeData()
             : FluidType(0), FluidIndex(0), Temp(0.0), TempMin(0.0), TempMax(0.0), TempSetPoint(SensedNodeFlagValue), TempLastTimestep(0.0),
-              MassFlowRateRequest(0.0), MassFlowRate(0.0), MassFlowRateMin(0.0), MassFlowRateMax(SensedNodeFlagValue),
-              MassFlowRateMinAvail(0.0), MassFlowRateMaxAvail(0.0), MassFlowRateSetPoint(0.0), Quality(0.0), Press(0.0), Enthalpy(0.0),
-              EnthalpyLastTimestep(0.0), HumRat(0.0), HumRatMin(SensedNodeFlagValue), HumRatMax(SensedNodeFlagValue),
-              HumRatSetPoint(SensedNodeFlagValue), TempSetPointHi(SensedNodeFlagValue), TempSetPointLo(SensedNodeFlagValue), Height(-1.0),
-              IsLocalNode(false), OutAirDryBulbSchedNum(0.0), OutAirWetBulbSchedNum(0.0), OutAirWindSpeedSchedNum(0.0),
-              OutAirWindDirSchedNum(0.0), OutAirDryBulb(0.0), EMSOverrideOutAirDryBulb(false), EMSValueForOutAirDryBulb(0.0),
-              OutAirWetBulb(0.0), EMSOverrideOutAirWetBulb(false), EMSValueForOutAirWetBulb(0.0), OutAirWindSpeed(0.0),
-              EMSOverrideOutAirWindSpeed(false), EMSValueForOutAirWindSpeed(0.0), OutAirWindDir(0.0), EMSOverrideOutAirWindDir(false),
-              EMSValueForOutAirWindDir(0.0), CO2(0.0), CO2SetPoint(0.0), GenContam(0.0), GenContamSetPoint(0.0), SPMNodeWetBulbRepReq(false)
+              MassFlowRateRequest(0.0), MassFlowRate(0.0), MassFlowRateMin(0.0), MassFlowRateMax(SensedNodeFlagValue), MassFlowRateMinAvail(0.0),
+              MassFlowRateMaxAvail(0.0), MassFlowRateSetPoint(0.0), Quality(0.0), Press(0.0), Enthalpy(0.0), EnthalpyLastTimestep(0.0), HumRat(0.0),
+              HumRatMin(SensedNodeFlagValue), HumRatMax(SensedNodeFlagValue), HumRatSetPoint(SensedNodeFlagValue),
+              TempSetPointHi(SensedNodeFlagValue), TempSetPointLo(SensedNodeFlagValue), Height(-1.0), IsLocalNode(false), OutAirDryBulbSchedNum(0.0),
+              OutAirWetBulbSchedNum(0.0), OutAirWindSpeedSchedNum(0.0), OutAirWindDirSchedNum(0.0), OutAirDryBulb(0.0),
+              EMSOverrideOutAirDryBulb(false), EMSValueForOutAirDryBulb(0.0), OutAirWetBulb(0.0), EMSOverrideOutAirWetBulb(false),
+              EMSValueForOutAirWetBulb(0.0), OutAirWindSpeed(0.0), EMSOverrideOutAirWindSpeed(false), EMSValueForOutAirWindSpeed(0.0),
+              OutAirWindDir(0.0), EMSOverrideOutAirWindDir(false), EMSValueForOutAirWindDir(0.0), CO2(0.0), CO2SetPoint(0.0), GenContam(0.0),
+              GenContamSetPoint(0.0), SPMNodeWetBulbRepReq(false)
         {
         }
 
@@ -245,13 +245,12 @@ namespace DataLoopNode {
               HumRatSetPoint(HumRatSetPoint), TempSetPointHi(TempSetPointHi), TempSetPointLo(TempSetPointLo), Height(Height),
               IsLocalNode(IsLocalNode), OutAirDryBulbSchedNum(OutAirDryBulbSchedNum), OutAirWetBulbSchedNum(OutAirWetBulbSchedNum),
               OutAirWindSpeedSchedNum(OutAirWindSpeedSchedNum), OutAirWindDirSchedNum(OutAirWindDirSchedNum), OutAirDryBulb(OutAirDryBulb),
-              EMSOverrideOutAirDryBulb(EMSOverrideOutAirDryBulb), EMSValueForOutAirDryBulb(EMSValueForOutAirDryBulb),
-              OutAirWetBulb(OutAirWetBulb), EMSOverrideOutAirWetBulb(EMSOverrideOutAirWetBulb),
-              EMSValueForOutAirWetBulb(EMSValueForOutAirWetBulb), OutAirWindSpeed(OutAirWindSpeed),
-              EMSOverrideOutAirWindSpeed(EMSOverrideOutAirWindSpeed), EMSValueForOutAirWindSpeed(EMSValueForOutAirWindSpeed),
-              OutAirWindDir(OutAirWindDir), EMSOverrideOutAirWindDir(EMSOverrideOutAirWindDir),
-              EMSValueForOutAirWindDir(EMSValueForOutAirWindDir), CO2(CO2), CO2SetPoint(CO2SetPoint), GenContam(GenContam),
-              GenContamSetPoint(GenContamSetPoint), SPMNodeWetBulbRepReq(SPMNodeWetBulbRepReq)
+              EMSOverrideOutAirDryBulb(EMSOverrideOutAirDryBulb), EMSValueForOutAirDryBulb(EMSValueForOutAirDryBulb), OutAirWetBulb(OutAirWetBulb),
+              EMSOverrideOutAirWetBulb(EMSOverrideOutAirWetBulb), EMSValueForOutAirWetBulb(EMSValueForOutAirWetBulb),
+              OutAirWindSpeed(OutAirWindSpeed), EMSOverrideOutAirWindSpeed(EMSOverrideOutAirWindSpeed),
+              EMSValueForOutAirWindSpeed(EMSValueForOutAirWindSpeed), OutAirWindDir(OutAirWindDir),
+              EMSOverrideOutAirWindDir(EMSOverrideOutAirWindDir), EMSValueForOutAirWindDir(EMSValueForOutAirWindDir), CO2(CO2),
+              CO2SetPoint(CO2SetPoint), GenContam(GenContam), GenContamSetPoint(GenContamSetPoint), SPMNodeWetBulbRepReq(SPMNodeWetBulbRepReq)
         {
         }
     };

@@ -446,8 +446,7 @@ void DXFOut(std::string &PolygonAction,
     static gio::Fmt Format_704_3("(' 12',/,f15.5,/,' 22',/,f15.5,/,' 32',/,f15.5)");
     static gio::Fmt Format_705("(' 13',/,f15.5,/,' 23',/,f15.5,/,' 33',/,f15.5)");
     static gio::Fmt Format_706("('  0',/,'ENDSEC',/,'  0',/,'EOF')");
-    static gio::Fmt Format_709(
-        "('  0',/,'CIRCLE',/,'  8',/,A,/,' 62',/,I3,/,' 10',/,f15.5,/,' 20',/,f15.5,/,' 30',/,f15.5,/,' 40',/,f15.5)");
+    static gio::Fmt Format_709("('  0',/,'CIRCLE',/,'  8',/,A,/,' 62',/,I3,/,' 10',/,f15.5,/,' 20',/,f15.5,/,' 30',/,f15.5,/,' 40',/,f15.5)");
     static gio::Fmt Format_710("('999',/,A)");
 
     if (PolygonAction == "TRIANGULATE3DFACE" || PolygonAction == "TRIANGULATE" || PolygonAction == "") {
@@ -543,8 +542,7 @@ void DXFOut(std::string &PolygonAction,
     gio::write(unit, Format_800) << DXFcolorno(ColorNo_Text) << StemX(1) - 1.0 << StemY(1) << StemZ(1);
 
     gio::write(unit, Format_710) << "Text - Building Title";
-    gio::write(unit, Format_801) << DXFcolorno(ColorNo_Text) << StemX(1) - 4.0 << StemY(1) - 4.0 << StemZ(1)
-                                 << "Building - " + BuildingName;
+    gio::write(unit, Format_801) << DXFcolorno(ColorNo_Text) << StemX(1) - 4.0 << StemY(1) - 4.0 << StemZ(1) << "Building - " + BuildingName;
 
     // We want to point the north arrow to true north
     gio::write(unit, Format_710) << "North Arrow Stem";
@@ -652,13 +650,11 @@ void DXFOut(std::string &PolygonAction,
                     vv0 = mytriangles(svert).vv0;
                     vv1 = mytriangles(svert).vv1;
                     vv2 = mytriangles(svert).vv2;
-                    gio::write(unit, Format_704)
-                        << ShadeType << DXFcolorno(colorindex) << Surface(surf).Vertex(vv0).x << Surface(surf).Vertex(vv0).y
-                        << Surface(surf).Vertex(vv0).z << Surface(surf).Vertex(vv1).x << Surface(surf).Vertex(vv1).y
-                        << Surface(surf).Vertex(vv1).z << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y
-                        << Surface(surf).Vertex(vv2).z;
-                    gio::write(unit, Format_705) << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y
+                    gio::write(unit, Format_704) << ShadeType << DXFcolorno(colorindex) << Surface(surf).Vertex(vv0).x << Surface(surf).Vertex(vv0).y
+                                                 << Surface(surf).Vertex(vv0).z << Surface(surf).Vertex(vv1).x << Surface(surf).Vertex(vv1).y
+                                                 << Surface(surf).Vertex(vv1).z << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y
                                                  << Surface(surf).Vertex(vv2).z;
+                    gio::write(unit, Format_705) << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y << Surface(surf).Vertex(vv2).z;
                 }
                 mytriangles.deallocate();
             }
@@ -723,13 +719,11 @@ void DXFOut(std::string &PolygonAction,
                         vv0 = mytriangles(svert).vv0;
                         vv1 = mytriangles(svert).vv1;
                         vv2 = mytriangles(svert).vv2;
-                        gio::write(unit, Format_704)
-                            << TempZoneName << DXFcolorno(colorindex) << Surface(surf).Vertex(vv0).x << Surface(surf).Vertex(vv0).y
-                            << Surface(surf).Vertex(vv0).z << Surface(surf).Vertex(vv1).x << Surface(surf).Vertex(vv1).y
-                            << Surface(surf).Vertex(vv1).z << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y
-                            << Surface(surf).Vertex(vv2).z;
-                        gio::write(unit, Format_705) << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y
-                                                     << Surface(surf).Vertex(vv2).z;
+                        gio::write(unit, Format_704) << TempZoneName << DXFcolorno(colorindex) << Surface(surf).Vertex(vv0).x
+                                                     << Surface(surf).Vertex(vv0).y << Surface(surf).Vertex(vv0).z << Surface(surf).Vertex(vv1).x
+                                                     << Surface(surf).Vertex(vv1).y << Surface(surf).Vertex(vv1).z << Surface(surf).Vertex(vv2).x
+                                                     << Surface(surf).Vertex(vv2).y << Surface(surf).Vertex(vv2).z;
+                        gio::write(unit, Format_705) << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y << Surface(surf).Vertex(vv2).z;
                     }
                     mytriangles.deallocate();
                 }
@@ -768,23 +762,21 @@ void DXFOut(std::string &PolygonAction,
                     gio::write(unit, Format_717) << TempZoneName;
                 } else {
                     if (Surface(surf).Shape == SurfaceShape::RectangularOverhang) {
-                        ntri = Triangulate(Surface(surf).Sides, Surface(surf).Vertex, mytriangles, Surface(surf).Azimuth,
-                                           Surface(surf).Tilt, Surface(surf).Name, SurfaceClass_Overhang);
+                        ntri = Triangulate(Surface(surf).Sides, Surface(surf).Vertex, mytriangles, Surface(surf).Azimuth, Surface(surf).Tilt,
+                                           Surface(surf).Name, SurfaceClass_Overhang);
                     } else {
-                        ntri = Triangulate(Surface(surf).Sides, Surface(surf).Vertex, mytriangles, Surface(surf).Azimuth,
-                                           Surface(surf).Tilt, Surface(surf).Name, SurfaceClass_Fin);
+                        ntri = Triangulate(Surface(surf).Sides, Surface(surf).Vertex, mytriangles, Surface(surf).Azimuth, Surface(surf).Tilt,
+                                           Surface(surf).Name, SurfaceClass_Fin);
                     }
                     for (svert = 1; svert <= ntri; ++svert) {
                         vv0 = mytriangles(svert).vv0;
                         vv1 = mytriangles(svert).vv1;
                         vv2 = mytriangles(svert).vv2;
-                        gio::write(unit, Format_704)
-                            << TempZoneName << DXFcolorno(colorindex) << Surface(surf).Vertex(vv0).x << Surface(surf).Vertex(vv0).y
-                            << Surface(surf).Vertex(vv0).z << Surface(surf).Vertex(vv1).x << Surface(surf).Vertex(vv1).y
-                            << Surface(surf).Vertex(vv1).z << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y
-                            << Surface(surf).Vertex(vv2).z;
-                        gio::write(unit, Format_705) << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y
-                                                     << Surface(surf).Vertex(vv2).z;
+                        gio::write(unit, Format_704) << TempZoneName << DXFcolorno(colorindex) << Surface(surf).Vertex(vv0).x
+                                                     << Surface(surf).Vertex(vv0).y << Surface(surf).Vertex(vv0).z << Surface(surf).Vertex(vv1).x
+                                                     << Surface(surf).Vertex(vv1).y << Surface(surf).Vertex(vv1).z << Surface(surf).Vertex(vv2).x
+                                                     << Surface(surf).Vertex(vv2).y << Surface(surf).Vertex(vv2).z;
+                        gio::write(unit, Format_705) << Surface(surf).Vertex(vv2).x << Surface(surf).Vertex(vv2).y << Surface(surf).Vertex(vv2).z;
                     }
                     mytriangles.deallocate();
                 }
@@ -813,8 +805,7 @@ void DXFOut(std::string &PolygonAction,
         for (refpt = 1; refpt <= ZoneDaylight(zones).TotalDaylRefPoints; ++refpt) {
             gio::write(unit, Format_710) << Zone(zones).Name + ":DayRefPt:" + TrimSigDigits(refpt);
             gio::write(unit, Format_709) << TempZoneName << DXFcolorno(curcolorno) << ZoneDaylight(zones).DaylRefPtAbsCoord(1, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
+                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt) << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
             curcolorno = ColorNo_DaylSensor2; // ref pts 2 and later are this color
         }
     }
@@ -837,8 +828,8 @@ void DXFOut(std::string &PolygonAction,
             for (refpt = 1; refpt <= IllumMapCalc(mapnum).TotalMapRefPoints; ++refpt) {
                 gio::write(unit, Format_710) << Zone(zones).Name + ":MapRefPt:" + TrimSigDigits(refpt);
                 gio::write(unit, Format_709) << TempZoneName << DXFcolorno(curcolorno) << IllumMapCalc(mapnum).MapRefPtAbsCoord(1, refpt)
-                                             << IllumMapCalc(mapnum).MapRefPtAbsCoord(2, refpt)
-                                             << IllumMapCalc(mapnum).MapRefPtAbsCoord(3, refpt) << 0.05;
+                                             << IllumMapCalc(mapnum).MapRefPtAbsCoord(2, refpt) << IllumMapCalc(mapnum).MapRefPtAbsCoord(3, refpt)
+                                             << 0.05;
             }
         }
     }
@@ -860,8 +851,7 @@ void DXFOut(std::string &PolygonAction,
         for (refpt = 1; refpt <= ZoneDaylight(zones).TotalDaylRefPoints; ++refpt) {
             gio::write(unit, Format_710) << Zone(zones).Name + ":DEDayRefPt:" + TrimSigDigits(refpt);
             gio::write(unit, Format_709) << TempZoneName << DXFcolorno(curcolorno) << ZoneDaylight(zones).DaylRefPtAbsCoord(1, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
+                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt) << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
             curcolorno = ColorNo_DaylSensor2; // ref pts 2 and later are this color
         }
     }
@@ -974,8 +964,7 @@ void DXFOutLines(std::string const &ColorScheme)
     static gio::Fmt Format_711("('  0',/,'LINE',/,'  8',/,A,/,' 62',/,I3)");
     static gio::Fmt Format_712("(' 10',/,f15.5,/,' 20',/,f15.5,/,' 30',/,f15.5,/,' 11',/,f15.5,/,' 21',/,f15.5,/,' 31',/,f15.5)");
     static gio::Fmt Format_706("('  0',/,'ENDSEC',/,'  0',/,'EOF')");
-    static gio::Fmt Format_709(
-        "('  0',/,'CIRCLE',/,'  8',/,A,/,' 62',/,I3,/,' 10',/,f15.5,/,' 20',/,f15.5,/,' 30',/,f15.5,/,' 40',/,f15.5)");
+    static gio::Fmt Format_709("('  0',/,'CIRCLE',/,'  8',/,A,/,' 62',/,I3,/,' 10',/,f15.5,/,' 20',/,f15.5,/,' 30',/,f15.5,/,' 40',/,f15.5)");
     static gio::Fmt Format_710("('999',/,A)");
 
     if (TotSurfaces > 0 && !allocated(Surface)) {
@@ -1042,8 +1031,7 @@ void DXFOutLines(std::string const &ColorScheme)
     gio::write(unit, Format_800) << DXFcolorno(ColorNo_Text) << StemX(1) - 1.0 << StemY(1) << StemZ(1);
 
     gio::write(unit, Format_710) << "Text - Building Title";
-    gio::write(unit, Format_801) << DXFcolorno(ColorNo_Text) << StemX(1) - 4.0 << StemY(1) - 4.0 << StemZ(1)
-                                 << "Building - " + BuildingName;
+    gio::write(unit, Format_801) << DXFcolorno(ColorNo_Text) << StemX(1) - 4.0 << StemY(1) - 4.0 << StemZ(1) << "Building - " + BuildingName;
 
     // We want to point the north arrow to true north
     gio::write(unit, Format_710) << "North Arrow Stem";
@@ -1139,8 +1127,7 @@ void DXFOutLines(std::string const &ColorScheme)
                 }
                 gio::write(unit, Format_711) << ShadeType << DXFcolorno(colorindex); //,minz ,TRIM(PolylineWidth),TRIM(PolylineWidth)
                 gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y << Surface(surf).Vertex(vert).z
-                                             << Surface(surf).Vertex(sptr).x << Surface(surf).Vertex(sptr).y
-                                             << Surface(surf).Vertex(sptr).z;
+                                             << Surface(surf).Vertex(sptr).x << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
             }
         } else { // polygon
             for (vert = 1; vert <= Surface(surf).Sides; ++vert) {
@@ -1151,8 +1138,7 @@ void DXFOutLines(std::string const &ColorScheme)
                 }
                 gio::write(unit, Format_711) << ShadeType << DXFcolorno(colorindex); //,minz ,TRIM(PolylineWidth),TRIM(PolylineWidth)
                 gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y << Surface(surf).Vertex(vert).z
-                                             << Surface(surf).Vertex(sptr).x << Surface(surf).Vertex(sptr).y
-                                             << Surface(surf).Vertex(sptr).z;
+                                             << Surface(surf).Vertex(sptr).x << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
             }
         }
     }
@@ -1204,9 +1190,8 @@ void DXFOutLines(std::string const &ColorScheme)
                         sptr = 1;
                     }
                     gio::write(unit, Format_711) << TempZoneName << DXFcolorno(colorindex); //,minz,TRIM(PolylineWidth),TRIM(PolylineWidth)
-                    gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y
-                                                 << Surface(surf).Vertex(vert).z << Surface(surf).Vertex(sptr).x
-                                                 << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
+                    gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y << Surface(surf).Vertex(vert).z
+                                                 << Surface(surf).Vertex(sptr).x << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
                 }
             } else { // polygon
                 for (vert = 1; vert <= Surface(surf).Sides; ++vert) {
@@ -1216,9 +1201,8 @@ void DXFOutLines(std::string const &ColorScheme)
                         sptr = 1;
                     }
                     gio::write(unit, Format_711) << TempZoneName << DXFcolorno(colorindex); //,minz,TRIM(PolylineWidth),TRIM(PolylineWidth)
-                    gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y
-                                                 << Surface(surf).Vertex(vert).z << Surface(surf).Vertex(sptr).x
-                                                 << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
+                    gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y << Surface(surf).Vertex(vert).z
+                                                 << Surface(surf).Vertex(sptr).x << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
                 }
             }
             // 715 format('  0',/,'POLYLINE',/,'  8',/,A,/,' 62',/,I3,/,' 66',/,'  1',/,  &
@@ -1254,9 +1238,8 @@ void DXFOutLines(std::string const &ColorScheme)
                         sptr = 1;
                     }
                     gio::write(unit, Format_711) << TempZoneName << DXFcolorno(colorindex); //,minz,TRIM(PolylineWidth),TRIM(PolylineWidth)
-                    gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y
-                                                 << Surface(surf).Vertex(vert).z << Surface(surf).Vertex(sptr).x
-                                                 << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
+                    gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y << Surface(surf).Vertex(vert).z
+                                                 << Surface(surf).Vertex(sptr).x << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
                 }
             } else { // polygon attached shading
                 for (vert = 1; vert <= Surface(surf).Sides; ++vert) {
@@ -1266,9 +1249,8 @@ void DXFOutLines(std::string const &ColorScheme)
                         sptr = 1;
                     }
                     gio::write(unit, Format_711) << TempZoneName << DXFcolorno(colorindex); //,minz,TRIM(PolylineWidth),TRIM(PolylineWidth)
-                    gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y
-                                                 << Surface(surf).Vertex(vert).z << Surface(surf).Vertex(sptr).x
-                                                 << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
+                    gio::write(unit, Format_712) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y << Surface(surf).Vertex(vert).z
+                                                 << Surface(surf).Vertex(sptr).x << Surface(surf).Vertex(sptr).y << Surface(surf).Vertex(sptr).z;
                 }
             }
         }
@@ -1291,8 +1273,7 @@ void DXFOutLines(std::string const &ColorScheme)
         for (refpt = 1; refpt <= ZoneDaylight(zones).TotalDaylRefPoints; ++refpt) {
             gio::write(unit, Format_710) << Zone(zones).Name + ":DayRefPt:" + TrimSigDigits(refpt);
             gio::write(unit, Format_709) << TempZoneName << DXFcolorno(curcolorno) << ZoneDaylight(zones).DaylRefPtAbsCoord(1, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
+                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt) << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
             curcolorno = ColorNo_DaylSensor2; // ref pts 2 and later are this color
         }
     }
@@ -1314,8 +1295,7 @@ void DXFOutLines(std::string const &ColorScheme)
         for (refpt = 1; refpt <= ZoneDaylight(zones).TotalDaylRefPoints; ++refpt) {
             gio::write(unit, Format_710) << Zone(zones).Name + ":DEDayRefPt:" + TrimSigDigits(refpt);
             gio::write(unit, Format_709) << TempZoneName << DXFcolorno(curcolorno) << ZoneDaylight(zones).DaylRefPtAbsCoord(1, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
+                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt) << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
             curcolorno = ColorNo_DaylSensor2; // ref pts 2 and later are this color
         }
     }
@@ -1430,8 +1410,7 @@ void DXFOutWireFrame(std::string const &ColorScheme)
                                "11',/,f15.5,/,' 21',/,f15.5,/,' 31',/,f15.5,/,' 12',/,f15.5,/,' 22',/,f15.5,/,' 32',/,f15.5)");
     static gio::Fmt Format_705("(' 13',/,f15.5,/,' 23',/,f15.5,/,' 33',/,f15.5)");
     static gio::Fmt Format_706("('  0',/,'ENDSEC',/,'  0',/,'EOF')");
-    static gio::Fmt Format_709(
-        "('  0',/,'CIRCLE',/,'  8',/,A,/,' 62',/,I3,/,' 10',/,f15.5,/,' 20',/,f15.5,/,' 30',/,f15.5,/,' 40',/,f15.5)");
+    static gio::Fmt Format_709("('  0',/,'CIRCLE',/,'  8',/,A,/,' 62',/,I3,/,' 10',/,f15.5,/,' 20',/,f15.5,/,' 30',/,f15.5,/,' 40',/,f15.5)");
     static gio::Fmt Format_710("('999',/,A)");
 
     if (TotSurfaces > 0 && !allocated(Surface)) {
@@ -1498,8 +1477,7 @@ void DXFOutWireFrame(std::string const &ColorScheme)
     gio::write(unit, Format_800) << DXFcolorno(ColorNo_Text) << StemX(1) - 1.0 << StemY(1) << StemZ(1);
 
     gio::write(unit, Format_710) << "Text - Building Title";
-    gio::write(unit, Format_801) << DXFcolorno(ColorNo_Text) << StemX(1) - 4.0 << StemY(1) - 4.0 << StemZ(1)
-                                 << "Building - " + BuildingName;
+    gio::write(unit, Format_801) << DXFcolorno(ColorNo_Text) << StemX(1) - 4.0 << StemY(1) - 4.0 << StemZ(1) << "Building - " + BuildingName;
 
     // We want to point the north arrow to true north
     gio::write(unit, Format_710) << "North Arrow Stem";
@@ -1713,8 +1691,7 @@ void DXFOutWireFrame(std::string const &ColorScheme)
         for (refpt = 1; refpt <= ZoneDaylight(zones).TotalDaylRefPoints; ++refpt) {
             gio::write(unit, Format_710) << Zone(zones).Name + ":DayRefPt:" + TrimSigDigits(refpt);
             gio::write(unit, Format_709) << TempZoneName << DXFcolorno(curcolorno) << ZoneDaylight(zones).DaylRefPtAbsCoord(1, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
+                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt) << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
             curcolorno = ColorNo_DaylSensor2; // ref pts 2 and later are this color
         }
     }
@@ -1736,8 +1713,7 @@ void DXFOutWireFrame(std::string const &ColorScheme)
         for (refpt = 1; refpt <= ZoneDaylight(zones).TotalDaylRefPoints; ++refpt) {
             gio::write(unit, Format_710) << Zone(zones).Name + ":DEDayRefPt:" + TrimSigDigits(refpt);
             gio::write(unit, Format_709) << TempZoneName << DXFcolorno(curcolorno) << ZoneDaylight(zones).DaylRefPtAbsCoord(1, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt)
-                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
+                                         << ZoneDaylight(zones).DaylRefPtAbsCoord(2, refpt) << ZoneDaylight(zones).DaylRefPtAbsCoord(3, refpt) << 0.2;
             curcolorno = ColorNo_DaylSensor2; // ref pts 2 and later are this color
         }
     }
@@ -1782,8 +1758,8 @@ void DetailsForSurfaces(int const RptType) // (1=Vertices only, 10=Details only,
     // SUBROUTINE ARGUMENT DEFINITIONS:
 
     // SUBROUTINE PARAMETER DEFINITIONS:
-    static Array1D_string const ConvCoeffCalcs({1, 9}, {"ASHRAESimple", "ASHRAETARP", "CeilingDiffuser", "TrombeWall", "TARP", "MoWitt",
-                                                        "DOE-2", "BLAST", "AdaptiveConvectionAlgorithm"});
+    static Array1D_string const ConvCoeffCalcs(
+        {1, 9}, {"ASHRAESimple", "ASHRAETARP", "CeilingDiffuser", "TrombeWall", "TARP", "MoWitt", "DOE-2", "BLAST", "AdaptiveConvectionAlgorithm"});
 
     // INTERFACE BLOCK SPECIFICATIONS
     // na
@@ -1897,8 +1873,8 @@ void DetailsForSurfaces(int const RptType) // (1=Vertices only, 10=Details only,
         for (surf = 1; surf <= TotSurfaces; ++surf) {
             if (Surface(surf).Zone != 0) break;
             AlgoName = "None";
-            *eiostream << "Shading Surface," << Surface(surf).Name << "," << cSurfaceClass(Surface(surf).Class) << ","
-                       << Surface(surf).BaseSurfName << "," << AlgoName << ",";
+            *eiostream << "Shading Surface," << Surface(surf).Name << "," << cSurfaceClass(Surface(surf).Class) << "," << Surface(surf).BaseSurfName
+                       << "," << AlgoName << ",";
             if (RptType == 10) {
                 if (Surface(surf).SchedShadowSurfIndex > 0) {
                     ScheduleName = GetScheduleName(Surface(surf).SchedShadowSurfIndex);
@@ -1909,11 +1885,10 @@ void DetailsForSurfaces(int const RptType) // (1=Vertices only, 10=Details only,
                     cSchedMin = "0.0";
                     cSchedMax = "0.0";
                 }
-                *eiostream << ScheduleName << "," << cSchedMin << "," << cSchedMax << "," << ' ' << ","
-                           << RoundSigDigits(Surface(surf).Area, 2) << "," << RoundSigDigits(Surface(surf).GrossArea, 2) << ","
-                           << RoundSigDigits(Surface(surf).NetAreaShadowCalc, 2) << "," << RoundSigDigits(Surface(surf).Azimuth, 2) << ","
-                           << RoundSigDigits(Surface(surf).Tilt, 2) << "," << RoundSigDigits(Surface(surf).Width, 2) << ","
-                           << RoundSigDigits(Surface(surf).Height, 2) << ",";
+                *eiostream << ScheduleName << "," << cSchedMin << "," << cSchedMax << "," << ' ' << "," << RoundSigDigits(Surface(surf).Area, 2)
+                           << "," << RoundSigDigits(Surface(surf).GrossArea, 2) << "," << RoundSigDigits(Surface(surf).NetAreaShadowCalc, 2) << ","
+                           << RoundSigDigits(Surface(surf).Azimuth, 2) << "," << RoundSigDigits(Surface(surf).Tilt, 2) << ","
+                           << RoundSigDigits(Surface(surf).Width, 2) << "," << RoundSigDigits(Surface(surf).Height, 2) << ",";
                 *eiostream << ",,,,,,,,,," << TrimSigDigits(Surface(surf).Sides) << DataStringGlobals::NL;
             } else if (RptType == 1) {
                 *eiostream << TrimSigDigits(Surface(surf).Sides) << ",";
@@ -1927,21 +1902,20 @@ void DetailsForSurfaces(int const RptType) // (1=Vertices only, 10=Details only,
                     cSchedMin = "0.0";
                     cSchedMax = "0.0";
                 }
-                *eiostream << ScheduleName << "," << cSchedMin << "," << cSchedMax << "," << ' ' << ","
-                           << RoundSigDigits(Surface(surf).Area, 2) << "," << RoundSigDigits(Surface(surf).GrossArea, 2) << ","
-                           << RoundSigDigits(Surface(surf).NetAreaShadowCalc, 2) << "," << RoundSigDigits(Surface(surf).Azimuth, 2) << ","
-                           << RoundSigDigits(Surface(surf).Tilt, 2) << "," << RoundSigDigits(Surface(surf).Width, 2) << ","
-                           << RoundSigDigits(Surface(surf).Height, 2) << ",";
+                *eiostream << ScheduleName << "," << cSchedMin << "," << cSchedMax << "," << ' ' << "," << RoundSigDigits(Surface(surf).Area, 2)
+                           << "," << RoundSigDigits(Surface(surf).GrossArea, 2) << "," << RoundSigDigits(Surface(surf).NetAreaShadowCalc, 2) << ","
+                           << RoundSigDigits(Surface(surf).Azimuth, 2) << "," << RoundSigDigits(Surface(surf).Tilt, 2) << ","
+                           << RoundSigDigits(Surface(surf).Width, 2) << "," << RoundSigDigits(Surface(surf).Height, 2) << ",";
                 *eiostream << ",,,,,,,,,," << TrimSigDigits(Surface(surf).Sides) << ",";
             }
             if (RptType == 10) continue;
             for (vert = 1; vert <= Surface(surf).Sides; ++vert) {
                 if (vert != Surface(surf).Sides) {
-                    *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << "," << RoundSigDigits(Surface(surf).Vertex(vert).y, 2)
-                               << "," << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << ",";
+                    *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << "," << RoundSigDigits(Surface(surf).Vertex(vert).y, 2) << ","
+                               << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << ",";
                 } else {
-                    *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << "," << RoundSigDigits(Surface(surf).Vertex(vert).y, 2)
-                               << "," << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << DataStringGlobals::NL;
+                    *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << "," << RoundSigDigits(Surface(surf).Vertex(vert).y, 2) << ","
+                               << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << DataStringGlobals::NL;
                 }
             }
             //  This shouldn't happen with shading surface -- always have vertices
@@ -1987,8 +1961,8 @@ void DetailsForSurfaces(int const RptType) // (1=Vertices only, 10=Details only,
                 IntConvCoeffCalc = ConvCoeffCalcs(Zone(ZoneNum).InsideConvectionAlgo);
                 ExtConvCoeffCalc = ConvCoeffCalcs(Zone(ZoneNum).OutsideConvectionAlgo);
 
-                *eiostream << "HeatTransfer Surface," << Surface(surf).Name << "," << cSurfaceClass(Surface(surf).Class) << ","
-                           << BaseSurfName << "," << AlgoName << ",";
+                *eiostream << "HeatTransfer Surface," << Surface(surf).Name << "," << cSurfaceClass(Surface(surf).Class) << "," << BaseSurfName << ","
+                           << AlgoName << ",";
 
                 // NOTE - THIS CODE IS REPEATED IN SurfaceGeometry.cc IN SetupZoneGeometry
                 // Calculate Nominal U-value with convection/film coefficients for reporting by adding on
@@ -2135,23 +2109,20 @@ void DetailsForSurfaces(int const RptType) // (1=Vertices only, 10=Details only,
                                << ",";
                 }
                 if (RptType == 10) {
-                    *eiostream << RoundSigDigits(Surface(surf).ViewFactorGround, 2) << "," << RoundSigDigits(Surface(surf).ViewFactorSky, 2)
-                               << "," << RoundSigDigits(Surface(surf).ViewFactorGroundIR, 2) << ","
-                               << RoundSigDigits(Surface(surf).ViewFactorSkyIR, 2) << "," << TrimSigDigits(Surface(surf).Sides)
-                               << DataStringGlobals::NL;
+                    *eiostream << RoundSigDigits(Surface(surf).ViewFactorGround, 2) << "," << RoundSigDigits(Surface(surf).ViewFactorSky, 2) << ","
+                               << RoundSigDigits(Surface(surf).ViewFactorGroundIR, 2) << "," << RoundSigDigits(Surface(surf).ViewFactorSkyIR, 2)
+                               << "," << TrimSigDigits(Surface(surf).Sides) << DataStringGlobals::NL;
                 } else {
-                    *eiostream << RoundSigDigits(Surface(surf).ViewFactorGround, 2) << "," << RoundSigDigits(Surface(surf).ViewFactorSky, 2)
-                               << "," << RoundSigDigits(Surface(surf).ViewFactorGroundIR, 2) << ","
-                               << RoundSigDigits(Surface(surf).ViewFactorSkyIR, 2) << "," << TrimSigDigits(Surface(surf).Sides) << ",";
+                    *eiostream << RoundSigDigits(Surface(surf).ViewFactorGround, 2) << "," << RoundSigDigits(Surface(surf).ViewFactorSky, 2) << ","
+                               << RoundSigDigits(Surface(surf).ViewFactorGroundIR, 2) << "," << RoundSigDigits(Surface(surf).ViewFactorSkyIR, 2)
+                               << "," << TrimSigDigits(Surface(surf).Sides) << ",";
                     for (vert = 1; vert <= Surface(surf).Sides; ++vert) {
                         if (vert != Surface(surf).Sides) {
-                            *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << ","
-                                       << RoundSigDigits(Surface(surf).Vertex(vert).y, 2) << ","
-                                       << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << ",";
+                            *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << "," << RoundSigDigits(Surface(surf).Vertex(vert).y, 2)
+                                       << "," << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << ",";
                         } else {
-                            *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << ","
-                                       << RoundSigDigits(Surface(surf).Vertex(vert).y, 2) << ","
-                                       << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << DataStringGlobals::NL;
+                            *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << "," << RoundSigDigits(Surface(surf).Vertex(vert).y, 2)
+                                       << "," << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << DataStringGlobals::NL;
                         }
                     }
                     if (Surface(surf).Sides == 0) *eiostream << DataStringGlobals::NL;
@@ -2231,17 +2202,15 @@ void DetailsForSurfaces(int const RptType) // (1=Vertices only, 10=Details only,
                         AlgoName = "Tubular Daylighting Device";
                     }
                 }
-                *eiostream << "HeatTransfer Surface," << Surface(surf).Name << "," << cSurfaceClass(Surface(surf).Class) << ","
-                           << BaseSurfName << "," << AlgoName << ",";
+                *eiostream << "HeatTransfer Surface," << Surface(surf).Name << "," << cSurfaceClass(Surface(surf).Class) << "," << BaseSurfName << ","
+                           << AlgoName << ",";
                 *eiostream << TrimSigDigits(Surface(surf).Sides) << ",";
                 for (vert = 1; vert <= Surface(surf).Sides; ++vert) {
                     if (vert != Surface(surf).Sides) {
-                        *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << ","
-                                   << RoundSigDigits(Surface(surf).Vertex(vert).y, 2) << ","
+                        *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << "," << RoundSigDigits(Surface(surf).Vertex(vert).y, 2) << ","
                                    << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << ",";
                     } else {
-                        *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << ","
-                                   << RoundSigDigits(Surface(surf).Vertex(vert).y, 2) << ","
+                        *eiostream << RoundSigDigits(Surface(surf).Vertex(vert).x, 2) << "," << RoundSigDigits(Surface(surf).Vertex(vert).y, 2) << ","
                                    << RoundSigDigits(Surface(surf).Vertex(vert).z, 2) << DataStringGlobals::NL;
                     }
                 }
@@ -2421,8 +2390,7 @@ void VRMLOut(std::string &PolygonAction, std::string &ColorScheme)
     static gio::Fmt Format_702("('#VRML V2.0 utf8')");
     static gio::Fmt Format_707("('WorldInfo {',/,3X,'title \"Building - ',A,'\"',/,3X,'info [\"EnergyPlus Program Version "
                                "',A,'\"]',/,3X,'info [\"Surface Color Scheme ',A,'\"]',/,'}')");
-    static gio::Fmt Format_800(
-        "('Shape {',/,'appearance DEF ',A,' Appearance {',/,'material Material { diffuseColor ',A,' }',/,'}',/,'}')");
+    static gio::Fmt Format_800("('Shape {',/,'appearance DEF ',A,' Appearance {',/,'material Material { diffuseColor ',A,' }',/,'}',/,'}')");
     static gio::Fmt Format_801(
         "('Shape {',/,'appearance USE ',A,/,'geometry IndexedFaceSet {',/,'solid TRUE',/,'coord DEF ',A,' Coordinate {',/,'point [')");
     static gio::Fmt Format_802("(F15.5,1X,F15.5,1X,F15.5,',')");
@@ -2543,8 +2511,8 @@ void VRMLOut(std::string &PolygonAction, std::string &ColorScheme)
             }
             gio::write(unit, Format_805);
         } else { // will be >4 sided polygon with triangulate option
-            ntri = Triangulate(Surface(surf).Sides, Surface(surf).Vertex, mytriangles, Surface(surf).Azimuth, Surface(surf).Tilt,
-                               Surface(surf).Name, Surface(surf).Class);
+            ntri = Triangulate(Surface(surf).Sides, Surface(surf).Vertex, mytriangles, Surface(surf).Azimuth, Surface(surf).Tilt, Surface(surf).Name,
+                               Surface(surf).Class);
             for (svert = 1; svert <= ntri; ++svert) {
                 vv0 = mytriangles(svert).vv0;
                 gio::write(csidenumber, fmtLD) << vv0 - 1;
@@ -2603,8 +2571,7 @@ void VRMLOut(std::string &PolygonAction, std::string &ColorScheme)
             gio::write(unit, Format_710) << "# " + Surface(surf).ZoneName + ':' + Surface(surf).Name;
             gio::write(unit, Format_801) << colorstring(colorindex) << "Surf" + csurfnumber;
             for (vert = 1; vert <= Surface(surf).Sides; ++vert) {
-                gio::write(unit, Format_802) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y
-                                             << Surface(surf).Vertex(vert).z;
+                gio::write(unit, Format_802) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y << Surface(surf).Vertex(vert).z;
             }
             gio::write(unit, Format_803);
             if (Surface(surf).Sides <= 4 || !TriangulateFace) {
@@ -2663,8 +2630,7 @@ void VRMLOut(std::string &PolygonAction, std::string &ColorScheme)
             gio::write(unit, Format_710) << "# " + Surface(surf).ZoneName + ':' + Surface(surf).Name;
             gio::write(unit, Format_801) << colorstring(colorindex) << "Surf" + csurfnumber;
             for (vert = 1; vert <= Surface(surf).Sides; ++vert) {
-                gio::write(unit, Format_802) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y
-                                             << Surface(surf).Vertex(vert).z;
+                gio::write(unit, Format_802) << Surface(surf).Vertex(vert).x << Surface(surf).Vertex(vert).y << Surface(surf).Vertex(vert).z;
             }
             gio::write(unit, Format_803);
             if (Surface(surf).Sides <= 4 || !TriangulateFace) {

@@ -111,10 +111,8 @@ namespace GlobalNames {
 
     // Functions
 
-    void VerifyUniqueChillerName(std::string const &TypeToVerify,
-                                 std::string const &NameToVerify,
-                                 bool &ErrorFound,
-                                 std::string const &StringToDisplay)
+    void
+    VerifyUniqueChillerName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay)
     {
 
         // SUBROUTINE INFORMATION:
@@ -156,8 +154,7 @@ namespace GlobalNames {
         int Found = 0;
         if (NumChillers > 0) Found = FindItemInList(NameToVerify, ChillerNames, &ComponentNameData::CompName, NumChillers);
         if (Found != 0) {
-            ShowSevereError(StringToDisplay + ", duplicate name=" + NameToVerify + ", Chiller Type=\"" + ChillerNames(Found).CompType +
-                            "\".");
+            ShowSevereError(StringToDisplay + ", duplicate name=" + NameToVerify + ", Chiller Type=\"" + ChillerNames(Found).CompType + "\".");
             ShowContinueError("...Current entry is Chiller Type=\"" + TypeToVerify + "\".");
             ErrorFound = true;
         } else {
@@ -174,10 +171,8 @@ namespace GlobalNames {
         }
     }
 
-    void VerifyUniqueBaseboardName(std::string const &TypeToVerify,
-                                   std::string const &NameToVerify,
-                                   bool &ErrorFound,
-                                   std::string const &StringToDisplay)
+    void
+    VerifyUniqueBaseboardName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay)
     {
 
         // SUBROUTINE INFORMATION:
@@ -221,8 +216,7 @@ namespace GlobalNames {
         if (NumBaseboards > 0) Found = FindItemInList(NameToVerify, BaseboardNames, &ComponentNameData::CompName, NumBaseboards);
 
         if (Found != 0) {
-            ShowSevereError(StringToDisplay + ", duplicate name=" + NameToVerify + ", Baseboard Type=\"" + BaseboardNames(Found).CompType +
-                            "\".");
+            ShowSevereError(StringToDisplay + ", duplicate name=" + NameToVerify + ", Baseboard Type=\"" + BaseboardNames(Found).CompType + "\".");
             ShowContinueError("...Current entry is Baseboard Type=\"" + TypeToVerify + "\".");
             ErrorFound = true;
         } else {
@@ -239,10 +233,8 @@ namespace GlobalNames {
         }
     }
 
-    void VerifyUniqueBoilerName(std::string const &TypeToVerify,
-                                std::string const &NameToVerify,
-                                bool &ErrorFound,
-                                std::string const &StringToDisplay)
+    void
+    VerifyUniqueBoilerName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay)
     {
 
         // SUBROUTINE INFORMATION:
@@ -286,8 +278,7 @@ namespace GlobalNames {
         if (NumBoilers > 0) Found = FindItemInList(NameToVerify, BoilerNames, &ComponentNameData::CompName, NumBoilers);
 
         if (Found != 0) {
-            ShowSevereError(StringToDisplay + ", duplicate name=" + NameToVerify + ", Boiler Type=\"" + BoilerNames(Found).CompType +
-                            "\".");
+            ShowSevereError(StringToDisplay + ", duplicate name=" + NameToVerify + ", Boiler Type=\"" + BoilerNames(Found).CompType + "\".");
             ShowContinueError("...Current entry is Boiler Type=\"" + TypeToVerify + "\".");
             ErrorFound = true;
         } else {
@@ -304,10 +295,7 @@ namespace GlobalNames {
         }
     }
 
-    void VerifyUniqueCoilName(std::string const &TypeToVerify,
-                              std::string const &NameToVerify,
-                              bool &ErrorFound,
-                              std::string const &StringToDisplay)
+    void VerifyUniqueCoilName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay)
     {
 
         // SUBROUTINE INFORMATION:
@@ -368,10 +356,7 @@ namespace GlobalNames {
         }
     }
 
-    void VerifyUniqueADUName(std::string const &TypeToVerify,
-                             std::string const &NameToVerify,
-                             bool &ErrorFound,
-                             std::string const &StringToDisplay)
+    void VerifyUniqueADUName(std::string const &TypeToVerify, std::string const &NameToVerify, bool &ErrorFound, std::string const &StringToDisplay)
     {
 
         ComponentNameData aDUData;

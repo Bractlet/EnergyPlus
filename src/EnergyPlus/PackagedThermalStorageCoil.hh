@@ -356,66 +356,58 @@ namespace PackagedThermalStorageCoil {
         // Default Constructor
         PackagedTESCoolingCoilStruct()
             : AvailSchedNum(0), ModeControlType(0), ControlModeSchedNum(0), EMSControlModeOn(false), EMSControlModeValue(0.0),
-              CurControlMode(OffMode), ControlModeErrorIndex(0), RatedEvapAirVolFlowRate(0.0), RatedEvapAirMassFlowRate(0.0),
-              EvapAirInletNodeNum(0), EvapAirOutletNodeNum(0), CoolingOnlyModeIsAvailable(false), CoolingOnlyRatedTotCap(0.0),
-              CoolingOnlyRatedSHR(0.0), CoolingOnlyRatedCOP(0.0), CoolingOnlyCapFTempCurve(0), CoolingOnlyCapFTempObjectNum(0),
-              CoolingOnlyCapFFlowCurve(0), CoolingOnlyCapFFlowObjectNum(0), CoolingOnlyEIRFTempCurve(0), CoolingOnlyEIRFTempObjectNum(0),
-              CoolingOnlyEIRFFlowCurve(0), CoolingOnlyEIRFFlowObjectNum(0), CoolingOnlyPLFFPLRCurve(0), CoolingOnlyPLFFPLRObjectNum(0),
-              CoolingOnlySHRFTempCurve(0), CoolingOnlySHRFTempObjectNum(0), CoolingOnlySHRFFlowCurve(0), CoolingOnlySHRFFlowObjectNum(0),
-              CoolingAndChargeModeAvailable(false), CoolingAndChargeRatedTotCap(0.0), CoolingAndChargeRatedTotCapSizingFactor(0.0),
-              CoolingAndChargeRatedChargeCap(0.0), CoolingAndChargeRatedChargeCapSizingFactor(0.0), CoolingAndChargeRatedSHR(0.0),
-              CoolingAndChargeCoolingRatedCOP(0.0), CoolingAndChargeChargingRatedCOP(0.0), CoolingAndChargeCoolingCapFTempCurve(0),
-              CoolingAndChargeCoolingCapFTempObjectNum(0), CoolingAndChargeCoolingCapFFlowCurve(0),
-              CoolingAndChargeCoolingCapFFlowObjectNum(0), CoolingAndChargeCoolingEIRFTempCurve(0),
-              CoolingAndChargeCoolingEIRFTempObjectNum(0), CoolingAndChargeCoolingEIRFFlowCurve(0),
-              CoolingAndChargeCoolingEIRFFlowObjectNum(0), CoolingAndChargeCoolingPLFFPLRCurve(0),
-              CoolingAndChargeCoolingPLFFPLRObjectNum(0), CoolingAndChargeChargingCapFTempCurve(0),
+              CurControlMode(OffMode), ControlModeErrorIndex(0), RatedEvapAirVolFlowRate(0.0), RatedEvapAirMassFlowRate(0.0), EvapAirInletNodeNum(0),
+              EvapAirOutletNodeNum(0), CoolingOnlyModeIsAvailable(false), CoolingOnlyRatedTotCap(0.0), CoolingOnlyRatedSHR(0.0),
+              CoolingOnlyRatedCOP(0.0), CoolingOnlyCapFTempCurve(0), CoolingOnlyCapFTempObjectNum(0), CoolingOnlyCapFFlowCurve(0),
+              CoolingOnlyCapFFlowObjectNum(0), CoolingOnlyEIRFTempCurve(0), CoolingOnlyEIRFTempObjectNum(0), CoolingOnlyEIRFFlowCurve(0),
+              CoolingOnlyEIRFFlowObjectNum(0), CoolingOnlyPLFFPLRCurve(0), CoolingOnlyPLFFPLRObjectNum(0), CoolingOnlySHRFTempCurve(0),
+              CoolingOnlySHRFTempObjectNum(0), CoolingOnlySHRFFlowCurve(0), CoolingOnlySHRFFlowObjectNum(0), CoolingAndChargeModeAvailable(false),
+              CoolingAndChargeRatedTotCap(0.0), CoolingAndChargeRatedTotCapSizingFactor(0.0), CoolingAndChargeRatedChargeCap(0.0),
+              CoolingAndChargeRatedChargeCapSizingFactor(0.0), CoolingAndChargeRatedSHR(0.0), CoolingAndChargeCoolingRatedCOP(0.0),
+              CoolingAndChargeChargingRatedCOP(0.0), CoolingAndChargeCoolingCapFTempCurve(0), CoolingAndChargeCoolingCapFTempObjectNum(0),
+              CoolingAndChargeCoolingCapFFlowCurve(0), CoolingAndChargeCoolingCapFFlowObjectNum(0), CoolingAndChargeCoolingEIRFTempCurve(0),
+              CoolingAndChargeCoolingEIRFTempObjectNum(0), CoolingAndChargeCoolingEIRFFlowCurve(0), CoolingAndChargeCoolingEIRFFlowObjectNum(0),
+              CoolingAndChargeCoolingPLFFPLRCurve(0), CoolingAndChargeCoolingPLFFPLRObjectNum(0), CoolingAndChargeChargingCapFTempCurve(0),
               CoolingAndChargeChargingCapFTempObjectNum(0), CoolingAndChargeChargingCapFEvapPLRCurve(0),
-              CoolingAndChargeChargingCapFEvapPLRObjectNum(0), CoolingAndChargeChargingEIRFTempCurve(0),
-              CoolingAndChargeChargingEIRFTempObjectNum(0), CoolingAndChargeChargingEIRFFLowCurve(0),
-              CoolingAndChargeChargingEIRFFLowObjectNum(0), CoolingAndChargeChargingPLFFPLRCurve(0),
+              CoolingAndChargeChargingCapFEvapPLRObjectNum(0), CoolingAndChargeChargingEIRFTempCurve(0), CoolingAndChargeChargingEIRFTempObjectNum(0),
+              CoolingAndChargeChargingEIRFFLowCurve(0), CoolingAndChargeChargingEIRFFLowObjectNum(0), CoolingAndChargeChargingPLFFPLRCurve(0),
               CoolingAndChargeChargingPLFFPLRObjectNum(0), CoolingAndChargeSHRFTempCurve(0), CoolingAndChargeSHRFTempObjectNum(0),
               CoolingAndChargeSHRFFlowCurve(0), CoolingAndChargeSHRFFlowObjectNum(0), CoolingAndDischargeModeAvailable(false),
-              CoolingAndDischargeRatedTotCap(0.0), CoolingAndDischargeRatedTotCapSizingFactor(0.0),
-              CoolingAndDischargeRatedDischargeCap(0.0), CoolingAndDischargeRatedDischargeCapSizingFactor(0.0),
-              CoolingAndDischargeRatedSHR(0.0), CoolingAndDischargeCoolingRatedCOP(0.0), CoolingAndDischargeDischargingRatedCOP(0.0),
-              CoolingAndDischargeCoolingCapFTempCurve(0), CoolingAndDischargeCoolingCapFTempObjectNum(0),
-              CoolingAndDischargeCoolingCapFFlowCurve(0), CoolingAndDischargeCoolingCapFFlowObjectNum(0),
-              CoolingAndDischargeCoolingEIRFTempCurve(0), CoolingAndDischargeCoolingEIRFTempObjectNum(0),
-              CoolingAndDischargeCoolingEIRFFlowCurve(0), CoolingAndDischargeCoolingEIRFFlowObjectNum(0),
-              CoolingAndDischargeCoolingPLFFPLRCurve(0), CoolingAndDischargeCoolingPLFFPLRObjectNum(0),
-              CoolingAndDischargeDischargingCapFTempCurve(0), CoolingAndDischargeDischargingCapFTempObjectNum(0),
-              CoolingAndDischargeDischargingCapFFlowCurve(0), CoolingAndDischargeDischargingCapFFlowObjectNum(0),
-              CoolingAndDischargeDischargingCapFEvapPLRCurve(0), CoolingAndDischargeDischargingCapFEvapPLRObjectNum(0),
-              CoolingAndDischargeDischargingEIRFTempCurve(0), CoolingAndDischargeDischargingEIRFTempObjectNum(0),
-              CoolingAndDischargeDischargingEIRFFLowCurve(0), CoolingAndDischargeDischargingEIRFFLowObjectNum(0),
-              CoolingAndDischargeDischargingPLFFPLRCurve(0), CoolingAndDischargeDischargingPLFFPLRObjectNum(0),
-              CoolingAndDischargeSHRFTempCurve(0), CoolingAndDischargeSHRFTempObjectNum(0), CoolingAndDischargeSHRFFlowCurve(0),
-              CoolingAndDischargeSHRFFlowObjectNum(0), ChargeOnlyModeAvailable(false), ChargeOnlyRatedCapacity(0.0),
-              ChargeOnlyRatedCapacitySizingFactor(0.0), ChargeOnlyRatedCOP(0.0), ChargeOnlyChargingCapFTempCurve(0),
+              CoolingAndDischargeRatedTotCap(0.0), CoolingAndDischargeRatedTotCapSizingFactor(0.0), CoolingAndDischargeRatedDischargeCap(0.0),
+              CoolingAndDischargeRatedDischargeCapSizingFactor(0.0), CoolingAndDischargeRatedSHR(0.0), CoolingAndDischargeCoolingRatedCOP(0.0),
+              CoolingAndDischargeDischargingRatedCOP(0.0), CoolingAndDischargeCoolingCapFTempCurve(0), CoolingAndDischargeCoolingCapFTempObjectNum(0),
+              CoolingAndDischargeCoolingCapFFlowCurve(0), CoolingAndDischargeCoolingCapFFlowObjectNum(0), CoolingAndDischargeCoolingEIRFTempCurve(0),
+              CoolingAndDischargeCoolingEIRFTempObjectNum(0), CoolingAndDischargeCoolingEIRFFlowCurve(0),
+              CoolingAndDischargeCoolingEIRFFlowObjectNum(0), CoolingAndDischargeCoolingPLFFPLRCurve(0),
+              CoolingAndDischargeCoolingPLFFPLRObjectNum(0), CoolingAndDischargeDischargingCapFTempCurve(0),
+              CoolingAndDischargeDischargingCapFTempObjectNum(0), CoolingAndDischargeDischargingCapFFlowCurve(0),
+              CoolingAndDischargeDischargingCapFFlowObjectNum(0), CoolingAndDischargeDischargingCapFEvapPLRCurve(0),
+              CoolingAndDischargeDischargingCapFEvapPLRObjectNum(0), CoolingAndDischargeDischargingEIRFTempCurve(0),
+              CoolingAndDischargeDischargingEIRFTempObjectNum(0), CoolingAndDischargeDischargingEIRFFLowCurve(0),
+              CoolingAndDischargeDischargingEIRFFLowObjectNum(0), CoolingAndDischargeDischargingPLFFPLRCurve(0),
+              CoolingAndDischargeDischargingPLFFPLRObjectNum(0), CoolingAndDischargeSHRFTempCurve(0), CoolingAndDischargeSHRFTempObjectNum(0),
+              CoolingAndDischargeSHRFFlowCurve(0), CoolingAndDischargeSHRFFlowObjectNum(0), ChargeOnlyModeAvailable(false),
+              ChargeOnlyRatedCapacity(0.0), ChargeOnlyRatedCapacitySizingFactor(0.0), ChargeOnlyRatedCOP(0.0), ChargeOnlyChargingCapFTempCurve(0),
               ChargeOnlyChargingCapFTempObjectNum(0), ChargeOnlyChargingEIRFTempCurve(0), ChargeOnlyChargingEIRFTempObjectNum(0),
               DischargeOnlyModeAvailable(false), DischargeOnlyRatedDischargeCap(0.0), DischargeOnlyRatedDischargeCapSizingFactor(0.0),
               DischargeOnlyRatedSHR(0.0), DischargeOnlyRatedCOP(0.0), DischargeOnlyCapFTempCurve(0), DischargeOnlyCapFTempObjectNum(0),
-              DischargeOnlyCapFFlowCurve(0), DischargeOnlyCapFFlowObjectNum(0), DischargeOnlyEIRFTempCurve(0),
-              DischargeOnlyEIRFTempObjectNum(0), DischargeOnlyEIRFFlowCurve(0), DischargeOnlyEIRFFlowObjectNum(0),
-              DischargeOnlyPLFFPLRCurve(0), DischargeOnlyPLFFPLRObjectNum(0), DischargeOnlySHRFTempCurve(0),
-              DischargeOnlySHRFTempObjectNum(0), DischargeOnlySHRFFLowCurve(0), DischargeOnlySHRFFLowObjectNum(0),
+              DischargeOnlyCapFFlowCurve(0), DischargeOnlyCapFFlowObjectNum(0), DischargeOnlyEIRFTempCurve(0), DischargeOnlyEIRFTempObjectNum(0),
+              DischargeOnlyEIRFFlowCurve(0), DischargeOnlyEIRFFlowObjectNum(0), DischargeOnlyPLFFPLRCurve(0), DischargeOnlyPLFFPLRObjectNum(0),
+              DischargeOnlySHRFTempCurve(0), DischargeOnlySHRFTempObjectNum(0), DischargeOnlySHRFFLowCurve(0), DischargeOnlySHRFFLowObjectNum(0),
               AncillaryControlsPower(0.0), ColdWeatherMinimumTempLimit(0.0), ColdWeatherAncillaryPower(0.0), CondAirInletNodeNum(0),
               CondAirOutletNodeNum(0), CondenserType(AirCooled), CondenserAirVolumeFlow(0.0), CondenserAirFlowSizingFactor(0.0),
-              CondenserAirMassFlow(0.0), EvapCondEffect(0.0), CondInletTemp(0.0), EvapCondPumpElecNomPower(0.0),
-              EvapCondPumpElecEnergy(0.0), BasinHeaterPowerFTempDiff(0.0), BasinHeaterAvailSchedNum(0), BasinHeaterSetpointTemp(0.0),
-              EvapWaterSupplyMode(WaterSupplyFromMains), EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0),
-              CondensateCollectMode(CondensateDiscarded), CondensateTankID(0), CondensateTankSupplyARRID(0), StorageMedia(0),
-              StorageFluidIndex(0), FluidStorageVolume(0.0), IceStorageCapacity(0.0), StorageCapacitySizingFactor(0.0),
-              MinimumFluidTankTempLimit(0.0), MaximumFluidTankTempLimit(100.0), RatedFluidTankTemp(0.0), StorageAmbientNodeNum(0),
-              StorageUA(0.0), TESPlantConnectionAvailable(false), TESPlantInletNodeNum(0), TESPlantOutletNodeNum(0), TESPlantLoopNum(0),
-              TESPlantLoopSideNum(0), TESPlantBranchNum(0), TESPlantCompNum(0), TESPlantDesignVolumeFlowRate(0.0),
-              TESPlantDesignMassFlowRate(0.0), TESPlantEffectiveness(0.0), TimeElapsed(0.0), IceFracRemain(0.0),
-              IceFracRemainLastTimestep(0.0), FluidTankTempFinal(0.0), FluidTankTempFinalLastTimestep(0.0), QdotPlant(0.0), Q_Plant(0.0),
-              QdotAmbient(0.0), Q_Ambient(0.0), QdotTES(0.0), Q_TES(0.0), ElecCoolingPower(0.0), ElecCoolingEnergy(0.0),
-              EvapTotCoolingRate(0.0), EvapTotCoolingEnergy(0.0), EvapSensCoolingRate(0.0), EvapSensCoolingEnergy(0.0),
-              EvapLatCoolingRate(0.0), EvapLatCoolingEnergy(0.0), RuntimeFraction(0.0), CondenserRuntimeFraction(0.0),
-              ElectColdWeatherPower(0.0), ElectColdWeatherEnergy(0.0), ElectEvapCondBasinHeaterPower(0.0),
+              CondenserAirMassFlow(0.0), EvapCondEffect(0.0), CondInletTemp(0.0), EvapCondPumpElecNomPower(0.0), EvapCondPumpElecEnergy(0.0),
+              BasinHeaterPowerFTempDiff(0.0), BasinHeaterAvailSchedNum(0), BasinHeaterSetpointTemp(0.0), EvapWaterSupplyMode(WaterSupplyFromMains),
+              EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0), CondensateCollectMode(CondensateDiscarded), CondensateTankID(0),
+              CondensateTankSupplyARRID(0), StorageMedia(0), StorageFluidIndex(0), FluidStorageVolume(0.0), IceStorageCapacity(0.0),
+              StorageCapacitySizingFactor(0.0), MinimumFluidTankTempLimit(0.0), MaximumFluidTankTempLimit(100.0), RatedFluidTankTemp(0.0),
+              StorageAmbientNodeNum(0), StorageUA(0.0), TESPlantConnectionAvailable(false), TESPlantInletNodeNum(0), TESPlantOutletNodeNum(0),
+              TESPlantLoopNum(0), TESPlantLoopSideNum(0), TESPlantBranchNum(0), TESPlantCompNum(0), TESPlantDesignVolumeFlowRate(0.0),
+              TESPlantDesignMassFlowRate(0.0), TESPlantEffectiveness(0.0), TimeElapsed(0.0), IceFracRemain(0.0), IceFracRemainLastTimestep(0.0),
+              FluidTankTempFinal(0.0), FluidTankTempFinalLastTimestep(0.0), QdotPlant(0.0), Q_Plant(0.0), QdotAmbient(0.0), Q_Ambient(0.0),
+              QdotTES(0.0), Q_TES(0.0), ElecCoolingPower(0.0), ElecCoolingEnergy(0.0), EvapTotCoolingRate(0.0), EvapTotCoolingEnergy(0.0),
+              EvapSensCoolingRate(0.0), EvapSensCoolingEnergy(0.0), EvapLatCoolingRate(0.0), EvapLatCoolingEnergy(0.0), RuntimeFraction(0.0),
+              CondenserRuntimeFraction(0.0), ElectColdWeatherPower(0.0), ElectColdWeatherEnergy(0.0), ElectEvapCondBasinHeaterPower(0.0),
               ElectEvapCondBasinHeaterEnergy(0.0), EvapWaterConsumpRate(0.0), EvapWaterConsump(0.0), EvapWaterStarvMakupRate(0.0),
               EvapWaterStarvMakup(0.0), EvapCondPumpElecPower(0.0), EvapCondPumpElecConsumption(0.0)
         {
@@ -492,21 +484,14 @@ namespace PackagedThermalStorageCoil {
 
     void GetTESCoilIndex(std::string const &CoilName, int &CoilIndex, bool &ErrorsFound, Optional_string_const CurrentModuleObject = _);
 
-    void
-    GetTESCoilAirInletNode(std::string const &CoilName, int &CoilAirInletNode, bool &ErrorsFound, std::string const &CurrentModuleObject);
+    void GetTESCoilAirInletNode(std::string const &CoilName, int &CoilAirInletNode, bool &ErrorsFound, std::string const &CurrentModuleObject);
+
+    void GetTESCoilAirOutletNode(std::string const &CoilName, int &CoilAirOutletNode, bool &ErrorsFound, std::string const &CurrentModuleObject);
+
+    void GetTESCoilCoolingCapacity(std::string const &CoilName, Real64 &CoilCoolCapacity, bool &ErrorsFound, std::string const &CurrentModuleObject);
 
     void
-    GetTESCoilAirOutletNode(std::string const &CoilName, int &CoilAirOutletNode, bool &ErrorsFound, std::string const &CurrentModuleObject);
-
-    void GetTESCoilCoolingCapacity(std::string const &CoilName,
-                                   Real64 &CoilCoolCapacity,
-                                   bool &ErrorsFound,
-                                   std::string const &CurrentModuleObject);
-
-    void GetTESCoilCoolingAirFlowRate(std::string const &CoilName,
-                                      Real64 &CoilCoolAirFlow,
-                                      bool &ErrorsFound,
-                                      std::string const &CurrentModuleObject);
+    GetTESCoilCoolingAirFlowRate(std::string const &CoilName, Real64 &CoilCoolAirFlow, bool &ErrorsFound, std::string const &CurrentModuleObject);
 
 } // PackagedThermalStorageCoil
 

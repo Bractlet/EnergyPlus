@@ -258,8 +258,8 @@ namespace OutAirNodeManager {
             // Loop over all outside air inlet nodes in the input and count them
             CurrentModuleObject = "OutdoorAir:NodeList";
             for (OutAirInletNodeListNum = 1; OutAirInletNodeListNum <= NumOutAirInletNodeLists; ++OutAirInletNodeListNum) {
-                GetObjectItem(CurrentModuleObject, OutAirInletNodeListNum, Alphas, NumAlphas, Numbers, NumNums, IOStat, lNumericBlanks,
-                              lAlphaBlanks, cAlphaFields, cNumericFields);
+                GetObjectItem(CurrentModuleObject, OutAirInletNodeListNum, Alphas, NumAlphas, Numbers, NumNums, IOStat, lNumericBlanks, lAlphaBlanks,
+                              cAlphaFields, cNumericFields);
 
                 for (AlphaNum = 1; AlphaNum <= NumAlphas; ++AlphaNum) {
                     ErrInList = false;
@@ -296,8 +296,8 @@ namespace OutAirNodeManager {
             // Loop over all single outside air nodes in the input
             CurrentModuleObject = "OutdoorAir:Node";
             for (OutsideAirNodeSingleNum = 1; OutsideAirNodeSingleNum <= NumOutsideAirNodeSingles; ++OutsideAirNodeSingleNum) {
-                GetObjectItem(CurrentModuleObject, OutsideAirNodeSingleNum, Alphas, NumAlphas, Numbers, NumNums, IOStat, lNumericBlanks,
-                              lAlphaBlanks, cAlphaFields, cNumericFields);
+                GetObjectItem(CurrentModuleObject, OutsideAirNodeSingleNum, Alphas, NumAlphas, Numbers, NumNums, IOStat, lNumericBlanks, lAlphaBlanks,
+                              cAlphaFields, cNumericFields);
 
                 ErrInList = false;
                 //  To support HVAC diagram, every outside inlet node must have a unique fluid stream number

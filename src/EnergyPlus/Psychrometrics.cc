@@ -135,24 +135,24 @@ namespace Psychrometrics {
     std::string const blank_string;
 #ifdef EP_psych_stats
     Array1D_string const PsyRoutineNames(NumPsychMonitors,
-                                         {"PsyTdpFnTdbTwbPb", "PsyRhFnTdbWPb", "PsyTwbFnTdbWPb", "PsyVFnTdbWPb", "PsyWFnTdpPb",
-                                          "PsyWFnTdbH", "PsyWFnTdbTwbPb", "PsyWFnTdbRhPb", "PsyPsatFnTemp", "PsyTsatFnHPb", "PsyTsatFnPb",
-                                          "PsyRhFnTdbRhov", "PsyRhFnTdbRhovLBnd0C", "PsyTwbFnTdbWPb", "PsyTwbFnTdbWPb", "PsyWFnTdbTwbPb",
-                                          "PsyTsatFnPb", "PsyTwbFnTdbWPb_cache",
+                                         {"PsyTdpFnTdbTwbPb", "PsyRhFnTdbWPb", "PsyTwbFnTdbWPb", "PsyVFnTdbWPb", "PsyWFnTdpPb", "PsyWFnTdbH",
+                                          "PsyWFnTdbTwbPb", "PsyWFnTdbRhPb", "PsyPsatFnTemp", "PsyTsatFnHPb", "PsyTsatFnPb", "PsyRhFnTdbRhov",
+                                          "PsyRhFnTdbRhovLBnd0C", "PsyTwbFnTdbWPb", "PsyTwbFnTdbWPb", "PsyWFnTdbTwbPb", "PsyTsatFnPb",
+                                          "PsyTwbFnTdbWPb_cache",
                                           "PsyPsatFnTemp_cache"}); // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 - HR | 15 -
                                                                    // max iter | 16 - HR | 17 - max iter | 18 - PsyTwbFnTdbWPb_raw (raw
                                                                    // calc) | 19 - PsyPsatFnTemp_raw (raw calc)
 
     Array1D_bool const PsyReportIt(NumPsychMonitors,
-                                   {true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false,
-                                    false, true, true}); // PsyTdpFnTdbTwbPb     1 | PsyRhFnTdbWPb        2 | PsyTwbFnTdbWPb       3 |
-                                                         // PsyVFnTdbWPb         4 | PsyWFnTdpPb          5 | PsyWFnTdbH           6 |
-                                                         // PsyWFnTdbTwbPb       7 | PsyWFnTdbRhPb        8 | PsyPsatFnTemp        9 |
-                                                         // PsyTsatFnHPb         10 | PsyTsatFnPb          11 | PsyRhFnTdbRhov       12 |
-                                                         // PsyRhFnTdbRhovLBnd0C 13 | PsyTwbFnTdbWPb       14 - HR | PsyTwbFnTdbWPb       15
-                                                         // - max iter | PsyWFnTdbTwbPb       16 - HR | PsyTsatFnPb          17 - max iter |
-                                                         // PsyTwbFnTdbWPb_cache 18 - PsyTwbFnTdbWPb_raw (raw calc) | PsyPsatFnTemp_cache
-                                                         // 19 - PsyPsatFnTemp_raw (raw calc)
+                                   {true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, true,
+                                    true}); // PsyTdpFnTdbTwbPb     1 | PsyRhFnTdbWPb        2 | PsyTwbFnTdbWPb       3 |
+                                            // PsyVFnTdbWPb         4 | PsyWFnTdpPb          5 | PsyWFnTdbH           6 |
+                                            // PsyWFnTdbTwbPb       7 | PsyWFnTdbRhPb        8 | PsyPsatFnTemp        9 |
+                                            // PsyTsatFnHPb         10 | PsyTsatFnPb          11 | PsyRhFnTdbRhov       12 |
+                                            // PsyRhFnTdbRhovLBnd0C 13 | PsyTwbFnTdbWPb       14 - HR | PsyTwbFnTdbWPb       15
+                                            // - max iter | PsyWFnTdbTwbPb       16 - HR | PsyTsatFnPb          17 - max iter |
+                                            // PsyTwbFnTdbWPb_cache 18 - PsyTwbFnTdbWPb_raw (raw calc) | PsyPsatFnTemp_cache
+                                            // 19 - PsyPsatFnTemp_raw (raw calc)
 #endif
 
 #ifndef EP_psych_errors
@@ -329,8 +329,7 @@ namespace Psychrometrics {
 
         if (rhoair < 0.0) {
             ShowSevereError("PsyRhoAirFnPbTdbW: RhoAir (Density of Air) is calculated <= 0 [" + RoundSigDigits(rhoair, 5) + "].");
-            ShowContinueError("pb =[" + RoundSigDigits(pb, 2) + "], tdb=[" + RoundSigDigits(tdb, 2) + "], w=[" + RoundSigDigits(dw, 7) +
-                              "].");
+            ShowContinueError("pb =[" + RoundSigDigits(pb, 2) + "], tdb=[" + RoundSigDigits(tdb, 2) + "], w=[" + RoundSigDigits(dw, 7) + "].");
             if (!CalledFrom.empty()) {
                 ShowContinueErrorTimeStamp(" Routine=" + CalledFrom + ',');
             } else {
@@ -560,8 +559,8 @@ namespace Psychrometrics {
                     ShowContinueError(" Input Temperature=" + TrimSigDigits(TDB, 2));
                     FlagError = true;
                 }
-                ShowRecurringWarningErrorAtEnd("Temperature out of range [-100. to 200.] (PsyTwbFnTdbWPb)", iPsyErrIndex(iPsyTwbFnTdbWPb),
-                                               TDB, TDB, _, "C", "C");
+                ShowRecurringWarningErrorAtEnd("Temperature out of range [-100. to 200.] (PsyTwbFnTdbWPb)", iPsyErrIndex(iPsyTwbFnTdbWPb), TDB, TDB,
+                                               _, "C", "C");
             }
         }
 #endif
@@ -584,8 +583,8 @@ namespace Psychrometrics {
                         String = "Humidity Ratio= " + TrimSigDigits(W, 4);
                         ShowContinueError(String + " ... Humidity Ratio set to .00001");
                     }
-                    ShowRecurringWarningErrorAtEnd("Entered Humidity Ratio invalid (PsyTwbFnTdbWPb)", iPsyErrIndex(iPsyTwbFnTdbWPb2), W, W,
-                                                   _, "[]", "[]");
+                    ShowRecurringWarningErrorAtEnd("Entered Humidity Ratio invalid (PsyTwbFnTdbWPb)", iPsyErrIndex(iPsyTwbFnTdbWPb2), W, W, _, "[]",
+                                                   "[]");
                 }
             }
 #endif
@@ -659,8 +658,7 @@ namespace Psychrometrics {
                     ShowContinueError(" Input Pressure = " + TrimSigDigits(Patm, 2));
                     FlagError = true;
                 }
-                ShowRecurringWarningErrorAtEnd("WetBulb not converged after max iterations(PsyTwbFnTdbWPb)",
-                                               iPsyErrIndex(iPsyTwbFnTdbWPb3));
+                ShowRecurringWarningErrorAtEnd("WetBulb not converged after max iterations(PsyTwbFnTdbWPb)", iPsyErrIndex(iPsyTwbFnTdbWPb3));
             }
         }
 #endif
@@ -697,8 +695,7 @@ namespace Psychrometrics {
         if (V <= -0.01) {
             if (!WarmupFlag) {
                 if (iPsyErrIndex(iPsyVFnTdbWPb) == 0) {
-                    String = " Dry-Bulb= " + TrimSigDigits(TDB, 2) + " Humidity Ratio= " + TrimSigDigits(w, 3) + " Pressure= " +
-                             TrimSigDigits(PB, 2);
+                    String = " Dry-Bulb= " + TrimSigDigits(TDB, 2) + " Humidity Ratio= " + TrimSigDigits(w, 3) + " Pressure= " + TrimSigDigits(PB, 2);
                     ShowWarningMessage("Calculated Specific Volume out of range (PsyVFnTdbWPb)");
                     if (!CalledFrom.empty()) {
                         ShowContinueErrorTimeStamp(" Routine=" + CalledFrom + ',');
@@ -709,8 +706,8 @@ namespace Psychrometrics {
                     String = "Calculated Volume= " + TrimSigDigits(V, 3);
                     ShowContinueError(String + " ... Since Calculated Volume < 0.0, it is set to .83");
                 }
-                ShowRecurringWarningErrorAtEnd("Calculated Specific Volume out of range (PsyVFnTdbWPb)", iPsyErrIndex(iPsyVFnTdbWPb), V, V,
-                                               _, "m3/kg", "m3/kg");
+                ShowRecurringWarningErrorAtEnd("Calculated Specific Volume out of range (PsyVFnTdbWPb)", iPsyErrIndex(iPsyVFnTdbWPb), V, V, _,
+                                               "m3/kg", "m3/kg");
             }
         }
     }
@@ -737,8 +734,7 @@ namespace Psychrometrics {
                     String = "Calculated Humidity Ratio= " + TrimSigDigits(W, 4);
                     ShowContinueError(String + " ... Humidity Ratio set to .00001");
                 }
-                ShowRecurringWarningErrorAtEnd("Calculated Humidity Ratio invalid (PsyWFnTdbH)", iPsyErrIndex(iPsyWFnTdbH), W, W, _, "[]",
-                                               "[]");
+                ShowRecurringWarningErrorAtEnd("Calculated Humidity Ratio invalid (PsyWFnTdbH)", iPsyErrIndex(iPsyWFnTdbH), W, W, _, "[]", "[]");
             }
         }
     }
@@ -809,8 +805,8 @@ namespace Psychrometrics {
                     }
                     ShowContinueError(" Input Temperature=" + TrimSigDigits(T, 2));
                 }
-                ShowRecurringWarningErrorAtEnd("Temperature out of range [-100. to 200.] (PsyPsatFnTemp)", iPsyErrIndex(iPsyPsatFnTemp), T,
-                                               T, _, "C", "C");
+                ShowRecurringWarningErrorAtEnd("Temperature out of range [-100. to 200.] (PsyPsatFnTemp)", iPsyErrIndex(iPsyPsatFnTemp), T, T, _, "C",
+                                               "C");
             }
         }
 #endif
@@ -892,8 +888,8 @@ namespace Psychrometrics {
                     String = "Calculated Wet-Bulb= " + TrimSigDigits(TWB, 2);
                     ShowContinueError(String + " ... Since Dry Bulb < Wet Bulb, Wet Bulb set = to Dry Bulb");
                 }
-                ShowRecurringWarningErrorAtEnd("Given Wet Bulb Temperature invalid (PsyWFnTdbTwbPb)", iPsyErrIndex(iPsyWFnTdbTwbPb), TWB,
-                                               TWB, _, "C", "C");
+                ShowRecurringWarningErrorAtEnd("Given Wet Bulb Temperature invalid (PsyWFnTdbTwbPb)", iPsyErrIndex(iPsyWFnTdbTwbPb), TWB, TWB, _, "C",
+                                               "C");
             }
         }
     }
@@ -911,8 +907,7 @@ namespace Psychrometrics {
         if (W < 0.0) {
             if (ReportErrors && !WarmupFlag) {
                 if (iPsyErrIndex(iPsyWFnTdbTwbPb2) == 0) {
-                    String = " Dry-Bulb= " + TrimSigDigits(TDB, 2) + " Wet-Bulb= " + TrimSigDigits(TWB, 2) + " Pressure= " +
-                             TrimSigDigits(PB, 2);
+                    String = " Dry-Bulb= " + TrimSigDigits(TDB, 2) + " Wet-Bulb= " + TrimSigDigits(TWB, 2) + " Pressure= " + TrimSigDigits(PB, 2);
                     ShowWarningMessage("Calculated Humidity Ratio Invalid (PsyWFnTdbTwbPb)");
                     if (!CalledFrom.empty()) {
                         ShowContinueErrorTimeStamp(" Routine=" + CalledFrom + ',');
@@ -923,8 +918,8 @@ namespace Psychrometrics {
                     String = "Calculated Humidity Ratio= " + TrimSigDigits(W, 4) + ", will recalculate Humidity Ratio";
                     ShowContinueError(String + " using Relative Humidity .01% (and Dry-Bulb and Pressure as shown)");
                 }
-                ShowRecurringWarningErrorAtEnd("Calculated Humidity Ratio Invalid (PsyWFnTdbTwbPb)", iPsyErrIndex(iPsyWFnTdbTwbPb2), W, W,
-                                               _, "[]", "[]");
+                ShowRecurringWarningErrorAtEnd("Calculated Humidity Ratio Invalid (PsyWFnTdbTwbPb)", iPsyErrIndex(iPsyWFnTdbTwbPb2), W, W, _, "[]",
+                                               "[]");
             }
         }
     }
@@ -951,12 +946,11 @@ namespace Psychrometrics {
                     String = " Dry-bulb=" + TrimSigDigits(TDB, 2) + " Wet-Bulb (WB)= " + TrimSigDigits(TWB, 2) + " Pressure= " +
                              TrimSigDigits(PB, 2) + " Humidity Ratio=" + TrimSigDigits(W, 3);
                     ShowContinueError(String);
-                    String =
-                        " Calculated Dew Point Temperature (DPT)= " + TrimSigDigits(TDP, 2) + "; Since DPT > WB, DPT will be set to WB";
+                    String = " Calculated Dew Point Temperature (DPT)= " + TrimSigDigits(TDP, 2) + "; Since DPT > WB, DPT will be set to WB";
                     ShowContinueError(String);
                 }
-                ShowRecurringWarningErrorAtEnd("Calculated Dew Point Temperature being reset (PsyTdpFnTdbTwbPb)",
-                                               iPsyErrIndex(iPsyTdpFnTdbTwbPb), TDP, TDP, _, "C", "C");
+                ShowRecurringWarningErrorAtEnd("Calculated Dew Point Temperature being reset (PsyTdpFnTdbTwbPb)", iPsyErrIndex(iPsyTdpFnTdbTwbPb),
+                                               TDP, TDP, _, "C", "C");
             }
         }
     }
@@ -1042,8 +1036,7 @@ namespace Psychrometrics {
                     ShowContinueError(String);
                     FlagError = true;
                 }
-                ShowRecurringWarningErrorAtEnd("Enthalpy out of range (PsyTsatFnHPb)", iPsyErrIndex(iPsyTsatFnHPb), HH, HH, _, "J/kg",
-                                               "J/kg");
+                ShowRecurringWarningErrorAtEnd("Enthalpy out of range (PsyTsatFnHPb)", iPsyErrIndex(iPsyTsatFnHPb), HH, HH, _, "J/kg", "J/kg");
             }
         }
 #endif
@@ -1262,8 +1255,7 @@ namespace Psychrometrics {
                     String = "Calculated Humidity Ratio= " + TrimSigDigits(W, 4);
                     ShowContinueError(String + " ... Humidity Ratio set to .00001");
                 }
-                ShowRecurringWarningErrorAtEnd("Entered Humidity Ratio invalid (PsyWFnTdpPb)", iPsyErrIndex(iPsyWFnTdpPb), W, W, _, "[]",
-                                               "[]");
+                ShowRecurringWarningErrorAtEnd("Entered Humidity Ratio invalid (PsyWFnTdpPb)", iPsyErrIndex(iPsyWFnTdpPb), W, W, _, "[]", "[]");
             }
         }
     }
@@ -1280,8 +1272,8 @@ namespace Psychrometrics {
         if (W <= -0.0001) {
             if (!WarmupFlag) {
                 if (iPsyErrIndex(iPsyWFnTdbRhPb) == 0) {
-                    String = " Dry-Bulb= " + TrimSigDigits(TDB, 2) + " Relative Humidity [%]= " + TrimSigDigits(RH * 100.0, 2) +
-                             " Pressure= " + TrimSigDigits(PB, 2);
+                    String = " Dry-Bulb= " + TrimSigDigits(TDB, 2) + " Relative Humidity [%]= " + TrimSigDigits(RH * 100.0, 2) + " Pressure= " +
+                             TrimSigDigits(PB, 2);
                     ShowWarningMessage("Calculated Humidity Ratio is invalid (PsyWFnTdbRhPb)");
                     if (!CalledFrom.empty()) {
                         ShowContinueErrorTimeStamp(" Routine=" + CalledFrom + ',');
@@ -1292,8 +1284,8 @@ namespace Psychrometrics {
                     String = "Calculated Humidity Ratio= " + TrimSigDigits(W, 4);
                     ShowContinueError(String + " ... Humidity Ratio set to .00001");
                 }
-                ShowRecurringWarningErrorAtEnd("Calculated Humidity Ratio Invalid (PsyWFnTdbTwbPb)", iPsyErrIndex(iPsyWFnTdbRhPb), W, W, _,
-                                               "[]", "[]");
+                ShowRecurringWarningErrorAtEnd("Calculated Humidity Ratio Invalid (PsyWFnTdbTwbPb)", iPsyErrIndex(iPsyWFnTdbRhPb), W, W, _, "[]",
+                                               "[]");
             }
         }
     }
@@ -1365,8 +1357,7 @@ namespace Psychrometrics {
                     ShowContinueError(" Input Pressure= " + TrimSigDigits(Press, 2));
                     FlagError = true;
                 }
-                ShowRecurringWarningErrorAtEnd("Pressure out of range (PsyTsatFnPb)", iPsyErrIndex(iPsyTsatFnPb), Press, Press, _, "Pa",
-                                               "Pa");
+                ShowRecurringWarningErrorAtEnd("Pressure out of range (PsyTsatFnPb)", iPsyErrIndex(iPsyTsatFnPb), Press, Press, _, "Pa", "Pa");
             }
         }
 #endif
@@ -1444,8 +1435,8 @@ namespace Psychrometrics {
                     ShowContinueError(" Input Pressure= " + TrimSigDigits(Press, 2));
                     FlagError = true;
                 }
-                ShowRecurringWarningErrorAtEnd("Saturation Temperature not converged after max iterations (PsyTsatFnPb)",
-                                               iPsyErrIndex(iPsyTsatFnPb2), tSat, tSat, _, "C", "C");
+                ShowRecurringWarningErrorAtEnd("Saturation Temperature not converged after max iterations (PsyTsatFnPb)", iPsyErrIndex(iPsyTsatFnPb2),
+                                               tSat, tSat, _, "C", "C");
             }
         }
 #endif

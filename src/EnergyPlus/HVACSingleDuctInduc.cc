@@ -234,8 +234,8 @@ namespace HVACSingleDuctInduc {
             }
             if (CheckEquipName(IUNum)) {
                 if (CompName != IndUnit(IUNum).Name) {
-                    ShowFatalError("SimIndUnit: Invalid CompIndex passed=" + TrimSigDigits(CompIndex) + ", Induction Unit name=" +
-                                   CompName + ", stored Induction Unit for that index=" + IndUnit(IUNum).Name);
+                    ShowFatalError("SimIndUnit: Invalid CompIndex passed=" + TrimSigDigits(CompIndex) + ", Induction Unit name=" + CompName +
+                                   ", stored Induction Unit for that index=" + IndUnit(IUNum).Name);
                 }
                 CheckEquipName(IUNum) = false;
             }
@@ -371,8 +371,8 @@ namespace HVACSingleDuctInduc {
         // loop over Series PIUs; get and load the input data
         for (IUIndex = 1; IUIndex <= NumFourPipes; ++IUIndex) {
 
-            GetObjectItem(CurrentModuleObject, IUIndex, Alphas, NumAlphas, Numbers, NumNumbers, IOStatus, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFields, cNumericFields);
+            GetObjectItem(CurrentModuleObject, IUIndex, Alphas, NumAlphas, Numbers, NumNumbers, IOStatus, lNumericBlanks, lAlphaBlanks, cAlphaFields,
+                          cNumericFields);
 
             IUNum = IUIndex;
             IsNotOK = false;
@@ -391,8 +391,8 @@ namespace HVACSingleDuctInduc {
             } else {
                 IndUnit(IUNum).SchedPtr = GetScheduleIndex(Alphas(2)); // convert schedule name to pointer
                 if (IndUnit(IUNum).SchedPtr == 0) {
-                    ShowSevereError(RoutineName + CurrentModuleObject + ": invalid " + cAlphaFields(2) + " entered =" + Alphas(2) +
-                                    " for " + cAlphaFields(1) + '=' + Alphas(1));
+                    ShowSevereError(RoutineName + CurrentModuleObject + ": invalid " + cAlphaFields(2) + " entered =" + Alphas(2) + " for " +
+                                    cAlphaFields(1) + '=' + Alphas(1));
                     ErrorsFound = true;
                 }
             }
@@ -458,15 +458,13 @@ namespace HVACSingleDuctInduc {
             }
 
             // Add heating coil to component sets array
-            SetUpCompSets(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, IndUnit(IUNum).HCoilType, IndUnit(IUNum).HCoil, Alphas(4),
-                          "UNDEFINED");
+            SetUpCompSets(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, IndUnit(IUNum).HCoilType, IndUnit(IUNum).HCoil, Alphas(4), "UNDEFINED");
             // Add cooling coil to component sets array
-            SetUpCompSets(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, IndUnit(IUNum).CCoilType, IndUnit(IUNum).CCoil, "UNDEFINED",
-                          "UNDEFINED");
+            SetUpCompSets(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, IndUnit(IUNum).CCoilType, IndUnit(IUNum).CCoil, "UNDEFINED", "UNDEFINED");
 
             // Register component set data
-            TestCompSet(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, NodeID(IndUnit(IUNum).PriAirInNode),
-                        NodeID(IndUnit(IUNum).OutAirNode), "Air Nodes");
+            TestCompSet(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, NodeID(IndUnit(IUNum).PriAirInNode), NodeID(IndUnit(IUNum).OutAirNode),
+                        "Air Nodes");
 
             AirNodeFound = false;
             for (ADUNum = 1; ADUNum <= NumAirDistUnits; ++ADUNum) {
@@ -592,9 +590,8 @@ namespace HVACSingleDuctInduc {
         if (MyPlantScanFlag(IUNum) && allocated(PlantLoop)) {
             if (IndUnit(IUNum).HCoil_PlantTypeNum == TypeOf_CoilWaterSimpleHeating) {
                 errFlag = false;
-                ScanPlantLoopsForObject(IndUnit(IUNum).HCoil, IndUnit(IUNum).HCoil_PlantTypeNum, IndUnit(IUNum).HWLoopNum,
-                                        IndUnit(IUNum).HWLoopSide, IndUnit(IUNum).HWBranchNum, IndUnit(IUNum).HWCompNum, _, _, _, _, _,
-                                        errFlag);
+                ScanPlantLoopsForObject(IndUnit(IUNum).HCoil, IndUnit(IUNum).HCoil_PlantTypeNum, IndUnit(IUNum).HWLoopNum, IndUnit(IUNum).HWLoopSide,
+                                        IndUnit(IUNum).HWBranchNum, IndUnit(IUNum).HWCompNum, _, _, _, _, _, errFlag);
             }
             if (errFlag) {
                 ShowContinueError("Reference Unit=\"" + IndUnit(IUNum).Name + "\", type=" + IndUnit(IUNum).UnitType);
@@ -602,9 +599,8 @@ namespace HVACSingleDuctInduc {
             if (IndUnit(IUNum).CCoil_PlantTypeNum == TypeOf_CoilWaterCooling ||
                 IndUnit(IUNum).CCoil_PlantTypeNum == TypeOf_CoilWaterDetailedFlatCooling) {
                 errFlag = false;
-                ScanPlantLoopsForObject(IndUnit(IUNum).CCoil, IndUnit(IUNum).CCoil_PlantTypeNum, IndUnit(IUNum).CWLoopNum,
-                                        IndUnit(IUNum).CWLoopSide, IndUnit(IUNum).CWBranchNum, IndUnit(IUNum).CWCompNum, _, _, _, _, _,
-                                        errFlag);
+                ScanPlantLoopsForObject(IndUnit(IUNum).CCoil, IndUnit(IUNum).CCoil_PlantTypeNum, IndUnit(IUNum).CWLoopNum, IndUnit(IUNum).CWLoopSide,
+                                        IndUnit(IUNum).CWBranchNum, IndUnit(IUNum).CWCompNum, _, _, _, _, _, errFlag);
             }
             if (errFlag) {
                 ShowContinueError("Reference Unit=\"" + IndUnit(IUNum).Name + "\", type=" + IndUnit(IUNum).UnitType);
@@ -622,8 +618,8 @@ namespace HVACSingleDuctInduc {
             }
             if (IndUnit(IUNum).AirLoopNum == 0) {
                 if ((IndUnit(IUNum).CtrlZoneNum > 0) && (IndUnit(IUNum).CtrlZoneInNodeIndex > 0)) {
-                    IndUnit(IUNum).AirLoopNum = DataZoneEquipment::ZoneEquipConfig(IndUnit(IUNum).CtrlZoneNum)
-                                                    .InletNodeAirLoopNum(IndUnit(IUNum).CtrlZoneInNodeIndex);
+                    IndUnit(IUNum).AirLoopNum =
+                        DataZoneEquipment::ZoneEquipConfig(IndUnit(IUNum).CtrlZoneNum).InletNodeAirLoopNum(IndUnit(IUNum).CtrlZoneInNodeIndex);
                     AirDistUnit(IndUnit(IUNum).ADUNum).AirLoopNum = IndUnit(IUNum).AirLoopNum;
                 }
             } else {
@@ -680,9 +676,8 @@ namespace HVACSingleDuctInduc {
                                    .Branch(IndUnit(IUNum).HWBranchNum)
                                    .Comp(IndUnit(IUNum).HWCompNum)
                                    .NodeNumOut;
-                InitComponentNodes(IndUnit(IUNum).MinHotWaterFlow, IndUnit(IUNum).MaxHotWaterFlow, HotConNode, HWOutletNode,
-                                   IndUnit(IUNum).HWLoopNum, IndUnit(IUNum).HWLoopSide, IndUnit(IUNum).HWBranchNum,
-                                   IndUnit(IUNum).HWCompNum);
+                InitComponentNodes(IndUnit(IUNum).MinHotWaterFlow, IndUnit(IUNum).MaxHotWaterFlow, HotConNode, HWOutletNode, IndUnit(IUNum).HWLoopNum,
+                                   IndUnit(IUNum).HWLoopSide, IndUnit(IUNum).HWBranchNum, IndUnit(IUNum).HWCompNum);
             }
 
             ColdConNode = IndUnit(IUNum).CWControlNode;
@@ -698,8 +693,7 @@ namespace HVACSingleDuctInduc {
                                    .Comp(IndUnit(IUNum).CWCompNum)
                                    .NodeNumOut;
                 InitComponentNodes(IndUnit(IUNum).MinColdWaterFlow, IndUnit(IUNum).MaxColdWaterFlow, ColdConNode, CWOutletNode,
-                                   IndUnit(IUNum).CWLoopNum, IndUnit(IUNum).CWLoopSide, IndUnit(IUNum).CWBranchNum,
-                                   IndUnit(IUNum).CWCompNum);
+                                   IndUnit(IUNum).CWLoopNum, IndUnit(IUNum).CWLoopSide, IndUnit(IUNum).CWBranchNum, IndUnit(IUNum).CWCompNum);
             }
 
             MyEnvrnFlag(IUNum) = false;
@@ -841,10 +835,10 @@ namespace HVACSingleDuctInduc {
                                            MaxTotAirVolFlowDes, "User-Specified Maximum Total Air Flow Rate [m3/s]", MaxTotAirVolFlowUser);
                         if (DisplayExtraWarnings) {
                             if ((std::abs(MaxTotAirVolFlowDes - MaxTotAirVolFlowUser) / MaxTotAirVolFlowUser) > AutoVsHardSizingThreshold) {
-                                ShowMessage("SizeHVACSingleDuctInduction: Potential issue with equipment sizing for " +
-                                            IndUnit(IUNum).UnitType + " = \"" + IndUnit(IUNum).Name + "\".");
-                                ShowContinueError("User-Specified Maximum Total Air Flow Rate of " +
-                                                  RoundSigDigits(MaxTotAirVolFlowUser, 5) + " [m3/s]");
+                                ShowMessage("SizeHVACSingleDuctInduction: Potential issue with equipment sizing for " + IndUnit(IUNum).UnitType +
+                                            " = \"" + IndUnit(IUNum).Name + "\".");
+                                ShowContinueError("User-Specified Maximum Total Air Flow Rate of " + RoundSigDigits(MaxTotAirVolFlowUser, 5) +
+                                                  " [m3/s]");
                                 ShowContinueError("differs from Design Size Maximum Total Air Flow Rate of " +
                                                   RoundSigDigits(MaxTotAirVolFlowDes, 5) + " [m3/s]");
                                 ShowContinueError("This may, or may not, indicate mismatched component sizes.");
@@ -874,8 +868,8 @@ namespace HVACSingleDuctInduc {
                     CoilWaterInletNode = GetCoilWaterInletNode("Coil:Heating:Water", IndUnit(IUNum).HCoil, ErrorsFound);
                     CoilWaterOutletNode = GetCoilWaterOutletNode("Coil:Heating:Water", IndUnit(IUNum).HCoil, ErrorsFound);
                     if (IsAutoSize) {
-                        PltSizHeatNum = MyPlantSizingIndex("Coil:Heating:Water", IndUnit(IUNum).HCoil, CoilWaterInletNode,
-                                                           CoilWaterOutletNode, ErrorsFound);
+                        PltSizHeatNum =
+                            MyPlantSizingIndex("Coil:Heating:Water", IndUnit(IUNum).HCoil, CoilWaterInletNode, CoilWaterOutletNode, ErrorsFound);
                         if (PltSizHeatNum > 0) {
 
                             if (TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatMassFlow >= SmallAirVolFlow) {
@@ -885,14 +879,14 @@ namespace HVACSingleDuctInduc {
                                 // the design heating coil load is the zone load minus whatever the central system does. Note that
                                 // DesHeatCoilInTempTU is really the primary air inlet temperature for the unit.
                                 if (TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtHeatPeak > 0.0) {
-                                    DesCoilLoad = FinalZoneSizing(CurZoneEqNum).NonAirSysDesHeatLoad -
-                                                  CpAir * RhoAir * DesPriVolFlow *
-                                                      (TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU -
-                                                       TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtHeatPeak);
+                                    DesCoilLoad =
+                                        FinalZoneSizing(CurZoneEqNum).NonAirSysDesHeatLoad -
+                                        CpAir * RhoAir * DesPriVolFlow * (TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU -
+                                                                          TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtHeatPeak);
                                 } else {
-                                    DesCoilLoad = CpAir * RhoAir * DesPriVolFlow *
-                                                  (ZoneSizThermSetPtLo(CurZoneEqNum) -
-                                                   TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU);
+                                    DesCoilLoad =
+                                        CpAir * RhoAir * DesPriVolFlow *
+                                        (ZoneSizThermSetPtLo(CurZoneEqNum) - TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU);
                                 }
                                 IndUnit(IUNum).DesHeatingLoad = DesCoilLoad;
                                 Cp = GetSpecificHeatGlycol(PlantLoop(IndUnit(IUNum).HWLoopNum).FluidName, DataGlobals::HWInitConvTemp,
@@ -918,22 +912,19 @@ namespace HVACSingleDuctInduc {
                                            MaxVolHotWaterFlowDes);
                         ReportSizingOutput(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, "Design Size Inlet Air Temperature [C]",
                                            TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU);
-                        ReportSizingOutput(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name,
-                                           "Design Size Inlet Air Humidity Ratio [kgWater/kgDryAir]",
+                        ReportSizingOutput(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, "Design Size Inlet Air Humidity Ratio [kgWater/kgDryAir]",
                                            TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInHumRatTU);
                     } else {
                         if (IndUnit(IUNum).MaxVolHotWaterFlow > 0.0 && MaxVolHotWaterFlowDes > 0.0) {
                             MaxVolHotWaterFlowUser = IndUnit(IUNum).MaxVolHotWaterFlow;
-                            ReportSizingOutput(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name,
-                                               "Design Size Maximum Hot Water Flow Rate [m3/s]", MaxVolHotWaterFlowDes,
-                                               "User-Specified Maximum Hot Water Flow Rate [m3/s]", MaxVolHotWaterFlowUser);
+                            ReportSizingOutput(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, "Design Size Maximum Hot Water Flow Rate [m3/s]",
+                                               MaxVolHotWaterFlowDes, "User-Specified Maximum Hot Water Flow Rate [m3/s]", MaxVolHotWaterFlowUser);
                             if (DisplayExtraWarnings) {
-                                if ((std::abs(MaxVolHotWaterFlowDes - MaxVolHotWaterFlowUser) / MaxVolHotWaterFlowUser) >
-                                    AutoVsHardSizingThreshold) {
-                                    ShowMessage("SizeHVACSingleDuctInduction: Potential issue with equipment sizing for " +
-                                                IndUnit(IUNum).UnitType + " = \"" + IndUnit(IUNum).Name + "\".");
-                                    ShowContinueError("User-Specified Maximum Hot Water Flow Rate of " +
-                                                      RoundSigDigits(MaxVolHotWaterFlowUser, 5) + " [m3/s]");
+                                if ((std::abs(MaxVolHotWaterFlowDes - MaxVolHotWaterFlowUser) / MaxVolHotWaterFlowUser) > AutoVsHardSizingThreshold) {
+                                    ShowMessage("SizeHVACSingleDuctInduction: Potential issue with equipment sizing for " + IndUnit(IUNum).UnitType +
+                                                " = \"" + IndUnit(IUNum).Name + "\".");
+                                    ShowContinueError("User-Specified Maximum Hot Water Flow Rate of " + RoundSigDigits(MaxVolHotWaterFlowUser, 5) +
+                                                      " [m3/s]");
                                     ShowContinueError("differs from Design Size Maximum Hot Water Flow Rate of " +
                                                       RoundSigDigits(MaxVolHotWaterFlowDes, 5) + " [m3/s]");
                                     ShowContinueError("This may, or may not, indicate mismatched component sizes.");
@@ -967,8 +958,8 @@ namespace HVACSingleDuctInduc {
                     CoilWaterInletNode = GetCoilWaterInletNode(IndUnit(IUNum).CCoilType, IndUnit(IUNum).CCoil, ErrorsFound);
                     CoilWaterOutletNode = GetCoilWaterOutletNode(IndUnit(IUNum).CCoilType, IndUnit(IUNum).CCoil, ErrorsFound);
                     if (IsAutoSize) {
-                        PltSizCoolNum = MyPlantSizingIndex(IndUnit(IUNum).CCoilType, IndUnit(IUNum).CCoil, CoilWaterInletNode,
-                                                           CoilWaterOutletNode, ErrorsFound);
+                        PltSizCoolNum =
+                            MyPlantSizingIndex(IndUnit(IUNum).CCoilType, IndUnit(IUNum).CCoil, CoilWaterInletNode, CoilWaterOutletNode, ErrorsFound);
                         if (PltSizCoolNum > 0) {
 
                             if (TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolMassFlow >= SmallAirVolFlow) {
@@ -978,14 +969,14 @@ namespace HVACSingleDuctInduc {
                                 // the design cooling coil load is the zone load minus whatever the central system does. Note that
                                 // DesCoolCoilInTempTU is really the primary air inlet temperature for the unit.
                                 if (TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtCoolPeak > 0.0) {
-                                    DesCoilLoad = FinalZoneSizing(CurZoneEqNum).NonAirSysDesCoolLoad -
-                                                  CpAir * RhoAir * DesPriVolFlow *
-                                                      (TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtCoolPeak -
-                                                       TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolCoilInTempTU);
+                                    DesCoilLoad =
+                                        FinalZoneSizing(CurZoneEqNum).NonAirSysDesCoolLoad -
+                                        CpAir * RhoAir * DesPriVolFlow * (TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtCoolPeak -
+                                                                          TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolCoilInTempTU);
                                 } else {
-                                    DesCoilLoad = CpAir * RhoAir * DesPriVolFlow *
-                                                  (TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolCoilInTempTU -
-                                                   ZoneSizThermSetPtHi(CurZoneEqNum));
+                                    DesCoilLoad =
+                                        CpAir * RhoAir * DesPriVolFlow *
+                                        (TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolCoilInTempTU - ZoneSizThermSetPtHi(CurZoneEqNum));
                                 }
                                 IndUnit(IUNum).DesCoolingLoad = DesCoilLoad;
                                 Cp = GetSpecificHeatGlycol(PlantLoop(IndUnit(IUNum).CWLoopNum).FluidName, 5.0,
@@ -1012,16 +1003,15 @@ namespace HVACSingleDuctInduc {
                     } else {
                         if (IndUnit(IUNum).MaxVolColdWaterFlow > 0.0 && MaxVolColdWaterFlowDes > 0.0) {
                             MaxVolColdWaterFlowUser = IndUnit(IUNum).MaxVolColdWaterFlow;
-                            ReportSizingOutput(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name,
-                                               "Design Size Maximum Cold Water Flow Rate [m3/s]", MaxVolColdWaterFlowDes,
-                                               "User-Specified Maximum Cold Water Flow Rate [m3/s]", MaxVolColdWaterFlowUser);
+                            ReportSizingOutput(IndUnit(IUNum).UnitType, IndUnit(IUNum).Name, "Design Size Maximum Cold Water Flow Rate [m3/s]",
+                                               MaxVolColdWaterFlowDes, "User-Specified Maximum Cold Water Flow Rate [m3/s]", MaxVolColdWaterFlowUser);
                             if (DisplayExtraWarnings) {
                                 if ((std::abs(MaxVolColdWaterFlowDes - MaxVolColdWaterFlowUser) / MaxVolColdWaterFlowUser) >
                                     AutoVsHardSizingThreshold) {
-                                    ShowMessage("SizeHVACSingleDuctInduction: Potential issue with equipment sizing for " +
-                                                IndUnit(IUNum).UnitType + " = \"" + IndUnit(IUNum).Name + "\".");
-                                    ShowContinueError("User-Specified Maximum Cold Water Flow Rate of " +
-                                                      RoundSigDigits(MaxVolColdWaterFlowUser, 5) + " [m3/s]");
+                                    ShowMessage("SizeHVACSingleDuctInduction: Potential issue with equipment sizing for " + IndUnit(IUNum).UnitType +
+                                                " = \"" + IndUnit(IUNum).Name + "\".");
+                                    ShowContinueError("User-Specified Maximum Cold Water Flow Rate of " + RoundSigDigits(MaxVolColdWaterFlowUser, 5) +
+                                                      " [m3/s]");
                                     ShowContinueError("differs from Design Size Maximum Cold Water Flow Rate of " +
                                                       RoundSigDigits(MaxVolColdWaterFlowDes, 5) + " [m3/s]");
                                     ShowContinueError("This may, or may not, indicate mismatched component sizes.");
@@ -1049,12 +1039,10 @@ namespace HVACSingleDuctInduc {
             // save the induction ratio for use in subsequent sizing calcs
             TermUnitSizing(CurTermUnitSizingNum).InducRat = IndUnit(IUNum).InducRatio;
             if (SameString(IndUnit(IUNum).HCoilType, "Coil:Heating:Water")) {
-                SetCoilDesFlow(IndUnit(IUNum).HCoilType, IndUnit(IUNum).HCoil, TermUnitSizing(CurTermUnitSizingNum).AirVolFlow,
-                               ErrorsFound);
+                SetCoilDesFlow(IndUnit(IUNum).HCoilType, IndUnit(IUNum).HCoil, TermUnitSizing(CurTermUnitSizingNum).AirVolFlow, ErrorsFound);
             }
             if (SameString(IndUnit(IUNum).CCoilType, "Coil:Cooling:Water:DetailedGeometry")) {
-                SetCoilDesFlow(IndUnit(IUNum).CCoilType, IndUnit(IUNum).CCoil, TermUnitSizing(CurTermUnitSizingNum).AirVolFlow,
-                               ErrorsFound);
+                SetCoilDesFlow(IndUnit(IUNum).CCoilType, IndUnit(IUNum).CCoil, TermUnitSizing(CurTermUnitSizingNum).AirVolFlow, ErrorsFound);
             }
         }
     }
@@ -1205,8 +1193,7 @@ namespace HVACSingleDuctInduc {
                     Par(6) = QPriOnly;
                     Par(7) = PowerMet;
                     ErrTolerance = IndUnit(IUNum).HotControlOffset;
-                    SolveRoot(ErrTolerance, SolveMaxIter, SolFlag, HWFlow, FourPipeIUHeatingResidual, MinHotWaterFlow, MaxHotWaterFlow,
-                              Par);
+                    SolveRoot(ErrTolerance, SolveMaxIter, SolFlag, HWFlow, FourPipeIUHeatingResidual, MinHotWaterFlow, MaxHotWaterFlow, Par);
                     if (SolFlag == -1) {
                         if (IndUnit(IUNum).HWCoilFailNum1 == 0) {
                             ShowWarningMessage("SimFourPipeIndUnit: Hot water coil control failed for " + IndUnit(IUNum).UnitType + "=\"" +
@@ -1230,8 +1217,7 @@ namespace HVACSingleDuctInduc {
                         }
                         ShowRecurringWarningErrorAtEnd("SimFourPipeIndUnit: Hot water coil control failed (flow limits) for " +
                                                            IndUnit(IUNum).UnitType + "=\"" + IndUnit(IUNum).Name + "\"",
-                                                       IndUnit(IUNum).HWCoilFailNum2, MaxHotWaterFlow, MinHotWaterFlow, _, "[kg/s]",
-                                                       "[kg/s]");
+                                                       IndUnit(IUNum).HWCoilFailNum2, MaxHotWaterFlow, MinHotWaterFlow, _, "[kg/s]", "[kg/s]");
                     }
                 }
             } else if (QToCoolSetPt - QPriOnly < -SmallLoad) {
@@ -1251,8 +1237,7 @@ namespace HVACSingleDuctInduc {
                     Par(6) = QPriOnly;
                     Par(7) = PowerMet;
                     ErrTolerance = IndUnit(IUNum).ColdControlOffset;
-                    SolveRoot(ErrTolerance, SolveMaxIter, SolFlag, CWFlow, FourPipeIUCoolingResidual, MinColdWaterFlow, MaxColdWaterFlow,
-                              Par);
+                    SolveRoot(ErrTolerance, SolveMaxIter, SolFlag, CWFlow, FourPipeIUCoolingResidual, MinColdWaterFlow, MaxColdWaterFlow, Par);
                     if (SolFlag == -1) {
                         if (IndUnit(IUNum).CWCoilFailNum1 == 0) {
                             ShowWarningMessage("SimFourPipeIndUnit: Cold water coil control failed for " + IndUnit(IUNum).UnitType + "=\"" +
@@ -1276,8 +1261,7 @@ namespace HVACSingleDuctInduc {
                         }
                         ShowRecurringWarningErrorAtEnd("SimFourPipeIndUnit: Cold water coil control failed (flow limits) for " +
                                                            IndUnit(IUNum).UnitType + "=\"" + IndUnit(IUNum).Name + "\"",
-                                                       IndUnit(IUNum).CWCoilFailNum2, MaxColdWaterFlow, MinColdWaterFlow, _, "[kg/s]",
-                                                       "[kg/s]");
+                                                       IndUnit(IUNum).CWCoilFailNum2, MaxColdWaterFlow, MinColdWaterFlow, _, "[kg/s]", "[kg/s]");
                     }
                 }
             } else {
@@ -1376,14 +1360,14 @@ namespace HVACSingleDuctInduc {
                            .NodeNumOut;
 
         mdotHW = HWFlow;
-        SetComponentFlowRate(mdotHW, HotControlNode, HWOutletNode, IndUnit(IUNum).HWLoopNum, IndUnit(IUNum).HWLoopSide,
-                             IndUnit(IUNum).HWBranchNum, IndUnit(IUNum).HWCompNum);
+        SetComponentFlowRate(mdotHW, HotControlNode, HWOutletNode, IndUnit(IUNum).HWLoopNum, IndUnit(IUNum).HWLoopSide, IndUnit(IUNum).HWBranchNum,
+                             IndUnit(IUNum).HWCompNum);
 
         //  Node(HotControlNode)%MassFlowRate = HWFlow
 
         mdotCW = CWFlow;
-        SetComponentFlowRate(mdotCW, ColdControlNode, CWOutletNode, IndUnit(IUNum).CWLoopNum, IndUnit(IUNum).CWLoopSide,
-                             IndUnit(IUNum).CWBranchNum, IndUnit(IUNum).CWCompNum);
+        SetComponentFlowRate(mdotCW, ColdControlNode, CWOutletNode, IndUnit(IUNum).CWLoopNum, IndUnit(IUNum).CWLoopSide, IndUnit(IUNum).CWBranchNum,
+                             IndUnit(IUNum).CWCompNum);
         //  Node(ColdControlNode)%MassFlowRate = CWFlow
 
         SimulateWaterCoilComponents(IndUnit(IUNum).HCoil, FirstHVACIteration, IndUnit(IUNum).HCoil_Num);

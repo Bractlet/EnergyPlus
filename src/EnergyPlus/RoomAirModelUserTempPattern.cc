@@ -608,8 +608,8 @@ namespace RoomAirModelUserTempPattern {
         }
 
         if (SetupOutputFlag(ZoneNum)) {
-            SetupOutputVariable("Room Air Zone Vertical Temperature Gradient", OutputProcessor::Unit::K_m,
-                                AirPatternZoneInfo(ZoneNum).Gradient, "HVAC", "State", AirPatternZoneInfo(ZoneNum).ZoneName);
+            SetupOutputVariable("Room Air Zone Vertical Temperature Gradient", OutputProcessor::Unit::K_m, AirPatternZoneInfo(ZoneNum).Gradient,
+                                "HVAC", "State", AirPatternZoneInfo(ZoneNum).ZoneName);
 
             SetupOutputFlag(ZoneNum) = false;
         }
@@ -623,8 +623,7 @@ namespace RoomAirModelUserTempPattern {
             if (SELECT_CASE_var == OutdoorDryBulbMode) {
 
                 Grad = OutdoorDryBulbGrad(Zone(ZoneNum).OutDryBulbTemp, RoomAirPattern(PattrnID).TwoGradPatrn.UpperBoundTempScale,
-                                          RoomAirPattern(PattrnID).TwoGradPatrn.HiGradient,
-                                          RoomAirPattern(PattrnID).TwoGradPatrn.LowerBoundTempScale,
+                                          RoomAirPattern(PattrnID).TwoGradPatrn.HiGradient, RoomAirPattern(PattrnID).TwoGradPatrn.LowerBoundTempScale,
                                           RoomAirPattern(PattrnID).TwoGradPatrn.LowGradient);
 
             } else if (SELECT_CASE_var == ZoneAirTempMode) {
@@ -636,8 +635,8 @@ namespace RoomAirModelUserTempPattern {
 
                     Grad = RoomAirPattern(PattrnID).TwoGradPatrn.LowGradient;
                 } else { // interpolate
-                    if ((RoomAirPattern(PattrnID).TwoGradPatrn.UpperBoundTempScale -
-                         RoomAirPattern(PattrnID).TwoGradPatrn.LowerBoundTempScale) == 0.0) {
+                    if ((RoomAirPattern(PattrnID).TwoGradPatrn.UpperBoundTempScale - RoomAirPattern(PattrnID).TwoGradPatrn.LowerBoundTempScale) ==
+                        0.0) {
                         // bad user input, trapped during get input
                         Grad = RoomAirPattern(PattrnID).TwoGradPatrn.LowGradient;
                     } else {
@@ -659,8 +658,8 @@ namespace RoomAirModelUserTempPattern {
 
                     Grad = RoomAirPattern(PattrnID).TwoGradPatrn.LowGradient;
                 } else { // interpolate
-                    if ((RoomAirPattern(PattrnID).TwoGradPatrn.UpperBoundTempScale -
-                         RoomAirPattern(PattrnID).TwoGradPatrn.LowerBoundTempScale) == 0.0) {
+                    if ((RoomAirPattern(PattrnID).TwoGradPatrn.UpperBoundTempScale - RoomAirPattern(PattrnID).TwoGradPatrn.LowerBoundTempScale) ==
+                        0.0) {
                         // bad user input, trapped during get input
                         Grad = RoomAirPattern(PattrnID).TwoGradPatrn.LowGradient;
                     } else {

@@ -215,24 +215,23 @@ namespace Fans {
         // Default Constructor
         FanEquipConditions()
             : FanType_Num(0), AvailSchedPtrNum(0), InletAirMassFlowRate(0.0), OutletAirMassFlowRate(0.0), MaxAirFlowRate(0.0),
-              MaxAirFlowRateIsAutosizable(false), MaxAirFlowRateEMSOverrideOn(false), MaxAirFlowRateEMSOverrideValue(0.0),
-              MinAirFlowRate(0.0), MaxAirMassFlowRate(0.0), MinAirMassFlowRate(0.0), FanMinAirFracMethod(MinFrac), FanMinFrac(0.0),
-              FanFixedMin(0.0), EMSMaxMassFlowOverrideOn(false), EMSAirMassFlowValue(0.0), InletAirTemp(0.0), OutletAirTemp(0.0),
-              InletAirHumRat(0.0), OutletAirHumRat(0.0), InletAirEnthalpy(0.0), OutletAirEnthalpy(0.0), FanPower(0.0), FanEnergy(0.0),
-              FanRuntimeFraction(0.0), DeltaTemp(0.0), DeltaPress(0.0), PowerLossToAir(0.0), EMSFanPressureOverrideOn(false),
-              EMSFanPressureValue(0.0), FanEff(0.0), EMSFanEffOverrideOn(false), EMSFanEffValue(0.0), FaultyFilterFlag(false),
-              FaultyFilterIndex(0), MotEff(0.0), MotInAirFrac(0.0), FanCoeff(5, 0.0), MassFlowRateMaxAvail(0.0), MassFlowRateMinAvail(0.0),
-              RhoAirStdInit(0.0), InletNodeNum(0), OutletNodeNum(0), NVPerfNum(0), FanPowerRatAtSpeedRatCurveIndex(0),
-              FanEffRatioCurveIndex(0), OneTimePowerRatioCheck(true), OneTimeEffRatioCheck(true), FanWheelDia(0.0), FanOutletArea(0.0),
-              FanMaxEff(0.0), EuMaxEff(0.0), FanMaxDimFlow(0.0), FanShaftPwrMax(0.0), FanSizingFactor(0.0), PulleyDiaRatio(0.0),
-              BeltMaxTorque(0.0), BeltSizingFactor(0.0), BeltTorqueTrans(0.0), MotorMaxSpd(0.0), MotorMaxOutPwr(0.0),
+              MaxAirFlowRateIsAutosizable(false), MaxAirFlowRateEMSOverrideOn(false), MaxAirFlowRateEMSOverrideValue(0.0), MinAirFlowRate(0.0),
+              MaxAirMassFlowRate(0.0), MinAirMassFlowRate(0.0), FanMinAirFracMethod(MinFrac), FanMinFrac(0.0), FanFixedMin(0.0),
+              EMSMaxMassFlowOverrideOn(false), EMSAirMassFlowValue(0.0), InletAirTemp(0.0), OutletAirTemp(0.0), InletAirHumRat(0.0),
+              OutletAirHumRat(0.0), InletAirEnthalpy(0.0), OutletAirEnthalpy(0.0), FanPower(0.0), FanEnergy(0.0), FanRuntimeFraction(0.0),
+              DeltaTemp(0.0), DeltaPress(0.0), PowerLossToAir(0.0), EMSFanPressureOverrideOn(false), EMSFanPressureValue(0.0), FanEff(0.0),
+              EMSFanEffOverrideOn(false), EMSFanEffValue(0.0), FaultyFilterFlag(false), FaultyFilterIndex(0), MotEff(0.0), MotInAirFrac(0.0),
+              FanCoeff(5, 0.0), MassFlowRateMaxAvail(0.0), MassFlowRateMinAvail(0.0), RhoAirStdInit(0.0), InletNodeNum(0), OutletNodeNum(0),
+              NVPerfNum(0), FanPowerRatAtSpeedRatCurveIndex(0), FanEffRatioCurveIndex(0), OneTimePowerRatioCheck(true), OneTimeEffRatioCheck(true),
+              FanWheelDia(0.0), FanOutletArea(0.0), FanMaxEff(0.0), EuMaxEff(0.0), FanMaxDimFlow(0.0), FanShaftPwrMax(0.0), FanSizingFactor(0.0),
+              PulleyDiaRatio(0.0), BeltMaxTorque(0.0), BeltSizingFactor(0.0), BeltTorqueTrans(0.0), MotorMaxSpd(0.0), MotorMaxOutPwr(0.0),
               MotorSizingFactor(0.0), VFDMaxOutPwr(0.0), VFDSizingFactor(0.0), PressRiseCurveIndex(0), PressResetCurveIndex(0),
-              PLFanEffNormCurveIndex(0), PLFanEffStallCurveIndex(0), DimFlowNormCurveIndex(0), DimFlowStallCurveIndex(0),
-              BeltMaxEffCurveIndex(0), PLBeltEffReg1CurveIndex(0), PLBeltEffReg2CurveIndex(0), PLBeltEffReg3CurveIndex(0),
-              MotorMaxEffCurveIndex(0), PLMotorEffCurveIndex(0), VFDEffCurveIndex(0), DeltaPressTot(0.0), FanAirPower(0.0), FanSpd(0.0),
-              FanTrq(0.0), FanWheelEff(0.0), FanShaftPower(0.0), BeltMaxEff(0.0), BeltEff(0.0), BeltInputPower(0.0), MotorMaxEff(0.0),
-              MotorInputPower(0.0), VFDEff(0.0), VFDInputPower(0.0), MaxFanPowerEncountered(0.0), FlowFractSchedNum(0), AvailManagerMode(0),
-              MinTempLimitSchedNum(0), BalancedFractSchedNum(0), UnbalancedOutletMassFlowRate(0.0), BalancedOutletMassFlowRate(0.0)
+              PLFanEffNormCurveIndex(0), PLFanEffStallCurveIndex(0), DimFlowNormCurveIndex(0), DimFlowStallCurveIndex(0), BeltMaxEffCurveIndex(0),
+              PLBeltEffReg1CurveIndex(0), PLBeltEffReg2CurveIndex(0), PLBeltEffReg3CurveIndex(0), MotorMaxEffCurveIndex(0), PLMotorEffCurveIndex(0),
+              VFDEffCurveIndex(0), DeltaPressTot(0.0), FanAirPower(0.0), FanSpd(0.0), FanTrq(0.0), FanWheelEff(0.0), FanShaftPower(0.0),
+              BeltMaxEff(0.0), BeltEff(0.0), BeltInputPower(0.0), MotorMaxEff(0.0), MotorInputPower(0.0), VFDEff(0.0), VFDInputPower(0.0),
+              MaxFanPowerEncountered(0.0), FlowFractSchedNum(0), AvailManagerMode(0), MinTempLimitSchedNum(0), BalancedFractSchedNum(0),
+              UnbalancedOutletMassFlowRate(0.0), BalancedOutletMassFlowRate(0.0)
         {
         }
     };

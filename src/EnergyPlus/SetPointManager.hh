@@ -263,8 +263,8 @@ namespace SetPointManager {
 
         // Default Constructor
         DefineOutsideAirSetPointManager()
-            : CtrlTypeMode(0), OutLowSetPt1(0.0), OutLow1(0.0), OutHighSetPt1(0.0), OutHigh1(0.0), SchedPtr(0), OutLowSetPt2(0.0),
-              OutLow2(0.0), OutHighSetPt2(0.0), OutHigh2(0.0), NumCtrlNodes(0), SetPt(0.0)
+            : CtrlTypeMode(0), OutLowSetPt1(0.0), OutLow1(0.0), OutHighSetPt1(0.0), OutHigh1(0.0), SchedPtr(0), OutLowSetPt2(0.0), OutLow2(0.0),
+              OutHighSetPt2(0.0), OutHigh2(0.0), NumCtrlNodes(0), SetPt(0.0)
 
         {
         }
@@ -325,8 +325,7 @@ namespace SetPointManager {
 
         // Default Constructor
         DefineSZHeatingSetPointManager()
-            : CtrlTypeMode(0), ControlZoneNum(0), ZoneNodeNum(0), ZoneInletNodeNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), NumCtrlNodes(0),
-              SetPt(0.0)
+            : CtrlTypeMode(0), ControlZoneNum(0), ZoneNodeNum(0), ZoneInletNodeNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), NumCtrlNodes(0), SetPt(0.0)
         {
         }
 
@@ -351,8 +350,7 @@ namespace SetPointManager {
 
         // Default Constructor
         DefineSZCoolingSetPointManager()
-            : CtrlTypeMode(0), ControlZoneNum(0), ZoneNodeNum(0), ZoneInletNodeNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), NumCtrlNodes(0),
-              SetPt(0.0)
+            : CtrlTypeMode(0), ControlZoneNum(0), ZoneNodeNum(0), ZoneInletNodeNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), NumCtrlNodes(0), SetPt(0.0)
         {
         }
 
@@ -453,8 +451,8 @@ namespace SetPointManager {
 
         // Default Constructor
         DefineOAPretreatSetPointManager()
-            : CtrlTypeMode(0), RefNode(0), MixedOutNode(0), OAInNode(0), ReturnInNode(0), MinSetTemp(0.0), MaxSetTemp(0.0),
-              MinSetHumRat(0.0), MaxSetHumRat(0.0), NumCtrlNodes(0), SetPt(0.0), MySetPointCheckFlag(true)
+            : CtrlTypeMode(0), RefNode(0), MixedOutNode(0), OAInNode(0), ReturnInNode(0), MinSetTemp(0.0), MaxSetTemp(0.0), MinSetHumRat(0.0),
+              MaxSetHumRat(0.0), NumCtrlNodes(0), SetPt(0.0), MySetPointCheckFlag(true)
         {
         }
 
@@ -478,8 +476,7 @@ namespace SetPointManager {
         Real64 SetPt;          // the setpoint
 
         // Default Constructor
-        DefineWarmestSetPointManager()
-            : CtrlTypeMode(0), AirLoopNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), Strategy(0), NumCtrlNodes(0), SetPt(0.0)
+        DefineWarmestSetPointManager() : CtrlTypeMode(0), AirLoopNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), Strategy(0), NumCtrlNodes(0), SetPt(0.0)
         {
         }
 
@@ -503,8 +500,7 @@ namespace SetPointManager {
         Real64 SetPt;          // the setpoint
 
         // Default Constructor
-        DefineColdestSetPointManager()
-            : CtrlTypeMode(0), AirLoopNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), Strategy(0), NumCtrlNodes(0), SetPt(0.0)
+        DefineColdestSetPointManager() : CtrlTypeMode(0), AirLoopNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), Strategy(0), NumCtrlNodes(0), SetPt(0.0)
         {
         }
 
@@ -586,8 +582,7 @@ namespace SetPointManager {
         Real64 SetPt;            // the temperature setpoint [C]
 
         // Default Constructor
-        DefMultiZoneAverageCoolingSetPointManager()
-            : CtrlTypeMode(0), AirLoopNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), NumCtrlNodes(0), SetPt(0.0)
+        DefMultiZoneAverageCoolingSetPointManager() : CtrlTypeMode(0), AirLoopNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), NumCtrlNodes(0), SetPt(0.0)
         {
         }
 
@@ -609,8 +604,7 @@ namespace SetPointManager {
         Real64 SetPt;            // the temperature setpoint [C]
 
         // Default Constructor
-        DefMultiZoneAverageHeatingSetPointManager()
-            : CtrlTypeMode(0), AirLoopNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), NumCtrlNodes(0), SetPt(0.0)
+        DefMultiZoneAverageHeatingSetPointManager() : CtrlTypeMode(0), AirLoopNum(0), MinSetTemp(0.0), MaxSetTemp(0.0), NumCtrlNodes(0), SetPt(0.0)
         {
         }
 
@@ -632,8 +626,7 @@ namespace SetPointManager {
         Real64 SetPt;            // the humidity ratio setpoint [kg/kg]
 
         // Default Constructor
-        DefMultiZoneAverageMinHumSetPointManager()
-            : CtrlTypeMode(0), AirLoopNum(0), MinSetHum(0.0), MaxSetHum(0.0), NumCtrlNodes(0), SetPt(0.0)
+        DefMultiZoneAverageMinHumSetPointManager() : CtrlTypeMode(0), AirLoopNum(0), MinSetHum(0.0), MaxSetHum(0.0), NumCtrlNodes(0), SetPt(0.0)
         {
         }
 
@@ -655,8 +648,7 @@ namespace SetPointManager {
         Real64 SetPt;            // the humidity ratio setpoint [kg/kg]
 
         // Default Constructor
-        DefMultiZoneAverageMaxHumSetPointManager()
-            : CtrlTypeMode(0), AirLoopNum(0), MinSetHum(0.0), MaxSetHum(0.0), NumCtrlNodes(0), SetPt(0.0)
+        DefMultiZoneAverageMaxHumSetPointManager() : CtrlTypeMode(0), AirLoopNum(0), MinSetHum(0.0), MaxSetHum(0.0), NumCtrlNodes(0), SetPt(0.0)
         {
         }
 
@@ -939,8 +931,8 @@ namespace SetPointManager {
         Real64 returnTemperatureConstantTarget; // the constant value used as the return temperature target; used if schedule index is zero
         Real64 currentSupplySetPt;              // the current supply setpoint temperature
         int plantLoopIndex;                     // the index for the plant loop for this manager, zero if not initialized
-        int plantSetpointNodeIndex; // the index for the node where the plant setpoint is set, need to look up after Plant is established
-        bool useReturnTempSetpoint; // only true if the target return temperature should be looked up as the Node(returnNode).TempSetPoint
+        int plantSetpointNodeIndex;             // the index for the node where the plant setpoint is set, need to look up after Plant is established
+        bool useReturnTempSetpoint;             // only true if the target return temperature should be looked up as the Node(returnNode).TempSetPoint
 
         // Default Constructor
         DefineReturnWaterChWSetPointManager()
@@ -966,8 +958,8 @@ namespace SetPointManager {
         Real64 returnTemperatureConstantTarget; // the constant value used as the return temperature target; used if schedule index is zero
         Real64 currentSupplySetPt;              // the current supply setpoint temperature
         int plantLoopIndex;                     // the index for the plant loop for this manager, zero if not initialized
-        int plantSetpointNodeIndex; // the index for the node where the plant setpoint is set, need to look up after Plant is established
-        bool useReturnTempSetpoint; // only true if the target return temperature should be looked up as the Node(returnNode).TempSetPoint
+        int plantSetpointNodeIndex;             // the index for the node where the plant setpoint is set, need to look up after Plant is established
+        bool useReturnTempSetpoint;             // only true if the target return temperature should be looked up as the Node(returnNode).TempSetPoint
 
         // Default Constructor
         DefineReturnWaterHWSetPointManager()
@@ -1067,12 +1059,8 @@ namespace SetPointManager {
 
     int GetHumidityRatioVariableType(int const CntrlNodeNum);
 
-    void SetUpNewScheduledTESSetPtMgr(int const SchedPtr,
-                                      int const SchedPtrCharge,
-                                      Real64 NonChargeCHWTemp,
-                                      Real64 ChargeCHWTemp,
-                                      int const CompOpType,
-                                      int const ControlNodeNum);
+    void SetUpNewScheduledTESSetPtMgr(
+        int const SchedPtr, int const SchedPtrCharge, Real64 NonChargeCHWTemp, Real64 ChargeCHWTemp, int const CompOpType, int const ControlNodeNum);
 
     bool GetCoilFreezingCheckFlag(int const MixedAirSPMNum);
 

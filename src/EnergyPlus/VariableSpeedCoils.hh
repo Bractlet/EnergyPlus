@@ -228,13 +228,12 @@ namespace VariableSpeedCoils {
         int CompanionHeatingCoilNum;    // Cooling coil companion heating coil index
         Real64 FanDelayTime;            // Fan delay time, time delay for the HP's fan to
         // beginning for multispeed coil type
-        int MSHPDesignSpecIndex; // index to UnitarySystemPerformance:Multispeed object
-        Array1D_int MSErrIndex;  // index flag for num speeds/recurring messages
-        Array1D<Real64>
-            MSRatedPercentTotCap;      // Percentage to the total cooling capacity for MS heat pump at the highest speed [dimensionless]
-        Array1D<Real64> MSRatedTotCap; // Rated cooling capacity for MS heat pump [W]
-        Array1D<Real64> MSRatedSHR;    // Rated SHR for MS heat pump [dimensionless]
-        Array1D<Real64> MSRatedCOP;    // Rated COP for MS heat pump [dimensionless]
+        int MSHPDesignSpecIndex;              // index to UnitarySystemPerformance:Multispeed object
+        Array1D_int MSErrIndex;               // index flag for num speeds/recurring messages
+        Array1D<Real64> MSRatedPercentTotCap; // Percentage to the total cooling capacity for MS heat pump at the highest speed [dimensionless]
+        Array1D<Real64> MSRatedTotCap;        // Rated cooling capacity for MS heat pump [W]
+        Array1D<Real64> MSRatedSHR;           // Rated SHR for MS heat pump [dimensionless]
+        Array1D<Real64> MSRatedCOP;           // Rated COP for MS heat pump [dimensionless]
         Array1D<Real64> MSRatedAirVolFlowPerRatedTotCap;
         // Rated Air volume flow rate per total capacity through unit at rated conditions [m^3/w]
         Array1D<Real64> MSRatedAirVolFlowRate;
@@ -493,32 +492,31 @@ namespace VariableSpeedCoils {
                             Real64 const EnteringWB  // Entering air wet-bulb temperature
                             );
 
-    void
-    CalcTotCapSHR_VSWSHP(Real64 const InletDryBulb,       // inlet air dry bulb temperature [C]
-                         Real64 const InletHumRat,        // inlet air humidity ratio [kg water / kg dry air]
-                         Real64 const InletEnthalpy,      // inlet air specific enthalpy [J/kg]
-                         Real64 const InletWetBulb,       // inlet air wet bulb temperature [C]
-                         Real64 const AirMassFlowRatio,   // Ratio of actual air mass flow to nominal air mass flow
-                         Real64 const WaterMassFlowRatio, // Ratio of actual water mass flow to nominal water mass flow
-                         Real64 const AirMassFlow,        // actual mass flow for capacity and SHR calculation
-                         Real64 const CBF,                // coil bypass factor
-                         Real64 const TotCapNom1,         // nominal total capacity at low speed [W]
-                         int const CCapFTemp1,            // capacity modifier curve index, function of entering wetbulb at low speed
-                         int const CCapAirFFlow1,         // capacity modifier curve, function of actual air flow vs rated flow at low speed
-                         int const CCapWaterFFlow1,  // capacity modifier curve, function of actual water flow vs rated flow at low speed
-                         Real64 const TotCapNom2,    // nominal total capacity at high speed [W]
-                         int const CCapFTemp2,       // capacity modifier curve index, function of entering wetbulb at high speed
-                         int const CCapAirFFlow2,    // capacity modifier curve, function of actual air flow vs rated flow at high speed
-                         int const CCapWaterFFlow2,  // capacity modifier curve, function of actual water flow vs rated flow at high speed
-                         Real64 &TotCap1,            // total capacity at the given conditions [W] at low speed
-                         Real64 &TotCap2,            // total capacity at the given conditions [W] at high speed
-                         Real64 &TotCapSpeed,        // integrated total capacity corresponding to the speed ratio
-                         Real64 &SHR,                // sensible heat ratio at the given conditions
-                         Real64 const CondInletTemp, // Condenser inlet temperature [C]
-                         Real64 const Pressure,      // air pressure [Pa]
-                         Real64 const SpeedRatio,    // from 0.0 to 1.0
-                         int const NumSpeeds         // number of speeds for input
-                         );
+    void CalcTotCapSHR_VSWSHP(Real64 const InletDryBulb,       // inlet air dry bulb temperature [C]
+                              Real64 const InletHumRat,        // inlet air humidity ratio [kg water / kg dry air]
+                              Real64 const InletEnthalpy,      // inlet air specific enthalpy [J/kg]
+                              Real64 const InletWetBulb,       // inlet air wet bulb temperature [C]
+                              Real64 const AirMassFlowRatio,   // Ratio of actual air mass flow to nominal air mass flow
+                              Real64 const WaterMassFlowRatio, // Ratio of actual water mass flow to nominal water mass flow
+                              Real64 const AirMassFlow,        // actual mass flow for capacity and SHR calculation
+                              Real64 const CBF,                // coil bypass factor
+                              Real64 const TotCapNom1,         // nominal total capacity at low speed [W]
+                              int const CCapFTemp1,            // capacity modifier curve index, function of entering wetbulb at low speed
+                              int const CCapAirFFlow1,         // capacity modifier curve, function of actual air flow vs rated flow at low speed
+                              int const CCapWaterFFlow1,       // capacity modifier curve, function of actual water flow vs rated flow at low speed
+                              Real64 const TotCapNom2,         // nominal total capacity at high speed [W]
+                              int const CCapFTemp2,            // capacity modifier curve index, function of entering wetbulb at high speed
+                              int const CCapAirFFlow2,         // capacity modifier curve, function of actual air flow vs rated flow at high speed
+                              int const CCapWaterFFlow2,       // capacity modifier curve, function of actual water flow vs rated flow at high speed
+                              Real64 &TotCap1,                 // total capacity at the given conditions [W] at low speed
+                              Real64 &TotCap2,                 // total capacity at the given conditions [W] at high speed
+                              Real64 &TotCapSpeed,             // integrated total capacity corresponding to the speed ratio
+                              Real64 &SHR,                     // sensible heat ratio at the given conditions
+                              Real64 const CondInletTemp,      // Condenser inlet temperature [C]
+                              Real64 const Pressure,           // air pressure [Pa]
+                              Real64 const SpeedRatio,         // from 0.0 to 1.0
+                              int const NumSpeeds              // number of speeds for input
+                              );
 
     void CalcVarSpeedHPWH(int const DXCoilNum,        // the number of the DX coil to be simulated
                           Real64 &RuntimeFrac,        // Runtime Fraction of compressor or percent on time (on-time/cycle time)

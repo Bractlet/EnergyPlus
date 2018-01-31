@@ -183,9 +183,8 @@ namespace CurveManager {
         // Default Constructor
         TriQuadraticCurveDataStruct()
             : CoeffA0(0.0), CoeffA1(0.0), CoeffA2(0.0), CoeffA3(0.0), CoeffA4(0.0), CoeffA5(0.0), CoeffA6(0.0), CoeffA7(0.0), CoeffA8(0.0),
-              CoeffA9(0.0), CoeffA10(0.0), CoeffA11(0.0), CoeffA12(0.0), CoeffA13(0.0), CoeffA14(0.0), CoeffA15(0.0), CoeffA16(0.0),
-              CoeffA17(0.0), CoeffA18(0.0), CoeffA19(0.0), CoeffA20(0.0), CoeffA21(0.0), CoeffA22(0.0), CoeffA23(0.0), CoeffA24(0.0),
-              CoeffA25(0.0), CoeffA26(0.0)
+              CoeffA9(0.0), CoeffA10(0.0), CoeffA11(0.0), CoeffA12(0.0), CoeffA13(0.0), CoeffA14(0.0), CoeffA15(0.0), CoeffA16(0.0), CoeffA17(0.0),
+              CoeffA18(0.0), CoeffA19(0.0), CoeffA20(0.0), CoeffA21(0.0), CoeffA22(0.0), CoeffA23(0.0), CoeffA24(0.0), CoeffA25(0.0), CoeffA26(0.0)
         {
         }
     };
@@ -282,14 +281,13 @@ namespace CurveManager {
         // Default Constructor
         PerfomanceCurveData()
             : ObjectType(0), CurveType(0), InterpolationType(0), DataFormat(0), TableIndex(0), TableVariables(0), NumIVLowErrorIndex(0),
-              NumIVHighErrorIndex(0), X1SortOrder(1), X2SortOrder(1), Coeff1(0.0), Coeff2(0.0), Coeff3(0.0), Coeff4(0.0), Coeff5(0.0),
-              Coeff6(0.0), Coeff7(0.0), Coeff8(0.0), Coeff9(0.0), Coeff10(0.0), Coeff11(0.0), Coeff12(0.0), Var1Max(0.0), Var1Min(0.0),
-              Var2Max(0.0), Var2Min(0.0), Var3Max(0.0), Var3Min(0.0), Var4Max(0.0), Var4Min(0.0), Var5Max(0.0), Var5Min(0.0), CurveMin(0.0),
-              CurveMax(0.0), CurveMinPresent(false), CurveMaxPresent(false), Var1MinPresent(false), Var1MaxPresent(false),
-              Var2MinPresent(false), Var2MaxPresent(false), Var3MinPresent(false), Var3MaxPresent(false), Var4MinPresent(false),
-              Var4MaxPresent(false), Var5MinPresent(false), Var5MaxPresent(false), EMSOverrideOn(false), EMSOverrideCurveValue(0.0),
-              OpticalProperty(false), CurveOutput(0.0), CurveInput1(0.0), CurveInput2(0.0), CurveInput3(0.0), CurveInput4(0.0),
-              CurveInput5(0.0)
+              NumIVHighErrorIndex(0), X1SortOrder(1), X2SortOrder(1), Coeff1(0.0), Coeff2(0.0), Coeff3(0.0), Coeff4(0.0), Coeff5(0.0), Coeff6(0.0),
+              Coeff7(0.0), Coeff8(0.0), Coeff9(0.0), Coeff10(0.0), Coeff11(0.0), Coeff12(0.0), Var1Max(0.0), Var1Min(0.0), Var2Max(0.0), Var2Min(0.0),
+              Var3Max(0.0), Var3Min(0.0), Var4Max(0.0), Var4Min(0.0), Var5Max(0.0), Var5Min(0.0), CurveMin(0.0), CurveMax(0.0),
+              CurveMinPresent(false), CurveMaxPresent(false), Var1MinPresent(false), Var1MaxPresent(false), Var2MinPresent(false),
+              Var2MaxPresent(false), Var3MinPresent(false), Var3MaxPresent(false), Var4MinPresent(false), Var4MaxPresent(false),
+              Var5MinPresent(false), Var5MaxPresent(false), EMSOverrideOn(false), EMSOverrideCurveValue(0.0), OpticalProperty(false),
+              CurveOutput(0.0), CurveInput1(0.0), CurveInput2(0.0), CurveInput3(0.0), CurveInput4(0.0), CurveInput5(0.0)
         {
         }
     };
@@ -312,8 +310,7 @@ namespace CurveManager {
         Array5D<Real64> TableLookupZData;
 
         // Default Constructor
-        TableLookupData()
-            : NumIndependentVars(0), InterpolationOrder(0), NumX1Vars(0), NumX2Vars(0), NumX3Vars(0), NumX4Vars(0), NumX5Vars(0)
+        TableLookupData() : NumIndependentVars(0), InterpolationOrder(0), NumX1Vars(0), NumX2Vars(0), NumX3Vars(0), NumX4Vars(0), NumX5Vars(0)
         {
         }
     };

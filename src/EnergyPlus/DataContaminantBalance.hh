@@ -199,9 +199,9 @@ namespace DataContaminantBalance {
 
         // Default Constructor
         ZoneContControls()
-            : ActualZoneNum(0), AvaiSchedPtr(0), SPSchedIndex(0), EMSOverrideCO2SetPointOn(false), EMSOverrideCO2SetPointValue(0.0),
-              NumOfZones(0), ZoneMinCO2SchedIndex(0), ZoneMaxCO2SchedIndex(0), ZoneContamControllerSchedIndex(0), GCAvaiSchedPtr(0),
-              GCSPSchedIndex(0), EMSOverrideGCSetPointOn(false), EMSOverrideGCSetPointValue(0.0)
+            : ActualZoneNum(0), AvaiSchedPtr(0), SPSchedIndex(0), EMSOverrideCO2SetPointOn(false), EMSOverrideCO2SetPointValue(0.0), NumOfZones(0),
+              ZoneMinCO2SchedIndex(0), ZoneMaxCO2SchedIndex(0), ZoneContamControllerSchedIndex(0), GCAvaiSchedPtr(0), GCSPSchedIndex(0),
+              EMSOverrideGCSetPointOn(false), EMSOverrideGCSetPointValue(0.0)
         {
         }
     };
@@ -287,8 +287,7 @@ namespace DataContaminantBalance {
         Real64 GCGenRate;      // Generic contaminant design generation rate [m3/s] for reporting
 
         // Default Constructor
-        ZoneContamGenericDataDecay()
-            : ActualZoneNum(0), GCInitEmiRate(0.0), GCEmiRateSchedPtr(0), GCTime(0.0), GCDelayTime(0.0), GCGenRate(0.0)
+        ZoneContamGenericDataDecay() : ActualZoneNum(0), GCInitEmiRate(0.0), GCEmiRateSchedPtr(0), GCTime(0.0), GCDelayTime(0.0), GCGenRate(0.0)
         {
         }
     };

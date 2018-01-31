@@ -159,8 +159,7 @@ namespace MixerComponent {
 
     // Beginning of Utility subroutines for the Mixer Component
     // *****************************************************************************
-    void
-    GetZoneMixerIndex(std::string const &MixerName, int &MixerIndex, bool &ErrorsFound, std::string const &ThisObjectType = std::string());
+    void GetZoneMixerIndex(std::string const &MixerName, int &MixerIndex, bool &ErrorsFound, std::string const &ThisObjectType = std::string());
 
     // End of Utility subroutines for the Mixer Component
     // *****************************************************************************

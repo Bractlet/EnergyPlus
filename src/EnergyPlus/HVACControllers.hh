@@ -234,15 +234,14 @@ namespace HVACControllers {
 
         // Default Constructor
         ControllerPropsType()
-            : ControllerType_Num(ControllerSimple_Type), ControlVar(iNoControlVariable), ActuatorVar(0), Action(iNoAction),
-              InitFirstPass(true), NumCalcCalls(0), Mode(iModeNone), DoWarmRestartFlag(false), ReuseIntermediateSolutionFlag(false),
-              ReusePreviousSolutionFlag(false), SolutionTrackers(2), MaxAvailActuated(0.0), MaxAvailSensed(0.0), MinAvailActuated(0.0),
-              MinAvailSensed(0.0), MaxVolFlowActuated(0.0), MinVolFlowActuated(0.0), MaxActuated(0.0), MinActuated(0.0), ActuatedNode(0),
-              ActuatedValue(0.0), NextActuatedValue(0.0), ActuatedNodePlantLoopNum(0), ActuatedNodePlantLoopSide(0),
-              ActuatedNodePlantLoopBranchNum(0), SensedNode(0), IsSetPointDefinedFlag(false), SetPointValue(0.0), SensedValue(0.0),
-              DeltaSensed(0.0), Offset(0.0), HumRatCntrlType(0), Range(0.0), Limit(0.0), TraceFileUnit(0), FirstTraceFlag(true),
-              BadActionErrCount(0), BadActionErrIndex(0), FaultyCoilSATFlag(false), FaultyCoilSATIndex(0), FaultyCoilSATOffset(0.0),
-              BypassControllerCalc(false)
+            : ControllerType_Num(ControllerSimple_Type), ControlVar(iNoControlVariable), ActuatorVar(0), Action(iNoAction), InitFirstPass(true),
+              NumCalcCalls(0), Mode(iModeNone), DoWarmRestartFlag(false), ReuseIntermediateSolutionFlag(false), ReusePreviousSolutionFlag(false),
+              SolutionTrackers(2), MaxAvailActuated(0.0), MaxAvailSensed(0.0), MinAvailActuated(0.0), MinAvailSensed(0.0), MaxVolFlowActuated(0.0),
+              MinVolFlowActuated(0.0), MaxActuated(0.0), MinActuated(0.0), ActuatedNode(0), ActuatedValue(0.0), NextActuatedValue(0.0),
+              ActuatedNodePlantLoopNum(0), ActuatedNodePlantLoopSide(0), ActuatedNodePlantLoopBranchNum(0), SensedNode(0),
+              IsSetPointDefinedFlag(false), SetPointValue(0.0), SensedValue(0.0), DeltaSensed(0.0), Offset(0.0), HumRatCntrlType(0), Range(0.0),
+              Limit(0.0), TraceFileUnit(0), FirstTraceFlag(true), BadActionErrCount(0), BadActionErrIndex(0), FaultyCoilSATFlag(false),
+              FaultyCoilSATIndex(0), FaultyCoilSATOffset(0.0), BypassControllerCalc(false)
         {
         }
     };
@@ -371,8 +370,7 @@ namespace HVACControllers {
     //        End of Reporting subroutines for the Controller Module
     // *****************************************************************************
 
-    void
-    ExitCalcController(int const ControlNum, Real64 const NextActuatedValue, int const Mode, bool &IsConvergedFlag, bool &IsUpToDateFlag);
+    void ExitCalcController(int const ControlNum, Real64 const NextActuatedValue, int const Mode, bool &IsConvergedFlag, bool &IsUpToDateFlag);
 
     // Beginning of Statistics subroutines for the Controller Module
     // *****************************************************************************
@@ -386,9 +384,7 @@ namespace HVACControllers {
 
     void DumpAirLoopStatistics();
 
-    void WriteAirLoopStatistics(int const FileUnit,
-                                DefinePrimaryAirSystem const &ThisPrimaryAirSystem,
-                                AirLoopStatsType const &ThisAirLoopStats);
+    void WriteAirLoopStatistics(int const FileUnit, DefinePrimaryAirSystem const &ThisPrimaryAirSystem, AirLoopStatsType const &ThisAirLoopStats);
 
     // Beginning of Tracing subroutines for the Controller Module
     // *****************************************************************************
@@ -398,11 +394,8 @@ namespace HVACControllers {
     void TraceAirLoopControllers(
         bool const FirstHVACIteration, int const AirLoopNum, int const AirLoopPass, bool const AirLoopConverged, int const AirLoopNumCalls);
 
-    void TraceIterationStamp(int const TraceFileUnit,
-                             bool const FirstHVACIteration,
-                             int const AirLoopPass,
-                             bool const AirLoopConverged,
-                             int const AirLoopNumCalls);
+    void TraceIterationStamp(
+        int const TraceFileUnit, bool const FirstHVACIteration, int const AirLoopPass, bool const AirLoopConverged, int const AirLoopNumCalls);
 
     void TraceAirLoopController(int const TraceFileUnit, int const ControlNum);
 

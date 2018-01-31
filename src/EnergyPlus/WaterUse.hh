@@ -130,12 +130,12 @@ namespace WaterUse {
 
         // Default Constructor
         WaterEquipmentType()
-            : Connections(0), PeakVolFlowRate(0.0), FlowRateFracSchedule(0), ColdVolFlowRate(0.0), HotVolFlowRate(0.0),
-              TotalVolFlowRate(0.0), ColdMassFlowRate(0.0), HotMassFlowRate(0.0), TotalMassFlowRate(0.0), DrainMassFlowRate(0.0),
-              ColdTempSchedule(0), HotTempSchedule(0), TargetTempSchedule(0), ColdTemp(0.0), HotTemp(0.0), TargetTemp(0.0), MixedTemp(0.0),
-              DrainTemp(0.0), Zone(0), SensibleFracSchedule(0), SensibleRate(0.0), SensibleEnergy(0.0), SensibleRateNoMultiplier(0.0),
-              LatentFracSchedule(0), LatentRate(0.0), LatentEnergy(0.0), LatentRateNoMultiplier(0.0), MoistureRate(0.0), MoistureMass(0.0),
-              ColdVolume(0.0), HotVolume(0.0), TotalVolume(0.0), Power(0.0), Energy(0.0)
+            : Connections(0), PeakVolFlowRate(0.0), FlowRateFracSchedule(0), ColdVolFlowRate(0.0), HotVolFlowRate(0.0), TotalVolFlowRate(0.0),
+              ColdMassFlowRate(0.0), HotMassFlowRate(0.0), TotalMassFlowRate(0.0), DrainMassFlowRate(0.0), ColdTempSchedule(0), HotTempSchedule(0),
+              TargetTempSchedule(0), ColdTemp(0.0), HotTemp(0.0), TargetTemp(0.0), MixedTemp(0.0), DrainTemp(0.0), Zone(0), SensibleFracSchedule(0),
+              SensibleRate(0.0), SensibleEnergy(0.0), SensibleRateNoMultiplier(0.0), LatentFracSchedule(0), LatentRate(0.0), LatentEnergy(0.0),
+              LatentRateNoMultiplier(0.0), MoistureRate(0.0), MoistureMass(0.0), ColdVolume(0.0), HotVolume(0.0), TotalVolume(0.0), Power(0.0),
+              Energy(0.0)
         {
         }
 
@@ -216,14 +216,13 @@ namespace WaterUse {
 
         // Default Constructor
         WaterConnectionsType()
-            : Init(true), InitSizing(true), StandAlone(false), InletNode(0), OutletNode(0), SupplyTankNum(0), RecoveryTankNum(0),
-              TankDemandID(0), TankSupplyID(0), HeatRecovery(false), HeatRecoveryHX(HeatRecoveryHXIdeal),
-              HeatRecoveryConfig(HeatRecoveryConfigPlant), HXUA(0.0), Effectiveness(0.0), RecoveryRate(0.0), RecoveryEnergy(0.0),
-              MainsMassFlowRate(0.0), TankMassFlowRate(0.0), ColdMassFlowRate(0.0), HotMassFlowRate(0.0), TotalMassFlowRate(0.0),
-              DrainMassFlowRate(0.0), RecoveryMassFlowRate(0.0), PeakVolFlowRate(0.0), MainsVolFlowRate(0.0), TankVolFlowRate(0.0),
-              ColdVolFlowRate(0.0), HotVolFlowRate(0.0), TotalVolFlowRate(0.0), DrainVolFlowRate(0.0), PeakMassFlowRate(0.0),
-              ColdTempSchedule(0), HotTempSchedule(0), MainsTemp(0.0), TankTemp(0.0), ColdSupplyTemp(0.0), ColdTemp(0.0), HotTemp(0.0),
-              DrainTemp(0.0), RecoveryTemp(0.0), ReturnTemp(0.0), WasteTemp(0.0), TempError(0.0), MainsVolume(0.0), TankVolume(0.0),
+            : Init(true), InitSizing(true), StandAlone(false), InletNode(0), OutletNode(0), SupplyTankNum(0), RecoveryTankNum(0), TankDemandID(0),
+              TankSupplyID(0), HeatRecovery(false), HeatRecoveryHX(HeatRecoveryHXIdeal), HeatRecoveryConfig(HeatRecoveryConfigPlant), HXUA(0.0),
+              Effectiveness(0.0), RecoveryRate(0.0), RecoveryEnergy(0.0), MainsMassFlowRate(0.0), TankMassFlowRate(0.0), ColdMassFlowRate(0.0),
+              HotMassFlowRate(0.0), TotalMassFlowRate(0.0), DrainMassFlowRate(0.0), RecoveryMassFlowRate(0.0), PeakVolFlowRate(0.0),
+              MainsVolFlowRate(0.0), TankVolFlowRate(0.0), ColdVolFlowRate(0.0), HotVolFlowRate(0.0), TotalVolFlowRate(0.0), DrainVolFlowRate(0.0),
+              PeakMassFlowRate(0.0), ColdTempSchedule(0), HotTempSchedule(0), MainsTemp(0.0), TankTemp(0.0), ColdSupplyTemp(0.0), ColdTemp(0.0),
+              HotTemp(0.0), DrainTemp(0.0), RecoveryTemp(0.0), ReturnTemp(0.0), WasteTemp(0.0), TempError(0.0), MainsVolume(0.0), TankVolume(0.0),
               ColdVolume(0.0), HotVolume(0.0), TotalVolume(0.0), Power(0.0), Energy(0.0), NumWaterEquipment(0), MaxIterationsErrorIndex(0),
               PlantLoopNum(0), PlantLoopSide(0), PlantLoopBranchNum(0), PlantLoopCompNum(0)
         {

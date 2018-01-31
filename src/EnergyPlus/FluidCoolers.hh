@@ -166,19 +166,17 @@ namespace FluidCoolers {
         // Default Constructor
         FluidCoolerspecs()
             : FluidCoolerType_Num(0), PerformanceInputMethod_Num(0), Available(true), ON(true), DesignWaterFlowRate(0.0),
-              DesignWaterFlowRateWasAutoSized(false), DesWaterMassFlowRate(0.0), HighSpeedAirFlowRate(0.0),
-              HighSpeedAirFlowRateWasAutoSized(false), HighSpeedFanPower(0.0), HighSpeedFanPowerWasAutoSized(false),
-              HighSpeedFluidCoolerUA(0.0), HighSpeedFluidCoolerUAWasAutoSized(false), LowSpeedAirFlowRate(0.0),
-              LowSpeedAirFlowRateWasAutoSized(false), LowSpeedAirFlowRateSizingFactor(0.0), LowSpeedFanPower(0.0),
+              DesignWaterFlowRateWasAutoSized(false), DesWaterMassFlowRate(0.0), HighSpeedAirFlowRate(0.0), HighSpeedAirFlowRateWasAutoSized(false),
+              HighSpeedFanPower(0.0), HighSpeedFanPowerWasAutoSized(false), HighSpeedFluidCoolerUA(0.0), HighSpeedFluidCoolerUAWasAutoSized(false),
+              LowSpeedAirFlowRate(0.0), LowSpeedAirFlowRateWasAutoSized(false), LowSpeedAirFlowRateSizingFactor(0.0), LowSpeedFanPower(0.0),
               LowSpeedFanPowerWasAutoSized(false), LowSpeedFanPowerSizingFactor(0.0), LowSpeedFluidCoolerUA(0.0),
               LowSpeedFluidCoolerUAWasAutoSized(false), LowSpeedFluidCoolerUASizingFactor(0.0), DesignEnteringWaterTemp(0.0),
-              DesignLeavingWaterTemp(0.0), DesignEnteringAirTemp(0.0), DesignEnteringAirWetBulbTemp(0.0),
-              FluidCoolerMassFlowRateMultiplier(0.0), FluidCoolerNominalCapacity(0.0), FluidCoolerLowSpeedNomCap(0.0),
-              FluidCoolerLowSpeedNomCapWasAutoSized(false), FluidCoolerLowSpeedNomCapSizingFactor(0.0), WaterInletNodeNum(0),
-              WaterOutletNodeNum(0), OutdoorAirInletNodeNum(0), HighMassFlowErrorCount(0), HighMassFlowErrorIndex(0),
-              OutletWaterTempErrorCount(0), OutletWaterTempErrorIndex(0), SmallWaterMassFlowErrorCount(0), SmallWaterMassFlowErrorIndex(0),
-              WMFRLessThanMinAvailErrCount(0), WMFRLessThanMinAvailErrIndex(0), WMFRGreaterThanMaxAvailErrCount(0),
-              WMFRGreaterThanMaxAvailErrIndex(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0)
+              DesignLeavingWaterTemp(0.0), DesignEnteringAirTemp(0.0), DesignEnteringAirWetBulbTemp(0.0), FluidCoolerMassFlowRateMultiplier(0.0),
+              FluidCoolerNominalCapacity(0.0), FluidCoolerLowSpeedNomCap(0.0), FluidCoolerLowSpeedNomCapWasAutoSized(false),
+              FluidCoolerLowSpeedNomCapSizingFactor(0.0), WaterInletNodeNum(0), WaterOutletNodeNum(0), OutdoorAirInletNodeNum(0),
+              HighMassFlowErrorCount(0), HighMassFlowErrorIndex(0), OutletWaterTempErrorCount(0), OutletWaterTempErrorIndex(0),
+              SmallWaterMassFlowErrorCount(0), SmallWaterMassFlowErrorIndex(0), WMFRLessThanMinAvailErrCount(0), WMFRLessThanMinAvailErrIndex(0),
+              WMFRGreaterThanMaxAvailErrCount(0), WMFRGreaterThanMaxAvailErrIndex(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0)
         {
         }
     };

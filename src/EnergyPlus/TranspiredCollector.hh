@@ -159,9 +159,9 @@ namespace TranspiredCollector {
               NumOASysAttached(0), FreeHeatSetPointSchedPtr(0), VsucErrIndex(0), ActualArea(0.0), ProjArea(0.0), Centroid(0.0, 0.0, 0.0),
               Porosity(0.0), IsOn(false), Tplen(0.0), Tcoll(0.0), TplenLast(22.5), TcollLast(22.0), HrPlen(0.0), HcPlen(0.0), MdotVent(0.0),
               HdeltaNPL(0.0), TairHX(0.0), InletMDot(0.0), InletTempDB(0.0), Tilt(0.0), Azimuth(0.0), QdotSource(0.0), Isc(0.0), HXeff(0.0),
-              Vsuction(0.0), PassiveACH(0.0), PassiveMdotVent(0.0), PassiveMdotWind(0.0), PassiveMdotTherm(0.0), PlenumVelocity(0.0),
-              SupOutTemp(0.0), SupOutHumRat(0.0), SupOutEnth(0.0), SupOutMassFlow(0.0), SensHeatingRate(0.0), SensHeatingEnergy(0.0),
-              SensCoolingRate(0.0), SensCoolingEnergy(0.0), UTSCEfficiency(0.0), UTSCCollEff(0.0)
+              Vsuction(0.0), PassiveACH(0.0), PassiveMdotVent(0.0), PassiveMdotWind(0.0), PassiveMdotTherm(0.0), PlenumVelocity(0.0), SupOutTemp(0.0),
+              SupOutHumRat(0.0), SupOutEnth(0.0), SupOutMassFlow(0.0), SensHeatingRate(0.0), SensHeatingEnergy(0.0), SensCoolingRate(0.0),
+              SensCoolingEnergy(0.0), UTSCEfficiency(0.0), UTSCCollEff(0.0)
         {
         }
     };

@@ -130,8 +130,8 @@ namespace SplitterComponent {
         SplitterCond.deallocate();
     }
 
-    void SimAirLoopSplitter(
-        std::string const &CompName, bool const FirstHVACIteration, bool const FirstCall, bool &SplitterInletChanged, int &CompIndex)
+    void
+    SimAirLoopSplitter(std::string const &CompName, bool const FirstHVACIteration, bool const FirstCall, bool &SplitterInletChanged, int &CompIndex)
     {
 
         // SUBROUTINE INFORMATION:
@@ -192,8 +192,8 @@ namespace SplitterComponent {
             }
             if (CheckEquipName(SplitterNum)) {
                 if (CompName != SplitterCond(SplitterNum).SplitterName) {
-                    ShowFatalError("SimAirLoopSplitter: Invalid CompIndex passed=" + TrimSigDigits(SplitterNum) + ", Splitter name=" +
-                                   CompName + ", stored Splitter Name for that index=" + SplitterCond(SplitterNum).SplitterName);
+                    ShowFatalError("SimAirLoopSplitter: Invalid CompIndex passed=" + TrimSigDigits(SplitterNum) + ", Splitter name=" + CompName +
+                                   ", stored Splitter Name for that index=" + SplitterCond(SplitterNum).SplitterName);
                 }
                 CheckEquipName(SplitterNum) = false;
             }
@@ -307,8 +307,8 @@ namespace SplitterComponent {
                 if (IsBlank) AlphArray(1) = "xxxxx";
             }
             SplitterCond(SplitterNum).SplitterName = AlphArray(1);
-            SplitterCond(SplitterNum).InletNode = GetOnlySingleNode(AlphArray(2), ErrorsFound, CurrentModuleObject, AlphArray(1),
-                                                                    NodeType_Air, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+            SplitterCond(SplitterNum).InletNode = GetOnlySingleNode(AlphArray(2), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
+                                                                    NodeConnectionType_Inlet, 1, ObjectIsNotParent);
             SplitterCond(SplitterNum).NumOutletNodes = NumAlphas - 2;
 
             SplitterCond(SplitterNum).OutletNode.allocate(SplitterCond(SplitterNum).NumOutletNodes);
@@ -327,8 +327,8 @@ namespace SplitterComponent {
             for (NodeNum = 1; NodeNum <= SplitterCond(SplitterNum).NumOutletNodes; ++NodeNum) {
 
                 SplitterCond(SplitterNum).OutletNode(NodeNum) =
-                    GetOnlySingleNode(AlphArray(2 + NodeNum), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
-                                      NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+                    GetOnlySingleNode(AlphArray(2 + NodeNum), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air, NodeConnectionType_Outlet,
+                                      1, ObjectIsNotParent);
                 if (lAlphaBlanks(2 + NodeNum)) {
                     ShowSevereError(cAlphaFields(2 + NodeNum) + " is Blank, " + CurrentModuleObject + " = " + AlphArray(1));
                     ErrorsFound = true;

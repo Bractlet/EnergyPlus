@@ -175,9 +175,9 @@ namespace FluidProperties {
               PsHighPresValue(0.0), PsLowPresIndex(0), PsHighPresIndex(0), NumHPoints(0), HfLowTempValue(0.0), HfHighTempValue(0.0),
               HfLowTempIndex(0), HfHighTempIndex(0), HfgLowTempValue(0.0), HfgHighTempValue(0.0), HfgLowTempIndex(0), HfgHighTempIndex(0),
               NumCpPoints(0), CpfLowTempValue(0.0), CpfHighTempValue(0.0), CpfLowTempIndex(0), CpfHighTempIndex(0), CpfgLowTempValue(0.0),
-              CpfgHighTempValue(0.0), CpfgLowTempIndex(0), CpfgHighTempIndex(0), NumRhoPoints(0), RhofLowTempValue(0.0),
-              RhofHighTempValue(0.0), RhofLowTempIndex(0), RhofHighTempIndex(0), RhofgLowTempValue(0.0), RhofgHighTempValue(0.0),
-              RhofgLowTempIndex(0), RhofgHighTempIndex(0), NumSuperTempPts(0), NumSuperPressPts(0)
+              CpfgHighTempValue(0.0), CpfgLowTempIndex(0), CpfgHighTempIndex(0), NumRhoPoints(0), RhofLowTempValue(0.0), RhofHighTempValue(0.0),
+              RhofLowTempIndex(0), RhofHighTempIndex(0), RhofgLowTempValue(0.0), RhofgHighTempValue(0.0), RhofgLowTempIndex(0), RhofgHighTempIndex(0),
+              NumSuperTempPts(0), NumSuperPressPts(0)
         {
         }
     };
@@ -265,9 +265,9 @@ namespace FluidProperties {
         FluidPropsGlycolData()
             : GlycolIndex(0), Concentration(1.0), CpDataPresent(false), CpLowTempValue(0.0), CpHighTempValue(0.0), CpLowTempIndex(0),
               CpHighTempIndex(0), NumCpTempPts(0), RhoDataPresent(false), NumRhoTempPts(0), RhoLowTempValue(0.0), RhoHighTempValue(0.0),
-              RhoLowTempIndex(0), RhoHighTempIndex(0), CondDataPresent(false), NumCondTempPts(0), CondLowTempValue(0.0),
-              CondHighTempValue(0.0), CondLowTempIndex(0), CondHighTempIndex(0), ViscDataPresent(false), NumViscTempPts(0),
-              ViscLowTempValue(0.0), ViscHighTempValue(0.0), ViscLowTempIndex(0), ViscHighTempIndex(0)
+              RhoLowTempIndex(0), RhoHighTempIndex(0), CondDataPresent(false), NumCondTempPts(0), CondLowTempValue(0.0), CondHighTempValue(0.0),
+              CondLowTempIndex(0), CondHighTempIndex(0), ViscDataPresent(false), NumViscTempPts(0), ViscLowTempValue(0.0), ViscHighTempValue(0.0),
+              ViscLowTempIndex(0), ViscHighTempIndex(0)
         {
         }
     };
@@ -303,12 +303,12 @@ namespace FluidProperties {
 
         // Default Constructor
         FluidPropsRefrigErrors()
-            : SatTempErrIndex(0), SatTempErrCount(0), SatPressErrIndex(0), SatPressErrCount(0), SatTempDensityErrIndex(0),
-              SatTempDensityErrCount(0), SatSupEnthalpyErrIndex(0), SatSupEnthalpyErrCount(0), SatSupEnthalpyTempErrIndex(0),
-              SatSupEnthalpyTempErrCount(0), SatSupEnthalpyPresErrIndex(0), SatSupEnthalpyPresErrCount(0), SatSupPressureErrIndex(0),
-              SatSupPressureErrCount(0), SatSupPressureTempErrIndex(0), SatSupPressureTempErrCount(0), SatSupPressureEnthErrIndex(0),
-              SatSupPressureEnthErrCount(0), SatSupDensityErrIndex(0), SatSupDensityErrCount(0), SatSupDensityTempErrIndex(0),
-              SatSupDensityTempErrCount(0), SatSupDensityPresErrIndex(0), SatSupDensityPresErrCount(0)
+            : SatTempErrIndex(0), SatTempErrCount(0), SatPressErrIndex(0), SatPressErrCount(0), SatTempDensityErrIndex(0), SatTempDensityErrCount(0),
+              SatSupEnthalpyErrIndex(0), SatSupEnthalpyErrCount(0), SatSupEnthalpyTempErrIndex(0), SatSupEnthalpyTempErrCount(0),
+              SatSupEnthalpyPresErrIndex(0), SatSupEnthalpyPresErrCount(0), SatSupPressureErrIndex(0), SatSupPressureErrCount(0),
+              SatSupPressureTempErrIndex(0), SatSupPressureTempErrCount(0), SatSupPressureEnthErrIndex(0), SatSupPressureEnthErrCount(0),
+              SatSupDensityErrIndex(0), SatSupDensityErrCount(0), SatSupDensityTempErrIndex(0), SatSupDensityTempErrCount(0),
+              SatSupDensityPresErrIndex(0), SatSupDensityPresErrCount(0)
         {
         }
     };
@@ -338,8 +338,8 @@ namespace FluidProperties {
         FluidPropsGlycolErrors()
             : SpecHeatLowErrIndex(0), SpecHeatHighErrIndex(0), SpecHeatLowErrCount(0), SpecHeatHighErrCount(0), DensityHighErrCount(0),
               DensityLowErrIndex(0), DensityHighErrIndex(0), DensityLowErrCount(0), ConductivityLowErrIndex(0), ConductivityHighErrIndex(0),
-              ConductivityLowErrCount(0), ConductivityHighErrCount(0), ViscosityLowErrIndex(0), ViscosityHighErrIndex(0),
-              ViscosityLowErrCount(0), ViscosityHighErrCount(0)
+              ConductivityLowErrCount(0), ConductivityHighErrCount(0), ViscosityLowErrIndex(0), ViscosityHighErrIndex(0), ViscosityLowErrCount(0),
+              ViscosityHighErrCount(0)
         {
         }
     };

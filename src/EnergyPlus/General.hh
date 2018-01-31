@@ -280,8 +280,8 @@ namespace General {
     }
 
     template <typename Container,
-              class = typename std::enable_if<!std::is_same<typename Container::value_type, std::string>::value>::
-                  type> // Container needs isize() and operator(i) and value_type
+              class = typename std::enable_if<
+                  !std::is_same<typename Container::value_type, std::string>::value>::type> // Container needs isize() and operator(i) and value_type
     inline int
     FindNumberInList(int const WhichNumber, Container const &ListOfItems, int Container::value_type::*num_p)
     {
@@ -331,11 +331,8 @@ namespace General {
                    Real64 &Seconds    // Number of seconds < 60
                    );
 
-    void ScanForReports(std::string const &reportName,
-                        bool &DoReport,
-                        Optional_string_const ReportKey = _,
-                        Optional_string Option1 = _,
-                        Optional_string Option2 = _);
+    void ScanForReports(
+        std::string const &reportName, bool &DoReport, Optional_string_const ReportKey = _, Optional_string Option1 = _, Optional_string Option2 = _);
 
     inline void ReallocateRealArray(Array1D<Real64> &Array,
                                     int &ArrayMax,     // Current and resultant dimension for Array
@@ -371,8 +368,7 @@ namespace General {
         Array1D_string ItemNames(Items.size());
         for (std::size_t i = 0, e = Items.size(); i < e; ++i)
             ItemNames[i] = Items[i].Name;
-        CheckCreatedZoneItemName(calledFrom, CurrentObject, ZoneName, MaxZoneNameLength, ItemName, ItemNames, NumItems, ResultName,
-                                 errFlag);
+        CheckCreatedZoneItemName(calledFrom, CurrentObject, ZoneName, MaxZoneNameLength, ItemName, ItemNames, NumItems, ResultName, errFlag);
     }
 
     std::vector<std::string> splitString(const std::string &string, char delimiter);

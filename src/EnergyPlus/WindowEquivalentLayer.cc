@@ -138,12 +138,12 @@ namespace WindowEquivalentLayer {
     using General::TrimSigDigits;
 
     // Data
-    Real64 const RadiansToDeg(
-        180.0 / 3.141592653589793);      // Conversion for Radians to Degrees: Not using DataGlobals::Pi to avoid initialization order bug
-    Real64 const PAtmSeaLevel(101325.0); // Standard atmospheric pressure at sea level (Pa)
-    int const hipRHO(1);                 // return reflectance
-    int const hipTAU(2);                 // return transmittance
-    Real64 const SMALL_ERROR(0.000001);  // small number
+    Real64 const RadiansToDeg(180.0 /
+                              3.141592653589793); // Conversion for Radians to Degrees: Not using DataGlobals::Pi to avoid initialization order bug
+    Real64 const PAtmSeaLevel(101325.0);          // Standard atmospheric pressure at sea level (Pa)
+    int const hipRHO(1);                          // return reflectance
+    int const hipTAU(2);                          // return transmittance
+    Real64 const SMALL_ERROR(0.000001);           // small number
     // CFSGAP: space between layers (gap types)
     int const gtySEALED(1);  // sealed
     int const gtyOPENin(2);  // open to indoor air  (re Open Channel Flow (OCF))
@@ -648,8 +648,8 @@ namespace WindowEquivalentLayer {
         TransNormal = Abs1(1, NL + 1);
 
         // Calculate SHGC using net radiation method (ASHWAT Model)
-        CFSSHGC = ASHWAT_Thermal(FS, TIN, TOUT, HCIN, HCOUT, TRMOUT, TRMIN, BeamSolarInc, BeamSolarInc * Abs1(1, {1, NL + 1}), TOL, QOCF,
-                                 QOCFRoom, T, Q, JF, JB, H, UCG, SHGC, true);
+        CFSSHGC = ASHWAT_Thermal(FS, TIN, TOUT, HCIN, HCOUT, TRMOUT, TRMIN, BeamSolarInc, BeamSolarInc * Abs1(1, {1, NL + 1}), TOL, QOCF, QOCFRoom, T,
+                                 Q, JF, JB, H, UCG, SHGC, true);
 
         if (!CFSSHGC) {
             ShowWarningMessage(RoutineName + "Solar heat gain coefficient calculation failed for " + FS.Name);
@@ -954,8 +954,7 @@ namespace WindowEquivalentLayer {
                 // The IR radiance of this window's "exterior" surround is the IR radiance
                 // from surfaces and high-temp radiant sources in the adjacent zone
                 outir = SurfaceWindow(SurfNumAdj).IRfromParentZone + QHTRadSysSurf(SurfNumAdj) + QCoolingPanelSurf(SurfNumAdj) +
-                        QHWBaseboardSurf(SurfNumAdj) + QSteamBaseboardSurf(SurfNumAdj) + QElecBaseboardSurf(SurfNumAdj) +
-                        QRadThermInAbs(SurfNumAdj);
+                        QHWBaseboardSurf(SurfNumAdj) + QSteamBaseboardSurf(SurfNumAdj) + QElecBaseboardSurf(SurfNumAdj) + QRadThermInAbs(SurfNumAdj);
 
             } else { // Exterior window (ExtBoundCond = 0)
                      // Calculate LWR from surrounding surfaces if defined for an exterior window
@@ -972,8 +971,7 @@ namespace WindowEquivalentLayer {
                         for (SrdSurfNum = 1; SrdSurfNum <= SurroundingSurfsProperty(SrdSurfsNum).TotSurroundingSurface; SrdSurfNum++) {
                             SrdSurfViewFac = SurroundingSurfsProperty(SrdSurfsNum).SurroundingSurfs(SrdSurfNum).ViewFactor;
                             SrdSurfTempAbs =
-                                GetCurrentScheduleValue(SurroundingSurfsProperty(SrdSurfsNum).SurroundingSurfs(SrdSurfNum).TempSchNum) +
-                                KelvinConv;
+                                GetCurrentScheduleValue(SurroundingSurfsProperty(SrdSurfsNum).SurroundingSurfs(SrdSurfNum).TempSchNum) + KelvinConv;
                             OutSrdIR += StefanBoltzmann * SrdSurfViewFac * (pow_4(SrdSurfTempAbs));
                         }
                     }
@@ -1011,8 +1009,8 @@ namespace WindowEquivalentLayer {
         QAllSWwinAbs({1, NL + 1}) = QRadSWwinAbs({1, NL + 1}, SurfNum);
         //  Solve energy balance(s) for temperature at each node/layer and
         //  heat flux, including components, between each pair of nodes/layers
-        ASHWAT_ThermalR = ASHWAT_Thermal(CFS(EQLNum), TIN, Tout, HcIn, HcOut, TRMOUT, TRMIN, 0.0, QAllSWwinAbs({1, NL + 1}), TOL, QOCF,
-                                         QOCFRoom, T, Q, JF, JB, H, UCG, SHGC);
+        ASHWAT_ThermalR = ASHWAT_Thermal(CFS(EQLNum), TIN, Tout, HcIn, HcOut, TRMOUT, TRMIN, 0.0, QAllSWwinAbs({1, NL + 1}), TOL, QOCF, QOCFRoom, T,
+                                         Q, JF, JB, H, UCG, SHGC);
         // long wave radiant power to room not including reflected
         QRLWX = JB(NL) - (1.0 - LWAbsIn) * JF(NL + 1);
         // nominal surface temp = effective radiant temperature
@@ -1160,8 +1158,8 @@ namespace WindowEquivalentLayer {
     }
 
     Real64 HEMINT(std::function<Real64(Real64 const THETA, int const OPT, Array1A<Real64> const)> F, // property integrand function
-                  int const F_Opt,          // options passed to F() (hipRHO, hipTAU)
-                  Array1A<Real64> const F_P // parameters passed to F()
+                  int const F_Opt,                                                                   // options passed to F() (hipRHO, hipTAU)
+                  Array1A<Real64> const F_P                                                          // parameters passed to F()
                   )
     {
         //       AUTHOR         ASHRAE 1311-RP
@@ -2266,34 +2264,34 @@ namespace WindowEquivalentLayer {
             if (DE < EF - SMALL_ERROR) {
                 // illum < shade
                 PD_BEAM_CASE_I(S, W, OMEGA_H, DE, RHOFF_BT_PARL, TAUFF_BB_PARL, TAUFF_BD_PARL, RHOBF_BT_PARL, TAUBF_BB_PARL, TAUBF_BD_PARL,
-                               RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD,
-                               TAUFF_DD, TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
+                               RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD, TAUFF_DD,
+                               TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
             } else if (DE <= EF + SMALL_ERROR) {
                 // illum and shade equal
                 PD_BEAM_CASE_II(S, W, OMEGA_H, DE, RHOFF_BT_PARL, TAUFF_BB_PARL, TAUFF_BD_PARL, RHOBF_BT_PARL, TAUBF_BB_PARL, TAUBF_BD_PARL,
-                                RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD,
-                                RHOFF_DD, TAUFF_DD, TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
+                                RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD,
+                                TAUFF_DD, TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
             } else {
                 // illum > shade
-                PD_BEAM_CASE_III(S, W, OMEGA_H, DE, RHOFF_BT_PARL, TAUFF_BB_PARL, TAUFF_BD_PARL, RHOBF_BT_PARL, TAUBF_BB_PARL,
-                                 TAUBF_BD_PARL, RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP,
-                                 RHOBF_DD, RHOFF_DD, TAUFF_DD, TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
+                PD_BEAM_CASE_III(S, W, OMEGA_H, DE, RHOFF_BT_PARL, TAUFF_BB_PARL, TAUFF_BD_PARL, RHOBF_BT_PARL, TAUBF_BB_PARL, TAUBF_BD_PARL,
+                                 RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD,
+                                 TAUFF_DD, TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
             }
         } else if (DE <= W + SMALL_ERROR) {
             // illum length same as pleat depth
             PD_BEAM_CASE_IV(S, W, OMEGA_H, DE, RHOFF_BT_PARL, TAUFF_BB_PARL, TAUFF_BD_PARL, RHOBF_BT_PARL, TAUBF_BB_PARL, TAUBF_BD_PARL,
-                            RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD,
-                            TAUFF_DD, TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
+                            RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD, TAUFF_DD,
+                            TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
         } else if (DE < 9000.0 * S) {
             // some direct illum on pleat back
-            PD_BEAM_CASE_V(S, W, OMEGA_H, DE, RHOFF_BT_PARL, TAUFF_BB_PARL, TAUFF_BD_PARL, RHOBF_BT_PARL, TAUBF_BB_PARL, TAUBF_BD_PARL,
-                           RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD,
-                           TAUFF_DD, TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
+            PD_BEAM_CASE_V(S, W, OMEGA_H, DE, RHOFF_BT_PARL, TAUFF_BB_PARL, TAUFF_BD_PARL, RHOBF_BT_PARL, TAUBF_BB_PARL, TAUBF_BD_PARL, RHOFF_BT_PERP,
+                           TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD, TAUFF_DD, TAUBF_DD, RHO_BD,
+                           TAU_BD, TAU_BB);
         } else {
             // beam parallel to pleat sides (no direct illum on pleat back)
             PD_BEAM_CASE_VI(S, W, OMEGA_H, DE, RHOFF_BT_PARL, TAUFF_BB_PARL, TAUFF_BD_PARL, RHOBF_BT_PARL, TAUBF_BB_PARL, TAUBF_BD_PARL,
-                            RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD,
-                            TAUFF_DD, TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
+                            RHOFF_BT_PERP, TAUFF_BB_PERP, TAUFF_BD_PERP, RHOBF_BT_PERP, TAUBF_BB_PERP, TAUBF_BD_PERP, RHOBF_DD, RHOFF_DD, TAUFF_DD,
+                            TAUBF_DD, RHO_BD, TAU_BD, TAU_BB);
         }
     }
 
@@ -3873,8 +3871,8 @@ namespace WindowEquivalentLayer {
         G7 = F76 * J6 + F79 * J9;
         G8 = F86 * J6 + F89 * J9;
 
-        TAU_BB = (2.0 * (DE - W) * sin_OMEGA_H * TAUFF_BB_PARL + (S * cos_OMEGA_H - (DE - W) * sin_OMEGA_H) * TAUFF_BB_PERP) /
-                 (2.0 * S * cos_OMEGA_H);
+        TAU_BB =
+            (2.0 * (DE - W) * sin_OMEGA_H * TAUFF_BB_PARL + (S * cos_OMEGA_H - (DE - W) * sin_OMEGA_H) * TAUFF_BB_PERP) / (2.0 * S * cos_OMEGA_H);
         TAU_BD = (S * G3 + TAUFF_DD * (MK * G8 + MF * G7) + MF * TAUFF_BD_PARL) / (2.0 * S);
         RHO_BD = (RHOFF_BT_PARL + TAUBF_DD * G1 + G5) / 2.0;
     }
@@ -5442,11 +5440,9 @@ namespace WindowEquivalentLayer {
                     }
                 } else {               //  with IF (I .EQ. 0)   i.e., i != 0
                     if (I == NL - 1) { //  indoor layer is diathermanous
-                        DL_RES_r2(T(NL - 1), T(NL), TRMIN, RHOB(NL - 1), RHOF(NL), RHOB(NL), TAU(NL), RHOF(NL + 1), HJR(NL), HR(NL - 1),
-                                  HR(NL));
+                        DL_RES_r2(T(NL - 1), T(NL), TRMIN, RHOB(NL - 1), RHOF(NL), RHOB(NL), TAU(NL), RHOF(NL + 1), HJR(NL), HR(NL - 1), HR(NL));
                     } else { // some intermediate layer is diathermanous
-                        DL_RES_r2(T(I), T(I + 1), T(I + 2), RHOB(I), RHOF(I + 1), RHOB(I + 1), TAU(I + 1), RHOF(I + 2), HJR(I + 1), HR(I),
-                                  HR(I + 1));
+                        DL_RES_r2(T(I), T(I + 1), T(I + 2), RHOB(I), RHOF(I + 1), RHOB(I + 1), TAU(I + 1), RHOF(I + 2), HJR(I + 1), HR(I), HR(I + 1));
                     } //   end of IF/ELSE (I .EQ. NL-1)
                 }     //  end of IF/ELSE (I .EQ. 0)
             }         //  end of IF(ISDL(I) .EQ. 0) .AND. .....
@@ -5943,10 +5939,10 @@ namespace WindowEquivalentLayer {
         Real64 const Tg_2(pow_2(Tg));
         Real64 const Tm_2(pow_2(Tm));
         hr_gm = Epsg * Epsm * FSg_m * StefanBoltzmann * (Tg + Tm) * (Tg_2 + Tm_2);
-        hr_gd = Epsg * Epsdf * FSg_df * StefanBoltzmann * (Td + Tg) * (Td_2 + Tg_2) +
-                Epsg * Epsdb * FSg_db * StefanBoltzmann * (Td + Tg) * (Td_2 + Tg_2);
-        hr_md = Epsm * Epsdf * FSm_df * StefanBoltzmann * (Td + Tm) * (Td_2 + Tm_2) +
-                Epsm * Epsdb * FSm_db * StefanBoltzmann * (Td + Tm) * (Td_2 + Tm_2);
+        hr_gd =
+            Epsg * Epsdf * FSg_df * StefanBoltzmann * (Td + Tg) * (Td_2 + Tg_2) + Epsg * Epsdb * FSg_db * StefanBoltzmann * (Td + Tg) * (Td_2 + Tg_2);
+        hr_md =
+            Epsm * Epsdf * FSm_df * StefanBoltzmann * (Td + Tm) * (Td_2 + Tm_2) + Epsm * Epsdb * FSm_db * StefanBoltzmann * (Td + Tm) * (Td_2 + Tm_2);
     }
 
     void SETUP4x4_A(Real64 const rhog, Real64 const rhodf, Real64 const rhodb, Real64 const taud, Real64 const rhom, Array2A<Real64> A)
@@ -6702,8 +6698,8 @@ namespace WindowEquivalentLayer {
         ISOL = 0.0; // no solar winter condition
         SOURCE = 0.0;
 
-        CFSUFactor = ASHWAT_Thermal(FS, TIABS, TOABS, HCIN, HCOUT, TRMOUT, TRMIN, ISOL, SOURCE({1, NL + 1}), TOL, QOCF, QOCFRoom, T, Q, JF,
-                                    JB, H, U, SHGC, true);
+        CFSUFactor = ASHWAT_Thermal(FS, TIABS, TOABS, HCIN, HCOUT, TRMOUT, TRMIN, ISOL, SOURCE({1, NL + 1}), TOL, QOCF, QOCFRoom, T, Q, JF, JB, H, U,
+                                    SHGC, true);
         if (!CFSUFactor) return CFSUFactor;
         CFSUFactor = true;
         return CFSUFactor;
@@ -6942,12 +6938,8 @@ namespace WindowEquivalentLayer {
         }
     }
 
-    void TDMA_R(Array1S<Real64> X,
-                Array1S<Real64> const AP,
-                Array1S<Real64> const AE,
-                Array1S<Real64> const AW,
-                Array1S<Real64> const BP,
-                int const N)
+    void
+    TDMA_R(Array1S<Real64> X, Array1S<Real64> const AP, Array1S<Real64> const AE, Array1S<Real64> const AW, Array1S<Real64> const BP, int const N)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR         JOHN L. WRIGHT
@@ -6997,12 +6989,7 @@ namespace WindowEquivalentLayer {
         }
     }
 
-    void TDMA(Array1S<Real64> X,
-              Array1S<Real64> const AP,
-              Array1S<Real64> const AE,
-              Array1S<Real64> const AW,
-              Array1S<Real64> const BP,
-              int const N)
+    void TDMA(Array1S<Real64> X, Array1S<Real64> const AP, Array1S<Real64> const AE, Array1S<Real64> const AW, Array1S<Real64> const BP, int const N)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR         JOHN L. WRIGHT
@@ -7059,8 +7046,7 @@ namespace WindowEquivalentLayer {
         }
     }
 
-    void
-    AUTOTDMA(Array1S<Real64> X, Array1S<Real64> AP, Array1S<Real64> const AE, Array1S<Real64> const AW, Array1S<Real64> const BP, int &N)
+    void AUTOTDMA(Array1S<Real64> X, Array1S<Real64> AP, Array1S<Real64> const AE, Array1S<Real64> const AW, Array1S<Real64> const BP, int &N)
     {
         // SUBROUTINE INFORMATION:
         //       AUTHOR         JOHN L. WRIGHT
@@ -7912,14 +7898,12 @@ namespace WindowEquivalentLayer {
             RHOBF_BT0 = L.SWP_MAT.RHOSBBB + L.SWP_MAT.RHOSBBD; // back rho
 
             // drape front properties
-            PD_BEAM(L.S, L.W, OHM_V_RAD, OHM_H_RAD, RHOFF_BT0, L.SWP_MAT.TAUSFBB, L.SWP_MAT.TAUSFBD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD,
-                    RHOBF_BT0, L.SWP_MAT.TAUSBBB, L.SWP_MAT.TAUSBBD, L.SWP_MAT.RHOSBDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSFBD, LSWP.TAUSFBB,
-                    LSWP.TAUSFBD);
+            PD_BEAM(L.S, L.W, OHM_V_RAD, OHM_H_RAD, RHOFF_BT0, L.SWP_MAT.TAUSFBB, L.SWP_MAT.TAUSFBD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD, RHOBF_BT0,
+                    L.SWP_MAT.TAUSBBB, L.SWP_MAT.TAUSBBD, L.SWP_MAT.RHOSBDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSFBD, LSWP.TAUSFBB, LSWP.TAUSFBD);
 
             // drape back properties: call with reversed fabric properies
-            PD_BEAM(L.S, L.W, OHM_V_RAD, OHM_H_RAD, RHOBF_BT0, L.SWP_MAT.TAUSBBB, L.SWP_MAT.TAUSBBD, L.SWP_MAT.RHOSBDD, L.SWP_MAT.TAUS_DD,
-                    RHOFF_BT0, L.SWP_MAT.TAUSFBB, L.SWP_MAT.TAUSFBD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSBBD, LSWP.TAUSBBB,
-                    LSWP.TAUSBBD);
+            PD_BEAM(L.S, L.W, OHM_V_RAD, OHM_H_RAD, RHOBF_BT0, L.SWP_MAT.TAUSBBB, L.SWP_MAT.TAUSBBD, L.SWP_MAT.RHOSBDD, L.SWP_MAT.TAUS_DD, RHOFF_BT0,
+                    L.SWP_MAT.TAUSFBB, L.SWP_MAT.TAUSFBD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSBBD, LSWP.TAUSBBB, LSWP.TAUSBBD);
         }
         PD_SWP = true;
         return PD_SWP;
@@ -8034,17 +8018,16 @@ namespace WindowEquivalentLayer {
 
         if (DODIFFUSE) {
 
-            VB_DIFF(L.S, L.W, DegToRadians * L.PHI_DEG, L.SWP_MAT.RHOSBDD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSFDD,
-                    LSWP.TAUS_DD);
+            VB_DIFF(L.S, L.W, DegToRadians * L.PHI_DEG, L.SWP_MAT.RHOSBDD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSFDD, LSWP.TAUS_DD);
 
             VB_DIFF(L.S, L.W, -DegToRadians * L.PHI_DEG, L.SWP_MAT.RHOSBDD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSBDD, TAUX);
         } else {
             // modify angle-dependent values for actual profile angle
-            VB_SOL46_CURVE(L.S, L.W, SL_WR, DegToRadians * L.PHI_DEG, OMEGA, L.SWP_MAT.RHOSBDD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD,
-                           LSWP.RHOSFBD, LSWP.TAUSFBB, LSWP.TAUSFBD);
+            VB_SOL46_CURVE(L.S, L.W, SL_WR, DegToRadians * L.PHI_DEG, OMEGA, L.SWP_MAT.RHOSBDD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSFBD,
+                           LSWP.TAUSFBB, LSWP.TAUSFBD);
 
-            VB_SOL46_CURVE(L.S, L.W, SL_WR, -DegToRadians * L.PHI_DEG, OMEGA, L.SWP_MAT.RHOSBDD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD,
-                           LSWP.RHOSBBD, LSWP.TAUSBBB, LSWP.TAUSBBD);
+            VB_SOL46_CURVE(L.S, L.W, SL_WR, -DegToRadians * L.PHI_DEG, OMEGA, L.SWP_MAT.RHOSBDD, L.SWP_MAT.RHOSFDD, L.SWP_MAT.TAUS_DD, LSWP.RHOSBBD,
+                           LSWP.TAUSBBB, LSWP.TAUSBBD);
         }
         VB_SWP = true;
         return VB_SWP;
@@ -9383,8 +9366,8 @@ namespace WindowEquivalentLayer {
         mu = 3.723E-6 + 4.94E-8 * TmeanFilmKelvin;     // Table B.2 in ISO 15099
         Cp = 1002.737 + 1.2324E-2 * TmeanFilmKelvin;   // Table B.3 in ISO 15099
 
-        RaH = (pow_2(rho) * pow_3(Height) * GravityConstant * Cp * std::abs(TSurfIn - TAirIn)) /
-              (TmeanFilmKelvin * mu * lambda); // eq 132 in ISO 15099
+        RaH =
+            (pow_2(rho) * pow_3(Height) * GravityConstant * Cp * std::abs(TSurfIn - TAirIn)) / (TmeanFilmKelvin * mu * lambda); // eq 132 in ISO 15099
 
         // eq. 135 in ISO 15099 (only need this one because tilt is 90 deg)
         Nuint = 0.56 * root_4(RaH * sineTilt);

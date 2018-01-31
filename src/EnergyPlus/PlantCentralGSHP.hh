@@ -112,8 +112,8 @@ namespace PlantCentralGSHP {
 
         // Default Constructor
         CGSHPNodeData()
-            : Temp(0.0), TempMin(0.0), TempSetPoint(0.0), MassFlowRate(0.0), MassFlowRateMin(0.0), MassFlowRateMax(0.0),
-              MassFlowRateMinAvail(0.0), MassFlowRateMaxAvail(0.0), MassFlowRateSetPoint(0.0), MassFlowRateRequest(0.0)
+            : Temp(0.0), TempMin(0.0), TempSetPoint(0.0), MassFlowRate(0.0), MassFlowRateMin(0.0), MassFlowRateMax(0.0), MassFlowRateMinAvail(0.0),
+              MassFlowRateMaxAvail(0.0), MassFlowRateSetPoint(0.0), MassFlowRateRequest(0.0)
         {
         }
     };
@@ -222,22 +222,21 @@ namespace PlantCentralGSHP {
 
         // Default Constructor
         ChillerHeaterSpecs()
-            : ConstantFlow(false), VariableFlow(false), CoolSetPointSetToLoop(false), HeatSetPointSetToLoop(false),
-              CoolSetPointErrDone(false), HeatSetPointErrDone(false), PossibleSubcooling(false), ChillerHeaterNum(1), CondenserType(0),
-              ChillerCapFTCooling(0), ChillerEIRFTCooling(0), ChillerEIRFPLRCooling(0), ChillerCapFTHeating(0), ChillerEIRFTHeating(0),
-              ChillerEIRFPLRHeating(0), ChillerCapFT(0), ChillerEIRFT(0), ChillerEIRFPLR(0), EvapInletNodeNum(0), EvapOutletNodeNum(0),
-              CondInletNodeNum(0), CondOutletNodeNum(0), ChillerCapFTError(0), ChillerCapFTErrorIndex(0), ChillerEIRFTError(0),
-              ChillerEIRFTErrorIndex(0), ChillerEIRFPLRError(0), ChillerEIRFPLRErrorIndex(0), ChillerEIRRefTempErrorIndex(0),
-              DeltaTErrCount(0), DeltaTErrCountIndex(0), CondMassFlowIndex(0), RefCapCooling(0.0), RefCapCoolingWasAutoSized(false),
-              RefCOPCooling(0.0), TempRefEvapOutCooling(0.0), TempRefCondInCooling(0.0), TempRefCondOutCooling(0.0),
-              MaxPartLoadRatCooling(0.0), OptPartLoadRatCooling(0.0), MinPartLoadRatCooling(0.0), ClgHtgToCoolingCapRatio(0.0),
-              ClgHtgtoCogPowerRatio(0.0), RefCapClgHtg(0.0), RefCOPClgHtg(0.0), RefPowerClgHtg(0.0), TempRefEvapOutClgHtg(0.0),
-              TempRefCondInClgHtg(0.0), TempRefCondOutClgHtg(0.0), TempLowLimitEvapOut(0.0), MaxPartLoadRatClgHtg(0.0),
-              OptPartLoadRatClgHtg(0.0), MinPartLoadRatClgHtg(0.0), EvapVolFlowRate(0.0), EvapVolFlowRateWasAutoSized(false),
-              tmpEvapVolFlowRate(0.0), CondVolFlowRate(0.0), CondVolFlowRateWasAutoSized(false), tmpCondVolFlowRate(0.0),
-              CondMassFlowRateMax(0.0), EvapMassFlowRateMax(0.0), Evapmdot(0.0), Condmdot(0.0), DesignHotWaterVolFlowRate(0.0),
-              OpenMotorEff(0.0), SizFac(0.0), RefCap(0.0), RefCOP(0.0), TempRefEvapOut(0.0), TempRefCondIn(0.0), TempRefCondOut(0.0),
-              OptPartLoadRat(0.0), ChillerEIRFPLRMin(0.0), ChillerEIRFPLRMax(0.0)
+            : ConstantFlow(false), VariableFlow(false), CoolSetPointSetToLoop(false), HeatSetPointSetToLoop(false), CoolSetPointErrDone(false),
+              HeatSetPointErrDone(false), PossibleSubcooling(false), ChillerHeaterNum(1), CondenserType(0), ChillerCapFTCooling(0),
+              ChillerEIRFTCooling(0), ChillerEIRFPLRCooling(0), ChillerCapFTHeating(0), ChillerEIRFTHeating(0), ChillerEIRFPLRHeating(0),
+              ChillerCapFT(0), ChillerEIRFT(0), ChillerEIRFPLR(0), EvapInletNodeNum(0), EvapOutletNodeNum(0), CondInletNodeNum(0),
+              CondOutletNodeNum(0), ChillerCapFTError(0), ChillerCapFTErrorIndex(0), ChillerEIRFTError(0), ChillerEIRFTErrorIndex(0),
+              ChillerEIRFPLRError(0), ChillerEIRFPLRErrorIndex(0), ChillerEIRRefTempErrorIndex(0), DeltaTErrCount(0), DeltaTErrCountIndex(0),
+              CondMassFlowIndex(0), RefCapCooling(0.0), RefCapCoolingWasAutoSized(false), RefCOPCooling(0.0), TempRefEvapOutCooling(0.0),
+              TempRefCondInCooling(0.0), TempRefCondOutCooling(0.0), MaxPartLoadRatCooling(0.0), OptPartLoadRatCooling(0.0),
+              MinPartLoadRatCooling(0.0), ClgHtgToCoolingCapRatio(0.0), ClgHtgtoCogPowerRatio(0.0), RefCapClgHtg(0.0), RefCOPClgHtg(0.0),
+              RefPowerClgHtg(0.0), TempRefEvapOutClgHtg(0.0), TempRefCondInClgHtg(0.0), TempRefCondOutClgHtg(0.0), TempLowLimitEvapOut(0.0),
+              MaxPartLoadRatClgHtg(0.0), OptPartLoadRatClgHtg(0.0), MinPartLoadRatClgHtg(0.0), EvapVolFlowRate(0.0),
+              EvapVolFlowRateWasAutoSized(false), tmpEvapVolFlowRate(0.0), CondVolFlowRate(0.0), CondVolFlowRateWasAutoSized(false),
+              tmpCondVolFlowRate(0.0), CondMassFlowRateMax(0.0), EvapMassFlowRateMax(0.0), Evapmdot(0.0), Condmdot(0.0),
+              DesignHotWaterVolFlowRate(0.0), OpenMotorEff(0.0), SizFac(0.0), RefCap(0.0), RefCOP(0.0), TempRefEvapOut(0.0), TempRefCondIn(0.0),
+              TempRefCondOut(0.0), OptPartLoadRat(0.0), ChillerEIRFPLRMin(0.0), ChillerEIRFPLRMax(0.0)
         {
         }
     };
@@ -294,14 +293,13 @@ namespace PlantCentralGSHP {
         // Default Constructor
         CHReportVars()
             : CurrentMode(0), ChillerPartLoadRatio(0.0), ChillerCyclingRatio(0.0), ChillerFalseLoad(0.0), ChillerFalseLoadRate(0.0),
-              CoolingPower(0.0), HeatingPower(0.0), QEvap(0.0), QCond(0.0), CoolingEnergy(0.0), HeatingEnergy(0.0), EvapEnergy(0.0),
-              CondEnergy(0.0), CondInletTemp(0.0), EvapInletTemp(0.0), CondOutletTemp(0.0), EvapOutletTemp(0.0), Evapmdot(0.0),
-              Condmdot(0.0), ActualCOP(0.0), ChillerCapFT(0.0), ChillerEIRFT(0.0), ChillerEIRFPLR(0.0), CondenserFanPowerUse(0.0),
-              CondenserFanEnergy(0.0), CondenserFanEnergyConsumption(0.0), ChillerPartLoadRatioSimul(0.0), ChillerCyclingRatioSimul(0.0),
-              ChillerFalseLoadSimul(0.0), ChillerFalseLoadRateSimul(0.0), CoolingPowerSimul(0.0), QEvapSimul(0.0), QCondSimul(0.0),
-              CoolingEnergySimul(0.0), EvapEnergySimul(0.0), CondEnergySimul(0.0), EvapInletTempSimul(0.0), EvapOutletTempSimul(0.0),
-              EvapmdotSimul(0.0), CondInletTempSimul(0.0), CondOutletTempSimul(0.0), CondmdotSimul(0.0), ChillerCapFTSimul(0.0),
-              ChillerEIRFTSimul(0.0), ChillerEIRFPLRSimul(0.0)
+              CoolingPower(0.0), HeatingPower(0.0), QEvap(0.0), QCond(0.0), CoolingEnergy(0.0), HeatingEnergy(0.0), EvapEnergy(0.0), CondEnergy(0.0),
+              CondInletTemp(0.0), EvapInletTemp(0.0), CondOutletTemp(0.0), EvapOutletTemp(0.0), Evapmdot(0.0), Condmdot(0.0), ActualCOP(0.0),
+              ChillerCapFT(0.0), ChillerEIRFT(0.0), ChillerEIRFPLR(0.0), CondenserFanPowerUse(0.0), CondenserFanEnergy(0.0),
+              CondenserFanEnergyConsumption(0.0), ChillerPartLoadRatioSimul(0.0), ChillerCyclingRatioSimul(0.0), ChillerFalseLoadSimul(0.0),
+              ChillerFalseLoadRateSimul(0.0), CoolingPowerSimul(0.0), QEvapSimul(0.0), QCondSimul(0.0), CoolingEnergySimul(0.0), EvapEnergySimul(0.0),
+              CondEnergySimul(0.0), EvapInletTempSimul(0.0), EvapOutletTempSimul(0.0), EvapmdotSimul(0.0), CondInletTempSimul(0.0),
+              CondOutletTempSimul(0.0), CondmdotSimul(0.0), ChillerCapFTSimul(0.0), ChillerEIRFTSimul(0.0), ChillerEIRFPLRSimul(0.0)
         {
         }
     };
@@ -364,11 +362,10 @@ namespace PlantCentralGSHP {
             : VariableFlowCH(false), SchedPtr(0), CHSchedPtr(0), ControlMode(0), CHWInletNodeNum(0), CHWOutletNodeNum(0), HWInletNodeNum(0),
               HWOutletNodeNum(0), GLHEInletNodeNum(0), GLHEOutletNodeNum(0), NumOfComp(0), CHWMassFlowRate(0.0), HWMassFlowRate(0.0),
               GLHEMassFlowRate(0.0), CHWMassFlowRateMax(0.0), HWMassFlowRateMax(0.0), GLHEMassFlowRateMax(0.0), WrapperCoolingLoad(0.0),
-              WrapperHeatingLoad(0.0), AncilliaryPower(0.0), CoolSetPointErrDone(false), HeatSetPointErrDone(false),
-              CoolSetPointSetToLoop(false), HeatSetPointSetToLoop(false), CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0), CWCompNum(0),
-              HWLoopNum(0), HWLoopSideNum(0), HWBranchNum(0), HWCompNum(0), GLHELoopNum(0), GLHELoopSideNum(0), GLHEBranchNum(0),
-              GLHECompNum(0), CHWMassFlowIndex(0), HWMassFlowIndex(0), GLHEMassFlowIndex(0), SizingFactor(1.0), CHWVolFlowRate(0.0),
-              HWVolFlowRate(0.0), GLHEVolFlowRate(0.0)
+              WrapperHeatingLoad(0.0), AncilliaryPower(0.0), CoolSetPointErrDone(false), HeatSetPointErrDone(false), CoolSetPointSetToLoop(false),
+              HeatSetPointSetToLoop(false), CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0), CWCompNum(0), HWLoopNum(0), HWLoopSideNum(0),
+              HWBranchNum(0), HWCompNum(0), GLHELoopNum(0), GLHELoopSideNum(0), GLHEBranchNum(0), GLHECompNum(0), CHWMassFlowIndex(0),
+              HWMassFlowIndex(0), GLHEMassFlowIndex(0), SizingFactor(1.0), CHWVolFlowRate(0.0), HWVolFlowRate(0.0), GLHEVolFlowRate(0.0)
         {
         }
     };
@@ -413,11 +410,11 @@ namespace PlantCentralGSHP {
         // Default Constructor
         WrapperReportVars()
             : Power(0.0), QCHW(0.0), QHW(0.0), QGLHE(0.0), TotElecCooling(0.0), TotElecHeating(0.0), CoolingEnergy(0.0), HeatingEnergy(0.0),
-              GLHEEnergy(0.0), TotElecCoolingPwr(0.0), TotElecHeatingPwr(0.0), CoolingRate(0.0), HeatingRate(0.0), GLHERate(0.0),
-              CHWInletTemp(0.0), HWInletTemp(0.0), GLHEInletTemp(0.0), CHWOutletTemp(0.0), HWOutletTemp(0.0), GLHEOutletTemp(0.0),
-              CHWmdot(0.0), HWmdot(0.0), GLHEmdot(0.0), TotElecCoolingSimul(0.0), CoolingEnergySimul(0.0), TotElecCoolingPwrSimul(0.0),
-              CoolingRateSimul(0.0), CHWInletTempSimul(0.0), GLHEInletTempSimul(0.0), CHWOutletTempSimul(0.0), GLHEOutletTempSimul(0.0),
-              CHWmdotSimul(0.0), GLHEmdotSimul(0.0)
+              GLHEEnergy(0.0), TotElecCoolingPwr(0.0), TotElecHeatingPwr(0.0), CoolingRate(0.0), HeatingRate(0.0), GLHERate(0.0), CHWInletTemp(0.0),
+              HWInletTemp(0.0), GLHEInletTemp(0.0), CHWOutletTemp(0.0), HWOutletTemp(0.0), GLHEOutletTemp(0.0), CHWmdot(0.0), HWmdot(0.0),
+              GLHEmdot(0.0), TotElecCoolingSimul(0.0), CoolingEnergySimul(0.0), TotElecCoolingPwrSimul(0.0), CoolingRateSimul(0.0),
+              CHWInletTempSimul(0.0), GLHEInletTempSimul(0.0), CHWOutletTempSimul(0.0), GLHEOutletTempSimul(0.0), CHWmdotSimul(0.0),
+              GLHEmdotSimul(0.0)
         {
         }
     };
@@ -476,8 +473,8 @@ namespace PlantCentralGSHP {
                                 int const LoopNum          // Loop number
                                 );
 
-    void CalcWrapperModel(
-        int const WrapperNum, Real64 &MyLoad, bool const RunFlag, bool const FirstIteration, int const EquipFlowCtrl, int const LoopNum);
+    void
+    CalcWrapperModel(int const WrapperNum, Real64 &MyLoad, bool const RunFlag, bool const FirstIteration, int const EquipFlowCtrl, int const LoopNum);
 
     void UpdateChillerRecords(int const WrapperNum); // Wrapper number
 

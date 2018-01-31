@@ -274,8 +274,8 @@ namespace ExteriorEnergyUse {
                     ShowSevereError(RoutineName + cCurrentModuleObject + ": " + cAlphaFieldNames(2) + " is required, missing for " +
                                     cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                 } else {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered=" + cAlphaArgs(2) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered=" + cAlphaArgs(2) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                 }
                 ErrorsFound = true;
             } else { // check min/max on schedule
@@ -283,14 +283,14 @@ namespace ExteriorEnergyUse {
                 SchMax = GetScheduleMaxValue(ExteriorLights(Item).SchedPtr);
                 if (SchMin < 0.0 || SchMax < 0.0) {
                     if (SchMin < 0.0) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) +
-                                        " minimum, is < 0.0 for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " minimum, is < 0.0 for " +
+                                        cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ShowContinueError(cAlphaArgs(2) + "\". Minimum is [" + RoundSigDigits(SchMin, 1) + "]. Values must be >= 0.0.");
                         ErrorsFound = true;
                     }
                     if (SchMax < 0.0) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) +
-                                        " maximum, is < 0.0 for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " maximum, is < 0.0 for " +
+                                        cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ShowContinueError(cAlphaArgs(2) + "\". Maximum is [" + RoundSigDigits(SchMax, 1) + "]. Values must be >= 0.0.");
                         ErrorsFound = true;
                     }
@@ -360,30 +360,30 @@ namespace ExteriorEnergyUse {
                 EndUseSubcategoryName = "General";
             }
 
-            ValidateFuelType(ExteriorEquipment(NumExteriorEqs).FuelType, cAlphaArgs(2), TypeString, cCurrentModuleObject,
-                             cAlphaFieldNames(2), cAlphaArgs(2));
+            ValidateFuelType(ExteriorEquipment(NumExteriorEqs).FuelType, cAlphaArgs(2), TypeString, cCurrentModuleObject, cAlphaFieldNames(2),
+                             cAlphaArgs(2));
             if (ExteriorEquipment(NumExteriorEqs).FuelType == 0) {
                 if (lAlphaFieldBlanks(2)) {
                     ShowSevereError(RoutineName + cCurrentModuleObject + ": " + cAlphaFieldNames(2) + " is required, missing for " +
                                     cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                 } else {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered=" + cAlphaArgs(2) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered=" + cAlphaArgs(2) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                 }
                 ErrorsFound = true;
             } else {
                 if (ExteriorEquipment(NumExteriorEqs).FuelType != WaterUse) {
-                    SetupOutputVariable("Exterior Equipment Fuel Rate", OutputProcessor::Unit::W, ExteriorEquipment(NumExteriorEqs).Power,
-                                        "Zone", "Average", ExteriorEquipment(NumExteriorEqs).Name);
+                    SetupOutputVariable("Exterior Equipment Fuel Rate", OutputProcessor::Unit::W, ExteriorEquipment(NumExteriorEqs).Power, "Zone",
+                                        "Average", ExteriorEquipment(NumExteriorEqs).Name);
                     SetupOutputVariable("Exterior Equipment " + TypeString + " Energy", OutputProcessor::Unit::J,
-                                        ExteriorEquipment(NumExteriorEqs).CurrentUse, "Zone", "Sum", ExteriorEquipment(NumExteriorEqs).Name,
-                                        _, TypeString, "ExteriorEquipment", EndUseSubcategoryName);
+                                        ExteriorEquipment(NumExteriorEqs).CurrentUse, "Zone", "Sum", ExteriorEquipment(NumExteriorEqs).Name, _,
+                                        TypeString, "ExteriorEquipment", EndUseSubcategoryName);
                 } else {
                     SetupOutputVariable("Exterior Equipment Water Volume Flow Rate", OutputProcessor::Unit::m3_s,
                                         ExteriorEquipment(NumExteriorEqs).Power, "Zone", "Average", ExteriorEquipment(NumExteriorEqs).Name);
                     SetupOutputVariable("Exterior Equipment " + TypeString + " Volume", OutputProcessor::Unit::m3,
-                                        ExteriorEquipment(NumExteriorEqs).CurrentUse, "Zone", "Sum", ExteriorEquipment(NumExteriorEqs).Name,
-                                        _, TypeString, "ExteriorEquipment", EndUseSubcategoryName);
+                                        ExteriorEquipment(NumExteriorEqs).CurrentUse, "Zone", "Sum", ExteriorEquipment(NumExteriorEqs).Name, _,
+                                        TypeString, "ExteriorEquipment", EndUseSubcategoryName);
                 }
             }
             ExteriorEquipment(NumExteriorEqs).SchedPtr = GetScheduleIndex(cAlphaArgs(3));
@@ -392,8 +392,8 @@ namespace ExteriorEnergyUse {
                     ShowSevereError(RoutineName + cCurrentModuleObject + ": " + cAlphaFieldNames(3) + " is required, missing for " +
                                     cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                 } else {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) + " entered=" + cAlphaArgs(3) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) + " entered=" + cAlphaArgs(3) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                 }
                 ErrorsFound = true;
             } else { // check min/max on schedule
@@ -401,14 +401,14 @@ namespace ExteriorEnergyUse {
                 SchMax = GetScheduleMaxValue(ExteriorEquipment(NumExteriorEqs).SchedPtr);
                 if (SchMin < 0.0 || SchMax < 0.0) {
                     if (SchMin < 0.0) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) +
-                                        " minimum, is < 0.0 for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) + " minimum, is < 0.0 for " +
+                                        cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ShowContinueError(cAlphaArgs(3) + "\". Minimum is [" + RoundSigDigits(SchMin, 1) + "]. Values must be >= 0.0.");
                         ErrorsFound = true;
                     }
                     if (SchMax < 0.0) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) +
-                                        " maximum, is < 0.0 for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) + " maximum, is < 0.0 for " +
+                                        cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ShowContinueError(cAlphaArgs(3) + "\". Maximum is [" + RoundSigDigits(SchMax, 1) + "]. Values must be >= 0.0.");
                         ErrorsFound = true;
                     }
@@ -439,8 +439,8 @@ namespace ExteriorEnergyUse {
                     ShowSevereError(RoutineName + cCurrentModuleObject + ": " + cAlphaFieldNames(3) + " is required, missing for " +
                                     cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                 } else {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) + " entered=" + cAlphaArgs(3) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) + " entered=" + cAlphaArgs(3) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                 }
                 ErrorsFound = true;
             } else { // check min/max on schedule
@@ -448,14 +448,14 @@ namespace ExteriorEnergyUse {
                 SchMax = GetScheduleMaxValue(ExteriorEquipment(NumExteriorEqs).SchedPtr);
                 if (SchMin < 0.0 || SchMax < 0.0) {
                     if (SchMin < 0.0) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) +
-                                        " minimum, is < 0.0 for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) + " minimum, is < 0.0 for " +
+                                        cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ShowContinueError(cAlphaArgs(3) + "\". Minimum is [" + RoundSigDigits(SchMin, 1) + "]. Values must be >= 0.0.");
                         ErrorsFound = true;
                     }
                     if (SchMax < 0.0) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) +
-                                        " maximum, is < 0.0 for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(3) + " maximum, is < 0.0 for " +
+                                        cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ShowContinueError(cAlphaArgs(3) + "\". Maximum is [" + RoundSigDigits(SchMax, 1) + "]. Values must be >= 0.0.");
                         ErrorsFound = true;
                     }
@@ -470,15 +470,13 @@ namespace ExteriorEnergyUse {
 
             ExteriorEquipment(NumExteriorEqs).DesignLevel = rNumericArgs(1);
 
-            SetupOutputVariable("Exterior Equipment Water Volume Flow Rate", OutputProcessor::Unit::m3_s,
-                                ExteriorEquipment(NumExteriorEqs).Power, "Zone", "Average", ExteriorEquipment(NumExteriorEqs).Name);
+            SetupOutputVariable("Exterior Equipment Water Volume Flow Rate", OutputProcessor::Unit::m3_s, ExteriorEquipment(NumExteriorEqs).Power,
+                                "Zone", "Average", ExteriorEquipment(NumExteriorEqs).Name);
 
-            SetupOutputVariable("Exterior Equipment Water Volume", OutputProcessor::Unit::m3, ExteriorEquipment(NumExteriorEqs).CurrentUse,
-                                "Zone", "Sum", ExteriorEquipment(NumExteriorEqs).Name, _, "Water", "ExteriorEquipment",
-                                EndUseSubcategoryName);
-            SetupOutputVariable("Exterior Equipment Mains Water Volume", OutputProcessor::Unit::m3,
-                                ExteriorEquipment(NumExteriorEqs).CurrentUse, "Zone", "Sum", ExteriorEquipment(NumExteriorEqs).Name, _,
-                                "MainsWater", "ExteriorEquipment", EndUseSubcategoryName);
+            SetupOutputVariable("Exterior Equipment Water Volume", OutputProcessor::Unit::m3, ExteriorEquipment(NumExteriorEqs).CurrentUse, "Zone",
+                                "Sum", ExteriorEquipment(NumExteriorEqs).Name, _, "Water", "ExteriorEquipment", EndUseSubcategoryName);
+            SetupOutputVariable("Exterior Equipment Mains Water Volume", OutputProcessor::Unit::m3, ExteriorEquipment(NumExteriorEqs).CurrentUse,
+                                "Zone", "Sum", ExteriorEquipment(NumExteriorEqs).Name, _, "MainsWater", "ExteriorEquipment", EndUseSubcategoryName);
         }
 
         if (ErrorsFound) {
@@ -637,8 +635,7 @@ namespace ExteriorEnergyUse {
                         ExteriorLights(Item).Power = 0.0;
                         ExteriorLights(Item).CurrentUse = 0.0;
                     } else {
-                        ExteriorLights(Item).Power =
-                            ExteriorLights(Item).DesignLevel * GetCurrentScheduleValue(ExteriorLights(Item).SchedPtr);
+                        ExteriorLights(Item).Power = ExteriorLights(Item).DesignLevel * GetCurrentScheduleValue(ExteriorLights(Item).SchedPtr);
                         ExteriorLights(Item).CurrentUse = ExteriorLights(Item).Power * TimeStepZoneSec;
                     }
 

@@ -103,9 +103,9 @@ namespace OutsideEnergySources {
 
         // Default Constructor
         OutsideEnergySourceSpecs()
-            : NomCap(0.0), NomCapWasAutoSized(false), CapFractionSchedNum(0), InletNodeNum(0), OutletNodeNum(0), EnergyTransfer(0.0),
-              EnergyRate(0.0), EnergyType(0), MassFlowReSimIndex(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0),
-              OneTimeInitFlag(true), BeginEnvrnInitFlag(true), CheckEquipName(true)
+            : NomCap(0.0), NomCapWasAutoSized(false), CapFractionSchedNum(0), InletNodeNum(0), OutletNodeNum(0), EnergyTransfer(0.0), EnergyRate(0.0),
+              EnergyType(0), MassFlowReSimIndex(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0), OneTimeInitFlag(true),
+              BeginEnvrnInitFlag(true), CheckEquipName(true)
         {
         }
     };

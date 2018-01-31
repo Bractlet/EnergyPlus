@@ -146,13 +146,12 @@ namespace Photovoltaics {
 
     // Functions
 
-    void
-    SimPVGenerator(int const EP_UNUSED(GeneratorType), // type of Generator !unused1208
-                   std::string const &GeneratorName,   // user specified name of Generator
-                   int &GeneratorIndex,
-                   bool const RunFlag,            // is PV ON or OFF as determined by schedules in ElecLoadCenter
-                   Real64 const EP_UNUSED(PVLoad) // electrical load on the PV (not really used... PV models assume "full on" !unused1208
-                   )
+    void SimPVGenerator(int const EP_UNUSED(GeneratorType), // type of Generator !unused1208
+                        std::string const &GeneratorName,   // user specified name of Generator
+                        int &GeneratorIndex,
+                        bool const RunFlag,            // is PV ON or OFF as determined by schedules in ElecLoadCenter
+                        Real64 const EP_UNUSED(PVLoad) // electrical load on the PV (not really used... PV models assume "full on" !unused1208
+                        )
     {
 
         // SUBROUTINE INFORMATION:
@@ -385,8 +384,8 @@ namespace Photovoltaics {
 
         cCurrentModuleObject = cPVGeneratorObjectName;
         for (PVnum = 1; PVnum <= NumPVs; ++PVnum) {
-            GetObjectItem(cCurrentModuleObject, PVnum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, _, lAlphaFieldBlanks,
-                          cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cCurrentModuleObject, PVnum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, _, lAlphaFieldBlanks, cAlphaFieldNames,
+                          cNumericFieldNames);
             IsNotOK = false;
             IsBlank = false;
             VerifyName(cAlphaArgs(1), PVarray, PVnum - 1, IsNotOK, IsBlank, cCurrentModuleObject + " Name");
@@ -426,8 +425,7 @@ namespace Photovoltaics {
                     ShowWarningError("Suspected input problem with " + cAlphaFieldNames(2) + " = " + cAlphaArgs(2));
                     ShowContinueError("Entered in " + cCurrentModuleObject + " = " + cAlphaArgs(1));
                     ShowContinueError("Surface used for solar collector faces down");
-                    ShowContinueError("Surface tilt angle (degrees from ground outward normal) = " +
-                                      RoundSigDigits(Surface(SurfNum).Tilt, 2));
+                    ShowContinueError("Surface tilt angle (degrees from ground outward normal) = " + RoundSigDigits(Surface(SurfNum).Tilt, 2));
                 }
             }
 
@@ -498,22 +496,19 @@ namespace Photovoltaics {
                     if (dupPtr != 0) {
                         if (PVarray(dupPtr).CellIntegrationMode == iSurfaceOutsideFaceCellIntegration) {
                             ShowSevereError(cCurrentModuleObject + ": problem detected with multiple PV arrays.");
-                            ShowContinueError(
-                                "When using IntegratedSurfaceOutsideFace heat transfer mode, only one PV array can be coupled");
+                            ShowContinueError("When using IntegratedSurfaceOutsideFace heat transfer mode, only one PV array can be coupled");
                             ShowContinueError("Both " + PVarray(PVnum).Name + " and " + PVarray(dupPtr).Name + " are using surface " +
                                               PVarray(PVnum).SurfaceName);
                             ErrorsFound = true;
                         } else if (PVarray(dupPtr).CellIntegrationMode == iTranspiredCollectorCellIntegration) {
                             ShowSevereError(cCurrentModuleObject + ": problem detected with multiple PV arrays.");
-                            ShowContinueError(
-                                "When using IntegratedTranspiredCollector heat transfer mode, only one PV array can be coupled");
-                            ShowContinueError("Both " + PVarray(PVnum).Name + " and " + PVarray(dupPtr).Name +
-                                              " are using UTSC surface = " + PVarray(PVnum).SurfaceName);
+                            ShowContinueError("When using IntegratedTranspiredCollector heat transfer mode, only one PV array can be coupled");
+                            ShowContinueError("Both " + PVarray(PVnum).Name + " and " + PVarray(dupPtr).Name + " are using UTSC surface = " +
+                                              PVarray(PVnum).SurfaceName);
                             ErrorsFound = true;
                         } else if (PVarray(dupPtr).CellIntegrationMode == iExteriorVentedCavityCellIntegration) {
                             ShowSevereError(cCurrentModuleObject + ": problem detected with multiple PV arrays.");
-                            ShowContinueError(
-                                "When using IntegratedExteriorVentedCavity heat transfer mode, only one PV array can be coupled");
+                            ShowContinueError("When using IntegratedExteriorVentedCavity heat transfer mode, only one PV array can be coupled");
                             ShowContinueError("Both " + PVarray(PVnum).Name + " and " + PVarray(dupPtr).Name +
                                               " are using exterior vented surface = " + PVarray(PVnum).SurfaceName);
                             ErrorsFound = true;
@@ -559,8 +554,7 @@ namespace Photovoltaics {
                 tmpSimpleModuleParams(ModNum).PVEfficiency = rNumericArgs(2);
 
                 tmpSimpleModuleParams(ModNum).EffSchedPtr = GetScheduleIndex(cAlphaArgs(3));
-                if ((tmpSimpleModuleParams(ModNum).EffSchedPtr == 0) &&
-                    (tmpSimpleModuleParams(ModNum).EfficencyInputMode == ScheduledEfficiency)) {
+                if ((tmpSimpleModuleParams(ModNum).EffSchedPtr == 0) && (tmpSimpleModuleParams(ModNum).EfficencyInputMode == ScheduledEfficiency)) {
                     ShowSevereError("Invalid " + cAlphaFieldNames(3) + " = " + cAlphaArgs(3));
                     ShowContinueError("Entered in " + cCurrentModuleObject + " = " + cAlphaArgs(1));
                     ShowContinueError("Did not find schedule");
@@ -729,19 +723,19 @@ namespace Photovoltaics {
             }
 
             // set up report variables CurrentModuleObject='Photovoltaics'
-            SetupOutputVariable("Generator Produced DC Electric Power", OutputProcessor::Unit::W, PVarray(PVnum).Report.DCPower, "System",
+            SetupOutputVariable("Generator Produced DC Electric Power", OutputProcessor::Unit::W, PVarray(PVnum).Report.DCPower, "System", "Average",
+                                PVarray(PVnum).Name);
+            SetupOutputVariable("Generator Produced DC Electric Energy", OutputProcessor::Unit::J, PVarray(PVnum).Report.DCEnergy, "System", "Sum",
+                                PVarray(PVnum).Name, _, "ElectricityProduced", "Photovoltaics", _, "Plant");
+            SetupOutputVariable("Generator PV Array Efficiency", OutputProcessor::Unit::None, PVarray(PVnum).Report.ArrayEfficiency, "System",
                                 "Average", PVarray(PVnum).Name);
-            SetupOutputVariable("Generator Produced DC Electric Energy", OutputProcessor::Unit::J, PVarray(PVnum).Report.DCEnergy, "System",
-                                "Sum", PVarray(PVnum).Name, _, "ElectricityProduced", "Photovoltaics", _, "Plant");
-            SetupOutputVariable("Generator PV Array Efficiency", OutputProcessor::Unit::None, PVarray(PVnum).Report.ArrayEfficiency,
-                                "System", "Average", PVarray(PVnum).Name);
 
             // CurrentModuleObject='Equiv1Diode or Sandia Photovoltaics'
             if ((PVarray(PVnum).PVModelType == iTRNSYSPVModel) || (PVarray(PVnum).PVModelType == iSandiaPVModel)) {
-                SetupOutputVariable("Generator PV Cell Temperature", OutputProcessor::Unit::C, PVarray(PVnum).Report.CellTemp, "System",
+                SetupOutputVariable("Generator PV Cell Temperature", OutputProcessor::Unit::C, PVarray(PVnum).Report.CellTemp, "System", "Average",
+                                    PVarray(PVnum).Name);
+                SetupOutputVariable("Generator PV Short Circuit Current", OutputProcessor::Unit::A, PVarray(PVnum).Report.ArrayIsc, "System",
                                     "Average", PVarray(PVnum).Name);
-                SetupOutputVariable("Generator PV Short Circuit Current", OutputProcessor::Unit::A, PVarray(PVnum).Report.ArrayIsc,
-                                    "System", "Average", PVarray(PVnum).Name);
                 SetupOutputVariable("Generator PV Open Circuit Voltage", OutputProcessor::Unit::V, PVarray(PVnum).Report.ArrayVoc, "System",
                                     "Average", PVarray(PVnum).Name);
             }
@@ -750,8 +744,7 @@ namespace Photovoltaics {
             if (PVarray(PVnum).PVModelType == iSurfaceOutsideFaceCellIntegration) {
                 // check that surface is HeatTransfer and a Construction with Internal Source was used
                 if (!Surface(PVarray(PVnum).SurfacePtr).HeatTransSurf) {
-                    ShowSevereError("Must use a surface with heat transfer for IntegratedSurfaceOutsideFace mode in " +
-                                    PVarray(PVnum).Name);
+                    ShowSevereError("Must use a surface with heat transfer for IntegratedSurfaceOutsideFace mode in " + PVarray(PVnum).Name);
                     ErrorsFound = true;
                 } else if (!Construct(Surface(PVarray(PVnum).SurfacePtr).Construction).SourceSinkPresent) {
                     ShowSevereError("Must use a surface with internal source construction for IntegratedSurfaceOutsideFace mode in " +
@@ -1022,37 +1015,36 @@ namespace Photovoltaics {
 
                 if (SELECT_CASE_var == iDecoupledCellIntegration) { // Sandia module temperature model for rack mounted PVs
                     // Calculate back-of-module temperature:
-                    PVarray(PVnum).SNLPVCalc.Tback =
-                        SandiaModuleTemperature(PVarray(PVnum).SNLPVinto.IcBeam, PVarray(PVnum).SNLPVinto.IcDiffuse,
-                                                PVarray(PVnum).SNLPVinto.WindSpeed, PVarray(PVnum).SNLPVinto.Tamb,
-                                                PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.a, PVarray(PVnum).SNLPVModule.b);
+                    PVarray(PVnum).SNLPVCalc.Tback = SandiaModuleTemperature(
+                        PVarray(PVnum).SNLPVinto.IcBeam, PVarray(PVnum).SNLPVinto.IcDiffuse, PVarray(PVnum).SNLPVinto.WindSpeed,
+                        PVarray(PVnum).SNLPVinto.Tamb, PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.a, PVarray(PVnum).SNLPVModule.b);
 
                     // Calculate cell temperature:
-                    PVarray(PVnum).SNLPVCalc.Tcell = SandiaTcellFromTmodule(PVarray(PVnum).SNLPVCalc.Tback, PVarray(PVnum).SNLPVinto.IcBeam,
-                                                                            PVarray(PVnum).SNLPVinto.IcDiffuse,
-                                                                            PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.DT0);
+                    PVarray(PVnum).SNLPVCalc.Tcell =
+                        SandiaTcellFromTmodule(PVarray(PVnum).SNLPVCalc.Tback, PVarray(PVnum).SNLPVinto.IcBeam, PVarray(PVnum).SNLPVinto.IcDiffuse,
+                                               PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.DT0);
 
                 } else if (SELECT_CASE_var == iSurfaceOutsideFaceCellIntegration) {
                     // get back-of-module temperature from elsewhere in EnergyPlus
                     PVarray(PVnum).SNLPVCalc.Tback = TempSurfOut(PVarray(PVnum).SurfacePtr);
 
-                    PVarray(PVnum).SNLPVCalc.Tcell = SandiaTcellFromTmodule(PVarray(PVnum).SNLPVCalc.Tback, PVarray(PVnum).SNLPVinto.IcBeam,
-                                                                            PVarray(PVnum).SNLPVinto.IcDiffuse,
-                                                                            PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.DT0);
+                    PVarray(PVnum).SNLPVCalc.Tcell =
+                        SandiaTcellFromTmodule(PVarray(PVnum).SNLPVCalc.Tback, PVarray(PVnum).SNLPVinto.IcBeam, PVarray(PVnum).SNLPVinto.IcDiffuse,
+                                               PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.DT0);
 
                 } else if (SELECT_CASE_var == iTranspiredCollectorCellIntegration) {
                     GetUTSCTsColl(PVarray(PVnum).UTSCPtr, PVarray(PVnum).SNLPVCalc.Tback);
 
-                    PVarray(PVnum).SNLPVCalc.Tcell = SandiaTcellFromTmodule(PVarray(PVnum).SNLPVCalc.Tback, PVarray(PVnum).SNLPVinto.IcBeam,
-                                                                            PVarray(PVnum).SNLPVinto.IcDiffuse,
-                                                                            PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.DT0);
+                    PVarray(PVnum).SNLPVCalc.Tcell =
+                        SandiaTcellFromTmodule(PVarray(PVnum).SNLPVCalc.Tback, PVarray(PVnum).SNLPVinto.IcBeam, PVarray(PVnum).SNLPVinto.IcDiffuse,
+                                               PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.DT0);
 
                 } else if (SELECT_CASE_var == iExteriorVentedCavityCellIntegration) {
                     GetExtVentedCavityTsColl(PVarray(PVnum).ExtVentCavPtr, PVarray(PVnum).SNLPVCalc.Tback);
 
-                    PVarray(PVnum).SNLPVCalc.Tcell = SandiaTcellFromTmodule(PVarray(PVnum).SNLPVCalc.Tback, PVarray(PVnum).SNLPVinto.IcBeam,
-                                                                            PVarray(PVnum).SNLPVinto.IcDiffuse,
-                                                                            PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.DT0);
+                    PVarray(PVnum).SNLPVCalc.Tcell =
+                        SandiaTcellFromTmodule(PVarray(PVnum).SNLPVCalc.Tback, PVarray(PVnum).SNLPVinto.IcBeam, PVarray(PVnum).SNLPVinto.IcDiffuse,
+                                               PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.DT0);
 
                 } else if (SELECT_CASE_var == iPVTSolarCollectorCellIntegration) {
                     // add calls to PVT models here
@@ -1066,29 +1058,25 @@ namespace Photovoltaics {
             PVarray(PVnum).SNLPVCalc.AMa = AbsoluteAirMass(PVarray(PVnum).SNLPVinto.ZenithAngle, PVarray(PVnum).SNLPVinto.Altitude);
 
             // Calculate F1 polynomial function:
-            PVarray(PVnum).SNLPVCalc.F1 =
-                SandiaF1(PVarray(PVnum).SNLPVCalc.AMa, PVarray(PVnum).SNLPVModule.a_0, PVarray(PVnum).SNLPVModule.a_1,
-                         PVarray(PVnum).SNLPVModule.a_2, PVarray(PVnum).SNLPVModule.a_3, PVarray(PVnum).SNLPVModule.a_4);
+            PVarray(PVnum).SNLPVCalc.F1 = SandiaF1(PVarray(PVnum).SNLPVCalc.AMa, PVarray(PVnum).SNLPVModule.a_0, PVarray(PVnum).SNLPVModule.a_1,
+                                                   PVarray(PVnum).SNLPVModule.a_2, PVarray(PVnum).SNLPVModule.a_3, PVarray(PVnum).SNLPVModule.a_4);
 
             // Calculate F2 polynomial function:
-            PVarray(PVnum).SNLPVCalc.F2 =
-                SandiaF2(PVarray(PVnum).SNLPVinto.IncidenceAngle, PVarray(PVnum).SNLPVModule.b_0, PVarray(PVnum).SNLPVModule.b_1,
-                         PVarray(PVnum).SNLPVModule.b_2, PVarray(PVnum).SNLPVModule.b_3, PVarray(PVnum).SNLPVModule.b_4,
-                         PVarray(PVnum).SNLPVModule.b_5);
+            PVarray(PVnum).SNLPVCalc.F2 = SandiaF2(PVarray(PVnum).SNLPVinto.IncidenceAngle, PVarray(PVnum).SNLPVModule.b_0,
+                                                   PVarray(PVnum).SNLPVModule.b_1, PVarray(PVnum).SNLPVModule.b_2, PVarray(PVnum).SNLPVModule.b_3,
+                                                   PVarray(PVnum).SNLPVModule.b_4, PVarray(PVnum).SNLPVModule.b_5);
 
             // Calculate short-circuit current function:
-            PVarray(PVnum).SNLPVCalc.Isc =
-                SandiaIsc(PVarray(PVnum).SNLPVCalc.Tcell, PVarray(PVnum).SNLPVModule.Isc0, PVarray(PVnum).SNLPVinto.IcBeam,
-                          PVarray(PVnum).SNLPVinto.IcDiffuse, PVarray(PVnum).SNLPVCalc.F1, PVarray(PVnum).SNLPVCalc.F2,
-                          PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.aIsc);
+            PVarray(PVnum).SNLPVCalc.Isc = SandiaIsc(PVarray(PVnum).SNLPVCalc.Tcell, PVarray(PVnum).SNLPVModule.Isc0, PVarray(PVnum).SNLPVinto.IcBeam,
+                                                     PVarray(PVnum).SNLPVinto.IcDiffuse, PVarray(PVnum).SNLPVCalc.F1, PVarray(PVnum).SNLPVCalc.F2,
+                                                     PVarray(PVnum).SNLPVModule.fd, PVarray(PVnum).SNLPVModule.aIsc);
 
             // Calculate effective irradiance function:
             Ee = SandiaEffectiveIrradiance(PVarray(PVnum).SNLPVCalc.Tcell, PVarray(PVnum).SNLPVCalc.Isc, PVarray(PVnum).SNLPVModule.Isc0,
                                            PVarray(PVnum).SNLPVModule.aIsc);
             // Calculate Imp function:
-            PVarray(PVnum).SNLPVCalc.Imp =
-                SandiaImp(PVarray(PVnum).SNLPVCalc.Tcell, Ee, PVarray(PVnum).SNLPVModule.Imp0, PVarray(PVnum).SNLPVModule.aImp,
-                          PVarray(PVnum).SNLPVModule.c_0, PVarray(PVnum).SNLPVModule.c_1);
+            PVarray(PVnum).SNLPVCalc.Imp = SandiaImp(PVarray(PVnum).SNLPVCalc.Tcell, Ee, PVarray(PVnum).SNLPVModule.Imp0,
+                                                     PVarray(PVnum).SNLPVModule.aImp, PVarray(PVnum).SNLPVModule.c_0, PVarray(PVnum).SNLPVModule.c_1);
 
             // Calculate Voc function:
             PVarray(PVnum).SNLPVCalc.Voc =
@@ -1110,9 +1098,8 @@ namespace Photovoltaics {
             PVarray(PVnum).SNLPVCalc.Vx = PVarray(PVnum).SNLPVCalc.Voc / 2.0;
 
             // Calculate Ixx function:
-            PVarray(PVnum).SNLPVCalc.Ixx =
-                SandiaIxx(PVarray(PVnum).SNLPVCalc.Tcell, Ee, PVarray(PVnum).SNLPVModule.Ixx0, PVarray(PVnum).SNLPVModule.aImp,
-                          PVarray(PVnum).SNLPVModule.c_6, PVarray(PVnum).SNLPVModule.c_7);
+            PVarray(PVnum).SNLPVCalc.Ixx = SandiaIxx(PVarray(PVnum).SNLPVCalc.Tcell, Ee, PVarray(PVnum).SNLPVModule.Ixx0,
+                                                     PVarray(PVnum).SNLPVModule.aImp, PVarray(PVnum).SNLPVModule.c_6, PVarray(PVnum).SNLPVModule.c_7);
             // Calculate Vxx :
             PVarray(PVnum).SNLPVCalc.Vxx = 0.5 * (PVarray(PVnum).SNLPVCalc.Voc + PVarray(PVnum).SNLPVCalc.Vmp);
 
@@ -1120,8 +1107,7 @@ namespace Photovoltaics {
             PVarray(PVnum).SNLPVCalc.Pmp = PVarray(PVnum).SNLPVCalc.Imp * PVarray(PVnum).SNLPVCalc.Vmp; // W
 
             // Calculate PV efficiency at maximum power point
-            PVarray(PVnum).SNLPVCalc.EffMax = PVarray(PVnum).SNLPVCalc.Pmp /
-                                              (PVarray(PVnum).SNLPVinto.IcBeam + PVarray(PVnum).SNLPVinto.IcDiffuse) /
+            PVarray(PVnum).SNLPVCalc.EffMax = PVarray(PVnum).SNLPVCalc.Pmp / (PVarray(PVnum).SNLPVinto.IcBeam + PVarray(PVnum).SNLPVinto.IcDiffuse) /
                                               PVarray(PVnum).SNLPVModule.Acoll;
 
             // Scale to NumStrings and NumSeries:
@@ -1374,14 +1360,14 @@ namespace Photovoltaics {
                                        (1.0 - ETA / PVarray(PVnum).TRNSYSPVModule.TauAlpha);
                     } else if (SELECT_CASE_var == iDecoupledUllebergDynamicCellIntegration) {
                         //  cell temperature based on energy balance with thermal capacity effects
-                        CellTemp = Tambient +
-                                   (PVarray(PVnum).TRNSYSPVcalc.LastCellTempK - Tambient) *
-                                       std::exp(-PVarray(PVnum).TRNSYSPVModule.HeatLossCoef / PVarray(PVnum).TRNSYSPVModule.HeatCapacity *
-                                                PVTimeStep) +
-                                   (PVarray(PVnum).TRNSYSPVModule.TauAlpha - ETA) * PVarray(PVnum).TRNSYSPVcalc.Insolation /
-                                       PVarray(PVnum).TRNSYSPVModule.HeatLossCoef *
-                                       (1.0 - std::exp(-PVarray(PVnum).TRNSYSPVModule.HeatLossCoef /
-                                                       PVarray(PVnum).TRNSYSPVModule.HeatCapacity * PVTimeStep));
+                        CellTemp =
+                            Tambient +
+                            (PVarray(PVnum).TRNSYSPVcalc.LastCellTempK - Tambient) *
+                                std::exp(-PVarray(PVnum).TRNSYSPVModule.HeatLossCoef / PVarray(PVnum).TRNSYSPVModule.HeatCapacity * PVTimeStep) +
+                            (PVarray(PVnum).TRNSYSPVModule.TauAlpha - ETA) * PVarray(PVnum).TRNSYSPVcalc.Insolation /
+                                PVarray(PVnum).TRNSYSPVModule.HeatLossCoef *
+                                (1.0 -
+                                 std::exp(-PVarray(PVnum).TRNSYSPVModule.HeatLossCoef / PVarray(PVnum).TRNSYSPVModule.HeatCapacity * PVTimeStep));
                     } else if (SELECT_CASE_var == iSurfaceOutsideFaceCellIntegration) {
                         CellTemp = TempSurfOut(PVarray(PVnum).SurfacePtr) + KelvinConv;
                     } else if (SELECT_CASE_var == iTranspiredCollectorCellIntegration) {
@@ -1397,10 +1383,10 @@ namespace Photovoltaics {
 
                 //  reference parameters
                 ILRef = PVarray(PVnum).TRNSYSPVModule.RefIsc;
-                AARef = (PVarray(PVnum).TRNSYSPVModule.TempCoefVoc * PVarray(PVnum).TRNSYSPVModule.RefTemperature -
-                         PVarray(PVnum).TRNSYSPVModule.RefVoc +
-                         PVarray(PVnum).TRNSYSPVModule.SemiConductorBandgap * PVarray(PVnum).TRNSYSPVModule.CellsInSeries) /
-                        (PVarray(PVnum).TRNSYSPVModule.TempCoefIsc * PVarray(PVnum).TRNSYSPVModule.RefTemperature / ILRef - 3.0);
+                AARef =
+                    (PVarray(PVnum).TRNSYSPVModule.TempCoefVoc * PVarray(PVnum).TRNSYSPVModule.RefTemperature - PVarray(PVnum).TRNSYSPVModule.RefVoc +
+                     PVarray(PVnum).TRNSYSPVModule.SemiConductorBandgap * PVarray(PVnum).TRNSYSPVModule.CellsInSeries) /
+                    (PVarray(PVnum).TRNSYSPVModule.TempCoefIsc * PVarray(PVnum).TRNSYSPVModule.RefTemperature / ILRef - 3.0);
                 IORef = ILRef * std::exp(-PVarray(PVnum).TRNSYSPVModule.RefVoc / AARef);
 
                 //  series resistance
@@ -1452,10 +1438,9 @@ namespace Photovoltaics {
                 if (SELECT_CASE_var == iDecoupledCellIntegration) {
                     CellTemp = Tambient;
                 } else if (SELECT_CASE_var == iDecoupledUllebergDynamicCellIntegration) {
-                    CellTemp =
-                        Tambient +
-                        (PVarray(PVnum).TRNSYSPVcalc.LastCellTempK - Tambient) *
-                            std::exp(-PVarray(PVnum).TRNSYSPVModule.HeatLossCoef / PVarray(PVnum).TRNSYSPVModule.HeatCapacity * PVTimeStep);
+                    CellTemp = Tambient +
+                               (PVarray(PVnum).TRNSYSPVcalc.LastCellTempK - Tambient) *
+                                   std::exp(-PVarray(PVnum).TRNSYSPVModule.HeatLossCoef / PVarray(PVnum).TRNSYSPVModule.HeatCapacity * PVTimeStep);
                 } else if (SELECT_CASE_var == iSurfaceOutsideFaceCellIntegration) {
                     CellTemp = TempSurfOut(PVarray(PVnum).SurfacePtr) + KelvinConv;
                 } else if (SELECT_CASE_var == iTranspiredCollectorCellIntegration) {

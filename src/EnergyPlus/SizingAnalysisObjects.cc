@@ -243,8 +243,7 @@ void SizingLog::ProcessRunningAverage()
                 RunningSum = 0.0;
                 for (int j = 0; j < timeStepsInAverage; ++j) { //
                     if ((i - j) < 0) {
-                        RunningSum +=
-                            ztStepObj[envrnStartZtStepIndexMap[itr->first]].logDataValue; // just use first value to fill early steps
+                        RunningSum += ztStepObj[envrnStartZtStepIndexMap[itr->first]].logDataValue; // just use first value to fill early steps
                     } else {
                         RunningSum += ztStepObj[((i - j) + envrnStartZtStepIndexMap[itr->first])].logDataValue;
                     }
@@ -479,8 +478,7 @@ void PlantCoinicidentAnalysis::ResolveDesignFlowRate(int const HVACSizingIterCou
 
     previousVolDesignFlowRate = PlantSizData(plantSizingIndex).DesVolFlowRate;
 
-    if (!CheckTimeStampForNull(newFoundMassFlowRateTimeStamp) &&
-        (newFoundMassFlowRateTimeStamp.runningAvgDataValue > 0.0)) { // issue 5665, was ||
+    if (!CheckTimeStampForNull(newFoundMassFlowRateTimeStamp) && (newFoundMassFlowRateTimeStamp.runningAvgDataValue > 0.0)) { // issue 5665, was ||
         newFoundMassFlowRate = newFoundMassFlowRateTimeStamp.runningAvgDataValue;
     } else {
         newFoundMassFlowRate = 0.0;
@@ -489,8 +487,7 @@ void PlantCoinicidentAnalysis::ResolveDesignFlowRate(int const HVACSizingIterCou
     // step 3 calculate mdot from max load and delta T
     if ((!CheckTimeStampForNull(NewFoundMaxDemandTimeStamp) && (NewFoundMaxDemandTimeStamp.runningAvgDataValue > 0.0)) &&
         ((specificHeatForSizing * PlantSizData(plantSizingIndex).DeltaT) > 0.0)) {
-        peakLoadCalculatedMassFlow =
-            NewFoundMaxDemandTimeStamp.runningAvgDataValue / (specificHeatForSizing * PlantSizData(plantSizingIndex).DeltaT);
+        peakLoadCalculatedMassFlow = NewFoundMaxDemandTimeStamp.runningAvgDataValue / (specificHeatForSizing * PlantSizData(plantSizingIndex).DeltaT);
     } else {
         peakLoadCalculatedMassFlow = 0.0;
     }
@@ -574,10 +571,9 @@ void PlantCoinicidentAnalysis::ResolveDesignFlowRate(int const HVACSizingIterCou
                                              RoundSigDigits(newFoundMassFlowRateTimeStamp.runningAvgDataValue, 7) + "," +
                                              RoundSigDigits(NewFoundMaxDemandTimeStamp.runningAvgDataValue, 2) + "," +
                                              RoundSigDigits(peakLoadCalculatedMassFlow, 7) + "," + chSetSizes + "," +
-                                             RoundSigDigits(previousVolDesignFlowRate, 6) + "," + RoundSigDigits(newVolDesignFlowRate, 6) +
-                                             "," + chDemandTrapUsed + "," + RoundSigDigits(sizingFac, 4) + "," +
-                                             RoundSigDigits(normalizedChange, 6) + "," + RoundSigDigits(specificHeatForSizing, 4) + "," +
-                                             RoundSigDigits(densityForSizing, 4);
+                                             RoundSigDigits(previousVolDesignFlowRate, 6) + "," + RoundSigDigits(newVolDesignFlowRate, 6) + "," +
+                                             chDemandTrapUsed + "," + RoundSigDigits(sizingFac, 4) + "," + RoundSigDigits(normalizedChange, 6) + "," +
+                                             RoundSigDigits(specificHeatForSizing, 4) + "," + RoundSigDigits(densityForSizing, 4);
 
     // report to sizing summary table called Plant Loop Coincident Design Fluid Flow Rates
 

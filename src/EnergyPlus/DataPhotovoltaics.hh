@@ -148,9 +148,9 @@ namespace DataPhotovoltaics {
 
         // Default Constructor
         TRNSYSPVModuleParamsStruct()
-            : CellsInSeries(0), CellType(0), Area(0.0), TauAlpha(0.0), SemiConductorBandgap(0.0), ShuntResistance(0.0), RefIsc(0.0),
-              RefVoc(0.0), RefTemperature(0.0), RefInsolation(0.0), Imp(0.0), Vmp(0.0), TempCoefIsc(0.0), TempCoefVoc(0.0),
-              NOCTAmbTemp(0.0), NOCTCellTemp(0.0), NOCTInsolation(0.0), HeatLossCoef(0.0), HeatCapacity(0.0)
+            : CellsInSeries(0), CellType(0), Area(0.0), TauAlpha(0.0), SemiConductorBandgap(0.0), ShuntResistance(0.0), RefIsc(0.0), RefVoc(0.0),
+              RefTemperature(0.0), RefInsolation(0.0), Imp(0.0), Vmp(0.0), TempCoefIsc(0.0), TempCoefVoc(0.0), NOCTAmbTemp(0.0), NOCTCellTemp(0.0),
+              NOCTInsolation(0.0), HeatLossCoef(0.0), HeatCapacity(0.0)
         {
         }
     };
@@ -235,10 +235,10 @@ namespace DataPhotovoltaics {
 
         // Default Constructor
         SNLModuleParamsStuct()
-            : Acoll(0.0), NcellSer(0.0), NparSerCells(0.0), Isc0(0.0), Voc0(0.0), Imp0(0.0), Vmp0(0.0), aIsc(0.0), aImp(0.0), c_0(0.0),
-              c_1(0.0), BVoc0(0.0), mBVoc(0.0), BVmp0(0.0), mBVmp(0.0), DiodeFactor(0.0), c_2(0.0), c_3(0.0), a_0(0.0), a_1(0.0), a_2(0.0),
-              a_3(0.0), a_4(0.0), b_0(0.0), b_1(0.0), b_2(0.0), b_3(0.0), b_4(0.0), b_5(0.0), DT0(0.0), fd(0.0), a(0.0), b(0.0), c_4(0.0),
-              c_5(0.0), Ix0(0.0), Ixx0(0.0), c_6(0.0), c_7(0.0)
+            : Acoll(0.0), NcellSer(0.0), NparSerCells(0.0), Isc0(0.0), Voc0(0.0), Imp0(0.0), Vmp0(0.0), aIsc(0.0), aImp(0.0), c_0(0.0), c_1(0.0),
+              BVoc0(0.0), mBVoc(0.0), BVmp0(0.0), mBVmp(0.0), DiodeFactor(0.0), c_2(0.0), c_3(0.0), a_0(0.0), a_1(0.0), a_2(0.0), a_3(0.0), a_4(0.0),
+              b_0(0.0), b_1(0.0), b_2(0.0), b_3(0.0), b_4(0.0), b_5(0.0), DT0(0.0), fd(0.0), a(0.0), b(0.0), c_4(0.0), c_5(0.0), Ix0(0.0), Ixx0(0.0),
+              c_6(0.0), c_7(0.0)
         {
         }
     };
@@ -282,8 +282,8 @@ namespace DataPhotovoltaics {
 
         // Default Constructor
         SNLPVCalcStruct()
-            : Vmp(0.0), Imp(0.0), Pmp(0.0), EffMax(0.0), Isc(0.0), Voc(0.0), Tcell(0.0), Tback(0.0), AMa(0.0), F1(0.0), F2(0.0), Ix(0.0),
-              Vx(0.0), Ixx(0.0), Vxx(0.0), SurfaceSink(0.0)
+            : Vmp(0.0), Imp(0.0), Pmp(0.0), EffMax(0.0), Isc(0.0), Voc(0.0), Tcell(0.0), Tback(0.0), AMa(0.0), F1(0.0), F2(0.0), Ix(0.0), Vx(0.0),
+              Ixx(0.0), Vxx(0.0), SurfaceSink(0.0)
         {
         }
     };
@@ -302,8 +302,7 @@ namespace DataPhotovoltaics {
 
         // Default Constructor
         PVReportVariables()
-            : DCPower(0.0), DCEnergy(0.0), ArrayEfficiency(0.0), CellTemp(0.0), ArrayIsc(0.0), ArrayVoc(0.0), ArrayCurrent(0.0),
-              ArrayVoltage(0.0)
+            : DCPower(0.0), DCEnergy(0.0), ArrayEfficiency(0.0), CellTemp(0.0), ArrayIsc(0.0), ArrayVoc(0.0), ArrayCurrent(0.0), ArrayVoltage(0.0)
         {
         }
     };
@@ -336,8 +335,8 @@ namespace DataPhotovoltaics {
 
         // Default Constructor
         PVArrayStruct()
-            : SurfacePtr(0), Zone(0), PVModelType(0), CellIntegrationMode(0), NumModNSeries(1.0), NumSeriesNParall(1.0), UTSCPtr(0),
-              ExtVentCavPtr(0), PVTPtr(0), SurfaceSink(0.0)
+            : SurfacePtr(0), Zone(0), PVModelType(0), CellIntegrationMode(0), NumModNSeries(1.0), NumSeriesNParall(1.0), UTSCPtr(0), ExtVentCavPtr(0),
+              PVTPtr(0), SurfaceSink(0.0)
         {
         }
     };

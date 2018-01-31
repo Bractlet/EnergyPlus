@@ -128,11 +128,10 @@ namespace DataErrorTracking {
     std::string const MoreDetails_3("Node connection errors are often caused by spelling mistakes in a node name field.<CR>To track down "
                                     "the problem, search the idf file for each node name listed to see if it<CR>occurs in the expected "
                                     "input fields.<CRE>"); // Node Connection Errors
-    std::string const
-        MoreDetails_4("The azimuths (outward facing angle) of two interzone surfaces should not be the same.<CR>Normally, the absolute "
-                      "difference between the two azimuths will be 180 degrees.<CR>You can turn on the report: "
-                      "Output:Surfaces:List,Details; to inspect your surfaces.<CRE>"); // InterZone Surface Azimuths -- mismatch
-    std::string const MoreDetails_5;                                                   // InterZone Surface Tilts -- mismatch
+    std::string const MoreDetails_4("The azimuths (outward facing angle) of two interzone surfaces should not be the same.<CR>Normally, the absolute "
+                                    "difference between the two azimuths will be 180 degrees.<CR>You can turn on the report: "
+                                    "Output:Surfaces:List,Details; to inspect your surfaces.<CRE>"); // InterZone Surface Azimuths -- mismatch
+    std::string const MoreDetails_5;                                                                 // InterZone Surface Tilts -- mismatch
     std::string const MoreDetails_6("EnergyPlus Surfaces should be planar. If the error indicates a small increment for the<CR>out of "
                                     "planar bounds, then the calculations are likely okay though you should try to fix<CR>the problem. If "
                                     "a greater increment, the calculations will likely be incorrect.<CRE>"); // Likely non-planar surfaces
@@ -191,11 +190,11 @@ namespace DataErrorTracking {
         MoreDetails_20("No Reporting elements have been requested. You will see no output values from your run.<CR>Add Output:Variable, "
                        "Output:Meter, Output:Table:SummaryReports, Output:Table:Monthly, Output:Table:TimeBins<CR>objects to your input "
                        "file to receive output values from the simulation.<CRE>"); // No reporting elements requested
-    Array1D_string const MoreDetails(SearchCounts,
-                                     {MoreDetails_1,  MoreDetails_2,  MoreDetails_3,  MoreDetails_4,  MoreDetails_5,  MoreDetails_6,
-                                      MoreDetails_7,  MoreDetails_8,  MoreDetails_9,  MoreDetails_10, MoreDetails_11, MoreDetails_12,
-                                      MoreDetails_13, MoreDetails_14, MoreDetails_15, MoreDetails_16, MoreDetails_16, MoreDetails_18,
-                                      MoreDetails_19, MoreDetails_20}); // Details 16 applies to both temperature out of bounds | errors.
+    Array1D_string const MoreDetails(SearchCounts, {MoreDetails_1,  MoreDetails_2,  MoreDetails_3,  MoreDetails_4,  MoreDetails_5,  MoreDetails_6,
+                                                    MoreDetails_7,  MoreDetails_8,  MoreDetails_9,  MoreDetails_10, MoreDetails_11, MoreDetails_12,
+                                                    MoreDetails_13, MoreDetails_14, MoreDetails_15, MoreDetails_16, MoreDetails_16, MoreDetails_18,
+                                                    MoreDetails_19, MoreDetails_20}); // Details 16 applies to both temperature out of bounds |
+                                                                                      // errors.
 
     int const MaxRecurringErrorMsgLength(250); // Maximum error message length for recurring error messages
 

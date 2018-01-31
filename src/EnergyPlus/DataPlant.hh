@@ -89,7 +89,7 @@ namespace DataPlant {
     // this may be changed later...
     enum OpSchemeType
     { // Changed to enum: Better semantic fit and allows use in switch statements: Suggest this migration throughout EnergyPlus (and
-      // probably C++11 enum "class")
+        // probably C++11 enum "class")
         UnknownStatusOpSchemeType = -2,
         NoControlOpSchemeType = -1,         // Scheme Type placeholder for items such as pipes
         HeatingRBOpSchemeType = 1,          // Scheme Type for Heating Load Range Based Operation
@@ -616,12 +616,12 @@ namespace DataPlant {
 
         // Default Constructor
         CompData()
-            : TypeOf_Num(0), GeneralEquipType(0), CompNum(0), FlowCtrl(0), FlowPriority(LoopFlowStatus_Unknown), ON(false),
-              Available(false), NodeNumIn(0), NodeNumOut(0), MyLoad(0.0), MaxLoad(0.0), MinLoad(0.0), OptLoad(0.0), SizFac(0.0),
+            : TypeOf_Num(0), GeneralEquipType(0), CompNum(0), FlowCtrl(0), FlowPriority(LoopFlowStatus_Unknown), ON(false), Available(false),
+              NodeNumIn(0), NodeNumOut(0), MyLoad(0.0), MaxLoad(0.0), MinLoad(0.0), OptLoad(0.0), SizFac(0.0),
               CurOpSchemeType(UnknownStatusOpSchemeType), NumOpSchemes(0), CurCompLevelOpNum(0), EquipDemand(0.0), EMSLoadOverrideOn(false),
-              EMSLoadOverrideValue(0.0), HowLoadServed(HowMet_Unknown), MinOutletTemp(0.0), MaxOutletTemp(0.0),
-              FreeCoolCntrlShutDown(false), FreeCoolCntrlMinCntrlTemp(0.0), FreeCoolCntrlMode(0), FreeCoolCntrlNodeNum(0),
-              IndexInLoopSidePumps(0), TempDesCondIn(0.0), TempDesEvapOut(0.0), compPtr(nullptr)
+              EMSLoadOverrideValue(0.0), HowLoadServed(HowMet_Unknown), MinOutletTemp(0.0), MaxOutletTemp(0.0), FreeCoolCntrlShutDown(false),
+              FreeCoolCntrlMinCntrlTemp(0.0), FreeCoolCntrlMode(0), FreeCoolCntrlNodeNum(0), IndexInLoopSidePumps(0), TempDesCondIn(0.0),
+              TempDesEvapOut(0.0), compPtr(nullptr)
         {
         }
     };
@@ -655,9 +655,9 @@ namespace DataPlant {
         // Default Constructor
         BranchData()
             : ControlType(0), RequestedMassFlow(0.0), HasConstantSpeedBranchPump(false), ConstantSpeedBranchMassFlow(0.0), BranchLevel(0),
-              FlowErrCount(0), FlowErrIndex(0), TotalComponents(0), NodeNumIn(0), NodeNumOut(0), IsBypass(false), PumpIndex(0),
-              PumpSizFac(1.0), EMSCtrlOverrideOn(false), EMSCtrlOverrideValue(0.0), HasPressureComponents(false), PressureDrop(0.0),
-              PressureCurveType(0), PressureCurveIndex(0), PressureEffectiveK(0.0)
+              FlowErrCount(0), FlowErrIndex(0), TotalComponents(0), NodeNumIn(0), NodeNumOut(0), IsBypass(false), PumpIndex(0), PumpSizFac(1.0),
+              EMSCtrlOverrideOn(false), EMSCtrlOverrideValue(0.0), HasPressureComponents(false), PressureDrop(0.0), PressureCurveType(0),
+              PressureCurveIndex(0), PressureEffectiveK(0.0)
         {
         }
 
@@ -735,8 +735,8 @@ namespace DataPlant {
 
         // Default Constructor
         OperationData()
-            : OpSchemeType(0), SchedPtr(0), Available(false), NumEquipLists(0), CurListPtr(0), EquipListNumForLastStage(0),
-              ErlSimProgramMngr(0), ErlInitProgramMngr(0), EMSIntVarLoopDemandRate(0.0), MyEnvrnFlag(true)
+            : OpSchemeType(0), SchedPtr(0), Available(false), NumEquipLists(0), CurListPtr(0), EquipListNumForLastStage(0), ErlSimProgramMngr(0),
+              ErlInitProgramMngr(0), EMSIntVarLoopDemandRate(0.0), MyEnvrnFlag(true)
         {
         }
     };
@@ -768,8 +768,7 @@ namespace DataPlant {
 
         // Scalar Constructor
         PlantConvergencePoint(Real64 const MassFlowRateValue, Real64 const TemperatureValue)
-            : MassFlowRateHistory(NumConvergenceHistoryTerms, MassFlowRateValue),
-              TemperatureHistory(NumConvergenceHistoryTerms, TemperatureValue)
+            : MassFlowRateHistory(NumConvergenceHistoryTerms, MassFlowRateValue), TemperatureHistory(NumConvergenceHistoryTerms, TemperatureValue)
         {
         }
     };
@@ -841,17 +840,16 @@ namespace DataPlant {
 
         // Default Constructor
         HalfLoopData()
-            : SimLoopSideNeeded(true), SimZoneEquipNeeded(true), SimAirLoopsNeeded(true), SimNonZoneEquipNeeded(true),
-              SimElectLoadCentrNeeded(true), OncePerTimeStepOperations(true), TimeElapsed(0.0), FlowRequest(0.0),
-              FlowRequestTemperature(0.0), TempSetPoint(SensedNodeFlagValue), TempSetPointHi(SensedNodeFlagValue),
-              TempSetPointLo(SensedNodeFlagValue), TempInterfaceTankOutlet(0.0), LastTempInterfaceTankOutlet(0.0), TotalBranches(0),
-              NodeNumIn(0), NodeNumOut(0), NumSplitters(0), NumMixers(0), SplitterExists(false), MixerExists(false), TotalPumps(0),
-              BranchPumpsExist(false), TotalPumpHeat(0.0), BypassExists(false), InletNodeSetPt(false), OutletNodeSetPt(false),
-              EMSCtrl(false), FlowRestrictionFlag(false), FlowLock(0), TotalConnected(0), HasPressureComponents(false),
-              HasParallelPressComps(false), PressureDrop(0.0), PressureEffectiveK(0.0), errCount_LoadWasntDist(0),
-              errIndex_LoadWasntDist(0), errCount_LoadRemains(0), errIndex_LoadRemains(0), LoopSideInlet_TankTemp(0.0),
-              LoopSideInlet_MdotCpDeltaT(0.0), LoopSideInlet_McpDTdt(0.0), LoopSideInlet_CapExcessStorageTime(0.0),
-              LoopSideInlet_CapExcessStorageTimeReport(0.0), LoopSideInlet_TotalTime(0.0), InletNode(0.0, 0.0), OutletNode(0.0, 0.0)
+            : SimLoopSideNeeded(true), SimZoneEquipNeeded(true), SimAirLoopsNeeded(true), SimNonZoneEquipNeeded(true), SimElectLoadCentrNeeded(true),
+              OncePerTimeStepOperations(true), TimeElapsed(0.0), FlowRequest(0.0), FlowRequestTemperature(0.0), TempSetPoint(SensedNodeFlagValue),
+              TempSetPointHi(SensedNodeFlagValue), TempSetPointLo(SensedNodeFlagValue), TempInterfaceTankOutlet(0.0),
+              LastTempInterfaceTankOutlet(0.0), TotalBranches(0), NodeNumIn(0), NodeNumOut(0), NumSplitters(0), NumMixers(0), SplitterExists(false),
+              MixerExists(false), TotalPumps(0), BranchPumpsExist(false), TotalPumpHeat(0.0), BypassExists(false), InletNodeSetPt(false),
+              OutletNodeSetPt(false), EMSCtrl(false), FlowRestrictionFlag(false), FlowLock(0), TotalConnected(0), HasPressureComponents(false),
+              HasParallelPressComps(false), PressureDrop(0.0), PressureEffectiveK(0.0), errCount_LoadWasntDist(0), errIndex_LoadWasntDist(0),
+              errCount_LoadRemains(0), errIndex_LoadRemains(0), LoopSideInlet_TankTemp(0.0), LoopSideInlet_MdotCpDeltaT(0.0),
+              LoopSideInlet_McpDTdt(0.0), LoopSideInlet_CapExcessStorageTime(0.0), LoopSideInlet_CapExcessStorageTimeReport(0.0),
+              LoopSideInlet_TotalTime(0.0), InletNode(0.0, 0.0), OutletNode(0.0, 0.0)
         {
         }
     };
@@ -916,10 +914,9 @@ namespace DataPlant {
 
         // Default Constructor
         PlantLoopData()
-            : FluidType(0), FluidIndex(0), MFErrIndex(0), MFErrIndex1(0), MFErrIndex2(0), TempSetPointNodeNum(0), MaxBranch(0),
-              MinTemp(0.0), MaxTemp(0.0), MinTempErrIndex(0), MaxTempErrIndex(0), MinVolFlowRate(0.0), MaxVolFlowRate(0.0),
-              MaxVolFlowRateWasAutoSized(false), MinMassFlowRate(0.0), MaxMassFlowRate(0.0), Volume(0.0),
-              VolumeWasAutoSized(false), // true if Volume was set to autocalculate
+            : FluidType(0), FluidIndex(0), MFErrIndex(0), MFErrIndex1(0), MFErrIndex2(0), TempSetPointNodeNum(0), MaxBranch(0), MinTemp(0.0),
+              MaxTemp(0.0), MinTempErrIndex(0), MaxTempErrIndex(0), MinVolFlowRate(0.0), MaxVolFlowRate(0.0), MaxVolFlowRateWasAutoSized(false),
+              MinMassFlowRate(0.0), MaxMassFlowRate(0.0), Volume(0.0), VolumeWasAutoSized(false), // true if Volume was set to autocalculate
               CirculationTime(2.0), Mass(0.0), EMSCtrl(false), EMSValue(0.0), NumOpSchemes(0), LoadDistribution(0), PlantSizNum(0),
               LoopDemandCalcScheme(0), CommonPipeType(0), EconPlantSideSensedNodeNum(0), EconCondSideSensedNodeNum(0), EconPlacement(0),
               EconBranch(0), EconComp(0), EconControlTempDiff(0.0), LoopHasConnectionComp(false), TypeOfLoop(0), PressureSimType(1),
@@ -1011,8 +1008,7 @@ namespace DataPlant {
         // Default Constructor
         ReportVars()
             : CoolingDemand(0.0), HeatingDemand(0.0), DemandNotDispatched(0.0), UnmetDemand(0.0), LoopSide(2), BypassFrac(0.0),
-              InletNodeFlowrate(0.0), InletNodeTemperature(0.0), OutletNodeFlowrate(0.0), OutletNodeTemperature(0.0),
-              LastLoopSideSimulated(0)
+              InletNodeFlowrate(0.0), InletNodeTemperature(0.0), OutletNodeFlowrate(0.0), OutletNodeTemperature(0.0), LastLoopSideSimulated(0)
         {
         }
     };
@@ -1089,9 +1085,8 @@ namespace DataPlant {
         SubSubcomponentData()
             : CompIndex(0), ON(true), NodeNumIn(0), NodeNumOut(0), MeteredVarsFound(false), NumMeteredVars(0), EnergyTransComp(0),
               TotPlantSupplyElec(0.0), PlantSupplyElecEff(0.0), PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0),
-              PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0), PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0),
-              TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0), Capacity(0.0), Efficiency(0.0), OpMode(0),
-              AirSysToPlantPtr(0)
+              PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0), PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0), TotPlantSupplyOther(0.0),
+              PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0), Capacity(0.0), Efficiency(0.0), OpMode(0), AirSysToPlantPtr(0)
         {
         }
     };
@@ -1134,11 +1129,11 @@ namespace DataPlant {
 
         // Default Constructor
         SubcomponentData()
-            : CompIndex(0), Parent(false), NumSubSubComps(0), NodeNumIn(0), NodeNumOut(0), MeteredVarsFound(false), ON(true),
-              NumMeteredVars(0), EnergyTransComp(0), Capacity(0.0), Efficiency(0.0), OpMode(0), TotPlantSupplyElec(0.0),
-              PlantSupplyElecEff(0.0), PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0),
-              PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0), PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0),
-              TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0), PeakPlantSupplyOtherEff(0.0), AirSysToPlantPtr(0), LoopLoadFrac(0.0)
+            : CompIndex(0), Parent(false), NumSubSubComps(0), NodeNumIn(0), NodeNumOut(0), MeteredVarsFound(false), ON(true), NumMeteredVars(0),
+              EnergyTransComp(0), Capacity(0.0), Efficiency(0.0), OpMode(0), TotPlantSupplyElec(0.0), PlantSupplyElecEff(0.0),
+              PeakPlantSupplyElecEff(0.0), TotPlantSupplyGas(0.0), PlantSupplyGasEff(0.0), PeakPlantSupplyGasEff(0.0), TotPlantSupplyPurch(0.0),
+              PlantSupplyPurchEff(0.0), PeakPlantSupplyPurchEff(0.0), TotPlantSupplyOther(0.0), PlantSupplyOtherEff(0.0),
+              PeakPlantSupplyOtherEff(0.0), AirSysToPlantPtr(0), LoopLoadFrac(0.0)
         {
         }
     };
@@ -1167,8 +1162,8 @@ namespace DataPlant {
 
         // Default Constructor
         ReportCompData()
-            : Parent(false), CompIndex(0), NodeNumIn(0), NodeNumOut(0), NumMeteredVars(0), NumSubComps(0), LoopLoadFrac(0.0),
-              TotPlantSupplyElec(0.0), TotPlantSupplyGas(0.0), TotPlantSupplyPurch(0.0), TotPlantSupplyOther(0.0)
+            : Parent(false), CompIndex(0), NodeNumIn(0), NodeNumOut(0), NumMeteredVars(0), NumSubComps(0), LoopLoadFrac(0.0), TotPlantSupplyElec(0.0),
+              TotPlantSupplyGas(0.0), TotPlantSupplyPurch(0.0), TotPlantSupplyOther(0.0)
         {
         }
     };

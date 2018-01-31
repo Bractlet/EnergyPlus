@@ -97,17 +97,17 @@ namespace LowTempRadiantSystem {
 
     // MODULE VARIABLE DECLARATIONS:
     // Standard, run-of-the-mill variables...
-    extern int NumOfHydrLowTempRadSys; // Number of hydronic low tempererature radiant systems
-    extern int NumOfCFloLowTempRadSys; // Number of constant flow (hydronic) low tempererature radiant systems
-    extern int NumOfElecLowTempRadSys; // Number of electric low tempererature radiant systems
-    extern int CFloCondIterNum;        // Number of iterations for a constant flow radiant system--controls variable cond sys ctrl
-    extern int TotalNumOfRadSystems;   // Total number of low temperature radiant systems
-    extern int OperatingMode;          // Used to keep track of whether system is in heating or cooling mode
-    extern int MaxCloNumOfSurfaces;    // Used to set allocate size in CalcClo routine
-    extern bool VarOffCond;            // Set to true when in cooling for constant flow system + variable off condensation predicted
-    extern bool FirstTimeInit; // Set to true initially and set to false once the first pass is made through the initialization routine
-    extern Real64 LoopReqTemp; // Temperature required at the inlet of the pump (from the loop) to meet control logic
-    extern Array1D<Real64> QRadSysSrcAvg;        // Average source over the time step for a particular radiant surface
+    extern int NumOfHydrLowTempRadSys;    // Number of hydronic low tempererature radiant systems
+    extern int NumOfCFloLowTempRadSys;    // Number of constant flow (hydronic) low tempererature radiant systems
+    extern int NumOfElecLowTempRadSys;    // Number of electric low tempererature radiant systems
+    extern int CFloCondIterNum;           // Number of iterations for a constant flow radiant system--controls variable cond sys ctrl
+    extern int TotalNumOfRadSystems;      // Total number of low temperature radiant systems
+    extern int OperatingMode;             // Used to keep track of whether system is in heating or cooling mode
+    extern int MaxCloNumOfSurfaces;       // Used to set allocate size in CalcClo routine
+    extern bool VarOffCond;               // Set to true when in cooling for constant flow system + variable off condensation predicted
+    extern bool FirstTimeInit;            // Set to true initially and set to false once the first pass is made through the initialization routine
+    extern Real64 LoopReqTemp;            // Temperature required at the inlet of the pump (from the loop) to meet control logic
+    extern Array1D<Real64> QRadSysSrcAvg; // Average source over the time step for a particular radiant surface
     extern Array1D<Real64> ZeroSourceSumHATsurf; // Equal to SumHATsurf for all the walls in a zone with no source
     // Record keeping variables used to calculate QRadSysSrcAvg locally
     extern Array1D<Real64> LastQRadSysSrc;     // Need to keep the last value in case we are still iterating
@@ -178,34 +178,33 @@ namespace LowTempRadiantSystem {
         bool EMSOverrideOnWaterMdot;
         Real64 EMSWaterMdotOverrideValue;
         // Report data
-        Real64 WaterInletTemp;    // water inlet temperature
-        Real64 WaterOutletTemp;   // water outlet temperature
-        Real64 WaterMassFlowRate; // water mass flow rate
-        Real64 HeatPower;         // heating sent to panel in Watts
-        Real64 HeatEnergy;        // heating sent to panel in Joules
-        Real64 CoolPower;         // cooling sent to panel in Watts
-        Real64 CoolEnergy;        // cooling sent to panel in Joules
-        int OutRangeHiErrorCount; // recurring errors for crazy results too high fluid temperature
-        int OutRangeLoErrorCount; // recurring errors for crazy results too low fluid temperature
-        int HeatingCapMethod;     // - Method for Low Temp Radiant system heating capacity scaledsizing calculation (HeatingDesignCapacity,
-                                  // CapacityPerFloorArea, FracOfAutosizedHeatingCapacity)
+        Real64 WaterInletTemp;        // water inlet temperature
+        Real64 WaterOutletTemp;       // water outlet temperature
+        Real64 WaterMassFlowRate;     // water mass flow rate
+        Real64 HeatPower;             // heating sent to panel in Watts
+        Real64 HeatEnergy;            // heating sent to panel in Joules
+        Real64 CoolPower;             // cooling sent to panel in Watts
+        Real64 CoolEnergy;            // cooling sent to panel in Joules
+        int OutRangeHiErrorCount;     // recurring errors for crazy results too high fluid temperature
+        int OutRangeLoErrorCount;     // recurring errors for crazy results too low fluid temperature
+        int HeatingCapMethod;         // - Method for Low Temp Radiant system heating capacity scaledsizing calculation (HeatingDesignCapacity,
+                                      // CapacityPerFloorArea, FracOfAutosizedHeatingCapacity)
         Real64 ScaledHeatingCapacity; // -  Low Temp Radiant system scaled maximum heating capacity {W} or scalable variable of zone HVAC
                                       // equipment, {-}, or {W/m2}
-        int CoolingCapMethod; // - Method for Low Temp Radiant system cooling capacity scaledsizing calculation (CoolingDesignCapacity,
-                              // CapacityPerFloorArea, FracOfAutosizedCoolingCapacity)
+        int CoolingCapMethod;         // - Method for Low Temp Radiant system cooling capacity scaledsizing calculation (CoolingDesignCapacity,
+                                      // CapacityPerFloorArea, FracOfAutosizedCoolingCapacity)
         Real64 ScaledCoolingCapacity; // -  Low Temp Radiant system scaled maximum cooling capacity {W} or scalable variable of zone HVAC
                                       // equipment, {-}, or {W/m2}
 
         // Default Constructor
         HydronicRadiantSystemData()
             : SchedPtr(0), ZonePtr(0), NumOfSurfaces(0), TotalSurfaceArea(0.0), TubeDiameter(0.0), TubeLength(0.0), ControlType(0),
-              HeatingSystem(false), WaterVolFlowMaxHeat(0.0), WaterFlowMaxHeat(0.0), HotWaterInNode(0), HotWaterOutNode(0),
-              HotThrottlRange(0.0), HotSetptSchedPtr(0), HWLoopNum(0), HWLoopSide(0), HWBranchNum(0), HWCompNum(0),
-              WaterVolFlowMaxCool(0.0), WaterFlowMaxCool(0.0), CoolingSystem(false), ColdWaterInNode(0), ColdWaterOutNode(0),
-              ColdThrottlRange(0.0), ColdSetptSchedPtr(0), CWLoopNum(0), CWLoopSide(0), CWBranchNum(0), CWCompNum(0), GlycolIndex(0),
-              CondErrIndex(0), CondCtrlType(1), CondDewPtDeltaT(1.0), CondCausedTimeOff(0.0), CondCausedShutDown(false),
-              NumCircCalcMethod(0), CircLength(0.0), EMSOverrideOnWaterMdot(false), EMSWaterMdotOverrideValue(0.0), WaterInletTemp(0.0),
-              WaterOutletTemp(0.0), WaterMassFlowRate(0.0), HeatPower(0.0), HeatEnergy(0.0), CoolPower(0.0), CoolEnergy(0.0),
+              HeatingSystem(false), WaterVolFlowMaxHeat(0.0), WaterFlowMaxHeat(0.0), HotWaterInNode(0), HotWaterOutNode(0), HotThrottlRange(0.0),
+              HotSetptSchedPtr(0), HWLoopNum(0), HWLoopSide(0), HWBranchNum(0), HWCompNum(0), WaterVolFlowMaxCool(0.0), WaterFlowMaxCool(0.0),
+              CoolingSystem(false), ColdWaterInNode(0), ColdWaterOutNode(0), ColdThrottlRange(0.0), ColdSetptSchedPtr(0), CWLoopNum(0), CWLoopSide(0),
+              CWBranchNum(0), CWCompNum(0), GlycolIndex(0), CondErrIndex(0), CondCtrlType(1), CondDewPtDeltaT(1.0), CondCausedTimeOff(0.0),
+              CondCausedShutDown(false), NumCircCalcMethod(0), CircLength(0.0), EMSOverrideOnWaterMdot(false), EMSWaterMdotOverrideValue(0.0),
+              WaterInletTemp(0.0), WaterOutletTemp(0.0), WaterMassFlowRate(0.0), HeatPower(0.0), HeatEnergy(0.0), CoolPower(0.0), CoolEnergy(0.0),
               OutRangeHiErrorCount(0), OutRangeLoErrorCount(0), HeatingCapMethod(0), ScaledHeatingCapacity(0.0), CoolingCapMethod(0),
               ScaledCoolingCapacity(0.0)
         {
@@ -316,15 +315,15 @@ namespace LowTempRadiantSystem {
             : SchedPtr(0), ZonePtr(0), NumOfSurfaces(0), TotalSurfaceArea(0.0), TubeDiameter(0.0), TubeLength(0.0), ControlType(0),
               WaterVolFlowMax(0.0), ColdDesignWaterMassFlowRate(0.0), HotDesignWaterMassFlowRate(0.0), WaterMassFlowRate(0.0),
               HotWaterMassFlowRate(0.0), ChWaterMassFlowRate(0.0), VolFlowSchedPtr(0), NomPumpHead(0.0), NomPowerUse(0.0), MotorEffic(0.0),
-              PumpEffic(0.0), FracMotorLossToFluid(0.0), HeatingSystem(false), HotWaterInNode(0), HotWaterOutNode(0),
-              HotWaterHiTempSchedPtr(0), HotWaterLoTempSchedPtr(0), HotCtrlHiTempSchedPtr(0), HotCtrlLoTempSchedPtr(0), HWLoopNum(0),
-              HWLoopSide(0), HWBranchNum(0), HWCompNum(0), CoolingSystem(false), ColdWaterInNode(0), ColdWaterOutNode(0),
-              ColdWaterHiTempSchedPtr(0), ColdWaterLoTempSchedPtr(0), ColdCtrlHiTempSchedPtr(0), ColdCtrlLoTempSchedPtr(0), CWLoopNum(0),
-              CWLoopSide(0), CWBranchNum(0), CWCompNum(0), GlycolIndex(0), CondErrIndex(0), CondCtrlType(1), CondDewPtDeltaT(1.0),
-              CondCausedTimeOff(0.0), CondCausedShutDown(false), NumCircCalcMethod(0), CircLength(0.0), EMSOverrideOnWaterMdot(false),
-              EMSWaterMdotOverrideValue(0.0), WaterInletTemp(0.0), WaterOutletTemp(0.0), WaterInjectionRate(0.0), WaterRecircRate(0.0),
-              HeatPower(0.0), HeatEnergy(0.0), CoolPower(0.0), CoolEnergy(0.0), PumpPower(0.0), PumpEnergy(0.0), PumpMassFlowRate(0.0),
-              PumpHeattoFluid(0.0), PumpHeattoFluidEnergy(0.0), PumpInletTemp(0.0), OutRangeHiErrorCount(0), OutRangeLoErrorCount(0)
+              PumpEffic(0.0), FracMotorLossToFluid(0.0), HeatingSystem(false), HotWaterInNode(0), HotWaterOutNode(0), HotWaterHiTempSchedPtr(0),
+              HotWaterLoTempSchedPtr(0), HotCtrlHiTempSchedPtr(0), HotCtrlLoTempSchedPtr(0), HWLoopNum(0), HWLoopSide(0), HWBranchNum(0),
+              HWCompNum(0), CoolingSystem(false), ColdWaterInNode(0), ColdWaterOutNode(0), ColdWaterHiTempSchedPtr(0), ColdWaterLoTempSchedPtr(0),
+              ColdCtrlHiTempSchedPtr(0), ColdCtrlLoTempSchedPtr(0), CWLoopNum(0), CWLoopSide(0), CWBranchNum(0), CWCompNum(0), GlycolIndex(0),
+              CondErrIndex(0), CondCtrlType(1), CondDewPtDeltaT(1.0), CondCausedTimeOff(0.0), CondCausedShutDown(false), NumCircCalcMethod(0),
+              CircLength(0.0), EMSOverrideOnWaterMdot(false), EMSWaterMdotOverrideValue(0.0), WaterInletTemp(0.0), WaterOutletTemp(0.0),
+              WaterInjectionRate(0.0), WaterRecircRate(0.0), HeatPower(0.0), HeatEnergy(0.0), CoolPower(0.0), CoolEnergy(0.0), PumpPower(0.0),
+              PumpEnergy(0.0), PumpMassFlowRate(0.0), PumpHeattoFluid(0.0), PumpHeattoFluidEnergy(0.0), PumpInletTemp(0.0), OutRangeHiErrorCount(0),
+              OutRangeLoErrorCount(0)
         {
         }
     };
@@ -363,8 +362,7 @@ namespace LowTempRadiantSystem {
         // Default Constructor
         ElectricRadiantSystemData()
             : SchedPtr(0), ZonePtr(0), NumOfSurfaces(0), TotalSurfaceArea(0.0), MaxElecPower(0.0), ControlType(0), ThrottlRange(0.0),
-              SetptSchedPtr(0), ElecPower(0.0), ElecEnergy(0.0), HeatPower(0.0), HeatEnergy(0.0), HeatingCapMethod(0),
-              ScaledHeatingCapacity(0.0)
+              SetptSchedPtr(0), ElecPower(0.0), ElecEnergy(0.0), HeatPower(0.0), HeatEnergy(0.0), HeatingCapMethod(0), ScaledHeatingCapacity(0.0)
         {
         }
     };
@@ -424,17 +422,15 @@ namespace LowTempRadiantSystem {
 
     void GetLowTempRadiantSystem();
 
-    void InitLowTempRadiantSystem(
-        bool const FirstHVACIteration, // TRUE if 1st HVAC simulation of system timestep
-        int const RadSysNum,           // Index for the low temperature radiant system under consideration within the derived types
-        int const SystemType,          // Type of radiant system: hydronic, constant flow, or electric
-        bool &InitErrorFound           // Set to true when a severe or worse error is discovered during initialization
-        );
+    void InitLowTempRadiantSystem(bool const FirstHVACIteration, // TRUE if 1st HVAC simulation of system timestep
+                                  int const RadSysNum,  // Index for the low temperature radiant system under consideration within the derived types
+                                  int const SystemType, // Type of radiant system: hydronic, constant flow, or electric
+                                  bool &InitErrorFound  // Set to true when a severe or worse error is discovered during initialization
+                                  );
 
-    void SizeLowTempRadiantSystem(
-        int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
-        int const SystemType // Type of radiant system: hydronic, constant flow, or electric
-        );
+    void SizeLowTempRadiantSystem(int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
+                                  int const SystemType // Type of radiant system: hydronic, constant flow, or electric
+                                  );
 
     Real64 SizeRadSysTubeLength(int const RadSysType, // type of system (hydronic or constant flow)
                                 int const RadSysNum   // index number for radiant system
@@ -462,14 +458,12 @@ namespace LowTempRadiantSystem {
                                       Real64 &LoadMet      // load met by the radiant system, in Watts
                                       );
 
-    void UpdateLowTempRadiantSystem(
-        bool const FirstHVACIteration, // TRUE if 1st HVAC simulation of system timestep
-        int const RadSysNum,           // Index for the low temperature radiant system under consideration within the derived types
-        int const SystemType           // Type of radiant system: hydronic, constant flow, or electric
-        );
+    void UpdateLowTempRadiantSystem(bool const FirstHVACIteration, // TRUE if 1st HVAC simulation of system timestep
+                                    int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
+                                    int const SystemType // Type of radiant system: hydronic, constant flow, or electric
+                                    );
 
-    void CheckForOutOfRangeTempResult(
-        int const SystemType, int const RadSysNum, Real64 const outletTemp, Real64 const inletTemp, Real64 const mdot);
+    void CheckForOutOfRangeTempResult(int const SystemType, int const RadSysNum, Real64 const outletTemp, Real64 const inletTemp, Real64 const mdot);
 
     Real64 CalcRadSysHXEffectTerm(int const RadSysNum,        // Index number of radiant system under consideration !unused1208
                                   int const SystemType,       // Type of radiant system: hydronic, constant flow, or electric
@@ -486,10 +480,9 @@ namespace LowTempRadiantSystem {
 
     Real64 SumHATsurf(int const ZoneNum); // Zone number
 
-    void ReportLowTempRadiantSystem(
-        int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
-        int const SystemType // Type of radiant system: hydronic, constant flow, or electric
-        );
+    void ReportLowTempRadiantSystem(int const RadSysNum, // Index for the low temperature radiant system under consideration within the derived types
+                                    int const SystemType // Type of radiant system: hydronic, constant flow, or electric
+                                    );
 
 } // LowTempRadiantSystem
 

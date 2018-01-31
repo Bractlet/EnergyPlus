@@ -229,28 +229,26 @@ namespace ChillerReformulatedEIR {
 
         // Default Constructor
         ReformulatedEIRChillerSpecs()
-            : TypeNum(0), CondenserType(0), PartLoadCurveType(0), RefCap(0.0), RefCapWasAutoSized(false), RefCOP(0.0),
-              FlowMode(FlowModeNotSet), ModulatedFlowSetToLoop(false), ModulatedFlowErrDone(false), EvapVolFlowRate(0.0),
-              EvapVolFlowRateWasAutoSized(false), EvapMassFlowRateMax(0.0), CondVolFlowRate(0.0), CondVolFlowRateWasAutoSized(false),
-              CondMassFlowRateMax(0.0), CompPowerToCondenserFrac(0.0), EvapInletNodeNum(0), EvapOutletNodeNum(0), CondInletNodeNum(0),
-              CondOutletNodeNum(0), MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), MinUnloadRat(0.0), TempRefCondIn(0.0),
-              TempRefCondOut(0.0), TempRefEvapOut(0.0), TempLowLimitEvapOut(0.0), DesignHeatRecVolFlowRate(0.0),
-              DesignHeatRecVolFlowRateWasAutoSized(false), DesignHeatRecMassFlowRate(0.0), SizFac(0.0), HeatRecActive(false),
-              HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0), HeatRecCapacityFraction(0.0), HeatRecMaxCapacityLimit(0.0),
-              HeatRecSetPointNodeNum(0), HeatRecInletLimitSchedNum(0), ChillerCapFT(0), ChillerEIRFT(0), ChillerEIRFPLR(0),
-              ChillerCapFTError(0), ChillerCapFTErrorIndex(0), ChillerEIRFTError(0), ChillerEIRFTErrorIndex(0), ChillerEIRFPLRError(0),
-              ChillerEIRFPLRErrorIndex(0), ChillerCAPFTXTempMin(0.0), ChillerCAPFTXTempMax(0.0), ChillerCAPFTYTempMin(0.0),
-              ChillerCAPFTYTempMax(0.0), ChillerEIRFTXTempMin(0.0), ChillerEIRFTXTempMax(0.0), ChillerEIRFTYTempMin(0.0),
-              ChillerEIRFTYTempMax(0.0), ChillerEIRFPLRTempMin(0.0), ChillerEIRFPLRTempMax(0.0), ChillerEIRFPLRPLRMin(0.0),
-              ChillerEIRFPLRPLRMax(0.0), ChillerLiftNomMin(0.0), // zrp_Aug2014
+            : TypeNum(0), CondenserType(0), PartLoadCurveType(0), RefCap(0.0), RefCapWasAutoSized(false), RefCOP(0.0), FlowMode(FlowModeNotSet),
+              ModulatedFlowSetToLoop(false), ModulatedFlowErrDone(false), EvapVolFlowRate(0.0), EvapVolFlowRateWasAutoSized(false),
+              EvapMassFlowRateMax(0.0), CondVolFlowRate(0.0), CondVolFlowRateWasAutoSized(false), CondMassFlowRateMax(0.0),
+              CompPowerToCondenserFrac(0.0), EvapInletNodeNum(0), EvapOutletNodeNum(0), CondInletNodeNum(0), CondOutletNodeNum(0),
+              MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), MinUnloadRat(0.0), TempRefCondIn(0.0), TempRefCondOut(0.0),
+              TempRefEvapOut(0.0), TempLowLimitEvapOut(0.0), DesignHeatRecVolFlowRate(0.0), DesignHeatRecVolFlowRateWasAutoSized(false),
+              DesignHeatRecMassFlowRate(0.0), SizFac(0.0), HeatRecActive(false), HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0),
+              HeatRecCapacityFraction(0.0), HeatRecMaxCapacityLimit(0.0), HeatRecSetPointNodeNum(0), HeatRecInletLimitSchedNum(0), ChillerCapFT(0),
+              ChillerEIRFT(0), ChillerEIRFPLR(0), ChillerCapFTError(0), ChillerCapFTErrorIndex(0), ChillerEIRFTError(0), ChillerEIRFTErrorIndex(0),
+              ChillerEIRFPLRError(0), ChillerEIRFPLRErrorIndex(0), ChillerCAPFTXTempMin(0.0), ChillerCAPFTXTempMax(0.0), ChillerCAPFTYTempMin(0.0),
+              ChillerCAPFTYTempMax(0.0), ChillerEIRFTXTempMin(0.0), ChillerEIRFTXTempMax(0.0), ChillerEIRFTYTempMin(0.0), ChillerEIRFTYTempMax(0.0),
+              ChillerEIRFPLRTempMin(0.0), ChillerEIRFPLRTempMax(0.0), ChillerEIRFPLRPLRMin(0.0), ChillerEIRFPLRPLRMax(0.0),
+              ChillerLiftNomMin(0.0), // zrp_Aug2014
               ChillerLiftNomMax(10.0), ChillerTdevNomMin(0.0), ChillerTdevNomMax(10.0), CAPFTXIter(0), CAPFTXIterIndex(0), CAPFTYIter(0),
-              CAPFTYIterIndex(0), EIRFTXIter(0), EIRFTXIterIndex(0), EIRFTYIter(0), EIRFTYIterIndex(0), EIRFPLRTIter(0),
-              EIRFPLRTIterIndex(0), EIRFPLRPLRIter(0), EIRFPLRPLRIterIndex(0), FaultyChillerSWTFlag(false), FaultyChillerSWTIndex(0),
-              FaultyChillerSWTOffset(0.0), IterLimitExceededNum(0), IterLimitErrIndex(0), IterFailed(0), IterFailedIndex(0),
-              DeltaTErrCount(0), DeltaTErrCountIndex(0), CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0), CWCompNum(0), CDLoopNum(0),
-              CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0), HRLoopNum(0), HRLoopSideNum(0), HRBranchNum(0), HRCompNum(0),
-              CondMassFlowIndex(0), PossibleSubcooling(false), FaultyChillerFoulingFlag(false), FaultyChillerFoulingIndex(0),
-              FaultyChillerFoulingFactor(1.0)
+              CAPFTYIterIndex(0), EIRFTXIter(0), EIRFTXIterIndex(0), EIRFTYIter(0), EIRFTYIterIndex(0), EIRFPLRTIter(0), EIRFPLRTIterIndex(0),
+              EIRFPLRPLRIter(0), EIRFPLRPLRIterIndex(0), FaultyChillerSWTFlag(false), FaultyChillerSWTIndex(0), FaultyChillerSWTOffset(0.0),
+              IterLimitExceededNum(0), IterLimitErrIndex(0), IterFailed(0), IterFailedIndex(0), DeltaTErrCount(0), DeltaTErrCountIndex(0),
+              CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0), CWCompNum(0), CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0),
+              HRLoopNum(0), HRLoopSideNum(0), HRBranchNum(0), HRCompNum(0), CondMassFlowIndex(0), PossibleSubcooling(false),
+              FaultyChillerFoulingFlag(false), FaultyChillerFoulingIndex(0), FaultyChillerFoulingFactor(1.0)
         {
         }
     };
@@ -291,9 +289,8 @@ namespace ChillerReformulatedEIR {
         ReportVars()
             : ChillerPartLoadRatio(0.0), ChillerCyclingRatio(0.0), ChillerFalseLoadRate(0.0), ChillerFalseLoad(0.0), Power(0.0), QEvap(0.0),
               QCond(0.0), Energy(0.0), EvapEnergy(0.0), CondEnergy(0.0), CondInletTemp(0.0), EvapInletTemp(0.0), CondOutletTemp(0.0),
-              EvapOutletTemp(0.0), Evapmdot(0.0), Condmdot(0.0), ActualCOP(0.0), QHeatRecovery(0.0), EnergyHeatRecovery(0.0),
-              HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMassFlow(0.0), ChillerCapFT(0.0), ChillerEIRFT(0.0),
-              ChillerEIRFPLR(0.0), ChillerCondAvgTemp(0.0)
+              EvapOutletTemp(0.0), Evapmdot(0.0), Condmdot(0.0), ActualCOP(0.0), QHeatRecovery(0.0), EnergyHeatRecovery(0.0), HeatRecInletTemp(0.0),
+              HeatRecOutletTemp(0.0), HeatRecMassFlow(0.0), ChillerCapFT(0.0), ChillerEIRFT(0.0), ChillerEIRFPLR(0.0), ChillerCondAvgTemp(0.0)
         {
         }
     };

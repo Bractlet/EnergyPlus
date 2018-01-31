@@ -168,15 +168,14 @@ namespace HeatingCoils {
 
         // Default Constructor
         HeatingCoilEquipConditions()
-            : HCoilType_Num(0), FuelType_Num(0), SchedPtr(0), InsuffTemperatureWarn(0), InletAirMassFlowRate(0.0),
-              OutletAirMassFlowRate(0.0), InletAirTemp(0.0), OutletAirTemp(0.0), InletAirHumRat(0.0), OutletAirHumRat(0.0),
-              InletAirEnthalpy(0.0), OutletAirEnthalpy(0.0), HeatingCoilLoad(0.0), HeatingCoilRate(0.0), FuelUseLoad(0.0), ElecUseLoad(0.0),
-              FuelUseRate(0.0), ElecUseRate(0.0), Efficiency(0.0), NominalCapacity(0.0), DesiredOutletTemp(0.0), DesiredOutletHumRat(0.0),
-              AvailTemperature(0.0), AirInletNodeNum(0), AirOutletNodeNum(0), TempSetPointNodeNum(0), Control(0), PLFCurveIndex(0),
-              ParasiticElecLoad(0.0), ParasiticFuelLoad(0.0), ParasiticFuelRate(0.0), ParasiticFuelCapacity(0.0), RTF(0.0),
-              RTFErrorIndex(0), RTFErrorCount(0), PLFErrorIndex(0), PLFErrorCount(0), ReclaimHeatingSourceIndexNum(0),
-              ReclaimHeatingSource(0), NumOfStages(0), DesiccantRegenerationCoil(false), DesiccantDehumNum(0), FaultyCoilSATFlag(false),
-              FaultyCoilSATIndex(0), FaultyCoilSATOffset(0.0)
+            : HCoilType_Num(0), FuelType_Num(0), SchedPtr(0), InsuffTemperatureWarn(0), InletAirMassFlowRate(0.0), OutletAirMassFlowRate(0.0),
+              InletAirTemp(0.0), OutletAirTemp(0.0), InletAirHumRat(0.0), OutletAirHumRat(0.0), InletAirEnthalpy(0.0), OutletAirEnthalpy(0.0),
+              HeatingCoilLoad(0.0), HeatingCoilRate(0.0), FuelUseLoad(0.0), ElecUseLoad(0.0), FuelUseRate(0.0), ElecUseRate(0.0), Efficiency(0.0),
+              NominalCapacity(0.0), DesiredOutletTemp(0.0), DesiredOutletHumRat(0.0), AvailTemperature(0.0), AirInletNodeNum(0), AirOutletNodeNum(0),
+              TempSetPointNodeNum(0), Control(0), PLFCurveIndex(0), ParasiticElecLoad(0.0), ParasiticFuelLoad(0.0), ParasiticFuelRate(0.0),
+              ParasiticFuelCapacity(0.0), RTF(0.0), RTFErrorIndex(0), RTFErrorCount(0), PLFErrorIndex(0), PLFErrorCount(0),
+              ReclaimHeatingSourceIndexNum(0), ReclaimHeatingSource(0), NumOfStages(0), DesiccantRegenerationCoil(false), DesiccantDehumNum(0),
+              FaultyCoilSATFlag(false), FaultyCoilSATIndex(0), FaultyCoilSATOffset(0.0)
         {
         }
     };
@@ -201,9 +200,9 @@ namespace HeatingCoils {
                                        bool const FirstHVACIteration,
                                        Optional<Real64 const> QCoilReq = _, // coil load to be met
                                        Optional_int CompIndex = _,
-                                       Optional<Real64> QCoilActual = _, // coil load actually delivered returned to calling component
-                                       Optional_bool_const SuppHeat = _, // True if current heating coil is a supplemental heating coil
-                                       Optional_int_const FanOpMode = _, // fan operating mode, CycFanCycCoil or ContFanCycCoil
+                                       Optional<Real64> QCoilActual = _,         // coil load actually delivered returned to calling component
+                                       Optional_bool_const SuppHeat = _,         // True if current heating coil is a supplemental heating coil
+                                       Optional_int_const FanOpMode = _,         // fan operating mode, CycFanCycCoil or ContFanCycCoil
                                        Optional<Real64 const> PartLoadRatio = _, // part-load ratio of heating coil
                                        Optional_int StageNum = _,
                                        Optional<Real64 const> SpeedRatio = _ // Speed ratio of MultiStage heating coil

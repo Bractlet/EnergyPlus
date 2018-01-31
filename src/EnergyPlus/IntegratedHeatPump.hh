@@ -206,23 +206,22 @@ namespace IntegratedHeatPump {
 
         // Default Constructor
         IntegratedHeatPumpData()
-            : SCCoilIndex(0), SHCoilIndex(0), SCWHCoilIndex(0), DWHCoilIndex(0), SCDWHCoolCoilIndex(0), SCDWHWHCoilIndex(0),
-              SHDWHHeatCoilIndex(0), SHDWHWHCoilIndex(0), AirCoolInletNodeNum(0), AirHeatInletNodeNum(0), AirOutletNodeNum(0),
-              WaterInletNodeNum(0), WaterOutletNodeNum(0), WaterTankoutNod(0), ModeMatchSCWH(0), MinSpedSCWH(1), MinSpedSCDWH(1),
-              MinSpedSHDWH(1), TindoorOverCoolAllow(0.0), TambientOverCoolAllow(0.0), TindoorWHHighPriority(0.0),
-              TambientWHHighPriority(0.0), WaterVolSCDWH(0.0), TimeLimitSHDWH(0.0), WHtankType(0), WHtankID(0), LoopNum(0), LoopSideNum(0),
-              IsWHCallAvail(false), CheckWHCall(false), CurMode(IHPOperationMode::IdleMode), ControlledZoneTemp(0), WaterFlowAccumVol(0),
-              SHDWHRunTime(0), CoolVolFlowScale(0), HeatVolFlowScale(0), MaxHeatAirMassFlow(0), MaxHeatAirVolFlow(0), MaxCoolAirMassFlow(0),
-              MaxCoolAirVolFlow(0), IHPCoilsSized(false), IDFanID(0), IDFanPlace(0), ODAirInletNodeNum(0), // oudoor coil inlet Nod
-              ODAirOutletNodeNum(0),                                                                       // oudoor coil outlet Nod
-              TankSourceWaterMassFlowRate(0), AirFlowSavInWaterLoop(0), AirFlowSavInAirLoop(0),
-              AirLoopFlowRate(0.0),             // air loop mass flow rate
-              TotalCoolingRate(0.0),            // total cooling rate [w]
-              TotalWaterHeatingRate(0.0),       // total water heating rate [w]
-              TotalSpaceHeatingRate(0.0),       // total space heating rate [w]
-              TotalPower(0.0),                  // total power consumption  [w]
-              TotalLatentLoad(0),               // total latent cooling rate [w]
-              Qsource(0.0),                     // source energy rate, [w]
+            : SCCoilIndex(0), SHCoilIndex(0), SCWHCoilIndex(0), DWHCoilIndex(0), SCDWHCoolCoilIndex(0), SCDWHWHCoilIndex(0), SHDWHHeatCoilIndex(0),
+              SHDWHWHCoilIndex(0), AirCoolInletNodeNum(0), AirHeatInletNodeNum(0), AirOutletNodeNum(0), WaterInletNodeNum(0), WaterOutletNodeNum(0),
+              WaterTankoutNod(0), ModeMatchSCWH(0), MinSpedSCWH(1), MinSpedSCDWH(1), MinSpedSHDWH(1), TindoorOverCoolAllow(0.0),
+              TambientOverCoolAllow(0.0), TindoorWHHighPriority(0.0), TambientWHHighPriority(0.0), WaterVolSCDWH(0.0), TimeLimitSHDWH(0.0),
+              WHtankType(0), WHtankID(0), LoopNum(0), LoopSideNum(0), IsWHCallAvail(false), CheckWHCall(false), CurMode(IHPOperationMode::IdleMode),
+              ControlledZoneTemp(0), WaterFlowAccumVol(0), SHDWHRunTime(0), CoolVolFlowScale(0), HeatVolFlowScale(0), MaxHeatAirMassFlow(0),
+              MaxHeatAirVolFlow(0), MaxCoolAirMassFlow(0), MaxCoolAirVolFlow(0), IHPCoilsSized(false), IDFanID(0), IDFanPlace(0),
+              ODAirInletNodeNum(0),                                                                                   // oudoor coil inlet Nod
+              ODAirOutletNodeNum(0),                                                                                  // oudoor coil outlet Nod
+              TankSourceWaterMassFlowRate(0), AirFlowSavInWaterLoop(0), AirFlowSavInAirLoop(0), AirLoopFlowRate(0.0), // air loop mass flow rate
+              TotalCoolingRate(0.0),                                                                                  // total cooling rate [w]
+              TotalWaterHeatingRate(0.0),                                                                             // total water heating rate [w]
+              TotalSpaceHeatingRate(0.0),                                                                             // total space heating rate [w]
+              TotalPower(0.0),                                                                                        // total power consumption  [w]
+              TotalLatentLoad(0),                                                                                     // total latent cooling rate [w]
+              Qsource(0.0),                                                                                           // source energy rate, [w]
               Energy(0.0),                      // total electric energy consumption [J]
               EnergyLoadTotalCooling(0.0),      // total cooling energy [J]
               EnergyLoadTotalHeating(0.0),      // total heating energy [J]
@@ -248,12 +247,12 @@ namespace IntegratedHeatPump {
                 Real64 &FanDelayTime,          // Fan delay time, time delay for the HP's fan to
                 int const CompOp,              // compressor on/off. 0 = off; 1= on
                 Real64 const PartLoadFrac,
-                int const SpeedNum,            // compressor speed number
-                Real64 const SpeedRatio,       // compressor speed ratio
-                Real64 const SensLoad,         // Sensible demand load [W]
-                Real64 const LatentLoad,       // Latent demand load [W]
-                bool const IsCallbyWH,         // whether the call from the water heating loop or air loop, true = from water heating loop
-                bool const FirstHVACIteration, // TRUE if First iteration of simulation
+                int const SpeedNum,                        // compressor speed number
+                Real64 const SpeedRatio,                   // compressor speed ratio
+                Real64 const SensLoad,                     // Sensible demand load [W]
+                Real64 const LatentLoad,                   // Latent demand load [W]
+                bool const IsCallbyWH,                     // whether the call from the water heating loop or air loop, true = from water heating loop
+                bool const FirstHVACIteration,             // TRUE if First iteration of simulation
                 Optional<Real64 const> OnOffAirFlowRat = _ // ratio of comp on to comp off air flow rate
                 );
 
@@ -276,26 +275,23 @@ namespace IntegratedHeatPump {
 
     int GetMaxSpeedNumIHP(int const DXCoilNum);
 
-    Real64
-    GetAirVolFlowRateIHP(int const DXCoilNum,
-                         int const SpeedNum,
-                         Real64 const SpeedRatio,
-                         bool const IsCallbyWH // whether the call from the water heating loop or air loop, true = from water heating loop
-                         );
+    Real64 GetAirVolFlowRateIHP(int const DXCoilNum,
+                                int const SpeedNum,
+                                Real64 const SpeedRatio,
+                                bool const IsCallbyWH // whether the call from the water heating loop or air loop, true = from water heating loop
+                                );
 
-    Real64
-    GetWaterVolFlowRateIHP(int const DXCoilNum,
-                           int const SpeedNum,
-                           Real64 const SpeedRatio,
-                           bool const IsCallbyWH // whether the call from the water heating loop or air loop, true = from water heating loop
-                           );
+    Real64 GetWaterVolFlowRateIHP(int const DXCoilNum,
+                                  int const SpeedNum,
+                                  Real64 const SpeedRatio,
+                                  bool const IsCallbyWH // whether the call from the water heating loop or air loop, true = from water heating loop
+                                  );
 
-    Real64
-    GetAirMassFlowRateIHP(int const DXCoilNum,
-                          int const SpeedNum,
-                          Real64 const SpeedRatio,
-                          bool const IsCallbyWH // whether the call from the water heating loop or air loop, true = from water heating loop
-                          );
+    Real64 GetAirMassFlowRateIHP(int const DXCoilNum,
+                                 int const SpeedNum,
+                                 Real64 const SpeedRatio,
+                                 bool const IsCallbyWH // whether the call from the water heating loop or air loop, true = from water heating loop
+                                 );
 
     bool IHPInModel();
 

@@ -254,11 +254,9 @@ namespace ExternalInterface {
                           cNumericFieldNames);
             if (SameString(cAlphaArgs(1), "PtolemyServer")) { // The BCVTB interface is activated.
                 ++NumExternalInterfacesBCVTB;
-            } else if (SameString(cAlphaArgs(1),
-                                  "FunctionalMockupUnitImport")) { // The functional mock up unit import interface is activated.
+            } else if (SameString(cAlphaArgs(1), "FunctionalMockupUnitImport")) { // The functional mock up unit import interface is activated.
                 ++NumExternalInterfacesFMUImport;
-            } else if (SameString(cAlphaArgs(1),
-                                  "FunctionalMockupUnitExport")) { // The functional mock up unit export interface is activated.
+            } else if (SameString(cAlphaArgs(1), "FunctionalMockupUnitExport")) { // The functional mock up unit export interface is activated.
                 ++NumExternalInterfacesFMUExport;
             }
         }
@@ -561,11 +559,11 @@ namespace ExternalInterface {
 
                 // now make the library call
                 if (haveExternalInterfaceBCVTB) {
-                    retVal = getepvariables(simCfgFilNam.c_str(), &xmlStrOutTypArr[0], &xmlStrOutArr[0], &nOutVal, xmlStrInKey.c_str(),
-                                            &nInKeys, &xmlStrInArr[0], &nInpVar, inpVarTypes.data(), &lenXmlStr);
+                    retVal = getepvariables(simCfgFilNam.c_str(), &xmlStrOutTypArr[0], &xmlStrOutArr[0], &nOutVal, xmlStrInKey.c_str(), &nInKeys,
+                                            &xmlStrInArr[0], &nInpVar, inpVarTypes.data(), &lenXmlStr);
                 } else if (haveExternalInterfaceFMUExport) {
-                    retVal = getepvariablesFMU(simCfgFilNam.c_str(), &xmlStrOutTypArr[0], &xmlStrOutArr[0], &nOutVal, xmlStrInKey.c_str(),
-                                               &nInKeys, &xmlStrInArr[0], &nInpVar, inpVarTypes.data(), &lenXmlStr);
+                    retVal = getepvariablesFMU(simCfgFilNam.c_str(), &xmlStrOutTypArr[0], &xmlStrOutArr[0], &nOutVal, xmlStrInKey.c_str(), &nInKeys,
+                                               &xmlStrInArr[0], &nInpVar, inpVarTypes.data(), &lenXmlStr);
                 } else {
                     // there should be no else condition at this point, however we'll still assign the error value for completeness
                     retVal = -1;
@@ -642,8 +640,7 @@ namespace ExternalInterface {
                     varInd(i) = FindEMSVariable(inpVarNames(i), 0);
                 }
                 if (varInd(i) <= 0) {
-                    ShowSevereError("ExternalInterface: Error, xml file \"" + simCfgFilNam + "\" declares variable \"" + inpVarNames(i) +
-                                    "\",");
+                    ShowSevereError("ExternalInterface: Error, xml file \"" + simCfgFilNam + "\" declares variable \"" + inpVarNames(i) + "\",");
                     ShowContinueError("but variable was not found in idf file.");
                     ErrorsFound = true;
                 }
@@ -654,8 +651,7 @@ namespace ExternalInterface {
                 if (inpVarTypes(i) == indexVariable) { // ems-globalvariable
                     useEMS = true;
                     if (!isExternalInterfaceErlVariable(varInd(i))) {
-                        ShowSevereError("ExternalInterface: Error, xml file \"" + simCfgFilNam + "\" declares variable \"" +
-                                        inpVarNames(i) + "\",");
+                        ShowSevereError("ExternalInterface: Error, xml file \"" + simCfgFilNam + "\" declares variable \"" + inpVarNames(i) + "\",");
                         ShowContinueError("But this variable is an ordinary Erl variable, not an ExternalInterface variable.");
                         ShowContinueError("You must specify a variable of type \"ExternalInterface:Variable\".");
                         ErrorsFound = true;
@@ -663,8 +659,7 @@ namespace ExternalInterface {
                 } else if (inpVarTypes(i) == indexActuator) { // ems-actuator
                     useEMS = true;
                     if (!isExternalInterfaceErlVariable(varInd(i))) {
-                        ShowSevereError("ExternalInterface: Error, xml file \"" + simCfgFilNam + "\" declares variable \"" +
-                                        inpVarNames(i) + "\",");
+                        ShowSevereError("ExternalInterface: Error, xml file \"" + simCfgFilNam + "\" declares variable \"" + inpVarNames(i) + "\",");
                         ShowContinueError("But this variable is an ordinary Erl actuator, not an ExternalInterface actuator.");
                         ShowContinueError("You must specify a variable of type \"ExternalInterface:Actuator\".");
                         ErrorsFound = true;
@@ -739,9 +734,8 @@ namespace ExternalInterface {
                         }
 
                         // pass in the vectors as pointers to the first member of the vector
-                        FMU(i).Instance(j).fmistatus =
-                            fmiEPlusGetReal(&FMU(i).Instance(j).fmicomponent, &valueReferenceVec[0], &realVarValueVec[0],
-                                            &FMU(i).Instance(j).NumOutputVariablesSchedule, &FMU(i).Instance(j).Index);
+                        FMU(i).Instance(j).fmistatus = fmiEPlusGetReal(&FMU(i).Instance(j).fmicomponent, &valueReferenceVec[0], &realVarValueVec[0],
+                                                                       &FMU(i).Instance(j).NumOutputVariablesSchedule, &FMU(i).Instance(j).Index);
 
                         for (unsigned long x = 1; x <= size(FMU(i).Instance(j).fmuOutputVariableSchedule); ++x) {
                             FMU(i).Instance(j).fmuOutputVariableSchedule(x).ValueReference = valueReferenceVec[x - 1];
@@ -768,9 +762,8 @@ namespace ExternalInterface {
                         }
 
                         // pass in the vectors as pointers to the first member of the vector
-                        FMU(i).Instance(j).fmistatus =
-                            fmiEPlusGetReal(&FMU(i).Instance(j).fmicomponent, &valueReferenceVec2[0], &realVarValueVec2[0],
-                                            &FMU(i).Instance(j).NumOutputVariablesVariable, &FMU(i).Instance(j).Index);
+                        FMU(i).Instance(j).fmistatus = fmiEPlusGetReal(&FMU(i).Instance(j).fmicomponent, &valueReferenceVec2[0], &realVarValueVec2[0],
+                                                                       &FMU(i).Instance(j).NumOutputVariablesVariable, &FMU(i).Instance(j).Index);
 
                         for (unsigned long x = 1; x <= size(FMU(i).Instance(j).fmuOutputVariableVariable); ++x) {
                             FMU(i).Instance(j).fmuOutputVariableVariable(x).ValueReference = valueReferenceVec2[x - 1];
@@ -797,9 +790,8 @@ namespace ExternalInterface {
                         }
 
                         // pass in the vectors as pointers to the first member of the vector
-                        FMU(i).Instance(j).fmistatus =
-                            fmiEPlusGetReal(&FMU(i).Instance(j).fmicomponent, &valueReferenceVec3[0], &realVarValueVec3[0],
-                                            &FMU(i).Instance(j).NumOutputVariablesActuator, &FMU(i).Instance(j).Index);
+                        FMU(i).Instance(j).fmistatus = fmiEPlusGetReal(&FMU(i).Instance(j).fmicomponent, &valueReferenceVec3[0], &realVarValueVec3[0],
+                                                                       &FMU(i).Instance(j).NumOutputVariablesActuator, &FMU(i).Instance(j).Index);
 
                         for (unsigned long x = 1; x <= size(FMU(i).Instance(j).fmuOutputVariableActuator); ++x) {
                             FMU(i).Instance(j).fmuOutputVariableActuator(x).ValueReference = valueReferenceVec3[x - 1];
@@ -863,9 +855,8 @@ namespace ExternalInterface {
                         rtsValueVec4.push_back(FMU(i).Instance(j).eplusOutputVariable(x).RTSValue);
                     }
 
-                    FMU(i).Instance(j).fmistatus =
-                        fmiEPlusSetReal(&FMU(i).Instance(j).fmicomponent, &valueReferenceVec4[0], &rtsValueVec4[0],
-                                        &FMU(i).Instance(j).NumInputVariablesInIDF, &FMU(i).Instance(j).Index);
+                    FMU(i).Instance(j).fmistatus = fmiEPlusSetReal(&FMU(i).Instance(j).fmicomponent, &valueReferenceVec4[0], &rtsValueVec4[0],
+                                                                   &FMU(i).Instance(j).NumInputVariablesInIDF, &FMU(i).Instance(j).Index);
 
                     if (FMU(i).Instance(j).fmistatus != fmiOK) {
                         ShowSevereError("ExternalInterface/GetSetVariablesAndDoStepFMUImport: Error when trying to set inputs");
@@ -919,9 +910,9 @@ namespace ExternalInterface {
         // Instantiate FMUs
         for (i = 1; i <= NumFMUObjects; ++i) {
             for (j = 1; j <= FMU(i).NumInstances; ++j) {
-                FMU(i).Instance(j).fmicomponent = fmiEPlusInstantiateSlave(
-                    (char *)FMU(i).Instance(j).WorkingFolder.c_str(), &FMU(i).Instance(j).LenWorkingFolder, &FMU(i).TimeOut,
-                    &FMU(i).Visible, &FMU(i).Interactive, &FMU(i).LoggingOn, &FMU(i).Instance(j).Index);
+                FMU(i).Instance(j).fmicomponent =
+                    fmiEPlusInstantiateSlave((char *)FMU(i).Instance(j).WorkingFolder.c_str(), &FMU(i).Instance(j).LenWorkingFolder, &FMU(i).TimeOut,
+                                             &FMU(i).Visible, &FMU(i).Interactive, &FMU(i).LoggingOn, &FMU(i).Instance(j).Index);
                 // TODO: This is doing a null pointer check; OK?
                 if (!FMU(i).Instance(j).fmicomponent) {
                     ShowSevereError("ExternalInterface/CalcExternalInterfaceFMUImport: Error when trying to instantiate");
@@ -1002,8 +993,7 @@ namespace ExternalInterface {
             for (j = 1; j <= FMU(i).NumInstances; ++j) {
                 if (FMU(i).Instance(j).fmistatus != fmiFatal) {
                     // Cleanup slaves
-                    FMU(i).Instance(j).fmistatus =
-                        fmiEPlusFreeSlave(&FMU(i).Instance(j).fmicomponent, &FMU(i).Instance(j).Index, &fmiEndSimulation);
+                    FMU(i).Instance(j).fmistatus = fmiEPlusFreeSlave(&FMU(i).Instance(j).fmicomponent, &FMU(i).Instance(j).Index, &fmiEndSimulation);
                 }
                 // check if fmiComponent has been freed
                 if (!FMU(i).Instance(j).fmicomponent) {
@@ -1158,8 +1148,8 @@ namespace ExternalInterface {
                 FMU(i).Instance.allocate(NumFMUInputVariables);
                 checkInstanceName.allocate(NumFMUInputVariables);
                 for (l = 1; l <= NumFMUInputVariables; ++l) {
-                    GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _,
-                                  cAlphaFieldNames, cNumericFieldNames);
+                    GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
+                                  cNumericFieldNames);
                     if (SameString(cAlphaArgs(3), FMU(i).Name)) {
                         Name_NEW = cAlphaArgs(4);
                         if (!SameString(Name_OLD, Name_NEW)) {
@@ -1215,8 +1205,7 @@ namespace ExternalInterface {
                         int lenFileName(len(fullFileName(i)));
 
                         // make the library call
-                        retVal =
-                            fmiEPlusUnpack(&fullFileNameArr[0], &workingFolderArr[0], &lenFileName, &FMU(i).Instance(j).LenWorkingFolder);
+                        retVal = fmiEPlusUnpack(&fullFileNameArr[0], &workingFolderArr[0], &lenFileName, &FMU(i).Instance(j).LenWorkingFolder);
 
                         if (retVal != 0) {
                             ShowSevereError("ExternalInterface/InitExternalInterfaceFMUImport: Error when trying to");
@@ -1233,9 +1222,9 @@ namespace ExternalInterface {
                         auto workingFolderArr(getCharArrayFromString(FMU(i).Instance(j).WorkingFolder));
 
                         // make the library call
-                        FMU(i).Instance(j).Index = model_ID_GUID(
-                            (char *)FMU(i).Instance(j).Name.c_str(), &workingFolderArr[0], &FMU(i).Instance(j).LenWorkingFolder,
-                            &FMU(i).Instance(j).NumInputVariablesInFMU, &FMU(i).Instance(j).NumOutputVariablesInFMU);
+                        FMU(i).Instance(j).Index =
+                            model_ID_GUID((char *)FMU(i).Instance(j).Name.c_str(), &workingFolderArr[0], &FMU(i).Instance(j).LenWorkingFolder,
+                                          &FMU(i).Instance(j).NumInputVariablesInFMU, &FMU(i).Instance(j).NumOutputVariablesInFMU);
 
                         if (FMU(i).Instance(j).Index < 0) {
                             ShowSevereError("ExternalInterface/InitExternalInterfaceFMUImport: Error when trying to");
@@ -1280,8 +1269,8 @@ namespace ExternalInterface {
                         // determine the FMI version
                         // preprocess args for library call
                         auto workingFolderWithLibArr(getCharArrayFromString(FMU(i).Instance(j).WorkingFolder_wLib));
-                        auto VersionNumArr(getCharArrayFromString(
-                            "    ")); // the version should only be 3 characters long, since for now we only handle "1.0"
+                        auto VersionNumArr(
+                            getCharArrayFromString("    ")); // the version should only be 3 characters long, since for now we only handle "1.0"
 
                         // make the library call
                         retValfmiVersion = getfmiEPlusVersion(&workingFolderWithLibArr[0], &FMU(i).Instance(j).LenWorkingFolder_wLib,
@@ -1322,18 +1311,17 @@ namespace ExternalInterface {
                     FMU(i).Instance(j).eplusOutputVariable.allocate(NumFMUInputVariables);
                     k = 1;
                     for (l = 1; l <= NumFMUInputVariables; ++l) {
-                        GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _,
-                                      cAlphaFieldNames, cNumericFieldNames);
+                        GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
+                                      cNumericFieldNames);
                         if (SameString(cAlphaArgs(3), FMU(i).Name) && SameString(cAlphaArgs(4), FMU(i).Instance(j).Name)) {
                             FMU(i).Instance(j).fmuInputVariable(k).Name = cAlphaArgs(5);
                             FMU(i).Instance(j).eplusOutputVariable(k).VarKey = cAlphaArgs(1);
                             FMU(i).Instance(j).eplusOutputVariable(k).Name = cAlphaArgs(2);
                             // verify whether we have duplicate FMU input variables in the idf
-                            VerifyName(FMU(i).Instance(j).fmuInputVariable(k).Name, FMU(i).Instance(j).checkfmuInputVariable,
-                                       NumFMUInputVariables, IsNotOK, IsBlank,
-                                       "The FMU input variable \"" + FMU(i).Instance(j).fmuInputVariable(k).Name + "\" of instance \"" +
-                                           FMU(i).Instance(j).Name + "\" of FMU \"" + FMU(i).Name +
-                                           "\" has duplicates. Please check the input file again and delete duplicated entries.");
+                            VerifyName(FMU(i).Instance(j).fmuInputVariable(k).Name, FMU(i).Instance(j).checkfmuInputVariable, NumFMUInputVariables,
+                                       IsNotOK, IsBlank, "The FMU input variable \"" + FMU(i).Instance(j).fmuInputVariable(k).Name +
+                                                             "\" of instance \"" + FMU(i).Instance(j).Name + "\" of FMU \"" + FMU(i).Name +
+                                                             "\" has duplicates. Please check the input file again and delete duplicated entries.");
                             if (IsNotOK) {
                                 ErrorsFound = true;
                                 StopExternalInterfaceIfError();
@@ -1355,8 +1343,8 @@ namespace ExternalInterface {
                             if (FMU(i).Instance(j).fmuInputVariable(k).ValueReference == -999) {
                                 ShowSevereError("ExternalInterface/InitExternalInterfaceFMUImport: Error when trying to");
                                 ShowContinueError("get the value reference of FMU input variable");
-                                ShowContinueError("\"" + FMU(i).Instance(j).fmuInputVariable(k).Name + "\" of instance \"" +
-                                                  FMU(i).Instance(j).Name + "\" of FMU");
+                                ShowContinueError("\"" + FMU(i).Instance(j).fmuInputVariable(k).Name + "\" of instance \"" + FMU(i).Instance(j).Name +
+                                                  "\" of FMU");
                                 ShowContinueError("of FMU \"" + FMU(i).Name + "\". Please check the name of input variable");
                                 ShowContinueError("in the input file and in the modelDescription file.");
                                 ErrorsFound = true;
@@ -1366,8 +1354,8 @@ namespace ExternalInterface {
                             if (FMU(i).Instance(j).fmuInputVariable(k).ValueReference == -1) {
                                 ShowSevereError("ExternalInterface/InitExternalInterfaceFMUImport: Error when trying to");
                                 ShowContinueError("get the value reference of FMU input variable");
-                                ShowContinueError("\"" + FMU(i).Instance(j).fmuInputVariable(k).Name + "\" of instance \"" +
-                                                  FMU(i).Instance(j).Name + "\" of FMU");
+                                ShowContinueError("\"" + FMU(i).Instance(j).fmuInputVariable(k).Name + "\" of instance \"" + FMU(i).Instance(j).Name +
+                                                  "\" of FMU");
                                 ShowContinueError("\"" + FMU(i).Name + "\". This variable is not an FMU input variable.");
                                 ShowContinueError("Please check the causality of the variable in the modelDescription file.");
                                 ErrorsFound = true;
@@ -1394,8 +1382,8 @@ namespace ExternalInterface {
                     }
 
                     if (NumFMUInputVariables > 0 && FMU(i).Instance(j).NumInputVariablesInIDF == 0) {
-                        ShowWarningError("InitExternalInterfaceFMUImport: The instance \"" + FMU(i).Instance(j).Name + "\" of FMU \"" +
-                                         FMU(i).Name + "\"");
+                        ShowWarningError("InitExternalInterfaceFMUImport: The instance \"" + FMU(i).Instance(j).Name + "\" of FMU \"" + FMU(i).Name +
+                                         "\"");
                         ShowContinueError("is defined but has no input variables. Check the input field of the");
                         ShowContinueError("corresponding object: ExternalInterface:FunctionalMockupUnitImport:From:Variable.");
                     }
@@ -1410,8 +1398,7 @@ namespace ExternalInterface {
                                          TrimSigDigits(FMU(i).Instance(j).NumInputVariablesInIDF) + ')');
                         ShowContinueError("of instance \"" + FMU(i).Instance(j).Name + "\" of FMU \"" + FMU(i).Name +
                                           "\" is less than the number of input variables");
-                        ShowContinueError("in the modelDescription file (" + TrimSigDigits(FMU(i).Instance(j).NumInputVariablesInFMU) +
-                                          ").");
+                        ShowContinueError("in the modelDescription file (" + TrimSigDigits(FMU(i).Instance(j).NumInputVariablesInFMU) + ").");
                         ShowContinueError("Check the input file and the modelDescription file again.");
                     }
                     // check whether the number of input variables in fmu is less than in the idf
@@ -1420,8 +1407,7 @@ namespace ExternalInterface {
                                          TrimSigDigits(FMU(i).Instance(j).NumInputVariablesInIDF) + ')');
                         ShowContinueError("of instance \"" + FMU(i).Instance(j).Name + "\" of FMU \"" + FMU(i).Name +
                                           "\" is bigger than the number of input variables");
-                        ShowContinueError("in the modelDescription file (" + TrimSigDigits(FMU(i).Instance(j).NumInputVariablesInFMU) +
-                                          ").");
+                        ShowContinueError("in the modelDescription file (" + TrimSigDigits(FMU(i).Instance(j).NumInputVariablesInFMU) + ").");
                         ShowContinueError("Check the input file and the modelDescription file again.");
                     }
                 }
@@ -1435,8 +1421,8 @@ namespace ExternalInterface {
             for (i = 1; i <= NumFMUObjects; ++i) {
                 j = 1;
                 for (k = 1; k <= NumFMUInputVariables; ++k) {
-                    GetObjectItem(cCurrentModuleObject, k, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _,
-                                  cAlphaFieldNames, cNumericFieldNames);
+                    GetObjectItem(cCurrentModuleObject, k, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
+                                  cNumericFieldNames);
                     if (SameString(cAlphaArgs(3), FMU(i).Name)) {
                         FMU(i).TotNumOutputVariablesSchedule = j;
                         ++j;
@@ -1450,8 +1436,8 @@ namespace ExternalInterface {
                     FMU(i).Instance(j).eplusInputVariableSchedule.allocate(NumFMUInputVariables);
                     k = 1;
                     for (l = 1; l <= NumFMUInputVariables; ++l) {
-                        GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _,
-                                      cAlphaFieldNames, cNumericFieldNames);
+                        GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
+                                      cNumericFieldNames);
                         if (SameString(cAlphaArgs(3), FMU(i).Name) && SameString(cAlphaArgs(4), FMU(i).Instance(j).Name)) {
                             FMU(i).Instance(j).fmuOutputVariableSchedule(k).Name = cAlphaArgs(5);
                             FMU(i).Instance(j).eplusInputVariableSchedule(k).Name = cAlphaArgs(1);
@@ -1518,8 +1504,8 @@ namespace ExternalInterface {
             for (i = 1; i <= NumFMUObjects; ++i) {
                 j = 1;
                 for (k = 1; k <= NumFMUInputVariables; ++k) {
-                    GetObjectItem(cCurrentModuleObject, k, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _,
-                                  cAlphaFieldNames, cNumericFieldNames);
+                    GetObjectItem(cCurrentModuleObject, k, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
+                                  cNumericFieldNames);
                     if (SameString(cAlphaArgs(2), FMU(i).Name)) {
                         FMU(i).TotNumOutputVariablesVariable = j;
                         ++j;
@@ -1533,8 +1519,8 @@ namespace ExternalInterface {
                     FMU(i).Instance(j).eplusInputVariableVariable.allocate(NumFMUInputVariables);
                     k = 1;
                     for (l = 1; l <= NumFMUInputVariables; ++l) {
-                        GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _,
-                                      cAlphaFieldNames, cNumericFieldNames);
+                        GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
+                                      cNumericFieldNames);
                         if (SameString(cAlphaArgs(2), FMU(i).Name) && SameString(cAlphaArgs(3), FMU(i).Instance(j).Name)) {
                             FMU(i).Instance(j).fmuOutputVariableVariable(k).Name = cAlphaArgs(4);
                             FMU(i).Instance(j).eplusInputVariableVariable(k).Name = cAlphaArgs(1);
@@ -1552,8 +1538,7 @@ namespace ExternalInterface {
                                 ShowContinueError("\"" + FMU(i).Instance(j).fmuOutputVariableVariable(k).Name + "\" of instance \"" +
                                                   FMU(i).Instance(j).Name + "\"");
                                 ShowContinueError("of FMU \"" + FMU(i).Name + "\" that will be mapped to a variable.");
-                                ShowContinueError(
-                                    "Please check the name of output variables in the input file and in the modelDescription file.");
+                                ShowContinueError("Please check the name of output variables in the input file and in the modelDescription file.");
                                 ErrorsFound = true;
                                 StopExternalInterfaceIfError();
                             }
@@ -1597,8 +1582,8 @@ namespace ExternalInterface {
             for (i = 1; i <= NumFMUObjects; ++i) {
                 j = 1;
                 for (k = 1; k <= NumFMUInputVariables; ++k) {
-                    GetObjectItem(cCurrentModuleObject, k, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _,
-                                  cAlphaFieldNames, cNumericFieldNames);
+                    GetObjectItem(cCurrentModuleObject, k, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
+                                  cNumericFieldNames);
                     if (SameString(cAlphaArgs(5), FMU(i).Name)) {
                         FMU(i).TotNumOutputVariablesActuator = j;
                         ++j;
@@ -1612,8 +1597,8 @@ namespace ExternalInterface {
                     FMU(i).Instance(j).eplusInputVariableActuator.allocate(NumFMUInputVariables);
                     k = 1;
                     for (l = 1; l <= NumFMUInputVariables; ++l) {
-                        GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _,
-                                      cAlphaFieldNames, cNumericFieldNames);
+                        GetObjectItem(cCurrentModuleObject, l, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
+                                      cNumericFieldNames);
                         if (SameString(cAlphaArgs(5), FMU(i).Name) && SameString(cAlphaArgs(6), FMU(i).Instance(j).Name)) {
                             FMU(i).Instance(j).fmuOutputVariableActuator(k).Name = cAlphaArgs(7);
                             FMU(i).Instance(j).eplusInputVariableActuator(k).Name = cAlphaArgs(1);
@@ -1631,8 +1616,7 @@ namespace ExternalInterface {
                                 ShowContinueError("\"" + FMU(i).Instance(j).fmuOutputVariableActuator(k).Name + "\" of instance \"" +
                                                   FMU(i).Instance(j).Name + "\"");
                                 ShowContinueError("of FMU \"" + FMU(i).Name + "\" that will be mapped to an actuator.");
-                                ShowContinueError(
-                                    "Please check the name of output variables in the input file and in the modelDescription file.");
+                                ShowContinueError("Please check the name of output variables in the input file and in the modelDescription file.");
                                 ErrorsFound = true;
                                 StopExternalInterfaceIfError();
                             }
@@ -1681,8 +1665,7 @@ namespace ExternalInterface {
                                          TrimSigDigits(FMU(i).Instance(j).NumOutputVariablesInIDF) + ')');
                         ShowContinueError("of instance \"" + FMU(i).Instance(j).Name + "\" of FMU \"" + FMU(i).Name +
                                           "\" is less than the number of output variables");
-                        ShowContinueError("in the modelDescription file (" + TrimSigDigits(FMU(i).Instance(j).NumOutputVariablesInFMU) +
-                                          ").");
+                        ShowContinueError("in the modelDescription file (" + TrimSigDigits(FMU(i).Instance(j).NumOutputVariablesInFMU) + ").");
                         ShowContinueError("Check the input file and the modelDescription file again.");
                     }
                     // check whether the number of output variables in fmu is less than in the idf
@@ -1691,8 +1674,7 @@ namespace ExternalInterface {
                                          TrimSigDigits(FMU(i).Instance(j).NumOutputVariablesInIDF) + ')');
                         ShowContinueError("of instance \"" + FMU(i).Instance(j).Name + "\" of FMU \"" + FMU(i).Name +
                                           "\" is bigger than the number of output variables");
-                        ShowContinueError("in the modelDescription file (" + TrimSigDigits(FMU(i).Instance(j).NumOutputVariablesInFMU) +
-                                          ").");
+                        ShowContinueError("in the modelDescription file (" + TrimSigDigits(FMU(i).Instance(j).NumOutputVariablesInFMU) + ").");
                         ShowContinueError("Check the input file and the modelDescription file again.");
                     }
 
@@ -1875,8 +1857,7 @@ namespace ExternalInterface {
 
         if (WarmupFlag && (KindOfSim != ksRunPeriodWeather)) { // No data exchange during design days
             if (FirstCallDesignDays) {
-                ShowWarningError(
-                    "ExternalInterface/CalcExternalInterfaceFMUImport: ExternalInterface does not exchange data during design days.");
+                ShowWarningError("ExternalInterface/CalcExternalInterfaceFMUImport: ExternalInterface does not exchange data during design days.");
             }
             FirstCallDesignDays = false;
         }
@@ -1922,8 +1903,7 @@ namespace ExternalInterface {
 
                             FMUTemp(i).Instance(j).NumInputVariablesInIDF = FMU(i).Instance(j).NumInputVariablesInIDF;
                             for (k = 1; k <= FMU(i).Instance(j).NumInputVariablesInIDF; ++k) {
-                                FMUTemp(i).Instance(j).fmuInputVariable(k).ValueReference =
-                                    FMU(i).Instance(j).fmuInputVariable(k).ValueReference;
+                                FMUTemp(i).Instance(j).fmuInputVariable(k).ValueReference = FMU(i).Instance(j).fmuInputVariable(k).ValueReference;
                                 FMUTemp(i).Instance(j).eplusOutputVariable(k).RTSValue = FMU(i).Instance(j).eplusOutputVariable(k).RTSValue;
                                 FMUTemp(i).Instance(j).eplusOutputVariable(k).ITSValue = FMU(i).Instance(j).eplusOutputVariable(k).ITSValue;
                                 FMUTemp(i).Instance(j).eplusOutputVariable(k).VarType = FMU(i).Instance(j).eplusOutputVariable(k).VarType;
@@ -1978,16 +1958,15 @@ namespace ExternalInterface {
                             }
 
                             // make the library call
-                            FMU(i).Instance(j).fmistatus =
-                                fmiEPlusSetReal(&FMU(i).Instance(j).fmicomponent, &valRefVec[0], &rtsValVec[0],
-                                                &FMUTemp(i).Instance(j).NumInputVariablesInIDF, &FMU(i).Instance(j).Index);
+                            FMU(i).Instance(j).fmistatus = fmiEPlusSetReal(&FMU(i).Instance(j).fmicomponent, &valRefVec[0], &rtsValVec[0],
+                                                                           &FMUTemp(i).Instance(j).NumInputVariablesInIDF, &FMU(i).Instance(j).Index);
 
                             if (FMU(i).Instance(j).fmistatus != fmiOK) {
                                 ShowSevereError("ExternalInterface/CalcExternalInterfaceFMUImport: Error when trying to set an input value "
                                                 "in instance \"" +
                                                 FMU(i).Instance(j).Name + "\"");
-                                ShowContinueError("of FMU \"" + FMU(i).Name + "\"; Error Code = \"" +
-                                                  TrimSigDigits(FMU(i).Instance(j).fmistatus) + "\"");
+                                ShowContinueError("of FMU \"" + FMU(i).Name + "\"; Error Code = \"" + TrimSigDigits(FMU(i).Instance(j).fmistatus) +
+                                                  "\"");
                                 ErrorsFound = true;
                                 StopExternalInterfaceIfError();
                             }
@@ -2034,9 +2013,8 @@ namespace ExternalInterface {
                         }
 
                         // make the library call
-                        FMU(i).Instance(j).fmistatus =
-                            fmiEPlusSetReal(&FMU(i).Instance(j).fmicomponent, &valRefVec[0], &rtsValVec[0],
-                                            &FMUTemp(i).Instance(j).NumInputVariablesInIDF, &FMU(i).Instance(j).Index);
+                        FMU(i).Instance(j).fmistatus = fmiEPlusSetReal(&FMU(i).Instance(j).fmicomponent, &valRefVec[0], &rtsValVec[0],
+                                                                       &FMUTemp(i).Instance(j).NumInputVariablesInIDF, &FMU(i).Instance(j).Index);
 
                         if (FMU(i).Instance(j).fmistatus != fmiOK) {
                             ShowSevereError("ExternalInterface/CalcExternalInterfaceFMUImport: ");
@@ -2226,11 +2204,11 @@ namespace ExternalInterface {
             retVal = 0;
             flaRea = 0;
             if (haveExternalInterfaceBCVTB) {
-                retVal = exchangedoubleswithsocket(&socketFD, &flaWri, &flaRea, &nDblWri, &nDblRea, &preSimTim, dblValWri.data(),
-                                                   &curSimTim, dblValRea.data());
+                retVal = exchangedoubleswithsocket(&socketFD, &flaWri, &flaRea, &nDblWri, &nDblRea, &preSimTim, dblValWri.data(), &curSimTim,
+                                                   dblValRea.data());
             } else if (haveExternalInterfaceFMUExport) {
-                retVal = exchangedoubleswithsocketFMU(&socketFD, &flaWri, &flaRea, &nDblWri, &nDblRea, &preSimTim, dblValWri.data(),
-                                                      &curSimTim, dblValRea.data(), &FMUExportActivate);
+                retVal = exchangedoubleswithsocketFMU(&socketFD, &flaWri, &flaRea, &nDblWri, &nDblRea, &preSimTim, dblValWri.data(), &curSimTim,
+                                                      dblValRea.data(), &FMUExportActivate);
             }
             continueSimulation = true;
 
@@ -2256,8 +2234,7 @@ namespace ExternalInterface {
                 noMoreValues = true;
                 gio::write(retValCha, Format_1000) << flaRea;
                 if (haveExternalInterfaceBCVTB) {
-                    ShowSevereError("ExternalInterface: Received end of simulation flag at time = " + TrimSigDigits(preSimTim / 3600, 2) +
-                                    " hours.");
+                    ShowSevereError("ExternalInterface: Received end of simulation flag at time = " + TrimSigDigits(preSimTim / 3600, 2) + " hours.");
                     StopExternalInterfaceIfError();
                 }
             }
@@ -2343,8 +2320,7 @@ namespace ExternalInterface {
                 NamesOfKeys.deallocate();
             }
             if ((varType == 0) || (iKey > numKeys)) {
-                ShowSevereError("ExternalInterface: Simulation model has no variable \"" + varNames(Loop) + "\" with key \"" +
-                                varKeys(Loop) + "\".");
+                ShowSevereError("ExternalInterface: Simulation model has no variable \"" + varNames(Loop) + "\" with key \"" + varKeys(Loop) + "\".");
                 ErrorsFound = true;
             }
         }
@@ -2399,12 +2375,11 @@ namespace ExternalInterface {
         int IOStatus(0);   // Used in GetObjectItem
 
         cCurrentModuleObject = "ExternalInterface";
-        GetObjectItem(cCurrentModuleObject, 1, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames,
-                      cNumericFieldNames);
+        GetObjectItem(cCurrentModuleObject, 1, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStatus, _, _, cAlphaFieldNames, cNumericFieldNames);
         if ((!SameString(cAlphaArgs(1), "PtolemyServer")) && (!SameString(cAlphaArgs(1), "FunctionalMockupUnitImport")) &&
             (!SameString(cAlphaArgs(1), "FunctionalMockupUnitExport"))) {
-            ShowSevereError("VerifyExternalInterfaceObject: " + cCurrentModuleObject + ", invalid " + cAlphaFieldNames(1) + "=\"" +
-                            cAlphaArgs(1) + "\".");
+            ShowSevereError("VerifyExternalInterfaceObject: " + cCurrentModuleObject + ", invalid " + cAlphaFieldNames(1) + "=\"" + cAlphaArgs(1) +
+                            "\".");
             ShowContinueError("only \"PtolemyServer or FunctionalMockupUnitImport or FunctionalMockupUnitExport\" allowed.");
             ErrorsFound = true;
         }

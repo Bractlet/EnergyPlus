@@ -110,11 +110,10 @@ namespace DirectAirManager {
 
         // Default Constructor
         DirectAirProps()
-            : ZoneSupplyAirNode(0), SchedPtr(0), MaxAirVolFlowRate(0.0), AirMassFlowRateMax(0.0), InitMaxAvailMassFlow(0.0),
-              AirMassFlowFraction(0.0), ZoneEquipAirInletNode(0), AirTerminalSizingSpecIndex(0), SensOutputProvided(0.0),
-              EMSOverrideAirFlow(false), EMSMassFlowRateValue(0.0), HeatRate(0.0), CoolRate(0.0), HeatEnergy(0.0), CoolEnergy(0.0),
-              ZoneEqNum(0), ZoneNum(0), NoOAFlowInputFromUser(true), OARequirementsPtr(0), CtrlZoneInNodeIndex(0), AirLoopNum(0),
-              OAPerPersonMode(0)
+            : ZoneSupplyAirNode(0), SchedPtr(0), MaxAirVolFlowRate(0.0), AirMassFlowRateMax(0.0), InitMaxAvailMassFlow(0.0), AirMassFlowFraction(0.0),
+              ZoneEquipAirInletNode(0), AirTerminalSizingSpecIndex(0), SensOutputProvided(0.0), EMSOverrideAirFlow(false), EMSMassFlowRateValue(0.0),
+              HeatRate(0.0), CoolRate(0.0), HeatEnergy(0.0), CoolEnergy(0.0), ZoneEqNum(0), ZoneNum(0), NoOAFlowInputFromUser(true),
+              OARequirementsPtr(0), CtrlZoneInNodeIndex(0), AirLoopNum(0), OAPerPersonMode(0)
         {
         }
     };

@@ -197,8 +197,7 @@ Real64 KusudaGroundTempsModel::getGroundTemp()
     secsInYear = SecsInDay * NumDaysInYear;
 
     term1 = -depth * std::sqrt(Pi / (secsInYear * groundThermalDiffisivity));
-    term2 = (2 * Pi / secsInYear) *
-            (simTimeInSeconds - phaseShiftInSecs - (depth / 2) * std::sqrt(secsInYear / (Pi * groundThermalDiffisivity)));
+    term2 = (2 * Pi / secsInYear) * (simTimeInSeconds - phaseShiftInSecs - (depth / 2) * std::sqrt(secsInYear / (Pi * groundThermalDiffisivity)));
 
     retVal = aveGroundTemp - aveGroundTempAmplitude * std::exp(term1) * std::cos(term2);
 

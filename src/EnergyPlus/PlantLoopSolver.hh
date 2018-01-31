@@ -263,8 +263,7 @@ namespace PlantLoopSolver {
                            bool const FirstHVACIteration // TRUE if First HVAC iteration of Time step
                            );
 
-    void AdjustPumpFlowRequestByEMSControls(
-        int const LoopNum, int const LoopSideNum, int const BranchNum, int const CompNum, Real64 &FlowToRequest);
+    void AdjustPumpFlowRequestByEMSControls(int const LoopNum, int const LoopSideNum, int const BranchNum, int const CompNum, Real64 &FlowToRequest);
 
     //==================================================================!
     //==================================================================!

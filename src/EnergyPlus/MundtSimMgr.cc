@@ -208,8 +208,7 @@ namespace MundtSimMgr {
             // setup Mundt model
             ErrorsFound = false;
             SetupMundtModel(ZoneNum, ErrorsFound);
-            if (ErrorsFound)
-                ShowFatalError("ManageMundtModel: Errors in setting up Mundt Model. Preceding condition(s) cause termination.");
+            if (ErrorsFound) ShowFatalError("ManageMundtModel: Errors in setting up Mundt Model. Preceding condition(s) cause termination.");
 
             // perform Mundt model calculations
             CalcMundtModel(ZoneNum);
@@ -375,9 +374,8 @@ namespace MundtSimMgr {
                                 LineNode(NodeNum, MundtZoneIndex).AirNodeName = AirNode(AirNodeNum).Name;
                                 LineNode(NodeNum, MundtZoneIndex).Height = AirNode(AirNodeNum).Height;
                                 LineNode(NodeNum, MundtZoneIndex).SurfMask = AirNode(AirNodeNum).SurfMask;
-                                SetupOutputVariable("Room Air Node Air Temperature", OutputProcessor::Unit::C,
-                                                    LineNode(NodeNum, MundtZoneIndex).Temp, "HVAC", "Average",
-                                                    LineNode(NodeNum, MundtZoneIndex).AirNodeName);
+                                SetupOutputVariable("Room Air Node Air Temperature", OutputProcessor::Unit::C, LineNode(NodeNum, MundtZoneIndex).Temp,
+                                                    "HVAC", "Average", LineNode(NodeNum, MundtZoneIndex).AirNodeName);
 
                                 AirNodeBeginNum = AirNodeNum + 1;
                                 AirNodeFoundFlag = true;
@@ -537,8 +535,7 @@ namespace MundtSimMgr {
         }
         // determine heat gains
         SumAllInternalConvectionGains(ZoneNum, ConvIntGain);
-        ConvIntGain +=
-            SumConvHTRadSys(ZoneNum) + SumConvPool(ZoneNum) + SysDepZoneLoadsLagged(ZoneNum) + NonAirSystemResponse(ZoneNum) / ZoneMult;
+        ConvIntGain += SumConvHTRadSys(ZoneNum) + SumConvPool(ZoneNum) + SysDepZoneLoadsLagged(ZoneNum) + NonAirSystemResponse(ZoneNum) / ZoneMult;
 
         // Add heat to return air if zonal system (no return air) or cycling system (return air frequently very
         // low or zero)
@@ -766,8 +763,7 @@ namespace MundtSimMgr {
         }
 
         for (NodeNum = 1; NodeNum <= NumRoomNodes; ++NodeNum) {
-            TThisNode =
-                TLeaving - (Slope * (LineNode(ReturnNodeID, MundtZoneNum).Height - LineNode(RoomNodeIDs(NodeNum), MundtZoneNum).Height));
+            TThisNode = TLeaving - (Slope * (LineNode(ReturnNodeID, MundtZoneNum).Height - LineNode(RoomNodeIDs(NodeNum), MundtZoneNum).Height));
             SetNodeResult(RoomNodeIDs(NodeNum), TThisNode);
             SurfCounted = count(LineNode(RoomNodeIDs(NodeNum), MundtZoneNum).SurfMask);
             TheseSurfIDs = pack(ID1dSurf, LineNode(RoomNodeIDs(NodeNum), MundtZoneNum).SurfMask);

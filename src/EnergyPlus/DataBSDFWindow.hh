@@ -235,16 +235,13 @@ namespace DataBSDFWindow {
         Array2D<Real64> GndObstrMultiplier; // ground obstruction multiplier used in reflection calculatations (# window el, NGnd)
         Array2D_int RefSurfIndex;           // list of basis indices of rays striking exterior surf (# window el, NReflSurf)
         Array2D_int RefRayNHits;            // for a given ray striking a surface, no. of surfaces pierced (# window el, NReflSurf)
-        Array2D<Real64>
-            TransOutSurf;      // total transmittance of exterior obstructions for given incoming basis direction. (# window el, NReflSurf)
-        Array3D_int HitSurfNo; // for a given ray striking surface, list of intersected surf nos (# window el, NReflSurf, RefRayNHits)
-        Array3D<Real64>
-            HitSurfDSq;            // for a given ray striking surface, list of distance^2 from window (# window el, NReflSurf, RefRayNHits)
-        Array3D<Vector> HitPt;     // for a given ray striking surface, list of hit pts (# window el, NReflSurf, RefRayNHits)
-        Array1D_int RefPointIndex; // outgoing direction which containts reference point (# window el)
+        Array2D<Real64> TransOutSurf; // total transmittance of exterior obstructions for given incoming basis direction. (# window el, NReflSurf)
+        Array3D_int HitSurfNo;        // for a given ray striking surface, list of intersected surf nos (# window el, NReflSurf, RefRayNHits)
+        Array3D<Real64> HitSurfDSq;   // for a given ray striking surface, list of distance^2 from window (# window el, NReflSurf, RefRayNHits)
+        Array3D<Vector> HitPt;        // for a given ray striking surface, list of hit pts (# window el, NReflSurf, RefRayNHits)
+        Array1D_int RefPointIndex;    // outgoing direction which containts reference point (# window el)
         Array1D_bool RefPointIntersection; // determines if reference point is laying in light tube of bsdf outgoing direction (NTrnBasis)
-        Array1D<Real64>
-            RefPtIntPosFac; // position factors for intersections from reference point to window for each outgoing direction (NTrnBasis)
+        Array1D<Real64> RefPtIntPosFac; // position factors for intersections from reference point to window for each outgoing direction (NTrnBasis)
 
         // Default Constructor
         BSDFRefPoints()
@@ -445,8 +442,7 @@ namespace DataBSDFWindow {
         BSDFWindowInputStruct()
             : BasisType(0), BasisSymmetryType(0), ThermalModel(0), BasisMatIndex(0), BasisMatNrows(0), BasisMatNcols(0), NBasis(0),
               SolFrtTransIndex(0), SolFrtTransNrows(0), SolFrtTransNcols(0), SolBkReflIndex(0), SolBkReflNrows(0), SolBkReflNcols(0),
-              VisFrtTransIndex(0), VisFrtTransNrows(0), VisFrtTransNcols(0), VisBkReflIndex(0), VisBkReflNrows(0), VisBkReflNcols(0),
-              NumLayers(0)
+              VisFrtTransIndex(0), VisFrtTransNrows(0), VisFrtTransNcols(0), VisBkReflIndex(0), VisBkReflNrows(0), VisBkReflNcols(0), NumLayers(0)
         {
         }
     };

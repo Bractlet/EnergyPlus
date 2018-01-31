@@ -222,8 +222,7 @@ namespace ZonePlenum {
                 if (CheckRetEquipName(ZonePlenumNum)) {
                     if (CompName != ZoneRetPlenCond(ZonePlenumNum).ZonePlenumName) {
                         ShowFatalError("SimAirZonePlenum: Invalid CompIndex passed=" + TrimSigDigits(ZonePlenumNum) +
-                                       ", AirLoopHVAC:ReturnPlenum name=" + CompName +
-                                       ", stored AirLoopHVAC:ReturnPlenum Name for that index=" +
+                                       ", AirLoopHVAC:ReturnPlenum name=" + CompName + ", stored AirLoopHVAC:ReturnPlenum Name for that index=" +
                                        ZoneRetPlenCond(ZonePlenumNum).ZonePlenumName);
                     }
                     CheckRetEquipName(ZonePlenumNum) = false;
@@ -256,8 +255,7 @@ namespace ZonePlenum {
                 if (CheckSupEquipName(ZonePlenumNum)) {
                     if (CompName != ZoneSupPlenCond(ZonePlenumNum).ZonePlenumName) {
                         ShowFatalError("SimAirZonePlenum: Invalid CompIndex passed=" + TrimSigDigits(ZonePlenumNum) +
-                                       ", AirLoopHVAC:SupplyPlenum name=" + CompName +
-                                       ", stored AirLoopHVAC:SupplyPlenum Name for that index=" +
+                                       ", AirLoopHVAC:SupplyPlenum name=" + CompName + ", stored AirLoopHVAC:SupplyPlenum Name for that index=" +
                                        ZoneSupPlenCond(ZonePlenumNum).ZonePlenumName);
                     }
                     CheckSupEquipName(ZonePlenumNum) = false;
@@ -411,8 +409,7 @@ namespace ZonePlenum {
             // Check if this zone is also used in another return plenum
             IOStat = FindItemInList(AlphArray(2), ZoneRetPlenCond, &ZoneReturnPlenumConditions::ZoneName, ZonePlenumNum - 1);
             if (IOStat != 0) {
-                ShowSevereError(RoutineName + cAlphaFields(2) + " \"" + AlphArray(2) + "\" is used more than once as a " +
-                                CurrentModuleObject + '.');
+                ShowSevereError(RoutineName + cAlphaFields(2) + " \"" + AlphArray(2) + "\" is used more than once as a " + CurrentModuleObject + '.');
                 ShowContinueError("..Only one " + CurrentModuleObject + " object may be connected to a given zone.");
                 ShowContinueError("..occurs in " + CurrentModuleObject + " = " + AlphArray(1));
                 ErrorsFound = true;
@@ -421,8 +418,7 @@ namespace ZonePlenum {
             // put the X-Ref to the zone heat balance data structure
             ZoneRetPlenCond(ZonePlenumNum).ActualZoneNum = FindItemInList(AlphArray(2), Zone);
             if (ZoneRetPlenCond(ZonePlenumNum).ActualZoneNum == 0) {
-                ShowSevereError("For " + CurrentModuleObject + " = " + AlphArray(1) + ", " + cAlphaFields(2) + " = " + AlphArray(2) +
-                                " not found.");
+                ShowSevereError("For " + CurrentModuleObject + " = " + AlphArray(1) + ", " + cAlphaFields(2) + " = " + AlphArray(2) + " not found.");
                 ErrorsFound = true;
                 continue;
             } else {
@@ -439,19 +435,18 @@ namespace ZonePlenum {
             }
 
             ZoneRetPlenCond(ZonePlenumNum).ZoneNodeName = AlphArray(3);
-            ZoneRetPlenCond(ZonePlenumNum).ZoneNodeNum = GetOnlySingleNode(AlphArray(3), ErrorsFound, CurrentModuleObject, AlphArray(1),
-                                                                           NodeType_Air, NodeConnectionType_ZoneNode, 1, ObjectIsNotParent);
+            ZoneRetPlenCond(ZonePlenumNum).ZoneNodeNum = GetOnlySingleNode(AlphArray(3), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
+                                                                           NodeConnectionType_ZoneNode, 1, ObjectIsNotParent);
             // Insert the Plenum Zone Number into the Zone Heat Balance data structure for later reference
             Zone(ZoneRetPlenCond(ZonePlenumNum).ActualZoneNum).SystemZoneNodeNumber = ZoneRetPlenCond(ZonePlenumNum).ZoneNodeNum;
 
-            ZoneRetPlenCond(ZonePlenumNum).OutletNode = GetOnlySingleNode(AlphArray(4), ErrorsFound, CurrentModuleObject, AlphArray(1),
-                                                                          NodeType_Air, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+            ZoneRetPlenCond(ZonePlenumNum).OutletNode = GetOnlySingleNode(AlphArray(4), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
+                                                                          NodeConnectionType_Outlet, 1, ObjectIsNotParent);
 
             InducedNodeListName = AlphArray(5);
             NodeListError = false;
             GetNodeNums(InducedNodeListName, NumNodes, NodeNums, NodeListError, NodeType_Air, "AirLoopHVAC:ReturnPlenum",
-                        ZoneRetPlenCond(ZonePlenumNum).ZonePlenumName, NodeConnectionType_InducedAir, 1, ObjectIsNotParent, _,
-                        cAlphaFields(5));
+                        ZoneRetPlenCond(ZonePlenumNum).ZonePlenumName, NodeConnectionType_InducedAir, 1, ObjectIsNotParent, _, cAlphaFields(5));
 
             if (!NodeListError) {
                 ZoneRetPlenCond(ZonePlenumNum).NumInducedNodes = NumNodes;
@@ -529,8 +524,8 @@ namespace ZonePlenum {
             for (NodeNum = 1; NodeNum <= ZoneRetPlenCond(ZonePlenumNum).NumInletNodes; ++NodeNum) {
 
                 ZoneRetPlenCond(ZonePlenumNum).InletNode(NodeNum) =
-                    GetOnlySingleNode(AlphArray(5 + NodeNum), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
-                                      NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+                    GetOnlySingleNode(AlphArray(5 + NodeNum), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air, NodeConnectionType_Inlet,
+                                      1, ObjectIsNotParent);
             }
 
         } // end AirLoopHVAC:ReturnPlenum Loop
@@ -559,8 +554,7 @@ namespace ZonePlenum {
             // Check if this zone is also used in another plenum
             IOStat = FindItemInList(AlphArray(2), ZoneSupPlenCond, &ZoneSupplyPlenumConditions::ZoneName, ZonePlenumNum - 1);
             if (IOStat != 0) {
-                ShowSevereError(RoutineName + cAlphaFields(2) + " \"" + AlphArray(2) + "\" is used more than once as a " +
-                                CurrentModuleObject + '.');
+                ShowSevereError(RoutineName + cAlphaFields(2) + " \"" + AlphArray(2) + "\" is used more than once as a " + CurrentModuleObject + '.');
                 ShowContinueError("..Only one " + CurrentModuleObject + " object may be connected to a given zone.");
                 ShowContinueError("..occurs in " + CurrentModuleObject + " = " + AlphArray(1));
                 ErrorsFound = true;
@@ -568,10 +562,9 @@ namespace ZonePlenum {
             if (NumZoneReturnPlenums > 0) { // Check if this zone is also used in another plenum
                 IOStat = FindItemInList(AlphArray(2), ZoneRetPlenCond, &ZoneReturnPlenumConditions::ZoneName);
                 if (IOStat != 0) {
-                    ShowSevereError(RoutineName + cAlphaFields(2) + " \"" + AlphArray(2) + "\" is used more than once as a " +
-                                    CurrentModuleObject + " or AirLoopHVAC:ReturnPlenum.");
-                    ShowContinueError("..Only one " + CurrentModuleObject +
-                                      " or AirLoopHVAC:ReturnPlenum object may be connected to a given zone.");
+                    ShowSevereError(RoutineName + cAlphaFields(2) + " \"" + AlphArray(2) + "\" is used more than once as a " + CurrentModuleObject +
+                                    " or AirLoopHVAC:ReturnPlenum.");
+                    ShowContinueError("..Only one " + CurrentModuleObject + " or AirLoopHVAC:ReturnPlenum object may be connected to a given zone.");
                     ShowContinueError("..occurs in " + CurrentModuleObject + " = " + AlphArray(1));
                     ErrorsFound = true;
                 }
@@ -580,8 +573,7 @@ namespace ZonePlenum {
             // put the X-Ref to the zone heat balance data structure
             ZoneSupPlenCond(ZonePlenumNum).ActualZoneNum = FindItemInList(AlphArray(2), Zone);
             if (ZoneSupPlenCond(ZonePlenumNum).ActualZoneNum == 0) {
-                ShowSevereError("For " + CurrentModuleObject + " = " + AlphArray(1) + ", " + cAlphaFields(2) + " = " + AlphArray(2) +
-                                " not found.");
+                ShowSevereError("For " + CurrentModuleObject + " = " + AlphArray(1) + ", " + cAlphaFields(2) + " = " + AlphArray(2) + " not found.");
                 ErrorsFound = true;
                 continue;
             } else {
@@ -592,9 +584,8 @@ namespace ZonePlenum {
             if (std::any_of(ZoneEquipConfig.begin(), ZoneEquipConfig.end(), [](EquipConfiguration const &e) { return e.IsControlled; })) {
                 ZoneEquipConfigLoop = FindItemInList(AlphArray(2), ZoneEquipConfig, &EquipConfiguration::ZoneName);
                 if (ZoneEquipConfigLoop != 0) {
-                    ShowSevereError(RoutineName + cAlphaFields(2) + " \"" + AlphArray(2) +
-                                    "\" is a controlled zone. It cannot be used as a " + CurrentModuleObject +
-                                    " or AirLoopHVAC:ReturnPlenum.");
+                    ShowSevereError(RoutineName + cAlphaFields(2) + " \"" + AlphArray(2) + "\" is a controlled zone. It cannot be used as a " +
+                                    CurrentModuleObject + " or AirLoopHVAC:ReturnPlenum.");
                     ShowContinueError("..occurs in " + CurrentModuleObject + " = " + AlphArray(1));
                     ErrorsFound = true;
                 }
@@ -613,13 +604,13 @@ namespace ZonePlenum {
             //      ENDIF
 
             ZoneSupPlenCond(ZonePlenumNum).ZoneNodeName = AlphArray(3);
-            ZoneSupPlenCond(ZonePlenumNum).ZoneNodeNum = GetOnlySingleNode(AlphArray(3), ErrorsFound, CurrentModuleObject, AlphArray(1),
-                                                                           NodeType_Air, NodeConnectionType_ZoneNode, 1, ObjectIsNotParent);
+            ZoneSupPlenCond(ZonePlenumNum).ZoneNodeNum = GetOnlySingleNode(AlphArray(3), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
+                                                                           NodeConnectionType_ZoneNode, 1, ObjectIsNotParent);
             // Insert the Plenum Zone Number into the Zone Heat Balance data structure for later reference
             Zone(ZoneSupPlenCond(ZonePlenumNum).ActualZoneNum).SystemZoneNodeNumber = ZoneSupPlenCond(ZonePlenumNum).ZoneNodeNum;
 
-            ZoneSupPlenCond(ZonePlenumNum).InletNode = GetOnlySingleNode(AlphArray(4), ErrorsFound, CurrentModuleObject, AlphArray(1),
-                                                                         NodeType_Air, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+            ZoneSupPlenCond(ZonePlenumNum).InletNode = GetOnlySingleNode(AlphArray(4), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
+                                                                         NodeConnectionType_Inlet, 1, ObjectIsNotParent);
 
             ZoneSupPlenCond(ZonePlenumNum).NumOutletNodes = NumAlphas - 4;
 
@@ -657,8 +648,8 @@ namespace ZonePlenum {
             for (NodeNum = 1; NodeNum <= ZoneSupPlenCond(ZonePlenumNum).NumOutletNodes; ++NodeNum) {
 
                 ZoneSupPlenCond(ZonePlenumNum).OutletNode(NodeNum) =
-                    GetOnlySingleNode(AlphArray(4 + NodeNum), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air,
-                                      NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+                    GetOnlySingleNode(AlphArray(4 + NodeNum), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Air, NodeConnectionType_Outlet,
+                                      1, ObjectIsNotParent);
             }
 
         } // end AirLoopHVAC:SupplyPlenum Loop
@@ -787,8 +778,8 @@ namespace ZonePlenum {
             for (ADUNum = 1; ADUNum <= NumAirDistUnits; ++ADUNum) {
                 auto &thisADU(AirDistUnit(ADUNum));
                 if ((thisADU.DownStreamLeak || thisADU.DownStreamLeak) && (thisADU.RetPlenumNum == 0)) {
-                    ShowWarningError("No return plenum found for simple duct leakage for ZoneHVAC:AirDistributionUnit=" + thisADU.Name +
-                                     " in Zone=" + ZoneEquipConfig(thisADU.ZoneEqNum).ZoneName);
+                    ShowWarningError("No return plenum found for simple duct leakage for ZoneHVAC:AirDistributionUnit=" + thisADU.Name + " in Zone=" +
+                                     ZoneEquipConfig(thisADU.ZoneEqNum).ZoneName);
                     ShowContinueError("Leakage will be ignored for this ADU.");
                     thisADU.UpStreamLeak = false;
                     thisADU.DownStreamLeak = false;
@@ -967,8 +958,7 @@ namespace ZonePlenum {
                 Node(ZoneNodeNum).MassFlowRateMaxAvail = Node(InletNode).MassFlowRateMaxAvail;
                 for (NodeIndex = 1; NodeIndex <= ZoneSupPlenCond(ZonePlenumNum).NumOutletNodes; ++NodeIndex) {
                     OutletNode = ZoneSupPlenCond(ZonePlenumNum).OutletNode(NodeIndex);
-                    Node(OutletNode).MassFlowRateMaxAvail =
-                        Node(InletNode).MassFlowRateMaxAvail / ZoneSupPlenCond(ZonePlenumNum).NumOutletNodes;
+                    Node(OutletNode).MassFlowRateMaxAvail = Node(InletNode).MassFlowRateMaxAvail / ZoneSupPlenCond(ZonePlenumNum).NumOutletNodes;
                 }
             }
 
@@ -1077,10 +1067,8 @@ namespace ZonePlenum {
 
         for (InletNodeNum = 1; InletNodeNum <= ZoneRetPlenCond(ZonePlenumNum).NumInletNodes; ++InletNodeNum) {
             ZoneRetPlenCond(ZonePlenumNum).OutletMassFlowRate += ZoneRetPlenCond(ZonePlenumNum).InletMassFlowRate(InletNodeNum);
-            ZoneRetPlenCond(ZonePlenumNum).OutletMassFlowRateMaxAvail +=
-                ZoneRetPlenCond(ZonePlenumNum).InletMassFlowRateMaxAvail(InletNodeNum);
-            ZoneRetPlenCond(ZonePlenumNum).OutletMassFlowRateMinAvail +=
-                ZoneRetPlenCond(ZonePlenumNum).InletMassFlowRateMinAvail(InletNodeNum);
+            ZoneRetPlenCond(ZonePlenumNum).OutletMassFlowRateMaxAvail += ZoneRetPlenCond(ZonePlenumNum).InletMassFlowRateMaxAvail(InletNodeNum);
+            ZoneRetPlenCond(ZonePlenumNum).OutletMassFlowRateMinAvail += ZoneRetPlenCond(ZonePlenumNum).InletMassFlowRateMinAvail(InletNodeNum);
         }
 
         if (ZoneRetPlenCond(ZonePlenumNum).OutletMassFlowRate > 0.0) {
@@ -1186,10 +1174,8 @@ namespace ZonePlenum {
             ZoneSupPlenCond(ZonePlenumNum).InletMassFlowRateMinAvail = 0.0;
             for (NodeIndex = 1; NodeIndex <= ZoneSupPlenCond(ZonePlenumNum).NumOutletNodes; ++NodeIndex) {
                 ZoneSupPlenCond(ZonePlenumNum).InletMassFlowRate += ZoneSupPlenCond(ZonePlenumNum).OutletMassFlowRate(NodeIndex);
-                ZoneSupPlenCond(ZonePlenumNum).InletMassFlowRateMaxAvail +=
-                    ZoneSupPlenCond(ZonePlenumNum).OutletMassFlowRateMaxAvail(NodeIndex);
-                ZoneSupPlenCond(ZonePlenumNum).InletMassFlowRateMinAvail +=
-                    ZoneSupPlenCond(ZonePlenumNum).OutletMassFlowRateMinAvail(NodeIndex);
+                ZoneSupPlenCond(ZonePlenumNum).InletMassFlowRateMaxAvail += ZoneSupPlenCond(ZonePlenumNum).OutletMassFlowRateMaxAvail(NodeIndex);
+                ZoneSupPlenCond(ZonePlenumNum).InletMassFlowRateMinAvail += ZoneSupPlenCond(ZonePlenumNum).OutletMassFlowRateMinAvail(NodeIndex);
             }
         }
     }

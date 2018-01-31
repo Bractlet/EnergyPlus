@@ -145,8 +145,8 @@ namespace WindowEquivalentLayer {
                );
 
     Real64 HEMINT(std::function<Real64(Real64 const THETA, int const OPT, Array1A<Real64> const)> F, // property integrand function
-                  int const F_Opt,          // options passed to F() (hipRHO, hipTAU)
-                  Array1A<Real64> const F_P // parameters passed to F()
+                  int const F_Opt,                                                                   // options passed to F() (hipRHO, hipTAU)
+                  Array1A<Real64> const F_P                                                          // parameters passed to F()
                   );
 
     void RB_DIFF(Real64 const RHO_BT0, // normal incidence beam-total reflectance
@@ -580,22 +580,12 @@ namespace WindowEquivalentLayer {
                 Array1<Real64> &QMINUS         // returned: see Edwards paper
                 );
 
-    void TDMA_R(Array1S<Real64> X,
-                Array1S<Real64> const AP,
-                Array1S<Real64> const AE,
-                Array1S<Real64> const AW,
-                Array1S<Real64> const BP,
-                int const N);
-
-    void TDMA(Array1S<Real64> X,
-              Array1S<Real64> const AP,
-              Array1S<Real64> const AE,
-              Array1S<Real64> const AW,
-              Array1S<Real64> const BP,
-              int const N);
-
     void
-    AUTOTDMA(Array1S<Real64> X, Array1S<Real64> AP, Array1S<Real64> const AE, Array1S<Real64> const AW, Array1S<Real64> const BP, int &N);
+    TDMA_R(Array1S<Real64> X, Array1S<Real64> const AP, Array1S<Real64> const AE, Array1S<Real64> const AW, Array1S<Real64> const BP, int const N);
+
+    void TDMA(Array1S<Real64> X, Array1S<Real64> const AP, Array1S<Real64> const AE, Array1S<Real64> const AW, Array1S<Real64> const BP, int const N);
+
+    void AUTOTDMA(Array1S<Real64> X, Array1S<Real64> AP, Array1S<Real64> const AE, Array1S<Real64> const AW, Array1S<Real64> const BP, int &N);
 
     void ASHWAT_OffNormalProperties(CFSLAYER const &L,    // layer for which to derive off-normal properties
                                     Real64 const THETA,   // solar beam angle of incidence, from normal, radians

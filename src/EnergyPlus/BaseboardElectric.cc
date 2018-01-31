@@ -124,8 +124,7 @@ namespace BaseboardElectric {
         BaseboardNumericFields.deallocate();
     }
 
-    void SimElectricBaseboard(
-        std::string const &EquipName, int const ActualZoneNum, int const ControlledZoneNum, Real64 &PowerMet, int &CompIndex)
+    void SimElectricBaseboard(std::string const &EquipName, int const ActualZoneNum, int const ControlledZoneNum, Real64 &PowerMet, int &CompIndex)
     {
 
         // SUBROUTINE INFORMATION:
@@ -186,8 +185,8 @@ namespace BaseboardElectric {
             }
             if (CheckEquipName(BaseboardNum)) {
                 if (EquipName != Baseboard(BaseboardNum).EquipName) {
-                    ShowFatalError("SimElectricBaseboard: Invalid CompIndex passed=" + TrimSigDigits(BaseboardNum) + ", Unit name=" +
-                                   EquipName + ", stored Unit Name for that index=" + Baseboard(BaseboardNum).EquipName);
+                    ShowFatalError("SimElectricBaseboard: Invalid CompIndex passed=" + TrimSigDigits(BaseboardNum) + ", Unit name=" + EquipName +
+                                   ", stored Unit Name for that index=" + Baseboard(BaseboardNum).EquipName);
                 }
                 CheckEquipName(BaseboardNum) = false;
             }
@@ -289,8 +288,8 @@ namespace BaseboardElectric {
             BaseboardNum = 0;
             for (ConvElecBBNum = 1; ConvElecBBNum <= NumConvElecBaseboards; ++ConvElecBBNum) {
 
-                GetObjectItem(cCurrentModuleObject, ConvElecBBNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat,
-                              lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+                GetObjectItem(cCurrentModuleObject, ConvElecBBNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, lNumericFieldBlanks,
+                              lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
 
                 BaseboardNumericFields(ConvElecBBNum).FieldNames.allocate(NumNums);
                 BaseboardNumericFields(ConvElecBBNum).FieldNames = "";
@@ -298,8 +297,7 @@ namespace BaseboardElectric {
 
                 IsNotOK = false;
                 IsBlank = false;
-                VerifyName(cAlphaArgs(1), Baseboard, &BaseboardParams::EquipName, BaseboardNum, IsNotOK, IsBlank,
-                           cCurrentModuleObject + " Name");
+                VerifyName(cAlphaArgs(1), Baseboard, &BaseboardParams::EquipName, BaseboardNum, IsNotOK, IsBlank, cCurrentModuleObject + " Name");
                 if (IsNotOK) {
                     ErrorsFound = true;
                     continue;
@@ -317,8 +315,8 @@ namespace BaseboardElectric {
                 } else {
                     Baseboard(BaseboardNum).SchedPtr = GetScheduleIndex(cAlphaArgs(2));
                     if (Baseboard(BaseboardNum).SchedPtr == 0) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" +
-                                        cAlphaArgs(2) + " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) +
+                                        " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ErrorsFound = true;
                     }
                 }
@@ -330,8 +328,7 @@ namespace BaseboardElectric {
                     Baseboard(BaseboardNum).HeatingCapMethod = HeatingDesignCapacity;
                     if (!lNumericFieldBlanks(iHeatDesignCapacityNumericNum)) {
                         Baseboard(BaseboardNum).ScaledHeatingCapacity = rNumericArgs(iHeatDesignCapacityNumericNum);
-                        if (Baseboard(BaseboardNum).ScaledHeatingCapacity < 0.0 &&
-                            Baseboard(BaseboardNum).ScaledHeatingCapacity != AutoSize) {
+                        if (Baseboard(BaseboardNum).ScaledHeatingCapacity < 0.0 && Baseboard(BaseboardNum).ScaledHeatingCapacity != AutoSize) {
                             ShowSevereError(cCurrentModuleObject + " = " + Baseboard(BaseboardNum).EquipName);
                             ShowContinueError("Illegal " + cNumericFieldNames(iHeatDesignCapacityNumericNum) + " = " +
                                               TrimSigDigits(rNumericArgs(iHeatDesignCapacityNumericNum), 7));
@@ -409,14 +406,14 @@ namespace BaseboardElectric {
             SetupOutputVariable("Baseboard Total Heating Energy", OutputProcessor::Unit::J, Baseboard(BaseboardNum).Energy, "System", "Sum",
                                 Baseboard(BaseboardNum).EquipName, _, "ENERGYTRANSFER", "BASEBOARD", _, "System");
 
-            SetupOutputVariable("Baseboard Total Heating Rate", OutputProcessor::Unit::W, Baseboard(BaseboardNum).Power, "System",
-                                "Average", Baseboard(BaseboardNum).EquipName);
+            SetupOutputVariable("Baseboard Total Heating Rate", OutputProcessor::Unit::W, Baseboard(BaseboardNum).Power, "System", "Average",
+                                Baseboard(BaseboardNum).EquipName);
 
             SetupOutputVariable("Baseboard Electric Energy", OutputProcessor::Unit::J, Baseboard(BaseboardNum).ElecUseLoad, "System", "Sum",
                                 Baseboard(BaseboardNum).EquipName, _, "Electric", "HEATING", _, "System");
 
-            SetupOutputVariable("Baseboard Electric Power", OutputProcessor::Unit::W, Baseboard(BaseboardNum).ElecUseRate, "System",
-                                "Average", Baseboard(BaseboardNum).EquipName);
+            SetupOutputVariable("Baseboard Electric Power", OutputProcessor::Unit::W, Baseboard(BaseboardNum).ElecUseRate, "System", "Average",
+                                Baseboard(BaseboardNum).EquipName);
         }
     }
 
@@ -557,8 +554,8 @@ namespace BaseboardElectric {
         int SizingMethod;         // Integer representation of sizing method name (e.g., CoolingAirflowSizing, HeatingAirflowSizing,
                                   // CoolingCapacitySizing, HeatingCapacitySizing, etc.)
         bool PrintFlag;           // TRUE when sizing information is reported in the eio file
-        int CapSizingMethod(0); // capacity sizing methods (HeatingDesignCapacity, CapacityPerFloorArea, FractionOfAutosizedCoolingCapacity,
-                                // and FractionOfAutosizedHeatingCapacity )
+        int CapSizingMethod(0);   // capacity sizing methods (HeatingDesignCapacity, CapacityPerFloorArea, FractionOfAutosizedCoolingCapacity,
+                                  // and FractionOfAutosizedHeatingCapacity )
 
         IsAutoSize = false;
         NominalCapacityDes = 0.0;
@@ -588,8 +585,7 @@ namespace BaseboardElectric {
                     TempSize = Baseboard(BaseboardNum).ScaledHeatingCapacity;
                 } else if (CapSizingMethod == CapacityPerFloorArea) {
                     ZoneEqSizing(CurZoneEqNum).HeatingCapacity = true;
-                    ZoneEqSizing(CurZoneEqNum).DesHeatingLoad =
-                        Baseboard(BaseboardNum).ScaledHeatingCapacity * Zone(DataZoneNumber).FloorArea;
+                    ZoneEqSizing(CurZoneEqNum).DesHeatingLoad = Baseboard(BaseboardNum).ScaledHeatingCapacity * Zone(DataZoneNumber).FloorArea;
                     TempSize = ZoneEqSizing(CurZoneEqNum).DesHeatingLoad;
                     DataScalableCapSizingON = true;
                 } else if (CapSizingMethod == FractionOfAutosizedHeatingCapacity) {

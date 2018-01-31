@@ -133,8 +133,7 @@ namespace ExternalInterface {
         std::string VarUnits; // Units string, may be blank
 
         // Default Constructor
-        eplusOutputVariableType()
-            : Name(BlankString), VarKey(BlankString), RTSValue(0.0), ITSValue(0), VarIndex(0), VarType(0), VarUnits(BlankString)
+        eplusOutputVariableType() : Name(BlankString), VarKey(BlankString), RTSValue(0.0), ITSValue(0), VarIndex(0), VarType(0), VarUnits(BlankString)
         {
         }
     };
@@ -262,8 +261,8 @@ namespace ExternalInterface {
         InstanceType()
             : Name(BlankString), modelID(BlankString), modelGUID(BlankString), WorkingFolder(BlankString), WorkingFolder_wLib(BlankString),
               fmiVersionNumber(BlankString), NumInputVariablesInFMU(0), NumInputVariablesInIDF(0), NumOutputVariablesInFMU(0),
-              NumOutputVariablesInIDF(0), NumOutputVariablesSchedule(0), NumOutputVariablesVariable(0), NumOutputVariablesActuator(0),
-              LenModelID(0), LenModelGUID(0), LenWorkingFolder(0), LenWorkingFolder_wLib(0)
+              NumOutputVariablesInIDF(0), NumOutputVariablesSchedule(0), NumOutputVariablesVariable(0), NumOutputVariablesActuator(0), LenModelID(0),
+              LenModelGUID(0), LenWorkingFolder(0), LenWorkingFolder_wLib(0)
         {
             // fmiStatus, Index, and arrays not initialized in default constructor
         }
@@ -339,11 +338,8 @@ namespace ExternalInterface {
 
     void ParseString(std::string const &str, Array1S_string ele, int const nEle);
 
-    void GetReportVariableKey(Array1S_string const varKeys,
-                              int const numberOfKeys,
-                              Array1S_string const varNames,
-                              Array1S_int keyVarIndexes,
-                              Array1S_int varTypes);
+    void GetReportVariableKey(
+        Array1S_string const varKeys, int const numberOfKeys, Array1S_string const varNames, Array1S_int keyVarIndexes, Array1S_int varTypes);
 
     std::vector<char> getCharArrayFromString(std::string const &originalString);
 

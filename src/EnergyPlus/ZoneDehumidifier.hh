@@ -160,12 +160,12 @@ namespace ZoneDehumidifier {
               MinInletAirTemp(0.0), MaxInletAirTemp(0.0), InletAirMassFlow(0.0), OutletAirEnthalpy(0.0), OutletAirHumRat(0.0),
               OffCycleParasiticLoad(0.0), AirInletNodeNum(0), AirOutletNodeNum(0), WaterRemovalCurveIndex(0), WaterRemovalCurveType(0),
               WaterRemovalCurveErrorCount(0), WaterRemovalCurveErrorIndex(0), EnergyFactorCurveIndex(0), EnergyFactorCurveType(0),
-              EnergyFactorCurveErrorCount(0), EnergyFactorCurveErrorIndex(0), PartLoadCurveIndex(0), PartLoadCurveType(0),
-              LowPLFErrorCount(0), LowPLFErrorIndex(0), HighPLFErrorCount(0), HighPLFErrorIndex(0), HighRTFErrorCount(0),
-              HighRTFErrorIndex(0), PLFPLRErrorCount(0), PLFPLRErrorIndex(0), CondensateCollectMode(CondensateDiscarded),
-              CondensateTankID(0), CondensateTankSupplyARRID(0), SensHeatingRate(0.0), SensHeatingEnergy(0.0), WaterRemovalRate(0.0),
-              WaterRemoved(0.0), ElecPower(0.0), ElecConsumption(0.0), DehumidPLR(0.0), DehumidRTF(0.0), DehumidCondVolFlowRate(0.0),
-              DehumidCondVol(0.0), OutletAirTemp(0.0), OffCycleParasiticElecPower(0.0), OffCycleParasiticElecCons(0.0)
+              EnergyFactorCurveErrorCount(0), EnergyFactorCurveErrorIndex(0), PartLoadCurveIndex(0), PartLoadCurveType(0), LowPLFErrorCount(0),
+              LowPLFErrorIndex(0), HighPLFErrorCount(0), HighPLFErrorIndex(0), HighRTFErrorCount(0), HighRTFErrorIndex(0), PLFPLRErrorCount(0),
+              PLFPLRErrorIndex(0), CondensateCollectMode(CondensateDiscarded), CondensateTankID(0), CondensateTankSupplyARRID(0),
+              SensHeatingRate(0.0), SensHeatingEnergy(0.0), WaterRemovalRate(0.0), WaterRemoved(0.0), ElecPower(0.0), ElecConsumption(0.0),
+              DehumidPLR(0.0), DehumidRTF(0.0), DehumidCondVolFlowRate(0.0), DehumidCondVol(0.0), OutletAirTemp(0.0), OffCycleParasiticElecPower(0.0),
+              OffCycleParasiticElecCons(0.0)
         {
         }
     };
@@ -191,12 +191,11 @@ namespace ZoneDehumidifier {
 
     void SizeZoneDehumidifier();
 
-    void
-    CalcZoneDehumidifier(int const ZoneDehumNum,     // Index number of the current zone dehumidifier being simulated
-                         Real64 const QZnDehumidReq, // Dehumidification load to be met (kg/s), negative value means dehumidification load
-                         Real64 &SensibleOutput,     // Sensible (heating) output (W), sent to load predictor for next simulation time step
-                         Real64 &LatentOutput        // Latent (dehumidification) output provided (kg/s)
-                         );
+    void CalcZoneDehumidifier(int const ZoneDehumNum,     // Index number of the current zone dehumidifier being simulated
+                              Real64 const QZnDehumidReq, // Dehumidification load to be met (kg/s), negative value means dehumidification load
+                              Real64 &SensibleOutput,     // Sensible (heating) output (W), sent to load predictor for next simulation time step
+                              Real64 &LatentOutput        // Latent (dehumidification) output provided (kg/s)
+                              );
 
     void UpdateZoneDehumidifier(int const ZoneDehumNum); // Number of the current zone dehumidifier being simulated
 

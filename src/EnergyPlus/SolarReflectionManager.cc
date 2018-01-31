@@ -537,8 +537,7 @@ namespace SolarReflectionManager {
                             // Exterior building surface is nearest hit
                             if (!Construct(ObsConstrNum).TypeIsWindow) {
                                 // Obstruction is not a window, i.e., is an opaque surface
-                                SolReflRecSurf(RecSurfNum).HitPtSolRefl(RayNum, RecPtNum) =
-                                    1.0 - Construct(ObsConstrNum).OutsideAbsorpSolar;
+                                SolReflRecSurf(RecSurfNum).HitPtSolRefl(RayNum, RecPtNum) = 1.0 - Construct(ObsConstrNum).OutsideAbsorpSolar;
                             } else {
                                 // Obstruction is a window. Assume it is bare so that there is no beam-to-diffuse reflection
                                 // (beam-to-beam reflection is calculated in subroutine CalcBeamSolSpecularReflFactors).
@@ -723,8 +722,7 @@ namespace SolarReflectionManager {
                         // If hit point's surface is a window or glass door go to next ray since it is assumed for now
                         // that windows have only beam-to-beam, not beam-to-diffuse, reflection
                         // TH 3/29/2010. Code modified and moved
-                        if (Surface(HitPtSurfNum).Class == SurfaceClass_Window || Surface(HitPtSurfNum).Class == SurfaceClass_GlassDoor)
-                            continue;
+                        if (Surface(HitPtSurfNum).Class == SurfaceClass_Window || Surface(HitPtSurfNum).Class == SurfaceClass_GlassDoor) continue;
 
                         // Skip rays that hit non-sunlit surface. Assume first time step of the hour.
                         SunLitFract = SunlitFrac(1, iHour, HitPtSurfNum);
@@ -827,8 +825,7 @@ namespace SolarReflectionManager {
                             // Ray hits ground (in this case we do not multiply by BmReflSolRadiance since
                             // ground reflectance and cos of incidence angle of sun on
                             // ground is taken into account later when ReflFacBmToDiffSolGnd is used)
-                            dReflBeamToDiffSol =
-                                SolReflRecSurf(RecSurfNum).dOmegaRay(RayNum) * SolReflRecSurf(RecSurfNum).CosIncAngRay(RayNum) / Pi;
+                            dReflBeamToDiffSol = SolReflRecSurf(RecSurfNum).dOmegaRay(RayNum) * SolReflRecSurf(RecSurfNum).CosIncAngRay(RayNum) / Pi;
                             ReflBmToDiffSolGnd(RecPtNum) += dReflBeamToDiffSol;
                         }
                     }
@@ -1015,9 +1012,8 @@ namespace SolarReflectionManager {
                                 for (int loop2 = 1, loop2_end = SolReflRecSurf(RecSurfNum).NumPossibleObs; loop2 <= loop2_end; ++loop2) {
                                     int const ObsSurfNum = SolReflRecSurf(RecSurfNum).PossibleObsSurfNums(loop2);
                                     if (ObsSurfNum == ReflSurfNum || ObsSurfNum == Surface(ReflSurfNum).BaseSurf) continue;
-                                    PierceSurface(ObsSurfNum, RecPt, SunVecMir, ReflDistance, HitPtObs,
-                                                  hitObs); // ReflDistance cutoff added
-                                    if (hitObs) {          // => Could skip distance check (unless < vs <= ReflDistance really matters)
+                                    PierceSurface(ObsSurfNum, RecPt, SunVecMir, ReflDistance, HitPtObs, hitObs); // ReflDistance cutoff added
+                                    if (hitObs) { // => Could skip distance check (unless < vs <= ReflDistance really matters)
                                         if (distance_squared(HitPtObs, RecPt) < ReflDistanceSq) {
                                             hitObsRefl = true;
                                             break;
@@ -1035,8 +1031,7 @@ namespace SolarReflectionManager {
                                             .ShadowSurfRecSurfNum; // Receiving surface number corresponding to a reflecting surface number
                                     if (ReflSurfRecNum > 0) {
                                         // Loop over possible obstructions for this window
-                                        for (int loop2 = 1, loop2_end = SolReflRecSurf(ReflSurfRecNum).NumPossibleObs; loop2 <= loop2_end;
-                                             ++loop2) {
+                                        for (int loop2 = 1, loop2_end = SolReflRecSurf(ReflSurfRecNum).NumPossibleObs; loop2 <= loop2_end; ++loop2) {
                                             int const ObsSurfNum = SolReflRecSurf(ReflSurfRecNum).PossibleObsSurfNums(loop2);
                                             PierceSurface(ObsSurfNum, HitPtRefl, SunVec, HitPtObs, hitObs);
                                             if (hitObs) break;
@@ -1224,8 +1219,8 @@ namespace SolarReflectionManager {
                             SkyReflSolRadiance = Surface(HitPtSurfNumX).ViewFactorSky * DifShdgRatioIsoSkyHRTS(1, 1, HitPtSurfNumX) *
                                                  SolReflRecSurf(RecSurfNum).HitPtSolRefl(RayNum, RecPtNum);
                         }
-                        dReflSkySol = SkyReflSolRadiance * SolReflRecSurf(RecSurfNum).dOmegaRay(RayNum) *
-                                      SolReflRecSurf(RecSurfNum).CosIncAngRay(RayNum) / Pi;
+                        dReflSkySol =
+                            SkyReflSolRadiance * SolReflRecSurf(RecSurfNum).dOmegaRay(RayNum) * SolReflRecSurf(RecSurfNum).CosIncAngRay(RayNum) / Pi;
                         ReflSkySolObs(RecPtNum) += dReflSkySol;
                     } else {
                         // Ray hits ground;
@@ -1271,8 +1266,8 @@ namespace SolarReflectionManager {
                                 dReflSkyGnd += CosIncAngRayToSky * dOmega / Pi;
                             } // End of azimuth loop
                         }     // End of altitude loop
-                        ReflSkySolGnd(RecPtNum) += dReflSkyGnd * SolReflRecSurf(RecSurfNum).dOmegaRay(RayNum) *
-                                                   SolReflRecSurf(RecSurfNum).CosIncAngRay(RayNum) / Pi;
+                        ReflSkySolGnd(RecPtNum) +=
+                            dReflSkyGnd * SolReflRecSurf(RecSurfNum).dOmegaRay(RayNum) * SolReflRecSurf(RecSurfNum).CosIncAngRay(RayNum) / Pi;
                     } // End of check if ray from receiving point hits obstruction or ground
                 }     // End of loop over rays from receiving point
             }         // End of loop over receiving points

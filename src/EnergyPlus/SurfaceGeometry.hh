@@ -308,8 +308,7 @@ namespace SurfaceGeometry {
 
     bool edgesEqualOnSameSurface(EdgeOfSurf a, EdgeOfSurf b);
 
-    std::vector<EdgeOfSurf> edgesNotTwoForEnclosedVolumeTest(DataVectorTypes::Polyhedron const &zonePoly,
-                                                             std::vector<Vector> const &uniqueVertices);
+    std::vector<EdgeOfSurf> edgesNotTwoForEnclosedVolumeTest(DataVectorTypes::Polyhedron const &zonePoly, std::vector<Vector> const &uniqueVertices);
 
     void makeListOfUniqueVertices(DataVectorTypes::Polyhedron const &zonePoly, std::vector<Vector> &uniqVertices);
 
@@ -330,10 +329,7 @@ namespace SurfaceGeometry {
 
     int findPossibleOppositeFace(DataVectorTypes::Polyhedron const &zonePoly, int const &faceIndex);
 
-    bool areCornersEquidistant(DataVectorTypes::Polyhedron const &zonePoly,
-                               int const &faceIndex,
-                               int const &opFaceIndex,
-                               Real64 &distanceBetween);
+    bool areCornersEquidistant(DataVectorTypes::Polyhedron const &zonePoly, int const &faceIndex, int const &opFaceIndex, Real64 &distanceBetween);
 
     bool isAlmostEqual3dPt(DataVectorTypes::Vector v1, DataVectorTypes::Vector v2);
 

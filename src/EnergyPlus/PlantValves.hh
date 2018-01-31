@@ -102,8 +102,8 @@ namespace PlantValves {
         // Default Constructor
         TemperValveData()
             : PltInletNodeNum(0), PltOutletNodeNum(0), PltStream2NodeNum(0), PltSetPointNodeNum(0), PltPumpOutletNodeNum(0), Init(true),
-              FlowDivFract(0.0), Stream2SourceTemp(0.0), InletTemp(0.0), SetPointTemp(0.0), MixedMassFlowRate(0.0), DivertedFlowRate(0.0),
-              LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0)
+              FlowDivFract(0.0), Stream2SourceTemp(0.0), InletTemp(0.0), SetPointTemp(0.0), MixedMassFlowRate(0.0), DivertedFlowRate(0.0), LoopNum(0),
+              LoopSideNum(0), BranchNum(0), CompNum(0)
         {
         }
     };

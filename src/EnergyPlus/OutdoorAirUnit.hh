@@ -142,9 +142,9 @@ namespace OutdoorAirUnit {
 
         // Default Constructor
         OAEquipList()
-            : ComponentType_Num(0), ComponentIndex(0), CoilAirInletNode(0), CoilAirOutletNode(0), CoilWaterInletNode(0),
-              CoilWaterOutletNode(0), CoilPlantTypeOfNum(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0), FluidIndex(0),
-              MaxVolWaterFlow(0.0), MaxWaterMassFlow(0.0), MinVolWaterFlow(0.0), MinWaterMassFlow(0.0)
+            : ComponentType_Num(0), ComponentIndex(0), CoilAirInletNode(0), CoilAirOutletNode(0), CoilWaterInletNode(0), CoilWaterOutletNode(0),
+              CoilPlantTypeOfNum(0), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0), FluidIndex(0), MaxVolWaterFlow(0.0), MaxWaterMassFlow(0.0),
+              MinVolWaterFlow(0.0), MinWaterMassFlow(0.0)
         {
         }
     };
@@ -226,12 +226,11 @@ namespace OutdoorAirUnit {
             : SchedPtr(0), ZonePtr(0), ZoneNodeNum(0), ControlType(0), AirInletNode(0), AirOutletNode(0), SFan_Index(0), SFanType(0),
               SFanAvailSchedPtr(0), FanPlace(0), FanCorTemp(0.0), FanEffect(false), SFanOutletNode(0), ExtFan_Index(0), ExtFanType(0),
               ExtFanAvailSchedPtr(0), ExtFan(false), OutAirSchedPtr(0), OutsideAirNode(0), OutAirVolFlow(0.0), OutAirMassFlow(0.0),
-              ExtAirVolFlow(0.0), ExtAirMassFlow(0.0), ExtOutAirSchedPtr(0), SMaxAirMassFlow(0.0), EMaxAirMassFlow(0.0),
-              SFanMaxAirVolFlow(0.0), EFanMaxAirVolFlow(0.0), HiCtrlTempSchedPtr(0), LoCtrlTempSchedPtr(0), OperatingMode(0),
-              ControlCompTypeNum(0), CompErrIndex(0), AirMassFlow(0.0), FlowError(false), NumComponents(0), CompOutSetTemp(0.0),
-              AvailStatus(0), TotCoolingRate(0.0), TotCoolingEnergy(0.0), SensCoolingRate(0.0), SensCoolingEnergy(0.0), LatCoolingRate(0.0),
-              LatCoolingEnergy(0.0), ElecFanRate(0.0), ElecFanEnergy(0.0), SensHeatingEnergy(0.0), SensHeatingRate(0.0),
-              LatHeatingEnergy(0.0), LatHeatingRate(0.0), TotHeatingEnergy(0.0), TotHeatingRate(0.0)
+              ExtAirVolFlow(0.0), ExtAirMassFlow(0.0), ExtOutAirSchedPtr(0), SMaxAirMassFlow(0.0), EMaxAirMassFlow(0.0), SFanMaxAirVolFlow(0.0),
+              EFanMaxAirVolFlow(0.0), HiCtrlTempSchedPtr(0), LoCtrlTempSchedPtr(0), OperatingMode(0), ControlCompTypeNum(0), CompErrIndex(0),
+              AirMassFlow(0.0), FlowError(false), NumComponents(0), CompOutSetTemp(0.0), AvailStatus(0), TotCoolingRate(0.0), TotCoolingEnergy(0.0),
+              SensCoolingRate(0.0), SensCoolingEnergy(0.0), LatCoolingRate(0.0), LatCoolingEnergy(0.0), ElecFanRate(0.0), ElecFanEnergy(0.0),
+              SensHeatingEnergy(0.0), SensHeatingRate(0.0), LatHeatingEnergy(0.0), LatHeatingRate(0.0), TotHeatingEnergy(0.0), TotHeatingRate(0.0)
         {
         }
     };

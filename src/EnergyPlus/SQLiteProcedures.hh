@@ -421,8 +421,8 @@ private:
               surfaceClass(surfaceClass), area(surfaceData.Area), grossArea(surfaceData.GrossArea), perimeter(surfaceData.Perimeter),
               azimuth(surfaceData.Azimuth), height(surfaceData.Height), reveal(surfaceData.Reveal), shape(surfaceData.Shape),
               sides(surfaceData.Sides), tilt(surfaceData.Tilt), width(surfaceData.Width), heatTransSurf(surfaceData.HeatTransSurf),
-              baseSurf(surfaceData.BaseSurf), zone(surfaceData.Zone), extBoundCond(surfaceData.ExtBoundCond),
-              extSolar(surfaceData.ExtSolar), extWind(surfaceData.ExtWind)
+              baseSurf(surfaceData.BaseSurf), zone(surfaceData.Zone), extBoundCond(surfaceData.ExtBoundCond), extSolar(surfaceData.ExtSolar),
+              extWind(surfaceData.ExtWind)
         {
         }
 
@@ -460,13 +460,12 @@ private:
              DataHeatBalance::ZoneData const &zoneData)
             : SQLiteData(errorStream, db), number(zoneNumber), name(zoneData.Name), relNorth(zoneData.RelNorth), originX(zoneData.OriginX),
               originY(zoneData.OriginY), originZ(zoneData.OriginZ), centroidX(zoneData.Centroid.x), centroidY(zoneData.Centroid.y),
-              centroidZ(zoneData.Centroid.z), ofType(zoneData.OfType), multiplier(zoneData.Multiplier),
-              listMultiplier(zoneData.ListMultiplier), minimumX(zoneData.MinimumX), maximumX(zoneData.MaximumX),
-              minimumY(zoneData.MinimumY), maximumY(zoneData.MaximumY), minimumZ(zoneData.MinimumZ), maximumZ(zoneData.MaximumZ),
-              ceilingHeight(zoneData.CeilingHeight), volume(zoneData.Volume), insideConvectionAlgo(zoneData.InsideConvectionAlgo),
-              outsideConvectionAlgo(zoneData.OutsideConvectionAlgo), floorArea(zoneData.FloorArea),
-              extGrossWallArea(zoneData.ExtGrossWallArea), extNetWallArea(zoneData.ExtNetWallArea), extWindowArea(zoneData.ExtWindowArea),
-              isPartOfTotalArea(zoneData.isPartOfTotalArea)
+              centroidZ(zoneData.Centroid.z), ofType(zoneData.OfType), multiplier(zoneData.Multiplier), listMultiplier(zoneData.ListMultiplier),
+              minimumX(zoneData.MinimumX), maximumX(zoneData.MaximumX), minimumY(zoneData.MinimumY), maximumY(zoneData.MaximumY),
+              minimumZ(zoneData.MinimumZ), maximumZ(zoneData.MaximumZ), ceilingHeight(zoneData.CeilingHeight), volume(zoneData.Volume),
+              insideConvectionAlgo(zoneData.InsideConvectionAlgo), outsideConvectionAlgo(zoneData.OutsideConvectionAlgo),
+              floorArea(zoneData.FloorArea), extGrossWallArea(zoneData.ExtGrossWallArea), extNetWallArea(zoneData.ExtNetWallArea),
+              extWindowArea(zoneData.ExtWindowArea), isPartOfTotalArea(zoneData.isPartOfTotalArea)
         {
         }
 
@@ -552,9 +551,9 @@ private:
                  DataHeatBalance::MaterialProperties const &materialData)
             : SQLiteData(errorStream, db), number(materialNumber), name(materialData.Name), group(materialData.Group),
               roughness(materialData.Roughness), conductivity(materialData.Conductivity), density(materialData.Density),
-              isoMoistCap(materialData.IsoMoistCap), porosity(materialData.Porosity), resistance(materialData.Resistance),
-              rOnly(materialData.ROnly), specHeat(materialData.SpecHeat), thermGradCoef(materialData.ThermGradCoef),
-              thickness(materialData.Thickness), vaporDiffus(materialData.VaporDiffus)
+              isoMoistCap(materialData.IsoMoistCap), porosity(materialData.Porosity), resistance(materialData.Resistance), rOnly(materialData.ROnly),
+              specHeat(materialData.SpecHeat), thermGradCoef(materialData.ThermGradCoef), thickness(materialData.Thickness),
+              vaporDiffus(materialData.VaporDiffus)
         {
         }
 
@@ -649,8 +648,8 @@ private:
                         std::shared_ptr<sqlite3> const &db,
                         int const nominalLightingNumber,
                         DataHeatBalance::LightsData const &nominalLightingData)
-            : SQLiteData(errorStream, db), number(nominalLightingNumber), name(nominalLightingData.Name),
-              zonePtr(nominalLightingData.ZonePtr), schedulePtr(nominalLightingData.SchedPtr), designLevel(nominalLightingData.DesignLevel),
+            : SQLiteData(errorStream, db), number(nominalLightingNumber), name(nominalLightingData.Name), zonePtr(nominalLightingData.ZonePtr),
+              schedulePtr(nominalLightingData.SchedPtr), designLevel(nominalLightingData.DesignLevel),
               fractionReturnAir(nominalLightingData.FractionReturnAir), fractionRadiant(nominalLightingData.FractionRadiant),
               fractionShortWave(nominalLightingData.FractionShortWave), fractionReplaceable(nominalLightingData.FractionReplaceable),
               fractionConvected(nominalLightingData.FractionConvected), endUseSubcategory(nominalLightingData.EndUseSubcategory)
@@ -684,11 +683,11 @@ private:
               numberOfPeople(nominalPeopleData.NumberOfPeople), numberOfPeoplePtr(nominalPeopleData.NumberOfPeoplePtr),
               activityLevelPtr(nominalPeopleData.ActivityLevelPtr), fractionRadiant(nominalPeopleData.FractionRadiant),
               fractionConvected(nominalPeopleData.FractionConvected), workEffPtr(nominalPeopleData.WorkEffPtr),
-              clothingPtr(nominalPeopleData.ClothingPtr), airVelocityPtr(nominalPeopleData.AirVelocityPtr),
-              fanger(nominalPeopleData.Fanger), pierce(nominalPeopleData.Pierce), ksu(nominalPeopleData.KSU),
-              mrtCalcType(nominalPeopleData.MRTCalcType), surfacePtr(nominalPeopleData.SurfacePtr),
-              angleFactorListName(nominalPeopleData.AngleFactorListName), angleFactorListPtr(nominalPeopleData.AngleFactorListPtr),
-              userSpecSensFrac(nominalPeopleData.UserSpecSensFrac), show55Warning(nominalPeopleData.Show55Warning)
+              clothingPtr(nominalPeopleData.ClothingPtr), airVelocityPtr(nominalPeopleData.AirVelocityPtr), fanger(nominalPeopleData.Fanger),
+              pierce(nominalPeopleData.Pierce), ksu(nominalPeopleData.KSU), mrtCalcType(nominalPeopleData.MRTCalcType),
+              surfacePtr(nominalPeopleData.SurfacePtr), angleFactorListName(nominalPeopleData.AngleFactorListName),
+              angleFactorListPtr(nominalPeopleData.AngleFactorListPtr), userSpecSensFrac(nominalPeopleData.UserSpecSensFrac),
+              show55Warning(nominalPeopleData.Show55Warning)
         {
         }
 
@@ -728,8 +727,7 @@ private:
               zonePtr(nominalElectricEquipmentData.ZonePtr), schedulePtr(nominalElectricEquipmentData.SchedPtr),
               designLevel(nominalElectricEquipmentData.DesignLevel), fractionLatent(nominalElectricEquipmentData.FractionLatent),
               fractionRadiant(nominalElectricEquipmentData.FractionRadiant), fractionLost(nominalElectricEquipmentData.FractionLost),
-              fractionConvected(nominalElectricEquipmentData.FractionConvected),
-              endUseSubcategory(nominalElectricEquipmentData.EndUseSubcategory)
+              fractionConvected(nominalElectricEquipmentData.FractionConvected), endUseSubcategory(nominalElectricEquipmentData.EndUseSubcategory)
         {
         }
 
@@ -819,8 +817,7 @@ private:
               zonePtr(nominalHotWaterEquipmentData.ZonePtr), schedulePtr(nominalHotWaterEquipmentData.SchedPtr),
               designLevel(nominalHotWaterEquipmentData.DesignLevel), fractionLatent(nominalHotWaterEquipmentData.FractionLatent),
               fractionRadiant(nominalHotWaterEquipmentData.FractionRadiant), fractionLost(nominalHotWaterEquipmentData.FractionLost),
-              fractionConvected(nominalHotWaterEquipmentData.FractionConvected),
-              endUseSubcategory(nominalHotWaterEquipmentData.EndUseSubcategory)
+              fractionConvected(nominalHotWaterEquipmentData.FractionConvected), endUseSubcategory(nominalHotWaterEquipmentData.EndUseSubcategory)
         {
         }
 
@@ -879,9 +876,9 @@ private:
             : SQLiteData(errorStream, db), number(nominalBaseboardHeatNumber), name(nominalBaseboardHeatData.Name),
               zonePtr(nominalBaseboardHeatData.ZonePtr), schedPtr(nominalBaseboardHeatData.SchedPtr),
               capatLowTemperature(nominalBaseboardHeatData.CapatLowTemperature), lowTemperature(nominalBaseboardHeatData.LowTemperature),
-              capatHighTemperature(nominalBaseboardHeatData.CapatHighTemperature),
-              highTemperature(nominalBaseboardHeatData.HighTemperature), fractionRadiant(nominalBaseboardHeatData.FractionRadiant),
-              fractionConvected(nominalBaseboardHeatData.FractionConvected), endUseSubcategory(nominalBaseboardHeatData.EndUseSubcategory)
+              capatHighTemperature(nominalBaseboardHeatData.CapatHighTemperature), highTemperature(nominalBaseboardHeatData.HighTemperature),
+              fractionRadiant(nominalBaseboardHeatData.FractionRadiant), fractionConvected(nominalBaseboardHeatData.FractionConvected),
+              endUseSubcategory(nominalBaseboardHeatData.EndUseSubcategory)
         {
         }
 

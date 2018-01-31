@@ -1194,10 +1194,9 @@ namespace General {
             fEdge = 0.0;
             fEdge1 = 0.0;
             if (std::abs(std::sin(gamma)) > 0.01) {
-                if ((SlatAng > 0.0 && SlatAng <= PiOvr2 && ProfAng <= SlatAng) ||
-                    (SlatAng > PiOvr2 && SlatAng <= Pi && ProfAng > -(Pi - SlatAng)))
-                    fEdge1 = SlatThickness * std::abs(std::sin(gamma)) /
-                             ((SlatSeparation + SlatThickness / std::abs(std::sin(SlatAng))) * CosProfAng);
+                if ((SlatAng > 0.0 && SlatAng <= PiOvr2 && ProfAng <= SlatAng) || (SlatAng > PiOvr2 && SlatAng <= Pi && ProfAng > -(Pi - SlatAng)))
+                    fEdge1 =
+                        SlatThickness * std::abs(std::sin(gamma)) / ((SlatSeparation + SlatThickness / std::abs(std::sin(SlatAng))) * CosProfAng);
                 fEdge = min(1.0, std::abs(fEdge1));
             }
             BlindBeamBeamTrans *= (1.0 - fEdge);
@@ -1579,10 +1578,9 @@ namespace General {
         std::string::size_type const DotPos = index(String, '.'); // Position of decimal point in original string
         assert(DotPos != std::string::npos);
         assert(DotPos > 0); // Or SPos will not be valid
-        char TestChar(
-            DotPos + SigDigits + 1 < String.length()
-                ? String[DotPos + SigDigits + 1]
-                : ' '); // Test character (digit) for rounding, if position in digit string >= 5 (digit is 5 or greater) then will round
+        char TestChar(DotPos + SigDigits + 1 < String.length()
+                          ? String[DotPos + SigDigits + 1]
+                          : ' '); // Test character (digit) for rounding, if position in digit string >= 5 (digit is 5 or greater) then will round
         std::string::size_type const TPos = index(DigitChar, TestChar); // Position of Testchar in Digit string
 
         std::string::size_type SPos; // Actual string position being replaced
@@ -1989,8 +1987,8 @@ namespace General {
         static int const NumSingleChars(3);
         static Array1D_string const SingleChars(NumSingleChars, {"/", ":", "-"});
         static int const NumDoubleChars(6);
-        static Array1D_string const DoubleChars(
-            NumDoubleChars, {"ST ", "ND ", "RD ", "TH ", "OF ", "IN "}); // Need trailing spaces: Want thse only at end of words
+        static Array1D_string const DoubleChars(NumDoubleChars,
+                                                {"ST ", "ND ", "RD ", "TH ", "OF ", "IN "}); // Need trailing spaces: Want thse only at end of words
         static Array1D_string const Months(12, {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"});
         static Array1D_string const Weekdays(7, {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"});
         static std::string const Numbers("0123456789");
@@ -2630,8 +2628,8 @@ namespace General {
 
         // Compute Determinant
 
-        Determinant = A(1, 1) * A(2, 2) * A(3, 3) + A(2, 1) * A(3, 2) * A(1, 3) + A(3, 1) * A(1, 2) * A(2, 3) -
-                      A(1, 1) * A(2, 3) * A(3, 2) - A(1, 2) * A(2, 1) * A(3, 3) - A(1, 3) * A(2, 2) * A(3, 1);
+        Determinant = A(1, 1) * A(2, 2) * A(3, 3) + A(2, 1) * A(3, 2) * A(1, 3) + A(3, 1) * A(1, 2) * A(2, 3) - A(1, 1) * A(2, 3) * A(3, 2) -
+                      A(1, 2) * A(2, 1) * A(3, 3) - A(1, 3) * A(2, 2) * A(3, 1);
 
         if (std::abs(Determinant) < .1E-12) {
             ShowFatalError("Determinant = [Zero] in Invert3By3Matrix", OutputFileStandard);
@@ -3328,8 +3326,8 @@ namespace General {
         Seconds = Remainder;
     }
 
-    void ScanForReports(
-        std::string const &reportName, bool &DoReport, Optional_string_const ReportKey, Optional_string Option1, Optional_string Option2)
+    void
+    ScanForReports(std::string const &reportName, bool &DoReport, Optional_string_const ReportKey, Optional_string Option1, Optional_string Option2)
     {
 
         // SUBROUTINE INFORMATION:
@@ -3454,8 +3452,7 @@ namespace General {
                                           "\"ViewFactorIinfo\".");
 
                     } else {
-                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(1) + "=\"" + cAlphaArgs(1) +
-                                         "\" supplied.");
+                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(1) + "=\"" + cAlphaArgs(1) + "\" supplied.");
                         ShowContinueError(" Legal values are: \"Lines\", \"Vertices\", \"Details\", \"DetailsWithVertices\", \"CostInfo\", "
                                           "\"ViewFactorIinfo\".");
                     }
@@ -3492,8 +3489,7 @@ namespace General {
                         ShowContinueError(" Legal values are: \"DXF\", \"DXF:WireFrame\", \"VRML\".");
 
                     } else {
-                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(1) + "=\"" + cAlphaArgs(1) +
-                                         "\" supplied.");
+                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(1) + "=\"" + cAlphaArgs(1) + "\" supplied.");
                         ShowContinueError(" Legal values are: \"DXF\", \"DXF:WireFrame\", \"VRML\".");
                     }
                 }
@@ -3563,8 +3559,7 @@ namespace General {
                         OutputEMSActuatorAvailSmall = false;
                         OutputEMSActuatorAvailFull = false;
                     } else {
-                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(1) + "=\"" + cAlphaArgs(1) +
-                                         "\" supplied.");
+                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(1) + "=\"" + cAlphaArgs(1) + "\" supplied.");
                         ShowContinueError(" Legal values are: \"None\", \"NotByUniqueKeyNames\", \"Verbose\". \"None\" will be used.");
                         OutputEMSActuatorAvailSmall = false;
                         OutputEMSActuatorAvailFull = false;
@@ -3589,8 +3584,7 @@ namespace General {
                         OutputEMSInternalVarsFull = false;
                         OutputEMSInternalVarsSmall = false;
                     } else {
-                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(2) + "=\"" + cAlphaArgs(1) +
-                                         "\" supplied.");
+                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(2) + "=\"" + cAlphaArgs(1) + "\" supplied.");
                         ShowContinueError(" Legal values are: \"None\", \"NotByUniqueKeyNames\", \"Verbose\". \"None\" will be used.");
                         OutputEMSInternalVarsFull = false;
                         OutputEMSInternalVarsSmall = false;
@@ -3615,8 +3609,7 @@ namespace General {
                         OutputEMSErrors = false;
                         OutputFullEMSTrace = false;
                     } else {
-                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(3) + "=\"" + cAlphaArgs(1) +
-                                         "\" supplied.");
+                        ShowWarningError(cCurrentModuleObject + ": Invalid " + cAlphaFieldNames(3) + "=\"" + cAlphaArgs(1) + "\" supplied.");
                         ShowContinueError(" Legal values are: \"None\", \"ErrorsOnly\", \"Verbose\". \"None\" will be used.");
                         OutputEMSErrors = false;
                         OutputFullEMSTrace = false;
@@ -3753,8 +3746,7 @@ namespace General {
             ShowContinueError("ZoneList/Zone Name=\"" + ZoneName + "\".");
             ShowContinueError("Item length=[" + RoundSigDigits(int(ItemLength)) + "] > Maximum Length=[" + RoundSigDigits(MaxNameLength) +
                               "]. You may need to shorten the names.");
-            ShowContinueError("Shortening the Object Name by [" +
-                              RoundSigDigits(int(MaxZoneNameLength + 1 + ItemNameLength - MaxNameLength)) +
+            ShowContinueError("Shortening the Object Name by [" + RoundSigDigits(int(MaxZoneNameLength + 1 + ItemNameLength - MaxNameLength)) +
                               "] characters will assure uniqueness for this ZoneList.");
             ShowContinueError("name that will be used (may be needed in reporting)=\"" + ResultName + "\".");
             TooLong = true;

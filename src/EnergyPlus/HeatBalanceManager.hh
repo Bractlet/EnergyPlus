@@ -126,8 +126,7 @@ namespace HeatBalanceManager {
         //  ABS((MaxCoolLoadZone(ZoneNum)-MaxCoolLoadPrevDay(ZoneNum))/MaxCoolLoadZone(ZoneNum))
 
         // Default Constructor
-        WarmupConvergence()
-            : PassFlag(4, 2), TestMaxTempValue(0.0), TestMinTempValue(0.0), TestMaxHeatLoadValue(0.0), TestMaxCoolLoadValue(0.0)
+        WarmupConvergence() : PassFlag(4, 2), TestMaxTempValue(0.0), TestMinTempValue(0.0), TestMaxHeatLoadValue(0.0), TestMaxCoolLoadValue(0.0)
         {
         }
     };
@@ -228,7 +227,7 @@ namespace HeatBalanceManager {
                                std::string const &DesiredConstructionName, // Name that will be searched for in the Window5 data file
                                bool &ConstructionFound,                    // True if DesiredConstructionName is in the Window5 data file
                                bool &EOFonFile,                            // True if EOF during file read
-                               bool &ErrorsFound // True if there is a problem with the entry requested from the data file
+                               bool &ErrorsFound                           // True if there is a problem with the entry requested from the data file
                                );
 
     void SetStormWindowControl();

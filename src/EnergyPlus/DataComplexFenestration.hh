@@ -148,8 +148,7 @@ namespace DataComplexFenestration {
         WindowComplexShade()
             : LayerType(-1), Thickness(0.0), Conductivity(0.0), IRTransmittance(0.0), FrontEmissivity(0.0), BackEmissivity(0.0),
               TopOpeningMultiplier(0.0), BottomOpeningMultiplier(0.0), LeftOpeningMultiplier(0.0), RightOpeningMultiplier(0.0),
-              FrontOpeningMultiplier(0.0), SlatWidth(0.0), SlatSpacing(0.0), SlatThickness(0.0), SlatAngle(0.0), SlatConductivity(0.0),
-              SlatCurve(0.0)
+              FrontOpeningMultiplier(0.0), SlatWidth(0.0), SlatSpacing(0.0), SlatThickness(0.0), SlatAngle(0.0), SlatConductivity(0.0), SlatCurve(0.0)
         {
         }
     };
@@ -168,8 +167,8 @@ namespace DataComplexFenestration {
 
         // Default Constructor
         WindowThermalModelParams()
-            : CalculationStandard(-1), ThermalModel(-1), SDScalar(0.0), DeflectionModel(-1), VacuumPressureLimit(0.0),
-              InitialTemperature(0.0), InitialPressure(0.0)
+            : CalculationStandard(-1), ThermalModel(-1), SDScalar(0.0), DeflectionModel(-1), VacuumPressureLimit(0.0), InitialTemperature(0.0),
+              InitialPressure(0.0)
         {
         }
     };

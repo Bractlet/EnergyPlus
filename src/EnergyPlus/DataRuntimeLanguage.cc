@@ -252,8 +252,7 @@ namespace DataRuntimeLanguage {
     ErlValueType True(0, 0.0, "", 0, 0, false, 0, "", true);     // special "True" Erl variable value instance, gets reset
 
     // EMS Actuator fast duplicate check lookup support
-    std::unordered_set<std::tuple<std::string, std::string, std::string>, EMSActuatorKey_hash>
-        EMSActuator_lookup; // Fast duplicate lookup structure
+    std::unordered_set<std::tuple<std::string, std::string, std::string>, EMSActuatorKey_hash> EMSActuator_lookup; // Fast duplicate lookup structure
 
     // Functions
     void clear_state()

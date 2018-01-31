@@ -161,12 +161,12 @@ namespace ChillerGasAbsorption {
               HeatReturnNodeNum(0), HeatSupplyNodeNum(0), HeatSetPointErrDone(false), HeatSetPointSetToLoop(false), MinPartLoadRat(0.0),
               MaxPartLoadRat(0.0), OptPartLoadRat(0.0), TempDesCondReturn(0.0), TempDesCHWSupply(0.0), EvapVolFlowRate(0.0),
               EvapVolFlowRateWasAutoSized(false), CondVolFlowRate(0.0), CondVolFlowRateWasAutoSized(false), HeatVolFlowRate(0.0),
-              HeatVolFlowRateWasAutoSized(false), SizFac(0.0), CoolCapFTCurve(0), FuelCoolFTCurve(0), FuelCoolFPLRCurve(0),
-              ElecCoolFTCurve(0), ElecCoolFPLRCurve(0), HeatCapFCoolCurve(0), FuelHeatFHPLRCurve(0), isEnterCondensTemp(false),
-              isWaterCooled(false), CHWLowLimitTemp(0.0), FuelHeatingValue(0.0), DesCondMassFlowRate(0.0), DesHeatMassFlowRate(0.0),
-              DesEvapMassFlowRate(0.0), DeltaTempCoolErrCount(0), DeltaTempHeatErrCount(0), CondErrCount(0), PossibleSubcooling(false),
-              CWLoopNum(0), CWLoopSideNum(0), CWBranchNum(0), CWCompNum(0), CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0),
-              HWLoopNum(0), HWLoopSideNum(0), HWBranchNum(0), HWCompNum(0)
+              HeatVolFlowRateWasAutoSized(false), SizFac(0.0), CoolCapFTCurve(0), FuelCoolFTCurve(0), FuelCoolFPLRCurve(0), ElecCoolFTCurve(0),
+              ElecCoolFPLRCurve(0), HeatCapFCoolCurve(0), FuelHeatFHPLRCurve(0), isEnterCondensTemp(false), isWaterCooled(false),
+              CHWLowLimitTemp(0.0), FuelHeatingValue(0.0), DesCondMassFlowRate(0.0), DesHeatMassFlowRate(0.0), DesEvapMassFlowRate(0.0),
+              DeltaTempCoolErrCount(0), DeltaTempHeatErrCount(0), CondErrCount(0), PossibleSubcooling(false), CWLoopNum(0), CWLoopSideNum(0),
+              CWBranchNum(0), CWCompNum(0), CDLoopNum(0), CDLoopSideNum(0), CDBranchNum(0), CDCompNum(0), HWLoopNum(0), HWLoopSideNum(0),
+              HWBranchNum(0), HWCompNum(0)
         {
         }
     };
@@ -210,13 +210,12 @@ namespace ChillerGasAbsorption {
 
         // Default Constructor
         ReportVars()
-            : CoolingLoad(0.0), CoolingEnergy(0.0), HeatingLoad(0.0), HeatingEnergy(0.0), TowerLoad(0.0), TowerEnergy(0.0),
-              FuelUseRate(0.0), FuelEnergy(0.0), CoolFuelUseRate(0.0), CoolFuelEnergy(0.0), HeatFuelUseRate(0.0), HeatFuelEnergy(0.0),
-              ElectricPower(0.0), ElectricEnergy(0.0), CoolElectricPower(0.0), CoolElectricEnergy(0.0), HeatElectricPower(0.0),
-              HeatElectricEnergy(0.0), ChillReturnTemp(0.0), ChillSupplyTemp(0.0), ChillWaterFlowRate(0.0), CondReturnTemp(0.0),
-              CondSupplyTemp(0.0), CondWaterFlowRate(0.0), HotWaterReturnTemp(0.0), HotWaterSupplyTemp(0.0), HotWaterFlowRate(0.0),
-              CoolPartLoadRatio(0.0), HeatPartLoadRatio(0.0), CoolingCapacity(0.0), HeatingCapacity(0.0), FractionOfPeriodRunning(0.0),
-              FuelCOP(0.0)
+            : CoolingLoad(0.0), CoolingEnergy(0.0), HeatingLoad(0.0), HeatingEnergy(0.0), TowerLoad(0.0), TowerEnergy(0.0), FuelUseRate(0.0),
+              FuelEnergy(0.0), CoolFuelUseRate(0.0), CoolFuelEnergy(0.0), HeatFuelUseRate(0.0), HeatFuelEnergy(0.0), ElectricPower(0.0),
+              ElectricEnergy(0.0), CoolElectricPower(0.0), CoolElectricEnergy(0.0), HeatElectricPower(0.0), HeatElectricEnergy(0.0),
+              ChillReturnTemp(0.0), ChillSupplyTemp(0.0), ChillWaterFlowRate(0.0), CondReturnTemp(0.0), CondSupplyTemp(0.0), CondWaterFlowRate(0.0),
+              HotWaterReturnTemp(0.0), HotWaterSupplyTemp(0.0), HotWaterFlowRate(0.0), CoolPartLoadRatio(0.0), HeatPartLoadRatio(0.0),
+              CoolingCapacity(0.0), HeatingCapacity(0.0), FractionOfPeriodRunning(0.0), FuelCOP(0.0)
         {
         }
     };

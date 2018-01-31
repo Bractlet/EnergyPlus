@@ -428,8 +428,7 @@ namespace Vectors {
         // Clean up angle precision
         if (std::abs(az - 360.0) < 1.0e-3) { // Bring small angles to zero
             az = 0.0;
-        } else if (std::abs(az - 180.0) <
-                   1.0e-6) { // Bring angles near 180 to 180 //Autodesk Added to clean up debug--release discrepancies
+        } else if (std::abs(az - 180.0) < 1.0e-6) { // Bring angles near 180 to 180 //Autodesk Added to clean up debug--release discrepancies
             az = 180.0;
         }
         if (std::abs(tlt - 180.0) < 1.0e-6) { // Bring angles near 180 to 180 //Autodesk Added to clean up debug--release discrepancies

@@ -204,9 +204,9 @@ namespace DataLoopNode {
         NodeID.deallocate();
         Node.deallocate();
         DefaultNodeValues =
-            NodeData(0, 0, 0.0, 0.0, 0.0, SensedNodeFlagValue, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                     SensedNodeFlagValue, SensedNodeFlagValue, SensedNodeFlagValue, SensedNodeFlagValue, SensedNodeFlagValue, -1.0, false,
-                     0, 0, 0, 0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, false);
+            NodeData(0, 0, 0.0, 0.0, 0.0, SensedNodeFlagValue, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, SensedNodeFlagValue,
+                     SensedNodeFlagValue, SensedNodeFlagValue, SensedNodeFlagValue, SensedNodeFlagValue, -1.0, false, 0, 0, 0, 0, 0.0, false, 0.0,
+                     0.0, false, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, false);
         MoreNodeInfo.deallocate();
         MarkedNode.deallocate();
     }

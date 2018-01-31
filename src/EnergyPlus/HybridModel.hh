@@ -88,9 +88,9 @@ namespace HybridModel {
 
         // Default Constructor
         HybridModelProperties()
-            : ZoneMeasuredTemperatureSchedulePtr(0), InternalThermalMassCalc(false), InfiltrationCalc(false),
-              ZoneMeasuredTemperatureStartMonth(0), ZoneMeasuredTemperatureStartDate(0), ZoneMeasuredTemperatureEndMonth(0),
-              ZoneMeasuredTemperatureEndDate(0), HybridStartDayOfYear(0), HybridEndDayOfYear(0)
+            : ZoneMeasuredTemperatureSchedulePtr(0), InternalThermalMassCalc(false), InfiltrationCalc(false), ZoneMeasuredTemperatureStartMonth(0),
+              ZoneMeasuredTemperatureStartDate(0), ZoneMeasuredTemperatureEndMonth(0), ZoneMeasuredTemperatureEndDate(0), HybridStartDayOfYear(0),
+              HybridEndDayOfYear(0)
         {
         }
     };

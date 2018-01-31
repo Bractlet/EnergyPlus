@@ -219,8 +219,8 @@ namespace PhotovoltaicThermalCollectors {
                 }
                 if (CheckEquipName(PVTnum)) {
                     if (PVTName != PVT(PVTnum).Name) {
-                        ShowFatalError("SimPVTcollectors: Invalid PVT index passed = " + TrimSigDigits(PVTnum) + ", Unit name=" +
-                                       PVTName() + ", stored name for that index=" + PVT(PVTnum).Name);
+                        ShowFatalError("SimPVTcollectors: Invalid PVT index passed = " + TrimSigDigits(PVTnum) + ", Unit name=" + PVTName() +
+                                       ", stored name for that index=" + PVT(PVTnum).Name);
                     }
                     CheckEquipName(PVTnum) = false;
                 }
@@ -409,8 +409,7 @@ namespace PhotovoltaicThermalCollectors {
                     ShowWarningError("Suspected input problem with " + cAlphaFieldNames(2) + " = " + cAlphaArgs(2));
                     ShowContinueError("Entered in " + cCurrentModuleObject + " = " + cAlphaArgs(1));
                     ShowContinueError("Surface used for solar collector faces down");
-                    ShowContinueError("Surface tilt angle (degrees from ground outward normal) = " +
-                                      RoundSigDigits(Surface(SurfNum).Tilt, 2));
+                    ShowContinueError("Surface tilt angle (degrees from ground outward normal) = " + RoundSigDigits(Surface(SurfNum).Tilt, 2));
                 }
 
             } // check surface
@@ -468,10 +467,10 @@ namespace PhotovoltaicThermalCollectors {
             }
 
             if (PVT(Item).WorkingFluidType == LiquidWorkingFluid) {
-                PVT(Item).PlantInletNodeNum = GetOnlySingleNode(cAlphaArgs(6), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                NodeType_Water, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
-                PVT(Item).PlantOutletNodeNum = GetOnlySingleNode(cAlphaArgs(7), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                 NodeType_Water, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+                PVT(Item).PlantInletNodeNum = GetOnlySingleNode(cAlphaArgs(6), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
+                                                                NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+                PVT(Item).PlantOutletNodeNum = GetOnlySingleNode(cAlphaArgs(7), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
+                                                                 NodeConnectionType_Outlet, 1, ObjectIsNotParent);
 
                 TestCompSet(cCurrentModuleObject, cAlphaArgs(1), cAlphaArgs(6), cAlphaArgs(7), "Water Nodes");
 
@@ -479,10 +478,10 @@ namespace PhotovoltaicThermalCollectors {
             }
 
             if (PVT(Item).WorkingFluidType == AirWorkingFluid) {
-                PVT(Item).HVACInletNodeNum = GetOnlySingleNode(cAlphaArgs(8), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                               NodeType_Air, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
-                PVT(Item).HVACOutletNodeNum = GetOnlySingleNode(cAlphaArgs(9), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                NodeType_Air, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+                PVT(Item).HVACInletNodeNum = GetOnlySingleNode(cAlphaArgs(8), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air,
+                                                               NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+                PVT(Item).HVACOutletNodeNum = GetOnlySingleNode(cAlphaArgs(9), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Air,
+                                                                NodeConnectionType_Outlet, 1, ObjectIsNotParent);
 
                 TestCompSet(cCurrentModuleObject, cAlphaArgs(1), cAlphaArgs(8), cAlphaArgs(9), "Air Nodes");
             }
@@ -507,22 +506,22 @@ namespace PhotovoltaicThermalCollectors {
             // electrical production reporting under generator:photovoltaic....
             //    only thermal side reported here,
 
-            SetupOutputVariable("Generator Produced Thermal Rate", OutputProcessor::Unit::W, PVT(Item).Report.ThermPower, "System",
-                                "Average", PVT(Item).Name);
+            SetupOutputVariable("Generator Produced Thermal Rate", OutputProcessor::Unit::W, PVT(Item).Report.ThermPower, "System", "Average",
+                                PVT(Item).Name);
             if (PVT(Item).WorkingFluidType == LiquidWorkingFluid) {
-                SetupOutputVariable("Generator Produced Thermal Energy", OutputProcessor::Unit::J, PVT(Item).Report.ThermEnergy, "System",
-                                    "Sum", PVT(Item).Name, _, "SolarWater", "HeatProduced", _, "Plant");
+                SetupOutputVariable("Generator Produced Thermal Energy", OutputProcessor::Unit::J, PVT(Item).Report.ThermEnergy, "System", "Sum",
+                                    PVT(Item).Name, _, "SolarWater", "HeatProduced", _, "Plant");
             } else if (PVT(Item).WorkingFluidType == AirWorkingFluid) {
-                SetupOutputVariable("Generator Produced Thermal Energy", OutputProcessor::Unit::J, PVT(Item).Report.ThermEnergy, "System",
-                                    "Sum", PVT(Item).Name, _, "SolarAir", "HeatProduced", _, "System");
-                SetupOutputVariable("Generator PVT Fluid Bypass Status", OutputProcessor::Unit::None, PVT(Item).Report.BypassStatus,
-                                    "System", "Average", PVT(Item).Name);
+                SetupOutputVariable("Generator Produced Thermal Energy", OutputProcessor::Unit::J, PVT(Item).Report.ThermEnergy, "System", "Sum",
+                                    PVT(Item).Name, _, "SolarAir", "HeatProduced", _, "System");
+                SetupOutputVariable("Generator PVT Fluid Bypass Status", OutputProcessor::Unit::None, PVT(Item).Report.BypassStatus, "System",
+                                    "Average", PVT(Item).Name);
             }
 
-            SetupOutputVariable("Generator PVT Fluid Inlet Temperature", OutputProcessor::Unit::C, PVT(Item).Report.TinletWorkFluid,
-                                "System", "Average", PVT(Item).Name);
-            SetupOutputVariable("Generator PVT Fluid Outlet Temperature", OutputProcessor::Unit::C, PVT(Item).Report.ToutletWorkFluid,
-                                "System", "Average", PVT(Item).Name);
+            SetupOutputVariable("Generator PVT Fluid Inlet Temperature", OutputProcessor::Unit::C, PVT(Item).Report.TinletWorkFluid, "System",
+                                "Average", PVT(Item).Name);
+            SetupOutputVariable("Generator PVT Fluid Outlet Temperature", OutputProcessor::Unit::C, PVT(Item).Report.ToutletWorkFluid, "System",
+                                "Average", PVT(Item).Name);
             SetupOutputVariable("Generator PVT Fluid Mass Flow Rate", OutputProcessor::Unit::kg_s, PVT(Item).Report.MdotWorkFluid, "System",
                                 "Average", PVT(Item).Name);
         }
@@ -684,8 +683,8 @@ namespace PhotovoltaicThermalCollectors {
 
                     PVT(PVTnum).MaxMassFlowRate = PVT(PVTnum).DesignVolFlowRate * rho;
 
-                    InitComponentNodes(0.0, PVT(PVTnum).MaxMassFlowRate, InletNode, OutletNode, PVT(PVTnum).WLoopNum,
-                                       PVT(PVTnum).WLoopSideNum, PVT(PVTnum).WLoopBranchNum, PVT(PVTnum).WLoopCompNum);
+                    InitComponentNodes(0.0, PVT(PVTnum).MaxMassFlowRate, InletNode, OutletNode, PVT(PVTnum).WLoopNum, PVT(PVTnum).WLoopSideNum,
+                                       PVT(PVTnum).WLoopBranchNum, PVT(PVTnum).WLoopCompNum);
 
                     PVT(PVTnum).Simple.LastCollectorTemp = 23.0;
 
@@ -836,8 +835,8 @@ namespace PhotovoltaicThermalCollectors {
             if (PVT(PVTnum).DesignVolFlowRateWasAutoSized) {
                 PVT(PVTnum).DesignVolFlowRate = DesignVolFlowRateDes;
                 if (PlantFinalSizesOkayToReport) {
-                    ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name,
-                                       "Design Size Design Flow Rate [m3/s]", DesignVolFlowRateDes);
+                    ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name, "Design Size Design Flow Rate [m3/s]",
+                                       DesignVolFlowRateDes);
                 }
                 if (PlantFirstSizesOkayToReport) {
                     ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name,
@@ -848,15 +847,13 @@ namespace PhotovoltaicThermalCollectors {
             } else { // Hardsized with sizing data
                 if (PVT(PVTnum).DesignVolFlowRate > 0.0 && DesignVolFlowRateDes > 0.0 && PlantFinalSizesOkayToReport) {
                     DesignVolFlowRateUser = PVT(PVTnum).DesignVolFlowRate;
-                    ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name,
-                                       "Design Size Design Flow Rate [m3/s]", DesignVolFlowRateDes,
-                                       "User-Specified Design Flow Rate [m3/s]", DesignVolFlowRateUser);
+                    ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name, "Design Size Design Flow Rate [m3/s]",
+                                       DesignVolFlowRateDes, "User-Specified Design Flow Rate [m3/s]", DesignVolFlowRateUser);
                     if (DisplayExtraWarnings) {
                         if ((std::abs(DesignVolFlowRateDes - DesignVolFlowRateUser) / DesignVolFlowRateUser) > AutoVsHardSizingThreshold) {
                             ShowMessage("SizeSolarCollector: Potential issue with equipment sizing for " + PVT(PVTnum).Name);
                             ShowContinueError("User-Specified Design Flow Rate of " + RoundSigDigits(DesignVolFlowRateUser, 5) + " [W]");
-                            ShowContinueError("differs from Design Size Design Flow Rate of " + RoundSigDigits(DesignVolFlowRateDes, 5) +
-                                              " [W]");
+                            ShowContinueError("differs from Design Size Design Flow Rate of " + RoundSigDigits(DesignVolFlowRateDes, 5) + " [W]");
                             ShowContinueError("This may, or may not, indicate mismatched component sizes.");
                             ShowContinueError("Verify that the value entered is intended and is consistent with other components.");
                         }
@@ -871,8 +868,8 @@ namespace PhotovoltaicThermalCollectors {
                 if (!PVT(PVTnum).DesignVolFlowRateWasAutoSized && !SizingDesRunThisAirSys) { // Simulation continue
                     HardSizeNoDesRun = true;
                     if (PVT(PVTnum).DesignVolFlowRate > 0.0) {
-                        ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name,
-                                           "User-Specified Design Flow Rate [m3/s]", PVT(PVTnum).DesignVolFlowRate);
+                        ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name, "User-Specified Design Flow Rate [m3/s]",
+                                           PVT(PVTnum).DesignVolFlowRate);
                     }
                 } else {
                     CheckSysSizing("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name);
@@ -901,23 +898,21 @@ namespace PhotovoltaicThermalCollectors {
                 if (!HardSizeNoDesRun) {
                     if (PVT(PVTnum).DesignVolFlowRateWasAutoSized) {
                         PVT(PVTnum).DesignVolFlowRate = DesignVolFlowRateDes;
-                        ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name,
-                                           "Design Size Design Flow Rate [m3/s]", DesignVolFlowRateDes);
+                        ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name, "Design Size Design Flow Rate [m3/s]",
+                                           DesignVolFlowRateDes);
                         PVT(PVTnum).SizingInit = false;
                     } else {
                         if (PVT(PVTnum).DesignVolFlowRate > 0.0 && DesignVolFlowRateDes > 0.0) {
                             DesignVolFlowRateUser = PVT(PVTnum).DesignVolFlowRate;
                             ReportSizingOutput("SolarCollector:FlatPlate:PhotovoltaicThermal", PVT(PVTnum).Name,
-                                               "Design Size Design Flow Rate [m3/s]", DesignVolFlowRateDes,
-                                               "User-Specified Design Flow Rate [m3/s]", DesignVolFlowRateUser);
+                                               "Design Size Design Flow Rate [m3/s]", DesignVolFlowRateDes, "User-Specified Design Flow Rate [m3/s]",
+                                               DesignVolFlowRateUser);
                             if (DisplayExtraWarnings) {
-                                if ((std::abs(DesignVolFlowRateDes - DesignVolFlowRateUser) / DesignVolFlowRateUser) >
-                                    AutoVsHardSizingThreshold) {
+                                if ((std::abs(DesignVolFlowRateDes - DesignVolFlowRateUser) / DesignVolFlowRateUser) > AutoVsHardSizingThreshold) {
                                     ShowMessage("SizeSolarCollector: Potential issue with equipment sizing for " + PVT(PVTnum).Name);
-                                    ShowContinueError("User-Specified Design Flow Rate of " + RoundSigDigits(DesignVolFlowRateUser, 5) +
+                                    ShowContinueError("User-Specified Design Flow Rate of " + RoundSigDigits(DesignVolFlowRateUser, 5) + " [W]");
+                                    ShowContinueError("differs from Design Size Design Flow Rate of " + RoundSigDigits(DesignVolFlowRateDes, 5) +
                                                       " [W]");
-                                    ShowContinueError("differs from Design Size Design Flow Rate of " +
-                                                      RoundSigDigits(DesignVolFlowRateDes, 5) + " [W]");
                                     ShowContinueError("This may, or may not, indicate mismatched component sizes.");
                                     ShowContinueError("Verify that the value entered is intended and is consistent with other components.");
                                 }
@@ -1190,8 +1185,8 @@ namespace PhotovoltaicThermalCollectors {
             } else if (PVT(PVTnum).CoolingUseful && PVT(PVTnum).BypassDamperOff && (mdot > 0.0)) {
                 // calculate cooling using energy balance
 
-                InitExteriorConvectionCoeff(SurfNum, 0.0, RoughSurf, PVT(PVTnum).Simple.SurfEmissivity,
-                                            PVT(PVTnum).Simple.LastCollectorTemp, HcExt, HrSky, HrGround, HrAir);
+                InitExteriorConvectionCoeff(SurfNum, 0.0, RoughSurf, PVT(PVTnum).Simple.SurfEmissivity, PVT(PVTnum).Simple.LastCollectorTemp, HcExt,
+                                            HrSky, HrGround, HrAir);
 
                 if (PVT(PVTnum).WorkingFluidType == AirWorkingFluid) {
                     Winlet = Node(InletNode).HumRat;

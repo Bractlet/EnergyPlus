@@ -464,8 +464,8 @@ namespace Fans {
             } else {
                 Fan(FanNum).AvailSchedPtrNum = GetScheduleIndex(cAlphaArgs(2));
                 if (Fan(FanNum).AvailSchedPtrNum == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 }
             }
@@ -523,8 +523,8 @@ namespace Fans {
             } else {
                 Fan(FanNum).AvailSchedPtrNum = GetScheduleIndex(cAlphaArgs(2));
                 if (Fan(FanNum).AvailSchedPtrNum == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 }
             }
@@ -602,8 +602,8 @@ namespace Fans {
             } else {
                 Fan(FanNum).AvailSchedPtrNum = GetScheduleIndex(cAlphaArgs(2));
                 if (Fan(FanNum).AvailSchedPtrNum == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 } else {
                     if (HasFractionalScheduleValue(Fan(FanNum).AvailSchedPtrNum)) {
@@ -643,13 +643,13 @@ namespace Fans {
             if (NumAlphas > 5 && !lAlphaFieldBlanks(6)) {
                 Fan(FanNum).FlowFractSchedNum = GetScheduleIndex(cAlphaArgs(6));
                 if (Fan(FanNum).FlowFractSchedNum == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(6) + " entered =" + cAlphaArgs(6) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(6) + " entered =" + cAlphaArgs(6) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 } else if (Fan(FanNum).FlowFractSchedNum > 0) {
                     if (!CheckScheduleValueMinMax(Fan(FanNum).FlowFractSchedNum, ">=", 0.0, "<=", 1.0)) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(6) + " for " +
-                                        cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(6) + " for " + cAlphaFieldNames(1) +
+                                        '=' + cAlphaArgs(1));
                         ShowContinueError("Error found in " + cAlphaFieldNames(6) + " = " + cAlphaArgs(6));
                         ShowContinueError("Schedule values must be (>=0., <=1.)");
                         ErrorsFound = true;
@@ -667,8 +667,8 @@ namespace Fans {
                     } else if (SELECT_CASE_var == "DECOUPLED") {
                         Fan(FanNum).AvailManagerMode = ExhaustFanDecoupledFromAvailManagers;
                     } else {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(7) + " entered =" +
-                                        cAlphaArgs(7) + " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(7) + " entered =" + cAlphaArgs(7) +
+                                        " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                         ErrorsFound = true;
                     }
                 }
@@ -679,8 +679,8 @@ namespace Fans {
             if (NumAlphas > 7 && !lAlphaFieldBlanks(8)) {
                 Fan(FanNum).MinTempLimitSchedNum = GetScheduleIndex(cAlphaArgs(8));
                 if (Fan(FanNum).MinTempLimitSchedNum == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(8) + " entered =" + cAlphaArgs(8) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(8) + " entered =" + cAlphaArgs(8) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 }
             } else {
@@ -690,13 +690,13 @@ namespace Fans {
             if (NumAlphas > 8 && !lAlphaFieldBlanks(9)) {
                 Fan(FanNum).BalancedFractSchedNum = GetScheduleIndex(cAlphaArgs(9));
                 if (Fan(FanNum).BalancedFractSchedNum == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(9) + " entered =" + cAlphaArgs(9) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(9) + " entered =" + cAlphaArgs(9) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 } else if (Fan(FanNum).BalancedFractSchedNum > 0) {
                     if (!CheckScheduleValueMinMax(Fan(FanNum).BalancedFractSchedNum, ">=", 0.0, "<=", 1.0)) {
-                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(9) + " for " +
-                                        cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                        ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(9) + " for " + cAlphaFieldNames(1) +
+                                        '=' + cAlphaArgs(1));
                         ShowContinueError("Error found in " + cAlphaFieldNames(9) + " = " + cAlphaArgs(9));
                         ShowContinueError("Schedule values must be (>=0., <=1.)");
                         ErrorsFound = true;
@@ -736,8 +736,8 @@ namespace Fans {
             } else {
                 Fan(FanNum).AvailSchedPtrNum = GetScheduleIndex(cAlphaArgs(2));
                 if (Fan(FanNum).AvailSchedPtrNum == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 }
             }
@@ -804,8 +804,7 @@ namespace Fans {
                           lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
             IsNotOK = false;
             IsBlank = false;
-            VerifyName(cAlphaArgs(1), NightVentPerf, &NightVentPerfData::FanName, NVPerfNum - 1, IsNotOK, IsBlank,
-                       cCurrentModuleObject + " Name");
+            VerifyName(cAlphaArgs(1), NightVentPerf, &NightVentPerfData::FanName, NVPerfNum - 1, IsNotOK, IsBlank, cCurrentModuleObject + " Name");
             if (IsNotOK) {
                 ErrorsFound = true;
                 if (IsBlank) cAlphaArgs(1) = "xxxxx";
@@ -866,8 +865,8 @@ namespace Fans {
             } else {
                 Fan(FanNum).AvailSchedPtrNum = GetScheduleIndex(cAlphaArgs(4));
                 if (Fan(FanNum).AvailSchedPtrNum == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(4) + " entered =" + cAlphaArgs(4) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(4) + " entered =" + cAlphaArgs(4) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 }
             }
@@ -954,21 +953,20 @@ namespace Fans {
 
         for (FanNum = 1; FanNum <= NumFans; ++FanNum) {
             // Setup Report variables for the Fans  CurrentModuleObject='Fans'
-            SetupOutputVariable("Fan Electric Power", OutputProcessor::Unit::W, Fan(FanNum).FanPower, "System", "Average",
-                                Fan(FanNum).FanName);
+            SetupOutputVariable("Fan Electric Power", OutputProcessor::Unit::W, Fan(FanNum).FanPower, "System", "Average", Fan(FanNum).FanName);
             SetupOutputVariable("Fan Rise in Air Temperature", OutputProcessor::Unit::deltaC, Fan(FanNum).DeltaTemp, "System", "Average",
                                 Fan(FanNum).FanName);
             SetupOutputVariable("Fan Heat Gain to Air", OutputProcessor::Unit::W, Fan(FanNum).PowerLossToAir, "System", "Average",
                                 Fan(FanNum).FanName);
-            SetupOutputVariable("Fan Electric Energy", OutputProcessor::Unit::J, Fan(FanNum).FanEnergy, "System", "Sum",
-                                Fan(FanNum).FanName, _, "Electric", "Fans", Fan(FanNum).EndUseSubcategoryName, "System");
-            SetupOutputVariable("Fan Air Mass Flow Rate", OutputProcessor::Unit::kg_s, Fan(FanNum).OutletAirMassFlowRate, "System",
-                                "Average", Fan(FanNum).FanName);
+            SetupOutputVariable("Fan Electric Energy", OutputProcessor::Unit::J, Fan(FanNum).FanEnergy, "System", "Sum", Fan(FanNum).FanName, _,
+                                "Electric", "Fans", Fan(FanNum).EndUseSubcategoryName, "System");
+            SetupOutputVariable("Fan Air Mass Flow Rate", OutputProcessor::Unit::kg_s, Fan(FanNum).OutletAirMassFlowRate, "System", "Average",
+                                Fan(FanNum).FanName);
             if ((Fan(FanNum).FanType_Num == FanType_ZoneExhaust) && (Fan(FanNum).BalancedFractSchedNum > 0)) {
-                SetupOutputVariable("Fan Unbalanced Air Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                    Fan(FanNum).UnbalancedOutletMassFlowRate, "System", "Average", Fan(FanNum).FanName);
-                SetupOutputVariable("Fan Balanced Air Mass Flow Rate", OutputProcessor::Unit::kg_s, Fan(FanNum).BalancedOutletMassFlowRate,
+                SetupOutputVariable("Fan Unbalanced Air Mass Flow Rate", OutputProcessor::Unit::kg_s, Fan(FanNum).UnbalancedOutletMassFlowRate,
                                     "System", "Average", Fan(FanNum).FanName);
+                SetupOutputVariable("Fan Balanced Air Mass Flow Rate", OutputProcessor::Unit::kg_s, Fan(FanNum).BalancedOutletMassFlowRate, "System",
+                                    "Average", Fan(FanNum).FanName);
             }
 
             if (AnyEnergyManagementSystemInModel) {
@@ -983,8 +981,8 @@ namespace Fans {
                 SetupEMSActuator("Fan", Fan(FanNum).FanName, "Fan Total Efficiency", "[fraction]", Fan(FanNum).EMSFanEffOverrideOn,
                                  Fan(FanNum).EMSFanEffValue);
 
-                SetupEMSActuator("Fan", Fan(FanNum).FanName, "Fan Autosized Air Flow Rate", "[m3/s]",
-                                 Fan(FanNum).MaxAirFlowRateEMSOverrideOn, Fan(FanNum).MaxAirFlowRateEMSOverrideValue);
+                SetupEMSActuator("Fan", Fan(FanNum).FanName, "Fan Autosized Air Flow Rate", "[m3/s]", Fan(FanNum).MaxAirFlowRateEMSOverrideOn,
+                                 Fan(FanNum).MaxAirFlowRateEMSOverrideValue);
             }
         }
 
@@ -1151,8 +1149,7 @@ namespace Fans {
             Fan(FanNum).MassFlowRateMaxAvail = Fan(FanNum).MaxAirMassFlowRate;
             Fan(FanNum).MassFlowRateMinAvail = 0.0;
             if (Fan(FanNum).FlowFractSchedNum > 0) { // modulate flow
-                Fan(FanNum).InletAirMassFlowRate =
-                    Fan(FanNum).MassFlowRateMaxAvail * GetCurrentScheduleValue(Fan(FanNum).FlowFractSchedNum);
+                Fan(FanNum).InletAirMassFlowRate = Fan(FanNum).MassFlowRateMaxAvail * GetCurrentScheduleValue(Fan(FanNum).FlowFractSchedNum);
                 Fan(FanNum).InletAirMassFlowRate = max(0.0, Fan(FanNum).InletAirMassFlowRate);
             } else { // always run at max
                 Fan(FanNum).InletAirMassFlowRate = Fan(FanNum).MassFlowRateMaxAvail;
@@ -1275,7 +1272,7 @@ namespace Fans {
             //   and Sherman-Wray system curve model (assumes static pressure surrounding air distribution system is zero)
             DuctStaticPress = CurveValue(Fan(FanNum).PressResetCurveIndex, FanVolFlow);               // Duct static pressure setpoint [Pa]
             DeltaPressTot = CurveValue(Fan(FanNum).PressRiseCurveIndex, FanVolFlow, DuctStaticPress); // Max fan total pressure rise [Pa]
-            FanOutletVelPress = 0.5 * RhoAir * pow_2(FanVolFlow / Fan(FanNum).FanOutletArea); // Max fan outlet velocity pressure [Pa]
+            FanOutletVelPress = 0.5 * RhoAir * pow_2(FanVolFlow / Fan(FanNum).FanOutletArea);         // Max fan outlet velocity pressure [Pa]
             // Outlet velocity pressure cannot exceed total pressure rise
             FanOutletVelPress = min(FanOutletVelPress, DeltaPressTot);
             Fan(FanNum).DeltaPress = DeltaPressTot - FanOutletVelPress; // Max fan static pressure rise [Pa]
@@ -1307,7 +1304,7 @@ namespace Fans {
                 FanDimFlow = CurveValue(Fan(FanNum).DimFlowStallCurveIndex, NormalizedEulerNum); //[-]
             }
             FanSpdRadS = FanVolFlow / (FanDimFlow * Fan(FanNum).FanMaxDimFlow * pow_3(Fan(FanNum).FanWheelDia)); //[rad/s]
-            Fan(FanNum).FanSpd = FanSpdRadS * 9.549296586; //[rpm, conversion factor is 30/PI]
+            Fan(FanNum).FanSpd = FanSpdRadS * 9.549296586;                                                       //[rpm, conversion factor is 30/PI]
 
             if (Fan(FanNum).PulleyDiaRatio == AutoSize) {
                 // WRITE(*,*) 'Autosizing pulley drive ratio'
@@ -1364,8 +1361,8 @@ namespace Fans {
                     }
                 }
             }
-            Fan(FanNum).BeltEff = Fan(FanNum).BeltMaxEff * BeltPLEff; //[-]
-            Fan(FanNum).BeltEff = max(Fan(FanNum).BeltEff, 0.01);     // Minimum efficiency is 1% to avoid numerical errors
+            Fan(FanNum).BeltEff = Fan(FanNum).BeltMaxEff * BeltPLEff;                     //[-]
+            Fan(FanNum).BeltEff = max(Fan(FanNum).BeltEff, 0.01);                         // Minimum efficiency is 1% to avoid numerical errors
             Fan(FanNum).BeltInputPower = Fan(FanNum).FanShaftPower / Fan(FanNum).BeltEff; //[W]
 
             if (Fan(FanNum).MotorMaxOutPwr == AutoSize) {
@@ -1379,8 +1376,7 @@ namespace Fans {
             if (Fan(FanNum).BeltInputPower > (Fan(FanNum).MotorMaxOutPwr + 1.e-5)) {
                 ShowWarningError("Motor for " + Fan(FanNum).FanType + ": " + Fan(FanNum).FanName +
                                  " is undersized at design conditions -- check motor inputs");
-                ShowContinueError("...Design motor output power (without oversizing) [W]: " +
-                                  RoundSigDigits(Fan(FanNum).BeltInputPower, 2));
+                ShowContinueError("...Design motor output power (without oversizing) [W]: " + RoundSigDigits(Fan(FanNum).BeltInputPower, 2));
             }
 
             // Calculate motor max efficiency using correlations and coefficients based on MotorMaster+ data
@@ -1421,8 +1417,7 @@ namespace Fans {
                     if (Fan(FanNum).MotorInputPower > (Fan(FanNum).VFDMaxOutPwr + 1.e-5)) {
                         ShowWarningError("VFD for " + Fan(FanNum).FanType + ": " + Fan(FanNum).FanName +
                                          " is undersized at design conditions -- check VFD inputs");
-                        ShowContinueError("...Design VFD output power (without oversizing) [W]: " +
-                                          RoundSigDigits(Fan(FanNum).MotorInputPower, 2));
+                        ShowContinueError("...Design VFD output power (without oversizing) [W]: " + RoundSigDigits(Fan(FanNum).MotorInputPower, 2));
                     }
 
                     VFDOutPwrRatio = Fan(FanNum).MotorInputPower / Fan(FanNum).VFDMaxOutPwr;       //[-]
@@ -1605,8 +1600,8 @@ namespace Fans {
 
                 // Update MassFlow & DeltaPress of the fan
                 MassFlow = min(MassFlow, Fan(FanNum).MaxAirMassFlowRate - FanDesignFlowRateDec * RhoAir);
-                DeltaPress = GetCurrentScheduleValue(FaultsManager::FaultsFouledAirFilters(iFault).FaultyAirFilterPressFracSchePtr) *
-                             Fan(FanNum).DeltaPress;
+                DeltaPress =
+                    GetCurrentScheduleValue(FaultsManager::FaultsFouledAirFilters(iFault).FaultyAirFilterPressFracSchePtr) * Fan(FanNum).DeltaPress;
             }
         }
 
@@ -1744,8 +1739,7 @@ namespace Fans {
 
         // Faulty fan operations_Apr. 2015, zrp
         // Update MassFlow & DeltaPress if there are fouling air filters corresponding to the fan
-        if (Fan(FanNum).FaultyFilterFlag && (!WarmupFlag) && (!DoingSizing) && (!KickOffSimulation) &&
-            (!Fan(FanNum).EMSMaxMassFlowOverrideOn)) {
+        if (Fan(FanNum).FaultyFilterFlag && (!WarmupFlag) && (!DoingSizing) && (!KickOffSimulation) && (!Fan(FanNum).EMSMaxMassFlowOverrideOn)) {
 
             int iFault = Fan(FanNum).FaultyFilterIndex;
 
@@ -1762,8 +1756,8 @@ namespace Fans {
                 // Update MassFlow & DeltaPress of the fan
                 MaxAirFlowRate = Fan(FanNum).MaxAirFlowRate - FanDesignFlowRateDec;
                 MaxAirMassFlowRate = Fan(FanNum).MaxAirMassFlowRate - FanDesignFlowRateDec * RhoAir;
-                DeltaPress = GetCurrentScheduleValue(FaultsManager::FaultsFouledAirFilters(iFault).FaultyAirFilterPressFracSchePtr) *
-                             Fan(FanNum).DeltaPress;
+                DeltaPress =
+                    GetCurrentScheduleValue(FaultsManager::FaultsFouledAirFilters(iFault).FaultyAirFilterPressFracSchePtr) * Fan(FanNum).DeltaPress;
             }
         }
 
@@ -1922,8 +1916,7 @@ namespace Fans {
 
         // Faulty fan operations_Apr. 2015, zrp
         // Update MassFlow & DeltaPress if there are fouling air filters corresponding to the fan
-        if (Fan(FanNum).FaultyFilterFlag && (!WarmupFlag) && (!DoingSizing) && (!KickOffSimulation) &&
-            (!Fan(FanNum).EMSMaxMassFlowOverrideOn)) {
+        if (Fan(FanNum).FaultyFilterFlag && (!WarmupFlag) && (!DoingSizing) && (!KickOffSimulation) && (!Fan(FanNum).EMSMaxMassFlowOverrideOn)) {
 
             int iFault = Fan(FanNum).FaultyFilterIndex;
 
@@ -1939,8 +1932,8 @@ namespace Fans {
 
                 // Update MassFlow & DeltaPress of the fan
                 MaxAirMassFlowRate = Fan(FanNum).MaxAirMassFlowRate - FanDesignFlowRateDec * RhoAir;
-                DeltaPress = GetCurrentScheduleValue(FaultsManager::FaultsFouledAirFilters(iFault).FaultyAirFilterPressFracSchePtr) *
-                             Fan(FanNum).DeltaPress;
+                DeltaPress =
+                    GetCurrentScheduleValue(FaultsManager::FaultsFouledAirFilters(iFault).FaultyAirFilterPressFracSchePtr) * Fan(FanNum).DeltaPress;
             }
         }
 
@@ -2011,8 +2004,7 @@ namespace Fans {
                                 ShowContinueError("Error in Fan Efficiency Ratio curve. Curve output less than 0.01.");
                                 ShowContinueError("Curve output = " + TrimSigDigits(EffRatioAtSpeedRatio, 5) + ", fan speed ratio = " +
                                                   TrimSigDigits(SpeedRatio, 5));
-                                ShowContinueError(
-                                    "Check curve coefficients to ensure proper efficiency ratio as a function of fan speed ratio.");
+                                ShowContinueError("Check curve coefficients to ensure proper efficiency ratio as a function of fan speed ratio.");
                                 ShowContinueError("Resetting Fan Efficiency Ratio curve output to 0.01 and the simulation continues.");
                                 ShowContinueErrorTimeStamp("Occurrence info:");
                                 Fan(FanNum).OneTimeEffRatioCheck = false;
@@ -2025,13 +2017,12 @@ namespace Fans {
                     Fan(FanNum).FanPower *= SpeedRaisedToPower / EffRatioAtSpeedRatio;
                 }
             } else {
-                Fan(FanNum).FanPower =
-                    MaxAirMassFlowRate * Fan(FanNum).FanRuntimeFraction * DeltaPress / (FanEff * RhoAir); // total fan power
+                Fan(FanNum).FanPower = MaxAirMassFlowRate * Fan(FanNum).FanRuntimeFraction * DeltaPress / (FanEff * RhoAir); // total fan power
             }
 
             // OnOffFanPartLoadFraction is passed via DataHVACGlobals from the cooling or heating coil that is
             //   requesting the fan to operate in cycling fan/cycling coil mode
-            OnOffFanPartLoadFraction = 1.0; // reset to 1 in case other on/off fan is called without a part load curve
+            OnOffFanPartLoadFraction = 1.0;                            // reset to 1 in case other on/off fan is called without a part load curve
             FanShaftPower = Fan(FanNum).MotEff * Fan(FanNum).FanPower; // power delivered to shaft
             Fan(FanNum).PowerLossToAir = FanShaftPower + (Fan(FanNum).FanPower - FanShaftPower) * Fan(FanNum).MotInAirFrac;
             Fan(FanNum).OutletAirEnthalpy = Fan(FanNum).InletAirEnthalpy + Fan(FanNum).PowerLossToAir / MassFlow;
@@ -2119,8 +2110,7 @@ namespace Fans {
 
         // apply controls to determine if operating
         if (Fan(FanNum).AvailManagerMode == ExhaustFanCoupledToAvailManagers) {
-            if (((GetCurrentScheduleValue(Fan(FanNum).AvailSchedPtrNum) > 0.0) || TurnFansOn) && !TurnFansOff &&
-                MassFlow > 0.0) { // available
+            if (((GetCurrentScheduleValue(Fan(FanNum).AvailSchedPtrNum) > 0.0) || TurnFansOn) && !TurnFansOff && MassFlow > 0.0) { // available
                 if (Fan(FanNum).MinTempLimitSchedNum > 0) {
                     if (Tin >= GetCurrentScheduleValue(Fan(FanNum).MinTempLimitSchedNum)) {
                         FanIsRunning = true;
@@ -2341,8 +2331,8 @@ namespace Fans {
             }
             FanSpdRadS = FanVolFlow / (FanDimFlow * Fan(FanNum).FanMaxDimFlow * pow_3(Fan(FanNum).FanWheelDia)); //[rad/s]
             Fan(FanNum).FanTrq = Fan(FanNum).FanShaftPower / FanSpdRadS;                                         //[N-m]
-            Fan(FanNum).FanSpd = FanSpdRadS * 9.549296586;                //[rpm, conversion factor is 30/PI]
-            MotorSpeed = Fan(FanNum).FanSpd * Fan(FanNum).PulleyDiaRatio; //[rpm]
+            Fan(FanNum).FanSpd = FanSpdRadS * 9.549296586;                                                       //[rpm, conversion factor is 30/PI]
+            MotorSpeed = Fan(FanNum).FanSpd * Fan(FanNum).PulleyDiaRatio;                                        //[rpm]
 
             // Calculate belt part-load drive efficiency using correlations and coefficients based on ACEEE data
             // Direct-drive is represented using curve coefficients such that "belt" max eff and PL eff = 1.0
@@ -2798,8 +2788,7 @@ namespace Fans {
         FanIndex = FindItemInList(FanName, Fan, &FanEquipConditions::FanName);
         if (FanIndex == 0) {
             if (present(ThisObjectType) && present(ThisObjectName)) {
-                ShowSevereError("GetFanType: " + ThisObjectType() + "=\"" + ThisObjectName() + "\", invalid Fan specified=\"" + FanName +
-                                "\".");
+                ShowSevereError("GetFanType: " + ThisObjectType() + "=\"" + ThisObjectName() + "\", invalid Fan specified=\"" + FanName + "\".");
             } else if (present(ThisObjectType)) {
                 ShowSevereError(ThisObjectType() + ", GetFanType: Fan not found=" + FanName);
             } else {
@@ -3384,8 +3373,7 @@ namespace Fans {
                 SizeFan(FanNum);
                 MySizeFlag(FanNum) = false;
             }
-            DesignHeatGain =
-                Fan(FanNum).FanShaftPower + (Fan(FanNum).MotorInputPower - Fan(FanNum).FanShaftPower) * Fan(FanNum).MotInAirFrac;
+            DesignHeatGain = Fan(FanNum).FanShaftPower + (Fan(FanNum).MotorInputPower - Fan(FanNum).FanShaftPower) * Fan(FanNum).MotInAirFrac;
         }
 
         return DesignHeatGain;

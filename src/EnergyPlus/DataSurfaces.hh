@@ -759,36 +759,34 @@ namespace DataSurfaces {
         // Default Constructor
         SurfaceData()
             : Construction(0), EMSConstructionOverrideON(false), EMSConstructionOverrideValue(0), ConstructionStoredInputValue(0), Class(0),
-              Shape(SurfaceShape::None), Sides(0), Area(0.0), GrossArea(0.0), NetAreaShadowCalc(0.0), Perimeter(0.0), Azimuth(0.0),
-              Height(0.0), Reveal(0.0), Tilt(0.0), Width(0.0), HeatTransSurf(false), HeatTransferAlgorithm(HeatTransferModel_NotSet),
-              BaseSurf(0), NumSubSurfaces(0), Zone(0), ExtBoundCond(0), LowTempErrCount(0), HighTempErrCount(0), ExtSolar(false),
-              ExtWind(false), IntConvCoeff(0), EMSOverrideIntConvCoef(false), EMSValueForIntConvCoef(0.0), ExtConvCoeff(0),
-              EMSOverrideExtConvCoef(false), EMSValueForExtConvCoef(0.0), ViewFactorGround(0.0), ViewFactorSky(0.0),
-              ViewFactorGroundIR(0.0), ViewFactorSkyIR(0.0), OSCPtr(0), OSCMPtr(0), SchedShadowSurfIndex(0), ShadowSurfSchedVaries(false),
-              ShadowingSurf(false), IsTransparent(false), SchedMinValue(0.0), ShadowSurfDiffuseSolRefl(0.0), ShadowSurfDiffuseVisRefl(0.0),
-              ShadowSurfGlazingFrac(0.0), ShadowSurfGlazingConstruct(0), ShadowSurfPossibleObstruction(true),
-              ShadowSurfPossibleReflector(false), ShadowSurfRecSurfNum(0), MaterialMovInsulExt(0), MaterialMovInsulInt(0),
-              SchedMovInsulExt(0), SchedMovInsulInt(0), MovInsulIntPresent(false), MovInsulIntPresentPrevTS(false), Centroid(0.0, 0.0, 0.0),
-              lcsx(0.0, 0.0, 0.0), lcsy(0.0, 0.0, 0.0), lcsz(0.0, 0.0, 0.0), NewellAreaVector(0.0, 0.0, 0.0),
-              NewellSurfaceNormalVector(0.0, 0.0, 0.0), OutNormVec(3, 0.0), SinAzim(0.0), CosAzim(0.0), SinTilt(0.0), CosTilt(0.0),
-              IsConvex(true), IsDegenerate(false), shapeCat(ShapeCat::Unknown), plane(0.0, 0.0, 0.0, 0.0), WindowShadingControlPtr(0),
-              ShadedConstruction(0), StormWinConstruction(0), StormWinShadedConstruction(0), FrameDivider(0), Multiplier(1.0), Shelf(0),
-              TAirRef(ZoneMeanAirTemp), OutDryBulbTemp(0.0), OutDryBulbTempEMSOverrideOn(false), OutDryBulbTempEMSOverrideValue(0.0),
-              OutWetBulbTemp(0.0), OutWetBulbTempEMSOverrideOn(false), OutWetBulbTempEMSOverrideValue(0.0), WindSpeed(0.0),
-              WindSpeedEMSOverrideOn(false), WindSpeedEMSOverrideValue(0.0),
+              Shape(SurfaceShape::None), Sides(0), Area(0.0), GrossArea(0.0), NetAreaShadowCalc(0.0), Perimeter(0.0), Azimuth(0.0), Height(0.0),
+              Reveal(0.0), Tilt(0.0), Width(0.0), HeatTransSurf(false), HeatTransferAlgorithm(HeatTransferModel_NotSet), BaseSurf(0),
+              NumSubSurfaces(0), Zone(0), ExtBoundCond(0), LowTempErrCount(0), HighTempErrCount(0), ExtSolar(false), ExtWind(false), IntConvCoeff(0),
+              EMSOverrideIntConvCoef(false), EMSValueForIntConvCoef(0.0), ExtConvCoeff(0), EMSOverrideExtConvCoef(false), EMSValueForExtConvCoef(0.0),
+              ViewFactorGround(0.0), ViewFactorSky(0.0), ViewFactorGroundIR(0.0), ViewFactorSkyIR(0.0), OSCPtr(0), OSCMPtr(0),
+              SchedShadowSurfIndex(0), ShadowSurfSchedVaries(false), ShadowingSurf(false), IsTransparent(false), SchedMinValue(0.0),
+              ShadowSurfDiffuseSolRefl(0.0), ShadowSurfDiffuseVisRefl(0.0), ShadowSurfGlazingFrac(0.0), ShadowSurfGlazingConstruct(0),
+              ShadowSurfPossibleObstruction(true), ShadowSurfPossibleReflector(false), ShadowSurfRecSurfNum(0), MaterialMovInsulExt(0),
+              MaterialMovInsulInt(0), SchedMovInsulExt(0), SchedMovInsulInt(0), MovInsulIntPresent(false), MovInsulIntPresentPrevTS(false),
+              Centroid(0.0, 0.0, 0.0), lcsx(0.0, 0.0, 0.0), lcsy(0.0, 0.0, 0.0), lcsz(0.0, 0.0, 0.0), NewellAreaVector(0.0, 0.0, 0.0),
+              NewellSurfaceNormalVector(0.0, 0.0, 0.0), OutNormVec(3, 0.0), SinAzim(0.0), CosAzim(0.0), SinTilt(0.0), CosTilt(0.0), IsConvex(true),
+              IsDegenerate(false), shapeCat(ShapeCat::Unknown), plane(0.0, 0.0, 0.0, 0.0), WindowShadingControlPtr(0), ShadedConstruction(0),
+              StormWinConstruction(0), StormWinShadedConstruction(0), FrameDivider(0), Multiplier(1.0), Shelf(0), TAirRef(ZoneMeanAirTemp),
+              OutDryBulbTemp(0.0), OutDryBulbTempEMSOverrideOn(false), OutDryBulbTempEMSOverrideValue(0.0), OutWetBulbTemp(0.0),
+              OutWetBulbTempEMSOverrideOn(false), OutWetBulbTempEMSOverrideValue(0.0), WindSpeed(0.0), WindSpeedEMSOverrideOn(false),
+              WindSpeedEMSOverrideValue(0.0),
 
               WindDir(0.0), WindDirEMSOverrideOn(false), WindDirEMSOverrideValue(0.0),
 
               SchedExternalShadingFrac(false), ExternalShadingSchInd(0), HasSurroundingSurfProperties(false), SurroundingSurfacesNum(0),
               HasLinkedOutAirNode(false), LinkedOutAirNode(0),
 
-              UNomWOFilm("-              "), UNomFilm("-              "), ExtEcoRoof(false), ExtCavityPresent(false), ExtCavNum(0),
-              IsPV(false), IsICS(false), IsPool(false), ICSPtr(0), MirroredSurf(false), IntConvClassification(0), IntConvHcModelEq(0),
-              IntConvHcUserCurveIndex(0), OutConvClassification(0), OutConvHfModelEq(0), OutConvHfUserCurveIndex(0), OutConvHnModelEq(0),
-              OutConvHnUserCurveIndex(0), OutConvFaceArea(0.0), OutConvFacePerimeter(0.0), OutConvFaceHeight(0.0),
-              IntConvZoneWallHeight(0.0), IntConvZonePerimLength(0.0), IntConvZoneHorizHydrDiam(0.0), IntConvWindowWallRatio(0.0),
-              IntConvWindowLocation(InConvWinLoc_NotSet), IntConvSurfGetsRadiantHeat(false), IntConvSurfHasActiveInIt(false),
-              PartOfVentSlabOrRadiantSurface(false), GenericContam(0.0)
+              UNomWOFilm("-              "), UNomFilm("-              "), ExtEcoRoof(false), ExtCavityPresent(false), ExtCavNum(0), IsPV(false),
+              IsICS(false), IsPool(false), ICSPtr(0), MirroredSurf(false), IntConvClassification(0), IntConvHcModelEq(0), IntConvHcUserCurveIndex(0),
+              OutConvClassification(0), OutConvHfModelEq(0), OutConvHfUserCurveIndex(0), OutConvHnModelEq(0), OutConvHnUserCurveIndex(0),
+              OutConvFaceArea(0.0), OutConvFacePerimeter(0.0), OutConvFaceHeight(0.0), IntConvZoneWallHeight(0.0), IntConvZonePerimLength(0.0),
+              IntConvZoneHorizHydrDiam(0.0), IntConvWindowWallRatio(0.0), IntConvWindowLocation(InConvWinLoc_NotSet),
+              IntConvSurfGetsRadiantHeat(false), IntConvSurfHasActiveInIt(false), PartOfVentSlabOrRadiantSurface(false), GenericContam(0.0)
         {
         }
 
@@ -1071,37 +1069,34 @@ namespace DataSurfaces {
             : ShadingFlag(ShadeOff), ShadingFlagEMSOn(false), ShadingFlagEMSValue(0), StormWinFlag(-1), StormWinFlagPrevDay(-1),
               FracTimeShadingDeviceOn(0.0), ExtIntShadePrevTS(0), ShadedConstruction(0), SurfDayLightInit(false), DaylFacPoint(0),
               VisTransSelected(0.0), SwitchingFactor(0.0), WinCenter(3, 0.0), Theta(0.0), Phi(0.0), RhoCeilingWall(0.0), RhoFloorWall(0.0),
-              FractionUpgoing(0.0), VisTransRatio(0.0), ThetaFace(10, 296.15), IRfromParentZone(0.0), IRErrCount(0), IRErrCountC(0),
-              FrameArea(0.0), FrameConductance(0.0), FrameSolAbsorp(0.0), FrameVisAbsorp(0.0), FrameEmis(0.0), FrameAreaXEmiss(0.0),
-              FrameRadExchangeFactor(0.0), FrameHRadLinIn(0.0), FrameRadThermalFluxRec(0.0), FrameRadThermalFluxRecOld(0.0),
-              FrEdgeToCenterGlCondRatio(1.0), FrameEdgeArea(0.0), FrameTempSurfIn(23.0), FrameTempSurfInOld(23.0), FrameTempSurfOut(23.0),
-              FrameQRadInAbs(0.0), FrameQRadOutAbs(0.0), ProjCorrFrOut(0.0), ProjCorrFrIn(0.0), DividerType(0), DividerArea(0.0),
-              DividerConductance(0.0), DividerSolAbsorp(0.0), DividerVisAbsorp(0.0), DividerEmis(0.0), DividerAreaXEmiss(0.0),
-              DividerRadExchangeFactor(0.0), DividerHRadLinIn(0.0), DividerRadThermalFluxRec(0.0), DividerRadThermalFluxRecOld(0.0),
-              DivEdgeToCenterGlCondRatio(1.0), DividerEdgeArea(0.0), DividerTempSurfIn(23.0), DividerTempSurfInOld(23.0),
-              DividerTempSurfOut(23.0), DividerQRadInAbs(0.0), DividerQRadOutAbs(0.0), ProjCorrDivOut(0.0), ProjCorrDivIn(0.0),
-              GlazedFrac(1.0), OutProjSLFracMult(24, 1.0), InOutProjSLFracMult(24, 1.0), CenterGlArea(0.0), EdgeGlCorrFac(1.0),
+              FractionUpgoing(0.0), VisTransRatio(0.0), ThetaFace(10, 296.15), IRfromParentZone(0.0), IRErrCount(0), IRErrCountC(0), FrameArea(0.0),
+              FrameConductance(0.0), FrameSolAbsorp(0.0), FrameVisAbsorp(0.0), FrameEmis(0.0), FrameAreaXEmiss(0.0), FrameRadExchangeFactor(0.0),
+              FrameHRadLinIn(0.0), FrameRadThermalFluxRec(0.0), FrameRadThermalFluxRecOld(0.0), FrEdgeToCenterGlCondRatio(1.0), FrameEdgeArea(0.0),
+              FrameTempSurfIn(23.0), FrameTempSurfInOld(23.0), FrameTempSurfOut(23.0), FrameQRadInAbs(0.0), FrameQRadOutAbs(0.0), ProjCorrFrOut(0.0),
+              ProjCorrFrIn(0.0), DividerType(0), DividerArea(0.0), DividerConductance(0.0), DividerSolAbsorp(0.0), DividerVisAbsorp(0.0),
+              DividerEmis(0.0), DividerAreaXEmiss(0.0), DividerRadExchangeFactor(0.0), DividerHRadLinIn(0.0), DividerRadThermalFluxRec(0.0),
+              DividerRadThermalFluxRecOld(0.0), DivEdgeToCenterGlCondRatio(1.0), DividerEdgeArea(0.0), DividerTempSurfIn(23.0),
+              DividerTempSurfInOld(23.0), DividerTempSurfOut(23.0), DividerQRadInAbs(0.0), DividerQRadOutAbs(0.0), ProjCorrDivOut(0.0),
+              ProjCorrDivIn(0.0), GlazedFrac(1.0), OutProjSLFracMult(24, 1.0), InOutProjSLFracMult(24, 1.0), CenterGlArea(0.0), EdgeGlCorrFac(1.0),
               OriginalClass(0), ExtBeamAbsByShade(0.0), ExtDiffAbsByShade(0.0), IntBeamAbsByShade(0.0), IntSWAbsByShade(0.0),
-              InitialDifSolAbsByShade(0.0), IntLWAbsByShade(0.0), ShadeAbsFacFace(2, 0.5), ConvCoeffWithShade(0.0),
-              ConvHeatFlowNatural(0.0), ConvHeatGainToZoneAir(0.0), RetHeatGainToZoneAir(0.0), OtherConvHeatGain(0.0), BlindNumber(0),
-              EffShBlindEmiss(MaxSlatAngs, 0.0), EffGlassEmiss(MaxSlatAngs, 0.0), EffInsSurfTemp(23.0), MovableSlats(false),
-              SlatAngThisTS(0.0), SlatAngThisTSDeg(0.0), SlatAngThisTSDegEMSon(false), SlatAngThisTSDegEMSValue(0.0), SlatsBlockBeam(false),
-              BlindAirFlowPermeability(0.0), TotGlazingThickness(0.0), ProfileAngHor(0.0), ProfileAngVert(0.0), TanProfileAngHor(0.0),
-              TanProfileAngVert(0.0), InsideSillDepth(0.0), InsideReveal(0.0), InsideSillSolAbs(0.0), InsideRevealSolAbs(0.0),
-              OutsideRevealSolAbs(0.0), BmSolAbsdInsReveal(0.0), BmSolRefldInsReveal(0.0), BmSolRefldInsRevealReport(0.0),
-              BmSolRefldOutsRevealReport(0.0), BmSolAbsdOutsReveal(0.0), OutsRevealDiffOntoGlazing(0.0), InsRevealDiffOntoGlazing(0.0),
-              InsRevealDiffIntoZone(0.0), OutsRevealDiffOntoFrame(0.0), InsRevealDiffOntoFrame(0.0), InsRevealDiffOntoGlazingReport(0.0),
-              InsRevealDiffIntoZoneReport(0.0), InsRevealDiffOntoFrameReport(0.0), BmSolAbsdInsRevealReport(0.0), BlTsolBmBm(0.0),
-              BlTsolBmDif(0.0), BlTsolDifDif(0.0), BlGlSysTsolBmBm(0.0), BlGlSysTsolDifDif(0.0), ScreenNumber(0), ScTsolBmBm(0.0),
-              ScTsolBmDif(0.0), ScTsolDifDif(0.0), ScGlSysTsolBmBm(0.0), ScGlSysTsolDifDif(0.0), GlTsolBmBm(0.0), GlTsolBmDif(0.0),
-              GlTsolDifDif(0.0), AirflowSource(0), AirflowDestination(0), AirflowReturnNodePtr(0), MaxAirflow(0.0), AirflowControlType(0),
-              AirflowHasSchedule(false), AirflowSchedulePtr(0), AirflowThisTS(0.0), TAirflowGapOutlet(0.0), WindowCalcIterationsRep(0),
-              BmSolTransThruIntWinRep(0.0), VentingOpenFactorRep(0.0), VentingOpenFactorMultRep(0.0), InsideTempForVentingRep(0.0),
-              VentingAvailabilityRep(0.0), SkySolarInc(0.0), GndSolarInc(0.0), SkyGndSolarInc(0.0), BmGndSolarInc(0.0),
+              InitialDifSolAbsByShade(0.0), IntLWAbsByShade(0.0), ShadeAbsFacFace(2, 0.5), ConvCoeffWithShade(0.0), ConvHeatFlowNatural(0.0),
+              ConvHeatGainToZoneAir(0.0), RetHeatGainToZoneAir(0.0), OtherConvHeatGain(0.0), BlindNumber(0), EffShBlindEmiss(MaxSlatAngs, 0.0),
+              EffGlassEmiss(MaxSlatAngs, 0.0), EffInsSurfTemp(23.0), MovableSlats(false), SlatAngThisTS(0.0), SlatAngThisTSDeg(0.0),
+              SlatAngThisTSDegEMSon(false), SlatAngThisTSDegEMSValue(0.0), SlatsBlockBeam(false), BlindAirFlowPermeability(0.0),
+              TotGlazingThickness(0.0), ProfileAngHor(0.0), ProfileAngVert(0.0), TanProfileAngHor(0.0), TanProfileAngVert(0.0), InsideSillDepth(0.0),
+              InsideReveal(0.0), InsideSillSolAbs(0.0), InsideRevealSolAbs(0.0), OutsideRevealSolAbs(0.0), BmSolAbsdInsReveal(0.0),
+              BmSolRefldInsReveal(0.0), BmSolRefldInsRevealReport(0.0), BmSolRefldOutsRevealReport(0.0), BmSolAbsdOutsReveal(0.0),
+              OutsRevealDiffOntoGlazing(0.0), InsRevealDiffOntoGlazing(0.0), InsRevealDiffIntoZone(0.0), OutsRevealDiffOntoFrame(0.0),
+              InsRevealDiffOntoFrame(0.0), InsRevealDiffOntoGlazingReport(0.0), InsRevealDiffIntoZoneReport(0.0), InsRevealDiffOntoFrameReport(0.0),
+              BmSolAbsdInsRevealReport(0.0), BlTsolBmBm(0.0), BlTsolBmDif(0.0), BlTsolDifDif(0.0), BlGlSysTsolBmBm(0.0), BlGlSysTsolDifDif(0.0),
+              ScreenNumber(0), ScTsolBmBm(0.0), ScTsolBmDif(0.0), ScTsolDifDif(0.0), ScGlSysTsolBmBm(0.0), ScGlSysTsolDifDif(0.0), GlTsolBmBm(0.0),
+              GlTsolBmDif(0.0), GlTsolDifDif(0.0), AirflowSource(0), AirflowDestination(0), AirflowReturnNodePtr(0), MaxAirflow(0.0),
+              AirflowControlType(0), AirflowHasSchedule(false), AirflowSchedulePtr(0), AirflowThisTS(0.0), TAirflowGapOutlet(0.0),
+              WindowCalcIterationsRep(0), BmSolTransThruIntWinRep(0.0), VentingOpenFactorRep(0.0), VentingOpenFactorMultRep(0.0),
+              InsideTempForVentingRep(0.0), VentingAvailabilityRep(0.0), SkySolarInc(0.0), GndSolarInc(0.0), SkyGndSolarInc(0.0), BmGndSolarInc(0.0),
               ZoneAreaMinusThisSurf(3, 0.0), ZoneAreaReflProdMinusThisSurf(3, 0.0), LightWellEff(1.0), SolarDiffusing(false),
               BmSolRefldInsRevealRepEnergy(0.0), BmSolRefldOutsRevealRepEnergy(0.0), BmSolTransThruIntWinRepEnergy(0.0), FrameHeatGain(0.0),
-              DividerHeatGain(0.0), FrameHeatLoss(0.0), DividerHeatLoss(0.0), TCLayerTemp(0.0), SpecTemp(0.0),
-              WindowModelType(Window5DetailedModel)
+              DividerHeatGain(0.0), FrameHeatLoss(0.0), DividerHeatLoss(0.0), TCLayerTemp(0.0), SpecTemp(0.0), WindowModelType(Window5DetailedModel)
         {
         }
 
@@ -1204,8 +1199,7 @@ namespace DataSurfaces {
               FrEdgeToCenterGlCondRatio(1.0), FrameSolAbsorp(0.0), FrameVisAbsorp(0.0), FrameEmis(0.9), DividerType(0), DividerWidth(0.0),
               HorDividers(0), VertDividers(0), DividerProjectionOut(0.0), DividerProjectionIn(0.0), DividerEdgeWidth(0.06355),
               DividerConductance(0.0), DivEdgeToCenterGlCondRatio(1.0), DividerSolAbsorp(0.0), DividerVisAbsorp(0.0), DividerEmis(0.9),
-              MullionOrientation(0), OutsideRevealSolAbs(0.0), InsideSillDepth(0.0), InsideReveal(0.0), InsideSillSolAbs(0.0),
-              InsideRevealSolAbs(0.0)
+              MullionOrientation(0), OutsideRevealSolAbs(0.0), InsideSillDepth(0.0), InsideReveal(0.0), InsideSillSolAbs(0.0), InsideRevealSolAbs(0.0)
         {
         }
     };
@@ -1225,8 +1219,8 @@ namespace DataSurfaces {
 
         // Default Constructor
         StormWindowData()
-            : BaseWindowNum(0), StormWinMaterialNum(0), StormWinDistance(0.0), DateOn(0), MonthOn(0), DayOfMonthOn(0), DateOff(0),
-              MonthOff(0), DayOfMonthOff(0)
+            : BaseWindowNum(0), StormWinMaterialNum(0), StormWinDistance(0.0), DateOn(0), MonthOn(0), DayOfMonthOn(0), DateOff(0), MonthOff(0),
+              DayOfMonthOff(0)
         {
         }
     };
@@ -1314,9 +1308,8 @@ namespace DataSurfaces {
 
         // Default Constructor
         WindowShadingControlData()
-            : ShadingType(WSC_ST_NoShade), ShadedConstruction(0), ShadingDevice(0), ShadingControlType(0), Schedule(0), SetPoint(0.0),
-              SetPoint2(0.0), ShadingControlIsScheduled(false), GlareControlIsActive(false), SlatAngleSchedule(0),
-              SlatAngleControlForBlinds(0)
+            : ShadingType(WSC_ST_NoShade), ShadedConstruction(0), ShadingDevice(0), ShadingControlType(0), Schedule(0), SetPoint(0.0), SetPoint2(0.0),
+              ShadingControlIsScheduled(false), GlareControlIsActive(false), SlatAngleSchedule(0), SlatAngleControlForBlinds(0)
         {
         }
     };
@@ -1373,9 +1366,8 @@ namespace DataSurfaces {
 
         // Default Constructor
         OSCMData()
-            : TConv(20.0), EMSOverrideOnTConv(false), EMSOverrideTConvValue(0.0), HConv(4.0), EMSOverrideOnHConv(false),
-              EMSOverrideHConvValue(0.0), TRad(20.0), EMSOverrideOnTRad(false), EMSOverrideTRadValue(0.0), HRad(4.0),
-              EMSOverrideOnHrad(false), EMSOverrideHradValue(0.0)
+            : TConv(20.0), EMSOverrideOnTConv(false), EMSOverrideTConvValue(0.0), HConv(4.0), EMSOverrideOnHConv(false), EMSOverrideHConvValue(0.0),
+              TRad(20.0), EMSOverrideOnTRad(false), EMSOverrideTRadValue(0.0), HRad(4.0), EMSOverrideOnHrad(false), EMSOverrideHradValue(0.0)
         {
         }
     };
@@ -1454,9 +1446,9 @@ namespace DataSurfaces {
         // Default Constructor
         ExtVentedCavityStruct()
             : OSCMPtr(0), Porosity(0.0), LWEmitt(0.0), SolAbsorp(0.0), BaffleRoughness(1), PlenGapThick(0.0), NumSurfs(0), HdeltaNPL(0.0),
-              AreaRatio(0.0), Cv(0.0), Cd(0.0), ActualArea(0.0), ProjArea(0.0), Centroid(0.0, 0.0, 0.0), TAirCav(0.0), Tbaffle(0.0),
-              TairLast(20.0), TbaffleLast(20.0), HrPlen(0.0), HcPlen(0.0), MdotVent(0.0), Tilt(0.0), Azimuth(0.0), QdotSource(0.0),
-              Isc(0.0), PassiveACH(0.0), PassiveMdotVent(0.0), PassiveMdotWind(0.0), PassiveMdotTherm(0.0)
+              AreaRatio(0.0), Cv(0.0), Cd(0.0), ActualArea(0.0), ProjArea(0.0), Centroid(0.0, 0.0, 0.0), TAirCav(0.0), Tbaffle(0.0), TairLast(20.0),
+              TbaffleLast(20.0), HrPlen(0.0), HcPlen(0.0), MdotVent(0.0), Tilt(0.0), Azimuth(0.0), QdotSource(0.0), Isc(0.0), PassiveACH(0.0),
+              PassiveMdotVent(0.0), PassiveMdotWind(0.0), PassiveMdotTherm(0.0)
         {
         }
     };
@@ -1529,8 +1521,7 @@ namespace DataSurfaces {
         Array1D<SurroundingSurfProperty> SurroundingSurfs;
 
         // Default Constructor
-        SurroundingSurfacesProperty()
-            : SkyViewFactor(-1.0), SkyTempSchNum(0), GroundViewFactor(-1.0), GroundTempSchNum(0), TotSurroundingSurface(0)
+        SurroundingSurfacesProperty() : SkyViewFactor(-1.0), SkyTempSchNum(0), GroundViewFactor(-1.0), GroundTempSchNum(0), TotSurroundingSurface(0)
         {
         }
     };

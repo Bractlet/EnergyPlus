@@ -134,8 +134,7 @@ namespace ExteriorEnergyUse {
         Real64 DemandLimit; // Demand limit set by demand manager [W]
 
         // Default Constructor
-        ExteriorEquipmentUsage()
-            : FuelType(0), SchedPtr(0), DesignLevel(0.0), Power(0.0), CurrentUse(0.0), ManageDemand(false), DemandLimit(0.0)
+        ExteriorEquipmentUsage() : FuelType(0), SchedPtr(0), DesignLevel(0.0), Power(0.0), CurrentUse(0.0), ManageDemand(false), DemandLimit(0.0)
         {
         }
     };

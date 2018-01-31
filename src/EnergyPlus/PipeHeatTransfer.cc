@@ -422,8 +422,8 @@ namespace PipeHeatTransfer {
             }
 
             if (PipeHT(Item).ConstructionNum != 0) {
-                PipeHT(Item).ValidatePipeConstruction(cCurrentModuleObject, cAlphaArgs(2), cAlphaFieldNames(2),
-                                                      PipeHT(Item).ConstructionNum, ErrorsFound);
+                PipeHT(Item).ValidatePipeConstruction(cCurrentModuleObject, cAlphaArgs(2), cAlphaFieldNames(2), PipeHT(Item).ConstructionNum,
+                                                      ErrorsFound);
             }
 
         } // end of input loop
@@ -516,8 +516,8 @@ namespace PipeHeatTransfer {
             }
 
             if (PipeHT(Item).ConstructionNum != 0) {
-                PipeHT(Item).ValidatePipeConstruction(cCurrentModuleObject, cAlphaArgs(2), cAlphaFieldNames(2),
-                                                      PipeHT(Item).ConstructionNum, ErrorsFound);
+                PipeHT(Item).ValidatePipeConstruction(cCurrentModuleObject, cAlphaArgs(2), cAlphaFieldNames(2), PipeHT(Item).ConstructionNum,
+                                                      ErrorsFound);
             }
 
         } // end of input loop
@@ -633,8 +633,8 @@ namespace PipeHeatTransfer {
             }
 
             if (PipeHT(Item).ConstructionNum != 0) {
-                PipeHT(Item).ValidatePipeConstruction(cCurrentModuleObject, cAlphaArgs(2), cAlphaFieldNames(2),
-                                                      PipeHT(Item).ConstructionNum, ErrorsFound);
+                PipeHT(Item).ValidatePipeConstruction(cCurrentModuleObject, cAlphaArgs(2), cAlphaFieldNames(2), PipeHT(Item).ConstructionNum,
+                                                      ErrorsFound);
             }
 
             // Get ground temperature model
@@ -672,8 +672,7 @@ namespace PipeHeatTransfer {
 
             // work out heat transfer areas (area per section)
             PipeHT(Item).InsideArea = Pi * PipeHT(Item).PipeID * PipeHT(Item).Length / NumSections;
-            PipeHT(Item).OutsideArea =
-                Pi * (PipeHT(Item).PipeOD + 2 * PipeHT(Item).InsulationThickness) * PipeHT(Item).Length / NumSections;
+            PipeHT(Item).OutsideArea = Pi * (PipeHT(Item).PipeOD + 2 * PipeHT(Item).InsulationThickness) * PipeHT(Item).Length / NumSections;
 
             // cross sectional area
             PipeHT(Item).SectionArea = Pi * 0.25 * pow_2(PipeHT(Item).PipeID);
@@ -691,23 +690,22 @@ namespace PipeHeatTransfer {
         // Set up the output variables CurrentModuleObject='Pipe:Indoor/Outdoor/Underground'
         for (Item = 1; Item <= nsvNumOfPipeHT; ++Item) {
 
-            SetupOutputVariable("Pipe Fluid Heat Transfer Rate", OutputProcessor::Unit::W, PipeHT(Item).FluidHeatLossRate, "Plant",
-                                "Average", PipeHT(Item).Name);
-            SetupOutputVariable("Pipe Fluid Heat Transfer Energy", OutputProcessor::Unit::J, PipeHT(Item).FluidHeatLossEnergy, "Plant",
-                                "Sum", PipeHT(Item).Name);
+            SetupOutputVariable("Pipe Fluid Heat Transfer Rate", OutputProcessor::Unit::W, PipeHT(Item).FluidHeatLossRate, "Plant", "Average",
+                                PipeHT(Item).Name);
+            SetupOutputVariable("Pipe Fluid Heat Transfer Energy", OutputProcessor::Unit::J, PipeHT(Item).FluidHeatLossEnergy, "Plant", "Sum",
+                                PipeHT(Item).Name);
 
             if (PipeHT(Item).EnvironmentPtr == ZoneEnv) {
-                SetupOutputVariable("Pipe Ambient Heat Transfer Rate", OutputProcessor::Unit::W, PipeHT(Item).EnvironmentHeatLossRate,
-                                    "Plant", "Average", PipeHT(Item).Name);
-                SetupOutputVariable("Pipe Ambient Heat Transfer Energy", OutputProcessor::Unit::J, PipeHT(Item).EnvHeatLossEnergy, "Plant",
-                                    "Sum", PipeHT(Item).Name);
+                SetupOutputVariable("Pipe Ambient Heat Transfer Rate", OutputProcessor::Unit::W, PipeHT(Item).EnvironmentHeatLossRate, "Plant",
+                                    "Average", PipeHT(Item).Name);
+                SetupOutputVariable("Pipe Ambient Heat Transfer Energy", OutputProcessor::Unit::J, PipeHT(Item).EnvHeatLossEnergy, "Plant", "Sum",
+                                    PipeHT(Item).Name);
 
                 SetupZoneInternalGain(PipeHT(Item).EnvrZonePtr, "Pipe:Indoor", PipeHT(Item).Name, IntGainTypeOf_PipeIndoor,
                                       PipeHT(Item).ZoneHeatGainRate);
             }
 
-            SetupOutputVariable("Pipe Mass Flow Rate", OutputProcessor::Unit::kg_s, PipeHT(Item).MassFlowRate, "Plant", "Average",
-                                PipeHT(Item).Name);
+            SetupOutputVariable("Pipe Mass Flow Rate", OutputProcessor::Unit::kg_s, PipeHT(Item).MassFlowRate, "Plant", "Average", PipeHT(Item).Name);
             SetupOutputVariable("Pipe Volume Flow Rate", OutputProcessor::Unit::m3_s, PipeHT(Item).VolumeFlowRate, "Plant", "Average",
                                 PipeHT(Item).Name);
             SetupOutputVariable("Pipe Inlet Temperature", OutputProcessor::Unit::C, PipeHT(Item).FluidInletTemp, "Plant", "Average",
@@ -778,8 +776,8 @@ namespace PipeHeatTransfer {
             this->PipeCp = Material(Construct(ConstructionNum).LayerPoint(1)).SpecHeat;
             this->PipeOD = this->PipeID + 2.0 * Material(Construct(ConstructionNum).LayerPoint(1)).Thickness;
             this->InsulationOD = this->PipeOD;
-            this->SumTK = Material(Construct(ConstructionNum).LayerPoint(1)).Thickness /
-                          Material(Construct(ConstructionNum).LayerPoint(1)).Conductivity;
+            this->SumTK =
+                Material(Construct(ConstructionNum).LayerPoint(1)).Thickness / Material(Construct(ConstructionNum).LayerPoint(1)).Conductivity;
 
         } else if (TotalLayers >= 2) { // first layers are insulation, last layer is pipe
 
@@ -810,8 +808,8 @@ namespace PipeHeatTransfer {
             this->InsulationOD = this->PipeOD + 2.0 * this->InsulationThickness;
 
         } else {
-            ShowSevereError(PipeType + ": invalid " + FieldName + "=\"" + ConstructionName + "\", too many layers=[" +
-                            TrimSigDigits(TotalLayers) + "], only 1 or 2 allowed.");
+            ShowSevereError(PipeType + ": invalid " + FieldName + "=\"" + ConstructionName + "\", too many layers=[" + TrimSigDigits(TotalLayers) +
+                            "], only 1 or 2 allowed.");
             ErrorsFound = true;
         }
     }
@@ -900,8 +898,8 @@ namespace PipeHeatTransfer {
         // get some data only once
         if (this->OneTimeInit) {
             errFlag = false;
-            ScanPlantLoopsForObject(this->Name, this->TypeOf, this->LoopNum, this->LoopSideNum, this->BranchNum, this->CompNum, _, _, _, _,
-                                    _, errFlag);
+            ScanPlantLoopsForObject(this->Name, this->TypeOf, this->LoopNum, this->LoopSideNum, this->BranchNum, this->CompNum, _, _, _, _, _,
+                                    errFlag);
             if (errFlag) {
                 ShowFatalError("InitPipesHeatTransfer: Program terminated due to previous condition(s).");
             }
@@ -1057,8 +1055,7 @@ namespace PipeHeatTransfer {
 
         this->FluidSpecHeat =
             GetSpecificHeatGlycol(PlantLoop(this->LoopNum).FluidName, nsvInletTemp, PlantLoop(this->LoopNum).FluidIndex, RoutineName);
-        this->FluidDensity =
-            GetDensityGlycol(PlantLoop(this->LoopNum).FluidName, nsvInletTemp, PlantLoop(this->LoopNum).FluidIndex, RoutineName);
+        this->FluidDensity = GetDensityGlycol(PlantLoop(this->LoopNum).FluidName, nsvInletTemp, PlantLoop(this->LoopNum).FluidIndex, RoutineName);
 
         // At this point, for all Pipe:Interior objects we should zero out the energy and rate arrays
         this->FluidHeatLossRate = 0.0;
@@ -1215,10 +1212,10 @@ namespace PipeHeatTransfer {
             TempAbove = this->T(PipeWidth, PipeDepth - 1, LengthIndex, CurrentTimeIndex);
             nsvEnvironmentTemp = (TempBelow + TempBeside + TempAbove) / 3.0;
 
-            this->TentativeFluidTemp(LengthIndex) = (A2 * this->TentativeFluidTemp(LengthIndex - 1) +
-                                                     A3 / B1 * (B3 * nsvEnvironmentTemp + B4 * this->PreviousPipeTemp(LengthIndex)) +
-                                                     A4 * this->PreviousFluidTemp(LengthIndex)) /
-                                                    (A1 - A3 * B2 / B1);
+            this->TentativeFluidTemp(LengthIndex) =
+                (A2 * this->TentativeFluidTemp(LengthIndex - 1) + A3 / B1 * (B3 * nsvEnvironmentTemp + B4 * this->PreviousPipeTemp(LengthIndex)) +
+                 A4 * this->PreviousFluidTemp(LengthIndex)) /
+                (A1 - A3 * B2 / B1);
 
             this->TentativePipeTemp(LengthIndex) =
                 (B2 * this->TentativeFluidTemp(LengthIndex) + B3 * nsvEnvironmentTemp + B4 * this->PreviousPipeTemp(LengthIndex)) / B1;
@@ -1237,8 +1234,8 @@ namespace PipeHeatTransfer {
             // b1 must not be zero but this should have been checked on input
             for (curnode = 1; curnode <= this->NumSections; ++curnode) {
                 this->TentativeFluidTemp(curnode) =
-                    (A2 * this->TentativeFluidTemp(curnode - 1) +
-                     A3 / B1 * (B3 * nsvEnvironmentTemp + B4 * this->PreviousPipeTemp(curnode)) + A4 * this->PreviousFluidTemp(curnode)) /
+                    (A2 * this->TentativeFluidTemp(curnode - 1) + A3 / B1 * (B3 * nsvEnvironmentTemp + B4 * this->PreviousPipeTemp(curnode)) +
+                     A4 * this->PreviousFluidTemp(curnode)) /
                     (A1 - A3 * B2 / B1);
 
                 this->TentativePipeTemp(curnode) =
@@ -1254,8 +1251,7 @@ namespace PipeHeatTransfer {
             }
         }
 
-        nsvFluidHeatLossRate =
-            nsvMassFlowRate * this->FluidSpecHeat * (this->TentativeFluidTemp(0) - this->TentativeFluidTemp(this->NumSections));
+        nsvFluidHeatLossRate = nsvMassFlowRate * this->FluidSpecHeat * (this->TentativeFluidTemp(0) - this->TentativeFluidTemp(this->NumSections));
 
         nsvOutletTemp = this->TentativeFluidTemp(this->NumSections);
     }
@@ -1378,8 +1374,7 @@ namespace PipeHeatTransfer {
 
                             // thermal radiation coefficient using surf temp from past time step
                             if (std::abs(PastNodeTempAbs - SkyTempAbs) > rTinyValue) {
-                                RadCoef = StefBoltzmann * TopThermAbs * (pow_4(PastNodeTempAbs) - pow_4(SkyTempAbs)) /
-                                          (PastNodeTempAbs - SkyTempAbs);
+                                RadCoef = StefBoltzmann * TopThermAbs * (pow_4(PastNodeTempAbs) - pow_4(SkyTempAbs)) / (PastNodeTempAbs - SkyTempAbs);
                             } else {
                                 RadCoef = 0.0;
                             }
@@ -1401,8 +1396,8 @@ namespace PipeHeatTransfer {
 
                                 //-Update Equation, basically a detailed energy balance at the surface
                                 this->T(WidthIndex, DepthIndex, LengthIndex, TentativeTimeIndex) =
-                                    (QSolAbsorbed + RadCoef * SkyTemp + ConvCoef * OutDryBulbTemp +
-                                     (kSoil / dS) * (NodeBelow + 2 * NodeLeft) + (rho * Cp / nsvDeltaTime) * NodePast) /
+                                    (QSolAbsorbed + RadCoef * SkyTemp + ConvCoef * OutDryBulbTemp + (kSoil / dS) * (NodeBelow + 2 * NodeLeft) +
+                                     (rho * Cp / nsvDeltaTime) * NodePast) /
                                     (RadCoef + ConvCoef + 3 * (kSoil / dS) + (rho * Cp / nsvDeltaTime));
 
                             } else { // Soil surface, but not on centerline
@@ -1693,14 +1688,14 @@ namespace PipeHeatTransfer {
         static std::string const RoutineName("PipeHeatTransfer::CalcPipeHeatTransCoef: ");
         Real64 const MaxLaminarRe(2300.0); // Maximum Reynolds number for laminar flow
         int const NumOfPropDivisions(13);  // intervals in property correlation
-        static Array1D<Real64> const Temps(NumOfPropDivisions, {1.85, 6.85, 11.85, 16.85, 21.85, 26.85, 31.85, 36.85, 41.85, 46.85, 51.85,
-                                                                56.85, 61.85}); // Temperature, in C
-        static Array1D<Real64> const Mu(NumOfPropDivisions, {0.001652, 0.001422, 0.001225, 0.00108, 0.000959, 0.000855, 0.000769, 0.000695,
-                                                             0.000631, 0.000577, 0.000528, 0.000489, 0.000453}); // Viscosity, in Ns/m2
-        static Array1D<Real64> const Conductivity(NumOfPropDivisions, {0.574, 0.582, 0.590, 0.598, 0.606, 0.613, 0.620, 0.628, 0.634, 0.640,
-                                                                       0.645, 0.650, 0.656}); // Conductivity, in W/mK
-        static Array1D<Real64> const Pr(NumOfPropDivisions, {12.22, 10.26, 8.81, 7.56, 6.62, 5.83, 5.20, 4.62, 4.16, 3.77, 3.42, 3.15,
-                                                             2.88}); // Prandtl number (dimensionless)
+        static Array1D<Real64> const Temps(
+            NumOfPropDivisions, {1.85, 6.85, 11.85, 16.85, 21.85, 26.85, 31.85, 36.85, 41.85, 46.85, 51.85, 56.85, 61.85}); // Temperature, in C
+        static Array1D<Real64> const Mu(NumOfPropDivisions, {0.001652, 0.001422, 0.001225, 0.00108, 0.000959, 0.000855, 0.000769, 0.000695, 0.000631,
+                                                             0.000577, 0.000528, 0.000489, 0.000453}); // Viscosity, in Ns/m2
+        static Array1D<Real64> const Conductivity(
+            NumOfPropDivisions, {0.574, 0.582, 0.590, 0.598, 0.606, 0.613, 0.620, 0.628, 0.634, 0.640, 0.645, 0.650, 0.656}); // Conductivity, in W/mK
+        static Array1D<Real64> const Pr(
+            NumOfPropDivisions, {12.22, 10.26, 8.81, 7.56, 6.62, 5.83, 5.20, 4.62, 4.16, 3.77, 3.42, 3.15, 2.88}); // Prandtl number (dimensionless)
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1741,8 +1736,7 @@ namespace PipeHeatTransfer {
         }
 
         // look up conductivity and viscosity
-        Kactual =
-            GetConductivityGlycol(PlantLoop(LoopNum).FluidName, this->FluidTemp(0), PlantLoop(LoopNum).FluidIndex, RoutineName); // W/m-K
+        Kactual = GetConductivityGlycol(PlantLoop(LoopNum).FluidName, this->FluidTemp(0), PlantLoop(LoopNum).FluidIndex, RoutineName); // W/m-K
         MUactual = GetViscosityGlycol(PlantLoop(LoopNum).FluidName, this->FluidTemp(0), PlantLoop(LoopNum).FluidIndex, RoutineName) /
                    1000.0; // Note fluid properties routine returns mPa-s, we need Pa-s
 
@@ -1812,17 +1806,15 @@ namespace PipeHeatTransfer {
         int const NumOfParamDivisions(5); // intervals in property correlation
         int const NumOfPropDivisions(12); // intervals in property correlation
 
-        static Array1D<Real64> const CCoef(NumOfParamDivisions, {0.989, 0.911, 0.683, 0.193, 0.027});    // correlation coefficient
-        static Array1D<Real64> const mExp(NumOfParamDivisions, {0.33, 0.385, 0.466, 0.618, 0.805});      // exponent
-        static Array1D<Real64> const LowerBound(NumOfParamDivisions, {0.4, 4.0, 40.0, 4000.0, 40000.0}); // upper bound of correlation range
-        static Array1D<Real64> const UpperBound(NumOfParamDivisions,
-                                                {4.0, 40.0, 4000.0, 40000.0, 400000.0}); // lower bound of correlation range
+        static Array1D<Real64> const CCoef(NumOfParamDivisions, {0.989, 0.911, 0.683, 0.193, 0.027});         // correlation coefficient
+        static Array1D<Real64> const mExp(NumOfParamDivisions, {0.33, 0.385, 0.466, 0.618, 0.805});           // exponent
+        static Array1D<Real64> const LowerBound(NumOfParamDivisions, {0.4, 4.0, 40.0, 4000.0, 40000.0});      // upper bound of correlation range
+        static Array1D<Real64> const UpperBound(NumOfParamDivisions, {4.0, 40.0, 4000.0, 40000.0, 400000.0}); // lower bound of correlation range
 
-        static Array1D<Real64> const Temperature(
-            NumOfPropDivisions, {-73.0, -23.0, -10.0, 0.0, 10.0, 20.0, 27.0, 30.0, 40.0, 50.0, 76.85, 126.85}); // temperature [C]
-        static Array1D<Real64> const DynVisc(NumOfPropDivisions,
-                                             {75.52e-7, 11.37e-6, 12.44e-6, 13.3e-6, 14.18e-6, 15.08e-6, 15.75e-6, 16e-6, 16.95e-6,
-                                              17.91e-6, 20.92e-6, 26.41e-6}); // dynamic viscosity [m^2/s]
+        static Array1D<Real64> const Temperature(NumOfPropDivisions,
+                                                 {-73.0, -23.0, -10.0, 0.0, 10.0, 20.0, 27.0, 30.0, 40.0, 50.0, 76.85, 126.85}); // temperature [C]
+        static Array1D<Real64> const DynVisc(NumOfPropDivisions, {75.52e-7, 11.37e-6, 12.44e-6, 13.3e-6, 14.18e-6, 15.08e-6, 15.75e-6, 16e-6,
+                                                                  16.95e-6, 17.91e-6, 20.92e-6, 26.41e-6}); // dynamic viscosity [m^2/s]
 
         // INTERFACE BLOCK SPECIFICATIONS
         // na
@@ -1887,8 +1879,7 @@ namespace PipeHeatTransfer {
         if (!ViscositySet) {
             AirVisc = DynVisc(NumOfPropDivisions);
             if (AirTemp > Temperature(NumOfPropDivisions)) {
-                ShowWarningError("Heat Transfer Pipe = " + this->Name +
-                                 "Viscosity out of range, air temperature too high, setting to upper limit.");
+                ShowWarningError("Heat Transfer Pipe = " + this->Name + "Viscosity out of range, air temperature too high, setting to upper limit.");
             }
         }
 
@@ -1911,8 +1902,7 @@ namespace PipeHeatTransfer {
             Coef = CCoef(NumOfParamDivisions);
             rExp = mExp(NumOfParamDivisions);
             if (ReD > UpperBound(NumOfParamDivisions)) {
-                ShowWarningError("Heat Transfer Pipe = " + this->Name +
-                                 "Reynolds Number out of range, setting coefficients to upper limit.");
+                ShowWarningError("Heat Transfer Pipe = " + this->Name + "Reynolds Number out of range, setting coefficients to upper limit.");
             }
         }
 

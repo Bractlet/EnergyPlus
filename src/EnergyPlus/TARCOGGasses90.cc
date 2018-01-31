@@ -194,8 +194,8 @@ namespace TARCOGGasses90 {
                 fcp(i) = xgcp(1, iprop(i)) + xgcp(2, iprop(i)) * tmean + xgcp(3, iprop(i)) * tmean_2;
                 if (stdEN673) {
                     // fdens( i ) = grho( iprop( i ), 1 ) + grho( iprop( i ), 2 ) * tmean + grho( iprop( i ), 3 ) * pow_2( tmean );
-                    fdens(i) = ENpressure * xwght(iprop(i)) /
-                               (gaslaw * tmean); // Density using ideal gas law: rho=(presure*mol. weight)/(gas const*Tmean)
+                    fdens(i) =
+                        ENpressure * xwght(iprop(i)) / (gaslaw * tmean); // Density using ideal gas law: rho=(presure*mol. weight)/(gas const*Tmean)
                 }
                 if (stdISO15099) {
                     molmix += frct(i) * xwght(iprop(i));                              // equation 56
@@ -237,8 +237,7 @@ namespace TARCOGGasses90 {
                         if (i != j) kpdown(i) += psiup * psiterm / downer * frct(j) / frct(i);
 
                         // calculate the numerator of equation 66
-                        phikup =
-                            psiup; // Tuned Was pow_2( 1.0 + std::sqrt( kprime_i / kprime( j ) ) * std::pow( xwght_i / xwght_j, 0.25 ) );
+                        phikup = psiup; // Tuned Was pow_2( 1.0 + std::sqrt( kprime_i / kprime( j ) ) * std::pow( xwght_i / xwght_j, 0.25 ) );
 
                         // using the common denominator downer calculate the denominator for equation 65
                         if (i != j) kdpdown(i) += phikup / downer * frct(j) / frct(i);
@@ -281,13 +280,8 @@ namespace TARCOGGasses90 {
         pr = cp * visc / con; // calculate the Prandtl number
     }
 
-    void GassesLow(Real64 const tmean,
-                   Real64 const mwght,
-                   Real64 const pressure,
-                   Real64 const gama,
-                   Real64 &cond,
-                   int &nperr,
-                   std::string &ErrorMessage)
+    void
+    GassesLow(Real64 const tmean, Real64 const mwght, Real64 const pressure, Real64 const gama, Real64 &cond, int &nperr, std::string &ErrorMessage)
     {
 
         // Locals

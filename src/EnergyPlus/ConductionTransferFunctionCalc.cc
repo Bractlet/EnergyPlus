@@ -447,8 +447,7 @@ namespace ConductionTransferFunctionCalc {
                         // then use the "exact" approach to model a massless layer
                         // based on the node equations for the state space method.
 
-                        if ((Layer == 1) || (Layer == Construct(ConstrNum).TotLayers) ||
-                            (!Material(Construct(ConstrNum).LayerPoint(Layer)).ROnly)) {
+                        if ((Layer == 1) || (Layer == Construct(ConstrNum).TotLayers) || (!Material(Construct(ConstrNum).LayerPoint(Layer)).ROnly)) {
                             cp(Layer) = 1.007;
                             rho(Layer) = 1.1614;
                             rk(Layer) = 0.0263;
@@ -571,8 +570,7 @@ namespace ConductionTransferFunctionCalc {
                     // calculate CTF/QTFs.  So, don't even check for reversed constructions.
                     if (Construct(ConstrNum).SourceSinkPresent) break; // Constr DO loop
 
-                    if (Construct(ConstrNum).TotLayers ==
-                        Construct(Constr).TotLayers) { // Same number of layers--now | check for reversed construct.
+                    if (Construct(ConstrNum).TotLayers == Construct(Constr).TotLayers) { // Same number of layers--now | check for reversed construct.
 
                         RevConst = true;
 
@@ -1992,10 +1990,9 @@ namespace ConductionTransferFunctionCalc {
                             } else {
                                 SurfNodeFac = 1.0;
                             }
-                            s(j, 1, inum) +=
-                                SurfNodeFac * CMat(1) * (Rold(is2, SurfNode) * Gamma1(j, is2) + Rnew(is2, SurfNode) * Gamma2(j, is2));
-                            s(j, 2, inum) += SurfNodeFac * CMat(2) * (Rold(is2, rcmax + 1 - SurfNode) * Gamma1(j, is2) +
-                                                                      Rnew(is2, rcmax + 1 - SurfNode) * Gamma2(j, is2));
+                            s(j, 1, inum) += SurfNodeFac * CMat(1) * (Rold(is2, SurfNode) * Gamma1(j, is2) + Rnew(is2, SurfNode) * Gamma2(j, is2));
+                            s(j, 2, inum) += SurfNodeFac * CMat(2) *
+                                             (Rold(is2, rcmax + 1 - SurfNode) * Gamma1(j, is2) + Rnew(is2, rcmax + 1 - SurfNode) * Gamma2(j, is2));
                         }
                         if (NodeSource > 0) {
                             s(j, 3, inum) += (Rold(is2, NodeSource) * Gamma1(j, is2) + Rnew(is2, NodeSource) * Gamma2(j, is2));
@@ -2191,8 +2188,8 @@ namespace ConductionTransferFunctionCalc {
                 gio::write(OutputFileInits, Format_700)
                     << Construct(ThisNum).Name << ThisNum << Construct(ThisNum).TotLayers << Construct(ThisNum).NumCTFTerms
                     << Construct(ThisNum).CTFTimeStep << Construct(ThisNum).UValue << Construct(ThisNum).OutsideAbsorpThermal
-                    << Construct(ThisNum).InsideAbsorpThermal << Construct(ThisNum).OutsideAbsorpSolar
-                    << Construct(ThisNum).InsideAbsorpSolar << DisplayMaterialRoughness(Construct(ThisNum).OutsideRoughness);
+                    << Construct(ThisNum).InsideAbsorpThermal << Construct(ThisNum).OutsideAbsorpSolar << Construct(ThisNum).InsideAbsorpSolar
+                    << DisplayMaterialRoughness(Construct(ThisNum).OutsideRoughness);
 
                 for (I = 1; I <= Construct(ThisNum).TotLayers; ++I) {
                     Layer = Construct(ThisNum).LayerPoint(I);
@@ -2221,19 +2218,17 @@ namespace ConductionTransferFunctionCalc {
                 if (Construct(ThisNum).SourceSinkPresent) {
                     // QTFs...
                     for (I = Construct(ThisNum).NumCTFTerms; I >= 0; --I) {
-                        gio::write(OutputFileInits, Format_705) << I << Construct(ThisNum).CTFSourceOut(I)
-                                                                << Construct(ThisNum).CTFSourceIn(I);
+                        gio::write(OutputFileInits, Format_705) << I << Construct(ThisNum).CTFSourceOut(I) << Construct(ThisNum).CTFSourceIn(I);
                     }
                     // QTFs for source/sink location temperature calculation...
                     for (I = Construct(ThisNum).NumCTFTerms; I >= 0; --I) {
-                        gio::write(OutputFileInits, Format_706) << I << Construct(ThisNum).CTFTSourceOut(I)
-                                                                << Construct(ThisNum).CTFTSourceIn(I) << Construct(ThisNum).CTFTSourceQ(I);
+                        gio::write(OutputFileInits, Format_706) << I << Construct(ThisNum).CTFTSourceOut(I) << Construct(ThisNum).CTFTSourceIn(I)
+                                                                << Construct(ThisNum).CTFTSourceQ(I);
                     }
                     if (Construct(ThisNum).TempAfterLayer != 0) {
                         // QTFs for user specified interior temperature calculation...
                         for (I = Construct(ThisNum).NumCTFTerms; I >= 0; --I) {
-                            gio::write(OutputFileInits, Format_707) << I << Construct(ThisNum).CTFTUserOut(I)
-                                                                    << Construct(ThisNum).CTFTUserIn(I)
+                            gio::write(OutputFileInits, Format_707) << I << Construct(ThisNum).CTFTUserOut(I) << Construct(ThisNum).CTFTUserIn(I)
                                                                     << Construct(ThisNum).CTFTUserSource(I);
                         }
                     }

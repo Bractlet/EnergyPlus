@@ -188,9 +188,9 @@ namespace EvaporativeCoolers {
         int DrybulbEffecCurveIndex;          // drybulb effectiveness modifier curve name as a function of flow fraction
         int FanPowerModifierCurveIndex;      // secondary fan power modifier curve name as a function of flow fraction
         int PumpPowerModifierCurveIndex;     // recirculating pump power modifier curve name as a function of flow fraction
-        int IECOperatingStatus; // operating mode status of indirect evaporative cooler research special (0: Off, 1: Dry, 2: Wet)
-        int IterationLimit;     // used for Used for RegulaFalsi recurring error message error -1
-        int IterationFailed;    // Used for RegulaFalsi recurring error message error -2
+        int IECOperatingStatus;              // operating mode status of indirect evaporative cooler research special (0: Off, 1: Dry, 2: Wet)
+        int IterationLimit;                  // used for Used for RegulaFalsi recurring error message error -1
+        int IterationFailed;                 // Used for RegulaFalsi recurring error message error -2
         // rather than wetbulb-depression approach
         int EvapCoolerRDDOperatingMode; // the indirect evaporative cooler Research Special operating mode variable
         // Operational fault parameters
@@ -201,24 +201,23 @@ namespace EvaporativeCoolers {
         // Default Constructor
         EvapConditions()
             : EquipIndex(0), EvapCoolerType(0), SchedPtr(0), VolFlowRate(0.0), OutletTemp(0.0), OuletWetBulbTemp(0.0), OutletHumRat(0.0),
-              OutletEnthalpy(0.0), OutletPressure(0.0), OutletMassFlowRate(0.0), OutletMassFlowRateMaxAvail(0.0),
-              OutletMassFlowRateMinAvail(0.0), InitFlag(false), InletNode(0), OutletNode(0), SecondaryInletNode(0), SecondaryOutletNode(0),
-              TertiaryInletNode(0), InletMassFlowRate(0.0), InletMassFlowRateMaxAvail(0.0), InletMassFlowRateMinAvail(0.0), InletTemp(0.0),
-              InletWetBulbTemp(0.0), InletHumRat(0.0), InletEnthalpy(0.0), InletPressure(0.0), SecInletMassFlowRate(0.0),
-              SecInletMassFlowRateMaxAvail(0.0), SecInletMassFlowRateMinAvail(0.0), SecInletTemp(0.0), SecInletWetBulbTemp(0.0),
-              SecInletHumRat(0.0), SecInletEnthalpy(0.0), SecInletPressure(0.0), SecOutletTemp(0.0), SecOuletWetBulbTemp(0.0),
-              SecOutletHumRat(0.0), SecOutletEnthalpy(0.0), SecOutletMassFlowRate(0.0), PadDepth(0.0), PadArea(0.0), RecircPumpPower(0.0),
-              IndirectRecircPumpPower(0.0), IndirectPadDepth(0.0), IndirectPadArea(0.0), IndirectVolFlowRate(0.0), IndirectFanEff(0.0),
-              IndirectFanDeltaPress(0.0), IndirectHXEffectiveness(0.0), DirectEffectiveness(0.0), WetCoilMaxEfficiency(0.0),
-              WetCoilFlowRatio(0.0), EvapCoolerEnergy(0.0), EvapCoolerPower(0.0), EvapWaterSupplyMode(WaterSupplyFromMains),
-              EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0), DriftFraction(0.0), BlowDownRatio(0.0), EvapWaterConsumpRate(0.0),
-              EvapWaterConsump(0.0), EvapWaterStarvMakupRate(0.0), EvapWaterStarvMakup(0.0), SatEff(0.0), StageEff(0.0), DPBoundFactor(0.0),
-              EvapControlNodeNum(0), DesiredOutletTemp(0.0), PartLoadFract(0.0), DewPointBoundFlag(0), MinOATDBEvapCooler(0.0),
+              OutletEnthalpy(0.0), OutletPressure(0.0), OutletMassFlowRate(0.0), OutletMassFlowRateMaxAvail(0.0), OutletMassFlowRateMinAvail(0.0),
+              InitFlag(false), InletNode(0), OutletNode(0), SecondaryInletNode(0), SecondaryOutletNode(0), TertiaryInletNode(0),
+              InletMassFlowRate(0.0), InletMassFlowRateMaxAvail(0.0), InletMassFlowRateMinAvail(0.0), InletTemp(0.0), InletWetBulbTemp(0.0),
+              InletHumRat(0.0), InletEnthalpy(0.0), InletPressure(0.0), SecInletMassFlowRate(0.0), SecInletMassFlowRateMaxAvail(0.0),
+              SecInletMassFlowRateMinAvail(0.0), SecInletTemp(0.0), SecInletWetBulbTemp(0.0), SecInletHumRat(0.0), SecInletEnthalpy(0.0),
+              SecInletPressure(0.0), SecOutletTemp(0.0), SecOuletWetBulbTemp(0.0), SecOutletHumRat(0.0), SecOutletEnthalpy(0.0),
+              SecOutletMassFlowRate(0.0), PadDepth(0.0), PadArea(0.0), RecircPumpPower(0.0), IndirectRecircPumpPower(0.0), IndirectPadDepth(0.0),
+              IndirectPadArea(0.0), IndirectVolFlowRate(0.0), IndirectFanEff(0.0), IndirectFanDeltaPress(0.0), IndirectHXEffectiveness(0.0),
+              DirectEffectiveness(0.0), WetCoilMaxEfficiency(0.0), WetCoilFlowRatio(0.0), EvapCoolerEnergy(0.0), EvapCoolerPower(0.0),
+              EvapWaterSupplyMode(WaterSupplyFromMains), EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0), DriftFraction(0.0), BlowDownRatio(0.0),
+              EvapWaterConsumpRate(0.0), EvapWaterConsump(0.0), EvapWaterStarvMakupRate(0.0), EvapWaterStarvMakup(0.0), SatEff(0.0), StageEff(0.0),
+              DPBoundFactor(0.0), EvapControlNodeNum(0), DesiredOutletTemp(0.0), PartLoadFract(0.0), DewPointBoundFlag(0), MinOATDBEvapCooler(0.0),
               MaxOATDBEvapCooler(0.0), EvapCoolerOperationControlFlag(false), MaxOATWBEvapCooler(0.0), DryCoilMaxEfficiency(0.0),
               IndirectFanPower(0.0), FanSizingSpecificPower(0.0), RecircPumpSizingFactor(0.0), IndirectVolFlowScalingFactor(0.0),
               WetbulbEffecCurveIndex(0), DrybulbEffecCurveIndex(0), FanPowerModifierCurveIndex(0), PumpPowerModifierCurveIndex(0),
-              IECOperatingStatus(0), IterationLimit(0), IterationFailed(0), EvapCoolerRDDOperatingMode(0),
-              FaultyEvapCoolerFoulingFlag(false), FaultyEvapCoolerFoulingIndex(0), FaultyEvapCoolerFoulingFactor(1.0)
+              IECOperatingStatus(0), IterationLimit(0), IterationFailed(0), EvapCoolerRDDOperatingMode(0), FaultyEvapCoolerFoulingFlag(false),
+              FaultyEvapCoolerFoulingIndex(0), FaultyEvapCoolerFoulingFactor(1.0)
         {
         }
     };
@@ -294,14 +293,14 @@ namespace EvaporativeCoolers {
             : ZoneNodeNum(0), AvailSchedIndex(0), UnitIsAvailable(false), FanAvailStatus(0), OAInletNodeNum(0), UnitOutletNodeNum(0),
               UnitReliefNodeNum(0), FanType_Num(0), FanIndex(0), ActualFanVolFlowRate(0.0), FanAvailSchedPtr(0), FanInletNodeNum(0),
               FanOutletNodeNum(0), DesignAirVolumeFlowRate(0.0), DesignAirMassFlowRate(0.0), DesignFanSpeedRatio(0.0), FanSpeedRatio(0.0),
-              FanLocation(0), ControlSchemeType(0), TimeElapsed(0.0), ThrottlingRange(0.0), IsOnThisTimestep(false),
-              WasOnLastTimestep(false), ThresholdCoolingLoad(0.0), EvapCooler_1_Type_Num(0), EvapCooler_1_Index(0),
-              EvapCooler_1_AvailStatus(false), EvapCooler_2_Type_Num(0), EvapCooler_2_Index(0), EvapCooler_2_AvailStatus(false),
-              OAInletRho(0.0), OAInletCp(0.0), OAInletTemp(0.0), OAInletHumRat(0.0), OAInletMassFlowRate(0.0), UnitOutletTemp(0.0),
-              UnitOutletHumRat(0.0), UnitOutletMassFlowRate(0.0), UnitReliefTemp(0.0), UnitReliefHumRat(0.0), UnitReliefMassFlowRate(0.0),
-              UnitTotalCoolingRate(0.0), UnitTotalCoolingEnergy(0.0), UnitSensibleCoolingRate(0.0), UnitSensibleCoolingEnergy(0.0),
-              UnitLatentHeatingRate(0.0), UnitLatentHeatingEnergy(0.0), UnitLatentCoolingRate(0.0), UnitLatentCoolingEnergy(0.0),
-              UnitFanSpeedRatio(0.0), UnitVSControlMaxIterErrorIndex(0), UnitVSControlLimitsErrorIndex(0), ZonePtr(0), HVACSizingIndex(0)
+              FanLocation(0), ControlSchemeType(0), TimeElapsed(0.0), ThrottlingRange(0.0), IsOnThisTimestep(false), WasOnLastTimestep(false),
+              ThresholdCoolingLoad(0.0), EvapCooler_1_Type_Num(0), EvapCooler_1_Index(0), EvapCooler_1_AvailStatus(false), EvapCooler_2_Type_Num(0),
+              EvapCooler_2_Index(0), EvapCooler_2_AvailStatus(false), OAInletRho(0.0), OAInletCp(0.0), OAInletTemp(0.0), OAInletHumRat(0.0),
+              OAInletMassFlowRate(0.0), UnitOutletTemp(0.0), UnitOutletHumRat(0.0), UnitOutletMassFlowRate(0.0), UnitReliefTemp(0.0),
+              UnitReliefHumRat(0.0), UnitReliefMassFlowRate(0.0), UnitTotalCoolingRate(0.0), UnitTotalCoolingEnergy(0.0),
+              UnitSensibleCoolingRate(0.0), UnitSensibleCoolingEnergy(0.0), UnitLatentHeatingRate(0.0), UnitLatentHeatingEnergy(0.0),
+              UnitLatentCoolingRate(0.0), UnitLatentCoolingEnergy(0.0), UnitFanSpeedRatio(0.0), UnitVSControlMaxIterErrorIndex(0),
+              UnitVSControlLimitsErrorIndex(0), ZonePtr(0), HVACSizingIndex(0)
         {
         }
     };

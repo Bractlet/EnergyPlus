@@ -191,25 +191,24 @@ namespace MicroturbineElectricGenerator {
 
         // Default Constructor
         MTGeneratorSpecs()
-            : RefElecPowerOutput(0.0), MinElecPowerOutput(0.0), MaxElecPowerOutput(0.0), RefThermalPowerOutput(0.0),
-              MinThermalPowerOutput(0.0), MaxThermalPowerOutput(0.0), RefElecEfficiencyLHV(0.0), RefCombustAirInletTemp(0.0),
-              RefCombustAirInletHumRat(0.0), RefElevation(0.0), ElecPowFTempElevCurveNum(0), ElecEffFTempCurveNum(0),
-              ElecEffFPLRCurveNum(0), FuelHigherHeatingValue(0.0), FuelLowerHeatingValue(0.0), StandbyPower(0.0), AncillaryPower(0.0),
-              AncillaryPowerFuelCurveNum(0), HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0), RefThermalEffLHV(0.0), RefInletWaterTemp(0.0),
-              InternalFlowControl(false), PlantFlowControl(true), RefHeatRecVolFlowRate(0.0), HeatRecFlowFTempPowCurveNum(0),
-              ThermEffFTempElevCurveNum(0), HeatRecRateFPLRCurveNum(0), HeatRecRateFTempCurveNum(0), HeatRecRateFWaterFlowCurveNum(0),
-              HeatRecMinVolFlowRate(0.0), HeatRecMaxVolFlowRate(0.0), HeatRecMaxWaterTemp(0.0), CombustionAirInletNodeNum(0),
-              CombustionAirOutletNodeNum(0), ExhAirCalcsActive(false), RefExhaustAirMassFlowRate(0.0), ExhaustAirMassFlowRate(0.0),
-              ExhFlowFTempCurveNum(0), ExhFlowFPLRCurveNum(0), NomExhAirOutletTemp(0.0), ExhAirTempFTempCurveNum(0),
+            : RefElecPowerOutput(0.0), MinElecPowerOutput(0.0), MaxElecPowerOutput(0.0), RefThermalPowerOutput(0.0), MinThermalPowerOutput(0.0),
+              MaxThermalPowerOutput(0.0), RefElecEfficiencyLHV(0.0), RefCombustAirInletTemp(0.0), RefCombustAirInletHumRat(0.0), RefElevation(0.0),
+              ElecPowFTempElevCurveNum(0), ElecEffFTempCurveNum(0), ElecEffFPLRCurveNum(0), FuelHigherHeatingValue(0.0), FuelLowerHeatingValue(0.0),
+              StandbyPower(0.0), AncillaryPower(0.0), AncillaryPowerFuelCurveNum(0), HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0),
+              RefThermalEffLHV(0.0), RefInletWaterTemp(0.0), InternalFlowControl(false), PlantFlowControl(true), RefHeatRecVolFlowRate(0.0),
+              HeatRecFlowFTempPowCurveNum(0), ThermEffFTempElevCurveNum(0), HeatRecRateFPLRCurveNum(0), HeatRecRateFTempCurveNum(0),
+              HeatRecRateFWaterFlowCurveNum(0), HeatRecMinVolFlowRate(0.0), HeatRecMaxVolFlowRate(0.0), HeatRecMaxWaterTemp(0.0),
+              CombustionAirInletNodeNum(0), CombustionAirOutletNodeNum(0), ExhAirCalcsActive(false), RefExhaustAirMassFlowRate(0.0),
+              ExhaustAirMassFlowRate(0.0), ExhFlowFTempCurveNum(0), ExhFlowFPLRCurveNum(0), NomExhAirOutletTemp(0.0), ExhAirTempFTempCurveNum(0),
               ExhAirTempFPLRCurveNum(0), ExhaustAirTemperature(0.0), ExhaustAirHumRat(0.0), CompType_Num(iGeneratorMicroturbine),
-              RefCombustAirInletDensity(0.0), MinPartLoadRat(0.0), MaxPartLoadRat(0.0), FuelEnergyUseRateHHV(0.0),
-              FuelEnergyUseRateLHV(0.0), QHeatRecovered(0.0), ExhaustEnergyRec(0.0), DesignHeatRecMassFlowRate(0.0), HeatRecActive(false),
-              HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMinMassFlowRate(0.0), HeatRecMaxMassFlowRate(0.0), HeatRecMdot(0.0),
-              HRLoopNum(0), HRLoopSideNum(0), HRBranchNum(0), HRCompNum(0), FuelMdot(0.0), ElecPowerGenerated(0.0), StandbyPowerRate(0.0),
-              AncillaryPowerRate(0.0), PowerFTempElevErrorIndex(0), EffFTempErrorIndex(0), EffFPLRErrorIndex(0), ExhFlowFTempErrorIndex(0),
-              ExhFlowFPLRErrorIndex(0), ExhTempFTempErrorIndex(0), ExhTempFPLRErrorIndex(0), HRMinFlowErrorIndex(0), HRMaxFlowErrorIndex(0),
-              ExhTempLTInletTempIndex(0), ExhHRLTInletHRIndex(0), AnciPowerIterErrorIndex(0), AnciPowerFMdotFuelErrorIndex(0),
-              HeatRecRateFPLRErrorIndex(0), HeatRecRateFTempErrorIndex(0), HeatRecRateFFlowErrorIndex(0), ThermEffFTempElevErrorIndex(0)
+              RefCombustAirInletDensity(0.0), MinPartLoadRat(0.0), MaxPartLoadRat(0.0), FuelEnergyUseRateHHV(0.0), FuelEnergyUseRateLHV(0.0),
+              QHeatRecovered(0.0), ExhaustEnergyRec(0.0), DesignHeatRecMassFlowRate(0.0), HeatRecActive(false), HeatRecInletTemp(0.0),
+              HeatRecOutletTemp(0.0), HeatRecMinMassFlowRate(0.0), HeatRecMaxMassFlowRate(0.0), HeatRecMdot(0.0), HRLoopNum(0), HRLoopSideNum(0),
+              HRBranchNum(0), HRCompNum(0), FuelMdot(0.0), ElecPowerGenerated(0.0), StandbyPowerRate(0.0), AncillaryPowerRate(0.0),
+              PowerFTempElevErrorIndex(0), EffFTempErrorIndex(0), EffFPLRErrorIndex(0), ExhFlowFTempErrorIndex(0), ExhFlowFPLRErrorIndex(0),
+              ExhTempFTempErrorIndex(0), ExhTempFPLRErrorIndex(0), HRMinFlowErrorIndex(0), HRMaxFlowErrorIndex(0), ExhTempLTInletTempIndex(0),
+              ExhHRLTInletHRIndex(0), AnciPowerIterErrorIndex(0), AnciPowerFMdotFuelErrorIndex(0), HeatRecRateFPLRErrorIndex(0),
+              HeatRecRateFTempErrorIndex(0), HeatRecRateFFlowErrorIndex(0), ThermEffFTempElevErrorIndex(0)
         {
         }
     };
@@ -238,10 +237,10 @@ namespace MicroturbineElectricGenerator {
 
         // Default Constructor
         ReportVars()
-            : PowerGen(0.0), EnergyGen(0.0), QHeatRecovered(0.0), ExhaustEnergyRec(0.0), FuelEnergyUseRateHHV(0.0), FuelEnergyHHV(0.0),
-              FuelMdot(0.0), ElectricEfficiencyLHV(0.0), ThermalEfficiencyLHV(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0),
-              HeatRecMdot(0.0), AncillaryPowerRate(0.0), AncillaryEnergy(0.0), StandbyPowerRate(0.0), StandbyEnergy(0.0),
-              ExhAirMassFlowRate(0.0), ExhAirTemperature(0.0)
+            : PowerGen(0.0), EnergyGen(0.0), QHeatRecovered(0.0), ExhaustEnergyRec(0.0), FuelEnergyUseRateHHV(0.0), FuelEnergyHHV(0.0), FuelMdot(0.0),
+              ElectricEfficiencyLHV(0.0), ThermalEfficiencyLHV(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0),
+              AncillaryPowerRate(0.0), AncillaryEnergy(0.0), StandbyPowerRate(0.0), StandbyEnergy(0.0), ExhAirMassFlowRate(0.0),
+              ExhAirTemperature(0.0)
         {
         }
     };

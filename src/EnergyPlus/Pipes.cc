@@ -149,8 +149,8 @@ namespace Pipes {
         if (this->OneTimeInit) {
             int FoundOnLoop = 0;
             bool errFlag = false;
-            DataPlant::ScanPlantLoopsForObject(this->Name, this->TypeOf, this->LoopNum, this->LoopSide, this->BranchIndex, this->CompIndex,
-                                               _, _, FoundOnLoop, _, _, errFlag);
+            DataPlant::ScanPlantLoopsForObject(this->Name, this->TypeOf, this->LoopNum, this->LoopSide, this->BranchIndex, this->CompIndex, _, _,
+                                               FoundOnLoop, _, _, errFlag);
             if (FoundOnLoop == 0) {
                 ShowFatalError("SimPipes: Pipe=\"" + this->Name + "\" not found on a Plant Loop.");
             }
@@ -161,8 +161,8 @@ namespace Pipes {
         }
 
         if (DataGlobals::BeginEnvrnFlag && this->EnvrnFlag) {
-            PlantUtilities::InitComponentNodes(0.0, DataPlant::PlantLoop(this->LoopNum).MaxMassFlowRate, this->InletNodeNum,
-                                               this->OutletNodeNum, this->LoopNum, this->LoopSide, this->BranchIndex, this->CompIndex);
+            PlantUtilities::InitComponentNodes(0.0, DataPlant::PlantLoop(this->LoopNum).MaxMassFlowRate, this->InletNodeNum, this->OutletNodeNum,
+                                               this->LoopNum, this->LoopSide, this->BranchIndex, this->CompIndex);
             this->EnvrnFlag = false;
         }
 
@@ -244,10 +244,10 @@ namespace Pipes {
             LocalPipe(PipeNum).Name = cAlphaArgs(1);
             LocalPipe(PipeNum).TypeOf = TypeOf_Pipe;
 
-            LocalPipe(PipeNum).InletNodeNum = GetOnlySingleNode(cAlphaArgs(2), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                NodeType_Water, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
-            LocalPipe(PipeNum).OutletNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                 NodeType_Water, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+            LocalPipe(PipeNum).InletNodeNum = GetOnlySingleNode(cAlphaArgs(2), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
+                                                                NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+            LocalPipe(PipeNum).OutletNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Water,
+                                                                 NodeConnectionType_Outlet, 1, ObjectIsNotParent);
             TestCompSet(cCurrentModuleObject, cAlphaArgs(1), cAlphaArgs(2), cAlphaArgs(3), "Pipe Nodes");
         }
 
@@ -267,10 +267,10 @@ namespace Pipes {
             }
             LocalPipe(PipeNum).Name = cAlphaArgs(1);
             LocalPipe(PipeNum).TypeOf = TypeOf_PipeSteam;
-            LocalPipe(PipeNum).InletNodeNum = GetOnlySingleNode(cAlphaArgs(2), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                NodeType_Steam, NodeConnectionType_Inlet, 1, ObjectIsNotParent);
-            LocalPipe(PipeNum).OutletNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1),
-                                                                 NodeType_Steam, NodeConnectionType_Outlet, 1, ObjectIsNotParent);
+            LocalPipe(PipeNum).InletNodeNum = GetOnlySingleNode(cAlphaArgs(2), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Steam,
+                                                                NodeConnectionType_Inlet, 1, ObjectIsNotParent);
+            LocalPipe(PipeNum).OutletNodeNum = GetOnlySingleNode(cAlphaArgs(3), ErrorsFound, cCurrentModuleObject, cAlphaArgs(1), NodeType_Steam,
+                                                                 NodeConnectionType_Outlet, 1, ObjectIsNotParent);
             TestCompSet(cCurrentModuleObject, cAlphaArgs(1), cAlphaArgs(2), cAlphaArgs(3), "Pipe Nodes");
         }
 

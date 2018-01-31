@@ -206,9 +206,8 @@ namespace HVACControllers {
     int const CoilType_Cooling(1);
     int const CoilType_Heating(2);
 
-    Array1D_string const ControlVariableTypes({0, 4},
-                                              {"No control variable", "Temperature", "Humidity ratio", "Temperature and humidity ratio",
-                                               "Flow rate"});
+    Array1D_string const
+        ControlVariableTypes({0, 4}, {"No control variable", "Temperature", "Humidity ratio", "Temperature and humidity ratio", "Flow rate"});
 
     // DERIVED TYPE DEFINITIONS
 
@@ -368,14 +367,13 @@ namespace HVACControllers {
         } else {
             ControlNum = ControllerIndex;
             if (ControlNum > NumControllers || ControlNum < 1) {
-                ShowFatalError("ManageControllers: Invalid ControllerIndex passed=" + TrimSigDigits(ControlNum) +
-                               ", Number of controllers=" + TrimSigDigits(NumControllers) + ", Controller name=" + ControllerName);
+                ShowFatalError("ManageControllers: Invalid ControllerIndex passed=" + TrimSigDigits(ControlNum) + ", Number of controllers=" +
+                               TrimSigDigits(NumControllers) + ", Controller name=" + ControllerName);
             }
             if (CheckEquipName(ControlNum)) {
                 if (ControllerName != ControllerProps(ControlNum).ControllerName) {
                     ShowFatalError("ManageControllers: Invalid ControllerIndex passed=" + TrimSigDigits(ControlNum) + ", Controller name=" +
-                                   ControllerName + ", stored Controller Name for that index=" +
-                                   ControllerProps(ControlNum).ControllerName);
+                                   ControllerName + ", stored Controller Name for that index=" + ControllerProps(ControlNum).ControllerName);
                 }
                 CheckEquipName(ControlNum) = false;
             }
@@ -497,8 +495,7 @@ namespace HVACControllers {
                 ReportController(ControlNum);
 
             } else {
-                ShowFatalError("ManageControllers: Invalid Operation passed=" + TrimSigDigits(Operation) + ", Controller name=" +
-                               ControllerName);
+                ShowFatalError("ManageControllers: Invalid Operation passed=" + TrimSigDigits(Operation) + ", Controller name=" + ControllerName);
             }
         }
 
@@ -506,8 +503,7 @@ namespace HVACControllers {
         // To enable generating an individual, detailed trace file for each controller on each air loop,
         // define the environment variable TRACE_CONTROLLER=YES or TRACE_CONTROLLER=Y
         if (TraceHVACControllerEnvFlag) {
-            TraceIndividualController(ControlNum, FirstHVACIteration, AirLoopControlInfo(AirLoopNum).AirLoopPass, Operation,
-                                      IsConvergedFlag);
+            TraceIndividualController(ControlNum, FirstHVACIteration, AirLoopControlInfo(AirLoopNum).AirLoopPass, Operation, IsConvergedFlag);
         }
     }
 
@@ -668,8 +664,8 @@ namespace HVACControllers {
         // Now find and load all of the simple controllers.
         if (NumSimpleControllers > 0) {
             for (Num = 1; Num <= NumSimpleControllers; ++Num) {
-                GetObjectItem(CurrentModuleObject, Num, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks,
-                              cAlphaFields, cNumericFields);
+                GetObjectItem(CurrentModuleObject, Num, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks, cAlphaFields,
+                              cNumericFields);
 
                 IsNotOK = false;
                 IsBlank = false;
@@ -706,8 +702,7 @@ namespace HVACControllers {
                     ControllerProps(Num).Action = 0;
                 } else {
                     ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + AlphArray(1) + "\".");
-                    ShowSevereError("...Invalid " + cAlphaFields(3) + "=\"" + AlphArray(3) +
-                                    "\", must be \"Normal\", \"Reverse\" or blank.");
+                    ShowSevereError("...Invalid " + cAlphaFields(3) + "=\"" + AlphArray(3) + "\", must be \"Normal\", \"Reverse\" or blank.");
                     ErrorsFound = true;
                 }
                 if (AlphArray(4) == "FLOW") {
@@ -717,86 +712,74 @@ namespace HVACControllers {
                     ShowContinueError("...Invalid " + cAlphaFields(4) + "=\"" + AlphArray(4) + "\", only FLOW is allowed.");
                     ErrorsFound = true;
                 }
-                ControllerProps(Num).SensedNode = GetOnlySingleNode(AlphArray(5), ErrorsFound, CurrentModuleObject, AlphArray(1),
-                                                                    NodeType_Unknown, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
-                ControllerProps(Num).ActuatedNode = GetOnlySingleNode(AlphArray(6), ErrorsFound, CurrentModuleObject, AlphArray(1),
-                                                                      NodeType_Unknown, NodeConnectionType_Actuator, 1, ObjectIsNotParent);
+                ControllerProps(Num).SensedNode = GetOnlySingleNode(AlphArray(5), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Unknown,
+                                                                    NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+                ControllerProps(Num).ActuatedNode = GetOnlySingleNode(AlphArray(6), ErrorsFound, CurrentModuleObject, AlphArray(1), NodeType_Unknown,
+                                                                      NodeConnectionType_Actuator, 1, ObjectIsNotParent);
                 ControllerProps(Num).Offset = NumArray(1);
                 ControllerProps(Num).MaxVolFlowActuated = NumArray(2);
                 ControllerProps(Num).MinVolFlowActuated = NumArray(3);
 
                 if (!CheckForControllerWaterCoil(CurrentModuleObject, AlphArray(1))) {
-                    ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + AlphArray(1) +
-                                    "\" not found on any AirLoopHVAC:ControllerList.");
+                    ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + AlphArray(1) + "\" not found on any AirLoopHVAC:ControllerList.");
                     ErrorsFound = true;
                 }
 
                 if (ControllerProps(Num).SensedNode > 0) {
 
-                    if (ControllerProps(Num).ControlVar == iHumidityRatio ||
-                        ControllerProps(Num).ControlVar == iTemperatureAndHumidityRatio) {
+                    if (ControllerProps(Num).ControlVar == iHumidityRatio || ControllerProps(Num).ControlVar == iTemperatureAndHumidityRatio) {
                         ResetHumidityRatioCtrlVarType(ControllerProps(Num).SensedNode);
                     }
                     CheckForSensorAndSetPointNode(ControllerProps(Num).SensedNode, ControllerProps(Num).ControlVar, NodeNotFound);
 
                     if (NodeNotFound) {
                         // the sensor node is not on the water coil air outlet node
-                        ShowWarningError(RoutineName + ControllerProps(Num).ControllerType + "=\"" + ControllerProps(Num).ControllerName +
-                                         "\". ");
+                        ShowWarningError(RoutineName + ControllerProps(Num).ControllerType + "=\"" + ControllerProps(Num).ControllerName + "\". ");
                         ShowContinueError(" ..Sensor node not found on water coil air outlet node.");
-                        ShowContinueError(
-                            " ..The sensor node may have been placed on a node downstream of the coil or on an airloop outlet node.");
+                        ShowContinueError(" ..The sensor node may have been placed on a node downstream of the coil or on an airloop outlet node.");
                     } else {
                         // check if the setpoint is also on the same node where the sensor is placed on
                         EMSSetPointErrorFlag = false;
                         {
                             auto const SELECT_CASE_var(ControllerProps(Num).ControlVar);
                             if (SELECT_CASE_var == iTemperature) {
-                                CheckIfNodeSetPointManagedByEMS(ControllerProps(Num).SensedNode, iTemperatureSetPoint,
-                                                                EMSSetPointErrorFlag);
+                                CheckIfNodeSetPointManagedByEMS(ControllerProps(Num).SensedNode, iTemperatureSetPoint, EMSSetPointErrorFlag);
                                 if (EMSSetPointErrorFlag) {
                                     if (!NodeHasSPMCtrlVarType(ControllerProps(Num).SensedNode, iCtrlVarType_Temp)) {
                                         ShowContinueError(" ..Temperature setpoint not found on coil air outlet node.");
                                         ShowContinueError(" ..The setpoint may have been placed on a node downstream of the coil or on an "
                                                           "airloop outlet node.");
-                                        ShowContinueError(
-                                            " ..Specify the setpoint and the sensor on the coil air outlet node when possible.");
+                                        ShowContinueError(" ..Specify the setpoint and the sensor on the coil air outlet node when possible.");
                                     }
                                 }
                             } else if (SELECT_CASE_var == iHumidityRatio) {
-                                CheckIfNodeSetPointManagedByEMS(ControllerProps(Num).SensedNode, iHumidityRatioMaxSetPoint,
-                                                                EMSSetPointErrorFlag);
+                                CheckIfNodeSetPointManagedByEMS(ControllerProps(Num).SensedNode, iHumidityRatioMaxSetPoint, EMSSetPointErrorFlag);
                                 if (EMSSetPointErrorFlag) {
                                     if (!NodeHasSPMCtrlVarType(ControllerProps(Num).SensedNode, iCtrlVarType_MaxHumRat)) {
                                         ShowContinueError(" ..Humidity ratio setpoint not found on coil air outlet node.");
                                         ShowContinueError(" ..The setpoint may have been placed on a node downstream of the coil or on an "
                                                           "airloop outlet node.");
-                                        ShowContinueError(
-                                            " ..Specify the setpoint and the sensor on the coil air outlet node when possible.");
+                                        ShowContinueError(" ..Specify the setpoint and the sensor on the coil air outlet node when possible.");
                                     }
                                 }
                             } else if (SELECT_CASE_var == iTemperatureAndHumidityRatio) {
-                                CheckIfNodeSetPointManagedByEMS(ControllerProps(Num).SensedNode, iTemperatureSetPoint,
-                                                                EMSSetPointErrorFlag);
+                                CheckIfNodeSetPointManagedByEMS(ControllerProps(Num).SensedNode, iTemperatureSetPoint, EMSSetPointErrorFlag);
                                 if (EMSSetPointErrorFlag) {
                                     if (!NodeHasSPMCtrlVarType(ControllerProps(Num).SensedNode, iCtrlVarType_Temp)) {
                                         ShowContinueError(" ..Temperature setpoint not found on coil air outlet node.");
                                         ShowContinueError(" ..The setpoint may have been placed on a node downstream of the coil or on an "
                                                           "airloop outlet node.");
-                                        ShowContinueError(
-                                            " ..Specify the setpoint and the sensor on the coil air outlet node when possible.");
+                                        ShowContinueError(" ..Specify the setpoint and the sensor on the coil air outlet node when possible.");
                                     }
                                 }
                                 EMSSetPointErrorFlag = false;
-                                CheckIfNodeSetPointManagedByEMS(ControllerProps(Num).SensedNode, iHumidityRatioMaxSetPoint,
-                                                                EMSSetPointErrorFlag);
+                                CheckIfNodeSetPointManagedByEMS(ControllerProps(Num).SensedNode, iHumidityRatioMaxSetPoint, EMSSetPointErrorFlag);
                                 if (EMSSetPointErrorFlag) {
                                     if (!NodeHasSPMCtrlVarType(ControllerProps(Num).SensedNode, iCtrlVarType_MaxHumRat)) {
                                         ShowContinueError(" ..Humidity ratio setpoint not found on coil air outlet node.");
                                         ShowContinueError(" ..The setpoint may have been placed on a node downstream of the coil or on an "
                                                           "airloop outlet node.");
-                                        ShowContinueError(
-                                            " ..Specify the setpoint and the sensor on the coil air outlet node when possible.");
+                                        ShowContinueError(" ..Specify the setpoint and the sensor on the coil air outlet node when possible.");
                                     }
                                 }
                             }
@@ -857,8 +840,7 @@ namespace HVACControllers {
     // Beginning Initialization Section of the Module
     //******************************************************************************
 
-    void
-    ResetController(int const ControlNum, bool const EP_UNUSED(FirstHVACIteration), bool const DoWarmRestartFlag, bool &IsConvergedFlag)
+    void ResetController(int const ControlNum, bool const EP_UNUSED(FirstHVACIteration), bool const DoWarmRestartFlag, bool &IsConvergedFlag)
     {
 
         // SUBROUTINE INFORMATION:
@@ -907,9 +889,9 @@ namespace HVACControllers {
         //  IF (FirstHVACIteration) THEN
         // DSU3    Node(ActuatedNode)%MassFlowRate = 0.0d0
         NoFlowResetValue = 0.0;
-        SetActuatedBranchFlowRate(
-            NoFlowResetValue, ControllerProps(ControlNum).ActuatedNode, ControllerProps(ControlNum).ActuatedNodePlantLoopNum,
-            ControllerProps(ControlNum).ActuatedNodePlantLoopSide, ControllerProps(ControlNum).ActuatedNodePlantLoopBranchNum, true);
+        SetActuatedBranchFlowRate(NoFlowResetValue, ControllerProps(ControlNum).ActuatedNode, ControllerProps(ControlNum).ActuatedNodePlantLoopNum,
+                                  ControllerProps(ControlNum).ActuatedNodePlantLoopSide, ControllerProps(ControlNum).ActuatedNodePlantLoopBranchNum,
+                                  true);
 
         //  ENDIF
 
@@ -1084,10 +1066,9 @@ namespace HVACControllers {
                             }
                         } else {
                             //           Warn if humidity setpoint is detected (only for cooling coils) and control varible is TEMP.
-                            if (Node(SensedNode).HumRatMax != SensedNodeFlagValue &&
-                                ControllerProps(ControllerIndex).Action == iReverseAction) {
-                                ShowWarningError("HVACControllers: controller type=" + ControllerProps(ControllerIndex).ControllerType +
-                                                 " Name=\"" + ControllerProps(ControllerIndex).ControllerName +
+                            if (Node(SensedNode).HumRatMax != SensedNodeFlagValue && ControllerProps(ControllerIndex).Action == iReverseAction) {
+                                ShowWarningError("HVACControllers: controller type=" + ControllerProps(ControllerIndex).ControllerType + " Name=\"" +
+                                                 ControllerProps(ControllerIndex).ControllerName +
                                                  "\" has detected a maximum humidity ratio setpoint at the control node.");
                                 ShowContinueError("Node referenced (by controller)=" + NodeID(SensedNode));
                                 ShowContinueError(
@@ -1211,8 +1192,7 @@ namespace HVACControllers {
 
         if (allocated(PlantLoop) && MyPlantIndexsFlag(ControlNum)) {
             ScanPlantLoopsForNodeNum(ControllerProps(ControlNum).ControllerName, ControllerProps(ControlNum).ActuatedNode,
-                                     ControllerProps(ControlNum).ActuatedNodePlantLoopNum,
-                                     ControllerProps(ControlNum).ActuatedNodePlantLoopSide,
+                                     ControllerProps(ControlNum).ActuatedNodePlantLoopNum, ControllerProps(ControlNum).ActuatedNodePlantLoopSide,
                                      ControllerProps(ControlNum).ActuatedNodePlantLoopBranchNum);
             MyPlantIndexsFlag(ControlNum) = false;
         }
@@ -1280,9 +1260,9 @@ namespace HVACControllers {
             MyEnvrnFlag(ControlNum) = true;
         }
 
-        SetActuatedBranchFlowRate(
-            ControllerProps(ControlNum).NextActuatedValue, ActuatedNode, ControllerProps(ControlNum).ActuatedNodePlantLoopNum,
-            ControllerProps(ControlNum).ActuatedNodePlantLoopSide, ControllerProps(ControlNum).ActuatedNodePlantLoopBranchNum, false);
+        SetActuatedBranchFlowRate(ControllerProps(ControlNum).NextActuatedValue, ActuatedNode, ControllerProps(ControlNum).ActuatedNodePlantLoopNum,
+                                  ControllerProps(ControlNum).ActuatedNodePlantLoopSide, ControllerProps(ControlNum).ActuatedNodePlantLoopBranchNum,
+                                  false);
 
         // Do the following initializations (every time step): This should be the info from
         // the previous components outlets or the node data in this section.
@@ -1304,8 +1284,7 @@ namespace HVACControllers {
                         int FaultIndex = ControllerProps(ControlNum).FaultyCoilSATIndex;
                         ControllerProps(ControlNum).FaultyCoilSATOffset = FaultsCoilSATSensor(FaultIndex).CalFaultOffsetAct();
                         // update the SetPointValue
-                        ControllerProps(ControlNum).SetPointValue =
-                            Node(SensedNode).TempSetPoint - ControllerProps(ControlNum).FaultyCoilSATOffset;
+                        ControllerProps(ControlNum).SetPointValue = Node(SensedNode).TempSetPoint - ControllerProps(ControlNum).FaultyCoilSATOffset;
                     }
                 }
 
@@ -1480,8 +1459,8 @@ namespace HVACControllers {
             if (ControllerProps(ControlNum).MaxVolFlowActuated < SmallWaterVolFlow) {
                 ControllerProps(ControlNum).MaxVolFlowActuated = 0.0;
             }
-            ReportSizingOutput(ControllerProps(ControlNum).ControllerType, ControllerProps(ControlNum).ControllerName,
-                               "Maximum Actuated Flow [m3/s]", ControllerProps(ControlNum).MaxVolFlowActuated);
+            ReportSizingOutput(ControllerProps(ControlNum).ControllerType, ControllerProps(ControlNum).ControllerName, "Maximum Actuated Flow [m3/s]",
+                               ControllerProps(ControlNum).MaxVolFlowActuated);
         }
 
         if (ControllerProps(ControlNum).Offset == AutoSize) {
@@ -1749,8 +1728,7 @@ namespace HVACControllers {
         // Map root finder status onto controller mode
         {
             auto const SELECT_CASE_var(RootFinders(ControlNum).StatusFlag);
-            if ((SELECT_CASE_var == iStatusNone) || (SELECT_CASE_var == iStatusWarningNonMonotonic) ||
-                (SELECT_CASE_var == iStatusWarningSingular)) {
+            if ((SELECT_CASE_var == iStatusNone) || (SELECT_CASE_var == iStatusWarningNonMonotonic) || (SELECT_CASE_var == iStatusWarningSingular)) {
                 // We need to keep iterating...
                 IsConvergedFlag = false;
 
@@ -1883,29 +1861,27 @@ namespace HVACControllers {
                     ShowContinueError("  Actuator will be set to maximum action");
                     ShowContinueError("Controller control type=" + ControlVariableTypes(ControllerProps(ControlNum).ControlVar));
                     if (ControllerProps(ControlNum).ControlVar == iTemperature) {
-                        ShowContinueError("Controller temperature setpoint = " +
-                                          TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 2) + " [C]");
-                        ShowContinueError("Controller sensed temperature = " + TrimSigDigits(ControllerProps(ControlNum).SensedValue, 2) +
+                        ShowContinueError("Controller temperature setpoint = " + TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 2) +
                                           " [C]");
+                        ShowContinueError("Controller sensed temperature = " + TrimSigDigits(ControllerProps(ControlNum).SensedValue, 2) + " [C]");
                     } else if (ControllerProps(ControlNum).ControlVar == iHumidityRatio) {
-                        ShowContinueError("Controller humidity ratio setpoint = " +
-                                          TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 2) + " [kg-H2O/kg-air]");
-                        ShowContinueError("Controller sensed humidity ratio = " +
-                                          TrimSigDigits(ControllerProps(ControlNum).SensedValue, 2) + " [kg-H2O/kg-air]");
+                        ShowContinueError("Controller humidity ratio setpoint = " + TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 2) +
+                                          " [kg-H2O/kg-air]");
+                        ShowContinueError("Controller sensed humidity ratio = " + TrimSigDigits(ControllerProps(ControlNum).SensedValue, 2) +
+                                          " [kg-H2O/kg-air]");
                     } else if (ControllerProps(ControlNum).ControlVar == iTemperatureAndHumidityRatio) {
-                        ShowContinueError("Controller temperature setpoint = " +
-                                          TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 2) + " [C]");
-                        ShowContinueError("Controller sensed temperature = " + TrimSigDigits(ControllerProps(ControlNum).SensedValue, 2) +
+                        ShowContinueError("Controller temperature setpoint = " + TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 2) +
                                           " [C]");
+                        ShowContinueError("Controller sensed temperature = " + TrimSigDigits(ControllerProps(ControlNum).SensedValue, 2) + " [C]");
                         ShowContinueError("Controller humidity ratio setpoint = " +
                                           TrimSigDigits(Node(ControllerProps(ControlNum).SensedNode).HumRatMax, 2) + " [kg-H2O/kg-air]");
                         ShowContinueError("Controller sensed humidity ratio = " +
                                           TrimSigDigits(Node(ControllerProps(ControlNum).SensedNode).HumRat, 2) + " [kg-H2O/kg-air]");
                     } else if (ControllerProps(ControlNum).ControlVar == iFlow) {
-                        ShowContinueError("Controller mass flow rate setpoint = " +
-                                          TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 2) + " [kg/s]");
-                        ShowContinueError("Controller sensed mass flow rate = " +
-                                          TrimSigDigits(ControllerProps(ControlNum).SensedValue, 2) + " [kg/s]");
+                        ShowContinueError("Controller mass flow rate setpoint = " + TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 2) +
+                                          " [kg/s]");
+                        ShowContinueError("Controller sensed mass flow rate = " + TrimSigDigits(ControllerProps(ControlNum).SensedValue, 2) +
+                                          " [kg/s]");
                     } else {
                         // bad control variable input checked in input routine
                     }
@@ -1916,11 +1892,9 @@ namespace HVACControllers {
                             ShowContinueError("Controller actuator temperature = " +
                                               TrimSigDigits(Node(ControllerProps(ControlNum).ActuatedNode).Temp, 2) + " [C]");
                             ShowContinueError("  Note: Chilled water coils should be reverse action and the entering chilled");
-                            ShowContinueError(
-                                "        water temperature (controller actuator temperature) should be below the setpoint temperature");
+                            ShowContinueError("        water temperature (controller actuator temperature) should be below the setpoint temperature");
                             ShowContinueError("  Note: Hot water coils should be normal action and the entering hot");
-                            ShowContinueError(
-                                "        water temperature (controller actuator temperature) should be above the setpoint temperature");
+                            ShowContinueError("        water temperature (controller actuator temperature) should be above the setpoint temperature");
                         }
                     } else {
                         // bad actuator variable input checked in input routine
@@ -2284,13 +2258,11 @@ namespace HVACControllers {
             if (ControllerProps(ControlNum).Mode == iModeActive) {
                 ControllerProps(ControlNum).SolutionTrackers(PreviousSolutionIndex).DefinedFlag = true;
                 ControllerProps(ControlNum).SolutionTrackers(PreviousSolutionIndex).Mode = ControllerProps(ControlNum).Mode;
-                ControllerProps(ControlNum).SolutionTrackers(PreviousSolutionIndex).ActuatedValue =
-                    ControllerProps(ControlNum).NextActuatedValue;
+                ControllerProps(ControlNum).SolutionTrackers(PreviousSolutionIndex).ActuatedValue = ControllerProps(ControlNum).NextActuatedValue;
             } else {
                 ControllerProps(ControlNum).SolutionTrackers(PreviousSolutionIndex).DefinedFlag = false;
                 ControllerProps(ControlNum).SolutionTrackers(PreviousSolutionIndex).Mode = ControllerProps(ControlNum).Mode;
-                ControllerProps(ControlNum).SolutionTrackers(PreviousSolutionIndex).ActuatedValue =
-                    ControllerProps(ControlNum).NextActuatedValue;
+                ControllerProps(ControlNum).SolutionTrackers(PreviousSolutionIndex).ActuatedValue = ControllerProps(ControlNum).NextActuatedValue;
             }
         }
     }
@@ -2341,14 +2313,12 @@ namespace HVACControllers {
             auto const SELECT_CASE_var(ControllerProps(ControlNum).ActuatorVar);
             if (SELECT_CASE_var == iFlow) { // 'Flow'
                 SetActuatedBranchFlowRate(ControllerProps(ControlNum).NextActuatedValue, ControllerProps(ControlNum).ActuatedNode,
-                                          ControllerProps(ControlNum).ActuatedNodePlantLoopNum,
-                                          ControllerProps(ControlNum).ActuatedNodePlantLoopSide,
+                                          ControllerProps(ControlNum).ActuatedNodePlantLoopNum, ControllerProps(ControlNum).ActuatedNodePlantLoopSide,
                                           ControllerProps(ControlNum).ActuatedNodePlantLoopBranchNum, false);
                 //     Node(ActuatedNode)%MassFlowRate = ControllerProps(ControlNum)%NextActuatedValue
 
             } else {
-                ShowFatalError("UpdateController: Invalid Actuator Variable Type=" +
-                               ControlVariableTypes(ControllerProps(ControlNum).ActuatorVar));
+                ShowFatalError("UpdateController: Invalid Actuator Variable Type=" + ControlVariableTypes(ControllerProps(ControlNum).ActuatorVar));
             }
         }
     }
@@ -2402,8 +2372,7 @@ namespace HVACControllers {
     //        End of Reporting subroutines for the Controller Module
     // *****************************************************************************
 
-    void
-    ExitCalcController(int const ControlNum, Real64 const NextActuatedValue, int const Mode, bool &IsConvergedFlag, bool &IsUpToDateFlag)
+    void ExitCalcController(int const ControlNum, Real64 const NextActuatedValue, int const Mode, bool &IsConvergedFlag, bool &IsUpToDateFlag)
     {
 
         // SUBROUTINE INFORMATION:
@@ -2685,8 +2654,7 @@ namespace HVACControllers {
         ShowFatalError("DumpAirLoopStatistics: Failed to open statistics file \"" + StatisticsFileName + "\" for output (write).");
     }
 
-    void
-    WriteAirLoopStatistics(int const FileUnit, DefinePrimaryAirSystem const &ThisPrimaryAirSystem, AirLoopStatsType const &ThisAirLoopStats)
+    void WriteAirLoopStatistics(int const FileUnit, DefinePrimaryAirSystem const &ThisPrimaryAirSystem, AirLoopStatsType const &ThisAirLoopStats)
     {
 
         // SUBROUTINE INFORMATION:
@@ -2901,8 +2869,8 @@ namespace HVACControllers {
         gio::write(TraceFileUnit, fmtAAAA) << "Num" << ',' << "Name" << ',';
 
         for (ControllerNum = 1; ControllerNum <= PrimaryAirSystem(AirLoopNum).NumControllers; ++ControllerNum) {
-            gio::write(TraceFileUnit, fmtAAAA) << TrimSigDigits(ControllerNum) << ','
-                                               << PrimaryAirSystem(AirLoopNum).ControllerName(ControllerNum) << ',';
+            gio::write(TraceFileUnit, fmtAAAA) << TrimSigDigits(ControllerNum) << ',' << PrimaryAirSystem(AirLoopNum).ControllerName(ControllerNum)
+                                               << ',';
             // SAME AS ControllerProps(ControllerIndex)%ControllerName BUT NOT YET AVAILABLE
         }
 
@@ -2916,9 +2884,9 @@ namespace HVACControllers {
             IOFlags flags;
             flags.ADVANCE("No");
             gio::write(TraceFileUnit, "(12(A,A))", flags)
-                << "ZoneSizingCalc" << ',' << "SysSizingCalc" << ',' << "EnvironmentNum" << ',' << "WarmupFlag" << ',' << "SysTimeStamp"
-                << ',' << "SysTimeInterval" << ',' << "BeginTimeStepFlag" << ',' << "FirstTimeStepSysFlag" << ',' << "FirstHVACIteration"
-                << ',' << "AirLoopPass" << ',' << "AirLoopNumCallsTot" << ',' << "AirLoopConverged" << ',';
+                << "ZoneSizingCalc" << ',' << "SysSizingCalc" << ',' << "EnvironmentNum" << ',' << "WarmupFlag" << ',' << "SysTimeStamp" << ','
+                << "SysTimeInterval" << ',' << "BeginTimeStepFlag" << ',' << "FirstTimeStepSysFlag" << ',' << "FirstHVACIteration" << ','
+                << "AirLoopPass" << ',' << "AirLoopNumCallsTot" << ',' << "AirLoopConverged" << ',';
         }
 
         // Write headers for final state
@@ -2926,10 +2894,9 @@ namespace HVACControllers {
             {
                 IOFlags flags;
                 flags.ADVANCE("No");
-                gio::write(TraceFileUnit, "(5(A,A,A))", flags) << "Mode" << TrimSigDigits(ControllerNum) << "IterMax"
-                                                               << TrimSigDigits(ControllerNum) << "XRoot" << TrimSigDigits(ControllerNum)
-                                                               << "YRoot" << TrimSigDigits(ControllerNum) << "YSetPoint"
-                                                               << TrimSigDigits(ControllerNum);
+                gio::write(TraceFileUnit, "(5(A,A,A))", flags) << "Mode" << TrimSigDigits(ControllerNum) << "IterMax" << TrimSigDigits(ControllerNum)
+                                                               << "XRoot" << TrimSigDigits(ControllerNum) << "YRoot" << TrimSigDigits(ControllerNum)
+                                                               << "YSetPoint" << TrimSigDigits(ControllerNum);
             }
         }
 
@@ -3013,11 +2980,8 @@ namespace HVACControllers {
         gio::write(TraceFileUnit, fmtLD);
     }
 
-    void TraceIterationStamp(int const TraceFileUnit,
-                             bool const FirstHVACIteration,
-                             int const AirLoopPass,
-                             bool const AirLoopConverged,
-                             int const AirLoopNumCalls)
+    void TraceIterationStamp(
+        int const TraceFileUnit, bool const FirstHVACIteration, int const AirLoopPass, bool const AirLoopConverged, int const AirLoopNumCalls)
     {
 
         // SUBROUTINE INFORMATION:
@@ -3072,9 +3036,9 @@ namespace HVACControllers {
                 << TrimSigDigits(LogicalToInteger(ZoneSizingCalc)) << ',' << TrimSigDigits(LogicalToInteger(SysSizingCalc)) << ','
                 << TrimSigDigits(CurEnvirNum) << ',' << TrimSigDigits(LogicalToInteger(WarmupFlag)) << ',' << CreateHVACTimeString() << ','
                 << MakeHVACTimeIntervalString() << ',' << TrimSigDigits(LogicalToInteger(BeginTimeStepFlag)) << ','
-                << TrimSigDigits(LogicalToInteger(FirstTimeStepSysFlag)) << ',' << TrimSigDigits(LogicalToInteger(FirstHVACIteration))
-                << ',' << TrimSigDigits(AirLoopPass) << ',' << TrimSigDigits(AirLoopNumCalls) << ','
-                << TrimSigDigits(LogicalToInteger(AirLoopConverged)) << ',';
+                << TrimSigDigits(LogicalToInteger(FirstTimeStepSysFlag)) << ',' << TrimSigDigits(LogicalToInteger(FirstHVACIteration)) << ','
+                << TrimSigDigits(AirLoopPass) << ',' << TrimSigDigits(AirLoopNumCalls) << ',' << TrimSigDigits(LogicalToInteger(AirLoopConverged))
+                << ',';
         }
     }
 
@@ -3224,8 +3188,7 @@ namespace HVACControllers {
         return;
 
     Label100:;
-        ShowFatalError("SetupIndividualControllerTracer: Failed to open controller trace file \"" + TraceFileName +
-                       "\" for output (write).");
+        ShowFatalError("SetupIndividualControllerTracer: Failed to open controller trace file \"" + TraceFileName + "\" for output (write).");
     }
 
     void TraceIndividualController(int const ControlNum,
@@ -3305,9 +3268,8 @@ namespace HVACControllers {
             flags.ADVANCE("No");
             gio::write(TraceFileUnit, "(2(A,A),2(A,A),4(A,A))", flags)
                 << TrimSigDigits(CurEnvirNum) << ',' << TrimSigDigits(LogicalToInteger(WarmupFlag)) << ',' << CreateHVACTimeString() << ','
-                << MakeHVACTimeIntervalString() << ',' << TrimSigDigits(AirLoopPass) << ','
-                << TrimSigDigits(LogicalToInteger(FirstHVACIteration)) << ',' << TrimSigDigits(Operation) << ','
-                << TrimSigDigits(ControllerProps(ControlNum).NumCalcCalls) << ',';
+                << MakeHVACTimeIntervalString() << ',' << TrimSigDigits(AirLoopPass) << ',' << TrimSigDigits(LogicalToInteger(FirstHVACIteration))
+                << ',' << TrimSigDigits(Operation) << ',' << TrimSigDigits(ControllerProps(ControlNum).NumCalcCalls) << ',';
         }
 
         // Write detailed diagnostic
@@ -3321,11 +3283,10 @@ namespace HVACControllers {
                     IOFlags flags;
                     flags.ADVANCE("No");
                     gio::write(TraceFileUnit, "(3(A,A),3(A,A),2(A,A),2(A,A),1(A,A))", flags)
-                        << TrimSigDigits(Node(SensedNode).MassFlowRate, 10) << ','
-                        << TrimSigDigits(Node(ActuatedNode).MassFlowRateMinAvail, 10) << ','
-                        << TrimSigDigits(Node(ActuatedNode).MassFlowRateMaxAvail, 10) << ','
-                        << TrimSigDigits(ControllerProps(ControlNum).ActuatedValue, 10) << ',' << TrimSigDigits(Node(SensedNode).Temp, 10)
-                        << ',' << TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 10) << ',' << ' ' << ',' << ' ' << ','
+                        << TrimSigDigits(Node(SensedNode).MassFlowRate, 10) << ',' << TrimSigDigits(Node(ActuatedNode).MassFlowRateMinAvail, 10)
+                        << ',' << TrimSigDigits(Node(ActuatedNode).MassFlowRateMaxAvail, 10) << ','
+                        << TrimSigDigits(ControllerProps(ControlNum).ActuatedValue, 10) << ',' << TrimSigDigits(Node(SensedNode).Temp, 10) << ','
+                        << TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 10) << ',' << ' ' << ',' << ' ' << ','
                         << TrimSigDigits(ControllerProps(ControlNum).Mode) << ',' << TrimSigDigits(LogicalToInteger(IsConvergedFlag)) << ','
                         << TrimSigDigits(ControllerProps(ControlNum).NextActuatedValue, 10) << ',';
                 } // X | Y | setpoint | DeltaSensed = Y - YRoot | Offset | Mode | IsConvergedFlag
@@ -3343,14 +3304,12 @@ namespace HVACControllers {
                     IOFlags flags;
                     flags.ADVANCE("No");
                     gio::write(TraceFileUnit, "(8(A,A),2(A,A),1(A,A))", flags)
-                        << TrimSigDigits(Node(SensedNode).MassFlowRate, 10) << ','
-                        << TrimSigDigits(Node(ActuatedNode).MassFlowRateMinAvail, 10) << ','
-                        << TrimSigDigits(Node(ActuatedNode).MassFlowRateMaxAvail, 10) << ','
-                        << TrimSigDigits(ControllerProps(ControlNum).ActuatedValue, 10) << ',' << TrimSigDigits(Node(SensedNode).Temp, 10)
-                        << ',' << TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 10) << ','
-                        << TrimSigDigits(ControllerProps(ControlNum).DeltaSensed, 10) << ','
-                        << TrimSigDigits(ControllerProps(ControlNum).Offset, 10) << ',' << TrimSigDigits(ControllerProps(ControlNum).Mode)
-                        << ',' << TrimSigDigits(LogicalToInteger(IsConvergedFlag)) << ','
+                        << TrimSigDigits(Node(SensedNode).MassFlowRate, 10) << ',' << TrimSigDigits(Node(ActuatedNode).MassFlowRateMinAvail, 10)
+                        << ',' << TrimSigDigits(Node(ActuatedNode).MassFlowRateMaxAvail, 10) << ','
+                        << TrimSigDigits(ControllerProps(ControlNum).ActuatedValue, 10) << ',' << TrimSigDigits(Node(SensedNode).Temp, 10) << ','
+                        << TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 10) << ','
+                        << TrimSigDigits(ControllerProps(ControlNum).DeltaSensed, 10) << ',' << TrimSigDigits(ControllerProps(ControlNum).Offset, 10)
+                        << ',' << TrimSigDigits(ControllerProps(ControlNum).Mode) << ',' << TrimSigDigits(LogicalToInteger(IsConvergedFlag)) << ','
                         << TrimSigDigits(ControllerProps(ControlNum).NextActuatedValue, 10) << ',';
                 } // X | Y | setpoint | DeltaSensed = Y - YRoot | Offset | Mode | IsConvergedFlag
 
@@ -3367,14 +3326,12 @@ namespace HVACControllers {
                     IOFlags flags;
                     flags.ADVANCE("No");
                     gio::write(TraceFileUnit, "(3(A,A),5(A,A),2(A,A),1(A,A))", flags)
-                        << TrimSigDigits(Node(SensedNode).MassFlowRate, 10) << ','
-                        << TrimSigDigits(Node(ActuatedNode).MassFlowRateMinAvail, 10) << ','
-                        << TrimSigDigits(Node(ActuatedNode).MassFlowRateMaxAvail, 10) << ','
-                        << TrimSigDigits(ControllerProps(ControlNum).ActuatedValue, 10) << ',' << TrimSigDigits(Node(SensedNode).Temp, 10)
-                        << ',' << TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 10) << ','
-                        << TrimSigDigits(ControllerProps(ControlNum).DeltaSensed, 10) << ','
-                        << TrimSigDigits(ControllerProps(ControlNum).Offset, 10) << ',' << TrimSigDigits(ControllerProps(ControlNum).Mode)
-                        << ',' << TrimSigDigits(LogicalToInteger(IsConvergedFlag)) << ','
+                        << TrimSigDigits(Node(SensedNode).MassFlowRate, 10) << ',' << TrimSigDigits(Node(ActuatedNode).MassFlowRateMinAvail, 10)
+                        << ',' << TrimSigDigits(Node(ActuatedNode).MassFlowRateMaxAvail, 10) << ','
+                        << TrimSigDigits(ControllerProps(ControlNum).ActuatedValue, 10) << ',' << TrimSigDigits(Node(SensedNode).Temp, 10) << ','
+                        << TrimSigDigits(ControllerProps(ControlNum).SetPointValue, 10) << ','
+                        << TrimSigDigits(ControllerProps(ControlNum).DeltaSensed, 10) << ',' << TrimSigDigits(ControllerProps(ControlNum).Offset, 10)
+                        << ',' << TrimSigDigits(ControllerProps(ControlNum).Mode) << ',' << TrimSigDigits(LogicalToInteger(IsConvergedFlag)) << ','
                         << TrimSigDigits(ControllerProps(ControlNum).NextActuatedValue, 10) << ',';
                 } // X | Y | setpoint | DeltaSensed = Y - YRoot | Offset | Mode | IsConvergedFlag
 
@@ -3639,8 +3596,7 @@ namespace HVACControllers {
                                                   "to be listed in the proper order.");
                                 ShowContinueError("The controllers should be listed in natural flow order with those for upstream coils "
                                                   "listed before those for downstream coils.");
-                                ShowContinueError(
-                                    "The sensed nodes specified for the respective controllers should also reflect this order.");
+                                ShowContinueError("The sensed nodes specified for the respective controllers should also reflect this order.");
                             }
                         }
                     }

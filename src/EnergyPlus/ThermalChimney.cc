@@ -253,8 +253,8 @@ namespace ThermalChimney {
 
         for (Loop = 1; Loop <= TotThermalChimney; ++Loop) {
 
-            GetObjectItem(cCurrentModuleObject, Loop, cAlphaArgs, NumAlpha, rNumericArgs, NumNumber, IOStat, lNumericFieldBlanks,
-                          lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cCurrentModuleObject, Loop, cAlphaArgs, NumAlpha, rNumericArgs, NumNumber, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
+                          cAlphaFieldNames, cNumericFieldNames);
 
             // First Alpha is Thermal Chimney Name
             IsNotOK = false;
@@ -385,8 +385,8 @@ namespace ThermalChimney {
                                 ThermalChimneyReport(Loop).OverallTCVolumeFlow, "System", "Average", ThermalChimneySys(Loop).Name);
             SetupOutputVariable("Zone Thermal Chimney Standard Density Air Volume Flow Rate", OutputProcessor::Unit::m3_s,
                                 ThermalChimneyReport(Loop).OverallTCVolumeFlowStd, "System", "Average", ThermalChimneySys(Loop).Name);
-            SetupOutputVariable("Zone Thermal Chimney Mass Flow Rate", OutputProcessor::Unit::kg_s,
-                                ThermalChimneyReport(Loop).OverallTCMassFlow, "System", "Average", ThermalChimneySys(Loop).Name);
+            SetupOutputVariable("Zone Thermal Chimney Mass Flow Rate", OutputProcessor::Unit::kg_s, ThermalChimneyReport(Loop).OverallTCMassFlow,
+                                "System", "Average", ThermalChimneySys(Loop).Name);
             SetupOutputVariable("Zone Thermal Chimney Outlet Temperature", OutputProcessor::Unit::C,
                                 ThermalChimneyReport(Loop).OutletAirTempThermalChim, "System", "Average", ThermalChimneySys(Loop).Name);
 
@@ -655,10 +655,9 @@ namespace ThermalChimney {
             for (TCZoneNum = 1; TCZoneNum <= ThermalChimneySys(Loop).TotZoneToDistrib; ++TCZoneNum) {
                 TCZoneNumCounter = ThermalChimneySys(Loop).ZonePtr(TCZoneNum);
                 Process1 += PsyHFnTdbW(MAT(TCZoneNumCounter), ZoneAirHumRat(TCZoneNumCounter)) *
-                            ThermalChimneySys(Loop).DistanceThermChimInlet(TCZoneNum) *
-                            ThermalChimneySys(Loop).RatioThermChimAirFlow(TCZoneNum);
-                Process2 += ThermalChimneySys(Loop).RatioThermChimAirFlow(TCZoneNum) *
-                            PsyHFnTdbW(MAT(TCZoneNumCounter), ZoneAirHumRat(TCZoneNumCounter));
+                            ThermalChimneySys(Loop).DistanceThermChimInlet(TCZoneNum) * ThermalChimneySys(Loop).RatioThermChimAirFlow(TCZoneNum);
+                Process2 +=
+                    ThermalChimneySys(Loop).RatioThermChimAirFlow(TCZoneNum) * PsyHFnTdbW(MAT(TCZoneNumCounter), ZoneAirHumRat(TCZoneNumCounter));
             }
             OverallThermalChimLength = Process1 / Process2;
 
@@ -683,11 +682,9 @@ namespace ThermalChimney {
                 } // IF (IterationLoop == 1) THEN
 
                 // Calculation of Thermal Chimney Discharge Air Temperature
-                Process1 = AbsorberWallWidthTC * DeltaL * ConvTransCoeffGlassFluid +
-                           AbsorberWallWidthTC * DeltaL * ConvTransCoeffWallFluid -
+                Process1 = AbsorberWallWidthTC * DeltaL * ConvTransCoeffGlassFluid + AbsorberWallWidthTC * DeltaL * ConvTransCoeffWallFluid -
                            2.0 * TempTCMassAirFlowRate(IterationLoop) * AirSpecHeatThermalChim;
-                Process2 = AbsorberWallWidthTC * DeltaL * ConvTransCoeffGlassFluid +
-                           AbsorberWallWidthTC * DeltaL * ConvTransCoeffWallFluid +
+                Process2 = AbsorberWallWidthTC * DeltaL * ConvTransCoeffGlassFluid + AbsorberWallWidthTC * DeltaL * ConvTransCoeffWallFluid +
                            2.0 * TempTCMassAirFlowRate(IterationLoop) * AirSpecHeatThermalChim;
                 Process3 = 2.0 * AbsorberWallWidthTC * DeltaL * ConvTransCoeffGlassFluid * SurfTempGlassCover +
                            2.0 * AbsorberWallWidthTC * DeltaL * ConvTransCoeffWallFluid * SurfTempAbsorberWall;
@@ -712,9 +709,9 @@ namespace ThermalChimney {
                 if (ThermChimSubTemp(NTC) <= RoomAirTemp) {
                     TempTCVolumeAirFlowRate(IterationLoop) = 0.0;
                 } else {
-                    TempTCVolumeAirFlowRate(IterationLoop) = DischargeCoeffTC * AirOutletCrossAreaTC *
-                                                             std::sqrt(2.0 * ((ThermChimSubTemp(NTC) - RoomAirTemp) / RoomAirTemp) * 9.8 *
-                                                                       OverallThermalChimLength / pow_2(1.0 + AirRelativeCrossArea));
+                    TempTCVolumeAirFlowRate(IterationLoop) =
+                        DischargeCoeffTC * AirOutletCrossAreaTC * std::sqrt(2.0 * ((ThermChimSubTemp(NTC) - RoomAirTemp) / RoomAirTemp) * 9.8 *
+                                                                            OverallThermalChimLength / pow_2(1.0 + AirRelativeCrossArea));
                 }
 
             } // DO IterationLoop = 1,10
@@ -757,8 +754,7 @@ namespace ThermalChimney {
                 TCZoneNumCounter = ThermalChimneySys(Loop).ZonePtr(TCZoneNum);
                 AirDensity = PsyRhoAirFnPbTdbW(OutBaroPress, MAT(TCZoneNumCounter), ZoneAirHumRat(TCZoneNumCounter));
                 CpAir = PsyCpAirFnWTdb(ZoneAirHumRat(TCZoneNumCounter), MAT(TCZoneNumCounter));
-                MCPThermChim(TCZoneNumCounter) =
-                    TCVolumeAirFlowRate * AirDensity * CpAir * ThermalChimneySys(Loop).RatioThermChimAirFlow(TCZoneNum);
+                MCPThermChim(TCZoneNumCounter) = TCVolumeAirFlowRate * AirDensity * CpAir * ThermalChimneySys(Loop).RatioThermChimAirFlow(TCZoneNum);
                 if (MCPThermChim(TCZoneNumCounter) <= 0.0) {
                     MCPThermChim(TCZoneNumCounter) = 0.0;
                 }
@@ -855,14 +851,12 @@ namespace ThermalChimney {
 
             if (ZT(ZoneLoop) > Zone(ZoneLoop).OutDryBulbTemp) {
 
-                ZnRptThermChim(ZoneLoop).ThermalChimneyHeatLoss =
-                    MCPThermChim(ZoneLoop) * (ZT(ZoneLoop) - Zone(ZoneLoop).OutDryBulbTemp) * TSMult;
+                ZnRptThermChim(ZoneLoop).ThermalChimneyHeatLoss = MCPThermChim(ZoneLoop) * (ZT(ZoneLoop) - Zone(ZoneLoop).OutDryBulbTemp) * TSMult;
                 ZnRptThermChim(ZoneLoop).ThermalChimneyHeatGain = 0.0;
 
             } else if (ZT(ZoneLoop) <= Zone(ZoneLoop).OutDryBulbTemp) {
 
-                ZnRptThermChim(ZoneLoop).ThermalChimneyHeatGain =
-                    MCPThermChim(ZoneLoop) * (Zone(ZoneLoop).OutDryBulbTemp - ZT(ZoneLoop)) * TSMult;
+                ZnRptThermChim(ZoneLoop).ThermalChimneyHeatGain = MCPThermChim(ZoneLoop) * (Zone(ZoneLoop).OutDryBulbTemp - ZT(ZoneLoop)) * TSMult;
                 ZnRptThermChim(ZoneLoop).ThermalChimneyHeatLoss = 0.0;
             }
 

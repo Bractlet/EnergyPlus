@@ -152,9 +152,9 @@ namespace DataCostEstimate {
                              Real64 const RegionalModifier,   // = 1.0 ! holds user-defined multiplier to account for regional diffs
                              Real64 const GrandTotal          // = 0.0 ! the Grand Total of all line items plus all other costs
                              )
-            : LineItemTot(LineItemTot), MiscCostperSqMeter(MiscCostperSqMeter), DesignFeeFrac(DesignFeeFrac),
-              ContractorFeeFrac(ContractorFeeFrac), ContingencyFrac(ContingencyFrac), BondCostFrac(BondCostFrac),
-              CommissioningFrac(CommissioningFrac), RegionalModifier(RegionalModifier), GrandTotal(GrandTotal)
+            : LineItemTot(LineItemTot), MiscCostperSqMeter(MiscCostperSqMeter), DesignFeeFrac(DesignFeeFrac), ContractorFeeFrac(ContractorFeeFrac),
+              ContingencyFrac(ContingencyFrac), BondCostFrac(BondCostFrac), CommissioningFrac(CommissioningFrac), RegionalModifier(RegionalModifier),
+              GrandTotal(GrandTotal)
         {
         }
     };

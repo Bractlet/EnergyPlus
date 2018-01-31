@@ -281,8 +281,8 @@ namespace HeatBalFiniteDiffManager {
         cCurrentModuleObject = "HeatBalanceSettings:ConductionFiniteDifference";
 
         if (GetNumObjectsFound(cCurrentModuleObject) > 0) {
-            GetObjectItem(cCurrentModuleObject, 1, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStat, lNumericFieldBlanks,
-                          lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cCurrentModuleObject, 1, cAlphaArgs, NumAlphas, rNumericArgs, NumNumbers, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
+                          cAlphaFieldNames, cNumericFieldNames);
 
             if (!lAlphaFieldBlanks(1)) {
 
@@ -767,8 +767,7 @@ namespace HeatBalFiniteDiffManager {
                     Material(CurrentLayer).Resistance = Material(CurrentLayer).Thickness / Material(CurrentLayer).Conductivity;
                     Dv = Material(CurrentLayer).VaporDiffus;
                     SigmaR(ConstrNum) += Material(CurrentLayer).Resistance; // add resistance
-                    SigmaC(ConstrNum) +=
-                        Material(CurrentLayer).Density * Material(CurrentLayer).SpecHeat * Material(CurrentLayer).Thickness;
+                    SigmaC(ConstrNum) += Material(CurrentLayer).Density * Material(CurrentLayer).SpecHeat * Material(CurrentLayer).Thickness;
                     Alpha = kt / (RhoS * Cp);
                     mAlpha = 0.0;
 
@@ -856,8 +855,7 @@ namespace HeatBalFiniteDiffManager {
                 }
                 Layer = Construct(ConstrNum).TotLayers;
                 ++Ipts1;
-                ConstructFD(ConstrNum).NodeXlocation(Ipts1) =
-                    ConstructFD(ConstrNum).NodeXlocation(Ipts1 - 1) + ConstructFD(ConstrNum).DelX(Layer);
+                ConstructFD(ConstrNum).NodeXlocation(Ipts1) = ConstructFD(ConstrNum).NodeXlocation(Ipts1 - 1) + ConstructFD(ConstrNum).DelX(Layer);
             }
         }
 
@@ -926,8 +924,8 @@ namespace HeatBalFiniteDiffManager {
             if (Surface(SurfNum).Class == SurfaceClass_Window) continue;
             if (Surface(SurfNum).HeatTransferAlgorithm != HeatTransferModel_CondFD) continue;
 
-            SetupOutputVariable("CondFD Inner Solver Loop Iteration Count", OutputProcessor::Unit::None, SurfaceFD(SurfNum).GSloopCounter,
-                                "Zone", "Sum", Surface(SurfNum).Name);
+            SetupOutputVariable("CondFD Inner Solver Loop Iteration Count", OutputProcessor::Unit::None, SurfaceFD(SurfNum).GSloopCounter, "Zone",
+                                "Sum", Surface(SurfNum).Name);
 
             TotNodes = ConstructFD(Surface(SurfNum).Construction).TotNodes; // Full size nodes, start with outside face.
             for (Lay = 1; Lay <= TotNodes + 1; ++Lay) {                     // include inside face node
@@ -942,12 +940,10 @@ namespace HeatBalFiniteDiffManager {
                 SetupOutputVariable("CondFD Phase Change Node Temperature " + TrimSigDigits(Lay) + "", OutputProcessor::Unit::C,
                                     SurfaceFD(SurfNum).TDT(Lay), "Zone", "State", Surface(SurfNum).Name);
                 if (DisplayAdvancedReportVariables) {
-                    SetupOutputVariable("CondFD Surface Heat Capacitance Outer Half Node " + TrimSigDigits(Lay) + "",
-                                        OutputProcessor::Unit::W_m2K, SurfaceFD(SurfNum).CpDelXRhoS1(Lay), "Zone", "State",
-                                        Surface(SurfNum).Name);
-                    SetupOutputVariable("CondFD Surface Heat Capacitance Inner Half Node " + TrimSigDigits(Lay) + "",
-                                        OutputProcessor::Unit::W_m2K, SurfaceFD(SurfNum).CpDelXRhoS2(Lay), "Zone", "State",
-                                        Surface(SurfNum).Name);
+                    SetupOutputVariable("CondFD Surface Heat Capacitance Outer Half Node " + TrimSigDigits(Lay) + "", OutputProcessor::Unit::W_m2K,
+                                        SurfaceFD(SurfNum).CpDelXRhoS1(Lay), "Zone", "State", Surface(SurfNum).Name);
+                    SetupOutputVariable("CondFD Surface Heat Capacitance Inner Half Node " + TrimSigDigits(Lay) + "", OutputProcessor::Unit::W_m2K,
+                                        SurfaceFD(SurfNum).CpDelXRhoS2(Lay), "Zone", "State", Surface(SurfNum).Name);
                 }
             }
 
@@ -1187,9 +1183,8 @@ namespace HeatBalFiniteDiffManager {
 
         gio::write(OutputFileInits, fmtA) << "! <ConductionFiniteDifference HeatBalanceSettings>,Scheme Type,Space Discretization "
                                              "Constant,Relaxation Factor,Inside Face Surface Temperature Convergence Criteria";
-        gio::write(OutputFileInits, fmtA) << " ConductionFiniteDifference HeatBalanceSettings," + cCondFDSchemeType(CondFDSchemeType) +
-                                                 ',' + RoundSigDigits(SpaceDescritConstant, 2) + ',' +
-                                                 RoundSigDigits(CondFDRelaxFactorInput, 2) + ',' +
+        gio::write(OutputFileInits, fmtA) << " ConductionFiniteDifference HeatBalanceSettings," + cCondFDSchemeType(CondFDSchemeType) + ',' +
+                                                 RoundSigDigits(SpaceDescritConstant, 2) + ',' + RoundSigDigits(CondFDRelaxFactorInput, 2) + ',' +
                                                  RoundSigDigits(MaxAllowedDelTempCondFD, 4);
         ScanForReports("Constructions", DoReport, "Constructions");
 
@@ -1209,10 +1204,9 @@ namespace HeatBalFiniteDiffManager {
                 if (Construct(ThisNum).TypeIsWindow) continue;
                 if (Construct(ThisNum).TypeIsIRT) continue;
 
-                gio::write(OutputFileInits, Format_700) << Construct(ThisNum).Name << RoundSigDigits(ThisNum)
-                                                        << RoundSigDigits(Construct(ThisNum).TotLayers)
-                                                        << RoundSigDigits(int(ConstructFD(ThisNum).TotNodes + 1))
-                                                        << RoundSigDigits(ConstructFD(ThisNum).DeltaTime / SecInHour, 6);
+                gio::write(OutputFileInits, Format_700)
+                    << Construct(ThisNum).Name << RoundSigDigits(ThisNum) << RoundSigDigits(Construct(ThisNum).TotLayers)
+                    << RoundSigDigits(int(ConstructFD(ThisNum).TotNodes + 1)) << RoundSigDigits(ConstructFD(ThisNum).DeltaTime / SecInHour, 6);
 
                 for (Layer = 1; Layer <= Construct(ThisNum).TotLayers; ++Layer) {
                     gio::write(OutputFileInits, Format_701)
@@ -1240,15 +1234,13 @@ namespace HeatBalFiniteDiffManager {
                             if (OutwardMatLayerNum > 0 && OutwardMatLayerNum <= Construct(ThisNum).TotLayers) {
                                 gio::write(OutputFileInits, Format_702)
                                     << "Node #" + stripped(InodesChar) << RoundSigDigits(ConstructFD(ThisNum).NodeXlocation(Inodes), 8)
-                                    << Construct(ThisNum).Name << ConstructFD(ThisNum).Name(OutwardMatLayerNum)
-                                    << ConstructFD(ThisNum).Name(Layer);
+                                    << Construct(ThisNum).Name << ConstructFD(ThisNum).Name(OutwardMatLayerNum) << ConstructFD(ThisNum).Name(Layer);
                             }
                         } else if (LayerNode > 1) {
                             OutwardMatLayerNum = Layer;
                             gio::write(OutputFileInits, Format_702)
                                 << "Node #" + stripped(InodesChar) << RoundSigDigits(ConstructFD(ThisNum).NodeXlocation(Inodes), 8)
-                                << Construct(ThisNum).Name << ConstructFD(ThisNum).Name(OutwardMatLayerNum)
-                                << ConstructFD(ThisNum).Name(Layer);
+                                << Construct(ThisNum).Name << ConstructFD(ThisNum).Name(OutwardMatLayerNum) << ConstructFD(ThisNum).Name(Layer);
                         }
                     }
                 }
@@ -1256,9 +1248,9 @@ namespace HeatBalFiniteDiffManager {
                 Layer = Construct(ThisNum).TotLayers;
                 ++Inodes;
                 gio::write(InodesChar, fmtLD) << Inodes;
-                gio::write(OutputFileInits, Format_702)
-                    << "Node #" + stripped(InodesChar) << RoundSigDigits(ConstructFD(ThisNum).NodeXlocation(Inodes), 8)
-                    << Construct(ThisNum).Name << ConstructFD(ThisNum).Name(Layer) << "Surface Inside Face";
+                gio::write(OutputFileInits, Format_702) << "Node #" + stripped(InodesChar)
+                                                        << RoundSigDigits(ConstructFD(ThisNum).NodeXlocation(Inodes), 8) << Construct(ThisNum).Name
+                                                        << ConstructFD(ThisNum).Name(Layer) << "Surface Inside Face";
             }
         }
     }
@@ -1332,11 +1324,11 @@ namespace HeatBalFiniteDiffManager {
                         Array1<Real64> &RhoT,                  // MFD vapor density for the new time step.
                         Array1<Real64> &EP_UNUSED(RH),         // Nodal relative humidity
                         Array1<Real64> const &TD,              // The old dry Temperature at each node for the CondFD algorithm..
-                        Array1<Real64> &TDT,     // The current or new Temperature at each node location for the CondFD solution..
-                        Array1<Real64> &EnthOld, // Old Nodal enthalpy
-                        Array1<Real64> &EnthNew, // New Nodal enthalpy
-                        int const TotNodes,      // Total nodes in layer
-                        Real64 const HMovInsul   // Conductance of movable(transparent) insulation.
+                        Array1<Real64> &TDT,                   // The current or new Temperature at each node location for the CondFD solution..
+                        Array1<Real64> &EnthOld,               // Old Nodal enthalpy
+                        Array1<Real64> &EnthNew,               // New Nodal enthalpy
+                        int const TotNodes,                    // Total nodes in layer
+                        Real64 const HMovInsul                 // Conductance of movable(transparent) insulation.
                         )
     {
 
@@ -1390,8 +1382,8 @@ namespace HeatBalFiniteDiffManager {
                 // as Outside Boundary Condition Object can be left blank.
 
                 auto &surfaceFD(SurfaceFD(Surf));
-                InteriorBCEqns(Delt, NodeIn, LayIn, Surf, surfaceFD.T, surfaceFD.TT, surfaceFD.Rhov, surfaceFD.RhoT, surfaceFD.RH,
-                               surfaceFD.TD, surfaceFD.TDT, surfaceFD.EnthOld, surfaceFD.EnthNew, surfaceFD.TDreport);
+                InteriorBCEqns(Delt, NodeIn, LayIn, Surf, surfaceFD.T, surfaceFD.TT, surfaceFD.Rhov, surfaceFD.RhoT, surfaceFD.RH, surfaceFD.TD,
+                               surfaceFD.TDT, surfaceFD.EnthOld, surfaceFD.EnthNew, surfaceFD.TDreport);
                 TDT(i) = surfaceFD.TDT(TotNodesPlusOne);
                 TT(i) = surfaceFD.TT(TotNodesPlusOne);
                 RhoT(i) = surfaceFD.RhoT(TotNodesPlusOne);
@@ -1403,15 +1395,14 @@ namespace HeatBalFiniteDiffManager {
 
                 // potential-lkl-from old      CALL InteriorBCEqns(Delt,nodeIn,LayIn,Surf,SurfaceFD(Surface(Surf)%ExtBoundCond)%T, &
                 auto &surfaceFDEBC(SurfaceFD(surface_ExtBoundCond));
-                InteriorBCEqns(Delt, NodeIn, LayIn, surface_ExtBoundCond, surfaceFDEBC.T, surfaceFDEBC.TT, surfaceFDEBC.Rhov,
-                               surfaceFDEBC.RhoT, surfaceFDEBC.RH, surfaceFDEBC.TD, surfaceFDEBC.TDT, surfaceFDEBC.EnthOld,
-                               surfaceFDEBC.EnthNew, surfaceFDEBC.TDreport);
+                InteriorBCEqns(Delt, NodeIn, LayIn, surface_ExtBoundCond, surfaceFDEBC.T, surfaceFDEBC.TT, surfaceFDEBC.Rhov, surfaceFDEBC.RhoT,
+                               surfaceFDEBC.RH, surfaceFDEBC.TD, surfaceFDEBC.TDT, surfaceFDEBC.EnthOld, surfaceFDEBC.EnthNew, surfaceFDEBC.TDreport);
 
                 TDT(i) = surfaceFDEBC.TDT(TotNodesPlusOne);
                 TT(i) = surfaceFDEBC.TT(TotNodesPlusOne);
                 RhoT(i) = surfaceFDEBC.RhoT(TotNodesPlusOne);
 
-                SurfaceFD(Surf).CpDelXRhoS1(i) = 0.0; // Outside face  does not have an outer half node
+                SurfaceFD(Surf).CpDelXRhoS1(i) = 0.0;                                       // Outside face  does not have an outer half node
                 SurfaceFD(Surf).CpDelXRhoS2(i) = surfaceFDEBC.CpDelXRhoS1(TotNodesPlusOne); // Save this for computing node flux values
             }
 
@@ -1458,8 +1449,7 @@ namespace HeatBalFiniteDiffManager {
                     assert(matFD_TempCond.u2() >= 3);
                     auto const lTC(matFD_TempCond.index(2, 1));
                     Real64 kt;
-                    if (matFD_TempCond[lTC] + matFD_TempCond[lTC + 1] + matFD_TempCond[lTC + 2] >=
-                        0.0) { // Multiple Linear Segment Function
+                    if (matFD_TempCond[lTC] + matFD_TempCond[lTC + 1] + matFD_TempCond[lTC + 2] >= 0.0) { // Multiple Linear Segment Function
                         // Use average temp of surface and first node for k
                         kt = terpld(matFD_TempCond, (TDT_i + TDT_p) / 2.0, 1, 2); // 1: Temperature, 2: Thermal conductivity
                     } else {
@@ -1509,8 +1499,8 @@ namespace HeatBalFiniteDiffManager {
                             Real64 const Two_Delt_DelX(2.0 * Delt_DelX);
                             Real64 const Cp_DelX2_RhoS(Cp * pow_2(DelX) * RhoS);
                             Real64 const Two_Delt_kt(2.0 * Delt * kt);
-                            TDT_i = (Two_Delt_DelX * (QRadSWOutFD + hgnd * Tgnd + (hconvo + hrad) * Toa + hsky * Tsky) +
-                                     Cp_DelX2_RhoS * TD_i + Two_Delt_kt * TDT_p) /
+                            TDT_i = (Two_Delt_DelX * (QRadSWOutFD + hgnd * Tgnd + (hconvo + hrad) * Toa + hsky * Tsky) + Cp_DelX2_RhoS * TD_i +
+                                     Two_Delt_kt * TDT_p) /
                                     (Two_Delt_DelX * (hconvo + hgnd + hrad + hsky) + Two_Delt_kt + Cp_DelX2_RhoS);
                         }
 
@@ -1519,9 +1509,8 @@ namespace HeatBalFiniteDiffManager {
 
                         // Movable Insulation Layer Outside surface temp
 
-                        Real64 const TInsulOut(
-                            (QRadSWOutMvInsulFD + hgnd * Tgnd + HMovInsul * TDT_i + (hconvo + hrad) * Toa + hsky * Tsky) /
-                            (hconvo + hgnd + HMovInsul + hrad + hsky)); // Temperature of outside face of Outside Insulation
+                        Real64 const TInsulOut((QRadSWOutMvInsulFD + hgnd * Tgnd + HMovInsul * TDT_i + (hconvo + hrad) * Toa + hsky * Tsky) /
+                                               (hconvo + hgnd + HMovInsul + hrad + hsky)); // Temperature of outside face of Outside Insulation
                         Real64 const Two_Delt_DelX(2.0 * Delt_DelX);
                         Real64 const Cp_DelX2_RhoS(Cp * pow_2(DelX) * RhoS);
                         Real64 const Two_Delt_kt(2.0 * Delt * kt);
@@ -1636,10 +1625,9 @@ namespace HeatBalFiniteDiffManager {
             adjustPropertiesForPhaseChange(i, Surf, mat, TD_i, TDT_i, Cp, RhoS, kt);
             ktA1 = mat.phaseChange->getConductivity(TDT_ip);
             ktA2 = mat.phaseChange->getConductivity(TDT_mi);
-        } else if (matFD_TempEnth[lTE] + matFD_TempEnth[lTE + 1] + matFD_TempEnth[lTE + 2] >=
-                   0.0) {                                     // Phase change material: Use TempEnth data
-            EnthOld(i) = terpld(matFD_TempEnth, TD_i, 1, 2);  // 1: Temperature, 2: Enthalpy
-            EnthNew(i) = terpld(matFD_TempEnth, TDT_i, 1, 2); // 1: Temperature, 2: Enthalpy
+        } else if (matFD_TempEnth[lTE] + matFD_TempEnth[lTE + 1] + matFD_TempEnth[lTE + 2] >= 0.0) { // Phase change material: Use TempEnth data
+            EnthOld(i) = terpld(matFD_TempEnth, TD_i, 1, 2);                                         // 1: Temperature, 2: Enthalpy
+            EnthNew(i) = terpld(matFD_TempEnth, TDT_i, 1, 2);                                        // 1: Temperature, 2: Enthalpy
             if (EnthNew(i) != EnthOld(i)) {
                 Cp = max(Cpo, (EnthNew(i) - EnthOld(i)) / (TDT_i - TD_i));
             }
@@ -1653,8 +1641,7 @@ namespace HeatBalFiniteDiffManager {
                     (((ktA1 + ktA2) * inv2DelX) + Cp_DelX_RhoS_Delt);
         } else if (CondFDSchemeType == FullyImplicitFirstOrder) { // Adams-Moulton First order
             Real64 const invDelX(1.0 / DelX);
-            TDT_i = ((Cp_DelX_RhoS_Delt * TD_i) + ((ktA2 * TDT_m) + (ktA1 * TDT_p)) * invDelX) /
-                    (((ktA1 + ktA2) * invDelX) + Cp_DelX_RhoS_Delt);
+            TDT_i = ((Cp_DelX_RhoS_Delt * TD_i) + ((ktA2 * TDT_m) + (ktA1 * TDT_p)) * invDelX) / (((ktA1 + ktA2) * invDelX) + Cp_DelX_RhoS_Delt);
         } else {
             assert(false); // Illegal CondFDSchemeType
         }
@@ -1736,13 +1723,11 @@ namespace HeatBalFiniteDiffManager {
                     auto const &matFD_TempCond(matFD.TempCond);
                     assert(matFD_TempCond.u2() >= 3);
                     auto const lTC(matFD_TempCond.index(2, 1));
-                    if (matFD_TempCond[lTC] + matFD_TempCond[lTC + 1] + matFD_TempCond[lTC + 2] >=
-                        0.0) {                                                     // Multiple Linear Segment Function
-                        kt1 = terpld(matFD.TempCond, (TDT_i + TDT_m) / 2.0, 1, 2); // 1: Temperature, 2: Thermal conductivity
+                    if (matFD_TempCond[lTC] + matFD_TempCond[lTC + 1] + matFD_TempCond[lTC + 2] >= 0.0) { // Multiple Linear Segment Function
+                        kt1 = terpld(matFD.TempCond, (TDT_i + TDT_m) / 2.0, 1, 2);                        // 1: Temperature, 2: Thermal conductivity
                     } else {
-                        kt1 = mat.Conductivity; // 20C base conductivity
-                        Real64 const kt11(
-                            matFD.tk1); // temperature coefficient for simple temp dep k. // linear coefficient (normally zero)
+                        kt1 = mat.Conductivity;       // 20C base conductivity
+                        Real64 const kt11(matFD.tk1); // temperature coefficient for simple temp dep k. // linear coefficient (normally zero)
                         if (kt11 != 0.0) kt1 += kt11 * ((TDT_i + TDT_m) / 2.0 - 20.0);
                     }
                 }
@@ -1752,13 +1737,11 @@ namespace HeatBalFiniteDiffManager {
                     auto const &matFD2_TempCond(matFD2.TempCond);
                     assert(matFD2_TempCond.u2() >= 3);
                     auto const lTC2(matFD2_TempCond.index(2, 1));
-                    if (matFD2_TempCond[lTC2] + matFD2_TempCond[lTC2 + 1] + matFD2_TempCond[lTC2 + 2] >=
-                        0.0) {                                                      // Multiple Linear Segment Function
+                    if (matFD2_TempCond[lTC2] + matFD2_TempCond[lTC2 + 1] + matFD2_TempCond[lTC2 + 2] >= 0.0) { // Multiple Linear Segment Function
                         kt2 = terpld(matFD2_TempCond, (TDT_i + TDT_p) / 2.0, 1, 2); // 1: Temperature, 2: Thermal conductivity
                     } else {
-                        kt2 = mat2.Conductivity; // 20C base conductivity
-                        Real64 const kt21(
-                            matFD2.tk1); // temperature coefficient for simple temp dep k. // linear coefficient (normally zero)
+                        kt2 = mat2.Conductivity;       // 20C base conductivity
+                        Real64 const kt21(matFD2.tk1); // temperature coefficient for simple temp dep k. // linear coefficient (normally zero)
                         if (kt21 != 0.0) kt2 += kt21 * ((TDT_i + TDT_p) / 2.0 - 20.0);
                     }
                 }
@@ -2020,7 +2003,7 @@ namespace HeatBalFiniteDiffManager {
         Real64 const QElecBaseboardSurfFD(
             QElecBaseboardSurf(Surf)); // Current radiant heat flux at a surface due to the presence of electric baseboard heaters
         Real64 const QCoolingPanelSurfFD(
-            QCoolingPanelSurf(Surf)); // Current radiant heat flux at a surface due to the presence of simple cooling panels
+            QCoolingPanelSurf(Surf));                     // Current radiant heat flux at a surface due to the presence of simple cooling panels
         Real64 const QRadThermInFD(QRadThermInAbs(Surf)); // Thermal radiation absorbed on inside surfaces
 
         // Boundary Conditions from Simulation for Interior
@@ -2031,8 +2014,8 @@ namespace HeatBalFiniteDiffManager {
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++
         //    Do all the nodes in the surface   Else will switch to SigmaR,SigmaC
         auto TDT_i(TDT(i));
-        Real64 const QFac(NetLWRadToSurfFD + QHtRadSysSurfFD + QHWBaseboardSurfFD + QSteamBaseboardSurfFD + QElecBaseboardSurfFD +
-                          QRadSWInFD + QRadThermInFD + QCoolingPanelSurfFD);
+        Real64 const QFac(NetLWRadToSurfFD + QHtRadSysSurfFD + QHWBaseboardSurfFD + QSteamBaseboardSurfFD + QElecBaseboardSurfFD + QRadSWInFD +
+                          QRadThermInFD + QCoolingPanelSurfFD);
         if (surface.HeatTransferAlgorithm == HeatTransferModel_CondFD) {
             int const MatLay(Construct(ConstrNum).LayerPoint(Lay));
             auto const &mat(Material(MatLay));
@@ -2046,11 +2029,9 @@ namespace HeatBalFiniteDiffManager {
                     5.0); // Damping constant for inside surface temperature iterations. Only used for massless (R-value only) Walls
                 Real64 const Rlayer(mat.Resistance);
                 if ((i == 1) && (surface.ExtBoundCond > 0)) { // this is for an adiabatic partition
-                    TDT_i = (TDT(i + 1) + (QFac + hconvi * Tia + TDreport(i) * IterDampConst) * Rlayer) /
-                            (1.0 + (hconvi + IterDampConst) * Rlayer);
+                    TDT_i = (TDT(i + 1) + (QFac + hconvi * Tia + TDreport(i) * IterDampConst) * Rlayer) / (1.0 + (hconvi + IterDampConst) * Rlayer);
                 } else { // regular wall
-                    TDT_i = (TDT(i - 1) + (QFac + hconvi * Tia + TDreport(i) * IterDampConst) * Rlayer) /
-                            (1.0 + (hconvi + IterDampConst) * Rlayer);
+                    TDT_i = (TDT(i - 1) + (QFac + hconvi * Tia + TDreport(i) * IterDampConst) * Rlayer) / (1.0 + (hconvi + IterDampConst) * Rlayer);
                 }
                 SurfaceFD(Surf).CpDelXRhoS1(i) = 0.0; // Save this for computing node flux values - rlayer has no capacitance
                 SurfaceFD(Surf).CpDelXRhoS2(i) = 0.0; // Inside face  does not have an inner half node
@@ -2179,12 +2160,10 @@ namespace HeatBalFiniteDiffManager {
                             ShowContinueError("...Internal Heat Gain [" +
                                               RoundSigDigits(Zone(ZoneNum).InternalHeatGains / Zone(ZoneNum).FloorArea, 3) + "] W/m2");
                         } else {
-                            ShowContinueError("...Internal Heat Gain (no floor) [" + RoundSigDigits(Zone(ZoneNum).InternalHeatGains, 3) +
-                                              "] W");
+                            ShowContinueError("...Internal Heat Gain (no floor) [" + RoundSigDigits(Zone(ZoneNum).InternalHeatGains, 3) + "] W");
                         }
                         if (SimulateAirflowNetwork <= AirflowNetworkControlSimple) {
-                            ShowContinueError("...Infiltration/Ventilation [" + RoundSigDigits(Zone(ZoneNum).NominalInfilVent, 3) +
-                                              "] m3/s");
+                            ShowContinueError("...Infiltration/Ventilation [" + RoundSigDigits(Zone(ZoneNum).NominalInfilVent, 3) + "] m3/s");
                             ShowContinueError("...Mixing/Cross Mixing [" + RoundSigDigits(Zone(ZoneNum).NominalMixing, 3) + "] m3/s");
                         } else {
                             ShowContinueError("...Airflow Network Simulation: Nominal Infiltration/Ventilation/Mixing not available.");
@@ -2215,12 +2194,10 @@ namespace HeatBalFiniteDiffManager {
                             ShowContinueError("...Internal Heat Gain [" +
                                               RoundSigDigits(Zone(ZoneNum).InternalHeatGains / Zone(ZoneNum).FloorArea, 3) + "] W/m2");
                         } else {
-                            ShowContinueError("...Internal Heat Gain (no floor) [" + RoundSigDigits(Zone(ZoneNum).InternalHeatGains, 3) +
-                                              "] W");
+                            ShowContinueError("...Internal Heat Gain (no floor) [" + RoundSigDigits(Zone(ZoneNum).InternalHeatGains, 3) + "] W");
                         }
                         if (SimulateAirflowNetwork <= AirflowNetworkControlSimple) {
-                            ShowContinueError("...Infiltration/Ventilation [" + RoundSigDigits(Zone(ZoneNum).NominalInfilVent, 3) +
-                                              "] m3/s");
+                            ShowContinueError("...Infiltration/Ventilation [" + RoundSigDigits(Zone(ZoneNum).NominalInfilVent, 3) + "] m3/s");
                             ShowContinueError("...Mixing/Cross Mixing [" + RoundSigDigits(Zone(ZoneNum).NominalMixing, 3) + "] m3/s");
                         } else {
                             ShowContinueError("...Airflow Network Simulation: Nominal Infiltration/Ventilation/Mixing not available.");
@@ -2282,12 +2259,10 @@ namespace HeatBalFiniteDiffManager {
             } else {
                 sourceFlux = 0.0;
             }
-            interNodeFlux =
-                surfaceFD.QDreport(node + 1) +
-                surfaceFD.CpDelXRhoS1(node + 1) * (surfaceFD.TDT(node + 1) - surfaceFD.TDpriortimestep(node + 1)) / TimeStepZoneSec;
+            interNodeFlux = surfaceFD.QDreport(node + 1) +
+                            surfaceFD.CpDelXRhoS1(node + 1) * (surfaceFD.TDT(node + 1) - surfaceFD.TDpriortimestep(node + 1)) / TimeStepZoneSec;
             surfaceFD.QDreport(node) =
-                interNodeFlux - sourceFlux +
-                surfaceFD.CpDelXRhoS2(node) * (surfaceFD.TDT(node) - surfaceFD.TDpriortimestep(node)) / TimeStepZoneSec;
+                interNodeFlux - sourceFlux + surfaceFD.CpDelXRhoS2(node) * (surfaceFD.TDT(node) - surfaceFD.TDpriortimestep(node)) / TimeStepZoneSec;
         }
     }
 

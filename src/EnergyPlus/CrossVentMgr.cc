@@ -570,8 +570,8 @@ namespace CrossVentMgr {
             } else {
                 ShowSevereError(
                     "RoomAirModelCrossVent:EvolveParaUCSDCV: Illegal leakage component referenced in the cross ventilation room air model");
-                ShowContinueError("Surface " + AirflowNetworkLinkageData(Ctd).Name + " in zone " + Zone(ZoneNum).Name +
-                                  " uses leakage component " + AirflowNetworkLinkageData(Ctd).CompName);
+                ShowContinueError("Surface " + AirflowNetworkLinkageData(Ctd).Name + " in zone " + Zone(ZoneNum).Name + " uses leakage component " +
+                                  AirflowNetworkLinkageData(Ctd).CompName);
                 ShowContinueError("Only leakage component types AirflowNetwork:MultiZone:Component:DetailedOpening and ");
                 ShowContinueError("AirflowNetwork:MultiZone:Surface:Crack can be used with the cross ventilation room air model");
                 ShowFatalError("Previous severe error causes program termination");
@@ -765,14 +765,14 @@ namespace CrossVentMgr {
         for (Ctd = 1; Ctd <= AirflowNetworkSurfaceUCSDCV(0, ZoneNum); ++Ctd) {
             if (CVJetRecFlows(Ctd, ZoneNum).Uin != 0) {
                 Real64 dstarexp = max(Dstar(ZoneNum) / (6.0 * std::sqrt(CVJetRecFlows(Ctd, ZoneNum).Area)), 1.0);
-                CVJetRecFlows(Ctd, ZoneNum).Vjet = CVJetRecFlows(Ctd, ZoneNum).Uin * std::sqrt(CVJetRecFlows(Ctd, ZoneNum).Area) * 6.3 *
-                                                   std::log(dstarexp) / Dstar(ZoneNum);
-                CVJetRecFlows(Ctd, ZoneNum).Yjet = Cjet1 * std::sqrt(CVJetRecFlows(Ctd, ZoneNum).Area / Aroom) *
-                                                       CVJetRecFlows(Ctd, ZoneNum).Vjet / CVJetRecFlows(Ctd, ZoneNum).Uin +
-                                                   Cjet2;
-                CVJetRecFlows(Ctd, ZoneNum).Yrec = Crec1 * std::sqrt(CVJetRecFlows(Ctd, ZoneNum).Area / Aroom) *
-                                                       CVJetRecFlows(Ctd, ZoneNum).Vjet / CVJetRecFlows(Ctd, ZoneNum).Uin +
-                                                   Crec2;
+                CVJetRecFlows(Ctd, ZoneNum).Vjet =
+                    CVJetRecFlows(Ctd, ZoneNum).Uin * std::sqrt(CVJetRecFlows(Ctd, ZoneNum).Area) * 6.3 * std::log(dstarexp) / Dstar(ZoneNum);
+                CVJetRecFlows(Ctd, ZoneNum).Yjet =
+                    Cjet1 * std::sqrt(CVJetRecFlows(Ctd, ZoneNum).Area / Aroom) * CVJetRecFlows(Ctd, ZoneNum).Vjet / CVJetRecFlows(Ctd, ZoneNum).Uin +
+                    Cjet2;
+                CVJetRecFlows(Ctd, ZoneNum).Yrec =
+                    Crec1 * std::sqrt(CVJetRecFlows(Ctd, ZoneNum).Area / Aroom) * CVJetRecFlows(Ctd, ZoneNum).Vjet / CVJetRecFlows(Ctd, ZoneNum).Uin +
+                    Crec2;
                 CVJetRecFlows(Ctd, ZoneNum).YQrec = CrecFlow1 * std::sqrt(CVJetRecFlows(Ctd, ZoneNum).Area * Aroom) *
                                                         CVJetRecFlows(Ctd, ZoneNum).Vjet / CVJetRecFlows(Ctd, ZoneNum).Uin +
                                                     CrecFlow2;
@@ -840,8 +840,7 @@ namespace CrossVentMgr {
                     }
                 }
             } else if ((Surface(MultizoneSurfaceData(MaxSurf).SurfNum).Zone == ZoneNum) &&
-                       (AirModel(Surface(Surface(MultizoneSurfaceData(MaxSurf).SurfNum).ExtBoundCond).Zone).AirModelType ==
-                        RoomAirModel_UCSDCV)) {
+                       (AirModel(Surface(Surface(MultizoneSurfaceData(MaxSurf).SurfNum).ExtBoundCond).Zone).AirModelType == RoomAirModel_UCSDCV)) {
                 Tin(ZoneNum) = RoomOutflowTemp(Surface(Surface(MultizoneSurfaceData(MaxSurf).SurfNum).ExtBoundCond).Zone);
             } else if ((Surface(MultizoneSurfaceData(MaxSurf).SurfNum).Zone != ZoneNum) &&
                        (AirModel(Surface(MultizoneSurfaceData(MaxSurf).SurfNum).Zone).AirModelType == RoomAirModel_UCSDCV)) {
@@ -928,8 +927,7 @@ namespace CrossVentMgr {
         }
 
         SumAllInternalConvectionGains(ZoneNum, ConvGains);
-        ConvGains +=
-            SumConvHTRadSys(ZoneNum) + SumConvPool(ZoneNum) + SysDepZoneLoadsLagged(ZoneNum) + NonAirSystemResponse(ZoneNum) / ZoneMult;
+        ConvGains += SumConvHTRadSys(ZoneNum) + SumConvPool(ZoneNum) + SysDepZoneLoadsLagged(ZoneNum) + NonAirSystemResponse(ZoneNum) / ZoneMult;
 
         // Add heat to return air if zonal system (no return air) or cycling system (return air frequently very low or zero)
         if (Zone(ZoneNum).NoHeatToReturnAir) {
@@ -940,8 +938,8 @@ namespace CrossVentMgr {
         ConvGainsJet = ConvGains * GainsFrac;
         ConvGainsRec = ConvGains * (1.0 - GainsFrac);
         MCp_Total = MCPI(ZoneNum) + MCPV(ZoneNum) + MCPM(ZoneNum) + MCPE(ZoneNum) + MCPC(ZoneNum) + MDotCPOA(ZoneNum);
-        MCpT_Total = MCPTI(ZoneNum) + MCPTV(ZoneNum) + MCPTM(ZoneNum) + MCPTE(ZoneNum) + MCPTC(ZoneNum) +
-                     MDotCPOA(ZoneNum) * Zone(ZoneNum).OutDryBulbTemp;
+        MCpT_Total =
+            MCPTI(ZoneNum) + MCPTV(ZoneNum) + MCPTM(ZoneNum) + MCPTE(ZoneNum) + MCPTC(ZoneNum) + MDotCPOA(ZoneNum) * Zone(ZoneNum).OutDryBulbTemp;
 
         if (SimulateAirflowNetwork == AirflowNetworkControlMultizone) {
             MCp_Total = AirflowNetworkExchangeData(ZoneNum).SumMCp + AirflowNetworkExchangeData(ZoneNum).SumMMCp;
@@ -958,15 +956,14 @@ namespace CrossVentMgr {
             for (Ctd = 1; Ctd <= 4; ++Ctd) {
                 HcUCSDCV(ZoneNum);
                 if (JetRecAreaRatio(ZoneNum) != 1.0) {
-                    ZTREC(ZoneNum) =
-                        (ConvGainsRec * CrecTemp + CrecTemp * HAT_R + Tin(ZoneNum) * MCp_Total) / (CrecTemp * HA_R + MCp_Total);
+                    ZTREC(ZoneNum) = (ConvGainsRec * CrecTemp + CrecTemp * HAT_R + Tin(ZoneNum) * MCp_Total) / (CrecTemp * HA_R + MCp_Total);
                 }
-                ZTJET(ZoneNum) = (ConvGainsJet * CjetTemp + ConvGainsRec * CjetTemp + CjetTemp * HAT_J + CjetTemp * HAT_R +
-                                  Tin(ZoneNum) * MCp_Total - CjetTemp * HA_R * ZTREC(ZoneNum)) /
+                ZTJET(ZoneNum) = (ConvGainsJet * CjetTemp + ConvGainsRec * CjetTemp + CjetTemp * HAT_J + CjetTemp * HAT_R + Tin(ZoneNum) * MCp_Total -
+                                  CjetTemp * HA_R * ZTREC(ZoneNum)) /
                                  (CjetTemp * HA_J + MCp_Total);
-                RoomOutflowTemp(ZoneNum) = (ConvGainsJet + ConvGainsRec + HAT_J + HAT_R + Tin(ZoneNum) * MCp_Total - HA_J * ZTJET(ZoneNum) -
-                                            HA_R * ZTREC(ZoneNum)) /
-                                           MCp_Total;
+                RoomOutflowTemp(ZoneNum) =
+                    (ConvGainsJet + ConvGainsRec + HAT_J + HAT_R + Tin(ZoneNum) * MCp_Total - HA_J * ZTJET(ZoneNum) - HA_R * ZTREC(ZoneNum)) /
+                    MCp_Total;
             }
             if (JetRecAreaRatio(ZoneNum) == 1.0) {
                 ZoneCVhasREC(ZoneNum) = 0.0;

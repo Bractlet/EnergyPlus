@@ -216,44 +216,41 @@ namespace DataAirflowNetwork {
 
         // Default Constructor
         AirflowNetworkSimuProp()
-            : Control("NoMultizoneOrDistribution"), WPCCntr("Input"), MaxIteration(500), InitFlag(0), solver(Solver::SkylineLU),
-              RelTol(1.0e-5), AbsTol(1.0e-5), ConvLimit(-0.5), MaxPressure(500.0), Azimuth(0.0), AspectRatio(1.0), DiffP(1.0e-4),
-              ExtLargeOpeningErrCount(0), ExtLargeOpeningErrIndex(0), OpenFactorErrCount(0), OpenFactorErrIndex(0),
-              InitType("ZeroNodePressures"), TExtHeightDep(false)
+            : Control("NoMultizoneOrDistribution"), WPCCntr("Input"), MaxIteration(500), InitFlag(0), solver(Solver::SkylineLU), RelTol(1.0e-5),
+              AbsTol(1.0e-5), ConvLimit(-0.5), MaxPressure(500.0), Azimuth(0.0), AspectRatio(1.0), DiffP(1.0e-4), ExtLargeOpeningErrCount(0),
+              ExtLargeOpeningErrIndex(0), OpenFactorErrCount(0), OpenFactorErrIndex(0), InitType("ZeroNodePressures"), TExtHeightDep(false)
         {
         }
 
         // Member Constructor
-        AirflowNetworkSimuProp(
-            std::string const &AirflowNetworkSimuName, // Provide a unique object name
-            std::string const &Control,                // AirflowNetwork control: MULTIZONE WITH DISTRIBUTION,
-            std::string const &WPCCntr,                // Wind pressure coefficient input control: "SURFACE-AVERAGE CALCULATION", or "INPUT"
-            int const iWPCCntr,                        // Integer equivalent for WPCCntr field
-            std::string const &BldgType,               // Building type: "LOWRISE" or "HIGHRISE" at WPCCntr = "SURFACE-AVERAGE CALCULATION"
-            std::string const &HeightOption,           // Height Selection: "ExternalNode" or "OpeningHeight" at WPCCntr = "INPUT"
-            int const MaxIteration,                    // Maximum number of iteration, default 500
-            int const InitFlag,                        // Initialization flag
-            Real64 const RelTol,                       // Relative airflow convergence
-            Real64 const AbsTol,                       // Absolute airflow convergence
-            Real64 const ConvLimit,                    // Convergence acceleration limit
-            Real64 const MaxPressure,                  // Maximum pressure change in an element [Pa]
-            Real64 const Azimuth,                      // Azimuth Angle of Long Axis of Building, not used at WPCCntr = "INPUT"
-            Real64 const AspectRatio,                  // Ratio of Building Width Along Short Axis to Width Along Long Axis
-            Real64 const DiffP,                        // Minimum pressure difference
-            int const ExtLargeOpeningErrCount,         // Exterior large opening error count during HVAC system operation
-            int const ExtLargeOpeningErrIndex,         // Exterior large opening error index during HVAC system operation
-            int const OpenFactorErrCount,              // Large opening error count at Open factor > 1.0
-            int const OpenFactorErrIndex,              // Large opening error error index at Open factor > 1.0
-            std::string const &InitType,               // Initialization flag type:
-            Solver solver,                             // Solver type
-            bool const TExtHeightDep                   // Choice of height dependence of external node temperature
-            )
+        AirflowNetworkSimuProp(std::string const &AirflowNetworkSimuName, // Provide a unique object name
+                               std::string const &Control,                // AirflowNetwork control: MULTIZONE WITH DISTRIBUTION,
+                               std::string const &WPCCntr,      // Wind pressure coefficient input control: "SURFACE-AVERAGE CALCULATION", or "INPUT"
+                               int const iWPCCntr,              // Integer equivalent for WPCCntr field
+                               std::string const &BldgType,     // Building type: "LOWRISE" or "HIGHRISE" at WPCCntr = "SURFACE-AVERAGE CALCULATION"
+                               std::string const &HeightOption, // Height Selection: "ExternalNode" or "OpeningHeight" at WPCCntr = "INPUT"
+                               int const MaxIteration,          // Maximum number of iteration, default 500
+                               int const InitFlag,              // Initialization flag
+                               Real64 const RelTol,             // Relative airflow convergence
+                               Real64 const AbsTol,             // Absolute airflow convergence
+                               Real64 const ConvLimit,          // Convergence acceleration limit
+                               Real64 const MaxPressure,        // Maximum pressure change in an element [Pa]
+                               Real64 const Azimuth,            // Azimuth Angle of Long Axis of Building, not used at WPCCntr = "INPUT"
+                               Real64 const AspectRatio,        // Ratio of Building Width Along Short Axis to Width Along Long Axis
+                               Real64 const DiffP,              // Minimum pressure difference
+                               int const ExtLargeOpeningErrCount, // Exterior large opening error count during HVAC system operation
+                               int const ExtLargeOpeningErrIndex, // Exterior large opening error index during HVAC system operation
+                               int const OpenFactorErrCount,      // Large opening error count at Open factor > 1.0
+                               int const OpenFactorErrIndex,      // Large opening error error index at Open factor > 1.0
+                               std::string const &InitType,       // Initialization flag type:
+                               Solver solver,                     // Solver type
+                               bool const TExtHeightDep           // Choice of height dependence of external node temperature
+                               )
             : AirflowNetworkSimuName(AirflowNetworkSimuName), Control(Control), WPCCntr(WPCCntr), iWPCCntr(iWPCCntr), BldgType(BldgType),
               HeightOption(HeightOption), MaxIteration(MaxIteration), InitFlag(InitFlag), solver(solver), RelTol(RelTol), AbsTol(AbsTol),
               ConvLimit(ConvLimit), MaxPressure(MaxPressure), Azimuth(Azimuth), AspectRatio(AspectRatio), DiffP(DiffP),
               ExtLargeOpeningErrCount(ExtLargeOpeningErrCount), ExtLargeOpeningErrIndex(ExtLargeOpeningErrIndex),
-              OpenFactorErrCount(OpenFactorErrCount), OpenFactorErrIndex(OpenFactorErrIndex), InitType(InitType),
-              TExtHeightDep(TExtHeightDep)
+              OpenFactorErrCount(OpenFactorErrCount), OpenFactorErrIndex(OpenFactorErrIndex), InitType(InitType), TExtHeightDep(TExtHeightDep)
         {
         }
     };
@@ -275,24 +272,24 @@ namespace DataAirflowNetwork {
         // Modulating the Venting Open Factor with Enthalpic control
         Real64 UpValueEnth; // Upper Value on Inside/Outside Temperature Difference for
         // Modulating the Venting Open Factor with Enthalpic control
-        int ZoneNum;                   // Zone number associated with ZoneName
-        int VentSchNum;                // Zone ventilation schedule number associated with ventilation schedule name
-        int VentCtrNum;                // Ventilation control mode number: 1 "Temperature", 2 "ENTHALPIC", 3 "CONSTANT", 4 "NOVENT"
-        std::string VentingSchName;    // Name of ventilation temperature control schedule
-        int VentingSchNum;             // Ventilation schedule number
-        std::string SingleSidedCpType; // Type of calculation method for single sided wind pressure coefficients
-        Real64 BuildWidth;             // The width of the building along the facade that contains this zone.
-        int ASH55PeopleInd;            // Index of people object with ASH55 comfort calcs for ventilation control
-        int CEN15251PeopleInd;         // Index of people object with CEN15251 comfort calcs for ventilation control
+        int ZoneNum;                                // Zone number associated with ZoneName
+        int VentSchNum;                             // Zone ventilation schedule number associated with ventilation schedule name
+        int VentCtrNum;                             // Ventilation control mode number: 1 "Temperature", 2 "ENTHALPIC", 3 "CONSTANT", 4 "NOVENT"
+        std::string VentingSchName;                 // Name of ventilation temperature control schedule
+        int VentingSchNum;                          // Ventilation schedule number
+        std::string SingleSidedCpType;              // Type of calculation method for single sided wind pressure coefficients
+        Real64 BuildWidth;                          // The width of the building along the facade that contains this zone.
+        int ASH55PeopleInd;                         // Index of people object with ASH55 comfort calcs for ventilation control
+        int CEN15251PeopleInd;                      // Index of people object with CEN15251 comfort calcs for ventilation control
         std::string OccupantVentilationControlName; // Occupant ventilation control name
         int OccupantVentilationControlNum;          // Occupant ventilation control number
         int RAFNNodeNum;                            // Index of RAFN node number
 
         // Default Constructor
         MultizoneZoneProp()
-            : VentControl("NoVent"), Height(0.0), OpenFactor(1.0), LowValueTemp(0.0), UpValueTemp(100.0), LowValueEnth(0.0),
-              UpValueEnth(300000.0), ZoneNum(0), VentSchNum(0), VentCtrNum(0), VentingSchNum(0), SingleSidedCpType("STANDARD"),
-              BuildWidth(10.0), ASH55PeopleInd(0), CEN15251PeopleInd(0), OccupantVentilationControlNum(0), RAFNNodeNum(0)
+            : VentControl("NoVent"), Height(0.0), OpenFactor(1.0), LowValueTemp(0.0), UpValueTemp(100.0), LowValueEnth(0.0), UpValueEnth(300000.0),
+              ZoneNum(0), VentSchNum(0), VentCtrNum(0), VentingSchNum(0), SingleSidedCpType("STANDARD"), BuildWidth(10.0), ASH55PeopleInd(0),
+              CEN15251PeopleInd(0), OccupantVentilationControlNum(0), RAFNNodeNum(0)
         {
         }
     };
@@ -324,21 +321,21 @@ namespace DataAirflowNetwork {
         // Modulating the Venting Open Factor with Enthalpic control
         Real64 UpValueEnth; // Upper Value on Inside/Outside Temperature Difference for
         // Modulating the Venting Open Factor with Enthalpic control
-        std::string VentingSchName;  // Name of ventilation temperature control schedule
-        int VentSchNum;              // Zone ventilation schedule number associated with ventilation schedule name
-        int VentSurfCtrNum;          // Ventilation control mode number: 1 "Temperature", 2 "ENTHALPIC", 3 "CONSTANT", 4 "NOVENT"
-        int VentingSchNum;           // Ventilation schedule number
-        int ZonePtr;                 // Pointer to inside face zone
-        bool IndVentControl;         // Individual surface venting control
-        int ExtLargeOpeningErrCount; // Exterior large opening error count during HVAC system operation
-        int ExtLargeOpeningErrIndex; // Exterior large opening error index during HVAC system operation
-        int OpenFactorErrCount;      // Large opening error count at Open factor > 1.0
-        int OpenFactorErrIndex;      // Large opening error error index at Open factor > 1.0
-        Real64 Multiplier;           // Window multiplier
-        bool HybridVentClose;        // Hybrid ventilation window close control logical
-        bool HybridCtrlGlobal;       // Hybrid ventilation global control logical
-        bool HybridCtrlMaster;       // Hybrid ventilation global control master
-        Real64 WindModifier;         // Wind modifier from hybrid ventilation control
+        std::string VentingSchName;                 // Name of ventilation temperature control schedule
+        int VentSchNum;                             // Zone ventilation schedule number associated with ventilation schedule name
+        int VentSurfCtrNum;                         // Ventilation control mode number: 1 "Temperature", 2 "ENTHALPIC", 3 "CONSTANT", 4 "NOVENT"
+        int VentingSchNum;                          // Ventilation schedule number
+        int ZonePtr;                                // Pointer to inside face zone
+        bool IndVentControl;                        // Individual surface venting control
+        int ExtLargeOpeningErrCount;                // Exterior large opening error count during HVAC system operation
+        int ExtLargeOpeningErrIndex;                // Exterior large opening error index during HVAC system operation
+        int OpenFactorErrCount;                     // Large opening error count at Open factor > 1.0
+        int OpenFactorErrIndex;                     // Large opening error error index at Open factor > 1.0
+        Real64 Multiplier;                          // Window multiplier
+        bool HybridVentClose;                       // Hybrid ventilation window close control logical
+        bool HybridCtrlGlobal;                      // Hybrid ventilation global control logical
+        bool HybridCtrlMaster;                      // Hybrid ventilation global control master
+        Real64 WindModifier;                        // Wind modifier from hybrid ventilation control
         std::string OccupantVentilationControlName; // Occupant ventilation control name
         int OccupantVentilationControlNum;          // Occupant ventilation control number
         int OpeningStatus;                          // Open status at current time step
@@ -349,19 +346,18 @@ namespace DataAirflowNetwork {
         int OpeningProbStatus;                      // Opening probability status
         bool RAFNflag;                              // True if this surface is used in AirflowNetwork:IntraZone:Linkage
         bool NonRectangular;                        // True if this surface is not rectangular
-        int EquivRecMethod; // Equivalent Rectangle Method input: 1 Height; 2 Base surface aspect ratio; 3 User input aspect ratio
+        int EquivRecMethod;             // Equivalent Rectangle Method input: 1 Height; 2 Base surface aspect ratio; 3 User input aspect ratio
         Real64 EquivRecUserAspectRatio; // user input value when EquivRecMethod = 3
 
         // Default Constructor
         MultizoneSurfaceProp()
-            : Factor(0.0), SurfNum(0), NodeNums(2, 0), OpenFactor(0.0), OpenFactorLast(0.0), EMSOpenFactorActuated(false),
-              EMSOpenFactor(0.0), Height(0.0), Width(0.0), CHeight(0.0), VentControl("ZONELEVEL"), ModulateFactor(0.0), LowValueTemp(0.0),
-              UpValueTemp(100.0), LowValueEnth(0.0), UpValueEnth(300000.0), VentSchNum(0), VentSurfCtrNum(0), VentingSchNum(0), ZonePtr(0),
-              IndVentControl(false), ExtLargeOpeningErrCount(0), ExtLargeOpeningErrIndex(0), OpenFactorErrCount(0), OpenFactorErrIndex(0),
-              Multiplier(1.0), HybridVentClose(false), HybridCtrlGlobal(false), HybridCtrlMaster(false), WindModifier(1.0),
-              OccupantVentilationControlNum(0), OpeningStatus(0), PrevOpeningstatus(0), CloseElapsedTime(0.0), OpenElapsedTime(0.0),
-              ClosingProbStatus(0), OpeningProbStatus(0), RAFNflag(false), NonRectangular(false), EquivRecMethod(1),
-              EquivRecUserAspectRatio(1.0)
+            : Factor(0.0), SurfNum(0), NodeNums(2, 0), OpenFactor(0.0), OpenFactorLast(0.0), EMSOpenFactorActuated(false), EMSOpenFactor(0.0),
+              Height(0.0), Width(0.0), CHeight(0.0), VentControl("ZONELEVEL"), ModulateFactor(0.0), LowValueTemp(0.0), UpValueTemp(100.0),
+              LowValueEnth(0.0), UpValueEnth(300000.0), VentSchNum(0), VentSurfCtrNum(0), VentingSchNum(0), ZonePtr(0), IndVentControl(false),
+              ExtLargeOpeningErrCount(0), ExtLargeOpeningErrIndex(0), OpenFactorErrCount(0), OpenFactorErrIndex(0), Multiplier(1.0),
+              HybridVentClose(false), HybridCtrlGlobal(false), HybridCtrlMaster(false), WindModifier(1.0), OccupantVentilationControlNum(0),
+              OpeningStatus(0), PrevOpeningstatus(0), CloseElapsedTime(0.0), OpenElapsedTime(0.0), ClosingProbStatus(0), OpeningProbStatus(0),
+              RAFNflag(false), NonRectangular(false), EquivRecMethod(1), EquivRecUserAspectRatio(1.0)
         {
         }
     };
@@ -406,10 +402,9 @@ namespace DataAirflowNetwork {
         // Default Constructor
         MultizoneCompDetOpeningProp()
             : FlowCoef(0.0), FlowExpo(0.0), TypeName("NONPIVOTED"), LVOType(0), LVOValue(0.0), NumFac(0), OpenFac1(0.0), DischCoeff1(0.0),
-              WidthFac1(0.0), HeightFac1(0.0), StartHFac1(0.0), OpenFac2(0.0), DischCoeff2(0.0), WidthFac2(0.0), HeightFac2(0.0),
-              StartHFac2(0.0), OpenFac3(0.0), DischCoeff3(0.0), WidthFac3(0.0), HeightFac3(0.0), StartHFac3(0.0), OpenFac4(0.0),
-              DischCoeff4(0.0), WidthFac4(0.0), HeightFac4(0.0), StartHFac4(0.0), OpenFactor(0.0), WidthErrCount(0), WidthErrIndex(0),
-              HeightErrCount(0), HeightErrIndex(0)
+              WidthFac1(0.0), HeightFac1(0.0), StartHFac1(0.0), OpenFac2(0.0), DischCoeff2(0.0), WidthFac2(0.0), HeightFac2(0.0), StartHFac2(0.0),
+              OpenFac3(0.0), DischCoeff3(0.0), WidthFac3(0.0), HeightFac3(0.0), StartHFac3(0.0), OpenFac4(0.0), DischCoeff4(0.0), WidthFac4(0.0),
+              HeightFac4(0.0), StartHFac4(0.0), OpenFactor(0.0), WidthErrCount(0), WidthErrIndex(0), HeightErrCount(0), HeightErrIndex(0)
         {
         }
     };
@@ -510,8 +505,8 @@ namespace DataAirflowNetwork {
 
         // Default Constructor
         MultizoneCompExhaustFanProp()
-            : FlowRate(0.0), SchedPtr(0), FlowCoef(0.0), FlowExpo(0.0), StandardT(0.0), StandardP(0.0), StandardW(0.0), InletNode(0),
-              OutletNode(0), EPlusZoneNum(0)
+            : FlowRate(0.0), SchedPtr(0), FlowCoef(0.0), FlowExpo(0.0), StandardT(0.0), StandardP(0.0), StandardW(0.0), InletNode(0), OutletNode(0),
+              EPlusZoneNum(0)
         {
         }
     };
@@ -659,9 +654,8 @@ namespace DataAirflowNetwork {
 
         // Default Constructor
         DisSysCompDuctProp()
-            : L(0.0), D(0.0), A(0.0), Rough(0.0), TurDynCoef(0.0), UThermConduct(0.0), UMoisture(0.0), InsideConvCoeff(0.0),
-              OutsideConvCoeff(0.0), MThermal(0.0), MMoisture(0.0), LamDynCoef(0.0), LamFriCoef(0.0), InitLamCoef(0.0), RelRough(0.0),
-              RelL(0.0), g(0.0), A1(0.0)
+            : L(0.0), D(0.0), A(0.0), Rough(0.0), TurDynCoef(0.0), UThermConduct(0.0), UMoisture(0.0), InsideConvCoeff(0.0), OutsideConvCoeff(0.0),
+              MThermal(0.0), MMoisture(0.0), LamDynCoef(0.0), LamFriCoef(0.0), InitLamCoef(0.0), RelRough(0.0), RelL(0.0), g(0.0), A1(0.0)
         {
         }
     };
@@ -682,8 +676,7 @@ namespace DataAirflowNetwork {
         Real64 A3;        // Fourth polynomial coefficient of the control variable (cubic coefficient)
 
         // Default Constructor
-        DisSysCompDamperProp()
-            : LTP(0.0), LamFlow(0.0), TurFlow(0.0), FlowExpo(0.0), FlowMin(0.0), FlowMax(0.0), A0(0.0), A1(0.0), A2(0.0), A3(0.0)
+        DisSysCompDamperProp() : LTP(0.0), LamFlow(0.0), TurFlow(0.0), FlowExpo(0.0), FlowMin(0.0), FlowMax(0.0), A0(0.0), A1(0.0), A2(0.0), A3(0.0)
         {
         }
     };
@@ -817,8 +810,8 @@ namespace DataAirflowNetwork {
 
         // Default Constructor
         AirflowNetworkNodeProp()
-            : NodeHeight(0.0), NodeNum(0), NodeTypeNum(0), EPlusZoneNum(0), EPlusNodeNum(0), ExtNodeNum(0), OutAirNodeNum(0),
-              EPlusTypeNum(0), RAFNNodeNum(0), NumOfLinks(0)
+            : NodeHeight(0.0), NodeNum(0), NodeTypeNum(0), EPlusZoneNum(0), EPlusNodeNum(0), ExtNodeNum(0), OutAirNodeNum(0), EPlusTypeNum(0),
+              RAFNNodeNum(0), NumOfLinks(0)
         {
         }
     };
@@ -945,8 +938,8 @@ namespace DataAirflowNetwork {
 
         // Default Constructor
         AirflowNetworkLinkReportData()
-            : FLOW(0.0), FLOW2(0.0), VolFLOW(0.0), VolFLOW2(0.0), FLOWOFF(0.0), FLOW2OFF(0.0), VolFLOWOFF(0.0), VolFLOW2OFF(0.0), DP(0.0),
-              DPON(0.0), DPOFF(0.0)
+            : FLOW(0.0), FLOW2(0.0), VolFLOW(0.0), VolFLOW2(0.0), FLOWOFF(0.0), FLOW2OFF(0.0), VolFLOWOFF(0.0), VolFLOW2OFF(0.0), DP(0.0), DPON(0.0),
+              DPOFF(0.0)
         {
         }
     };
@@ -1051,14 +1044,13 @@ namespace DataAirflowNetwork {
         // Default Constructor
         AiflowNetworkReportProp()
             : MultiZoneInfiSenGainW(0.0), MultiZoneInfiSenGainJ(0.0), MultiZoneInfiSenLossW(0.0), MultiZoneInfiSenLossJ(0.0),
-              MultiZoneMixSenGainW(0.0), MultiZoneMixSenGainJ(0.0), MultiZoneMixSenLossW(0.0), MultiZoneMixSenLossJ(0.0),
-              MultiZoneInfiLatGainW(0.0), MultiZoneInfiLatGainJ(0.0), MultiZoneInfiLatLossW(0.0), MultiZoneInfiLatLossJ(0.0),
-              MultiZoneMixLatGainW(0.0), MultiZoneMixLatGainJ(0.0), MultiZoneMixLatLossW(0.0), MultiZoneMixLatLossJ(0.0), LeakSenGainW(0.0),
-              LeakSenGainJ(0.0), LeakSenLossW(0.0), LeakSenLossJ(0.0), LeakLatGainW(0.0), LeakLatGainJ(0.0), LeakLatLossW(0.0),
-              LeakLatLossJ(0.0), CondSenGainW(0.0), CondSenGainJ(0.0), CondSenLossW(0.0), CondSenLossJ(0.0), DiffLatGainW(0.0),
-              DiffLatGainJ(0.0), DiffLatLossW(0.0), DiffLatLossJ(0.0), RadGainW(0.0), RadGainJ(0.0), RadLossW(0.0), RadLossJ(0.0),
-              TotalSenGainW(0.0), TotalSenGainJ(0.0), TotalSenLossW(0.0), TotalSenLossJ(0.0), TotalLatGainW(0.0), TotalLatGainJ(0.0),
-              TotalLatLossW(0.0), TotalLatLossJ(0.0)
+              MultiZoneMixSenGainW(0.0), MultiZoneMixSenGainJ(0.0), MultiZoneMixSenLossW(0.0), MultiZoneMixSenLossJ(0.0), MultiZoneInfiLatGainW(0.0),
+              MultiZoneInfiLatGainJ(0.0), MultiZoneInfiLatLossW(0.0), MultiZoneInfiLatLossJ(0.0), MultiZoneMixLatGainW(0.0),
+              MultiZoneMixLatGainJ(0.0), MultiZoneMixLatLossW(0.0), MultiZoneMixLatLossJ(0.0), LeakSenGainW(0.0), LeakSenGainJ(0.0),
+              LeakSenLossW(0.0), LeakSenLossJ(0.0), LeakLatGainW(0.0), LeakLatGainJ(0.0), LeakLatLossW(0.0), LeakLatLossJ(0.0), CondSenGainW(0.0),
+              CondSenGainJ(0.0), CondSenLossW(0.0), CondSenLossJ(0.0), DiffLatGainW(0.0), DiffLatGainJ(0.0), DiffLatLossW(0.0), DiffLatLossJ(0.0),
+              RadGainW(0.0), RadGainJ(0.0), RadLossW(0.0), RadLossJ(0.0), TotalSenGainW(0.0), TotalSenGainJ(0.0), TotalSenLossW(0.0),
+              TotalSenLossJ(0.0), TotalLatGainW(0.0), TotalLatGainJ(0.0), TotalLatLossW(0.0), TotalLatLossJ(0.0)
         {
         }
     };

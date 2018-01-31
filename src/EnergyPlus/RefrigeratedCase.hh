@@ -264,7 +264,7 @@ namespace RefrigeratedCase {
     // high-stage compressor input error regarding high-stage compressor capacity
 
     // Transcritical refrigeration system variables
-    extern bool TransCritSysFlag; // Used to indicate whether or not a transcritical refrigeration system has been defined.
+    extern bool TransCritSysFlag;                    // Used to indicate whether or not a transcritical refrigeration system has been defined.
     extern Array1D_bool ShowUnmetEnergyWarningTrans; // Used for one-time warning message for possible
     // compressor input error regarding total system compressor capacity
 
@@ -294,8 +294,7 @@ namespace RefrigeratedCase {
     // detailed transcritical CO2 refrigeration systems exist in the input deck
     extern bool ManageRefrigeration; // Is initialized as TRUE and remains true when
     // refrigerated racks or detailed systems exist in the input deck
-    extern bool
-        UseSysTimeStep; // Flag is true IF working on a system that includes a coil cooling a controlled zone on the system time step,
+    extern bool UseSysTimeStep; // Flag is true IF working on a system that includes a coil cooling a controlled zone on the system time step,
     // All other refrigeration calculations for case and walkin systems done on the load time step
     extern bool HaveCasesOrWalkins; // Is initialized as TRUE and remains true when
     // refrigerated cases or walkins exist in the input deck
@@ -417,15 +416,14 @@ namespace RefrigeratedCase {
               LightingPower(0.0), LightingSchedPtr(0), AntiSweatPower(0.0), MinimumASPower(0.0), AntiSweatControlType(0), HumAtZeroAS(0.0),
               Height(0.0), DefrostType(0), DefrostPower(0.0), DefrostSchedPtr(0), DefrostDripDownSchedPtr(0), Length(0.0), Temperature(0.0),
               RAFrac(0.0), StockingSchedPtr(0), LightingFractionToCase(0.0), ASHeaterFractionToCase(0.0), DesignSensCaseCredit(0.0),
-              EvapTempDesign(0.0), RefrigInventory(0.0), DesignRefrigInventory(0.0), DesignRatedCap(0.0), DesignLatentCap(0.0),
-              DesignDefrostCap(0.0), DesignLighting(0.0), DesignFanPower(0.0), StoredEnergy(0.0), StoredEnergySaved(0.0),
-              CaseCreditFracSchedPtr(0), TotalCoolingLoad(0.0), TotalCoolingEnergy(0.0), SensCoolingEnergyRate(0.0), SensCoolingEnergy(0.0),
-              LatCoolingEnergyRate(0.0), LatCoolingEnergy(0.0), SensZoneCreditRate(0.0), SensZoneCreditCoolRate(0.0),
-              SensZoneCreditCool(0.0), SensZoneCreditHeatRate(0.0), SensZoneCreditHeat(0.0), LatZoneCreditRate(0.0), LatZoneCredit(0.0),
-              SensHVACCreditRate(0.0), SensHVACCreditCoolRate(0.0), SensHVACCreditCool(0.0), SensHVACCreditHeatRate(0.0),
-              SensHVACCreditHeat(0.0), LatHVACCreditRate(0.0), LatHVACCredit(0.0), ElecAntiSweatPower(0.0), ElecAntiSweatConsumption(0.0),
-              ElecFanPower(0.0), ElecFanConsumption(0.0), ElecLightingPower(0.0), ElecLightingConsumption(0.0), ElecDefrostPower(0.0),
-              ElecDefrostConsumption(0.0), DefEnergyCurveValue(0.0), LatEnergyCurveValue(0.0), MaxKgFrost(0.0), Rcase(0.0),
+              EvapTempDesign(0.0), RefrigInventory(0.0), DesignRefrigInventory(0.0), DesignRatedCap(0.0), DesignLatentCap(0.0), DesignDefrostCap(0.0),
+              DesignLighting(0.0), DesignFanPower(0.0), StoredEnergy(0.0), StoredEnergySaved(0.0), CaseCreditFracSchedPtr(0), TotalCoolingLoad(0.0),
+              TotalCoolingEnergy(0.0), SensCoolingEnergyRate(0.0), SensCoolingEnergy(0.0), LatCoolingEnergyRate(0.0), LatCoolingEnergy(0.0),
+              SensZoneCreditRate(0.0), SensZoneCreditCoolRate(0.0), SensZoneCreditCool(0.0), SensZoneCreditHeatRate(0.0), SensZoneCreditHeat(0.0),
+              LatZoneCreditRate(0.0), LatZoneCredit(0.0), SensHVACCreditRate(0.0), SensHVACCreditCoolRate(0.0), SensHVACCreditCool(0.0),
+              SensHVACCreditHeatRate(0.0), SensHVACCreditHeat(0.0), LatHVACCreditRate(0.0), LatHVACCredit(0.0), ElecAntiSweatPower(0.0),
+              ElecAntiSweatConsumption(0.0), ElecFanPower(0.0), ElecFanConsumption(0.0), ElecLightingPower(0.0), ElecLightingConsumption(0.0),
+              ElecDefrostPower(0.0), ElecDefrostConsumption(0.0), DefEnergyCurveValue(0.0), LatEnergyCurveValue(0.0), MaxKgFrost(0.0), Rcase(0.0),
               DefrostEnergy(0.0), StockingEnergy(0.0), WarmEnvEnergy(0.0), KgFrost(0.0), DefrostEnergySaved(0.0), StockingEnergySaved(0.0),
               WarmEnvEnergySaved(0.0), KgFrostSaved(0.0), HotDefrostCondCredit(0.0), DeltaDefrostEnergy(0.0)
         {
@@ -563,19 +561,18 @@ namespace RefrigeratedCase {
 
         // Default Constructor
         RefrigRackData()
-            : CoilFlag(false), EndUseSubcategory("General"), HeatRejectionLocation(0), CondenserType(0), EvapEffect(0.9),
-              CondenserAirFlowRate(0.0), EvapPumpPower(0.0), ActualEvapPumpPower(0.0), EvapPumpConsumption(0.0), EvapWaterConsumpRate(0.0),
-              EvapWaterConsumption(0.0), EvapSchedPtr(0), BasinHeaterPowerFTempDiff(0.0), BasinHeaterSetPointTemp(2.0),
-              BasinHeaterPower(0.0), BasinHeaterConsumption(0.0), RatedCOP(0.0), COPFTempPtr(0), NumCases(0), NumCoils(0), NumWalkIns(0),
-              EvapWaterSupplyMode(WaterSupplyFromMains), EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0), OutsideAirNodeNum(0),
-              HeatRejectionZoneNum(0), HeatRejectionZoneNodeNum(0), TotalRackLoad(0.0), RackCompressorCOP(0.0), RackCompressorPower(0.0),
-              RackElecConsumption(0.0), RackCapacity(0.0), RackCoolingEnergy(0.0), CondenserFanPower(0.0), TotCondFTempPtr(0),
-              ActualCondenserFanPower(0.0), CondenserFanConsumption(0.0), SensZoneCreditHeatRate(0.0), SensZoneCreditHeat(0.0),
-              SensHVACCreditHeatRate(0.0), SensHVACCreditHeat(0.0), EvapFreezeWarnIndex(0), NoFlowWarnIndex(0), HighTempWarnIndex(0),
-              LowTempWarnIndex(0), HighFlowWarnIndex(0), HighInletWarnIndex(0), InletNode(0), InletTemp(0.0), OutletNode(0),
-              PlantTypeOfNum(0), PlantLoopNum(0), PlantLoopSideNum(0), PlantBranchNum(0), PlantCompNum(0), OutletTemp(0.0),
-              OutletTempSchedPtr(0), VolFlowRate(0.0), DesVolFlowRate(0.0), MassFlowRate(0.0), CondLoad(0.0), CondEnergy(0.0), FlowType(1),
-              VolFlowRateMax(0.0), MassFlowRateMax(0.0), InletTempMin(10.0), OutletTempMax(55.0), TotalCoolingLoad(0.0)
+            : CoilFlag(false), EndUseSubcategory("General"), HeatRejectionLocation(0), CondenserType(0), EvapEffect(0.9), CondenserAirFlowRate(0.0),
+              EvapPumpPower(0.0), ActualEvapPumpPower(0.0), EvapPumpConsumption(0.0), EvapWaterConsumpRate(0.0), EvapWaterConsumption(0.0),
+              EvapSchedPtr(0), BasinHeaterPowerFTempDiff(0.0), BasinHeaterSetPointTemp(2.0), BasinHeaterPower(0.0), BasinHeaterConsumption(0.0),
+              RatedCOP(0.0), COPFTempPtr(0), NumCases(0), NumCoils(0), NumWalkIns(0), EvapWaterSupplyMode(WaterSupplyFromMains),
+              EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0), OutsideAirNodeNum(0), HeatRejectionZoneNum(0), HeatRejectionZoneNodeNum(0),
+              TotalRackLoad(0.0), RackCompressorCOP(0.0), RackCompressorPower(0.0), RackElecConsumption(0.0), RackCapacity(0.0),
+              RackCoolingEnergy(0.0), CondenserFanPower(0.0), TotCondFTempPtr(0), ActualCondenserFanPower(0.0), CondenserFanConsumption(0.0),
+              SensZoneCreditHeatRate(0.0), SensZoneCreditHeat(0.0), SensHVACCreditHeatRate(0.0), SensHVACCreditHeat(0.0), EvapFreezeWarnIndex(0),
+              NoFlowWarnIndex(0), HighTempWarnIndex(0), LowTempWarnIndex(0), HighFlowWarnIndex(0), HighInletWarnIndex(0), InletNode(0),
+              InletTemp(0.0), OutletNode(0), PlantTypeOfNum(0), PlantLoopNum(0), PlantLoopSideNum(0), PlantBranchNum(0), PlantCompNum(0),
+              OutletTemp(0.0), OutletTempSchedPtr(0), VolFlowRate(0.0), DesVolFlowRate(0.0), MassFlowRate(0.0), CondLoad(0.0), CondEnergy(0.0),
+              FlowType(1), VolFlowRateMax(0.0), MassFlowRateMax(0.0), InletTempMin(10.0), OutletTempMax(55.0), TotalCoolingLoad(0.0)
         {
         }
 
@@ -717,22 +714,20 @@ namespace RefrigeratedCase {
 
         // Default Constructor
         RefrigSystemData()
-            : SystemRejectHeatToZone(false), CoilFlag(false), CompSuctControl(2), HiStageWarnIndex1(0), HiStageWarnIndex2(0),
-              InsuffCapWarn(0), IntercoolerType(0), NumCases(0), NumCoils(0), NumCompressors(0), NumCondensers(1), NumGasCoolers(0),
-              NumHiStageCompressors(0), NumSecondarys(0), NumStages(1), NumSubcoolers(0), NumWalkIns(0), NumMechSCServed(0),
-              NumNonCascadeLoads(0), NumCascadeLoads(0), NumTransferLoads(0), RefIndex(0), SuctionPipeActualZoneNum(0),
-              SuctionPipeZoneNodeNum(0), AverageCompressorCOP(0.0), CpSatLiqCond(0.0), CpSatVapEvap(0.0), FlowRatioIntercooler(0.0),
-              HCaseIn(0.0), HCompIn(0.0), HCompOut(0.0), HSatLiqCond(0.0), HCaseOut(0.0), IntercoolerEffectiveness(0.0), LSHXTrans(0.0),
-              LSHXTransEnergy(0.0), NetHeatRejectLoad(0.0), NetHeatRejectEnergy(0.0), PIntercooler(0.0), PipeHeatLoad(0.0),
-              PipeHeatEnergy(0.0), RefMassFlowtoLoads(0.0), RefMassFlowComps(0.0), RefMassFlowHiStageComps(0.0), RefInventory(0.0),
-              SumMechSCLoad(0.0), SumMechSCBenefit(0.0), SumCascadeCondCredit(0.0), SumCascadeLoad(0.0), SumSecondaryLoopLoad(0.0),
+            : SystemRejectHeatToZone(false), CoilFlag(false), CompSuctControl(2), HiStageWarnIndex1(0), HiStageWarnIndex2(0), InsuffCapWarn(0),
+              IntercoolerType(0), NumCases(0), NumCoils(0), NumCompressors(0), NumCondensers(1), NumGasCoolers(0), NumHiStageCompressors(0),
+              NumSecondarys(0), NumStages(1), NumSubcoolers(0), NumWalkIns(0), NumMechSCServed(0), NumNonCascadeLoads(0), NumCascadeLoads(0),
+              NumTransferLoads(0), RefIndex(0), SuctionPipeActualZoneNum(0), SuctionPipeZoneNodeNum(0), AverageCompressorCOP(0.0), CpSatLiqCond(0.0),
+              CpSatVapEvap(0.0), FlowRatioIntercooler(0.0), HCaseIn(0.0), HCompIn(0.0), HCompOut(0.0), HSatLiqCond(0.0), HCaseOut(0.0),
+              IntercoolerEffectiveness(0.0), LSHXTrans(0.0), LSHXTransEnergy(0.0), NetHeatRejectLoad(0.0), NetHeatRejectEnergy(0.0),
+              PIntercooler(0.0), PipeHeatLoad(0.0), PipeHeatEnergy(0.0), RefMassFlowtoLoads(0.0), RefMassFlowComps(0.0), RefMassFlowHiStageComps(0.0),
+              RefInventory(0.0), SumMechSCLoad(0.0), SumMechSCBenefit(0.0), SumCascadeCondCredit(0.0), SumCascadeLoad(0.0), SumSecondaryLoopLoad(0.0),
               SumUASuctionPiping(0.0), TCaseOut(0.0), TCondense(0.0), TCompIn(0.0), TCondenseMin(0.0), TCondenseMinInput(0.0),
               EMSOverrideOnTCondenseMin(false), EMSOverrideValueTCondenseMin(0.0), TEvapDesign(0.0), TEvapNeeded(0.0), TIntercooler(0.0),
-              TLiqInActual(0.0), TotalCondDefrostCredit(0.0), TotalCoolingEnergy(0.0), TotalCoolingLoad(0.0), TotalSystemLoad(0.0),
-              TotCompPower(0.0), TotCompElecConsump(0.0), TotCompCapacity(0.0), TotCompCoolingEnergy(0.0), TotHiStageCompCapacity(0.0),
-              TotHiStageCompCoolingEnergy(0.0), TotHiStageCompElecConsump(0.0), TotHiStageCompPower(0.0), TotCompElecConsumpTwoStage(0.0),
-              TotRejectHeatRecovered(0.0), TotTransferLoad(0.0), TotTransferEnergy(0.0), UnmetEnergy(0.0), UnmetHiStageEnergy(0.0),
-              UnmetEnergySaved(0.0)
+              TLiqInActual(0.0), TotalCondDefrostCredit(0.0), TotalCoolingEnergy(0.0), TotalCoolingLoad(0.0), TotalSystemLoad(0.0), TotCompPower(0.0),
+              TotCompElecConsump(0.0), TotCompCapacity(0.0), TotCompCoolingEnergy(0.0), TotHiStageCompCapacity(0.0), TotHiStageCompCoolingEnergy(0.0),
+              TotHiStageCompElecConsump(0.0), TotHiStageCompPower(0.0), TotCompElecConsumpTwoStage(0.0), TotRejectHeatRecovered(0.0),
+              TotTransferLoad(0.0), TotTransferEnergy(0.0), UnmetEnergy(0.0), UnmetHiStageEnergy(0.0), UnmetEnergySaved(0.0)
         {
         }
 
@@ -878,9 +873,8 @@ namespace RefrigeratedCase {
               TotalCoolingEnergyMT(0.0), TotalCoolingEnergyLT(0.0), TotalCoolingLoadMT(0.0), TotalCoolingLoadLT(0.0), TotalSystemLoad(0.0),
               TotalSystemLoadMT(0.0), TotalSystemLoadLT(0.0), TotCompPowerHP(0.0), TotCompPowerLP(0.0), TotCompElecConsump(0.0),
               TotCompElecConsumpHP(0.0), TotCompElecConsumpLP(0.0), TotCompCapacity(0.0), TotCompCapacityHP(0.0), TotCompCapacityLP(0.0),
-              TotCompCoolingEnergy(0.0), TotCompCoolingEnergyHP(0.0), TotCompCoolingEnergyLP(0.0), TotRejectHeatRecovered(0.0),
-              UnmetEnergy(0.0), UnmetEnergyMT(0.0), UnmetEnergyLT(0.0), UnmetEnergySaved(0.0), UnmetEnergySavedMT(0.0),
-              UnmetEnergySavedLT(0.0)
+              TotCompCoolingEnergy(0.0), TotCompCoolingEnergyHP(0.0), TotCompCoolingEnergyLP(0.0), TotRejectHeatRecovered(0.0), UnmetEnergy(0.0),
+              UnmetEnergyMT(0.0), UnmetEnergyLT(0.0), UnmetEnergySaved(0.0), UnmetEnergySavedMT(0.0), UnmetEnergySavedLT(0.0)
         {
         }
 
@@ -1038,23 +1032,22 @@ namespace RefrigeratedCase {
         // Default Constructor
         RefrigCondenserData()
             : EndUseSubcategory("General"), CondenserRejectHeatToZone(false), CoilFlag(false), NumSysAttach(0), CondenserType(0),
-              EvapFreezeWarnIndex(0), FlowType(1), CondCreditWarnIndex1(0), CondCreditWarnIndex2(0), CondCreditWarnIndex3(0),
-              CondCreditWarnIndex4(0), CondCreditWarnIndex5(0), CondCreditWarnIndex6(0), CondCreditWarnIndex7(0), NoFlowWarnIndex(0),
-              HighTempWarnIndex(0), LowTempWarnIndex(0), HighFlowWarnIndex(0), HighInletWarnIndex(0), InletNode(0), EvapSchedPtr(0),
-              EvapWaterSupplyMode(WaterSupplyFromMains), EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0), OutletNode(0),
-              PlantTypeOfNum(0), PlantLoopNum(0), PlantLoopSideNum(0), PlantBranchNum(0), PlantCompNum(0), OutletTempSchedPtr(0),
-              InletAirNodeNum(0), InletAirZoneNum(0), FanSpeedControlType(0), CapCurvePtr(0), CascadeSysID(0), CascadeTempControl(0),
-              CascadeSinkSystemID(0), CascadeRatedEvapTemp(0.0), MinCondLoad(0.0), TempSlope(0.0), EvapEffect(0.9), RatedAirFlowRate(0.0),
-              EvapPumpPower(0.0), ActualEvapPumpPower(0.0), EvapPumpConsumption(0.0), EvapWaterConsumpRate(0.0), EvapWaterConsumption(0.0),
-              BasinHeaterPowerFTempDiff(0.0), BasinHeaterSetPointTemp(2.0), BasinHeaterPower(0.0), BasinHeaterConsumption(0.0),
-              FanMinAirFlowRatio(0.0), RatedFanPower(0.0), ActualFanPower(0.0), FanElecEnergy(0.0), InletTemp(0.0), OutletTemp(0.0),
-              VolFlowRate(0.0), DesVolFlowRate(0.0), MassFlowRate(0.0), RatedTCondense(0.0), CondLoad(0.0), CondEnergy(0.0),
-              VolFlowRateMax(0.0), MassFlowRateMax(0.0), InletTempMin(10.0), OutletTempMax(55.0), RatedSubcool(0.0), RatedDelT(0.0),
-              RatedCapacity(0.0), RatedWaterInletT(0.0), RatedApproachT(0.0), MinCapFacEvap(0.0), MaxCapFacEvap(0.0), EvapCoeff1(0.0),
-              EvapCoeff2(0.0), EvapCoeff3(0.0), EvapCoeff4(0.0), EvapElevFact(1.0), RefOpCharge(0.0), RefReceiverInventory(0.0),
-              RefPipingInventory(0.0), TotalHeatRecoveredEnergy(0.0), TotalHeatRecoveredLoad(0.0), ExternalEnergyRecovered(0.0),
-              InternalEnergyRecovered(0.0), ExternalHeatRecoveredLoad(0.0), InternalHeatRecoveredLoad(0.0), LaggedUsedWaterHeater(0.0),
-              LaggedUsedHVACCoil(0.0)
+              EvapFreezeWarnIndex(0), FlowType(1), CondCreditWarnIndex1(0), CondCreditWarnIndex2(0), CondCreditWarnIndex3(0), CondCreditWarnIndex4(0),
+              CondCreditWarnIndex5(0), CondCreditWarnIndex6(0), CondCreditWarnIndex7(0), NoFlowWarnIndex(0), HighTempWarnIndex(0),
+              LowTempWarnIndex(0), HighFlowWarnIndex(0), HighInletWarnIndex(0), InletNode(0), EvapSchedPtr(0),
+              EvapWaterSupplyMode(WaterSupplyFromMains), EvapWaterSupTankID(0), EvapWaterTankDemandARRID(0), OutletNode(0), PlantTypeOfNum(0),
+              PlantLoopNum(0), PlantLoopSideNum(0), PlantBranchNum(0), PlantCompNum(0), OutletTempSchedPtr(0), InletAirNodeNum(0), InletAirZoneNum(0),
+              FanSpeedControlType(0), CapCurvePtr(0), CascadeSysID(0), CascadeTempControl(0), CascadeSinkSystemID(0), CascadeRatedEvapTemp(0.0),
+              MinCondLoad(0.0), TempSlope(0.0), EvapEffect(0.9), RatedAirFlowRate(0.0), EvapPumpPower(0.0), ActualEvapPumpPower(0.0),
+              EvapPumpConsumption(0.0), EvapWaterConsumpRate(0.0), EvapWaterConsumption(0.0), BasinHeaterPowerFTempDiff(0.0),
+              BasinHeaterSetPointTemp(2.0), BasinHeaterPower(0.0), BasinHeaterConsumption(0.0), FanMinAirFlowRatio(0.0), RatedFanPower(0.0),
+              ActualFanPower(0.0), FanElecEnergy(0.0), InletTemp(0.0), OutletTemp(0.0), VolFlowRate(0.0), DesVolFlowRate(0.0), MassFlowRate(0.0),
+              RatedTCondense(0.0), CondLoad(0.0), CondEnergy(0.0), VolFlowRateMax(0.0), MassFlowRateMax(0.0), InletTempMin(10.0), OutletTempMax(55.0),
+              RatedSubcool(0.0), RatedDelT(0.0), RatedCapacity(0.0), RatedWaterInletT(0.0), RatedApproachT(0.0), MinCapFacEvap(0.0),
+              MaxCapFacEvap(0.0), EvapCoeff1(0.0), EvapCoeff2(0.0), EvapCoeff3(0.0), EvapCoeff4(0.0), EvapElevFact(1.0), RefOpCharge(0.0),
+              RefReceiverInventory(0.0), RefPipingInventory(0.0), TotalHeatRecoveredEnergy(0.0), TotalHeatRecoveredLoad(0.0),
+              ExternalEnergyRecovered(0.0), InternalEnergyRecovered(0.0), ExternalHeatRecoveredLoad(0.0), InternalHeatRecoveredLoad(0.0),
+              LaggedUsedWaterHeater(0.0), LaggedUsedHVACCoil(0.0)
         {
         }
 
@@ -1129,12 +1122,12 @@ namespace RefrigeratedCase {
         // Default Constructor
         RefrigGasCoolerData()
             : EndUseSubcategory("General"), GasCoolerRejectHeatToZone(false), TransOpFlag(false), CapCurvePtr(0), FanSpeedControlType(0),
-              GasCoolerCreditWarnIndex(0), InletAirNodeNum(0), InletAirZoneNum(0), NumSysAttach(0), ActualFanPower(0.0),
-              CpGasCoolerOut(0.0), FanElecEnergy(0.0), FanMinAirFlowRatio(0.0), GasCoolerApproachT(3.0), GasCoolerEnergy(0.0),
-              GasCoolerLoad(0.0), HGasCoolerOut(0.0), InternalEnergyRecovered(0.0), InternalHeatRecoveredLoad(0.0), MinCondLoad(0.0),
-              MinCondTemp(1.0e1), PGasCoolerOut(0.0), RatedApproachT(3.0), RatedCapacity(0.0), RatedFanPower(0.0), RatedOutletP(9.0e6),
-              RatedOutletT(38.0), RefOpCharge(0.0), RefPipingInventory(0.0), RefReceiverInventory(0.0), SubcriticalTempDiff(1.0e1),
-              TempSlope(0.0), TGasCoolerOut(0.0), TotalHeatRecoveredEnergy(0.0), TotalHeatRecoveredLoad(0.0), TransitionTemperature(0.0)
+              GasCoolerCreditWarnIndex(0), InletAirNodeNum(0), InletAirZoneNum(0), NumSysAttach(0), ActualFanPower(0.0), CpGasCoolerOut(0.0),
+              FanElecEnergy(0.0), FanMinAirFlowRatio(0.0), GasCoolerApproachT(3.0), GasCoolerEnergy(0.0), GasCoolerLoad(0.0), HGasCoolerOut(0.0),
+              InternalEnergyRecovered(0.0), InternalHeatRecoveredLoad(0.0), MinCondLoad(0.0), MinCondTemp(1.0e1), PGasCoolerOut(0.0),
+              RatedApproachT(3.0), RatedCapacity(0.0), RatedFanPower(0.0), RatedOutletP(9.0e6), RatedOutletT(38.0), RefOpCharge(0.0),
+              RefPipingInventory(0.0), RefReceiverInventory(0.0), SubcriticalTempDiff(1.0e1), TempSlope(0.0), TGasCoolerOut(0.0),
+              TotalHeatRecoveredEnergy(0.0), TotalHeatRecoveredLoad(0.0), TransitionTemperature(0.0)
         {
         }
 
@@ -1180,10 +1173,10 @@ namespace RefrigeratedCase {
 
         // Default Constructor
         RefrigCompressorData()
-            : CoilFlag(false), CapacityCurvePtr(0), ElecPowerCurvePtr(0), MassFlowCurvePtr(0), TransElecPowerCurvePtr(0),
-              TransCapacityCurvePtr(0), NumSysAttach(0), SuperheatRatingType(0), SubcoolRatingType(0), Capacity(0.0), CoolingEnergy(0.0),
-              Efficiency(0.0), ElecConsumption(0.0), LoadFactor(0.0), MassFlow(0.0), NomCap(0.0), Power(0.0), RatedSuperheat(0.0),
-              RatedSubcool(0.0), EndUseSubcategory("General"), TransFlag(false)
+            : CoilFlag(false), CapacityCurvePtr(0), ElecPowerCurvePtr(0), MassFlowCurvePtr(0), TransElecPowerCurvePtr(0), TransCapacityCurvePtr(0),
+              NumSysAttach(0), SuperheatRatingType(0), SubcoolRatingType(0), Capacity(0.0), CoolingEnergy(0.0), Efficiency(0.0), ElecConsumption(0.0),
+              LoadFactor(0.0), MassFlow(0.0), NomCap(0.0), Power(0.0), RatedSuperheat(0.0), RatedSubcool(0.0), EndUseSubcategory("General"),
+              TransFlag(false)
         {
         }
 
@@ -1307,16 +1300,15 @@ namespace RefrigeratedCase {
 
         // Default Constructor
         SecondaryLoopData()
-            : CoilFlag(false), DistPipeZoneNum(0), DistPipeZoneNodeNum(0), DistPipeZoneHeatGain(0.0), FluidType(0), FluidID(0),
-              NumSysAttach(0), NumPumps(0), NumCases(0), NumCoils(0), NumWalkIns(0), PumpControlType(0), ReceiverZoneNum(0),
-              ReceiverZoneNodeNum(0), ReceiverZoneHeatGain(0.0), VarSpeedCurvePtr(0), AvailLoadCoils(0.0), CpBrineRated(0.0),
-              ChillerRefInventory(0.0), CircRate(0.0), CoolingLoadRated(0.0), DensityBrineRated(0.0), DistPipeHeatGain(0.0),
-              DistPipeHeatGainEnergy(0.0), FlowVolActual(0.0), HotDefrostCondCredit(0.0), HeatExchangeEta(0.0), MaxVolFlow(0.0),
-              MaxLoad(0.0), PumpTotRatedPower(0.0), PumpPowerToHeat(0.0), PumpIncrementFlowVol(0.0), PumpIncrementPower(0.0),
-              PumpPowerTotal(0.0), PumpElecEnergyTotal(0.0), ReceiverHeatGain(0.0), ReceiverHeatGainEnergy(0.0), RefInventory(0.0),
-              SumUADistPiping(0.0), SumUAReceiver(0.0), TBrineAverage(0.0), TBrineInRated(0.0), TCondense(0.0), TEvapDesign(0.0),
-              TApproachDifRated(0.0), TRangeDifRated(0.0), TMinNeeded(0.0), TotalCoolingLoad(0.0), TotalCoolingEnergy(0.0),
-              TotalRefrigLoad(0.0), TotalRefrigEnergy(0.0), UnmetEnergy(0.0), UnmetEnergySaved(0.0)
+            : CoilFlag(false), DistPipeZoneNum(0), DistPipeZoneNodeNum(0), DistPipeZoneHeatGain(0.0), FluidType(0), FluidID(0), NumSysAttach(0),
+              NumPumps(0), NumCases(0), NumCoils(0), NumWalkIns(0), PumpControlType(0), ReceiverZoneNum(0), ReceiverZoneNodeNum(0),
+              ReceiverZoneHeatGain(0.0), VarSpeedCurvePtr(0), AvailLoadCoils(0.0), CpBrineRated(0.0), ChillerRefInventory(0.0), CircRate(0.0),
+              CoolingLoadRated(0.0), DensityBrineRated(0.0), DistPipeHeatGain(0.0), DistPipeHeatGainEnergy(0.0), FlowVolActual(0.0),
+              HotDefrostCondCredit(0.0), HeatExchangeEta(0.0), MaxVolFlow(0.0), MaxLoad(0.0), PumpTotRatedPower(0.0), PumpPowerToHeat(0.0),
+              PumpIncrementFlowVol(0.0), PumpIncrementPower(0.0), PumpPowerTotal(0.0), PumpElecEnergyTotal(0.0), ReceiverHeatGain(0.0),
+              ReceiverHeatGainEnergy(0.0), RefInventory(0.0), SumUADistPiping(0.0), SumUAReceiver(0.0), TBrineAverage(0.0), TBrineInRated(0.0),
+              TCondense(0.0), TEvapDesign(0.0), TApproachDifRated(0.0), TRangeDifRated(0.0), TMinNeeded(0.0), TotalCoolingLoad(0.0),
+              TotalCoolingEnergy(0.0), TotalRefrigLoad(0.0), TotalRefrigEnergy(0.0), UnmetEnergy(0.0), UnmetEnergySaved(0.0)
         {
         }
 
@@ -1429,14 +1421,14 @@ namespace RefrigeratedCase {
         // Default Constructor
         WalkInData()
             : CircFanSchedPtr(0), DefrostDripDownSchedPtr(0), DefrostSchedPtr(0), DefrostControlType(0), DefrostType(0), HeaterSchedPtr(0),
-              LightingSchedPtr(0), NumSysAttach(0), NumZones(0), SchedPtr(0), StockingSchedPtr(0), CircFanPower(0.0), CoilFanPower(0.0),
-              IceTemp(0.0), IceTempSaved(0.0), DefrostCapacity(0.0), DeltaFreezeKgFrost(0.0), DefEnergyFraction(0.0), DesignFanPower(0.0),
-              DesignLighting(0.0), DesignRatedCap(0.0), DesignRefrigInventory(0.0), FloorArea(0.0), FloorUValue(0.0), HeaterPower(0.0),
-              HotDefrostCondCredit(0.0), KgFrost(0.0), StoredEnergy(0.0), KgFrostSaved(0.0), StoredEnergySaved(0.0), Temperature(0.0),
-              TEvapDesign(0.0), TotalFanPower(0.0), ElecHeaterPower(0.0), ElecHeaterConsumption(0.0), ElecFanPower(0.0),
-              ElecFanConsumption(0.0), ElecLightingPower(0.0), ElecLightingConsumption(0.0), ElecDefrostPower(0.0),
-              ElecDefrostConsumption(0.0), TotalCoolingLoad(0.0), TotalCoolingEnergy(0.0), TotalElecPower(0.0), TotalElecConsumption(0.0),
-              TotLatCoolingEnergyRate(0.0), TotLatCoolingEnergy(0.0), TotSensCoolingEnergyRate(0.0), TotSensCoolingEnergy(0.0)
+              LightingSchedPtr(0), NumSysAttach(0), NumZones(0), SchedPtr(0), StockingSchedPtr(0), CircFanPower(0.0), CoilFanPower(0.0), IceTemp(0.0),
+              IceTempSaved(0.0), DefrostCapacity(0.0), DeltaFreezeKgFrost(0.0), DefEnergyFraction(0.0), DesignFanPower(0.0), DesignLighting(0.0),
+              DesignRatedCap(0.0), DesignRefrigInventory(0.0), FloorArea(0.0), FloorUValue(0.0), HeaterPower(0.0), HotDefrostCondCredit(0.0),
+              KgFrost(0.0), StoredEnergy(0.0), KgFrostSaved(0.0), StoredEnergySaved(0.0), Temperature(0.0), TEvapDesign(0.0), TotalFanPower(0.0),
+              ElecHeaterPower(0.0), ElecHeaterConsumption(0.0), ElecFanPower(0.0), ElecFanConsumption(0.0), ElecLightingPower(0.0),
+              ElecLightingConsumption(0.0), ElecDefrostPower(0.0), ElecDefrostConsumption(0.0), TotalCoolingLoad(0.0), TotalCoolingEnergy(0.0),
+              TotalElecPower(0.0), TotalElecConsumption(0.0), TotLatCoolingEnergyRate(0.0), TotLatCoolingEnergy(0.0), TotSensCoolingEnergyRate(0.0),
+              TotSensCoolingEnergy(0.0)
         {
         }
 
@@ -1480,9 +1472,9 @@ namespace RefrigeratedCase {
 
         // Default Constructor
         CaseWIZoneReportData()
-            : LatCoolingToZoneRate(0.0), LatCoolingToZoneEnergy(0.0), SenCoolingToZoneRate(0.0), SenCoolingToZoneEnergy(0.0),
-              HeatingToZoneRate(0.0), HeatingToZoneEnergy(0.0), TotCoolingToZoneRate(0.0), TotCoolingToZoneEnergy(0.0),
-              TotHtXferToZoneRate(0.0), TotHtXferToZoneEnergy(0.0), SenCaseCreditToZoneEnergy(0.0)
+            : LatCoolingToZoneRate(0.0), LatCoolingToZoneEnergy(0.0), SenCoolingToZoneRate(0.0), SenCoolingToZoneEnergy(0.0), HeatingToZoneRate(0.0),
+              HeatingToZoneEnergy(0.0), TotCoolingToZoneRate(0.0), TotCoolingToZoneEnergy(0.0), TotHtXferToZoneRate(0.0), TotHtXferToZoneEnergy(0.0),
+              SenCaseCreditToZoneEnergy(0.0)
         {
         }
 
@@ -1591,19 +1583,18 @@ namespace RefrigeratedCase {
         // Default Constructor
         WarehouseCoilData()
             : SecStatusFirst(false), SecStatusLast(false), SysStatusFirst(false), SysStatusLast(false), CoilFanSchedPtr(0),
-              DefrostDripDownSchedPtr(0), DefrostSchedPtr(0), DefrostControlType(0), DefrostType(0), FanType(0), HeaterSchedPtr(0),
-              NumSysAttach(0), RatingType(0), SchedPtr(0), SCIndex(0), SecServeID(0), SysServeID(0), VerticalLocation(0), ZoneNodeNum(0),
-              ZoneNum(0), CorrMaterial(0.0), CorrRefrigerant(0.0), DefrostCapacity(0.0), DefrostPower(0.0), DeltaFreezeKgFrost(0.0),
-              DefEnergyFraction(0.0), DesignRefrigInventory(0.0), FanMinAirFlowRatio(0.0), HeaterPower(0.0), HotDefrostCondCredit(0.0),
-              IceTemp(0.0), IceTempSaved(0.0), KgFrost(0.0), KgFrostSaved(0.0), MaxTemperatureDif(0.0), RatedAirVolumeFlow(0.0),
-              RatedCapTotal(0.0), RatedFanPower(0.0), RatedRH(0.0), RatedSensibleCap(0.0), RatedTemperatureDif(0.0), ReqLoad(0.0),
-              SensHeatRatio(0.0), SHRCorrection60(0.0), Temperature(0.0), TEvapDesign(0.0), ThermalDefrostPower(0.0),
-              UnitLoadFactorSens(0.0), ElecHeaterPower(0.0), ElecHeaterConsumption(0.0), ElecFanPower(0.0), ElecFanConsumption(0.0),
-              ElecDefrostPower(0.0), ElecDefrostConsumption(0.0), LatCreditRate(0.0), LatLoadServed(0.0), LatKgPerS_ToZone(0.0),
-              LatCreditEnergy(0.0), ReportSensCoolCreditRate(0.0), ReportHeatingCreditRate(0.0), ReportSensCoolCreditEnergy(0.0),
-              ReportHeatingCreditEnergy(0.0), ReportTotalCoolCreditRate(0.0), ReportTotalCoolCreditEnergy(0.0), SensCreditRate(0.0),
-              SensCreditEnergy(0.0), SensCoolingEnergyRate(0.0), SensCoolingEnergy(0.0), TotalCoolingLoad(0.0), TotalCoolingEnergy(0.0),
-              TotalElecPower(0.0), TotalElecConsumption(0.0)
+              DefrostDripDownSchedPtr(0), DefrostSchedPtr(0), DefrostControlType(0), DefrostType(0), FanType(0), HeaterSchedPtr(0), NumSysAttach(0),
+              RatingType(0), SchedPtr(0), SCIndex(0), SecServeID(0), SysServeID(0), VerticalLocation(0), ZoneNodeNum(0), ZoneNum(0),
+              CorrMaterial(0.0), CorrRefrigerant(0.0), DefrostCapacity(0.0), DefrostPower(0.0), DeltaFreezeKgFrost(0.0), DefEnergyFraction(0.0),
+              DesignRefrigInventory(0.0), FanMinAirFlowRatio(0.0), HeaterPower(0.0), HotDefrostCondCredit(0.0), IceTemp(0.0), IceTempSaved(0.0),
+              KgFrost(0.0), KgFrostSaved(0.0), MaxTemperatureDif(0.0), RatedAirVolumeFlow(0.0), RatedCapTotal(0.0), RatedFanPower(0.0), RatedRH(0.0),
+              RatedSensibleCap(0.0), RatedTemperatureDif(0.0), ReqLoad(0.0), SensHeatRatio(0.0), SHRCorrection60(0.0), Temperature(0.0),
+              TEvapDesign(0.0), ThermalDefrostPower(0.0), UnitLoadFactorSens(0.0), ElecHeaterPower(0.0), ElecHeaterConsumption(0.0),
+              ElecFanPower(0.0), ElecFanConsumption(0.0), ElecDefrostPower(0.0), ElecDefrostConsumption(0.0), LatCreditRate(0.0), LatLoadServed(0.0),
+              LatKgPerS_ToZone(0.0), LatCreditEnergy(0.0), ReportSensCoolCreditRate(0.0), ReportHeatingCreditRate(0.0),
+              ReportSensCoolCreditEnergy(0.0), ReportHeatingCreditEnergy(0.0), ReportTotalCoolCreditRate(0.0), ReportTotalCoolCreditEnergy(0.0),
+              SensCreditRate(0.0), SensCreditEnergy(0.0), SensCoolingEnergyRate(0.0), SensCoolingEnergy(0.0), TotalCoolingLoad(0.0),
+              TotalCoolingEnergy(0.0), TotalElecPower(0.0), TotalElecConsumption(0.0)
         {
         }
 
@@ -1681,11 +1672,10 @@ namespace RefrigeratedCase {
 
         // Default Constructor
         CoilCreditData()
-            : LatCreditToZoneRate(0.0), LatCreditToZoneEnergy(0.0), LatKgPerS_ToZoneRate(0.0), SenCreditToZoneRate(0.0),
-              SenCreditToZoneEnergy(0.0), ReportH20RemovedKgPerS_FromZoneRate(0.0), ReportLatCreditToZoneRate(0.0),
-              ReportLatCreditToZoneEnergy(0.0), ReportHeatingToZoneRate(0.0), ReportHeatingToZoneEnergy(0.0),
-              ReportSenCoolingToZoneRate(0.0), ReportSenCoolingToZoneEnergy(0.0), ReportTotCoolingToZoneRate(0.0),
-              ReportTotCoolingToZoneEnergy(0.0)
+            : LatCreditToZoneRate(0.0), LatCreditToZoneEnergy(0.0), LatKgPerS_ToZoneRate(0.0), SenCreditToZoneRate(0.0), SenCreditToZoneEnergy(0.0),
+              ReportH20RemovedKgPerS_FromZoneRate(0.0), ReportLatCreditToZoneRate(0.0), ReportLatCreditToZoneEnergy(0.0),
+              ReportHeatingToZoneRate(0.0), ReportHeatingToZoneEnergy(0.0), ReportSenCoolingToZoneRate(0.0), ReportSenCoolingToZoneEnergy(0.0),
+              ReportTotCoolingToZoneRate(0.0), ReportTotCoolingToZoneEnergy(0.0)
         {
         }
 
@@ -1765,8 +1755,7 @@ namespace RefrigeratedCase {
     //***************************************************************************************************
     //***************************************************************************************************
 
-    void SimRefrigCondenser(
-        int const SysType, std::string const &CompName, int &CompIndex, bool const FirstHVACIteration, bool const InitLoopEquip);
+    void SimRefrigCondenser(int const SysType, std::string const &CompName, int &CompIndex, bool const FirstHVACIteration, bool const InitLoopEquip);
 
     //***************************************************************************************************
     //***************************************************************************************************

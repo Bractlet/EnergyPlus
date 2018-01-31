@@ -108,10 +108,9 @@ namespace HVACInterfaceManager {
 
         // Default Constructor
         CommonPipeData()
-            : CommonPipeType(0), SupplySideInletPumpType(FlowTypeNotSet), DemandSideInletPumpType(FlowTypeNotSet), FlowDir(0), Flow(0.0),
-              Temp(0.0), SecCPLegFlow(0.0), PriCPLegFlow(0.0), SecToPriFlow(0.0), PriToSecFlow(0.0), PriInTemp(0.0), PriOutTemp(0.0),
-              SecInTemp(0.0), SecOutTemp(0.0), PriInletSetPoint(0.0), SecInletSetPoint(0.0), PriInletControlled(false),
-              SecInletControlled(false), PriFlowRequest(0.0)
+            : CommonPipeType(0), SupplySideInletPumpType(FlowTypeNotSet), DemandSideInletPumpType(FlowTypeNotSet), FlowDir(0), Flow(0.0), Temp(0.0),
+              SecCPLegFlow(0.0), PriCPLegFlow(0.0), SecToPriFlow(0.0), PriToSecFlow(0.0), PriInTemp(0.0), PriOutTemp(0.0), SecInTemp(0.0),
+              SecOutTemp(0.0), PriInletSetPoint(0.0), SecInletSetPoint(0.0), PriInletControlled(false), SecInletControlled(false), PriFlowRequest(0.0)
         {
         }
     };
@@ -143,12 +142,11 @@ namespace HVACInterfaceManager {
 
     void UpdateCommonPipe(int const LoopNum, int const TankInletLoopSide, int const CommonPipeType, Real64 &MixedOutletTemp);
 
-    void
-    ManageSingleCommonPipe(int const LoopNum,           // plant loop number
-                           int const LoopSide,          // plant loop side number
-                           Real64 const TankOutletTemp, // inlet temperature to the common pipe passed in from the capacitance calculation
-                           Real64 &MixedOutletTemp      // inlet temperature to the common pipe passed in from the capacitance calculation
-                           );
+    void ManageSingleCommonPipe(int const LoopNum,           // plant loop number
+                                int const LoopSide,          // plant loop side number
+                                Real64 const TankOutletTemp, // inlet temperature to the common pipe passed in from the capacitance calculation
+                                Real64 &MixedOutletTemp      // inlet temperature to the common pipe passed in from the capacitance calculation
+                                );
 
     void ManageTwoWayCommonPipe(int const LoopNum, int const LoopSide, Real64 const TankOutletTemp);
 

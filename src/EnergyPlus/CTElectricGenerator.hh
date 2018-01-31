@@ -139,15 +139,14 @@ namespace CTElectricGenerator {
         // Default Constructor
         CTGeneratorSpecs()
             : TypeOf("Generator:CombustionTurbine"), CompType_Num(iGeneratorCombTurbine), RatedPowerOutput(0.0), ElectricCircuitNode(0),
-              MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), FuelEnergyUseRate(0.0), FuelEnergy(0.0),
-              PLBasedFuelInputCurve(0), TempBasedFuelInputCurve(0), ExhaustFlow(0.0), ExhaustFlowCurve(0), ExhaustTemp(0.0),
-              PLBasedExhaustTempCurve(0), TempBasedExhaustTempCurve(0), QLubeOilRecovered(0.0), QExhaustRecovered(0.0),
-              QTotalHeatRecovered(0.0), LubeOilEnergyRec(0.0), ExhaustEnergyRec(0.0), TotalHeatEnergyRec(0.0), QLubeOilRecoveredCurve(0),
-              UA(0.0), UACoef(2, 0.0), MaxExhaustperCTPower(0.0), DesignHeatRecVolFlowRate(0.0), DesignHeatRecMassFlowRate(0.0),
-              DesignMinExitGasTemp(0.0), DesignAirInletTemp(0.0), ExhaustStackTemp(0.0), HeatRecActive(false), HeatRecInletNodeNum(0),
-              HeatRecOutletNodeNum(0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0), HRLoopNum(0), HRLoopSideNum(0),
-              HRBranchNum(0), HRCompNum(0), FuelMdot(0.0), FuelHeatingValue(0.0), ElecPowerGenerated(0.0), ElecEnergyGenerated(0.0),
-              HeatRecMaxTemp(0.0), OAInletNode(0)
+              MinPartLoadRat(0.0), MaxPartLoadRat(0.0), OptPartLoadRat(0.0), FuelEnergyUseRate(0.0), FuelEnergy(0.0), PLBasedFuelInputCurve(0),
+              TempBasedFuelInputCurve(0), ExhaustFlow(0.0), ExhaustFlowCurve(0), ExhaustTemp(0.0), PLBasedExhaustTempCurve(0),
+              TempBasedExhaustTempCurve(0), QLubeOilRecovered(0.0), QExhaustRecovered(0.0), QTotalHeatRecovered(0.0), LubeOilEnergyRec(0.0),
+              ExhaustEnergyRec(0.0), TotalHeatEnergyRec(0.0), QLubeOilRecoveredCurve(0), UA(0.0), UACoef(2, 0.0), MaxExhaustperCTPower(0.0),
+              DesignHeatRecVolFlowRate(0.0), DesignHeatRecMassFlowRate(0.0), DesignMinExitGasTemp(0.0), DesignAirInletTemp(0.0),
+              ExhaustStackTemp(0.0), HeatRecActive(false), HeatRecInletNodeNum(0), HeatRecOutletNodeNum(0), HeatRecInletTemp(0.0),
+              HeatRecOutletTemp(0.0), HeatRecMdot(0.0), HRLoopNum(0), HRLoopSideNum(0), HRBranchNum(0), HRCompNum(0), FuelMdot(0.0),
+              FuelHeatingValue(0.0), ElecPowerGenerated(0.0), ElecEnergyGenerated(0.0), HeatRecMaxTemp(0.0), OAInletNode(0)
         {
         }
     };
@@ -173,9 +172,9 @@ namespace CTElectricGenerator {
 
         // Default Constructor
         ReportVars()
-            : PowerGen(0.0), EnergyGen(0.0), QTotalHeatRecovered(0.0), QLubeOilRecovered(0.0), QExhaustRecovered(0.0),
-              TotalHeatEnergyRec(0.0), LubeOilEnergyRec(0.0), ExhaustEnergyRec(0.0), FuelEnergyUseRate(0.0), FuelEnergy(0.0), FuelMdot(0.0),
-              ExhaustStackTemp(0.0), HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0)
+            : PowerGen(0.0), EnergyGen(0.0), QTotalHeatRecovered(0.0), QLubeOilRecovered(0.0), QExhaustRecovered(0.0), TotalHeatEnergyRec(0.0),
+              LubeOilEnergyRec(0.0), ExhaustEnergyRec(0.0), FuelEnergyUseRate(0.0), FuelEnergy(0.0), FuelMdot(0.0), ExhaustStackTemp(0.0),
+              HeatRecInletTemp(0.0), HeatRecOutletTemp(0.0), HeatRecMdot(0.0)
         {
         }
     };

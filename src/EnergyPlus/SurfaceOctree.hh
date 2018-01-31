@@ -99,8 +99,7 @@ public: // Creation
     }
 
     // Surfaces Outer Cube Constructor
-    SurfaceOctreeCube(ObjexxFCL::Array1<Surface> &surfaces)
-        : d_(0u), n_(0u), l_(Vertex(0.0)), u_(Vertex(0.0)), c_(Vertex(0.0)), w_(0.0), r_(0.0)
+    SurfaceOctreeCube(ObjexxFCL::Array1<Surface> &surfaces) : d_(0u), n_(0u), l_(Vertex(0.0)), u_(Vertex(0.0)), c_(Vertex(0.0)), w_(0.0), r_(0.0)
     {
         for (std::uint8_t i = 0; i < 8; ++i)
             cubes_[i] = nullptr; // VC++ 2013 compatible initialization
@@ -567,17 +566,15 @@ public: // Methods
             for (auto const *surface_p : surfaces_) {   // Process this cube's surfaces
                 if (predicate(*surface_p)) return true; // Don't need to process more surfaces
             }
-            for (std::uint8_t i = 0; i < n_; ++i) { // Recurse
-                if (cubes_[i]->processSomeSurfaceRayIntersectsCube(a, dir, dir_inv, predicate))
-                    return true; // Don't need to process more surfaces
+            for (std::uint8_t i = 0; i < n_; ++i) {                                                          // Recurse
+                if (cubes_[i]->processSomeSurfaceRayIntersectsCube(a, dir, dir_inv, predicate)) return true; // Don't need to process more surfaces
             }
         }
         return false;
     }
 
     // Process Surfaces in Cube that Ray Intersects Stopping if Predicate Satisfied
-    template <typename Predicate>
-    bool processSomeSurfaceRayIntersectsCube(Vertex const &a, Vertex const &dir, Predicate const &predicate) const
+    template <typename Predicate> bool processSomeSurfaceRayIntersectsCube(Vertex const &a, Vertex const &dir, Predicate const &predicate) const
     {
         return processSomeSurfaceRayIntersectsCube(a, dir, safe_inverse(dir), predicate); // Inefficient if called in loop with same dir
     }

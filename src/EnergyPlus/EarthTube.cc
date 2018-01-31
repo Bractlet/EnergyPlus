@@ -196,8 +196,8 @@ namespace EarthTube {
         EarthTubeSys.allocate(TotEarthTube);
 
         for (Loop = 1; Loop <= TotEarthTube; ++Loop) {
-            GetObjectItem(cCurrentModuleObject, Loop, cAlphaArgs, NumAlpha, rNumericArgs, NumNumber, IOStat, lNumericFieldBlanks,
-                          lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(cCurrentModuleObject, Loop, cAlphaArgs, NumAlpha, rNumericArgs, NumNumber, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
+                          cAlphaFieldNames, cNumericFieldNames);
 
             // First Alpha is Zone Name
             EarthTubeSys(Loop).ZonePtr = FindItemInList(cAlphaArgs(1), Zone);
@@ -211,8 +211,8 @@ namespace EarthTube {
             EarthTubeSys(Loop).SchedPtr = GetScheduleIndex(cAlphaArgs(2));
             if (EarthTubeSys(Loop).SchedPtr == 0) {
                 if (lAlphaFieldBlanks(2)) {
-                    ShowSevereError(cCurrentModuleObject + ": " + cAlphaFieldNames(2) + " is required, missing for " + cAlphaFieldNames(1) +
-                                    '=' + cAlphaArgs(1));
+                    ShowSevereError(cCurrentModuleObject + ": " + cAlphaFieldNames(2) + " is required, missing for " + cAlphaFieldNames(1) + '=' +
+                                    cAlphaArgs(1));
                 } else {
                     ShowSevereError(cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered=" + cAlphaArgs(2) + " for " +
                                     cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
@@ -368,18 +368,16 @@ namespace EarthTube {
                     SetupOutputVariable("Earth Tube Zone Sensible Heating Rate", OutputProcessor::Unit::W,
                                         ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeHeatGainRate, "System", "State",
                                         Zone(EarthTubeSys(Loop).ZonePtr).Name);
-                    SetupOutputVariable("Earth Tube Air Flow Volume", OutputProcessor::Unit::m3,
-                                        ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeVolume, "System", "NonState",
-                                        Zone(EarthTubeSys(Loop).ZonePtr).Name);
+                    SetupOutputVariable("Earth Tube Air Flow Volume", OutputProcessor::Unit::m3, ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeVolume,
+                                        "System", "NonState", Zone(EarthTubeSys(Loop).ZonePtr).Name);
                     SetupOutputVariable("Earth Tube Current Density Air Volume Flow Rate", OutputProcessor::Unit::m3_s,
                                         ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeVolFlowRate, "System", "State",
                                         Zone(EarthTubeSys(Loop).ZonePtr).Name);
                     SetupOutputVariable("Earth Tube Standard Density Air Volume Flow Rate", OutputProcessor::Unit::m3_s,
                                         ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeVolFlowRateStd, "System", "State",
                                         Zone(EarthTubeSys(Loop).ZonePtr).Name);
-                    SetupOutputVariable("Earth Tube Air Flow Mass", OutputProcessor::Unit::kg,
-                                        ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeMass, "System", "NonState",
-                                        Zone(EarthTubeSys(Loop).ZonePtr).Name);
+                    SetupOutputVariable("Earth Tube Air Flow Mass", OutputProcessor::Unit::kg, ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeMass,
+                                        "System", "NonState", Zone(EarthTubeSys(Loop).ZonePtr).Name);
                     SetupOutputVariable("Earth Tube Air Mass Flow Rate", OutputProcessor::Unit::kg_s,
                                         ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeMassFlowRate, "System", "State",
                                         Zone(EarthTubeSys(Loop).ZonePtr).Name);
@@ -395,8 +393,8 @@ namespace EarthTube {
                     SetupOutputVariable("Earth Tube Zone Inlet Air Temperature", OutputProcessor::Unit::C,
                                         ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeAirTemp, "System", "State",
                                         Zone(EarthTubeSys(Loop).ZonePtr).Name);
-                    SetupOutputVariable("Earth Tube Ground Interface Temperature", OutputProcessor::Unit::C,
-                                        EarthTubeSys(Loop).GroundTempz1z2t, "System", "State", Zone(EarthTubeSys(Loop).ZonePtr).Name);
+                    SetupOutputVariable("Earth Tube Ground Interface Temperature", OutputProcessor::Unit::C, EarthTubeSys(Loop).GroundTempz1z2t,
+                                        "System", "State", Zone(EarthTubeSys(Loop).ZonePtr).Name);
                     SetupOutputVariable("Earth Tube Outdoor Air Heat Transfer Rate", OutputProcessor::Unit::W,
                                         ZnRptET(EarthTubeSys(Loop).ZonePtr).EarthTubeOATreatmentPower, "System", "State",
                                         Zone(EarthTubeSys(Loop).ZonePtr).Name);
@@ -516,8 +514,7 @@ namespace EarthTube {
             // Calculation of Average Ground Temperature between Depth z1 and z2 at time t
             GroundTempz1z2t =
                 EarthTubeSys(Loop).AverSoilSurTemp -
-                EarthTubeSys(Loop).ApmlSoilSurTemp *
-                    std::exp(-EarthTubeSys(Loop).z * std::sqrt(Pi / 365.0 / EarthTubeSys(Loop).SoilThermDiff)) *
+                EarthTubeSys(Loop).ApmlSoilSurTemp * std::exp(-EarthTubeSys(Loop).z * std::sqrt(Pi / 365.0 / EarthTubeSys(Loop).SoilThermDiff)) *
                     std::cos(2.0 * Pi / 365.0 * (DayOfYear - EarthTubeSys(Loop).SoilSurPhaseConst -
                                                  EarthTubeSys(Loop).z / 2.0 * std::sqrt(365.0 / Pi / EarthTubeSys(Loop).SoilThermDiff)));
             EarthTubeSys(Loop).GroundTempz1z2t = GroundTempz1z2t;
@@ -542,10 +539,8 @@ namespace EarthTube {
 
             // Claculation of Thermal Resistance and Overall Heat Transger Coefficient
             Rc = 1.0 / 2.0 / Pi / EarthTubeSys(Loop).r1 / PipeHeatTransCoef;
-            Rp = std::log((EarthTubeSys(Loop).r1 + EarthTubeSys(Loop).r2) / EarthTubeSys(Loop).r1) / 2.0 / Pi /
-                 EarthTubeSys(Loop).PipeThermCond;
-            Rs = std::log((EarthTubeSys(Loop).r1 + EarthTubeSys(Loop).r2 + EarthTubeSys(Loop).r3) /
-                          (EarthTubeSys(Loop).r1 + EarthTubeSys(Loop).r2)) /
+            Rp = std::log((EarthTubeSys(Loop).r1 + EarthTubeSys(Loop).r2) / EarthTubeSys(Loop).r1) / 2.0 / Pi / EarthTubeSys(Loop).PipeThermCond;
+            Rs = std::log((EarthTubeSys(Loop).r1 + EarthTubeSys(Loop).r2 + EarthTubeSys(Loop).r3) / (EarthTubeSys(Loop).r1 + EarthTubeSys(Loop).r2)) /
                  2.0 / Pi / EarthTubeSys(Loop).SoilThermCond;
             Rt = Rc + Rp + Rs;
             OverallHeatTransCoef = 1.0 / Rt;

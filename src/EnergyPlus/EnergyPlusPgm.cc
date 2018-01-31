@@ -424,8 +424,7 @@ void EnergyPlusPgm(std::string const &filepath)
         gio::open(OutputStandardError, outputErrFileName, flags);
         int write_stat = flags.ios();
         if (write_stat == 600) {
-            DisplayString("ERROR: Could not open file " + outputErrFileName +
-                          " for output (write). Write permission denied in output directory.");
+            DisplayString("ERROR: Could not open file " + outputErrFileName + " for output (write). Write permission denied in output directory.");
             std::exit(EXIT_FAILURE);
         } else if (write_stat != 0) {
             DisplayString("ERROR: Could not open file " + outputErrFileName + " for output (write).");

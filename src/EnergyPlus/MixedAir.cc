@@ -531,28 +531,22 @@ namespace MixedAir {
                     OAControllerNum = FindItemInList(CtrlName, OAController);
                     if (OAController(OAControllerNum).MixNode != OAMixer(OAMixerNum).MixNode) {
                         ShowSevereError("The mixed air node of Controller:OutdoorAir=\"" + OAController(OAControllerNum).Name + "\"");
-                        ShowContinueError("should be the same node as the mixed air node of OutdoorAir:Mixer=\"" +
-                                          OAMixer(OAMixerNum).Name + "\".");
-                        ShowContinueError("Controller:OutdoorAir mixed air node=\"" + NodeID(OAController(OAControllerNum).MixNode) +
-                                          "\".");
+                        ShowContinueError("should be the same node as the mixed air node of OutdoorAir:Mixer=\"" + OAMixer(OAMixerNum).Name + "\".");
+                        ShowContinueError("Controller:OutdoorAir mixed air node=\"" + NodeID(OAController(OAControllerNum).MixNode) + "\".");
                         ShowContinueError("OutdoorAir:Mixer mixed air node=\"" + NodeID(OAMixer(OAMixerNum).MixNode) + "\".");
                         FatalErrorFlag = true;
                     }
                     if (OAController(OAControllerNum).RelNode != OAMixer(OAMixerNum).RelNode) {
                         ShowSevereError("The relief air node of Controller:OutdoorAir=\"" + OAController(OAControllerNum).Name + "\"");
-                        ShowContinueError("should be the same node as the relief air node of OutdoorAir:Mixer=\"" +
-                                          OAMixer(OAMixerNum).Name + "\".");
-                        ShowContinueError("Controller:OutdoorAir relief air node=\"" + NodeID(OAController(OAControllerNum).RelNode) +
-                                          "\".");
+                        ShowContinueError("should be the same node as the relief air node of OutdoorAir:Mixer=\"" + OAMixer(OAMixerNum).Name + "\".");
+                        ShowContinueError("Controller:OutdoorAir relief air node=\"" + NodeID(OAController(OAControllerNum).RelNode) + "\".");
                         ShowContinueError("OutdoorAir:Mixer relief air node=\"" + NodeID(OAMixer(OAMixerNum).RelNode) + "\".");
                         FatalErrorFlag = true;
                     }
                     if (OAController(OAControllerNum).RetNode != OAMixer(OAMixerNum).RetNode) {
                         ShowSevereError("The return air node of Controller:OutdoorAir=\"" + OAController(OAControllerNum).Name + "\"");
-                        ShowContinueError("should be the same node as the return air node of OutdoorAir:Mixer=\"" +
-                                          OAMixer(OAMixerNum).Name + "\".");
-                        ShowContinueError("Controller:OutdoorAir return air node=\"" + NodeID(OAController(OAControllerNum).RetNode) +
-                                          "\".");
+                        ShowContinueError("should be the same node as the return air node of OutdoorAir:Mixer=\"" + OAMixer(OAMixerNum).Name + "\".");
+                        ShowContinueError("Controller:OutdoorAir return air node=\"" + NodeID(OAController(OAControllerNum).RetNode) + "\".");
                         ShowContinueError("OutdoorAir:Mixer return air node=\"" + NodeID(OAMixer(OAMixerNum).RetNode) + "\".");
                         FatalErrorFlag = true;
                     }
@@ -1033,8 +1027,8 @@ namespace MixedAir {
 
             // create a reference for convenience
             auto &thisControllerList(ControllerLists(Item));
-            GetObjectItem(CurrentModuleObject, Item, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFields, cNumericFields);
+            GetObjectItem(CurrentModuleObject, Item, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks, cAlphaFields,
+                          cNumericFields);
             IsNotOK = false;
             IsBlank = false;
             VerifyName(AlphArray(1), ControllerLists, Item - 1, IsNotOK, IsBlank, CurrentModuleObject + " Name");
@@ -1070,8 +1064,7 @@ namespace MixedAir {
                     }
                 } else {
                     ShowSevereError("For " + CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(AlphaNum));
-                    ShowContinueError("...entered=\"" + AlphArray(AlphaNum) +
-                                      "\", should be Controller:WaterCoil or Controller:OutdoorAir.");
+                    ShowContinueError("...entered=\"" + AlphArray(AlphaNum) + "\", should be Controller:WaterCoil or Controller:OutdoorAir.");
                     ErrorsFound = true;
                 }
                 AlphaNum += 2;
@@ -1090,8 +1083,8 @@ namespace MixedAir {
 
         for (OASysNum = 1; OASysNum <= NumOASystems; ++OASysNum) {
 
-            GetObjectItem(CurrentModuleObject, OASysNum, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks,
-                          cAlphaFields, cNumericFields);
+            GetObjectItem(CurrentModuleObject, OASysNum, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks, cAlphaFields,
+                          cNumericFields);
             IsNotOK = false;
             IsBlank = false;
             VerifyName(AlphArray(1), OutsideAirSys, OASysNum - 1, IsNotOK, IsBlank, CurrentModuleObject + " Name");
@@ -1141,8 +1134,7 @@ namespace MixedAir {
                     ErrorsFound = true;
                 }
             } else {
-                ShowSevereError(CurrentModuleObject + " = \"" + AlphArray(1) + "\" invalid " + cAlphaFields(3) +
-                                " is blank and must be entered.");
+                ShowSevereError(CurrentModuleObject + " = \"" + AlphArray(1) + "\" invalid " + cAlphaFields(3) + " is blank and must be entered.");
                 ErrorsFound = true;
             }
 
@@ -1170,8 +1162,7 @@ namespace MixedAir {
                     ErrorsFound = true;
                 }
             } else {
-                ShowSevereError(CurrentModuleObject + " = \"" + AlphArray(1) + "\" invalid " + cAlphaFields(2) +
-                                " is blank and must be entered.");
+                ShowSevereError(CurrentModuleObject + " = \"" + AlphArray(1) + "\" invalid " + cAlphaFields(2) + " is blank and must be entered.");
                 ErrorsFound = true;
             }
             OutsideAirSys(OASysNum).ControllerListNum = ListNum;
@@ -1432,8 +1423,8 @@ namespace MixedAir {
                     if (IsBlank) AlphArray(1) = "xxxxx";
                 }
 
-                ProcessOAControllerInputs(CurrentModuleObject, OutAirNum, AlphArray, NumAlphas, NumArray, NumNums, lNumericBlanks,
-                                          lAlphaBlanks, cAlphaFields, cNumericFields, ErrorsFound);
+                ProcessOAControllerInputs(CurrentModuleObject, OutAirNum, AlphArray, NumAlphas, NumArray, NumNums, lNumericBlanks, lAlphaBlanks,
+                                          cAlphaFields, cNumericFields, ErrorsFound);
 
                 // add applicable faults identifier to avoid string comparison at each time step
                 //  loop through each fault for each OA controller
@@ -1510,8 +1501,8 @@ namespace MixedAir {
             VentilationMechanical.allocate(NumVentMechControllers);
             for (VentMechNum = 1; VentMechNum <= NumVentMechControllers; ++VentMechNum) {
                 auto &thisVentilationMechanical(VentilationMechanical(VentMechNum));
-                GetObjectItem(CurrentModuleObject, VentMechNum, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks,
-                              lAlphaBlanks, cAlphaFields, cNumericFields);
+                GetObjectItem(CurrentModuleObject, VentMechNum, AlphArray, NumAlphas, NumArray, NumNums, IOStat, lNumericBlanks, lAlphaBlanks,
+                              cAlphaFields, cNumericFields);
 
                 MechVentZoneCount = 0;
 
@@ -1534,8 +1525,8 @@ namespace MixedAir {
                 } else {
                     thisVentilationMechanical.SchPtr = GetScheduleIndex(AlphArray(2)); // convert schedule name to pointer
                     if (thisVentilationMechanical.SchPtr == 0) {
-                        ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(2) + "=\"" +
-                                        AlphArray(2) + "\" not found.");
+                        ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(2) + "=\"" + AlphArray(2) +
+                                        "\" not found.");
                         ErrorsFound = true;
                     }
                 }
@@ -1546,8 +1537,8 @@ namespace MixedAir {
                 } else if (SameString(AlphArray(3), "No") || lAlphaBlanks(3)) {
                     thisVentilationMechanical.DCVFlag = false;
                 } else {
-                    ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid value " + cAlphaFields(3) + "=\"" +
-                                    AlphArray(3) + "\".");
+                    ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid value " + cAlphaFields(3) + "=\"" + AlphArray(3) +
+                                    "\".");
                     ShowContinueError("...Valid values are \"Yes\" or \"No\".");
                     ErrorsFound = true;
                 }
@@ -1557,74 +1548,64 @@ namespace MixedAir {
                     auto const SELECT_CASE_var(MakeUPPERCase(AlphArray(4)));
                     if (SELECT_CASE_var == "ZONESUM") { // Simplify sum the zone OA flow rates
                         thisVentilationMechanical.SystemOAMethod = SOAM_ZoneSum;
-                    } else if ((SELECT_CASE_var ==
-                                "VENTILATIONRATEPROCEDURE")) { // Ventilation Rate Procedure based on ASHRAE Standard 62.1-2007
+                    } else if ((SELECT_CASE_var == "VENTILATIONRATEPROCEDURE")) { // Ventilation Rate Procedure based on ASHRAE Standard 62.1-2007
                         thisVentilationMechanical.SystemOAMethod = SOAM_VRP;
-                    } else if ((SELECT_CASE_var ==
-                                "INDOORAIRQUALITYPROCEDURE")) { // Indoor Air Quality Procedure based on ASHRAE Standard 62.1-2007
+                    } else if ((SELECT_CASE_var == "INDOORAIRQUALITYPROCEDURE")) { // Indoor Air Quality Procedure based on ASHRAE Standard 62.1-2007
                         thisVentilationMechanical.SystemOAMethod = SOAM_IAQP;
                         if (!Contaminant.CO2Simulation) {
-                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" +
-                                            AlphArray(2) + "\" requires CO2 simulation.");
-                            ShowContinueError(
-                                "The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
+                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" + AlphArray(2) +
+                                            "\" requires CO2 simulation.");
+                            ShowContinueError("The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
                             ErrorsFound = true;
                         }
                     } else if (SELECT_CASE_var ==
                                "PROPORTIONALCONTROLBASEDONOCCUPANCYSCHEDULE") { // Proportional Control based on ASHRAE Standard 62.1-2004
                         thisVentilationMechanical.SystemOAMethod = SOAM_ProportionalControlSchOcc;
                         if (!Contaminant.CO2Simulation) {
-                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" +
-                                            AlphArray(2) + "\" requires CO2 simulation.");
-                            ShowContinueError(
-                                "The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
+                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" + AlphArray(2) +
+                                            "\" requires CO2 simulation.");
+                            ShowContinueError("The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
                             ErrorsFound = true;
                         }
                     } else if (SELECT_CASE_var ==
                                "PROPORTIONALCONTROLBASEDONDESIGNOCCUPANCY") { // Proportional Control based on ASHRAE Standard 62.1-2004
                         thisVentilationMechanical.SystemOAMethod = SOAM_ProportionalControlDesOcc;
                         if (!Contaminant.CO2Simulation) {
-                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" +
-                                            AlphArray(2) + "\" requires CO2 simulation.");
-                            ShowContinueError(
-                                "The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
+                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" + AlphArray(2) +
+                                            "\" requires CO2 simulation.");
+                            ShowContinueError("The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
                             ErrorsFound = true;
                         }
-                    } else if (SELECT_CASE_var ==
-                               "PROPORTIONALCONTROLBASEDONDESIGNOARATE") { // Proportional Control based on design OA rate
+                    } else if (SELECT_CASE_var == "PROPORTIONALCONTROLBASEDONDESIGNOARATE") { // Proportional Control based on design OA rate
                         thisVentilationMechanical.SystemOAMethod = SOAM_ProportionalControlDesOARate;
                         if (!Contaminant.CO2Simulation) {
-                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" +
-                                            AlphArray(2) + "\" requires CO2 simulation.");
-                            ShowContinueError(
-                                "The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
+                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" + AlphArray(2) +
+                                            "\" requires CO2 simulation.");
+                            ShowContinueError("The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
                             ErrorsFound = true;
                         }
                     } else if (SELECT_CASE_var == "INDOORAIRQUALITYPROCEDUREGENERICCONTAMINANT") { // Indoor Air Quality Procedure based on
                                                                                                    // generic contaminant setpoint
                         thisVentilationMechanical.SystemOAMethod = SOAM_IAQPGC;
                         if (!Contaminant.GenericContamSimulation) {
-                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" +
-                                            AlphArray(2) + "\" requires generic contaminant simulation.");
-                            ShowContinueError(
-                                "The choice must be Yes for the field Generic Contaminant Concentration in ZoneAirContaminantBalance");
+                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" + AlphArray(2) +
+                                            "\" requires generic contaminant simulation.");
+                            ShowContinueError("The choice must be Yes for the field Generic Contaminant Concentration in ZoneAirContaminantBalance");
                             ErrorsFound = true;
                         }
                     } else if (SELECT_CASE_var == "INDOORAIRQUALITYPROCEDURECOMBINED") { // Indoor Air Quality Procedure based on both
                                                                                          // generic contaminant and CO2 setpoint
                         thisVentilationMechanical.SystemOAMethod = SOAM_IAQPCOM;
                         if (!Contaminant.GenericContamSimulation) {
-                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" +
-                                            AlphArray(2) + "\" requires generic contaminant simulation.");
-                            ShowContinueError(
-                                "The choice must be Yes for the field Generic Contaminant Concentration in ZoneAirContaminantBalance");
+                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" + AlphArray(2) +
+                                            "\" requires generic contaminant simulation.");
+                            ShowContinueError("The choice must be Yes for the field Generic Contaminant Concentration in ZoneAirContaminantBalance");
                             ErrorsFound = true;
                         }
                         if (!Contaminant.CO2Simulation) {
-                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" +
-                                            AlphArray(2) + "\" requires CO2 simulation.");
-                            ShowContinueError(
-                                "The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
+                            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" valid " + cAlphaFields(2) + "=\"" + AlphArray(2) +
+                                            "\" requires CO2 simulation.");
+                            ShowContinueError("The choice must be Yes for the field Carbon Dioxide Concentration in ZoneAirContaminantBalance");
                             ErrorsFound = true;
                         }
                     } else { // If specified incorrectly, show errors
@@ -1657,8 +1638,8 @@ namespace MixedAir {
 
                         if (ObjIndex == 0) {
                             ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + thisVentilationMechanical.Name + "\", invalid");
-                            ShowContinueError("... not found " + cAlphaFields((groupNum - 1) * 3 + 6) + "=\"" +
-                                              DesignSpecOAObjName(groupNum) + "\".");
+                            ShowContinueError("... not found " + cAlphaFields((groupNum - 1) * 3 + 6) + "=\"" + DesignSpecOAObjName(groupNum) +
+                                              "\".");
                             ErrorsFound = true;
                         }
                     }
@@ -1672,8 +1653,8 @@ namespace MixedAir {
                         if (ObjIndex == 0) {
                             // Cannot find the design specification Zone Air Distribution object
                             ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + thisVentilationMechanical.Name + "\", invalid");
-                            ShowContinueError("... not found " + cAlphaFields((groupNum - 1) * 3 + 7) + "=\"" +
-                                              DesignSpecZoneADObjName(groupNum) + "\".");
+                            ShowContinueError("... not found " + cAlphaFields((groupNum - 1) * 3 + 7) + "=\"" + DesignSpecZoneADObjName(groupNum) +
+                                              "\".");
                             ErrorsFound = true;
                         }
                     }
@@ -1686,8 +1667,8 @@ namespace MixedAir {
                         if (ZoneListNum > 0) {
                             MechVentZoneCount += ZoneList(ZoneListNum).NumOfZones;
                         } else {
-                            ShowWarningError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " +
-                                             cAlphaFields((groupNum - 1) * 3 + 5) + " not found.");
+                            ShowWarningError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields((groupNum - 1) * 3 + 5) +
+                                             " not found.");
                             ShowContinueError("Missing " + cAlphaFields((groupNum - 1) * 3 + 5) + " = " + VentMechZoneOrListName(groupNum));
                             ErrorsFound = true;
                         }
@@ -1728,10 +1709,9 @@ namespace MixedAir {
                     if (ZoneNum > 0) {
                         if (any_eq(thisVentilationMechanical.VentMechZone, ZoneNum)) {
                             //          Disregard duplicate zone names, show warning and do not store data for this zone
-                            ShowWarningError("Zone name = " + VentMechZoneOrListName(groupNum) + " for " + CurrentModuleObject +
-                                             " object = " + thisVentilationMechanical.Name);
-                            ShowContinueError(
-                                "is specified more than once. The first ventilation values specified for this zone will be used");
+                            ShowWarningError("Zone name = " + VentMechZoneOrListName(groupNum) + " for " + CurrentModuleObject + " object = " +
+                                             thisVentilationMechanical.Name);
+                            ShowContinueError("is specified more than once. The first ventilation values specified for this zone will be used");
                             ShowContinueError("and the rest will be ignored. Simulation will continue..");
                         } else {
                             //          Store unique zone names
@@ -1745,8 +1725,7 @@ namespace MixedAir {
                                 thisVentilationMechanical.ZoneDesignSpecOAObjIndex(MechVentZoneCount) = DesignSpecOAObjIndex(groupNum);
                             } else {
                                 if (DoZoneSizing) {
-                                    ObjIndex =
-                                        FindItemInList(VentMechZoneOrListName(groupNum), ZoneSizingInput, &ZoneSizingInputData::ZoneName);
+                                    ObjIndex = FindItemInList(VentMechZoneOrListName(groupNum), ZoneSizingInput, &ZoneSizingInputData::ZoneName);
                                     if (ObjIndex > 0) {
                                         thisVentilationMechanical.ZoneDesignSpecOAObjName(MechVentZoneCount) =
                                             ZoneSizingInput(ObjIndex).DesignSpecOAObjName;
@@ -1762,8 +1741,7 @@ namespace MixedAir {
                                 thisVentilationMechanical.ZoneDesignSpecADObjIndex(MechVentZoneCount) = DesignSpecZoneADObjIndex(groupNum);
                             } else {
                                 if (DoZoneSizing) {
-                                    ObjIndex =
-                                        FindItemInList(VentMechZoneOrListName(groupNum), ZoneSizingInput, &ZoneSizingInputData::ZoneName);
+                                    ObjIndex = FindItemInList(VentMechZoneOrListName(groupNum), ZoneSizingInput, &ZoneSizingInputData::ZoneName);
                                     if (ObjIndex > 0) {
                                         thisVentilationMechanical.ZoneDesignSpecADObjName(MechVentZoneCount) =
                                             ZoneSizingInput(ObjIndex).ZoneAirDistEffObjName;
@@ -1783,9 +1761,8 @@ namespace MixedAir {
                                 ZoneNum = ZoneList(ZoneListNum).Zone(ScanZoneListNum);
                                 if (any_eq(thisVentilationMechanical.VentMechZone, ZoneNum)) {
                                     //             Disregard duplicate zone names, show warning and do not store data for this zone
-                                    ShowWarningError("Zone name = " + Zone(ZoneNum).Name + " in ZoneList = " +
-                                                     VentMechZoneOrListName(groupNum) + " for " + CurrentModuleObject + " object = " +
-                                                     thisVentilationMechanical.Name);
+                                    ShowWarningError("Zone name = " + Zone(ZoneNum).Name + " in ZoneList = " + VentMechZoneOrListName(groupNum) +
+                                                     " for " + CurrentModuleObject + " object = " + thisVentilationMechanical.Name);
                                     ShowContinueError("is a duplicate. The first ventilation values specified for this zone will be used ");
                                     ShowContinueError("and the rest will be ignored. The simulation will continue...");
                                 } else {
@@ -1796,10 +1773,8 @@ namespace MixedAir {
                                     thisVentilationMechanical.VentMechZoneName(MechVentZoneCount) = Zone(ZoneNum).Name;
                                     // Populating new temp array to hold design spec OA object for each zone
                                     if (DesignSpecOAObjIndex(groupNum) > 0) {
-                                        thisVentilationMechanical.ZoneDesignSpecOAObjName(MechVentZoneCount) =
-                                            DesignSpecOAObjName(groupNum);
-                                        thisVentilationMechanical.ZoneDesignSpecOAObjIndex(MechVentZoneCount) =
-                                            DesignSpecOAObjIndex(groupNum);
+                                        thisVentilationMechanical.ZoneDesignSpecOAObjName(MechVentZoneCount) = DesignSpecOAObjName(groupNum);
+                                        thisVentilationMechanical.ZoneDesignSpecOAObjIndex(MechVentZoneCount) = DesignSpecOAObjIndex(groupNum);
                                     } else {
                                         if (DoZoneSizing) {
                                             ObjIndex = FindItemInList(Zone(ZoneNum).Name, ZoneSizingInput, &ZoneSizingInputData::ZoneName);
@@ -1814,10 +1789,8 @@ namespace MixedAir {
 
                                     if (DesignSpecZoneADObjIndex(groupNum) > 0) {
                                         // new DCV inputs
-                                        thisVentilationMechanical.ZoneDesignSpecADObjName(MechVentZoneCount) =
-                                            DesignSpecZoneADObjName(groupNum);
-                                        thisVentilationMechanical.ZoneDesignSpecADObjIndex(MechVentZoneCount) =
-                                            DesignSpecZoneADObjIndex(groupNum);
+                                        thisVentilationMechanical.ZoneDesignSpecADObjName(MechVentZoneCount) = DesignSpecZoneADObjName(groupNum);
+                                        thisVentilationMechanical.ZoneDesignSpecADObjIndex(MechVentZoneCount) = DesignSpecZoneADObjIndex(groupNum);
                                     } else {
                                         if (DoZoneSizing) {
                                             ObjIndex = FindItemInList(Zone(ZoneNum).Name, ZoneSizingInput, &ZoneSizingInputData::ZoneName);
@@ -1853,9 +1826,8 @@ namespace MixedAir {
                         if (thisVentilationMechanical.SystemOAMethod == SOAM_ProportionalControlDesOARate) {
                             if (thisVentilationMechanical.ZoneOAPeopleRate(ventMechZoneNum) == 0.0 &&
                                 thisVentilationMechanical.ZoneOAAreaRate(ventMechZoneNum) == 0.0) {
-                                ShowSevereError(
-                                    RoutineName + CurrentModuleObject + "=\"" + thisVentilationMechanical.Name +
-                                    "\", invalid input with System Outdoor Air Method = ProportionalControlBasedOnDesignOARate.");
+                                ShowSevereError(RoutineName + CurrentModuleObject + "=\"" + thisVentilationMechanical.Name +
+                                                "\", invalid input with System Outdoor Air Method = ProportionalControlBasedOnDesignOARate.");
                                 ShowContinueError(" The values of Outdoor Air Flow per Person and Outdoor Air Flow per Zone Floor Area in "
                                                   "the same object can not be zero.");
                                 ErrorsFound = true;
@@ -1881,8 +1853,7 @@ namespace MixedAir {
                         thisVentilationMechanical.ZoneADEffCooling(ventMechZoneNum) = curZoneAirDistribution.ZoneADEffCooling;
                         thisVentilationMechanical.ZoneADEffHeating(ventMechZoneNum) = curZoneAirDistribution.ZoneADEffHeating;
                         thisVentilationMechanical.ZoneADEffSchPtr(ventMechZoneNum) = curZoneAirDistribution.ZoneADEffSchPtr;
-                        thisVentilationMechanical.ZoneSecondaryRecirculation(ventMechZoneNum) =
-                            curZoneAirDistribution.ZoneSecondaryRecirculation;
+                        thisVentilationMechanical.ZoneSecondaryRecirculation(ventMechZoneNum) = curZoneAirDistribution.ZoneSecondaryRecirculation;
                     } else { // use defaults
                         thisVentilationMechanical.ZoneADEffCooling(ventMechZoneNum) = 1.0;
                         thisVentilationMechanical.ZoneADEffHeating(ventMechZoneNum) = 1.0;
@@ -1905,8 +1876,7 @@ namespace MixedAir {
                 for (jZone = 1; jZone <= thisVentilationMechanical.NumofVentMechZones; ++jZone) {
                     if (thisVentilationMechanical.SystemOAMethod == SOAM_ProportionalControlSchOcc) {
                         if (thisVentilationMechanical.ZoneOAACHRate(jZone) > 0.0 || thisVentilationMechanical.ZoneOAFlowRate(jZone) > 0.0) {
-                            ShowWarningError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name +
-                                             "\", inappropriate outdoor air method");
+                            ShowWarningError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name + "\", inappropriate outdoor air method");
                             ShowContinueError("Inappropriate method for Design Specification Outdoor Air Object Name=\"" +
                                               thisVentilationMechanical.ZoneDesignSpecOAObjName(jZone) + "\".");
                             ShowContinueError("For Zone=\"" + thisVentilationMechanical.VentMechZoneName(jZone) + "\".");
@@ -1916,8 +1886,7 @@ namespace MixedAir {
                     }
                     if (thisVentilationMechanical.SystemOAMethod == SOAM_ProportionalControlDesOcc) {
                         if (thisVentilationMechanical.ZoneOAACHRate(jZone) > 0.0 || thisVentilationMechanical.ZoneOAFlowRate(jZone) > 0.0) {
-                            ShowWarningError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name +
-                                             "\", inappropriate outdoor air method");
+                            ShowWarningError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name + "\", inappropriate outdoor air method");
                             ShowContinueError("Inappropriate method for Design Specification Outdoor Air Object Name=\"" +
                                               thisVentilationMechanical.ZoneDesignSpecOAObjName(jZone) + "\".");
                             ShowContinueError("For Zone=\"" + thisVentilationMechanical.VentMechZoneName(jZone) + "\".");
@@ -1935,11 +1904,9 @@ namespace MixedAir {
                                 for (EquipListNum = 1; EquipListNum <= NumOfZoneEquipLists; ++EquipListNum) {
                                     if (EquipListNum == EquipListIndex) {
                                         for (EquipNum = 1; EquipNum <= ZoneEquipList(EquipListNum).NumOfEquipTypes; ++EquipNum) {
-                                            if (SameString(ZoneEquipList(EquipListNum).EquipType(EquipNum),
-                                                           "ZONEHVAC:AIRDISTRIBUTIONUNIT")) {
+                                            if (SameString(ZoneEquipList(EquipListNum).EquipType(EquipNum), "ZONEHVAC:AIRDISTRIBUTIONUNIT")) {
                                                 for (ADUNum = 1; ADUNum <= NumAirDistUnits; ++ADUNum) {
-                                                    if (SameString(ZoneEquipList(EquipListNum).EquipName(EquipNum),
-                                                                   AirDistUnit(ADUNum).Name)) {
+                                                    if (SameString(ZoneEquipList(EquipListNum).EquipName(EquipNum), AirDistUnit(ADUNum).Name)) {
                                                         if ((AirDistUnit(ADUNum).EquipType_Num(EquipNum) == SingleDuctVAVReheat) ||
                                                             (AirDistUnit(ADUNum).EquipType_Num(EquipNum) == SingleDuctConstVolReheat) ||
                                                             (AirDistUnit(ADUNum).EquipType_Num(EquipNum) == SingleDuctVAVNoReheat) ||
@@ -1947,8 +1914,7 @@ namespace MixedAir {
                                                             (AirDistUnit(ADUNum).EquipType_Num(EquipNum) == SingleDuctCBVAVReheat) ||
                                                             (AirDistUnit(ADUNum).EquipType_Num(EquipNum) == SingleDuctCBVAVNoReheat) ||
                                                             (AirDistUnit(ADUNum).EquipType_Num(EquipNum) == SingleDuctConstVolCooledBeam) ||
-                                                            (AirDistUnit(ADUNum).EquipType_Num(EquipNum) ==
-                                                             SingleDuctConstVolFourPipeBeam) ||
+                                                            (AirDistUnit(ADUNum).EquipType_Num(EquipNum) == SingleDuctConstVolFourPipeBeam) ||
                                                             (AirDistUnit(ADUNum).EquipType_Num(EquipNum) == DualDuctVAVOutdoorAir)) {
                                                             ShowWarningError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name +
                                                                              "\", inappropriate use of Zone secondary recirculation");
@@ -1956,10 +1922,9 @@ namespace MixedAir {
                                                                 "A zone secondary recirculation fraction is specified for zone served by ");
                                                             ShowContinueError("...terminal unit \"" + AirDistUnit(ADUNum).Name +
                                                                               "\" , that indicates a single path system");
-                                                            ShowContinueError("For Zone=\"" +
-                                                                              thisVentilationMechanical.VentMechZoneName(jZone) + "\".");
-                                                            ShowContinueError(
-                                                                "...The zone secondary recirculation for that zone was set to 0.0");
+                                                            ShowContinueError("For Zone=\"" + thisVentilationMechanical.VentMechZoneName(jZone) +
+                                                                              "\".");
+                                                            ShowContinueError("...The zone secondary recirculation for that zone was set to 0.0");
                                                             thisVentilationMechanical.ZoneSecondaryRecirculation(jZone) = 0.0;
                                                         }
                                                         goto EquipLoop_exit;
@@ -1988,16 +1953,14 @@ namespace MixedAir {
                     }
 
                     if (thisVentilationMechanical.ZoneOAAreaRate(jZone) < 0.0) {
-                        ShowSevereError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name +
-                                        "\", invalid Outdoor Air flow per area");
+                        ShowSevereError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name + "\", invalid Outdoor Air flow per area");
                         ShowContinueError("For Zone=\"" + thisVentilationMechanical.VentMechZoneName(jZone) + "\".");
                         ShowContinueError("invalid Outdoor Air flow per area specified in object=\"" +
                                           thisVentilationMechanical.ZoneDesignSpecOAObjName(jZone) + "\". Value must be >= 0.0.");
                         ErrorsFound = true;
                     }
                     if (thisVentilationMechanical.ZoneOAPeopleRate(jZone) < 0.0) {
-                        ShowSevereError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name +
-                                        "\", invalid Outdoor Air flow per person");
+                        ShowSevereError(CurrentModuleObject + "=\"" + thisVentilationMechanical.Name + "\", invalid Outdoor Air flow per person");
                         ShowContinueError("For Zone=\"" + thisVentilationMechanical.VentMechZoneName(jZone) + "\".");
                         ShowContinueError("invalid Outdoor Air flow per person specified in object \"" +
                                           thisVentilationMechanical.ZoneDesignSpecOAObjName(jZone) + "\". Value must be >= 0.0.");
@@ -2010,8 +1973,7 @@ namespace MixedAir {
             for (OAControllerNum = 1; OAControllerNum <= NumOAControllers; ++OAControllerNum) {
                 OAController(OAControllerNum).VentMechObjectNum =
                     FindItemInList(OAController(OAControllerNum).VentilationMechanicalName, VentilationMechanical);
-                if (OAController(OAControllerNum).VentMechObjectNum == 0 &&
-                    !OAController(OAControllerNum).VentilationMechanicalName.empty()) {
+                if (OAController(OAControllerNum).VentMechObjectNum == 0 && !OAController(OAControllerNum).VentilationMechanicalName.empty()) {
                     ShowSevereError(CurrentModuleObject + "=\"" + OAController(OAControllerNum).VentilationMechanicalName +
                                     "\", non-match to Controller:OutdoorAir");
                     ShowContinueError("Invalid specified in Controller:OutdoorAir object = " + OAController(OAControllerNum).Name);
@@ -2027,8 +1989,7 @@ namespace MixedAir {
                 {
                     IOFlags flags;
                     flags.ADVANCE("NO");
-                    gio::write(OutputFileInits, fmtA, flags) << " Controller:MechanicalVentilation," +
-                                                                    VentilationMechanical(VentMechNum).Name + ',' +
+                    gio::write(OutputFileInits, fmtA, flags) << " Controller:MechanicalVentilation," + VentilationMechanical(VentMechNum).Name + ',' +
                                                                     VentilationMechanical(VentMechNum).SchName + ',';
                 }
                 if (VentilationMechanical(VentMechNum).DCVFlag) {
@@ -2102,8 +2063,7 @@ namespace MixedAir {
                 {
                     IOFlags flags;
                     flags.ADVANCE("NO");
-                    gio::write(OutputFileInits, fmtA, flags)
-                        << RoundSigDigits(VentilationMechanical(VentMechNum).ZoneMaxOAFraction, 2) + ',';
+                    gio::write(OutputFileInits, fmtA, flags) << RoundSigDigits(VentilationMechanical(VentMechNum).ZoneMaxOAFraction, 2) + ',';
                 }
                 {
                     IOFlags flags;
@@ -2115,10 +2075,9 @@ namespace MixedAir {
                         {
                             IOFlags flags;
                             flags.ADVANCE("NO");
-                            gio::write(OutputFileInits, fmtA, flags)
-                                << Zone(VentilationMechanical(VentMechNum).VentMechZone(jZone)).Name + ',' +
-                                       VentilationMechanical(VentMechNum).ZoneDesignSpecOAObjName(jZone) + ',' +
-                                       VentilationMechanical(VentMechNum).ZoneDesignSpecADObjName(jZone) + ',';
+                            gio::write(OutputFileInits, fmtA, flags) << Zone(VentilationMechanical(VentMechNum).VentMechZone(jZone)).Name + ',' +
+                                                                            VentilationMechanical(VentMechNum).ZoneDesignSpecOAObjName(jZone) + ',' +
+                                                                            VentilationMechanical(VentMechNum).ZoneDesignSpecADObjName(jZone) + ',';
                         }
                     } else {
                         gio::write(OutputFileInits, fmtA) << VentilationMechanical(VentMechNum).VentMechZoneName(jZone) + ',' +
@@ -2404,8 +2363,7 @@ namespace MixedAir {
         } else if (SameString(AlphArray(6), "ElectronicEnthalpy")) {
             OAController(OutAirNum).Econo = ElectronicEnthalpy;
         } else {
-            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(6) + "=\"" + AlphArray(6) +
-                            "\" value.");
+            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(6) + "=\"" + AlphArray(6) + "\" value.");
             ErrorsFound = true;
         }
         // Bypass choice - Added by Amit for new feature implementation
@@ -2414,8 +2372,7 @@ namespace MixedAir {
         } else if (SameString(AlphArray(7), "MinimumFlowWithBypass")) {
             OAController(OutAirNum).EconBypass = true;
         } else {
-            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(7) + "=\"" + AlphArray(7) +
-                            "\" value.");
+            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(7) + "=\"" + AlphArray(7) + "\" value.");
             ErrorsFound = true;
         }
 
@@ -2432,8 +2389,7 @@ namespace MixedAir {
         } else if (SameString(AlphArray(9), "LockoutWithCompressor")) {
             OAController(OutAirNum).Lockout = LockoutWithCompressorPossible;
         } else {
-            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(9) + "=\"" + AlphArray(9) +
-                            "\" value.");
+            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(9) + "=\"" + AlphArray(9) + "\" value.");
             ErrorsFound = true;
         }
         if (SameString(AlphArray(10), "FixedMinimum")) {
@@ -2480,8 +2436,7 @@ namespace MixedAir {
                     } else if (SELECT_CASE_var == "CUBIC") {
 
                     } else {
-                        ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(8) + "=\"" +
-                                        AlphArray(8) + "\".");
+                        ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(8) + "=\"" + AlphArray(8) + "\".");
                         ShowContinueError("...must be Quadratic or Cubic curve.");
                         ErrorsFound = true;
                     }
@@ -2496,8 +2451,7 @@ namespace MixedAir {
         OAController(OutAirNum).MinOASch = AlphArray(11);
         OAController(OutAirNum).MinOASchPtr = GetScheduleIndex(AlphArray(11));
         if (OAController(OutAirNum).MinOASchPtr == 0 && (!lAlphaBlanks(11))) {
-            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(11) + "=\"" + AlphArray(11) +
-                            "\" not found.");
+            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(11) + "=\"" + AlphArray(11) + "\" not found.");
             ErrorsFound = true;
         }
 
@@ -2505,16 +2459,14 @@ namespace MixedAir {
         OAController(OutAirNum).MinOAflowSch = AlphArray(12);
         OAController(OutAirNum).MinOAflowSchPtr = GetScheduleIndex(AlphArray(12));
         if (OAController(OutAirNum).MinOAflowSchPtr == 0 && (!lAlphaBlanks(12))) {
-            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(12) + "=\"" + AlphArray(12) +
-                            "\" not found.");
+            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(12) + "=\"" + AlphArray(12) + "\" not found.");
             ErrorsFound = true;
         }
 
         OAController(OutAirNum).MaxOAflowSch = AlphArray(13);
         OAController(OutAirNum).MaxOAflowSchPtr = GetScheduleIndex(AlphArray(13));
         if (OAController(OutAirNum).MaxOAflowSchPtr == 0 && (!lAlphaBlanks(13))) {
-            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(13) + "=\"" + AlphArray(13) +
-                            "\" not found.");
+            ShowSevereError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(13) + "=\"" + AlphArray(13) + "\" not found.");
             ErrorsFound = true;
         }
         OAController(OutAirNum).VentilationMechanicalName = AlphArray(14);
@@ -2572,8 +2524,8 @@ namespace MixedAir {
                             }
                         } else {
                             if (OASysIndex == 0) {
-                                ShowSevereError("Did not find an AirLoopHVAC:OutdoorAirSystem for " +
-                                                OAController(OutAirNum).ControllerType + " = \"" + OAController(OutAirNum).Name + "\"");
+                                ShowSevereError("Did not find an AirLoopHVAC:OutdoorAirSystem for " + OAController(OutAirNum).ControllerType +
+                                                " = \"" + OAController(OutAirNum).Name + "\"");
                                 ErrorsFound = true;
                             }
                         }
@@ -2597,8 +2549,7 @@ namespace MixedAir {
                 ShowSevereError("Did not find Air Node (Zone with Humidistat), " + OAController(OutAirNum).ControllerType + " = \"" +
                                 OAController(OutAirNum).Name + "\"");
                 ShowContinueError("Specified " + cAlphaFields(17) + " = " + AlphArray(17));
-                ShowContinueError(
-                    "Both a ZoneHVAC:EquipmentConnections object and a ZoneControl:Humidistat object must be specified for this zone.");
+                ShowContinueError("Both a ZoneHVAC:EquipmentConnections object and a ZoneControl:Humidistat object must be specified for this zone.");
                 ErrorsFound = true;
             }
 
@@ -2616,16 +2567,12 @@ namespace MixedAir {
                     if (OAController(OutAirNum).HighRHOAFlowRatio < OAFlowRatio) {
                         ShowWarningError(CurrentModuleObject + " \"" + OAController(OutAirNum).Name + "\"");
                         ShowContinueError("... A fixed minimum outside air flow rate and high humidity control have been specified.");
-                        ShowContinueError(
-                            "... The " + cNumericFields(7) +
-                            " is less than the ratio of the outside air controllers minimum to maximum outside air flow rate.");
-                        ShowContinueError("... Controller " + cNumericFields(1) + " = " + TrimSigDigits(OAController(OutAirNum).MinOA, 4) +
-                                          " m3/s.");
-                        ShowContinueError("... Controller " + cNumericFields(2) + " = " + TrimSigDigits(OAController(OutAirNum).MaxOA, 4) +
-                                          " m3/s.");
+                        ShowContinueError("... The " + cNumericFields(7) +
+                                          " is less than the ratio of the outside air controllers minimum to maximum outside air flow rate.");
+                        ShowContinueError("... Controller " + cNumericFields(1) + " = " + TrimSigDigits(OAController(OutAirNum).MinOA, 4) + " m3/s.");
+                        ShowContinueError("... Controller " + cNumericFields(2) + " = " + TrimSigDigits(OAController(OutAirNum).MaxOA, 4) + " m3/s.");
                         ShowContinueError("... Controller minimum to maximum flow ratio = " + TrimSigDigits(OAFlowRatio, 4) + '.');
-                        ShowContinueError("... " + cNumericFields(7) + " = " + TrimSigDigits(OAController(OutAirNum).HighRHOAFlowRatio, 4) +
-                                          '.');
+                        ShowContinueError("... " + cNumericFields(7) + " = " + TrimSigDigits(OAController(OutAirNum).HighRHOAFlowRatio, 4) + '.');
                     }
                 }
             }
@@ -2678,8 +2625,7 @@ namespace MixedAir {
                 } else if (SameString(AlphArray(19), "BypassWhenOAFlowGreaterThanMinimum")) {
                     OAController(OutAirNum).HeatRecoveryBypassControlType = BypassWhenOAFlowGreaterThanMinimum;
                 } else {
-                    ShowWarningError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(19) + "=\"" + AlphArray(19) +
-                                     "\".");
+                    ShowWarningError(CurrentModuleObject + "=\"" + AlphArray(1) + "\" invalid " + cAlphaFields(19) + "=\"" + AlphArray(19) + "\".");
                     ShowContinueError("...assuming \"BypassWhenWithinEconomizerLimits\" and the simulation continues.");
                     OAController(OutAirNum).HeatRecoveryBypassControlType = BypassWhenWithinEconomizerLimits;
                 }
@@ -2784,34 +2730,34 @@ namespace MixedAir {
         static Array1D_bool OAControllerMyEnvrnFlag;   // One-time initialization flag
         static Array1D_bool OAControllerMySizeFlag;    // One-time initialization flag
         static Array1D_bool MechVentCheckFlag;         // One-time initialization flag
-        bool FoundZone;               // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
-        bool FoundAreaZone;           // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
-        bool FoundPeopleZone;         // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
-        bool OASysFound;              // Logical determines if OA system found
-        bool AirLoopFound;            // Logical determines if primary air loop found
-        bool ErrorsFound;             // Errors found getting input
-        Real64 RhoAirStdInit;         // Standard air density
-        Real64 TotalPeopleOAFlow;     // Total outside air required for PEOPLE objects served by this OA controller
-        int MixedAirNode;             // Controller:OutdoorAir mixed air node
-        int AirLoopZoneInfoZoneNum;   // Index to AirLoopZoneInfo structure
-        int NumZone;                  // Zone number in AirLoopZoneInfo structure
-        int PeopleNum;                // Index to PEOPLE objects
-        int NumMechVentZone;          // Index to number of zones in VentilationMechanical structure
-        int TempMechVentArrayCounter; // Temporary array counter
-        int thisOASys;                // Temporary array counter
-        int thisNumForMixer;          // Temporary array counter
-        int thisMixerIndex;           // Temporary array counter
-        int OASysNum;                 // Temporary array counter
-        int found;                    // Temporary index to equipment
-        int OANode;                   // OA node index
-        int VentMechObjectNum;        // Temporary variable
-        int OAControllerLoop;         // Index to OA controller in an OA system
-        int OAControllerLoop2;        // Index to OA controller in an OA system
-        int thisAirLoop;              // Temporary array counter
-        int BranchNum;                // Temporary array counter
-        int CompNum;                  // Temporary array counter
-        std::string equipName;        // Temporary equipment name
-        std::string airloopName;      // Temporary equipment name
+        bool FoundZone;                                // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
+        bool FoundAreaZone;                            // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
+        bool FoundPeopleZone;                          // Logical determines if ZONE object is accounted for in VENTILATION:MECHANICAL object
+        bool OASysFound;                               // Logical determines if OA system found
+        bool AirLoopFound;                             // Logical determines if primary air loop found
+        bool ErrorsFound;                              // Errors found getting input
+        Real64 RhoAirStdInit;                          // Standard air density
+        Real64 TotalPeopleOAFlow;                      // Total outside air required for PEOPLE objects served by this OA controller
+        int MixedAirNode;                              // Controller:OutdoorAir mixed air node
+        int AirLoopZoneInfoZoneNum;                    // Index to AirLoopZoneInfo structure
+        int NumZone;                                   // Zone number in AirLoopZoneInfo structure
+        int PeopleNum;                                 // Index to PEOPLE objects
+        int NumMechVentZone;                           // Index to number of zones in VentilationMechanical structure
+        int TempMechVentArrayCounter;                  // Temporary array counter
+        int thisOASys;                                 // Temporary array counter
+        int thisNumForMixer;                           // Temporary array counter
+        int thisMixerIndex;                            // Temporary array counter
+        int OASysNum;                                  // Temporary array counter
+        int found;                                     // Temporary index to equipment
+        int OANode;                                    // OA node index
+        int VentMechObjectNum;                         // Temporary variable
+        int OAControllerLoop;                          // Index to OA controller in an OA system
+        int OAControllerLoop2;                         // Index to OA controller in an OA system
+        int thisAirLoop;                               // Temporary array counter
+        int BranchNum;                                 // Temporary array counter
+        int CompNum;                                   // Temporary array counter
+        std::string equipName;                         // Temporary equipment name
+        std::string airloopName;                       // Temporary equipment name
         std::string zoneName;
         int jZone;
 
@@ -2909,8 +2855,7 @@ namespace MixedAir {
                             // add call to check node in EMS
                             CheckIfNodeSetPointManagedByEMS(MixedAirNode, iTemperatureSetPoint, SetPointErrorFlag);
                             if (SetPointErrorFlag) {
-                                ShowSevereError("MixedAir: Missing temperature setpoint for economizer controller " +
-                                                thisOAController.Name);
+                                ShowSevereError("MixedAir: Missing temperature setpoint for economizer controller " + thisOAController.Name);
                                 ShowSevereError("Node Referenced (by Controller)=" + NodeID(MixedAirNode));
                                 ShowContinueError("  use a Setpoint Manager with Control Variable = \"Temperature\" to establish a "
                                                   "setpoint at the mixed air node.");
@@ -2957,8 +2902,7 @@ namespace MixedAir {
                 Real64 DesSupplyVolFlowRate = AirLoopFlow(AirLoopNum).DesSupply / StdRhoAir;
                 if ((thisOAController.MinOA - DesSupplyVolFlowRate) > 0.0001) {
                     ShowWarningError("InitOAController: Minimum Outdoor Air Flow Rate for Controller:OutdoorAir=" + thisOAController.Name +
-                                     " is greater than Design Supply Air Flow Rate for AirLoopHVAC=" + PrimaryAirSystem(AirLoopNum).Name +
-                                     ".");
+                                     " is greater than Design Supply Air Flow Rate for AirLoopHVAC=" + PrimaryAirSystem(AirLoopNum).Name + ".");
                     ShowContinueError("...Minimum Outdoor Air Flow Rate=" + RoundSigDigits(thisOAController.MinOA, 6) +
                                       " will be reset to loop Design Supply Air Flow Rate=" + RoundSigDigits(DesSupplyVolFlowRate, 6));
                     thisOAController.MinOA = DesSupplyVolFlowRate;
@@ -2968,8 +2912,7 @@ namespace MixedAir {
                 }
                 if ((thisOAController.MaxOA - DesSupplyVolFlowRate) > 0.0001) {
                     ShowWarningError("InitOAController: Maximum Outdoor Air Flow Rate for Controller:OutdoorAir=" + thisOAController.Name +
-                                     " is greater than Design Supply Air Flow Rate for AirLoopHVAC=" + PrimaryAirSystem(AirLoopNum).Name +
-                                     ".");
+                                     " is greater than Design Supply Air Flow Rate for AirLoopHVAC=" + PrimaryAirSystem(AirLoopNum).Name + ".");
                     ShowContinueError("...Maximum Outdoor Air Flow Rate=" + RoundSigDigits(thisOAController.MaxOA, 6) +
                                       " will be reset to loop Design Supply Air Flow Rate=" + RoundSigDigits(DesSupplyVolFlowRate, 6));
                     thisOAController.MaxOA = DesSupplyVolFlowRate;
@@ -3054,8 +2997,7 @@ namespace MixedAir {
                     auto const &zone(Zone(ZoneNum));
                     FoundZone = false;
 
-                    for (AirLoopZoneInfoZoneNum = 1; AirLoopZoneInfoZoneNum <= AirLoopZoneInfo(AirLoopNum).NumZones;
-                         ++AirLoopZoneInfoZoneNum) {
+                    for (AirLoopZoneInfoZoneNum = 1; AirLoopZoneInfoZoneNum <= AirLoopZoneInfo(AirLoopNum).NumZones; ++AirLoopZoneInfoZoneNum) {
                         NumZone = AirLoopZoneInfo(AirLoopNum).ActualZoneNumber(AirLoopZoneInfoZoneNum);
                         if (ZoneNum == NumZone) {
                             FoundZone = true;
@@ -3068,10 +3010,8 @@ namespace MixedAir {
                                 vent_mech.ZoneOAACHRate(TempMechVentArrayCounter) = vent_mech.ZoneOAACHRate(NumMechVentZone);
                                 vent_mech.ZoneOAFlowMethod(TempMechVentArrayCounter) = vent_mech.ZoneOAFlowMethod(NumMechVentZone);
                                 vent_mech.ZoneOASchPtr(TempMechVentArrayCounter) = vent_mech.ZoneOASchPtr(NumMechVentZone);
-                                vent_mech.ZoneDesignSpecOAObjIndex(TempMechVentArrayCounter) =
-                                    vent_mech.ZoneDesignSpecOAObjIndex(NumMechVentZone);
-                                vent_mech.ZoneDesignSpecOAObjName(TempMechVentArrayCounter) =
-                                    vent_mech.ZoneDesignSpecOAObjName(NumMechVentZone);
+                                vent_mech.ZoneDesignSpecOAObjIndex(TempMechVentArrayCounter) = vent_mech.ZoneDesignSpecOAObjIndex(NumMechVentZone);
+                                vent_mech.ZoneDesignSpecOAObjName(TempMechVentArrayCounter) = vent_mech.ZoneDesignSpecOAObjName(NumMechVentZone);
 
                                 // new DCV
                                 vent_mech.ZoneADEffCooling(TempMechVentArrayCounter) = vent_mech.ZoneADEffCooling(NumMechVentZone);
@@ -3089,9 +3029,9 @@ namespace MixedAir {
                         }
                     }
                     if (!FoundZone) {
-                        ShowWarningError("Zone name = " + zone.Name + " in " + CurrentModuleObjects(CMO_MechVentilation) +
-                                         " object name = " + thisOAController.VentilationMechanicalName +
-                                         " is not on the same air loop as Controller:OutdoorAir = " + thisOAController.Name);
+                        ShowWarningError("Zone name = " + zone.Name + " in " + CurrentModuleObjects(CMO_MechVentilation) + " object name = " +
+                                         thisOAController.VentilationMechanicalName + " is not on the same air loop as Controller:OutdoorAir = " +
+                                         thisOAController.Name);
                         ShowContinueError("This zone will not be used and the simulation will continue...");
                     }
                 }
@@ -3159,8 +3099,7 @@ namespace MixedAir {
                     }
                     if (!FoundAreaZone) {
                         ShowWarningError("Zone name = " + Zone(NumZone).Name + " is not accounted for by " +
-                                         CurrentModuleObjects(CMO_MechVentilation) + " object name = " +
-                                         thisOAController.VentilationMechanicalName);
+                                         CurrentModuleObjects(CMO_MechVentilation) + " object name = " + thisOAController.VentilationMechanicalName);
                         ShowContinueError("Ventilation per unit floor area has not been specified for this zone, which is connected to");
                         ShowContinueError("the air loop served by Controller:OutdoorAir = " + thisOAController.Name +
                                           ". Simulation will continue...");
@@ -3176,8 +3115,7 @@ namespace MixedAir {
                                     ShowContinueError(
                                         "A \"PEOPLE\" object has been specified in the idf for this zone, but it is not included in this " +
                                         CurrentModuleObjects(CMO_MechVentilation) + " Object.");
-                                    ShowContinueError("Check " + CurrentModuleObjects(CMO_MechVentilation) +
-                                                      " object. Simulation will continue.");
+                                    ShowContinueError("Check " + CurrentModuleObjects(CMO_MechVentilation) + " object. Simulation will continue.");
                                 }
                             }
                         }
@@ -3189,12 +3127,11 @@ namespace MixedAir {
                             break;
                         }
                         if (!FoundAreaZone) {
-                            ShowWarningError(CurrentModuleObjects(CMO_MechVentilation) + " = \"" +
-                                             thisOAController.VentilationMechanicalName + "\", Zone=\"" + Zone(NumZone).Name + "\".");
+                            ShowWarningError(CurrentModuleObjects(CMO_MechVentilation) + " = \"" + thisOAController.VentilationMechanicalName +
+                                             "\", Zone=\"" + Zone(NumZone).Name + "\".");
                             ShowContinueError("No \"PEOPLE\" object has been specified in the idf for this zone, but the ventilation rate "
                                               "is > 0 in this Controller:MechanicalVentilation Object.");
-                            ShowContinueError(
-                                "Check ventilation rate in Controller:MechanicalVentilation object.  Simulation will continue.");
+                            ShowContinueError("Check ventilation rate in Controller:MechanicalVentilation object.  Simulation will continue.");
                         }
                     }
                 }
@@ -3268,33 +3205,31 @@ namespace MixedAir {
 
                     //    Note use of OAControllerLoop here to keep DO Loop index separate from InitOAController local variable
                     // CurrentModuleObject='AirLoopHVAC'
-                    SetupOutputVariable("Air System Outdoor Air Economizer Status", OutputProcessor::Unit::None,
-                                        loopOAController.EconomizerStatus, "System", "Average", airloopName);
+                    SetupOutputVariable("Air System Outdoor Air Economizer Status", OutputProcessor::Unit::None, loopOAController.EconomizerStatus,
+                                        "System", "Average", airloopName);
 
                     SetupOutputVariable("Air System Outdoor Air Heat Recovery Bypass Status", OutputProcessor::Unit::None,
                                         loopOAController.HeatRecoveryBypassStatus, "System", "Average", airloopName);
 
-                    SetupOutputVariable("Air System Outdoor Air Heat Recovery Bypass Heating Coil Activity Status",
-                                        OutputProcessor::Unit::None, loopOAController.HRHeatingCoilActive, "System", "Average",
-                                        airloopName);
+                    SetupOutputVariable("Air System Outdoor Air Heat Recovery Bypass Heating Coil Activity Status", OutputProcessor::Unit::None,
+                                        loopOAController.HRHeatingCoilActive, "System", "Average", airloopName);
                     SetupOutputVariable("Air System Outdoor Air Heat Recovery Bypass Minimum Outdoor Air Mixed Air Temperature",
-                                        OutputProcessor::Unit::C, loopOAController.MixedAirTempAtMinOAFlow, "System", "Average",
-                                        airloopName);
+                                        OutputProcessor::Unit::C, loopOAController.MixedAirTempAtMinOAFlow, "System", "Average", airloopName);
 
                     SetupOutputVariable("Air System Outdoor Air High Humidity Control Status", OutputProcessor::Unit::None,
                                         loopOAController.HighHumCtrlStatus, "System", "Average", airloopName);
 
-                    SetupOutputVariable("Air System Outdoor Air Flow Fraction", OutputProcessor::Unit::None, loopOAController.OAFractionRpt,
+                    SetupOutputVariable("Air System Outdoor Air Flow Fraction", OutputProcessor::Unit::None, loopOAController.OAFractionRpt, "System",
+                                        "Average", airloopName);
+
+                    SetupOutputVariable("Air System Outdoor Air Minimum Flow Fraction", OutputProcessor::Unit::None, loopOAController.MinOAFracLimit,
                                         "System", "Average", airloopName);
 
-                    SetupOutputVariable("Air System Outdoor Air Minimum Flow Fraction", OutputProcessor::Unit::None,
-                                        loopOAController.MinOAFracLimit, "System", "Average", airloopName);
+                    SetupOutputVariable("Air System Outdoor Air Mass Flow Rate", OutputProcessor::Unit::kg_s, loopOAController.OAMassFlow, "System",
+                                        "Average", airloopName);
 
-                    SetupOutputVariable("Air System Outdoor Air Mass Flow Rate", OutputProcessor::Unit::kg_s, loopOAController.OAMassFlow,
-                                        "System", "Average", airloopName);
-
-                    SetupOutputVariable("Air System Mixed Air Mass Flow Rate", OutputProcessor::Unit::kg_s, loopOAController.MixMassFlow,
-                                        "System", "Average", airloopName);
+                    SetupOutputVariable("Air System Mixed Air Mass Flow Rate", OutputProcessor::Unit::kg_s, loopOAController.MixMassFlow, "System",
+                                        "Average", airloopName);
 
                     if (loopOAController.MixedAirSPMNum > 0) {
                         SetupOutputVariable("Air System Outdoor Air Maximum Flow Fraction", OutputProcessor::Unit::None,
@@ -3312,9 +3247,8 @@ namespace MixedAir {
 
                     VentMechObjectNum = loopOAController.VentMechObjectNum;
                     if (VentMechObjectNum > 0 && thisAirLoop > 0) {
-                        SetupOutputVariable("Air System Outdoor Air Mechanical Ventilation Requested Mass Flow Rate",
-                                            OutputProcessor::Unit::kg_s, loopOAController.MechVentOAMassFlowRequest, "System", "Average",
-                                            airloopName);
+                        SetupOutputVariable("Air System Outdoor Air Mechanical Ventilation Requested Mass Flow Rate", OutputProcessor::Unit::kg_s,
+                                            loopOAController.MechVentOAMassFlowRequest, "System", "Average", airloopName);
                         if (!VentilationMechanical(VentMechObjectNum).DCVFlag) {
                             AirLoopControlInfo(thisAirLoop).AirLoopDCVFlag = false;
                         }
@@ -3346,8 +3280,7 @@ namespace MixedAir {
                         int OAFlowMethod = vent_mech.ZoneOAFlowMethod(ZoneIndex);
                         if (OAFlowMethod == OAFlowPPer || OAFlowMethod == OAFlowSum || OAFlowMethod == OAFlowMax) {
                             TotalPeopleOAFlow += ZoneIntGain(ZoneNum).NOFOCC * Zone(ZoneNum).Multiplier * Zone(ZoneNum).ListMultiplier *
-                                                 vent_mech.ZoneOAPeopleRate(ZoneIndex) *
-                                                 GetCurrentScheduleValue(vent_mech.ZoneOASchPtr(ZoneIndex));
+                                                 vent_mech.ZoneOAPeopleRate(ZoneIndex) * GetCurrentScheduleValue(vent_mech.ZoneOASchPtr(ZoneIndex));
                         }
                     }
                     vent_mech.TotPeopleOAFlow = TotalPeopleOAFlow;
@@ -3407,8 +3340,7 @@ namespace MixedAir {
         iEco = thisOAController.Econo;
         if (AnyFaultsInModel && (iEco > NoEconomizer)) {
             for (i = 1; i <= NumFaultyEconomizer; ++i) {
-                if ((FaultsEconomizer(i).ControllerTypeEnum == iController_AirEconomizer) &&
-                    (FaultsEconomizer(i).ControllerID == OAControllerNum)) {
+                if ((FaultsEconomizer(i).ControllerTypeEnum == iController_AirEconomizer) && (FaultsEconomizer(i).ControllerID == OAControllerNum)) {
 
                     if (GetCurrentScheduleValue(FaultsEconomizer(i).AvaiSchedPtr) > 0.0) {
                         rSchVal = 1.0;
@@ -3736,9 +3668,8 @@ namespace MixedAir {
             RecircMassFlowRateAtMinOAFlow = max(Node(this->RetNode).MassFlowRate - ReliefMassFlowAtMinOA, 0.0);
             if ((RecircMassFlowRateAtMinOAFlow + curAirLoopFlow.MinOutAir) > 0.0) {
                 RecircTemp = Node(this->RetNode).Temp;
-                MixedAirTempAtMinOAFlow =
-                    (RecircMassFlowRateAtMinOAFlow * RecircTemp + curAirLoopFlow.MinOutAir * Node(this->OANode).Temp) /
-                    (RecircMassFlowRateAtMinOAFlow + curAirLoopFlow.MinOutAir);
+                MixedAirTempAtMinOAFlow = (RecircMassFlowRateAtMinOAFlow * RecircTemp + curAirLoopFlow.MinOutAir * Node(this->OANode).Temp) /
+                                          (RecircMassFlowRateAtMinOAFlow + curAirLoopFlow.MinOutAir);
             } else {
                 MixedAirTempAtMinOAFlow = Node(this->RetNode).Temp;
             }
@@ -3940,8 +3871,7 @@ namespace MixedAir {
                 SysOAMassFlow = 0.0;
                 for (int ZoneIndex = 1; ZoneIndex <= this->NumofVentMechZones; ++ZoneIndex) {
                     int ZoneNum = this->VentMechZone(ZoneIndex);
-                    SysOAMassFlow +=
-                        ZoneSysContDemand(ZoneNum).OutputRequiredToCO2SP * GetCurrentScheduleValue(this->ZoneOASchPtr(ZoneIndex));
+                    SysOAMassFlow += ZoneSysContDemand(ZoneNum).OutputRequiredToCO2SP * GetCurrentScheduleValue(this->ZoneOASchPtr(ZoneIndex));
                 }
                 MechVentOAMassFlow = SysOAMassFlow;
             } else if (this->SystemOAMethod == SOAM_IAQPGC) {
@@ -3949,8 +3879,7 @@ namespace MixedAir {
                 SysOAMassFlow = 0.0;
                 for (int ZoneIndex = 1; ZoneIndex <= this->NumofVentMechZones; ++ZoneIndex) {
                     int ZoneNum = this->VentMechZone(ZoneIndex);
-                    SysOAMassFlow +=
-                        ZoneSysContDemand(ZoneNum).OutputRequiredToGCSP * GetCurrentScheduleValue(this->ZoneOASchPtr(ZoneIndex));
+                    SysOAMassFlow += ZoneSysContDemand(ZoneNum).OutputRequiredToGCSP * GetCurrentScheduleValue(this->ZoneOASchPtr(ZoneIndex));
                 }
                 MechVentOAMassFlow = SysOAMassFlow;
             } else if (this->SystemOAMethod == SOAM_IAQPCOM) {
@@ -3958,15 +3887,13 @@ namespace MixedAir {
                 SysOAMassFlow = 0.0;
                 for (int ZoneIndex = 1; ZoneIndex <= this->NumofVentMechZones; ++ZoneIndex) {
                     int ZoneNum = this->VentMechZone(ZoneIndex);
-                    SysOAMassFlow +=
-                        ZoneSysContDemand(ZoneNum).OutputRequiredToCO2SP * GetCurrentScheduleValue(this->ZoneOASchPtr(ZoneIndex));
+                    SysOAMassFlow += ZoneSysContDemand(ZoneNum).OutputRequiredToCO2SP * GetCurrentScheduleValue(this->ZoneOASchPtr(ZoneIndex));
                 }
                 MechVentOAMassFlow = SysOAMassFlow;
                 SysOAMassFlow = 0.0;
                 for (int ZoneIndex = 1; ZoneIndex <= this->NumofVentMechZones; ++ZoneIndex) {
                     int ZoneNum = this->VentMechZone(ZoneIndex);
-                    SysOAMassFlow +=
-                        ZoneSysContDemand(ZoneNum).OutputRequiredToGCSP * GetCurrentScheduleValue(this->ZoneOASchPtr(ZoneIndex));
+                    SysOAMassFlow += ZoneSysContDemand(ZoneNum).OutputRequiredToGCSP * GetCurrentScheduleValue(this->ZoneOASchPtr(ZoneIndex));
                 }
                 MechVentOAMassFlow = max(SysOAMassFlow, MechVentOAMassFlow);
             } else {
@@ -3986,19 +3913,19 @@ namespace MixedAir {
                     // schedule
                     //  Checking DCV flag before calculating zone OA per person
                     if (this->DCVFlag && this->SystemOAMethod != SOAM_ProportionalControlDesOcc) {
-                        ZoneOAPeople = ZoneIntGain(ZoneNum).NOFOCC * curZone.Multiplier * curZone.ListMultiplier *
-                                       this->ZoneOAPeopleRate(ZoneIndex) * curZoneOASchValue;
+                        ZoneOAPeople = ZoneIntGain(ZoneNum).NOFOCC * curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAPeopleRate(ZoneIndex) *
+                                       curZoneOASchValue;
                     } else {
-                        ZoneOAPeople = curZone.TotOccupants * curZone.Multiplier * curZone.ListMultiplier *
-                                       this->ZoneOAPeopleRate(ZoneIndex) * curZoneOASchValue;
+                        ZoneOAPeople = curZone.TotOccupants * curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAPeopleRate(ZoneIndex) *
+                                       curZoneOASchValue;
                     }
 
                     // Calc the zone OA flow rate based on the floor area component
-                    ZoneOAArea = curZone.FloorArea * curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAAreaRate(ZoneIndex) *
-                                 curZoneOASchValue;
+                    ZoneOAArea =
+                        curZone.FloorArea * curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAAreaRate(ZoneIndex) * curZoneOASchValue;
                     ZoneOAFlow = curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAFlowRate(ZoneIndex) * curZoneOASchValue;
-                    ZoneOAACH = curZone.Multiplier * curZone.ListMultiplier * (this->ZoneOAACHRate(ZoneIndex) * curZone.Volume) *
-                                curZoneOASchValue / 3600.0;
+                    ZoneOAACH =
+                        curZone.Multiplier * curZone.ListMultiplier * (this->ZoneOAACHRate(ZoneIndex) * curZone.Volume) * curZoneOASchValue / 3600.0;
 
                     // Calc the breathing-zone OA flow rate
                     OAIndex = this->ZoneDesignSpecOAObjIndex(ZoneIndex);
@@ -4070,8 +3997,8 @@ namespace MixedAir {
                             ZoneOAPeople = ZoneIntGain(ZoneNum).NOFOCC * curZone.Multiplier * curZone.ListMultiplier *
                                            this->ZoneOAPeopleRate(ZoneIndex) * curZoneOASchValue;
                         } else {
-                            ZoneOAPeople = curZone.TotOccupants * curZone.Multiplier * curZone.ListMultiplier *
-                                           this->ZoneOAPeopleRate(ZoneIndex) * curZoneOASchValue;
+                            ZoneOAPeople = curZone.TotOccupants * curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAPeopleRate(ZoneIndex) *
+                                           curZoneOASchValue;
                             CO2PeopleGeneration = 0.0;
                             if (this->SystemOAMethod == SOAM_ProportionalControlDesOcc) {
                                 // Accumulate CO2 generation from people at design occupancy and current activity level
@@ -4084,11 +4011,11 @@ namespace MixedAir {
                         }
 
                         // Calc the zone OA flow rate based on the floor area component
-                        ZoneOAArea = curZone.FloorArea * curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAAreaRate(ZoneIndex) *
-                                     curZoneOASchValue;
+                        ZoneOAArea =
+                            curZone.FloorArea * curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAAreaRate(ZoneIndex) * curZoneOASchValue;
                         ZoneOAFlow = curZone.Multiplier * curZone.ListMultiplier * this->ZoneOAFlowRate(ZoneIndex) * curZoneOASchValue;
-                        ZoneOAACH = curZone.Multiplier * curZone.ListMultiplier *
-                                    (this->ZoneOAACHRate(ZoneIndex) * Zone(ZoneIndex).Volume) * curZoneOASchValue / 3600.0;
+                        ZoneOAACH = curZone.Multiplier * curZone.ListMultiplier * (this->ZoneOAACHRate(ZoneIndex) * Zone(ZoneIndex).Volume) *
+                                    curZoneOASchValue / 3600.0;
 
                         // Calc the breathing-zone OA flow rate
                         OAIndex = this->ZoneDesignSpecOAObjIndex(ZoneIndex);
@@ -4140,8 +4067,7 @@ namespace MixedAir {
                             // the VRP case
                             ZoneOA = ZoneOABZ / ZoneEz;
 
-                        } else if (this->SystemOAMethod == SOAM_ProportionalControlSchOcc ||
-                                   this->SystemOAMethod == SOAM_ProportionalControlDesOcc ||
+                        } else if (this->SystemOAMethod == SOAM_ProportionalControlSchOcc || this->SystemOAMethod == SOAM_ProportionalControlDesOcc ||
                                    this->SystemOAMethod == SOAM_ProportionalControlDesOARate) {
                             // Check whether "Carbon Dioxide Control Availability Schedule" for ZoneControl:ContaminantController is
                             // specified
@@ -4194,16 +4120,14 @@ namespace MixedAir {
 
                                             // Calculate zone maximum target CO2 concentration in PPM
                                             if (this->SystemOAMethod == SOAM_ProportionalControlDesOcc) {
-                                                ZoneMaxCO2 =
-                                                    OutdoorCO2 +
-                                                    (CO2PeopleGeneration * curZone.Multiplier * curZone.ListMultiplier * 1.0e6) / ZoneOAMax;
+                                                ZoneMaxCO2 = OutdoorCO2 +
+                                                             (CO2PeopleGeneration * curZone.Multiplier * curZone.ListMultiplier * 1.0e6) / ZoneOAMax;
                                             } else if (curZone.ZoneMaxCO2SchedIndex > 0.0) {
                                                 ZoneMaxCO2 = GetCurrentScheduleValue(curZone.ZoneMaxCO2SchedIndex);
                                             } else {
-                                                ZoneMaxCO2 =
-                                                    OutdoorCO2 +
-                                                    (ZoneCO2GainFromPeople(ZoneNum) * curZone.Multiplier * curZone.ListMultiplier * 1.0e6) /
-                                                        ZoneOAMax;
+                                                ZoneMaxCO2 = OutdoorCO2 +
+                                                             (ZoneCO2GainFromPeople(ZoneNum) * curZone.Multiplier * curZone.ListMultiplier * 1.0e6) /
+                                                                 ZoneOAMax;
                                             }
 
                                             if (ZoneMaxCO2 <= ZoneMinCO2) {
@@ -4294,9 +4218,9 @@ namespace MixedAir {
                                                     // Zone air CO2 concentration is between maximum and minimum limits of zone CO2
                                                     // concentration,
                                                     // set Zone OA flow rate by proportionally adjusting between ZoneOAMin and ZoneOAMax
-                                                    ZoneOA = ZoneOAMin +
-                                                             (ZoneOAMax - ZoneOAMin) *
-                                                                 ((ZoneAirCO2(ZoneNum) - ZoneMinCO2) / (ZoneMaxCO2 - ZoneMinCO2));
+                                                    ZoneOA =
+                                                        ZoneOAMin +
+                                                        (ZoneOAMax - ZoneOAMin) * ((ZoneAirCO2(ZoneNum) - ZoneMinCO2) / (ZoneMaxCO2 - ZoneMinCO2));
                                                 }
                                             }
                                         } else {
@@ -4502,8 +4426,7 @@ namespace MixedAir {
             // Check lockout with heating for any airloop - will lockout economizer even on airloops without a unitary system
             if (this->Lockout == LockoutWithHeatingPossible) {
                 // For all system types (even ones that don't set AirLoopEconoLockout) lock out economizer if unfavorable for heating
-                if (AirLoopControlInfo(AirLoopNum).CheckHeatRecoveryBypassStatus &&
-                    AirLoopControlInfo(AirLoopNum).OASysComponentsSimulated) {
+                if (AirLoopControlInfo(AirLoopNum).CheckHeatRecoveryBypassStatus && AirLoopControlInfo(AirLoopNum).OASysComponentsSimulated) {
 
                     if (this->MixedAirTempAtMinOAFlow <= Node(this->MixNode).TempSetPoint) {
                         AirLoopControlInfo(AirLoopNum).EconomizerFlowLocked = true;
@@ -4886,9 +4809,8 @@ namespace MixedAir {
         OAMixer(OAMixerNum).MixEnthalpy =
             (RecircMassFlowRate * RecircEnthalpy + OAMixer(OAMixerNum).OAMassFlowRate * OAMixer(OAMixerNum).OAEnthalpy) /
             OAMixer(OAMixerNum).MixMassFlowRate;
-        OAMixer(OAMixerNum).MixHumRat =
-            (RecircMassFlowRate * RecircHumRat + OAMixer(OAMixerNum).OAMassFlowRate * OAMixer(OAMixerNum).OAHumRat) /
-            OAMixer(OAMixerNum).MixMassFlowRate;
+        OAMixer(OAMixerNum).MixHumRat = (RecircMassFlowRate * RecircHumRat + OAMixer(OAMixerNum).OAMassFlowRate * OAMixer(OAMixerNum).OAHumRat) /
+                                        OAMixer(OAMixerNum).MixMassFlowRate;
         OAMixer(OAMixerNum).MixPressure =
             (RecircMassFlowRate * RecircPressure + OAMixer(OAMixerNum).OAMassFlowRate * OAMixer(OAMixerNum).OAPressure) /
             OAMixer(OAMixerNum).MixMassFlowRate;
@@ -5369,9 +5291,8 @@ namespace MixedAir {
         ExhMassFlow = AirLoopControlInfo(AirloopNum).ZoneExhMassFlow;
 
         OAMassFlowRate = max(ExhMassFlow, OASignal * MixMassFlowRate);
-        Node(OANode).MassFlowRate = OAMassFlowRate; // set OA node mass flow rate
-        Node(RelNode).MassFlowRate =
-            max(OAMassFlowRate - ExhMassFlow, 0.0); // set relief node mass flow rate to maintain mixer continuity calcs
+        Node(OANode).MassFlowRate = OAMassFlowRate;                          // set OA node mass flow rate
+        Node(RelNode).MassFlowRate = max(OAMassFlowRate - ExhMassFlow, 0.0); // set relief node mass flow rate to maintain mixer continuity calcs
 
         SimOASysComponents(OASysNum, FirstHVACIteration, AirloopNum);
 
@@ -5590,8 +5511,8 @@ namespace MixedAir {
         }
 
         if (OAMixerNum > NumOAMixers) {
-            ShowFatalError("GetOAMixerReliefNodeNumber: Requested Mixer #=" + TrimSigDigits(OAMixerNum) +
-                           ", which is > number of OA Mixers=" + TrimSigDigits(NumOAMixers));
+            ShowFatalError("GetOAMixerReliefNodeNumber: Requested Mixer #=" + TrimSigDigits(OAMixerNum) + ", which is > number of OA Mixers=" +
+                           TrimSigDigits(NumOAMixers));
         }
 
         ReliefNodeNumber = OAMixer(OAMixerNum).RelNode;
@@ -5754,8 +5675,7 @@ namespace MixedAir {
             CompType = OutsideAirSys(OASysNumber).ComponentType(CompNum);
             CompName = OutsideAirSys(OASysNumber).ComponentName(CompNum);
             SimOAComponent(CompType, CompName, OutsideAirSys(OASysNumber).ComponentType_Num(CompNum), FirstHVACIteration,
-                           OutsideAirSys(OASysNumber).ComponentIndex(CompNum), AirLoopNum, Sim, OASysNumber, OAHeatingCoil, OACoolingCoil,
-                           OAHX);
+                           OutsideAirSys(OASysNumber).ComponentIndex(CompNum), AirLoopNum, Sim, OASysNumber, OAHeatingCoil, OACoolingCoil, OAHX);
             if (OAHeatingCoil) {
                 ++NumHeatingCoils;
             }
@@ -5879,8 +5799,7 @@ namespace MixedAir {
             CompType = OutsideAirSys(OASysNumber).ComponentType(CompNum);
             CompName = OutsideAirSys(OASysNumber).ComponentName(CompNum);
             SimOAComponent(CompType, CompName, OutsideAirSys(OASysNumber).ComponentType_Num(CompNum), FirstHVACIteration,
-                           OutsideAirSys(OASysNumber).ComponentIndex(CompNum), AirLoopNum, Sim, OASysNumber, OAHeatingCoil, OACoolingCoil,
-                           OAHX);
+                           OutsideAirSys(OASysNumber).ComponentIndex(CompNum), AirLoopNum, Sim, OASysNumber, OAHeatingCoil, OACoolingCoil, OAHX);
             if (OACoolingCoil) {
                 ++NumCoolingCoils;
             }

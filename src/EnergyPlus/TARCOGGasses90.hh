@@ -82,13 +82,8 @@ namespace TARCOGGasses90 {
                   int &nperr,
                   std::string &ErrorMessage);
 
-    void GassesLow(Real64 const tmean,
-                   Real64 const mwght,
-                   Real64 const pressure,
-                   Real64 const gama,
-                   Real64 &cond,
-                   int &nperr,
-                   std::string &ErrorMessage);
+    void
+    GassesLow(Real64 const tmean, Real64 const mwght, Real64 const pressure, Real64 const gama, Real64 &cond, int &nperr, std::string &ErrorMessage);
 
     //  subroutine doe2gas90 (standard, iprop, frct, pres, nmix, con0, dcon, visc0, dvisc, dens0, ddens, pr0, dpr)
     //    !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!

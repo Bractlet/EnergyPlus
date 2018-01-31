@@ -172,8 +172,8 @@ namespace HVACDuct {
         } else {
             DuctNum = CompIndex;
             if (DuctNum > NumDucts || DuctNum < 1) {
-                ShowFatalError("SimDuct:  Invalid CompIndex passed=" + TrimSigDigits(DuctNum) + ", Number of Components=" +
-                               TrimSigDigits(NumDucts) + ", Entered Component name=" + CompName);
+                ShowFatalError("SimDuct:  Invalid CompIndex passed=" + TrimSigDigits(DuctNum) + ", Number of Components=" + TrimSigDigits(NumDucts) +
+                               ", Entered Component name=" + CompName);
             }
             if (CheckEquipName(DuctNum)) {
                 if (CompName != Duct(DuctNum).Name) {

@@ -249,13 +249,13 @@ namespace MixedAir {
         int HumidistatZoneNum;                 // zone number where humidistat is located
         int NodeNumofHumidistatZone;           // node number of zone where humidistat is located
         Real64 HighRHOAFlowRatio;              // Modify ratio with respect to maximum outdoor air flow rate (high RH)
-        bool ModifyDuringHighOAMoisture; // flag to Modify outdoor air flow, TRUE when modify any time, FALSE when modify only when indoor
-                                         // air humrat is less than outdoor HR
-        int EconomizerOASchedPtr;        // schedule to modify outdoor air flow
-        std::string MinOAflowSch;        // Name of the Minimum fraction of Design/Mixed Mass of air
-        std::string MaxOAflowSch;        // Name of the Maximum fraction of Design/Mixed Mass of air
-        int MinOAflowSchPtr;             // Index to the Minimum Fraction of Outdoor Air Schedule
-        int MaxOAflowSchPtr;             // Index to the Maximum Fraction of Outdoor Air Schedule
+        bool ModifyDuringHighOAMoisture;       // flag to Modify outdoor air flow, TRUE when modify any time, FALSE when modify only when indoor
+                                               // air humrat is less than outdoor HR
+        int EconomizerOASchedPtr;              // schedule to modify outdoor air flow
+        std::string MinOAflowSch;              // Name of the Minimum fraction of Design/Mixed Mass of air
+        std::string MaxOAflowSch;              // Name of the Maximum fraction of Design/Mixed Mass of air
+        int MinOAflowSchPtr;                   // Index to the Minimum Fraction of Outdoor Air Schedule
+        int MaxOAflowSchPtr;                   // Index to the Maximum Fraction of Outdoor Air Schedule
         //   Economizer Status, which is currently following the EconomizerOperationFlag, might be something like "Economizer status
         //   indicates when the conditions are favorable for the economizer to operate (i.e., none of the control limits have been
         //   exceeded).
@@ -284,27 +284,23 @@ namespace MixedAir {
 
         // Default Constructor
         OAControllerProps()
-            : ControllerType_Num(0), OACtrlIndex(0), Lockout(0), FixedMin(true), TempLim(0.0), TempLowLim(0.0), EnthLim(0.0),
-              DPTempLim(0.0), EnthalpyCurvePtr(0), MinOA(0.0), MaxOA(0.0), Econo(0), EconBypass(false), MixNode(0), OANode(0), InletNode(0),
-              RelNode(0), RetNode(0), MinOASchPtr(0), RelMassFlow(0.0), OAMassFlow(0.0), ExhMassFlow(0.0), MixMassFlow(0.0), InletTemp(0.0),
-              InletEnth(0.0), InletPress(0.0), InletHumRat(0.0), OATemp(0.0), OAEnth(0.0), OAPress(0.0), OAHumRat(0.0), RetTemp(0.0),
-              RetEnth(0.0), MixSetTemp(0.0), MinOAMassFlowRate(0.0), MaxOAMassFlowRate(0.0), ZoneEquipZoneNum(0), VentMechObjectNum(0),
-              HumidistatZoneNum(0), NodeNumofHumidistatZone(0), HighRHOAFlowRatio(1.0), ModifyDuringHighOAMoisture(false),
-              EconomizerOASchedPtr(0), MinOAflowSchPtr(0), MaxOAflowSchPtr(0), EconomizerStatus(0), HeatRecoveryBypassStatus(0),
-              HRHeatingCoilActive(0), MixedAirTempAtMinOAFlow(0.0), HighHumCtrlStatus(0), OAFractionRpt(0.0), MinOAFracLimit(0.0),
-              MechVentOAMassFlowRequest(0.0), EMSOverrideOARate(false), EMSOARateValue(0.0),
-              HeatRecoveryBypassControlType(BypassWhenWithinEconomizerLimits), ManageDemand(false), DemandLimitFlowRate(0.0),
+            : ControllerType_Num(0), OACtrlIndex(0), Lockout(0), FixedMin(true), TempLim(0.0), TempLowLim(0.0), EnthLim(0.0), DPTempLim(0.0),
+              EnthalpyCurvePtr(0), MinOA(0.0), MaxOA(0.0), Econo(0), EconBypass(false), MixNode(0), OANode(0), InletNode(0), RelNode(0), RetNode(0),
+              MinOASchPtr(0), RelMassFlow(0.0), OAMassFlow(0.0), ExhMassFlow(0.0), MixMassFlow(0.0), InletTemp(0.0), InletEnth(0.0), InletPress(0.0),
+              InletHumRat(0.0), OATemp(0.0), OAEnth(0.0), OAPress(0.0), OAHumRat(0.0), RetTemp(0.0), RetEnth(0.0), MixSetTemp(0.0),
+              MinOAMassFlowRate(0.0), MaxOAMassFlowRate(0.0), ZoneEquipZoneNum(0), VentMechObjectNum(0), HumidistatZoneNum(0),
+              NodeNumofHumidistatZone(0), HighRHOAFlowRatio(1.0), ModifyDuringHighOAMoisture(false), EconomizerOASchedPtr(0), MinOAflowSchPtr(0),
+              MaxOAflowSchPtr(0), EconomizerStatus(0), HeatRecoveryBypassStatus(0), HRHeatingCoilActive(0), MixedAirTempAtMinOAFlow(0.0),
+              HighHumCtrlStatus(0), OAFractionRpt(0.0), MinOAFracLimit(0.0), MechVentOAMassFlowRequest(0.0), EMSOverrideOARate(false),
+              EMSOARateValue(0.0), HeatRecoveryBypassControlType(BypassWhenWithinEconomizerLimits), ManageDemand(false), DemandLimitFlowRate(0.0),
               MaxOAFracBySetPoint(0), MixedAirSPMNum(0), CoolCoilFreezeCheck(false), EconoActive(false), HighHumCtrlActive(false)
         {
         }
 
         void CalcOAController(int const AirLoopNum, bool const FirstHVACIteration);
 
-        void CalcOAEconomizer(int const AirLoopNum,
-                              Real64 const OutAirMinFrac,
-                              Real64 &OASignal,
-                              bool &HighHumidityOperationFlag,
-                              bool const FirstHVACIteration);
+        void CalcOAEconomizer(
+            int const AirLoopNum, Real64 const OutAirMinFrac, Real64 &OASignal, bool &HighHumidityOperationFlag, bool const FirstHVACIteration);
 
         void SizeOAController();
 
@@ -319,55 +315,54 @@ namespace MixedAir {
     struct VentilationMechanicalProps // Derived type for Ventilation:Mechanical data
     {
         // Members
-        std::string Name;                       // Name of Ventilation:Mechanical object
-        std::string SchName;                    // Name of the mechanical ventilation schedule
-        int SchPtr;                             // Index to the mechanical ventilation schedule
-        bool DCVFlag;                           // if true, implement OA based on demand controlled ventilation
-        int NumofVentMechZones;                 // Number of zones with mechanical ventilation
-        Real64 TotAreaOAFlow;                   // Total outdoor air flow rate for all zones per area (m3/s/m2)
-        Real64 TotPeopleOAFlow;                 // Total outdoor air flow rate for all PEOPLE objects in zones (m3/s)
-        Real64 TotZoneOAFlow;                   // Total outdoor air flow rate for all zones (m3/s)
-        Real64 TotZoneOAACH;                    // Total outdoor air flow rate for all zones Air Changes per hour (m3/s/m3)
-        int SystemOAMethod;                     // System Outdoor Air Method - SOAM_ZoneSum, SOAM_VRP
-        Real64 ZoneMaxOAFraction;               // Zone maximum outdoor air fraction
-        Array1D<Real64> ZoneOAAreaRate;         // Mechanical ventilation rate (m3/s/m2) for each zone
-        Array1D<Real64> ZoneOAPeopleRate;       // Mechanical ventilation rate (m3/s/person) for each zone
-        Array1D<Real64> ZoneOAFlowRate;         // OA Flow Rate (m3/s/zone) for each zone
-        Array1D<Real64> ZoneOAACHRate;          // OA ACH (m3/s/volume) for each zone
-        Array1D_int VentMechZone;               // Zones requiring mechanical ventilation
-        Array1D_string VentMechZoneName;        // name of mech vent zone
-        Array1D_int ZoneDesignSpecOAObjIndex;   // index of the design specification outdoor air object for each zone
-        Array1D_string ZoneDesignSpecOAObjName; // name of the design specification outdoor air object for each zone
-        int CO2MaxMinLimitErrorCount;     // Counter when max CO2 concentration < min CO2 concentration for SOAM_ProportionalControlSchOcc
-        int CO2MaxMinLimitErrorIndex;     // Index for max CO2 concentration < min CO2 concentration recurring error message for
-                                          // SOAM_ProportionalControlSchOcc
-        int CO2GainErrorCount;            // Counter when CO2 generation from people is zero for SOAM_ProportionalControlSchOcc
-        int CO2GainErrorIndex;            // Index for recurring error message when CO2 generation from people is zero for
-                                          // SOAM_ProportionalControlSchOcc
-        int OAMaxMinLimitErrorCount;      // Counter when max OA < min OA for SOAM_ProportionalControlDesOARate
-        int OAMaxMinLimitErrorIndex;      // Index for max OA < min OA recurring error message for SOAM_ProportionalControlDesOARate
-        Array1D<Real64> ZoneADEffCooling; // Zone air distribution effectiveness in cooling mode for each zone
-        Array1D<Real64> ZoneADEffHeating; // Zone air distribution effectiveness in heating mode for each zone
-        Array1D_int ZoneADEffSchPtr;      // Pointer to the zone air distribution effectiveness schedule for each zone
+        std::string Name;                           // Name of Ventilation:Mechanical object
+        std::string SchName;                        // Name of the mechanical ventilation schedule
+        int SchPtr;                                 // Index to the mechanical ventilation schedule
+        bool DCVFlag;                               // if true, implement OA based on demand controlled ventilation
+        int NumofVentMechZones;                     // Number of zones with mechanical ventilation
+        Real64 TotAreaOAFlow;                       // Total outdoor air flow rate for all zones per area (m3/s/m2)
+        Real64 TotPeopleOAFlow;                     // Total outdoor air flow rate for all PEOPLE objects in zones (m3/s)
+        Real64 TotZoneOAFlow;                       // Total outdoor air flow rate for all zones (m3/s)
+        Real64 TotZoneOAACH;                        // Total outdoor air flow rate for all zones Air Changes per hour (m3/s/m3)
+        int SystemOAMethod;                         // System Outdoor Air Method - SOAM_ZoneSum, SOAM_VRP
+        Real64 ZoneMaxOAFraction;                   // Zone maximum outdoor air fraction
+        Array1D<Real64> ZoneOAAreaRate;             // Mechanical ventilation rate (m3/s/m2) for each zone
+        Array1D<Real64> ZoneOAPeopleRate;           // Mechanical ventilation rate (m3/s/person) for each zone
+        Array1D<Real64> ZoneOAFlowRate;             // OA Flow Rate (m3/s/zone) for each zone
+        Array1D<Real64> ZoneOAACHRate;              // OA ACH (m3/s/volume) for each zone
+        Array1D_int VentMechZone;                   // Zones requiring mechanical ventilation
+        Array1D_string VentMechZoneName;            // name of mech vent zone
+        Array1D_int ZoneDesignSpecOAObjIndex;       // index of the design specification outdoor air object for each zone
+        Array1D_string ZoneDesignSpecOAObjName;     // name of the design specification outdoor air object for each zone
+        int CO2MaxMinLimitErrorCount;               // Counter when max CO2 concentration < min CO2 concentration for SOAM_ProportionalControlSchOcc
+        int CO2MaxMinLimitErrorIndex;               // Index for max CO2 concentration < min CO2 concentration recurring error message for
+                                                    // SOAM_ProportionalControlSchOcc
+        int CO2GainErrorCount;                      // Counter when CO2 generation from people is zero for SOAM_ProportionalControlSchOcc
+        int CO2GainErrorIndex;                      // Index for recurring error message when CO2 generation from people is zero for
+                                                    // SOAM_ProportionalControlSchOcc
+        int OAMaxMinLimitErrorCount;                // Counter when max OA < min OA for SOAM_ProportionalControlDesOARate
+        int OAMaxMinLimitErrorIndex;                // Index for max OA < min OA recurring error message for SOAM_ProportionalControlDesOARate
+        Array1D<Real64> ZoneADEffCooling;           // Zone air distribution effectiveness in cooling mode for each zone
+        Array1D<Real64> ZoneADEffHeating;           // Zone air distribution effectiveness in heating mode for each zone
+        Array1D_int ZoneADEffSchPtr;                // Pointer to the zone air distribution effectiveness schedule for each zone
         Array1D_int ZoneDesignSpecADObjIndex;       // index of the design specification zone air distribution object for each zone
         Array1D_string ZoneDesignSpecADObjName;     // name of the design specification zone air distribution object for each zone
         Array1D<Real64> ZoneSecondaryRecirculation; // zone air secondary recirculation ratio for each zone
         Array1D_int ZoneOAFlowMethod;               // OA flow method for each zone
-        Array1D_int ZoneOASchPtr; // Index to the outdoor air schedule for each zone (from DesignSpecification:OutdoorAir or default)
+        Array1D_int ZoneOASchPtr;               // Index to the outdoor air schedule for each zone (from DesignSpecification:OutdoorAir or default)
         Array1D<Real64> OAPropCtlMinRateSchPtr; // Outdoor design OA flow rate schedule from DesignSpecification:OutdoorAir
 
         // Default Constructor
         VentilationMechanicalProps()
-            : SchPtr(0), DCVFlag(false), NumofVentMechZones(0), TotAreaOAFlow(0.0), TotPeopleOAFlow(0.0), TotZoneOAFlow(0.0),
-              TotZoneOAACH(0.0), SystemOAMethod(0), ZoneMaxOAFraction(1.0), CO2MaxMinLimitErrorCount(0), CO2MaxMinLimitErrorIndex(0),
-              CO2GainErrorCount(0), CO2GainErrorIndex(0), OAMaxMinLimitErrorCount(0), OAMaxMinLimitErrorIndex(0)
+            : SchPtr(0), DCVFlag(false), NumofVentMechZones(0), TotAreaOAFlow(0.0), TotPeopleOAFlow(0.0), TotZoneOAFlow(0.0), TotZoneOAACH(0.0),
+              SystemOAMethod(0), ZoneMaxOAFraction(1.0), CO2MaxMinLimitErrorCount(0), CO2MaxMinLimitErrorIndex(0), CO2GainErrorCount(0),
+              CO2GainErrorIndex(0), OAMaxMinLimitErrorCount(0), OAMaxMinLimitErrorIndex(0)
         {
         }
 
-        void
-        CalcMechVentController(Real64 &SysSA,             // System supply air mass flow rate [kg/s]
-                               Real64 &MechVentOAMassFlow // outside air mass flow rate calculated by mechanical ventilation object [kg/s]
-                               );
+        void CalcMechVentController(Real64 &SysSA,             // System supply air mass flow rate [kg/s]
+                                    Real64 &MechVentOAMassFlow // outside air mass flow rate calculated by mechanical ventilation object [kg/s]
+                                    );
     };
 
     struct OAMixerProps // Derived type for Outside Air Mixing Component
@@ -402,10 +397,10 @@ namespace MixedAir {
 
         // Default Constructor
         OAMixerProps()
-            : MixerIndex(0), MixNode(0), InletNode(0), RelNode(0), RetNode(0), MixTemp(0.0), MixHumRat(0.0), MixEnthalpy(0.0),
-              MixPressure(0.0), MixMassFlowRate(0.0), OATemp(0.0), OAHumRat(0.0), OAEnthalpy(0.0), OAPressure(0.0), OAMassFlowRate(0.0),
-              RelTemp(0.0), RelHumRat(0.0), RelEnthalpy(0.0), RelPressure(0.0), RelMassFlowRate(0.0), RetTemp(0.0), RetHumRat(0.0),
-              RetEnthalpy(0.0), RetPressure(0.0), RetMassFlowRate(0.0)
+            : MixerIndex(0), MixNode(0), InletNode(0), RelNode(0), RetNode(0), MixTemp(0.0), MixHumRat(0.0), MixEnthalpy(0.0), MixPressure(0.0),
+              MixMassFlowRate(0.0), OATemp(0.0), OAHumRat(0.0), OAEnthalpy(0.0), OAPressure(0.0), OAMassFlowRate(0.0), RelTemp(0.0), RelHumRat(0.0),
+              RelEnthalpy(0.0), RelPressure(0.0), RelMassFlowRate(0.0), RetTemp(0.0), RetHumRat(0.0), RetEnthalpy(0.0), RetPressure(0.0),
+              RetMassFlowRate(0.0)
         {
         }
     };

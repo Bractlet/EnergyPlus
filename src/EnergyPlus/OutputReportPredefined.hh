@@ -774,8 +774,7 @@ namespace OutputReportPredefined {
         bool origEntryIsReal;
 
         // Default Constructor
-        TableEntryType()
-            : indexColumn(0), subTableIndex(0), uniqueObjName(0), origRealEntry(0.0), significantDigits(0), origEntryIsReal(false)
+        TableEntryType() : indexColumn(0), subTableIndex(0), uniqueObjName(0), origRealEntry(0.0), significantDigits(0), origEntryIsReal(false)
         {
         }
     };
@@ -824,8 +823,7 @@ namespace OutputReportPredefined {
 
     void SetPredefinedTables();
 
-    void
-    PreDefTableEntry(int const columnIndex, std::string const &objName, Real64 const tableEntryReal, Optional_int_const numSigDigits = _);
+    void PreDefTableEntry(int const columnIndex, std::string const &objName, Real64 const tableEntryReal, Optional_int_const numSigDigits = _);
 
     void PreDefTableEntry(int const columnIndex, std::string const &objName, std::string const &tableEntryChar);
 
@@ -835,10 +833,8 @@ namespace OutputReportPredefined {
 
     void incrementTableEntry();
 
-    void AddCompSizeTableEntry(std::string const &FieldType,
-                               std::string const &FieldName,
-                               std::string const &FieldDescription,
-                               Real64 const FieldValue);
+    void
+    AddCompSizeTableEntry(std::string const &FieldType, std::string const &FieldName, std::string const &FieldDescription, Real64 const FieldValue);
 
     void AddShadowRelateTableEntry(int const castingField, int const receivingField, int const receivingKind);
 

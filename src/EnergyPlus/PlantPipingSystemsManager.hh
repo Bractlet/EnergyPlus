@@ -450,8 +450,7 @@ namespace PlantPipingSystemsManager {
         }
 
         // Member Constructor
-        TempGridRegionData(Real64 const Min, Real64 const Max, RegionType const thisRegionType)
-            : Min(Min), Max(Max), thisRegionType(thisRegionType)
+        TempGridRegionData(Real64 const Min, Real64 const Max, RegionType const thisRegionType) : Min(Min), Max(Max), thisRegionType(thisRegionType)
         {
         }
     };
@@ -477,8 +476,7 @@ namespace PlantPipingSystemsManager {
 
         bool inline contains(PointF const &p)
         {
-            return ((this->X_min <= p.X) && (p.X < (this->X_min + this->Width)) && (this->Y_min <= p.Y) &&
-                    (p.Y < (this->Y_min + this->Height)));
+            return ((this->X_min <= p.X) && (p.X < (this->X_min + this->Width)) && (this->Y_min <= p.Y) && (p.Y < (this->Y_min + this->Height)));
         }
     };
 
@@ -614,8 +612,7 @@ namespace PlantPipingSystemsManager {
 
         // Default Constructor
         SimulationControl()
-            : MinimumTemperatureLimit(-1000.0), MaximumTemperatureLimit(1000.0), Convergence_CurrentToPrevIteration(0.0),
-              MaxIterationsPerTS(0)
+            : MinimumTemperatureLimit(-1000.0), MaximumTemperatureLimit(1000.0), Convergence_CurrentToPrevIteration(0.0), MaxIterationsPerTS(0)
         {
         }
     };
@@ -678,8 +675,8 @@ namespace PlantPipingSystemsManager {
         // Default Constructor
         ReportingInformation()
             : TotalBoundaryHeatTransfer(0.0), EnergyStoredInCells(0.0), AverageSurfaceTemperature(0.0), PipeCircuitHeatTransferMCpDT(0.0),
-              PipeCircuitHeatTransferUADT(0.0), BasementWallHeatTransfer(0.0), BasementFloorHeatTransfer(0.0),
-              AverageBasementFloorTemperature(0.0), AverageBasementWallTemperature(0.0)
+              PipeCircuitHeatTransferUADT(0.0), BasementWallHeatTransfer(0.0), BasementFloorHeatTransfer(0.0), AverageBasementFloorTemperature(0.0),
+              AverageBasementWallTemperature(0.0)
         {
         }
     };
@@ -710,8 +707,8 @@ namespace PlantPipingSystemsManager {
 
         // Default Constructor
         MoistureInfo()
-            : Theta_liq(0.3), Theta_sat(0.5), GroundCoverCoefficient(0.408), rhoCP_soil_liq(0.0), rhoCP_soil_transient(0.0),
-              rhoCP_soil_ice(0.0), rhoCp_soil_liq_1(0.0)
+            : Theta_liq(0.3), Theta_sat(0.5), GroundCoverCoefficient(0.408), rhoCP_soil_liq(0.0), rhoCP_soil_transient(0.0), rhoCP_soil_ice(0.0),
+              rhoCp_soil_liq_1(0.0)
         {
         }
     };
@@ -731,8 +728,8 @@ namespace PlantPipingSystemsManager {
 
         // Default Constructor
         CurSimConditionsInfo()
-            : PrevSimTimeSeconds(-1.0), CurSimTimeSeconds(0.0), CurSimTimeStepSize(0.0), CurAirTemp(10.0), CurWindSpeed(2.6),
-              CurIncidentSolar(0.0), CurRelativeHumidity(100.0)
+            : PrevSimTimeSeconds(-1.0), CurSimTimeSeconds(0.0), CurSimTimeStepSize(0.0), CurAirTemp(10.0), CurWindSpeed(2.6), CurIncidentSolar(0.0),
+              CurRelativeHumidity(100.0)
         {
         }
     };
@@ -759,8 +756,8 @@ namespace PlantPipingSystemsManager {
 
         // Default Constructor
         PipeSegmentInfo()
-            : FlowDirection(SegmentFlow::IncreasingZ), ParentCircuitIndex(0), InletTemperature(0.0), OutletTemperature(0.0),
-              FluidHeatLoss(0.0), PipeCellCoordinatesSet(false), IsActuallyPartOfAHorizontalTrench(false)
+            : FlowDirection(SegmentFlow::IncreasingZ), ParentCircuitIndex(0), InletTemperature(0.0), OutletTemperature(0.0), FluidHeatLoss(0.0),
+              PipeCellCoordinatesSet(false), IsActuallyPartOfAHorizontalTrench(false)
         {
         }
 
@@ -825,12 +822,12 @@ namespace PlantPipingSystemsManager {
 
         // Default Constructor
         PipeCircuitInfo()
-            : InletNodeNum(0), OutletNodeNum(0), ParentDomainIndex(0), RadialMeshThickness(0.0), HasInsulation(false),
-              DesignVolumeFlowRate(0.0), DesignMassFlowRate(0.0), Convergence_CurrentToPrevIteration(0.0), MaxIterationsPerTS(0),
-              NumRadialCells(0), CheckEquipName(true), NeedToFindOnPlantLoop(true), IsActuallyPartOfAHorizontalTrench(false), LoopNum(0),
-              LoopSideNum(0), BranchNum(0), CompNum(0), CurFluidDensity(998.0), CurFluidViscosity(0.0015), CurFluidConductivity(0.58),
-              CurFluidPrandtl(7.0), CurFluidSpecificHeat(4190.0), CurCircuitInletTemp(23.0), CurCircuitFlowRate(0.1321),
-              CurCircuitConvectionCoefficient(0.0), InletTemperature(0.0), OutletTemperature(0.0), FluidHeatLoss(0.0)
+            : InletNodeNum(0), OutletNodeNum(0), ParentDomainIndex(0), RadialMeshThickness(0.0), HasInsulation(false), DesignVolumeFlowRate(0.0),
+              DesignMassFlowRate(0.0), Convergence_CurrentToPrevIteration(0.0), MaxIterationsPerTS(0), NumRadialCells(0), CheckEquipName(true),
+              NeedToFindOnPlantLoop(true), IsActuallyPartOfAHorizontalTrench(false), LoopNum(0), LoopSideNum(0), BranchNum(0), CompNum(0),
+              CurFluidDensity(998.0), CurFluidViscosity(0.0015), CurFluidConductivity(0.58), CurFluidPrandtl(7.0), CurFluidSpecificHeat(4190.0),
+              CurCircuitInletTemp(23.0), CurCircuitFlowRate(0.1321), CurCircuitConvectionCoefficient(0.0), InletTemperature(0.0),
+              OutletTemperature(0.0), FluidHeatLoss(0.0)
         {
         }
 
@@ -966,13 +963,13 @@ namespace PlantPipingSystemsManager {
               DomainNeedsToBeMeshed(true), IsActuallyPartOfAHorizontalTrench(false), HasAPipeCircuit(true), HasZoneCoupledSlab(false),
               HasZoneCoupledBasement(false), HasBasement(false), ZoneCoupledOSCMIndex(0), PerimeterOffset(0.0), SlabInGradeFlag(false),
               SlabMaterialNum(0), SlabWidth(0.0), SlabLength(0.0), SlabThickness(0.0), XIndex(0), YIndex(0), ZIndex(0), x_max_index(0),
-              y_max_index(0), z_max_index(0), HorizInsPresentFlag(false), HorizInsMaterialNum(0), HorizInsThickness(0.0254),
-              HorizInsWidth(0.0), HeatFlux(0.0), WallHeatFlux(0.0), FloorHeatFlux(0.0), AggregateHeatFlux(0.0), AggregateWallHeatFlux(0.0),
-              AggregateFloorHeatFlux(0.0), NumHeatFlux(0), ResetHeatFluxFlag(true), ConvCoeff(0.0), FullHorizInsPresent(false),
-              VertInsPresentFlag(false), VertInsMaterialNum(0), VertInsThickness(0.0254), VertInsDepth(0.0), XWallIndex(0), YFloorIndex(0),
-              ZWallIndex(0), InsulationXIndex(0), InsulationYIndex(0), InsulationZIndex(0), SimTimestepFlag(false), SimHourlyFlag(false),
-              SimDailyFlag(false), ZoneCoupledSurfaceTemp(0.0), BasementWallTemp(0.0), BasementFloorTemp(0.0), NumDomainCells(0),
-              NumGroundSurfCells(0), NumInsulationCells(0), NumSlabCells(0), XRegions({0, -1}), YRegions({0, -1}), ZRegions({0, -1})
+              y_max_index(0), z_max_index(0), HorizInsPresentFlag(false), HorizInsMaterialNum(0), HorizInsThickness(0.0254), HorizInsWidth(0.0),
+              HeatFlux(0.0), WallHeatFlux(0.0), FloorHeatFlux(0.0), AggregateHeatFlux(0.0), AggregateWallHeatFlux(0.0), AggregateFloorHeatFlux(0.0),
+              NumHeatFlux(0), ResetHeatFluxFlag(true), ConvCoeff(0.0), FullHorizInsPresent(false), VertInsPresentFlag(false), VertInsMaterialNum(0),
+              VertInsThickness(0.0254), VertInsDepth(0.0), XWallIndex(0), YFloorIndex(0), ZWallIndex(0), InsulationXIndex(0), InsulationYIndex(0),
+              InsulationZIndex(0), SimTimestepFlag(false), SimHourlyFlag(false), SimDailyFlag(false), ZoneCoupledSurfaceTemp(0.0),
+              BasementWallTemp(0.0), BasementFloorTemp(0.0), NumDomainCells(0), NumGroundSurfCells(0), NumInsulationCells(0), NumSlabCells(0),
+              XRegions({0, -1}), YRegions({0, -1}), ZRegions({0, -1})
         {
         }
 
@@ -1002,9 +999,7 @@ namespace PlantPipingSystemsManager {
                               Optional_int ZWallIndex = _,
                               Optional_int InsulationZIndex = _);
 
-        void createCellArray(Array1D<Real64> const &XBoundaryPoints,
-                             Array1D<Real64> const &YBoundaryPoints,
-                             Array1D<Real64> const &ZBoundaryPoints);
+        void createCellArray(Array1D<Real64> const &XBoundaryPoints, Array1D<Real64> const &YBoundaryPoints, Array1D<Real64> const &ZBoundaryPoints);
 
         void setupCellNeighbors();
 
@@ -1167,12 +1162,8 @@ namespace PlantPipingSystemsManager {
 
     Real64 EvaluateFarfieldBoundaryTemperature(int const DomainNum, CartesianCell &cell);
 
-    void EvaluateFarfieldCharacteristics(int const DomainNum,
-                                         CartesianCell &cell,
-                                         Direction const direction,
-                                         Real64 &neighbortemp,
-                                         Real64 &resistance,
-                                         Real64 &adiabaticMultiplier);
+    void EvaluateFarfieldCharacteristics(
+        int const DomainNum, CartesianCell &cell, Direction const direction, Real64 &neighbortemp, Real64 &resistance, Real64 &adiabaticMultiplier);
 
     Real64 GetFarfieldTemp(int const DomainNum, CartesianCell const &cell);
 
@@ -1180,8 +1171,8 @@ namespace PlantPipingSystemsManager {
 
     void PerformPipeCircuitSimulation(int const DomainNum, int const CircuitNum);
 
-    void PerformPipeCellSimulation(
-        int const DomainNum, int const CircuitNum, CartesianCell &ThisCell, Real64 const FlowRate, Real64 const EnteringTemp);
+    void
+    PerformPipeCellSimulation(int const DomainNum, int const CircuitNum, CartesianCell &ThisCell, Real64 const FlowRate, Real64 const EnteringTemp);
 
     void SimulateRadialToCartesianInterface(int const DomainNum, CartesianCell &ThisCell);
 
@@ -1195,8 +1186,7 @@ namespace PlantPipingSystemsManager {
 
     void SimulateRadialPipeCell(int const CircuitNum, CartesianCell &ThisCell, Real64 const ConvectionCoefficient);
 
-    void
-    SimulateFluidCell(CartesianCell &ThisCell, Real64 const FlowRate, Real64 const ConvectionCoefficient, Real64 const EnteringFluidTemp);
+    void SimulateFluidCell(CartesianCell &ThisCell, Real64 const FlowRate, Real64 const ConvectionCoefficient, Real64 const EnteringFluidTemp);
 
     void DoOneTimeInitializations(int const DomainNum, Optional<int const> CircuitNum);
 

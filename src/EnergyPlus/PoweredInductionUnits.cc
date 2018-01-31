@@ -235,8 +235,8 @@ namespace PoweredInductionUnits {
         } else {
             PIUNum = CompIndex;
             if (PIUNum > NumPIUs || PIUNum < 1) {
-                ShowFatalError("SimPIU: Invalid CompIndex passed=" + TrimSigDigits(CompIndex) + ", Number of PIU Units=" +
-                               TrimSigDigits(NumPIUs) + ", PIU Unit name=" + CompName);
+                ShowFatalError("SimPIU: Invalid CompIndex passed=" + TrimSigDigits(CompIndex) + ", Number of PIU Units=" + TrimSigDigits(NumPIUs) +
+                               ", PIU Unit name=" + CompName);
             }
             if (CheckEquipName(PIUNum)) {
                 if (CompName != PIU(PIUNum).Name) {
@@ -383,8 +383,8 @@ namespace PoweredInductionUnits {
             } else {
                 PIU(PIUNum).SchedPtr = GetScheduleIndex(cAlphaArgs(2)); // convert schedule name to pointer
                 if (PIU(PIUNum).SchedPtr == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 }
             }
@@ -455,8 +455,7 @@ namespace PoweredInductionUnits {
                 }
                 PIU(PIUNum).Fan_Num = DataHVACGlobals::FanType_SimpleConstVolume;
                 Fans::GetFanType(PIU(PIUNum).FanName, FanType_Num, ErrorsFound);
-                PIU(PIUNum).FanAvailSchedPtr =
-                    Fans::GetFanAvailSchPtr(DataHVACGlobals::cFanTypes(FanType_Num), PIU(PIUNum).FanName, ErrorsFound);
+                PIU(PIUNum).FanAvailSchedPtr = Fans::GetFanAvailSchPtr(DataHVACGlobals::cFanTypes(FanType_Num), PIU(PIUNum).FanName, ErrorsFound);
             }
 
             PIU(PIUNum).HCoil = cAlphaArgs(10); // name of heating coil object
@@ -480,8 +479,7 @@ namespace PoweredInductionUnits {
             SetUpCompSets(PIU(PIUNum).UnitType, PIU(PIUNum).Name, cAlphaArgs(9), cAlphaArgs(10), cAlphaArgs(6), cAlphaArgs(5));
 
             // Register component set data
-            TestCompSet(PIU(PIUNum).UnitType, PIU(PIUNum).Name, NodeID(PIU(PIUNum).PriAirInNode), NodeID(PIU(PIUNum).OutAirNode),
-                        "Air Nodes");
+            TestCompSet(PIU(PIUNum).UnitType, PIU(PIUNum).Name, NodeID(PIU(PIUNum).PriAirInNode), NodeID(PIU(PIUNum).OutAirNode), "Air Nodes");
 
             AirNodeFound = false;
             for (ADUNum = 1; ADUNum <= NumAirDistUnits; ++ADUNum) {
@@ -491,8 +489,8 @@ namespace PoweredInductionUnits {
             }
             // one assumes if there isn't one assigned, it's an error?
             if (PIU(PIUNum).ADUNum == 0) {
-                ShowSevereError(RoutineName + "No matching Air Distribution Unit, for PIU = [" + PIU(PIUNum).UnitType + ',' +
-                                PIU(PIUNum).Name + "].");
+                ShowSevereError(RoutineName + "No matching Air Distribution Unit, for PIU = [" + PIU(PIUNum).UnitType + ',' + PIU(PIUNum).Name +
+                                "].");
                 ShowContinueError("...should have outlet node = " + NodeID(PIU(PIUNum).OutAirNode));
                 ErrorsFound = true;
             } else {
@@ -544,8 +542,8 @@ namespace PoweredInductionUnits {
             } else {
                 PIU(PIUNum).SchedPtr = GetScheduleIndex(cAlphaArgs(2)); // convert schedule name to pointer
                 if (PIU(PIUNum).SchedPtr == 0) {
-                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) +
-                                    " for " + cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
+                    ShowSevereError(RoutineName + cCurrentModuleObject + ": invalid " + cAlphaFieldNames(2) + " entered =" + cAlphaArgs(2) + " for " +
+                                    cAlphaFieldNames(1) + '=' + cAlphaArgs(1));
                     ErrorsFound = true;
                 }
             }
@@ -630,8 +628,7 @@ namespace PoweredInductionUnits {
                 }
                 PIU(PIUNum).Fan_Num = DataHVACGlobals::FanType_SimpleConstVolume;
                 Fans::GetFanType(PIU(PIUNum).FanName, FanType_Num, ErrorsFound);
-                PIU(PIUNum).FanAvailSchedPtr =
-                    Fans::GetFanAvailSchPtr(DataHVACGlobals::cFanTypes(FanType_Num), PIU(PIUNum).FanName, ErrorsFound);
+                PIU(PIUNum).FanAvailSchedPtr = Fans::GetFanAvailSchPtr(DataHVACGlobals::cFanTypes(FanType_Num), PIU(PIUNum).FanName, ErrorsFound);
             }
             PIU(PIUNum).HCoil = cAlphaArgs(10); // name of heating coil object
             ValidateComponent(PIU(PIUNum).HCoilType, PIU(PIUNum).HCoil, IsNotOK, cCurrentModuleObject + " - Heating Coil");
@@ -654,8 +651,7 @@ namespace PoweredInductionUnits {
             SetUpCompSets(PIU(PIUNum).UnitType, PIU(PIUNum).Name, cAlphaArgs(9), cAlphaArgs(10), cAlphaArgs(6), cAlphaArgs(5));
 
             // Register component set data
-            TestCompSet(PIU(PIUNum).UnitType, PIU(PIUNum).Name, NodeID(PIU(PIUNum).PriAirInNode), NodeID(PIU(PIUNum).OutAirNode),
-                        "Air Nodes");
+            TestCompSet(PIU(PIUNum).UnitType, PIU(PIUNum).Name, NodeID(PIU(PIUNum).PriAirInNode), NodeID(PIU(PIUNum).OutAirNode), "Air Nodes");
 
             AirNodeFound = false;
             for (ADUNum = 1; ADUNum <= NumAirDistUnits; ++ADUNum) {
@@ -666,8 +662,8 @@ namespace PoweredInductionUnits {
             }
             // one assumes if there isn't one assigned, it's an error?
             if (PIU(PIUNum).ADUNum == 0) {
-                ShowSevereError(RoutineName + "No matching Air Distribution Unit, for PIU = [" + PIU(PIUNum).UnitType + ',' +
-                                PIU(PIUNum).Name + "].");
+                ShowSevereError(RoutineName + "No matching Air Distribution Unit, for PIU = [" + PIU(PIUNum).UnitType + ',' + PIU(PIUNum).Name +
+                                "].");
                 ShowContinueError("...should have outlet node = " + NodeID(PIU(PIUNum).OutAirNode));
                 ErrorsFound = true;
             } else {
@@ -705,10 +701,10 @@ namespace PoweredInductionUnits {
                                 PIU(PIUNum).Name);
             SetupOutputVariable("Zone Air Terminal Heating Energy", OutputProcessor::Unit::J, PIU(PIUNum).HeatingEnergy, "System", "Sum",
                                 PIU(PIUNum).Name);
-            SetupOutputVariable("Zone Air Terminal Sensible Cooling Rate", OutputProcessor::Unit::W, PIU(PIUNum).SensCoolRate, "System",
-                                "Average", PIU(PIUNum).Name);
-            SetupOutputVariable("Zone Air Terminal Sensible Cooling Energy", OutputProcessor::Unit::J, PIU(PIUNum).SensCoolEnergy, "System",
-                                "Sum", PIU(PIUNum).Name);
+            SetupOutputVariable("Zone Air Terminal Sensible Cooling Rate", OutputProcessor::Unit::W, PIU(PIUNum).SensCoolRate, "System", "Average",
+                                PIU(PIUNum).Name);
+            SetupOutputVariable("Zone Air Terminal Sensible Cooling Energy", OutputProcessor::Unit::J, PIU(PIUNum).SensCoolEnergy, "System", "Sum",
+                                PIU(PIUNum).Name);
         }
     }
 
@@ -773,8 +769,7 @@ namespace PoweredInductionUnits {
         }
 
         if (MyPlantScanFlag(PIUNum) && allocated(PlantLoop)) {
-            if ((PIU(PIUNum).HCoil_PlantTypeNum == TypeOf_CoilWaterSimpleHeating) ||
-                (PIU(PIUNum).HCoil_PlantTypeNum == TypeOf_CoilSteamAirHeating)) {
+            if ((PIU(PIUNum).HCoil_PlantTypeNum == TypeOf_CoilWaterSimpleHeating) || (PIU(PIUNum).HCoil_PlantTypeNum == TypeOf_CoilSteamAirHeating)) {
                 errFlag = false;
                 ScanPlantLoopsForObject(PIU(PIUNum).HCoil, PIU(PIUNum).HCoil_PlantTypeNum, PIU(PIUNum).HWLoopNum, PIU(PIUNum).HWLoopSide,
                                         PIU(PIUNum).HWBranchNum, PIU(PIUNum).HWCompNum, _, _, _, _, _, errFlag);
@@ -1009,8 +1004,8 @@ namespace PoweredInductionUnits {
                 }
             } else {
                 CheckZoneSizing(PIU(PIUNum).UnitType, PIU(PIUNum).Name);
-                MaxPriAirVolFlowDes = max(TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolVolFlow,
-                                          TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatVolFlow);
+                MaxPriAirVolFlowDes =
+                    max(TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolVolFlow, TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatVolFlow);
                 if (MaxPriAirVolFlowDes < SmallAirVolFlow) {
                     MaxPriAirVolFlowDes = 0.0;
                 }
@@ -1023,16 +1018,13 @@ namespace PoweredInductionUnits {
                     if (PIU(PIUNum).MaxPriAirVolFlow > 0.0 && MaxPriAirVolFlowDes > 0.0) {
                         MaxPriAirVolFlowUser = PIU(PIUNum).MaxPriAirVolFlow;
                         ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Maximum Primary Air Flow Rate [m3/s]",
-                                           MaxPriAirVolFlowDes, "User-Specified Maximum Primary Air Flow Rate [m3/s]",
-                                           MaxPriAirVolFlowUser);
+                                           MaxPriAirVolFlowDes, "User-Specified Maximum Primary Air Flow Rate [m3/s]", MaxPriAirVolFlowUser);
                         if (DisplayExtraWarnings) {
                             if ((std::abs(MaxPriAirVolFlowDes - MaxPriAirVolFlowUser) / MaxPriAirVolFlowUser) > AutoVsHardSizingThreshold) {
-                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' +
-                                            PIU(PIUNum).Name);
-                                ShowContinueError("User-Specified Primary Air Flow Rate of " + RoundSigDigits(MaxPriAirVolFlowUser, 5) +
+                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' + PIU(PIUNum).Name);
+                                ShowContinueError("User-Specified Primary Air Flow Rate of " + RoundSigDigits(MaxPriAirVolFlowUser, 5) + " [m3/s]");
+                                ShowContinueError("differs from Design Size Primary Air Flow Rate of " + RoundSigDigits(MaxPriAirVolFlowDes, 5) +
                                                   " [m3/s]");
-                                ShowContinueError("differs from Design Size Primary Air Flow Rate of " +
-                                                  RoundSigDigits(MaxPriAirVolFlowDes, 5) + " [m3/s]");
                                 ShowContinueError("This may, or may not, indicate mismatched component sizes.");
                                 ShowContinueError("Verify that the value entered is intended and is consistent with other components.");
                             }
@@ -1054,28 +1046,25 @@ namespace PoweredInductionUnits {
                 }
             } else {
                 CheckZoneSizing(PIU(PIUNum).UnitType, PIU(PIUNum).Name);
-                MaxTotAirVolFlowDes = max(TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolVolFlow,
-                                          TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatVolFlow);
+                MaxTotAirVolFlowDes =
+                    max(TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolVolFlow, TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatVolFlow);
                 if (MaxTotAirVolFlowDes < SmallAirVolFlow) {
                     MaxTotAirVolFlowDes = 0.0;
                 }
                 if (IsAutoSize) {
                     PIU(PIUNum).MaxTotAirVolFlow = MaxTotAirVolFlowDes;
-                    ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Maximum Air Flow Rate [m3/s]",
-                                       MaxTotAirVolFlowDes);
+                    ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Maximum Air Flow Rate [m3/s]", MaxTotAirVolFlowDes);
                 } else {
                     if (PIU(PIUNum).MaxTotAirVolFlow > 0.0 && MaxTotAirVolFlowDes > 0.0) {
                         MaxTotAirVolFlowUser = PIU(PIUNum).MaxTotAirVolFlow;
-                        ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Maximum Air Flow Rate [m3/s]",
-                                           MaxTotAirVolFlowDes, "User-Specified Maximum Air Flow Rate [m3/s]", MaxTotAirVolFlowUser);
+                        ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Maximum Air Flow Rate [m3/s]", MaxTotAirVolFlowDes,
+                                           "User-Specified Maximum Air Flow Rate [m3/s]", MaxTotAirVolFlowUser);
                         if (DisplayExtraWarnings) {
                             if ((std::abs(MaxTotAirVolFlowDes - MaxTotAirVolFlowUser) / MaxTotAirVolFlowUser) > AutoVsHardSizingThreshold) {
-                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' +
-                                            PIU(PIUNum).Name);
-                                ShowContinueError("User-Specified Maximum Air Flow Rate of " + RoundSigDigits(MaxTotAirVolFlowUser, 5) +
+                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' + PIU(PIUNum).Name);
+                                ShowContinueError("User-Specified Maximum Air Flow Rate of " + RoundSigDigits(MaxTotAirVolFlowUser, 5) + " [m3/s]");
+                                ShowContinueError("differs from Design Size Maximum Air Flow Rate of " + RoundSigDigits(MaxTotAirVolFlowDes, 5) +
                                                   " [m3/s]");
-                                ShowContinueError("differs from Design Size Maximum Air Flow Rate of " +
-                                                  RoundSigDigits(MaxTotAirVolFlowDes, 5) + " [m3/s]");
                                 ShowContinueError("This may, or may not, indicate mismatched component sizes.");
                                 ShowContinueError("Verify that the value entered is intended and is consistent with other components.");
                             }
@@ -1097,8 +1086,8 @@ namespace PoweredInductionUnits {
                 }
             } else {
                 CheckZoneSizing(PIU(PIUNum).UnitType, PIU(PIUNum).Name);
-                MaxSecAirVolFlowDes = max(TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolVolFlow,
-                                          TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatVolFlow);
+                MaxSecAirVolFlowDes =
+                    max(TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesCoolVolFlow, TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatVolFlow);
                 if (MaxSecAirVolFlowDes < SmallAirVolFlow) {
                     MaxSecAirVolFlowDes = 0.0;
                 }
@@ -1110,14 +1099,12 @@ namespace PoweredInductionUnits {
                     if (PIU(PIUNum).MaxSecAirVolFlow > 0.0 && MaxSecAirVolFlowDes > 0.0) {
                         MaxSecAirVolFlowUser = PIU(PIUNum).MaxSecAirVolFlow;
                         ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Maximum Secondary Air Flow Rate [m3/s]",
-                                           MaxSecAirVolFlowDes, "User-Specified Maximum Secondary Air Flow Rate [m3/s]",
-                                           MaxSecAirVolFlowUser);
+                                           MaxSecAirVolFlowDes, "User-Specified Maximum Secondary Air Flow Rate [m3/s]", MaxSecAirVolFlowUser);
                         if (DisplayExtraWarnings) {
                             if ((std::abs(MaxSecAirVolFlowDes - MaxSecAirVolFlowUser) / MaxSecAirVolFlowUser) > AutoVsHardSizingThreshold) {
-                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' +
-                                            PIU(PIUNum).Name);
-                                ShowContinueError("User-Specified Maximum Secondary Air Flow Rate of " +
-                                                  RoundSigDigits(MaxSecAirVolFlowUser, 5) + " [m3/s]");
+                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' + PIU(PIUNum).Name);
+                                ShowContinueError("User-Specified Maximum Secondary Air Flow Rate of " + RoundSigDigits(MaxSecAirVolFlowUser, 5) +
+                                                  " [m3/s]");
                                 ShowContinueError("differs from Design Size Maximum Secondary Air Flow Rate of " +
                                                   RoundSigDigits(MaxSecAirVolFlowDes, 5) + " [m3/s]");
                                 ShowContinueError("This may, or may not, indicate mismatched component sizes.");
@@ -1141,28 +1128,23 @@ namespace PoweredInductionUnits {
                 }
             } else {
                 CheckZoneSizing(PIU(PIUNum).UnitType, PIU(PIUNum).Name);
-                if (PIU(PIUNum).MaxPriAirVolFlow >= SmallAirVolFlow &&
-                    TermUnitFinalZoneSizing(CurTermUnitSizingNum).MinOA >= SmallAirVolFlow) {
+                if (PIU(PIUNum).MaxPriAirVolFlow >= SmallAirVolFlow && TermUnitFinalZoneSizing(CurTermUnitSizingNum).MinOA >= SmallAirVolFlow) {
                     MinPriAirFlowFracDes = TermUnitFinalZoneSizing(CurTermUnitSizingNum).MinOA / PIU(PIUNum).MaxPriAirVolFlow;
                 } else {
                     MinPriAirFlowFracDes = 0.0;
                 }
                 if (IsAutoSize) {
                     PIU(PIUNum).MinPriAirFlowFrac = MinPriAirFlowFracDes;
-                    ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Minimum Primary Air Flow Fraction",
-                                       MinPriAirFlowFracDes);
+                    ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Minimum Primary Air Flow Fraction", MinPriAirFlowFracDes);
                 } else {
                     if (PIU(PIUNum).MinPriAirFlowFrac > 0.0 && MinPriAirFlowFracDes > 0.0) {
                         MinPriAirFlowFracUser = PIU(PIUNum).MinPriAirFlowFrac;
                         ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Minimum Primary Air Flow Fraction",
                                            MinPriAirFlowFracDes, "User-Specified Minimum Primary Air Flow Fraction", MinPriAirFlowFracUser);
                         if (DisplayExtraWarnings) {
-                            if ((std::abs(MinPriAirFlowFracDes - MinPriAirFlowFracUser) / MinPriAirFlowFracUser) >
-                                AutoVsHardSizingThreshold) {
-                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' +
-                                            PIU(PIUNum).Name);
-                                ShowContinueError("User-Specified Minimum Primary Air Flow Fraction of " +
-                                                  RoundSigDigits(MinPriAirFlowFracUser, 1));
+                            if ((std::abs(MinPriAirFlowFracDes - MinPriAirFlowFracUser) / MinPriAirFlowFracUser) > AutoVsHardSizingThreshold) {
+                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' + PIU(PIUNum).Name);
+                                ShowContinueError("User-Specified Minimum Primary Air Flow Fraction of " + RoundSigDigits(MinPriAirFlowFracUser, 1));
                                 ShowContinueError("differs from Design Size Minimum Primary Air Flow Fraction of " +
                                                   RoundSigDigits(MinPriAirFlowFracDes, 1));
                                 ShowContinueError("This may, or may not, indicate mismatched component sizes.");
@@ -1193,8 +1175,7 @@ namespace PoweredInductionUnits {
         if (CurZoneEqNum > 0) {
             if (!IsAutoSize && !ZoneSizingRunDone) { // Simulation continue
                 if (PIU(PIUNum).FanOnFlowFrac > 0.0) {
-                    ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "User-Specified Fan On Flow Fraction",
-                                       PIU(PIUNum).FanOnFlowFrac);
+                    ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "User-Specified Fan On Flow Fraction", PIU(PIUNum).FanOnFlowFrac);
                 }
             } else {
                 CheckZoneSizing(PIU(PIUNum).UnitType, PIU(PIUNum).Name);
@@ -1209,11 +1190,9 @@ namespace PoweredInductionUnits {
                                            "User-Specified Fan On Flow Fraction", FanOnFlowFracUser);
                         if (DisplayExtraWarnings) {
                             if ((std::abs(FanOnFlowFracDes - FanOnFlowFracUser) / FanOnFlowFracUser) > AutoVsHardSizingThreshold) {
-                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' +
-                                            PIU(PIUNum).Name);
+                                ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' + PIU(PIUNum).Name);
                                 ShowContinueError("User-Specified Fan On Flow Fraction of " + RoundSigDigits(FanOnFlowFracUser, 1));
-                                ShowContinueError("differs from Design Size Fan On Flow Fraction of " +
-                                                  RoundSigDigits(FanOnFlowFracDes, 1));
+                                ShowContinueError("differs from Design Size Fan On Flow Fraction of " + RoundSigDigits(FanOnFlowFracDes, 1));
                                 ShowContinueError("This may, or may not, indicate mismatched component sizes.");
                                 ShowContinueError("Verify that the value entered is intended and is consistent with other components.");
                             }
@@ -1240,20 +1219,18 @@ namespace PoweredInductionUnits {
                     CoilWaterInletNode = GetCoilWaterInletNode("Coil:Heating:Water", PIU(PIUNum).HCoil, ErrorsFound);
                     CoilWaterOutletNode = GetCoilWaterOutletNode("Coil:Heating:Water", PIU(PIUNum).HCoil, ErrorsFound);
                     if (IsAutoSize) {
-                        PltSizHeatNum = MyPlantSizingIndex("Coil:Heating:Water", PIU(PIUNum).HCoil, CoilWaterInletNode, CoilWaterOutletNode,
-                                                           ErrorsFound);
+                        PltSizHeatNum =
+                            MyPlantSizingIndex("Coil:Heating:Water", PIU(PIUNum).HCoil, CoilWaterInletNode, CoilWaterOutletNode, ErrorsFound);
                         if (PltSizHeatNum > 0) {
 
                             if (TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatMassFlow >= SmallAirVolFlow) {
-                                CoilInTemp =
-                                    TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU * PIU(PIUNum).MinPriAirFlowFrac +
-                                    TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtHeatPeak *
-                                        (1.0 - PIU(PIUNum).MinPriAirFlowFrac);
+                                CoilInTemp = TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU * PIU(PIUNum).MinPriAirFlowFrac +
+                                             TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtHeatPeak * (1.0 - PIU(PIUNum).MinPriAirFlowFrac);
                                 CoilOutTemp = TermUnitFinalZoneSizing(CurTermUnitSizingNum).HeatDesTemp;
                                 CoilOutHumRat = TermUnitFinalZoneSizing(CurTermUnitSizingNum).HeatDesHumRat;
                                 DesMassFlow = StdRhoAir * TermUnitSizing(CurTermUnitSizingNum).AirVolFlow;
-                                DesCoilLoad = PsyCpAirFnWTdb(CoilOutHumRat, 0.5 * (CoilInTemp + CoilOutTemp)) * DesMassFlow *
-                                              (CoilOutTemp - CoilInTemp);
+                                DesCoilLoad =
+                                    PsyCpAirFnWTdb(CoilOutHumRat, 0.5 * (CoilInTemp + CoilOutTemp)) * DesMassFlow * (CoilOutTemp - CoilInTemp);
 
                                 rho = GetDensityGlycol(PlantLoop(PIU(PIUNum).HWLoopNum).FluidName, DataGlobals::HWInitConvTemp,
                                                        PlantLoop(PIU(PIUNum).HWLoopNum).FluidIndex, RoutineName);
@@ -1283,11 +1260,9 @@ namespace PoweredInductionUnits {
                         if (PIU(PIUNum).MaxVolHotWaterFlow > 0.0 && MaxVolHotWaterFlowDes > 0.0) {
                             MaxVolHotWaterFlowUser = PIU(PIUNum).MaxVolHotWaterFlow;
                             ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Maximum Reheat Water Flow Rate [m3/s]",
-                                               MaxVolHotWaterFlowDes, "User-Specified Maximum Reheat Water Flow Rate [m3/s]",
-                                               MaxVolHotWaterFlowUser);
+                                               MaxVolHotWaterFlowDes, "User-Specified Maximum Reheat Water Flow Rate [m3/s]", MaxVolHotWaterFlowUser);
                             if (DisplayExtraWarnings) {
-                                if ((std::abs(MaxVolHotWaterFlowDes - MaxVolHotWaterFlowUser) / MaxVolHotWaterFlowUser) >
-                                    AutoVsHardSizingThreshold) {
+                                if ((std::abs(MaxVolHotWaterFlowDes - MaxVolHotWaterFlowUser) / MaxVolHotWaterFlowUser) > AutoVsHardSizingThreshold) {
                                     ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' +
                                                 PIU(PIUNum).Name);
                                     ShowContinueError("User-Specified Maximum Reheat Water Flow Rate of " +
@@ -1322,32 +1297,25 @@ namespace PoweredInductionUnits {
                     CoilSteamInletNode = GetCoilSteamInletNode("Coil:Heating:Steam", PIU(PIUNum).HCoil, ErrorsFound);
                     CoilSteamOutletNode = GetCoilSteamOutletNode("Coil:Heating:Steam", PIU(PIUNum).HCoil, ErrorsFound);
                     if (IsAutoSize) {
-                        PltSizHeatNum = MyPlantSizingIndex("Coil:Heating:Steam", PIU(PIUNum).HCoil, CoilSteamInletNode, CoilSteamOutletNode,
-                                                           ErrorsFound);
+                        PltSizHeatNum =
+                            MyPlantSizingIndex("Coil:Heating:Steam", PIU(PIUNum).HCoil, CoilSteamInletNode, CoilSteamOutletNode, ErrorsFound);
                         if (PltSizHeatNum > 0) {
 
                             if (TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatMassFlow >= SmallAirVolFlow) {
-                                CoilInTemp =
-                                    TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU * PIU(PIUNum).MinPriAirFlowFrac +
-                                    TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtHeatPeak *
-                                        (1.0 - PIU(PIUNum).MinPriAirFlowFrac);
+                                CoilInTemp = TermUnitFinalZoneSizing(CurTermUnitSizingNum).DesHeatCoilInTempTU * PIU(PIUNum).MinPriAirFlowFrac +
+                                             TermUnitFinalZoneSizing(CurTermUnitSizingNum).ZoneTempAtHeatPeak * (1.0 - PIU(PIUNum).MinPriAirFlowFrac);
                                 CoilOutTemp = TermUnitFinalZoneSizing(CurTermUnitSizingNum).HeatDesTemp;
                                 CoilOutHumRat = TermUnitFinalZoneSizing(CurTermUnitSizingNum).HeatDesHumRat;
                                 DesMassFlow = StdRhoAir * TermUnitSizing(CurTermUnitSizingNum).AirVolFlow;
-                                DesCoilLoad = PsyCpAirFnWTdb(CoilOutHumRat, 0.5 * (CoilInTemp + CoilOutTemp)) * DesMassFlow *
-                                              (CoilOutTemp - CoilInTemp);
+                                DesCoilLoad =
+                                    PsyCpAirFnWTdb(CoilOutHumRat, 0.5 * (CoilInTemp + CoilOutTemp)) * DesMassFlow * (CoilOutTemp - CoilInTemp);
                                 TempSteamIn = 100.00;
-                                EnthSteamInDry =
-                                    GetSatEnthalpyRefrig(fluidNameSteam, TempSteamIn, 1.0, PIU(PIUNum).HCoil_FluidIndex, RoutineName);
-                                EnthSteamOutWet =
-                                    GetSatEnthalpyRefrig(fluidNameSteam, TempSteamIn, 0.0, PIU(PIUNum).HCoil_FluidIndex, RoutineName);
+                                EnthSteamInDry = GetSatEnthalpyRefrig(fluidNameSteam, TempSteamIn, 1.0, PIU(PIUNum).HCoil_FluidIndex, RoutineName);
+                                EnthSteamOutWet = GetSatEnthalpyRefrig(fluidNameSteam, TempSteamIn, 0.0, PIU(PIUNum).HCoil_FluidIndex, RoutineName);
                                 LatentHeatSteam = EnthSteamInDry - EnthSteamOutWet;
-                                SteamDensity =
-                                    GetSatDensityRefrig(fluidNameSteam, TempSteamIn, 1.0, PIU(PIUNum).HCoil_FluidIndex, RoutineName);
-                                Cp = GetSpecificHeatGlycol(fluidNameWater, PlantSizData(PltSizHeatNum).ExitTemp, DummyWaterIndex,
-                                                           RoutineName);
-                                MaxVolHotSteamFlowDes =
-                                    DesCoilLoad / (SteamDensity * (LatentHeatSteam + PlantSizData(PltSizHeatNum).DeltaT * Cp));
+                                SteamDensity = GetSatDensityRefrig(fluidNameSteam, TempSteamIn, 1.0, PIU(PIUNum).HCoil_FluidIndex, RoutineName);
+                                Cp = GetSpecificHeatGlycol(fluidNameWater, PlantSizData(PltSizHeatNum).ExitTemp, DummyWaterIndex, RoutineName);
+                                MaxVolHotSteamFlowDes = DesCoilLoad / (SteamDensity * (LatentHeatSteam + PlantSizData(PltSizHeatNum).DeltaT * Cp));
                             } else {
                                 MaxVolHotSteamFlowDes = 0.0;
                             }
@@ -1365,15 +1333,13 @@ namespace PoweredInductionUnits {
                         if (PIU(PIUNum).MaxVolHotSteamFlow > 0.0 && MaxVolHotSteamFlowDes > 0.0) {
                             MaxVolHotSteamFlowUser = PIU(PIUNum).MaxVolHotSteamFlow;
                             ReportSizingOutput(PIU(PIUNum).UnitType, PIU(PIUNum).Name, "Design Size Maximum Reheat Steam Flow [m3/s]",
-                                               MaxVolHotSteamFlowDes, "User-Specified Maximum Reheat Steam Flow [m3/s]",
-                                               MaxVolHotSteamFlowUser);
+                                               MaxVolHotSteamFlowDes, "User-Specified Maximum Reheat Steam Flow [m3/s]", MaxVolHotSteamFlowUser);
                             if (DisplayExtraWarnings) {
-                                if ((std::abs(MaxVolHotSteamFlowDes - MaxVolHotSteamFlowUser) / MaxVolHotSteamFlowUser) >
-                                    AutoVsHardSizingThreshold) {
+                                if ((std::abs(MaxVolHotSteamFlowDes - MaxVolHotSteamFlowUser) / MaxVolHotSteamFlowUser) > AutoVsHardSizingThreshold) {
                                     ShowMessage("SizePIU: Potential issue with equipment sizing for " + PIU(PIUNum).UnitType + ' ' +
                                                 PIU(PIUNum).Name);
-                                    ShowContinueError("User-Specified Maximum Reheat Steam Flow of " +
-                                                      RoundSigDigits(MaxVolHotSteamFlowUser, 5) + " [m3/s]");
+                                    ShowContinueError("User-Specified Maximum Reheat Steam Flow of " + RoundSigDigits(MaxVolHotSteamFlowUser, 5) +
+                                                      " [m3/s]");
                                     ShowContinueError("differs from Design Size Maximum Reheat Steam Flow of " +
                                                       RoundSigDigits(MaxVolHotSteamFlowDes, 5) + " [m3/s]");
                                     ShowContinueError("This may, or may not, indicate mismatched component sizes.");
@@ -1619,15 +1585,14 @@ namespace PoweredInductionUnits {
                     // control water flow to obtain output matching QZnReq
                     ControlCompOutput(PIU(PIUNum).HCoil, PIU(PIUNum).UnitType, PIU(PIUNum).HCoil_Index, FirstHVACIteration, QActualHeating,
                                       ControlNode, MaxWaterFlow, MinWaterFlow, ControlOffset, PIU(PIUNum).ControlCompTypeNum,
-                                      PIU(PIUNum).CompErrIndex, HCoilInAirNode, OutletNode, _, _, _, PIU(PIUNum).HWLoopNum,
-                                      PIU(PIUNum).HWLoopSide, PIU(PIUNum).HWBranchNum);
+                                      PIU(PIUNum).CompErrIndex, HCoilInAirNode, OutletNode, _, _, _, PIU(PIUNum).HWLoopNum, PIU(PIUNum).HWLoopSide,
+                                      PIU(PIUNum).HWBranchNum);
                 }
             } else if (SELECT_CASE_var == HCoilType_SteamAirHeating) { // COIL:STEAM:AIRHEATING
                 if (!HCoilOn) {
                     QCoilReq = 0.0;
                 } else {
-                    QCoilReq =
-                        QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
+                    QCoilReq = QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
                 }
                 SimulateSteamCoilComponents(PIU(PIUNum).HCoil, FirstHVACIteration, PIU(PIUNum).HCoil_Index, QCoilReq);
 
@@ -1635,8 +1600,7 @@ namespace PoweredInductionUnits {
                 if (!HCoilOn) {
                     QCoilReq = 0.0;
                 } else {
-                    QCoilReq =
-                        QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
+                    QCoilReq = QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
                 }
                 SimulateHeatingCoilComponents(PIU(PIUNum).HCoil, FirstHVACIteration, QCoilReq, PIU(PIUNum).HCoil_Index);
 
@@ -1644,8 +1608,7 @@ namespace PoweredInductionUnits {
                 if (!HCoilOn) {
                     QCoilReq = 0.0;
                 } else {
-                    QCoilReq =
-                        QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
+                    QCoilReq = QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
                 }
                 SimulateHeatingCoilComponents(PIU(PIUNum).HCoil, FirstHVACIteration, QCoilReq, PIU(PIUNum).HCoil_Index);
             }
@@ -1876,23 +1839,21 @@ namespace PoweredInductionUnits {
                     // control water flow to obtain output matching QZnReq
                     ControlCompOutput(PIU(PIUNum).HCoil, PIU(PIUNum).UnitType, PIU(PIUNum).HCoil_Index, FirstHVACIteration, QActualHeating,
                                       ControlNode, MaxWaterFlow, MinWaterFlow, ControlOffset, PIU(PIUNum).ControlCompTypeNum,
-                                      PIU(PIUNum).CompErrIndex, HCoilInAirNode, OutletNode, _, _, _, PIU(PIUNum).HWLoopNum,
-                                      PIU(PIUNum).HWLoopSide, PIU(PIUNum).HWBranchNum);
+                                      PIU(PIUNum).CompErrIndex, HCoilInAirNode, OutletNode, _, _, _, PIU(PIUNum).HWLoopNum, PIU(PIUNum).HWLoopSide,
+                                      PIU(PIUNum).HWBranchNum);
                 }
             } else if (SELECT_CASE_var == HCoilType_SteamAirHeating) { // COIL:STEAM:AIRHEATING
                 if (!HCoilOn) {
                     QCoilReq = 0.0;
                 } else {
-                    QCoilReq =
-                        QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
+                    QCoilReq = QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
                 }
                 SimulateSteamCoilComponents(PIU(PIUNum).HCoil, FirstHVACIteration, PIU(PIUNum).HCoil_Index, QCoilReq);
             } else if (SELECT_CASE_var == HCoilType_Electric) { // COIL:ELECTRIC:HEATING
                 if (!HCoilOn) {
                     QCoilReq = 0.0;
                 } else {
-                    QCoilReq =
-                        QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
+                    QCoilReq = QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
                 }
                 SimulateHeatingCoilComponents(PIU(PIUNum).HCoil, FirstHVACIteration, QCoilReq, PIU(PIUNum).HCoil_Index);
 
@@ -1900,8 +1861,7 @@ namespace PoweredInductionUnits {
                 if (!HCoilOn) {
                     QCoilReq = 0.0;
                 } else {
-                    QCoilReq =
-                        QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
+                    QCoilReq = QToHeatSetPt - Node(HCoilInAirNode).MassFlowRate * CpAirZn * (Node(HCoilInAirNode).Temp - Node(ZoneNode).Temp);
                 }
                 SimulateHeatingCoilComponents(PIU(PIUNum).HCoil, FirstHVACIteration, QCoilReq, PIU(PIUNum).HCoil_Index);
             }

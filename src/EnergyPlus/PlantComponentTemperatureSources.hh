@@ -106,9 +106,9 @@ namespace PlantComponentTemperatureSources {
         // Default Constructor
         WaterSourceSpecs()
             : InletNodeNum(0), OutletNodeNum(0), DesVolFlowRate(0.0), DesVolFlowRateWasAutoSized(false), MassFlowRateMax(0.0),
-              EMSOverrideOnMassFlowRateMax(false), EMSOverrideValueMassFlowRateMax(0.0), MassFlowRate(0.0), TempSpecType(0),
-              TempSpecScheduleNum(0), BoundaryTemp(0.0), OutletTemp(0.0), InletTemp(0.0), HeatRate(0.0), HeatEnergy(0.0),
-              Location(0, 0, 0, 0), SizFac(0.0), CheckEquipName(true), MyFlag(true), MyEnvironFlag(true), IsThisSized(false)
+              EMSOverrideOnMassFlowRateMax(false), EMSOverrideValueMassFlowRateMax(0.0), MassFlowRate(0.0), TempSpecType(0), TempSpecScheduleNum(0),
+              BoundaryTemp(0.0), OutletTemp(0.0), InletTemp(0.0), HeatRate(0.0), HeatEnergy(0.0), Location(0, 0, 0, 0), SizFac(0.0),
+              CheckEquipName(true), MyFlag(true), MyEnvironFlag(true), IsThisSized(false)
         {
         }
     };

@@ -280,8 +280,8 @@ namespace PlantValves {
                                                                      NodeConnectionType_SetPoint, 1, ObjectIsNotParent);
 
             // Get Pump outlet
-            TemperValve(Item).PltPumpOutletNodeNum = GetOnlySingleNode(Alphas(6), ErrorsFound, CurrentModuleObject, Alphas(1),
-                                                                       NodeType_Water, NodeConnectionType_Sensor, 1, ObjectIsNotParent);
+            TemperValve(Item).PltPumpOutletNodeNum = GetOnlySingleNode(Alphas(6), ErrorsFound, CurrentModuleObject, Alphas(1), NodeType_Water,
+                                                                       NodeConnectionType_Sensor, 1, ObjectIsNotParent);
 
             // Note most checks on user input are made in second pass thru init routine
 
@@ -290,8 +290,8 @@ namespace PlantValves {
 
         for (Item = 1; Item <= NumTemperingValves; ++Item) {
 
-            SetupOutputVariable("Tempering Valve Flow Fraction", OutputProcessor::Unit::None, TemperValve(Item).FlowDivFract, "System",
-                                "Average", TemperValve(Item).Name);
+            SetupOutputVariable("Tempering Valve Flow Fraction", OutputProcessor::Unit::None, TemperValve(Item).FlowDivFract, "System", "Average",
+                                TemperValve(Item).Name);
         }
 
         if (ErrorsFound) {
@@ -376,8 +376,8 @@ namespace PlantValves {
                         // Locate the component on the plant loops for later usage
                         errFlag = false;
                         ScanPlantLoopsForObject(TemperValve(CompNum).Name, TypeOf_ValveTempering, TemperValve(CompNum).LoopNum,
-                                                TemperValve(CompNum).LoopSideNum, TemperValve(CompNum).BranchNum,
-                                                TemperValve(CompNum).CompNum, _, _, _, _, _, errFlag);
+                                                TemperValve(CompNum).LoopSideNum, TemperValve(CompNum).BranchNum, TemperValve(CompNum).CompNum, _, _,
+                                                _, _, _, errFlag);
 
                         if (errFlag) {
                             ShowFatalError("InitPlantValves: Program terminated due to previous condition(s).");
@@ -405,16 +405,14 @@ namespace PlantValves {
                                             if ((PlantLoop(i).LoopSide(j).Branch(k).Comp(l).TypeOf_Num == CompTypeNum) &&
                                                 (PlantLoop(i).LoopSide(j).Branch(k).Comp(l).CompNum == CompNum)) { // we found it.
 
-                                                if (!SameString(PlantLoop(i).LoopSide(j).Branch(k).Comp(l).Name,
-                                                                TemperValve(CompNum).Name)) {
+                                                if (!SameString(PlantLoop(i).LoopSide(j).Branch(k).Comp(l).Name, TemperValve(CompNum).Name)) {
                                                     // why not, maybe plant loop structures not completely filled with available data?
                                                     // write(*,*) 'Temper Valve names', PlantLoop(i)%LoopSide(j)%Branch(k)%Comp(l)%Name,
                                                     // TemperValve(CompNum)%Name
                                                 }
 
                                                 // is branch control type 'Active'
-                                                if (PlantLoop(i).LoopSide(j).Branch(k).ControlType == ControlType_Active)
-                                                    IsBranchActive = true;
+                                                if (PlantLoop(i).LoopSide(j).Branch(k).ControlType == ControlType_Active) IsBranchActive = true;
 
                                                 // is Valve inlet node an outlet node of a splitter
                                                 if (allocated(PlantLoop(i).LoopSide(j).Splitter)) {
@@ -441,15 +439,13 @@ namespace PlantValves {
                                                                    TemperValve(CompNum).PltStream2NodeNum)) {
 
                                                             // Check other branches component's node, current branch is k
-                                                            for (int kk = 1, kk_end = PlantLoop(i).LoopSide(j).TotalBranches; kk <= kk_end;
-                                                                 ++kk) {
+                                                            for (int kk = 1, kk_end = PlantLoop(i).LoopSide(j).TotalBranches; kk <= kk_end; ++kk) {
                                                                 if (k == kk) continue; // already looped into this one
                                                                 if (!allocated(PlantLoop(i).LoopSide(j).Branch(kk).Comp)) continue;
                                                                 auto const &comp(PlantLoop(i).LoopSide(j).Branch(kk).Comp);
-                                                                if (std::any_of(
-                                                                        comp.begin(), comp.end(), [CompNum](DataPlant::CompData const &e) {
-                                                                            return e.NodeNumOut == TemperValve(CompNum).PltStream2NodeNum;
-                                                                        })) { // it is on other branch
+                                                                if (std::any_of(comp.begin(), comp.end(), [CompNum](DataPlant::CompData const &e) {
+                                                                        return e.NodeNumOut == TemperValve(CompNum).PltStream2NodeNum;
+                                                                    })) { // it is on other branch
                                                                     Stream2NodeOkay = true;
                                                                 }
                                                             } // kk branch nested loop
@@ -459,8 +455,7 @@ namespace PlantValves {
 
                                                 // is pump node really the outlet of a branch with a pump?
                                                 for (int kk = 1, kk_end = PlantLoop(i).LoopSide(j).TotalBranches; kk <= kk_end; ++kk) {
-                                                    if (PlantLoop(i).LoopSide(j).Branch(kk).NodeNumOut ==
-                                                        TemperValve(CompNum).PltPumpOutletNodeNum) {
+                                                    if (PlantLoop(i).LoopSide(j).Branch(kk).NodeNumOut == TemperValve(CompNum).PltPumpOutletNodeNum) {
                                                         auto const &comp(PlantLoop(i).LoopSide(j).Branch(kk).Comp);
                                                         if (std::any_of(comp.begin(), comp.end(), [](DataPlant::CompData const &e) {
                                                                 return e.GeneralEquipType == DataPlant::GenEquipTypes_Pump;
@@ -505,8 +500,7 @@ namespace PlantValves {
                         }
 
                         if (!SetPointNodeOkay) {
-                            ShowSevereError(
-                                "TemperingValve object setpoint node not valid.  Check Setpoint manager for Plant Loop Temp Setpoint");
+                            ShowSevereError("TemperingValve object setpoint node not valid.  Check Setpoint manager for Plant Loop Temp Setpoint");
                             ErrorsFound = true;
                         }
 
@@ -534,8 +528,8 @@ namespace PlantValves {
                     if ((InletNode > 0) && (OutletNode > 0)) {
                         //   Node(InletNode)%Temp = 0.0
                         InitComponentNodes(0.0, Node(PumpOutNode).MassFlowRateMax, TemperValve(CompNum).PltInletNodeNum,
-                                           TemperValve(CompNum).PltOutletNodeNum, TemperValve(CompNum).LoopNum,
-                                           TemperValve(CompNum).LoopSideNum, TemperValve(CompNum).BranchNum, TemperValve(CompNum).CompNum);
+                                           TemperValve(CompNum).PltOutletNodeNum, TemperValve(CompNum).LoopNum, TemperValve(CompNum).LoopSideNum,
+                                           TemperValve(CompNum).BranchNum, TemperValve(CompNum).CompNum);
                     }
                     TemperValve(CompNum).Init = false;
                 }

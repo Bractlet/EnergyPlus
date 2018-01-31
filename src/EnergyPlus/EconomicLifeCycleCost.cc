@@ -212,9 +212,8 @@ namespace EconomicLifeCycleCost {
     Array1D<Real64> AfterTaxCashFlow;
     Array1D<Real64> AfterTaxPresentValue;
 
-    Array1D_string const MonthNames(12,
-                                    {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-                                     "November", "December"});
+    Array1D_string const
+        MonthNames(12, {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"});
 
     // SUBROUTINE SPECIFICATIONS FOR MODULE <module_name>:
 
@@ -421,8 +420,7 @@ namespace EconomicLifeCycleCost {
                 discountConvension = disConvBeginOfYear;
             } else {
                 discountConvension = disConvEndOfYear;
-                ShowWarningError(CurrentModuleObject + ": Invalid " + cAlphaFieldNames(2) + "=\"" + AlphaArray(2) +
-                                 "\". EndOfYear will be used.");
+                ShowWarningError(CurrentModuleObject + ": Invalid " + cAlphaFieldNames(2) + "=\"" + AlphaArray(2) + "\". EndOfYear will be used.");
             }
             // A3,  \field Inflation Approach
             //      \type choice
@@ -592,16 +590,14 @@ namespace EconomicLifeCycleCost {
                 ShowWarningError(CurrentModuleObject + ": The input field " + cAlphaFieldNames(6) + "is blank. \"None\" will be used.");
             } else {
                 depreciationMethod = depMethNone;
-                ShowWarningError(CurrentModuleObject + ": Invalid " + cAlphaFieldNames(6) + "=\"" + AlphaArray(6) +
-                                 "\". \"None\" will be used.");
+                ShowWarningError(CurrentModuleObject + ": Invalid " + cAlphaFieldNames(6) + "=\"" + AlphaArray(6) + "\". \"None\" will be used.");
             }
             // compute derived variables
             lastDateMonth = baseDateMonth - 1; // same month of the year for first and last month
             if (lastDateMonth == 0) lastDateMonth = 12;
             lastDateYear = baseDateYear + lengthStudyYears - 1;
         } else {
-            ShowWarningError(CurrentModuleObject +
-                             ": Only one instance of this object is allowed. No life-cycle cost reports will be generated.");
+            ShowWarningError(CurrentModuleObject + ": Only one instance of this object is allowed. No life-cycle cost reports will be generated.");
             LCCparamPresent = false;
         }
     }
@@ -654,8 +650,8 @@ namespace EconomicLifeCycleCost {
         numRecurringCosts = GetNumObjectsFound(CurrentModuleObject);
         RecurringCosts.allocate(numRecurringCosts);
         for (iInObj = 1; iInObj <= numRecurringCosts; ++iInObj) {
-            GetObjectItem(CurrentModuleObject, iInObj, AlphaArray, NumAlphas, NumArray, NumNums, IOStat, lNumericFieldBlanks,
-                          lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(CurrentModuleObject, iInObj, AlphaArray, NumAlphas, NumArray, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
+                          cAlphaFieldNames, cNumericFieldNames);
             // check to make sure none of the values are another life cycle cost object
             for (jFld = 1; jFld <= NumAlphas; ++jFld) {
                 if (hasi(AlphaArray(jFld), "LifeCycleCost:")) {
@@ -775,8 +771,8 @@ namespace EconomicLifeCycleCost {
                                  "reasonable for an economic evaluation. ");
             }
             if ((RecurringCosts(iInObj).repeatPeriodMonths == 0) && (RecurringCosts(iInObj).repeatPeriodYears == 0)) {
-                ShowWarningError(CurrentModuleObject + ": Invalid value in fields " + cNumericFieldNames(5) + " and " +
-                                 cNumericFieldNames(4) + ".  The repeat period must not be zero months and zero years. ");
+                ShowWarningError(CurrentModuleObject + ": Invalid value in fields " + cNumericFieldNames(5) + " and " + cNumericFieldNames(4) +
+                                 ".  The repeat period must not be zero months and zero years. ");
             }
             //   N6;  \field Annual escalation rate
             //        \type real
@@ -790,8 +786,7 @@ namespace EconomicLifeCycleCost {
                                  ".  This value is the decimal value for the annual escalation so most values are between 0.02 and 0.15. ");
             }
             // express the years and months fields in total months
-            RecurringCosts(iInObj).totalMonthsFromStart =
-                RecurringCosts(iInObj).yearsFromStart * 12 + RecurringCosts(iInObj).monthsFromStart;
+            RecurringCosts(iInObj).totalMonthsFromStart = RecurringCosts(iInObj).yearsFromStart * 12 + RecurringCosts(iInObj).monthsFromStart;
             RecurringCosts(iInObj).totalRepeatPeriodMonths =
                 RecurringCosts(iInObj).repeatPeriodYears * 12 + RecurringCosts(iInObj).repeatPeriodMonths;
         }
@@ -851,8 +846,8 @@ namespace EconomicLifeCycleCost {
             NonrecurringCost.allocate(numNonrecurringCost);
         }
         for (iInObj = 1; iInObj <= numNonrecurringCost; ++iInObj) {
-            GetObjectItem(CurrentModuleObject, iInObj, AlphaArray, NumAlphas, NumArray, NumNums, IOStat, lNumericFieldBlanks,
-                          lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+            GetObjectItem(CurrentModuleObject, iInObj, AlphaArray, NumAlphas, NumArray, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
+                          cAlphaFieldNames, cNumericFieldNames);
             // check to make sure none of the values are another life cycle cost object
             for (jFld = 1; jFld <= NumAlphas; ++jFld) {
                 if (hasi(AlphaArray(jFld), "LifeCycleCost:")) {
@@ -930,8 +925,7 @@ namespace EconomicLifeCycleCost {
                                  "economic evaluation. ");
             }
             // express the years and months fields in total months
-            NonrecurringCost(iInObj).totalMonthsFromStart =
-                NonrecurringCost(iInObj).yearsFromStart * 12 + NonrecurringCost(iInObj).monthsFromStart;
+            NonrecurringCost(iInObj).totalMonthsFromStart = NonrecurringCost(iInObj).yearsFromStart * 12 + NonrecurringCost(iInObj).monthsFromStart;
         }
     }
 
@@ -987,8 +981,8 @@ namespace EconomicLifeCycleCost {
         }
         if (numUsePriceEscalation > 0) {
             for (iInObj = 1; iInObj <= numUsePriceEscalation; ++iInObj) {
-                GetObjectItem(CurrentModuleObject, iInObj, AlphaArray, NumAlphas, NumArray, NumNums, IOStat, lNumericFieldBlanks,
-                              lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+                GetObjectItem(CurrentModuleObject, iInObj, AlphaArray, NumAlphas, NumArray, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
+                              cAlphaFieldNames, cNumericFieldNames);
                 // check to make sure none of the values are another life cycle cost object
                 for (jFld = 1; jFld <= NumAlphas; ++jFld) {
                     if (hasi(AlphaArray(jFld), "LifeCycleCost:")) {
@@ -1132,8 +1126,8 @@ namespace EconomicLifeCycleCost {
         }
         if (numUseAdjustment > 0) {
             for (iInObj = 1; iInObj <= numUseAdjustment; ++iInObj) {
-                GetObjectItem(CurrentModuleObject, iInObj, AlphaArray, NumAlphas, NumArray, NumNums, IOStat, lNumericFieldBlanks,
-                              lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+                GetObjectItem(CurrentModuleObject, iInObj, AlphaArray, NumAlphas, NumArray, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
+                              cAlphaFieldNames, cNumericFieldNames);
                 // check to make sure none of the values are another life cycle cost object
                 for (jFld = 1; jFld <= NumAlphas; ++jFld) {
                     if (hasi(AlphaArray(jFld), "LifeCycleCost:")) {
@@ -1434,8 +1428,7 @@ namespace EconomicLifeCycleCost {
                 int curResource_iRT = iResource + ResourceTypeInitialOffset;
                 if (curResource_iRT == iRT_Water || (curResource_iRT >= iRT_OnSiteWater && curResource_iRT <= iRT_Condensate)) {
                     CashFlow(cashFlowCounter).Category = costCatWater;
-                } else if (curResource_iRT >= iRT_Electricity &&
-                           curResource_iRT <= iRT_SolarAir) { // iRT_Water already filtered by first if block
+                } else if (curResource_iRT >= iRT_Electricity && curResource_iRT <= iRT_SolarAir) { // iRT_Water already filtered by first if block
                     CashFlow(cashFlowCounter).Category = costCatEnergy;
                 } else {
                     CashFlow(cashFlowCounter).Category = costCatOperation;
@@ -1470,8 +1463,7 @@ namespace EconomicLifeCycleCost {
                     }
                     // if any adjustments were found for that resource apply the multiplier
                     if (found != 0) {
-                        for (kYear = 1; kYear <= lengthStudyYears;
-                             ++kYear) { // if service period is later than base period then this will go too far
+                        for (kYear = 1; kYear <= lengthStudyYears; ++kYear) { // if service period is later than base period then this will go too far
                             for (jMonth = 1; jMonth <= 12; ++jMonth) {
                                 month = (kYear - 1) * 12 + jMonth;
                                 if (month > lengthStudyTotalMonths) break;
@@ -1499,17 +1491,15 @@ namespace EconomicLifeCycleCost {
         // create total categories
         for (jMonth = 1; jMonth <= lengthStudyTotalMonths; ++jMonth) {
             CashFlow(costCatTotEnergy).mnAmount(jMonth) = CashFlow(costCatEnergy).mnAmount(jMonth);
-            CashFlow(costCatTotOper).mnAmount(jMonth) =
-                CashFlow(costCatMaintenance).mnAmount(jMonth) + CashFlow(costCatRepair).mnAmount(jMonth) +
-                CashFlow(costCatOperation).mnAmount(jMonth) + CashFlow(costCatReplacement).mnAmount(jMonth) +
-                CashFlow(costCatMinorOverhaul).mnAmount(jMonth) + CashFlow(costCatMajorOverhaul).mnAmount(jMonth) +
-                CashFlow(costCatOtherOperational).mnAmount(jMonth) + CashFlow(costCatWater).mnAmount(jMonth) +
-                CashFlow(costCatEnergy).mnAmount(jMonth);
-            CashFlow(costCatTotCaptl).mnAmount(jMonth) = CashFlow(costCatConstruction).mnAmount(jMonth) +
-                                                         CashFlow(costCatSalvage).mnAmount(jMonth) +
+            CashFlow(costCatTotOper).mnAmount(jMonth) = CashFlow(costCatMaintenance).mnAmount(jMonth) + CashFlow(costCatRepair).mnAmount(jMonth) +
+                                                        CashFlow(costCatOperation).mnAmount(jMonth) + CashFlow(costCatReplacement).mnAmount(jMonth) +
+                                                        CashFlow(costCatMinorOverhaul).mnAmount(jMonth) +
+                                                        CashFlow(costCatMajorOverhaul).mnAmount(jMonth) +
+                                                        CashFlow(costCatOtherOperational).mnAmount(jMonth) + CashFlow(costCatWater).mnAmount(jMonth) +
+                                                        CashFlow(costCatEnergy).mnAmount(jMonth);
+            CashFlow(costCatTotCaptl).mnAmount(jMonth) = CashFlow(costCatConstruction).mnAmount(jMonth) + CashFlow(costCatSalvage).mnAmount(jMonth) +
                                                          CashFlow(costCatOtherCapital).mnAmount(jMonth);
-            CashFlow(costCatTotGrand).mnAmount(jMonth) =
-                CashFlow(costCatTotOper).mnAmount(jMonth) + CashFlow(costCatTotCaptl).mnAmount(jMonth);
+            CashFlow(costCatTotGrand).mnAmount(jMonth) = CashFlow(costCatTotOper).mnAmount(jMonth) + CashFlow(costCatTotCaptl).mnAmount(jMonth);
         }
         // convert all monthly cashflows into yearly cashflows
         for (jCost = 1; jCost <= numCashFlow; ++jCost) {
@@ -1530,8 +1520,7 @@ namespace EconomicLifeCycleCost {
             if (!resourceCostNotZero(curResource) && DataGlobals::DoWeathSim) {
                 ShowWarningError("The resource referenced by LifeCycleCost:UsePriceEscalation= \"" + UsePriceEscalation(nUsePriceEsc).name +
                                  "\" has no energy cost. ");
-                ShowContinueError(
-                    "... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.");
+                ShowContinueError("... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.");
             }
         }
     }
@@ -1696,27 +1685,24 @@ namespace EconomicLifeCycleCost {
         }
         // create total categories
         CashFlow(costCatTotEnergy).presentValue = CashFlow(costCatEnergy).presentValue;
-        CashFlow(costCatTotOper).presentValue = CashFlow(costCatMaintenance).presentValue + CashFlow(costCatRepair).presentValue +
-                                                CashFlow(costCatOperation).presentValue + CashFlow(costCatReplacement).presentValue +
-                                                CashFlow(costCatMinorOverhaul).presentValue + CashFlow(costCatMajorOverhaul).presentValue +
-                                                CashFlow(costCatOtherOperational).presentValue + CashFlow(costCatWater).presentValue +
-                                                CashFlow(costCatEnergy).presentValue;
+        CashFlow(costCatTotOper).presentValue =
+            CashFlow(costCatMaintenance).presentValue + CashFlow(costCatRepair).presentValue + CashFlow(costCatOperation).presentValue +
+            CashFlow(costCatReplacement).presentValue + CashFlow(costCatMinorOverhaul).presentValue + CashFlow(costCatMajorOverhaul).presentValue +
+            CashFlow(costCatOtherOperational).presentValue + CashFlow(costCatWater).presentValue + CashFlow(costCatEnergy).presentValue;
         CashFlow(costCatTotCaptl).presentValue =
             CashFlow(costCatConstruction).presentValue + CashFlow(costCatSalvage).presentValue + CashFlow(costCatOtherCapital).presentValue;
         CashFlow(costCatTotGrand).presentValue = CashFlow(costCatTotOper).presentValue + CashFlow(costCatTotCaptl).presentValue;
         for (jYear = 1; jYear <= lengthStudyYears; ++jYear) {
             CashFlow(costCatTotEnergy).yrPresVal(jYear) = CashFlow(costCatEnergy).yrPresVal(jYear);
-            CashFlow(costCatTotOper).yrPresVal(jYear) =
-                CashFlow(costCatMaintenance).yrPresVal(jYear) + CashFlow(costCatRepair).yrPresVal(jYear) +
-                CashFlow(costCatOperation).yrPresVal(jYear) + CashFlow(costCatReplacement).yrPresVal(jYear) +
-                CashFlow(costCatMinorOverhaul).yrPresVal(jYear) + CashFlow(costCatMajorOverhaul).yrPresVal(jYear) +
-                CashFlow(costCatOtherOperational).yrPresVal(jYear) + CashFlow(costCatWater).yrPresVal(jYear) +
-                CashFlow(costCatEnergy).yrPresVal(jYear);
-            CashFlow(costCatTotCaptl).yrPresVal(jYear) = CashFlow(costCatConstruction).yrPresVal(jYear) +
-                                                         CashFlow(costCatSalvage).yrPresVal(jYear) +
+            CashFlow(costCatTotOper).yrPresVal(jYear) = CashFlow(costCatMaintenance).yrPresVal(jYear) + CashFlow(costCatRepair).yrPresVal(jYear) +
+                                                        CashFlow(costCatOperation).yrPresVal(jYear) + CashFlow(costCatReplacement).yrPresVal(jYear) +
+                                                        CashFlow(costCatMinorOverhaul).yrPresVal(jYear) +
+                                                        CashFlow(costCatMajorOverhaul).yrPresVal(jYear) +
+                                                        CashFlow(costCatOtherOperational).yrPresVal(jYear) + CashFlow(costCatWater).yrPresVal(jYear) +
+                                                        CashFlow(costCatEnergy).yrPresVal(jYear);
+            CashFlow(costCatTotCaptl).yrPresVal(jYear) = CashFlow(costCatConstruction).yrPresVal(jYear) + CashFlow(costCatSalvage).yrPresVal(jYear) +
                                                          CashFlow(costCatOtherCapital).yrPresVal(jYear);
-            CashFlow(costCatTotGrand).yrPresVal(jYear) =
-                CashFlow(costCatTotOper).yrPresVal(jYear) + CashFlow(costCatTotCaptl).yrPresVal(jYear);
+            CashFlow(costCatTotGrand).yrPresVal(jYear) = CashFlow(costCatTotOper).yrPresVal(jYear) + CashFlow(costCatTotCaptl).yrPresVal(jYear);
         }
     }
 
@@ -2194,8 +2180,8 @@ namespace EconomicLifeCycleCost {
             for (jObj = 1; jObj <= numUsePriceEscalation; ++jObj) { // loop through objects not columns to add names
                 columnHead(jObj) = UsePriceEscalation(jObj).name;
                 tableBody(jObj, 1) = GetResourceTypeChar(UsePriceEscalation(jObj).resource);
-                tableBody(jObj, 2) = MonthNames(UsePriceEscalation(jObj).escalationStartMonth) + ' ' +
-                                     IntToStr(UsePriceEscalation(jObj).escalationStartYear);
+                tableBody(jObj, 2) =
+                    MonthNames(UsePriceEscalation(jObj).escalationStartMonth) + ' ' + IntToStr(UsePriceEscalation(jObj).escalationStartYear);
             }
             for (jObj = 1; jObj <= numUsePriceEscalation; ++jObj) {
                 for (iYear = 1; iYear <= lengthStudyYears; ++iYear) {
@@ -2406,8 +2392,7 @@ namespace EconomicLifeCycleCost {
                     columnHead(jObj) = CashFlow(jObj).name;
                 }
                 for (kMonth = 1; kMonth <= lengthStudyTotalMonths; ++kMonth) {
-                    rowHead(kMonth) =
-                        MonthNames(1 + (kMonth + baseDateMonth - 2) % 12) + ' ' + IntToStr(baseDateYear + int((kMonth - 1) / 12));
+                    rowHead(kMonth) = MonthNames(1 + (kMonth + baseDateMonth - 2) % 12) + ' ' + IntToStr(baseDateYear + int((kMonth - 1) / 12));
                 }
                 for (kMonth = 1; kMonth <= lengthStudyTotalMonths; ++kMonth) {
                     for (jObj = 1; jObj <= numCashFlow; ++jObj) {

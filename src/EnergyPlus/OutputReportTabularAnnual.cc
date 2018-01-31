@@ -111,8 +111,7 @@ namespace OutputReportTabularAnnual {
         if (objCount > 0) {
             // if not a run period using weather do not create reports
             if (!DataGlobals::DoWeathSim) {
-                ShowWarningError(currentModuleObject +
-                                 " requested with SimulationControl Run Simulation for Weather File Run Periods set to No so " +
+                ShowWarningError(currentModuleObject + " requested with SimulationControl Run Simulation for Weather File Run Periods set to No so " +
                                  currentModuleObject + " will not be generated");
                 return;
             }
@@ -201,7 +200,7 @@ namespace OutputReportTabularAnnual {
             fldStIt->m_keyCount = keyCount;
         }
         allKeys.sort();
-        allKeys.unique(); // will now just have a list of the unique keys that is sorted
+        allKeys.unique();                                                        // will now just have a list of the unique keys that is sorted
         std::copy(allKeys.begin(), allKeys.end(), back_inserter(m_objectNames)); // copy list to the object names
         // size all columns list of cells to be the size of the
         for (fldStIt = m_annualFields.begin(); fldStIt != m_annualFields.end(); ++fldStIt) {
@@ -353,8 +352,8 @@ namespace OutputReportTabularAnnual {
                         bool activeNewValue = false;
                         // the current timestamp
                         int minuteCalculated = General::DetermineMinuteForReporting(kindOfTimeStep);
-                        General::EncodeMonDayHrMin(timestepTimeStamp, DataEnvironment::Month, DataEnvironment::DayOfMonth,
-                                                   DataGlobals::HourOfDay, minuteCalculated);
+                        General::EncodeMonDayHrMin(timestepTimeStamp, DataEnvironment::Month, DataEnvironment::DayOfMonth, DataGlobals::HourOfDay,
+                                                   minuteCalculated);
                         // perform the selected aggregation type
                         // the following types of aggregations are not gathered at this point:
                         // noAggregation, valueWhenMaxMin, sumOrAverageHoursShown, 	maximumDuringHoursShown, minimumDuringHoursShown:
@@ -457,9 +456,8 @@ namespace OutputReportTabularAnnual {
                         case AnnualFieldSet::AggregationKind::hoursInTenBinsPlusMinusTwoStdDev:
                         case AnnualFieldSet::AggregationKind::hoursInTenBinsPlusMinusThreeStdDev:
                             //  for all of the binning options add the value to the deferred
-                            if (fldStIt->m_varAvgSum == isSum) { // if it is a summed variable
-                                fldStIt->m_cell[row].deferredResults.push_back(curValue /=
-                                                                               secondsInTimeStep); // divide by time just like max and min
+                            if (fldStIt->m_varAvgSum == isSum) {                                               // if it is a summed variable
+                                fldStIt->m_cell[row].deferredResults.push_back(curValue /= secondsInTimeStep); // divide by time just like max and min
                             } else {
                                 fldStIt->m_cell[row].deferredResults.push_back(curValue);
                             }
@@ -722,8 +720,7 @@ namespace OutputReportTabularAnnual {
             }
             int curAgg = fldStIt->m_aggregate;
             columnRecount += columnCountForAggregation(fldStIt->m_aggregate);
-            if ((curAgg == AnnualFieldSet::AggregationKind::sumOrAvg) ||
-                (curAgg == AnnualFieldSet::AggregationKind::sumOrAverageHoursShown)) {
+            if ((curAgg == AnnualFieldSet::AggregationKind::sumOrAvg) || (curAgg == AnnualFieldSet::AggregationKind::sumOrAverageHoursShown)) {
                 // put in the name of the variable for the column
                 columnHead(columnRecount) = fldStIt->m_colHead + curAggString + " [" + curUnits + ']';
                 sumVal = 0.0;
@@ -735,8 +732,7 @@ namespace OutputReportTabularAnnual {
                     if (fldStIt->m_cell[row].indexesForKeyVar >= 0) {
                         if (fldStIt->m_varAvgSum == isAverage) { // if it is a average variable divide by duration
                             if (fldStIt->m_cell[row].duration != 0.0) {
-                                curVal = ((fldStIt->m_cell[row].result / fldStIt->m_cell[row].duration) * curConversionFactor) +
-                                         curConversionOffset;
+                                curVal = ((fldStIt->m_cell[row].result / fldStIt->m_cell[row].duration) * curConversionFactor) + curConversionOffset;
                             } else {
                                 curVal = 0.0;
                             }
@@ -770,12 +766,9 @@ namespace OutputReportTabularAnnual {
                 if (maxVal != storedMinVal) {
                     tableBody(columnRecount, rowMin) = OutputReportTabular::RealToStr(maxVal, fldStIt->m_showDigits);
                 }
-            } else if ((curAgg == AnnualFieldSet::AggregationKind::hoursZero) ||
-                       (curAgg == AnnualFieldSet::AggregationKind::hoursNonZero) ||
-                       (curAgg == AnnualFieldSet::AggregationKind::hoursPositive) ||
-                       (curAgg == AnnualFieldSet::AggregationKind::hoursNonPositive) ||
-                       (curAgg == AnnualFieldSet::AggregationKind::hoursNegative) ||
-                       (curAgg == AnnualFieldSet::AggregationKind::hoursNonNegative)) {
+            } else if ((curAgg == AnnualFieldSet::AggregationKind::hoursZero) || (curAgg == AnnualFieldSet::AggregationKind::hoursNonZero) ||
+                       (curAgg == AnnualFieldSet::AggregationKind::hoursPositive) || (curAgg == AnnualFieldSet::AggregationKind::hoursNonPositive) ||
+                       (curAgg == AnnualFieldSet::AggregationKind::hoursNegative) || (curAgg == AnnualFieldSet::AggregationKind::hoursNonNegative)) {
                 // put in the name of the variable for the column
                 columnHead(columnRecount) = fldStIt->m_colHead + curAggString + " [HOURS]";
                 sumVal = 0.0;
@@ -901,8 +894,7 @@ namespace OutputReportTabularAnnual {
                     tableBody(columnRecount - 10, row + 1) =
                         OutputReportTabular::RealToStr(fldStIt->m_cell[row].m_timeBelowBottomBin, fldStIt->m_showDigits);
                 }
-                tableBody(columnRecount - 10, rowSumAvg) =
-                    OutputReportTabular::RealToStr(fldStIt->m_timeBelowBottomBinTotal, fldStIt->m_showDigits);
+                tableBody(columnRecount - 10, rowSumAvg) = OutputReportTabular::RealToStr(fldStIt->m_timeBelowBottomBinTotal, fldStIt->m_showDigits);
                 createBinRangeTable = true;
             } else if (curAgg == AnnualFieldSet::AggregationKind::hoursInTenBinsMinToZero) {
                 // put in the name of the variable for the column
@@ -922,11 +914,9 @@ namespace OutputReportTabularAnnual {
                 }
                 columnHead(columnRecount) = fldStIt->m_colHead + curAggString + " MORE THAN BIN J";
                 for (unsigned int row = 0; row != m_objectNames.size(); row++) { // loop through by row.
-                    tableBody(columnRecount, row + 1) =
-                        OutputReportTabular::RealToStr(fldStIt->m_cell[row].m_timeAboveTopBin, fldStIt->m_showDigits);
+                    tableBody(columnRecount, row + 1) = OutputReportTabular::RealToStr(fldStIt->m_cell[row].m_timeAboveTopBin, fldStIt->m_showDigits);
                 }
-                tableBody(columnRecount, rowSumAvg) =
-                    OutputReportTabular::RealToStr(fldStIt->m_timeAboveTopBinTotal, fldStIt->m_showDigits);
+                tableBody(columnRecount, rowSumAvg) = OutputReportTabular::RealToStr(fldStIt->m_timeAboveTopBinTotal, fldStIt->m_showDigits);
                 createBinRangeTable = true;
             } else if (curAgg == AnnualFieldSet::AggregationKind::hoursInTenPercentBins ||
                        curAgg == AnnualFieldSet::AggregationKind::hoursInTenBinsPlusMinusTwoStdDev ||
@@ -976,17 +966,14 @@ namespace OutputReportTabularAnnual {
                     colHeadRange(10) = "BIN J";
                     for (int iBin = 0; iBin != 10; iBin++) {
                         // colHeadRange( iBin + 1 ) = "BIN " + ( char )( iBin + 65 ); // not sure why this does not work
-                        tableBodyRange(iBin + 1, 1) =
-                            OutputReportTabular::RealToStr(binBottom + float(iBin) * intervalSize, fldStIt->m_showDigits);
+                        tableBodyRange(iBin + 1, 1) = OutputReportTabular::RealToStr(binBottom + float(iBin) * intervalSize, fldStIt->m_showDigits);
                         tableBodyRange(iBin + 1, 2) =
                             OutputReportTabular::RealToStr(binBottom + float(iBin + 1) * intervalSize, fldStIt->m_showDigits);
                     }
                     OutputReportTabular::WriteSubtitle("Bin Sizes for: " + fldStIt->m_colHead);
-                    OutputReportTabular::WriteTable(tableBodyRange, rowHeadRange, colHeadRange, colWidthRange,
-                                                    true); // transpose annual XML tables.
+                    OutputReportTabular::WriteTable(tableBodyRange, rowHeadRange, colHeadRange, colWidthRange, true); // transpose annual XML tables.
                     if (sqlite) {
-                        sqlite->createSQLiteTabularDataRecords(tableBodyRange, rowHeadRange, colHeadRange, m_name, "Entire Facility",
-                                                               "Bin Sizes");
+                        sqlite->createSQLiteTabularDataRecords(tableBodyRange, rowHeadRange, colHeadRange, m_name, "Entire Facility", "Bin Sizes");
                     }
                 }
             }

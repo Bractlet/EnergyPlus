@@ -595,8 +595,7 @@ namespace RuntimeLanguageProcessor {
                     } else {
                         Pos = scan(Remainder, ' ');
                         if (Pos == std::string::npos) Pos = Remainder.length();
-                        Variable =
-                            MakeUPPERCase(stripped(Remainder.substr(0, Pos))); // really the subroutine, or reference to instruction set
+                        Variable = MakeUPPERCase(stripped(Remainder.substr(0, Pos))); // really the subroutine, or reference to instruction set
                         StackNum2 = FindItemInList(Variable, ErlStack);
                         if (StackNum2 == 0) {
                             AddError(StackNum, LineNum, "Program or Subroutine name [" + Variable + "] not found for the RUN instruction.");
@@ -620,12 +619,10 @@ namespace RuntimeLanguageProcessor {
                     ReadyForElse(NestedIfDepth) = true;
                     ReadyForEndif(NestedIfDepth) = true;
                     if (NestedIfDepth > IfDepthAllowed) {
-                        AddError(StackNum, LineNum,
-                                 "Detected IF nested deeper than is allowed; need to terminate an earlier IF instruction.");
+                        AddError(StackNum, LineNum, "Detected IF nested deeper than is allowed; need to terminate an earlier IF instruction.");
                         break;
                     } else {
-                        InstructionNum =
-                            AddInstruction(StackNum, LineNum, KeywordIf, ExpressionNum); // Arg2 added at next ELSEIF, ELSE, ENDIF
+                        InstructionNum = AddInstruction(StackNum, LineNum, KeywordIf, ExpressionNum); // Arg2 added at next ELSEIF, ELSE, ENDIF
                         SavedIfInstructionNum(NestedIfDepth) = InstructionNum;
                     }
 
@@ -641,8 +638,7 @@ namespace RuntimeLanguageProcessor {
                     InstructionNum = AddInstruction(StackNum, 0, KeywordGoto); // Arg2 is added at the ENDIF
                     ++NumGotos(NestedIfDepth);
                     if (NumGotos(NestedIfDepth) > ELSEIFLengthAllowed) {
-                        AddError(StackNum, LineNum,
-                                 "Detected ELSEIF series that is longer than allowed; terminate earlier IF instruction.");
+                        AddError(StackNum, LineNum, "Detected ELSEIF series that is longer than allowed; terminate earlier IF instruction.");
                         break;
                     } else {
                         SavedGotoInstructionNum(NumGotos(NestedIfDepth), NestedIfDepth) = InstructionNum;
@@ -734,8 +730,7 @@ namespace RuntimeLanguageProcessor {
 
                     ++NestedWhileDepth;
                     if (NestedWhileDepth > WhileDepthAllowed) {
-                        AddError(StackNum, LineNum,
-                                 "Detected WHILE nested deeper than is allowed; need to terminate an earlier WHILE instruction.");
+                        AddError(StackNum, LineNum, "Detected WHILE nested deeper than is allowed; need to terminate an earlier WHILE instruction.");
                         break;
                     } else {
                         InstructionNum = AddInstruction(StackNum, LineNum, KeywordWhile, ExpressionNum);
@@ -774,8 +769,7 @@ namespace RuntimeLanguageProcessor {
         if (NestedIfDepth == 1) {
             AddError(StackNum, 0, "Missing an ENDIF instruction needed to terminate an earlier IF instruction.");
         } else if (NestedIfDepth > 1) {
-            AddError(StackNum, 0,
-                     "Missing " + IntegerToString(NestedIfDepth) + " ENDIF instructions needed to terminate earlier IF instructions.");
+            AddError(StackNum, 0, "Missing " + IntegerToString(NestedIfDepth) + " ENDIF instructions needed to terminate earlier IF instructions.");
         }
 
         //  ALLOCATE(DummyError(ErlStack(StackNum)%NumErrors))
@@ -819,8 +813,7 @@ namespace RuntimeLanguageProcessor {
             TempStack = ErlStack(StackNum);
             ErlStack(StackNum).Instruction.deallocate();
             ErlStack(StackNum).Instruction.allocate(ErlStack(StackNum).NumInstructions + 1);
-            ErlStack(StackNum).Instruction({1, ErlStack(StackNum).NumInstructions}) =
-                TempStack.Instruction({1, ErlStack(StackNum).NumInstructions});
+            ErlStack(StackNum).Instruction({1, ErlStack(StackNum).NumInstructions}) = TempStack.Instruction({1, ErlStack(StackNum).NumInstructions});
             ++ErlStack(StackNum).NumInstructions;
         }
 
@@ -874,8 +867,7 @@ namespace RuntimeLanguageProcessor {
 
         ErrorNum = ErlStack(StackNum).NumErrors;
         if (LineNum > 0) {
-            ErlStack(StackNum).Error(ErrorNum) =
-                "Line " + IntegerToString(LineNum) + ":  " + Error + " \"" + ErlStack(StackNum).Line(LineNum) + "\"";
+            ErlStack(StackNum).Error(ErrorNum) = "Line " + IntegerToString(LineNum) + ":  " + Error + " \"" + ErlStack(StackNum).Line(LineNum) + "\"";
         } else {
             ErlStack(StackNum).Error(ErrorNum) = Error;
         }
@@ -1107,8 +1099,8 @@ namespace RuntimeLanguageProcessor {
         TimeString = DuringWarmup + EnvironmentName + ", " + CurMnDy + ' ' + CreateSysTimeIntervalString();
 
         if (OutputFullEMSTrace || (OutputEMSErrors && (ReturnValue.Type == ValueError))) {
-            gio::write(OutputEMSFileUnitNum, fmtA)
-                << NameString + ",Line " + LineNumString + ',' + LineString + ',' + cValueString + ',' + TimeString;
+            gio::write(OutputEMSFileUnitNum, fmtA) << NameString + ",Line " + LineNumString + ',' + LineString + ',' + cValueString + ',' +
+                                                          TimeString;
         }
 
         if (seriousErrorFound) { // throw EnergyPlus severe then fatal
@@ -1914,10 +1906,8 @@ namespace RuntimeLanguageProcessor {
                         ErlExpression(ExpressionNum).Operand(1).Expression = Token(Pos + 1).Expression;
                         ErlExpression(ExpressionNum).Operand(1).Variable = Token(Pos + 1).Variable;
                         if (Token(Pos + 1).Variable > 0) {
-                            ErlExpression(ExpressionNum).Operand(1).TrendVariable =
-                                ErlVariable(Token(Pos + 1).Variable).Value.TrendVariable;
-                            ErlExpression(ExpressionNum).Operand(1).TrendVarPointer =
-                                ErlVariable(Token(Pos + 1).Variable).Value.TrendVarPointer;
+                            ErlExpression(ExpressionNum).Operand(1).TrendVariable = ErlVariable(Token(Pos + 1).Variable).Value.TrendVariable;
+                            ErlExpression(ExpressionNum).Operand(1).TrendVarPointer = ErlVariable(Token(Pos + 1).Variable).Value.TrendVarPointer;
                         }
                         if ((NumOperands >= 2) && (NumTokens >= 3)) {
                             ErlExpression(ExpressionNum).Operand(2).Type = Token(Pos + 2).Type;
@@ -2258,8 +2248,7 @@ namespace RuntimeLanguageProcessor {
                                 // throw Error
                                 ReturnValue.Type = ValueError;
                                 ReturnValue.Error = "EvaluateExpression: Attempted to raise to power with incompatible numbers: " +
-                                                    TrimSigDigits(Operand(1).Number, 6) + " raised to " +
-                                                    TrimSigDigits(Operand(2).Number, 6);
+                                                    TrimSigDigits(Operand(1).Number, 6) + " raised to " + TrimSigDigits(Operand(2).Number, 6);
                                 if (!DoingSizing && !KickOffSimulation && !EMSManager::FinishProcessingUserInput) {
                                     seriousErrorFound = true;
                                 }
@@ -2389,10 +2378,9 @@ namespace RuntimeLanguageProcessor {
                                                                                                                 // dry air) | drybulb (C)
                     } else if (SELECT_CASE_var == FuncHgAirFnWTdb) {
                         // confusing ?  seems like this is really classical Hfg, heat of vaporization
-                        ReturnValue =
-                            SetErlValueNumber(PsyHgAirFnWTdb(Operand(1).Number, Operand(2).Number)); // result =>   enthalpy of the gas
-                                                                                                     // {units?} | Humidity ratio (kg water
-                                                                                                     // vapor/kg dry air) | drybulb (C)
+                        ReturnValue = SetErlValueNumber(PsyHgAirFnWTdb(Operand(1).Number, Operand(2).Number)); // result =>   enthalpy of the gas
+                                                                                                               // {units?} | Humidity ratio (kg water
+                                                                                                               // vapor/kg dry air) | drybulb (C)
                     } else if (SELECT_CASE_var == FuncTdpFnTdbTwbPb) {
                         ReturnValue = SetErlValueNumber(PsyTdpFnTdbTwbPb(
                             Operand(1).Number, Operand(2).Number, Operand(3).Number,
@@ -2403,9 +2391,9 @@ namespace RuntimeLanguageProcessor {
                                                                                                     // | Humidity ratio (kg water vapor/kg
                                                                                                     // dry air) | pressure (Pa)
                     } else if (SELECT_CASE_var == FuncHFnTdbW) {
-                        ReturnValue = SetErlValueNumber(PsyHFnTdbW(
-                            Operand(1).Number,
-                            Operand(2).Number)); // result =>  enthalpy (J/kg) | drybulb (C) | Humidity ratio (kg water vapor/kg dry air)
+                        ReturnValue = SetErlValueNumber(
+                            PsyHFnTdbW(Operand(1).Number,
+                                       Operand(2).Number)); // result =>  enthalpy (J/kg) | drybulb (C) | Humidity ratio (kg water vapor/kg dry air)
                     } else if (SELECT_CASE_var == FuncHFnTdbRhPb) {
                         ReturnValue = SetErlValueNumber(PsyHFnTdbRhPb(Operand(1).Number, Operand(2).Number, Operand(3).Number,
                                                                       EMSBuiltInFunction)); // result =>  enthalpy (J/kg) | drybulb (C) |
@@ -2424,8 +2412,7 @@ namespace RuntimeLanguageProcessor {
                     } else if (SELECT_CASE_var == FuncRhovFnTdbRhLBnd0C) {
                         ReturnValue = SetErlValueNumber(PsyRhovFnTdbRhLBnd0C(
                             Operand(1).Number,
-                            Operand(2)
-                                .Number)); // result =>  Vapor density in air (kg/m3) | drybulb (C) | relative humidity value (0.0 - 1.0)
+                            Operand(2).Number)); // result =>  Vapor density in air (kg/m3) | drybulb (C) | relative humidity value (0.0 - 1.0)
                     } else if (SELECT_CASE_var == FuncRhovFnTdbWPb) {
                         ReturnValue = SetErlValueNumber(PsyRhovFnTdbWPb(Operand(1).Number, Operand(2).Number,
                                                                         Operand(3).Number)); // result =>  Vapor density in air (kg/m3) |
@@ -2460,9 +2447,9 @@ namespace RuntimeLanguageProcessor {
                                                                                                     // vapor/kg dry air) | dew point
                                                                                                     // temperature (C) | pressure (Pa)
                     } else if (SELECT_CASE_var == FuncWFnTdbH) {
-                        ReturnValue = SetErlValueNumber(PsyWFnTdbH(
-                            Operand(1).Number, Operand(2).Number,
-                            EMSBuiltInFunction)); // result=> humidity ratio  (kg water vapor/kg dry air) | drybulb (C) | enthalpy (J/kg)
+                        ReturnValue = SetErlValueNumber(
+                            PsyWFnTdbH(Operand(1).Number, Operand(2).Number,
+                                       EMSBuiltInFunction)); // result=> humidity ratio  (kg water vapor/kg dry air) | drybulb (C) | enthalpy (J/kg)
                     } else if (SELECT_CASE_var == FuncWFnTdbTwbPb) {
                         ReturnValue = SetErlValueNumber(PsyWFnTdbTwbPb(Operand(1).Number, Operand(2).Number, Operand(3).Number,
                                                                        EMSBuiltInFunction)); // result=> humidity ratio  (kg water vapor/kg
@@ -2527,8 +2514,7 @@ namespace RuntimeLanguageProcessor {
                             }
                         } else { // not registered as a trend variable
                             ReturnValue.Type = ValueError;
-                            ReturnValue.Error =
-                                "Variable used with built-in trend function is not associated with a registered trend variable";
+                            ReturnValue.Error = "Variable used with built-in trend function is not associated with a registered trend variable";
                         }
 
                     } else if (SELECT_CASE_var == FuncTrendAverage) {
@@ -2551,8 +2537,7 @@ namespace RuntimeLanguageProcessor {
                             }
                         } else { // not registered as a trend variable
                             ReturnValue.Type = ValueError;
-                            ReturnValue.Error =
-                                "Variable used with built-in trend function is not associated with a registered trend variable";
+                            ReturnValue.Error = "Variable used with built-in trend function is not associated with a registered trend variable";
                         }
                     } else if (SELECT_CASE_var == FuncTrendMax) {
                         if (Operand(1).TrendVariable) {
@@ -2566,8 +2551,7 @@ namespace RuntimeLanguageProcessor {
                                     } else {
                                         for (loop = 2; loop <= thisIndex; ++loop) {
                                             if (loop == 2) {
-                                                thisMax =
-                                                    max(TrendVariable(thisTrend).TrendValARR(1), TrendVariable(thisTrend).TrendValARR(2));
+                                                thisMax = max(TrendVariable(thisTrend).TrendValARR(1), TrendVariable(thisTrend).TrendValARR(2));
                                             } else {
                                                 thisMax = max(thisMax, TrendVariable(thisTrend).TrendValARR(loop));
                                             }
@@ -2584,8 +2568,7 @@ namespace RuntimeLanguageProcessor {
                             }
                         } else { // not registered as a trend variable
                             ReturnValue.Type = ValueError;
-                            ReturnValue.Error =
-                                "Variable used with built-in trend function is not associated with a registered trend variable";
+                            ReturnValue.Error = "Variable used with built-in trend function is not associated with a registered trend variable";
                         }
                     } else if (SELECT_CASE_var == FuncTrendMin) {
                         if (Operand(1).TrendVariable) {
@@ -2599,8 +2582,7 @@ namespace RuntimeLanguageProcessor {
                                     } else {
                                         for (loop = 2; loop <= thisIndex; ++loop) {
                                             if (loop == 2) {
-                                                thisMin =
-                                                    min(TrendVariable(thisTrend).TrendValARR(1), TrendVariable(thisTrend).TrendValARR(2));
+                                                thisMin = min(TrendVariable(thisTrend).TrendValARR(1), TrendVariable(thisTrend).TrendValARR(2));
                                             } else {
                                                 thisMin = min(thisMin, TrendVariable(thisTrend).TrendValARR(loop));
                                             }
@@ -2619,8 +2601,7 @@ namespace RuntimeLanguageProcessor {
                             }
                         } else { // not registered as a trend variable
                             ReturnValue.Type = ValueError;
-                            ReturnValue.Error =
-                                "Variable used with built-in trend function is not associated with a registered trend variable";
+                            ReturnValue.Error = "Variable used with built-in trend function is not associated with a registered trend variable";
                         }
                     } else if (SELECT_CASE_var == FuncTrendDirection) {
                         if (Operand(1).TrendVariable) {
@@ -2649,8 +2630,7 @@ namespace RuntimeLanguageProcessor {
                             }
                         } else { // not registered as a trend variable
                             ReturnValue.Type = ValueError;
-                            ReturnValue.Error =
-                                "Variable used with built-in trend function is not associated with a registered trend variable";
+                            ReturnValue.Error = "Variable used with built-in trend function is not associated with a registered trend variable";
                         }
                     } else if (SELECT_CASE_var == FuncTrendSum) {
                         if (Operand(1).TrendVariable) {
@@ -2670,14 +2650,13 @@ namespace RuntimeLanguageProcessor {
                             }
                         } else { // not registered as a trend variable
                             ReturnValue.Type = ValueError;
-                            ReturnValue.Error =
-                                "Variable used with built-in trend function is not associated with a registered trend variable";
+                            ReturnValue.Error = "Variable used with built-in trend function is not associated with a registered trend variable";
                         }
                     } else if (SELECT_CASE_var == FuncCurveValue) {
-                        ReturnValue = SetErlValueNumber(
-                            CurveValue(std::floor(Operand(1).Number), Operand(2).Number, Operand(3).Number, Operand(4).Number,
-                                       Operand(5).Number, Operand(6).Number)); // curve index | X value | Y value, 2nd independent | Z
-                                                                               // Value, 3rd independent | 4th independent | 5th independent
+                        ReturnValue = SetErlValueNumber(CurveValue(std::floor(Operand(1).Number), Operand(2).Number, Operand(3).Number,
+                                                                   Operand(4).Number, Operand(5).Number,
+                                                                   Operand(6).Number)); // curve index | X value | Y value, 2nd independent | Z
+                                                                                        // Value, 3rd independent | 4th independent | 5th independent
 
                     } else {
                         // throw Error!
@@ -2852,8 +2831,7 @@ namespace RuntimeLanguageProcessor {
 
             cCurrentModuleObject = "EnergyManagementSystem:GlobalVariable";
 
-            if (NumUserGlobalVariables + NumExternalInterfaceGlobalVariables +
-                    NumExternalInterfaceFunctionalMockupUnitImportGlobalVariables +
+            if (NumUserGlobalVariables + NumExternalInterfaceGlobalVariables + NumExternalInterfaceFunctionalMockupUnitImportGlobalVariables +
                     NumExternalInterfaceFunctionalMockupUnitExportGlobalVariables >
                 0) {
                 for (GlobalNum = 1; GlobalNum <= NumUserGlobalVariables + NumExternalInterfaceGlobalVariables +
@@ -2864,20 +2842,19 @@ namespace RuntimeLanguageProcessor {
                     // name of the module object, and add an offset for the variable number
                     // This is done in the following IF/THEN section.
                     if (GlobalNum <= NumUserGlobalVariables) {
-                        GetObjectItem(cCurrentModuleObject, GlobalNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat,
-                                      lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
-                    } else if (GlobalNum > NumUserGlobalVariables &&
-                               GlobalNum <= NumUserGlobalVariables + NumExternalInterfaceGlobalVariables) {
+                        GetObjectItem(cCurrentModuleObject, GlobalNum, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, lNumericFieldBlanks,
+                                      lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+                    } else if (GlobalNum > NumUserGlobalVariables && GlobalNum <= NumUserGlobalVariables + NumExternalInterfaceGlobalVariables) {
                         cCurrentModuleObject = "ExternalInterface:Variable";
-                        GetObjectItem(cCurrentModuleObject, GlobalNum - NumUserGlobalVariables, cAlphaArgs, NumAlphas, rNumericArgs,
-                                      NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
+                        GetObjectItem(cCurrentModuleObject, GlobalNum - NumUserGlobalVariables, cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat,
+                                      lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames, cNumericFieldNames);
                     } else if (GlobalNum > NumUserGlobalVariables + NumExternalInterfaceGlobalVariables &&
                                GlobalNum <= NumUserGlobalVariables + NumExternalInterfaceGlobalVariables +
                                                 NumExternalInterfaceFunctionalMockupUnitImportGlobalVariables) {
                         cCurrentModuleObject = "ExternalInterface:FunctionalMockupUnitImport:To:Variable";
-                        GetObjectItem(cCurrentModuleObject, GlobalNum - NumUserGlobalVariables - NumExternalInterfaceGlobalVariables,
-                                      cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
-                                      cAlphaFieldNames, cNumericFieldNames);
+                        GetObjectItem(cCurrentModuleObject, GlobalNum - NumUserGlobalVariables - NumExternalInterfaceGlobalVariables, cAlphaArgs,
+                                      NumAlphas, rNumericArgs, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames,
+                                      cNumericFieldNames);
 
                     } else if (GlobalNum > NumUserGlobalVariables + NumExternalInterfaceGlobalVariables +
                                                NumExternalInterfaceFunctionalMockupUnitImportGlobalVariables &&
@@ -2887,8 +2864,8 @@ namespace RuntimeLanguageProcessor {
                         cCurrentModuleObject = "ExternalInterface:FunctionalMockupUnitExport:To:Variable";
                         GetObjectItem(cCurrentModuleObject, GlobalNum - NumUserGlobalVariables - NumExternalInterfaceGlobalVariables -
                                                                 NumExternalInterfaceFunctionalMockupUnitImportGlobalVariables,
-                                      cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks,
-                                      cAlphaFieldNames, cNumericFieldNames);
+                                      cAlphaArgs, NumAlphas, rNumericArgs, NumNums, IOStat, lNumericFieldBlanks, lAlphaFieldBlanks, cAlphaFieldNames,
+                                      cNumericFieldNames);
                     }
 
                     // loop over each alpha and register variable named as global Erl variable
@@ -2901,8 +2878,7 @@ namespace RuntimeLanguageProcessor {
                                                         ErrorsFound);
                             }
                         } else {
-                            ValidateEMSVariableName(cCurrentModuleObject, cAlphaArgs(ErlVarLoop), cAlphaFieldNames(ErlVarLoop), errFlag,
-                                                    ErrorsFound);
+                            ValidateEMSVariableName(cCurrentModuleObject, cAlphaArgs(ErlVarLoop), cAlphaFieldNames(ErlVarLoop), errFlag, ErrorsFound);
                         }
                         if (lAlphaFieldBlanks(ErlVarLoop)) {
                             ShowWarningError(RoutineName + cCurrentModuleObject);
@@ -3143,8 +3119,7 @@ namespace RuntimeLanguageProcessor {
                                 TrendVariable(TrendNum).TimeARR(loop) = -TimeStepZone;
                                 continue;
                             } else {
-                                TrendVariable(TrendNum).TimeARR(loop) =
-                                    TrendVariable(TrendNum).TimeARR(loop - 1) - TimeStepZone; // fractional hours
+                                TrendVariable(TrendNum).TimeARR(loop) = TrendVariable(TrendNum).TimeARR(loop - 1) - TimeStepZone; // fractional hours
                             }
                         }
                     } else {
@@ -3241,8 +3216,7 @@ namespace RuntimeLanguageProcessor {
                             }
                         } else if (UnitsB == "" && UnitsA != "") {
                             UnitsB = UnitsA;
-                            ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) +
-                                             " using deprecated units designation.");
+                            ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + " using deprecated units designation.");
                             ShowContinueError("...Units entered in " + cAlphaFieldNames(1) + " (deprecated use)=\"" + UnitsA + "\"");
                         }
                     }
@@ -3323,11 +3297,10 @@ namespace RuntimeLanguageProcessor {
                     }
 
                     if (curUnit != OutputProcessor::Unit::unknown) {
-                        SetupOutputVariable(cAlphaArgs(1), curUnit, RuntimeReportVar(RuntimeReportVarNum).Value, FreqString, VarTypeString,
-                                            "EMS");
+                        SetupOutputVariable(cAlphaArgs(1), curUnit, RuntimeReportVar(RuntimeReportVarNum).Value, FreqString, VarTypeString, "EMS");
                     } else {
-                        SetupOutputVariable(cAlphaArgs(1), OutputProcessor::Unit::customEMS, RuntimeReportVar(RuntimeReportVarNum).Value,
-                                            FreqString, VarTypeString, "EMS", _, _, _, _, _, _, _, _, _, UnitsB);
+                        SetupOutputVariable(cAlphaArgs(1), OutputProcessor::Unit::customEMS, RuntimeReportVar(RuntimeReportVarNum).Value, FreqString,
+                                            VarTypeString, "EMS", _, _, _, _, _, _, _, _, _, UnitsB);
                     }
                     // Last field is index key, no indexing here so mimic weather output data
 
@@ -3394,8 +3367,7 @@ namespace RuntimeLanguageProcessor {
                             }
                         } else if (UnitsB == "" && UnitsA != "") {
                             UnitsB = UnitsA;
-                            ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) +
-                                             " using deprecated units designation.");
+                            ShowWarningError(RoutineName + cCurrentModuleObject + "=\"" + cAlphaArgs(1) + " using deprecated units designation.");
                             ShowContinueError("...Units entered in " + cAlphaFieldNames(1) + " (deprecated use)=\"" + UnitsA + "\"");
                         }
                     }
@@ -3605,11 +3577,11 @@ namespace RuntimeLanguageProcessor {
                     if (!lAlphaFieldBlanks(8)) {
                         EndUseSubCatString = cAlphaArgs(8);
 
-                        SetupOutputVariable(cAlphaArgs(1), curUnit, RuntimeReportVar(RuntimeReportVarNum).Value, FreqString, VarTypeString,
-                                            "EMS", _, ResourceTypeString, EndUseTypeString, EndUseSubCatString, GroupTypeString);
+                        SetupOutputVariable(cAlphaArgs(1), curUnit, RuntimeReportVar(RuntimeReportVarNum).Value, FreqString, VarTypeString, "EMS", _,
+                                            ResourceTypeString, EndUseTypeString, EndUseSubCatString, GroupTypeString);
                     } else { // no subcat
-                        SetupOutputVariable(cAlphaArgs(1), curUnit, RuntimeReportVar(RuntimeReportVarNum).Value, FreqString, VarTypeString,
-                                            "EMS", _, ResourceTypeString, EndUseTypeString, _, GroupTypeString);
+                        SetupOutputVariable(cAlphaArgs(1), curUnit, RuntimeReportVar(RuntimeReportVarNum).Value, FreqString, VarTypeString, "EMS", _,
+                                            ResourceTypeString, EndUseTypeString, _, GroupTypeString);
                     }
                 }
             } // NumEMSMeteredOutputVariables > 0
